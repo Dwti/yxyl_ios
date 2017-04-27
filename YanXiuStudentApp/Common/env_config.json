@@ -1,0 +1,7 @@
+{
+	"server":"http://test.hwk.yanxiu.com/",
+	"loginServer":"http://test.hwk.yanxiu.com/",
+	"uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
+	"initializeUrl":"http://mobile.yanxiu.com/test/api/initialize",
+	"mode":"test"
+}

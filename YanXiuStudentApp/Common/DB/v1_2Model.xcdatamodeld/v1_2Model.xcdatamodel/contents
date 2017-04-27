@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="InstantRecordEntity" representedClassName="InstantRecordEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LogRecordEntity" representedClassName="LogRecordEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RegularRecordEntity" representedClassName="RegularRecordEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="InstantRecordEntity" positionX="-630" positionY="-81" width="128" height="60"/>
+        <element name="LogRecordEntity" positionX="-621" positionY="-72" width="128" height="60"/>
+        <element name="RegularRecordEntity" positionX="-612" positionY="-63" width="128" height="60"/>
+    </elements>
+</model>

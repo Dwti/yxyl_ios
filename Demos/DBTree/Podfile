@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+
+pod 'CocoaLumberjack', '2.0.1'
+pod 'MagicalRecord', '2.3.0'
+pod 'ReactiveCocoa', '2.5'
+pod 'Masonry', '0.6.3'
+
+inhibit_all_warnings!

@@ -1,0 +1,94 @@
+#ifndef Template_PrefixHeader_pch
+#define Template_PrefixHeader_pch
+
+#import "TalkingData.h"
+
+
+extern int ddLogLevel;
+#import <CocoaLumberjack.h>
+#import <Masonry.h>
+#import <RACExtScope.h>
+#import <ReactiveCocoa.h>
+#import <Aspects.h>
+#import <NSObject+RACKVOWrapper.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import <ASIHTTPRequest.h>
+#import <JSONModel.h>
+#import <UITableView+FDTemplateLayoutCell.h>
+#import <UIImageView+WebCache.h>
+#import <UIColor+Expanded.h>
+#import <Reachability.h>
+#import <NSString+Hashes.h>
+#import <IBActionSheet.h>
+#import <DTCoreText.h>
+#import <MWPhotoBrowser.h>
+#import <FCUUID.h>
+#import <SAMTextView.h>
+#import "POP.h"
+#import "UIView+CBFrameHelpers.h"
+
+#import "UIImage+YXStretch.h"
+#import "GlobalUtils.h"
+#import "UIImage+Color.h"
+#import "UIButton+HighlightColor.h"
+#import "UIView+Views.h"
+#import "UIImage+YXImage.h"
+#import "UIImage+GIF.h"
+#import "NSObject+BackgroundTask.h"
+
+#import "EEAlertView.h"
+#import "BaseViewController.h"
+#import "YXAppConstants.h"
+#import "NSString+YXString.h"
+#import "UIViewController+YXNavigationItem.h"
+#import "YXNavigationController.h"
+#import "YXUserManager.h"
+#import "YXConfigManager.h"
+#import "UIViewController+YXLoading.h"
+#import "UIView+YXShadowColor.h"
+#import "NSDictionary+Dictionarys.h"
+#import "NSMutableDictionary+YXDictionarys.h"
+#import "UIImage+YXResize.h"
+
+#import "YXSubjectImageHelper.h"
+#import "YXSmartDashLineView.h"
+#import "ExerciseSubjectManager.h"
+#import "YXQARequestParams.h"
+
+#import "YXQADefinitions.h"
+#import "QAQuestion.h"
+#import "QAStringAnswerQuestion.h"
+#import "QATwoNumberAnswerQuestion.h"
+#import "QAComplexAnswerQuestion.h"
+#import "QAImageAnswerQuestion.h"
+#import "QANumberAnswerQuestion.h"
+#import "QANumberGroupAnswerQuestion.h"
+#import "QAQuestionFactory.h"
+#import "QAPaperModel.h"
+#import "QAQuestionTemplateMappingTable.h"
+#import "QAQuestionTypeMappingTable.h"
+#import "QAQuestionUtil.h"
+#import "YXQADataManager.h"
+#import "QAQuestionViewContainerFactory.h"
+#import "QACoreTextViewHandler.h"
+#import "MistakeQuestionManager.h"
+
+#import "MTA.h"
+#import "MTAConfig.h"
+#import "YXCrypt.h"
+#import "YXHtmlCellHeightDelegate.h"
+#import "YXPhotoModel.h"
+#import "YXAlbumViewModel.h"
+
+#import "ClassHomeworkDataManager.h"
+#import "YXUpdateUserInfoHelper.h"
+#import "LoginDataManager.h"
+#import "LoginUtils.h"
+
+#pragma mark - 2.0
+#import "YXTabBarController.h"
+#import "YXLoadingView.h"
+#import "YXQACoreTextHelper.h"
+#import "NSObject+YXNetworkMethod.h"
+
+#endif

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="ChapterEntity" representedClassName="ChapterEntity" syncable="YES">
+        <attribute name="chapterID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chapterName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="chapter" inverseEntity="ExerciseEntity" syncable="YES"/>
+    </entity>
+    <entity name="ExerciseEntity" representedClassName="ExerciseEntity" syncable="YES">
+        <attribute name="chapterID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exerciseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unitID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volumeID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chapter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChapterEntity" inverseName="exercise" inverseEntity="ChapterEntity" syncable="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SectionEntity" inverseName="exercise" inverseEntity="SectionEntity" syncable="YES"/>
+        <relationship name="unit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UnitEntity" inverseName="exercise" inverseEntity="UnitEntity" syncable="YES"/>
+        <relationship name="volume" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VolumeEntity" inverseName="exercise" inverseEntity="VolumeEntity" syncable="YES"/>
+    </entity>
+    <entity name="SectionEntity" representedClassName="SectionEntity" syncable="YES">
+        <attribute name="sectionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="section" inverseEntity="ExerciseEntity" syncable="YES"/>
+    </entity>
+    <entity name="UnitEntity" representedClassName="UnitEntity" syncable="YES">
+        <attribute name="unitID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unitName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="unit" inverseEntity="ExerciseEntity" syncable="YES"/>
+    </entity>
+    <entity name="VolumeEntity" representedClassName="VolumeEntity" syncable="YES">
+        <attribute name="volumeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volumeName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="volume" inverseEntity="ExerciseEntity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ChapterEntity" positionX="-38" positionY="45" width="128" height="88"/>
+        <element name="ExerciseEntity" positionX="-666" positionY="266" width="128" height="178"/>
+        <element name="SectionEntity" positionX="52" positionY="164" width="128" height="88"/>
+        <element name="UnitEntity" positionX="25" positionY="378" width="128" height="88"/>
+        <element name="VolumeEntity" positionX="-684" positionY="144" width="128" height="88"/>
+    </elements>
+</model>

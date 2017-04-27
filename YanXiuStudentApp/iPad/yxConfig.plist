@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>phonepad</key>
+	<string>2</string>
+	<key>channel</key>
+	<string>app store</string>
+	<key>MTAKey</key>
+	<string>IK9JXZR8K72J</string>
+	<key>XGPushID</key>
+	<integer>2200179005</integer>
+	<key>XGPushKey</key>
+	<string>I1TX3IQ44H9J</string>
+	<key>YXSSOAuthQQAppid</key>
+	<string>1105149060</string>
+	<key>YXSSOAuthQQAppKey</key>
+	<string>E9YWHMESAaGLNXDj</string>
+	<key>YXSSOAuthWeixinAppid</key>
+	<string>wxb85389da49835869</string>
+	<key>YXSSOAuthWeixinAppSecret</key>
+	<string>dd4ec04a8ab6f31448371806072ad56a</string>
+	<key>TalkingDataAppID</key>
+	<string>BFDF2F181EFCDD3605B6E371C4A4CB0B</string>
+</dict>
+</plist>

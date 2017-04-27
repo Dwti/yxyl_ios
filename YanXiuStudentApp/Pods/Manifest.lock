@@ -1,0 +1,155 @@
+PODS:
+  - AJNotificationView (0.7)
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
+    - ASIHTTPRequest/CloudFiles (= 1.8.2)
+    - ASIHTTPRequest/Core (= 1.8.2)
+    - ASIHTTPRequest/S3 (= 1.8.2)
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
+  - Aspects (1.4.1)
+  - Base64 (1.1.2)
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.3.0):
+    - CocoaLumberjack/Default
+  - CommonCrypto (1.1)
+  - DACircularProgress (2.3.1)
+  - DTCoreText (1.6.16):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.10)
+  - DTFoundation/DTAnimatedGIF (1.7.10)
+  - DTFoundation/DTHTMLParser (1.7.10):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.10):
+    - DTFoundation/Core
+  - FCUUID (1.2.0):
+    - UICKeyChainStore (~> 2.1.0)
+  - FileMD5Hash (2.0.0)
+  - FLAnimatedImage (1.0.12)
+  - IBActionSheet (0.0.2)
+  - JSONModel (1.2.0)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
+  - Masonry (0.6.4)
+  - MBProgressHUD (0.9)
+  - MDRadialProgress (1.3.1)
+  - MSDynamicsDrawerViewController (1.5.1)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - NSData+MD5Digest (1.0.0)
+  - NSString-Hashes (1.2.1)
+  - OpenUDID (1.0.0)
+  - PhotoTweaks (1.0.3)
+  - pop (1.0.9)
+  - RATreeView (1.0.2)
+  - Reachability (3.2)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - RMDateSelectionViewController (1.3.0)
+  - SAMTextView (0.2.2)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - StyledPageControl (1.0)
+  - UICKeyChainStore (2.1.0)
+  - UIColor-Utilities (1.0.1)
+  - UIDevice+HardwareName (6.0.0)
+  - UITableView+FDTemplateLayoutCell (1.4)
+  - uiview-frame-helpers (0.1.1)
+
+DEPENDENCIES:
+  - AJNotificationView (= 0.7)
+  - ASIHTTPRequest (= 1.8.2)
+  - Aspects (~> 1.4)
+  - Base64
+  - CocoaLumberjack (~> 2.0)
+  - CommonCrypto
+  - DTCoreText (= 1.6.16)
+  - FCUUID
+  - FileMD5Hash (= 2.0.0)
+  - FLAnimatedImage (~> 1.0)
+  - IBActionSheet (= 0.0.2)
+  - JSONModel (~> 1.2.0)
+  - MagicalRecord (~> 2.0)
+  - Masonry (~> 0.0)
+  - MBProgressHUD (= 0.9)
+  - MDRadialProgress (= 1.3.1)
+  - MSDynamicsDrawerViewController (= 1.5.1)
+  - MWPhotoBrowser (= 2.1.1)
+  - NSData+MD5Digest (= 1.0.0)
+  - NSString-Hashes (= 1.2.1)
+  - OpenUDID (= 1.0.0)
+  - PhotoTweaks (~> 1.0.3)
+  - pop (~> 1.0)
+  - RATreeView (= 1.0.2)
+  - ReactiveCocoa (~> 2.0)
+  - RMDateSelectionViewController (= 1.3.0)
+  - SAMTextView (= 0.2.2)
+  - StyledPageControl (= 1.0)
+  - UIColor-Utilities (= 1.0.1)
+  - UIDevice+HardwareName (= 6.0.0)
+  - UITableView+FDTemplateLayoutCell (= 1.4)
+  - uiview-frame-helpers (~> 0.1.1)
+
+SPEC CHECKSUMS:
+  AJNotificationView: fe9f2e3b806ab71e3705047ed243a283b7155731
+  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  CommonCrypto: e18c8416332cca5efe80c197f2a522d471c42626
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
+  DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
+  FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
+  FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  IBActionSheet: 4028206b0561772c3674a339fb4a7265d55a6f8b
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  MDRadialProgress: 6af31db0315f1b687df825a73481a2a443182402
+  MSDynamicsDrawerViewController: 2874df90f5e9453dc7d4e32f8038b50615d4baa7
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  NSData+MD5Digest: 0743d53874455e2bdf49f70e7f815b0b963a355f
+  NSString-Hashes: d72496f282a27fad01381363b2761ced259064af
+  OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
+  PhotoTweaks: 17a448f451872fd9c3cc65ec5ca125ccd1b48d11
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  RATreeView: 453b8203163c415f4c43da1e20addcf1b2379e06
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  RMDateSelectionViewController: cb6dfc255abf0ea553d212e015fdf667e25859c1
+  SAMTextView: 979c43bb1fa5859ddfbfeb35e9c296a2b0ec55fd
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  StyledPageControl: b49f33cb65b99370a78a490fac127b1ca6472fd0
+  UICKeyChainStore: f1cbd42216a113f0165de1e733e62905b8823432
+  UIColor-Utilities: 6746a54dcdb3bc012dd7aeaeea5588ae2100beb2
+  UIDevice+HardwareName: 6b98c1855f304ec8fc7a1ad72fddaed8523b75ad
+  UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
+  uiview-frame-helpers: c3feade603cca5c805dd857e64692c7e7e01d5ec
+
+COCOAPODS: 0.39.0

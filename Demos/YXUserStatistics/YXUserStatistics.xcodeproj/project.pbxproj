@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F05C3471CF6DFF7004AD06D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C3461CF6DFF7004AD06D /* main.m */; };
+		0F05C34A1CF6DFF7004AD06D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C3491CF6DFF7004AD06D /* AppDelegate.m */; };
+		0F05C3521CF6DFF7004AD06D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F05C3511CF6DFF7004AD06D /* Assets.xcassets */; };
+		0F05C3551CF6DFF7004AD06D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F05C3531CF6DFF7004AD06D /* LaunchScreen.storyboard */; };
+		0F05C3601CF6DFF7004AD06D /* YXUserStatisticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C35F1CF6DFF7004AD06D /* YXUserStatisticsTests.m */; };
+		0F05C37B1CF6E282004AD06D /* UIControl+YXUserStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C37A1CF6E282004AD06D /* UIControl+YXUserStatistics.m */; };
+		0F05C37E1CF6E295004AD06D /* YXUserStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C37D1CF6E295004AD06D /* YXUserStatistics.m */; };
+		0F05C3811CF6E2C2004AD06D /* UIViewController+YXUserStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C3801CF6E2C2004AD06D /* UIViewController+YXUserStatistics.m */; };
+		0F05C3841CF6E52F004AD06D /* NSObject+YXHookMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C3831CF6E52F004AD06D /* NSObject+YXHookMethod.m */; };
+		0F05C3891CF6EAB8004AD06D /* YXUserStatisticsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C3881CF6EAB8004AD06D /* YXUserStatisticsConfig.m */; };
+		0F05C38C1CF6EC94004AD06D /* YXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C38B1CF6EC94004AD06D /* YXHomeViewController.m */; };
+		0F05C38F1CF6ECB2004AD06D /* YXDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C38E1CF6ECB2004AD06D /* YXDetailViewController.m */; };
+		0FC122D11CFC451800D1D006 /* NSObject+YXUserStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC122D01CFC451800D1D006 /* NSObject+YXUserStatistics.m */; };
+		0FD74E921CF7EAE0007DEF1B /* YXUserStatisticsConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FD74E911CF7EAE0007DEF1B /* YXUserStatisticsConfig.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0F05C35C1CF6DFF7004AD06D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F05C33A1CF6DFF7004AD06D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F05C3411CF6DFF7004AD06D;
+			remoteInfo = YXUserStatistics;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F05C3421CF6DFF7004AD06D /* YXUserStatistics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXUserStatistics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F05C3461CF6DFF7004AD06D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0F05C3481CF6DFF7004AD06D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0F05C3491CF6DFF7004AD06D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0F05C3511CF6DFF7004AD06D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0F05C3541CF6DFF7004AD06D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0F05C3561CF6DFF7004AD06D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F05C35B1CF6DFF7004AD06D /* YXUserStatisticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YXUserStatisticsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F05C35F1CF6DFF7004AD06D /* YXUserStatisticsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXUserStatisticsTests.m; sourceTree = "<group>"; };
+		0F05C3611CF6DFF7004AD06D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F05C3791CF6E282004AD06D /* UIControl+YXUserStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+YXUserStatistics.h"; sourceTree = "<group>"; };
+		0F05C37A1CF6E282004AD06D /* UIControl+YXUserStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+YXUserStatistics.m"; sourceTree = "<group>"; };
+		0F05C37C1CF6E295004AD06D /* YXUserStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserStatistics.h; sourceTree = "<group>"; };
+		0F05C37D1CF6E295004AD06D /* YXUserStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserStatistics.m; sourceTree = "<group>"; };
+		0F05C37F1CF6E2C2004AD06D /* UIViewController+YXUserStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YXUserStatistics.h"; sourceTree = "<group>"; };
+		0F05C3801CF6E2C2004AD06D /* UIViewController+YXUserStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YXUserStatistics.m"; sourceTree = "<group>"; };
+		0F05C3821CF6E52F004AD06D /* NSObject+YXHookMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YXHookMethod.h"; sourceTree = "<group>"; };
+		0F05C3831CF6E52F004AD06D /* NSObject+YXHookMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YXHookMethod.m"; sourceTree = "<group>"; };
+		0F05C3871CF6EAB8004AD06D /* YXUserStatisticsConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserStatisticsConfig.h; sourceTree = "<group>"; };
+		0F05C3881CF6EAB8004AD06D /* YXUserStatisticsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserStatisticsConfig.m; sourceTree = "<group>"; };
+		0F05C38A1CF6EC94004AD06D /* YXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeViewController.h; sourceTree = "<group>"; };
+		0F05C38B1CF6EC94004AD06D /* YXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeViewController.m; sourceTree = "<group>"; };
+		0F05C38D1CF6ECB2004AD06D /* YXDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDetailViewController.h; sourceTree = "<group>"; };
+		0F05C38E1CF6ECB2004AD06D /* YXDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDetailViewController.m; sourceTree = "<group>"; };
+		0FC122CF1CFC451800D1D006 /* NSObject+YXUserStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YXUserStatistics.h"; sourceTree = "<group>"; };
+		0FC122D01CFC451800D1D006 /* NSObject+YXUserStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YXUserStatistics.m"; sourceTree = "<group>"; };
+		0FD74E911CF7EAE0007DEF1B /* YXUserStatisticsConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YXUserStatisticsConfig.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F05C33F1CF6DFF7004AD06D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F05C3581CF6DFF7004AD06D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F05C3391CF6DFF7004AD06D = {
+			isa = PBXGroup;
+			children = (
+				0F05C3441CF6DFF7004AD06D /* YXUserStatistics */,
+				0F05C35E1CF6DFF7004AD06D /* YXUserStatisticsTests */,
+				0F05C3431CF6DFF7004AD06D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0F05C3431CF6DFF7004AD06D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F05C3421CF6DFF7004AD06D /* YXUserStatistics.app */,
+				0F05C35B1CF6DFF7004AD06D /* YXUserStatisticsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0F05C3441CF6DFF7004AD06D /* YXUserStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				0F05C38A1CF6EC94004AD06D /* YXHomeViewController.h */,
+				0F05C38B1CF6EC94004AD06D /* YXHomeViewController.m */,
+				0F05C38D1CF6ECB2004AD06D /* YXDetailViewController.h */,
+				0F05C38E1CF6ECB2004AD06D /* YXDetailViewController.m */,
+				0F05C3781CF6E231004AD06D /* UserStatistics */,
+				0F05C3481CF6DFF7004AD06D /* AppDelegate.h */,
+				0F05C3491CF6DFF7004AD06D /* AppDelegate.m */,
+				0F05C3511CF6DFF7004AD06D /* Assets.xcassets */,
+				0F05C3531CF6DFF7004AD06D /* LaunchScreen.storyboard */,
+				0F05C3561CF6DFF7004AD06D /* Info.plist */,
+				0F05C3451CF6DFF7004AD06D /* Supporting Files */,
+			);
+			path = YXUserStatistics;
+			sourceTree = "<group>";
+		};
+		0F05C3451CF6DFF7004AD06D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0F05C3461CF6DFF7004AD06D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0F05C35E1CF6DFF7004AD06D /* YXUserStatisticsTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F05C35F1CF6DFF7004AD06D /* YXUserStatisticsTests.m */,
+				0F05C3611CF6DFF7004AD06D /* Info.plist */,
+			);
+			path = YXUserStatisticsTests;
+			sourceTree = "<group>";
+		};
+		0F05C3781CF6E231004AD06D /* UserStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				0F05C37C1CF6E295004AD06D /* YXUserStatistics.h */,
+				0F05C37D1CF6E295004AD06D /* YXUserStatistics.m */,
+				0F05C3821CF6E52F004AD06D /* NSObject+YXHookMethod.h */,
+				0F05C3831CF6E52F004AD06D /* NSObject+YXHookMethod.m */,
+				0FC122CF1CFC451800D1D006 /* NSObject+YXUserStatistics.h */,
+				0FC122D01CFC451800D1D006 /* NSObject+YXUserStatistics.m */,
+				0F05C3791CF6E282004AD06D /* UIControl+YXUserStatistics.h */,
+				0F05C37A1CF6E282004AD06D /* UIControl+YXUserStatistics.m */,
+				0F05C37F1CF6E2C2004AD06D /* UIViewController+YXUserStatistics.h */,
+				0F05C3801CF6E2C2004AD06D /* UIViewController+YXUserStatistics.m */,
+				0F05C3871CF6EAB8004AD06D /* YXUserStatisticsConfig.h */,
+				0F05C3881CF6EAB8004AD06D /* YXUserStatisticsConfig.m */,
+				0FD74E911CF7EAE0007DEF1B /* YXUserStatisticsConfig.plist */,
+			);
+			path = UserStatistics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0F05C3411CF6DFF7004AD06D /* YXUserStatistics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F05C36F1CF6DFF7004AD06D /* Build configuration list for PBXNativeTarget "YXUserStatistics" */;
+			buildPhases = (
+				0F05C33E1CF6DFF7004AD06D /* Sources */,
+				0F05C33F1CF6DFF7004AD06D /* Frameworks */,
+				0F05C3401CF6DFF7004AD06D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YXUserStatistics;
+			productName = YXUserStatistics;
+			productReference = 0F05C3421CF6DFF7004AD06D /* YXUserStatistics.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0F05C35A1CF6DFF7004AD06D /* YXUserStatisticsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F05C3721CF6DFF7004AD06D /* Build configuration list for PBXNativeTarget "YXUserStatisticsTests" */;
+			buildPhases = (
+				0F05C3571CF6DFF7004AD06D /* Sources */,
+				0F05C3581CF6DFF7004AD06D /* Frameworks */,
+				0F05C3591CF6DFF7004AD06D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F05C35D1CF6DFF7004AD06D /* PBXTargetDependency */,
+			);
+			name = YXUserStatisticsTests;
+			productName = YXUserStatisticsTests;
+			productReference = 0F05C35B1CF6DFF7004AD06D /* YXUserStatisticsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0F05C33A1CF6DFF7004AD06D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = yanxiu;
+				TargetAttributes = {
+					0F05C3411CF6DFF7004AD06D = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					0F05C35A1CF6DFF7004AD06D = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 0F05C3411CF6DFF7004AD06D;
+					};
+				};
+			};
+			buildConfigurationList = 0F05C33D1CF6DFF7004AD06D /* Build configuration list for PBXProject "YXUserStatistics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0F05C3391CF6DFF7004AD06D;
+			productRefGroup = 0F05C3431CF6DFF7004AD06D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0F05C3411CF6DFF7004AD06D /* YXUserStatistics */,
+				0F05C35A1CF6DFF7004AD06D /* YXUserStatisticsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F05C3401CF6DFF7004AD06D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F05C3551CF6DFF7004AD06D /* LaunchScreen.storyboard in Resources */,
+				0F05C3521CF6DFF7004AD06D /* Assets.xcassets in Resources */,
+				0FD74E921CF7EAE0007DEF1B /* YXUserStatisticsConfig.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F05C3591CF6DFF7004AD06D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F05C33E1CF6DFF7004AD06D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FC122D11CFC451800D1D006 /* NSObject+YXUserStatistics.m in Sources */,
+				0F05C38C1CF6EC94004AD06D /* YXHomeViewController.m in Sources */,
+				0F05C37B1CF6E282004AD06D /* UIControl+YXUserStatistics.m in Sources */,
+				0F05C38F1CF6ECB2004AD06D /* YXDetailViewController.m in Sources */,
+				0F05C34A1CF6DFF7004AD06D /* AppDelegate.m in Sources */,
+				0F05C37E1CF6E295004AD06D /* YXUserStatistics.m in Sources */,
+				0F05C3891CF6EAB8004AD06D /* YXUserStatisticsConfig.m in Sources */,
+				0F05C3471CF6DFF7004AD06D /* main.m in Sources */,
+				0F05C3811CF6E2C2004AD06D /* UIViewController+YXUserStatistics.m in Sources */,
+				0F05C3841CF6E52F004AD06D /* NSObject+YXHookMethod.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F05C3571CF6DFF7004AD06D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F05C3601CF6DFF7004AD06D /* YXUserStatisticsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0F05C35D1CF6DFF7004AD06D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F05C3411CF6DFF7004AD06D /* YXUserStatistics */;
+			targetProxy = 0F05C35C1CF6DFF7004AD06D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0F05C3531CF6DFF7004AD06D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F05C3541CF6DFF7004AD06D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0F05C36D1CF6DFF7004AD06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0F05C36E1CF6DFF7004AD06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0F05C3701CF6DFF7004AD06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YXUserStatistics/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.YXUserStatistics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0F05C3711CF6DFF7004AD06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YXUserStatistics/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.YXUserStatistics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0F05C3731CF6DFF7004AD06D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YXUserStatisticsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.YXUserStatisticsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YXUserStatistics.app/YXUserStatistics";
+			};
+			name = Debug;
+		};
+		0F05C3741CF6DFF7004AD06D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YXUserStatisticsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.YXUserStatisticsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YXUserStatistics.app/YXUserStatistics";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F05C33D1CF6DFF7004AD06D /* Build configuration list for PBXProject "YXUserStatistics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F05C36D1CF6DFF7004AD06D /* Debug */,
+				0F05C36E1CF6DFF7004AD06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F05C36F1CF6DFF7004AD06D /* Build configuration list for PBXNativeTarget "YXUserStatistics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F05C3701CF6DFF7004AD06D /* Debug */,
+				0F05C3711CF6DFF7004AD06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F05C3721CF6DFF7004AD06D /* Build configuration list for PBXNativeTarget "YXUserStatisticsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F05C3731CF6DFF7004AD06D /* Debug */,
+				0F05C3741CF6DFF7004AD06D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0F05C33A1CF6DFF7004AD06D /* Project object */;
+}

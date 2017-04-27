@@ -1,0 +1,31 @@
+//
+//  MistakeChapterListRequest.h
+//  YanXiuStudentApp
+//
+//  Created by Yu Fan on 3/31/17.
+//  Copyright © 2017 yanxiu.com. All rights reserved.
+//
+
+#import "YXGetRequest.h"
+#import "TreeNodeProtocol.h"
+
+@protocol MistakeChapterListRequestItem_chapter <NSObject>
+@end
+
+@interface MistakeChapterListRequestItem_chapter : JSONModel<TreeNodeProtocol>
+@property (nonatomic, copy) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *chapterID;
+@property (nonatomic, copy) NSString<Optional> *count;
+@property (nonatomic, strong) NSArray<Optional> *qids;
+@property (nonatomic, strong) NSArray<MistakeChapterListRequestItem_chapter, Optional> *children;
+@end
+
+@interface MistakeChapterListRequestItem : HttpBaseRequestItem
+@property (nonatomic, strong) NSArray<MistakeChapterListRequestItem_chapter, Optional> *chapters;
+@end
+
+@interface MistakeChapterListRequest : YXGetRequest
+@property (nonatomic, copy) NSString *stageId;
+@property (nonatomic, copy) NSString *subjectId;
+@property (nonatomic, copy) NSString *editionId;
+@end

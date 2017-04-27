@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>YXHomeViewController</key>
+	<dict>
+		<key>viewWillAppear:</key>
+		<string>PAGE_EVENT_HOME_ENTER</string>
+		<key>viewWillDisappear:</key>
+		<string>PAGE_EVENT_HOME_LEAVE</string>
+		<key>onShareBtnPressed:</key>
+		<string>CTRL_EVENT_HOME_SHARE</string>
+	</dict>
+	<key>YXDetailViewController</key>
+	<dict>
+		<key>sendUserStatisticsParams:</key>
+		<string>PARAMS_EVENT_DETAIL</string>
+		<key>viewWillAppear:</key>
+		<string>PAGE_EVENT_DETAIL_ENTER</string>
+		<key>viewWillDisappear:</key>
+		<string>PAGE_EVENT_DETAIL_LEAVE</string>
+		<key>onShareBtnPressed:</key>
+		<string>CTRL_EVENT_DETAIL_SHARE</string>
+		<key>onFavBtnPressed:</key>
+		<string>CTRL_EVENT_DETAIL_FAV</string>
+	</dict>
+</dict>
+</plist>

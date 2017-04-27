@@ -1,0 +1,11 @@
+#ifndef Template_PrefixHeader_pch
+#define Template_PrefixHeader_pch
+
+extern int ddLogLevel;
+
+#import "GlobalUtils.h"
+
+#import <CocoaLumberjack.h>
+#import <MagicalRecord/MagicalRecord.h>
+
+#endif

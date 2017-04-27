@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>New item</key>
+	<string></string>
+	<key>serverList</key>
+	<dict>
+		<key>TestServer</key>
+		<string>http://test.hwk.yanxiu.com/</string>
+		<key>DevServer</key>
+		<string>http://dev.hwk.yanxiu.com/</string>
+		<key>RelServer</key>
+		<string>http://mobile.hwk.yanxiu.com/</string>
+	</dict>
+	<key>channel</key>
+	<string>app store</string>
+	<key>MTAKey</key>
+	<string>I5VZI5NR8H7W</string>
+	<key>XGPushID</key>
+	<integer>2200147950</integer>
+	<key>XGPushKey</key>
+	<string>IY177JF9G3PP</string>
+	<key>YXSSOAuthQQAppid</key>
+	<string>1104826608</string>
+	<key>YXSSOAuthQQAppKey</key>
+	<string>PsLMILpDwU6QDNOk</string>
+	<key>YXSSOAuthWeixinAppid</key>
+	<string>wxb6704ac52abcfe4c</string>
+	<key>YXSSOAuthWeixinAppSecret</key>
+	<string>943d690bd5020ae629c20281e53bc334</string>
+	<key>TalkingDataAppID</key>
+	<string>A3A47ECEBAB1C56762367CE55629C402</string>
+	<key>phonepad</key>
+	<string>1</string>
+	<key>GeTuiAppId_Dev</key>
+	<string>Riw2lQ0vEQ9iEv8ADs2Qg5</string>
+	<key>GeTuiAppKey_Dev</key>
+	<string>fpq9FFbGLB8zpLkwCO1oQA</string>
+	<key>GeTuiAppSecret_Dev</key>
+	<string>PiNzRvizni8i4Enu1HYuh7</string>
+	<key>GeTuiAppId_Rel</key>
+	<string>FXeG42IpmI9C9KpKbNPbs1</string>
+	<key>GeTuiAppKey_Rel</key>
+	<string>Gk4NS64CY07lV5mvEB2QT4</string>
+	<key>GeTuiAppSecret_Rel</key>
+	<string>L3PVLZ2a4Z8v4Bsdzynkx4</string>
+</dict>
+</plist>

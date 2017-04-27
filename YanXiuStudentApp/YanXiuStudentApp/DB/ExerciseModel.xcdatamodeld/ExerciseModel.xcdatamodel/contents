@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+    <entity name="ChapterEntity" representedClassName="ChapterEntity" syncable="YES">
+        <attribute name="chapterID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chapterName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sectionArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SectionEntity" inverseName="chapter" inverseEntity="SectionEntity" syncable="YES"/>
+        <relationship name="volume" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VolumeEntity" inverseName="chapterArray" inverseEntity="VolumeEntity" syncable="YES"/>
+    </entity>
+    <entity name="EditionEntity" representedClassName="EditionEntity" syncable="YES">
+        <attribute name="editionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="editionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubjectEntity" inverseName="editionArray" inverseEntity="SubjectEntity" syncable="YES"/>
+        <relationship name="volumeArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VolumeEntity" inverseName="edition" inverseEntity="VolumeEntity" syncable="YES"/>
+    </entity>
+    <entity name="ExerciseEntity" representedClassName="ExerciseEntity" syncable="YES">
+        <attribute name="chapterID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="editionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exerciseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stageID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subjectID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volumeID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FavorExerciseEntity" representedClassName="FavorExerciseEntity" syncable="YES">
+        <attribute name="chapterID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="editionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exerciseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stageID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subjectID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volumeID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SectionEntity" representedClassName="SectionEntity" syncable="YES">
+        <attribute name="sectionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chapter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChapterEntity" inverseName="sectionArray" inverseEntity="ChapterEntity" syncable="YES"/>
+    </entity>
+    <entity name="SubjectEntity" representedClassName="SubjectEntity" syncable="YES">
+        <attribute name="subjectID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subjectName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="editionArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EditionEntity" inverseName="subject" inverseEntity="EditionEntity" syncable="YES"/>
+    </entity>
+    <entity name="VolumeEntity" representedClassName="VolumeEntity" syncable="YES">
+        <attribute name="volumeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volumeName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chapterArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ChapterEntity" inverseName="volume" inverseEntity="ChapterEntity" syncable="YES"/>
+        <relationship name="edition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EditionEntity" inverseName="volumeArray" inverseEntity="EditionEntity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ChapterEntity" positionX="-261" positionY="63" width="128" height="105"/>
+        <element name="EditionEntity" positionX="-495" positionY="-9" width="128" height="105"/>
+        <element name="ExerciseEntity" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="SectionEntity" positionX="-252" positionY="72" width="128" height="90"/>
+        <element name="SubjectEntity" positionX="-297" positionY="-19" width="128" height="90"/>
+        <element name="VolumeEntity" positionX="-270" positionY="54" width="128" height="105"/>
+        <element name="FavorExerciseEntity" positionX="-288" positionY="63" width="128" height="165"/>
+    </elements>
+</model>
