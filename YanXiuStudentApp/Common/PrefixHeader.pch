@@ -1,10 +1,24 @@
 #ifndef Template_PrefixHeader_pch
 #define Template_PrefixHeader_pch
 
-#import "TalkingData.h"
+#define SAFE_CALL(obj,method) \
+([obj respondsToSelector:@selector(method)] ? [obj method] : nil)
 
+#define SAFE_CALL_OneParam(obj,method,firstParam) \
+([obj respondsToSelector:@selector(method:)] ? [obj method:firstParam] : nil)
+
+#define WEAK_SELF @weakify(self);
+#define STRONG_SELF @strongify(self); if(!self) {return;};
+
+#define BLOCK_EXEC(block, ...) if (block) { block(__VA_ARGS__); };
+
+#define SCREEN_WIDTH          ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT         ([UIScreen mainScreen].bounds.size.height)
+
+#define kPhoneWidthRatio SCREEN_WIDTH/375
 
 extern int ddLogLevel;
+#import "TalkingData.h"
 #import <CocoaLumberjack.h>
 #import <Masonry.h>
 #import <RACExtScope.h>
@@ -49,6 +63,9 @@ extern int ddLogLevel;
 #import "NSDictionary+Dictionarys.h"
 #import "NSMutableDictionary+YXDictionarys.h"
 #import "UIImage+YXResize.h"
+#import "CloneCategory.h"
+#import "UIView+Loading.h"
+#import "UIViewController+NavigationItem.h"
 
 #import "YXSubjectImageHelper.h"
 #import "YXSmartDashLineView.h"
@@ -84,6 +101,7 @@ extern int ddLogLevel;
 #import "YXUpdateUserInfoHelper.h"
 #import "LoginDataManager.h"
 #import "LoginUtils.h"
+#import "GCDTimer.h"
 
 #pragma mark - 2.0
 #import "YXTabBarController.h"

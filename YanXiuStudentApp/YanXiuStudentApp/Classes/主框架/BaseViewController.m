@@ -45,36 +45,6 @@
     NSLog(@"-----%@", [self class]);
 }
 
-#pragma mark -
-
-// naviRightAction
-- (void)setupRightWithImageNamed:(NSString *)imagename {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.rightNaviButton = button;
-    button.frame = CGRectMake(0, 0, 44, 44);
-    [button setImage:[UIImage imageNamed:imagename] forState:UIControlStateNormal];
-    [button setTitleColor:self.titleNormalColor forState:UIControlStateNormal];
-    [button updateWithDefaultHighlightColor];
-    self.navigationItem.rightBarButtonItems = [BaseViewController barButtonItemsWithButton:button];
-    
-    [button addTarget:self action:@selector(naviRightAction) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)setupRightWithTitle:(NSString *)title {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, 44, 44);
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:self.titleNormalColor forState:UIControlStateNormal];
-    [button updateWithDefaultHighlightColor];
-    self.navigationItem.rightBarButtonItems = [BaseViewController barButtonItemsWithButton:button];
-    
-    [button addTarget:self action:@selector(naviRightAction) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)naviRightAction {
-    
-}
-
 #pragma mark - 相关的Util
 + (NSArray *)barButtonItemsWithButton:(UIButton *)button
 {

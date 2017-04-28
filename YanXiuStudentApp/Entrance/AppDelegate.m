@@ -100,6 +100,12 @@ static const BOOL kTestEntrance = NO;
             [self.appDelegateHelper handleStageChange];
         }
     }];
+
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXTokenInValidNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        [[YXUserManager sharedManager] logout];
+        [[UIApplication sharedApplication].keyWindow.rootViewController yx_showToast:@"帐号授权已失效，请重新登录"];
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

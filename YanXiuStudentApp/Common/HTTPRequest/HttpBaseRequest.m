@@ -7,6 +7,9 @@
 //
 
 #import "HttpBaseRequest.h"
+
+NSString *const YXTokenInValidNotification = @"kYXTokenInValidNotification";
+
 #pragma mark - Url Arguments Category : NSString & NSDictionary
 @interface NSDictionary (UrlArgumentsAdditions)
 - (NSString *)httpArgumentsString;
@@ -130,6 +133,13 @@
     if (error) {
         error = [NSError errorWithDomain:error.domain code:-1 userInfo:@{NSLocalizedDescriptionKey:@"数据加载失败"}];
         _completeBlock(nil, error);
+        return;
+    }
+    
+    // token失效
+    if (item.status.code.integerValue==99 && [YXUserManager sharedManager].userModel.passport.token) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:YXTokenInValidNotification
+                                                            object:nil];
         return;
     }
     

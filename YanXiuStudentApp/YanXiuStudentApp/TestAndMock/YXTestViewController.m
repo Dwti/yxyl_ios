@@ -10,7 +10,6 @@
 #import "YXAllHeaders.h"
 #import "YXMockPageRequest.h"
 #import <FileHash.h>
-#import "YXTestImagePickerViewController.h"
 
 @implementation YXTestViewController
 - (void)viewDidLoad {
@@ -38,8 +37,8 @@
 }
 - (void)testImagePicker
 {
-    YXTestImagePickerViewController *vc = [[YXTestImagePickerViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    YXTestImagePickerViewController *vc = [[YXTestImagePickerViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)testYXCuoTiViewController {
 //    YXCuoTiViewController *vc = [[YXCuoTiViewController alloc] init];

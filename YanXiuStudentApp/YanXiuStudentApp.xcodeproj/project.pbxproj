@@ -13,8 +13,6 @@
 		0F0D6E4E1C6050EE0034FC6C /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E471C6050EE0034FC6C /* MJRefreshConst.m */; };
 		0F0D6E4F1C6050EE0034FC6C /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E491C6050EE0034FC6C /* MJRefreshFooterView.m */; };
 		0F0D6E501C6050EE0034FC6C /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E4B1C6050EE0034FC6C /* MJRefreshHeaderView.m */; };
-		0F0D6E531C6050FB0034FC6C /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E521C6050FB0034FC6C /* PagedListFetcherBase.m */; };
-		0F0D6E541C6051080034FC6C /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E521C6050FB0034FC6C /* PagedListFetcherBase.m */; };
 		0F0D6E551C60510F0034FC6C /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D6E421C6050EE0034FC6C /* MJRefresh.bundle */; };
 		0F0D6E561C6051130034FC6C /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E451C6050EE0034FC6C /* MJRefreshBaseView.m */; };
 		0F0D6E571C6051150034FC6C /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D6E471C6050EE0034FC6C /* MJRefreshConst.m */; };
@@ -142,12 +140,10 @@
 		0FBD5B4E1C4F341C003B7D6D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBD5AA91C4F31E9003B7D6D /* libWeChatSDK.a */; };
 		0FBD5B4F1C4F3420003B7D6D /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0FBD5AAA1C4F31E9003B7D6D /* read_me.txt */; };
 		0FBD5B501C4F342F003B7D6D /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBD5AAE1C4F31E9003B7D6D /* libmtasdk.a */; };
-		0FBD5B671C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B5A1C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m */; };
 		0FBD5B681C4F3550003B7D6D /* YXCommonPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B5C1C4F3550003B7D6D /* YXCommonPageModel.m */; };
 		0FBD5B691C4F3550003B7D6D /* YXGetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B5E1C4F3550003B7D6D /* YXGetRequest.m */; };
 		0FBD5B6B1C4F3550003B7D6D /* YXPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B621C4F3550003B7D6D /* YXPostRequest.m */; };
 		0FBD5B6C1C4F3550003B7D6D /* YXUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B641C4F3550003B7D6D /* YXUploadRequest.m */; };
-		0FBD5B6F1C4F3567003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B5A1C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m */; };
 		0FBD5B701C4F356A003B7D6D /* YXCommonPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B5C1C4F3550003B7D6D /* YXCommonPageModel.m */; };
 		0FBD5B711C4F356C003B7D6D /* YXGetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B5E1C4F3550003B7D6D /* YXGetRequest.m */; };
 		0FBD5B731C4F3571003B7D6D /* YXPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD5B621C4F3550003B7D6D /* YXPostRequest.m */; };
@@ -342,6 +338,16 @@
 		7C01540B1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C01540D1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m */; };
 		7C01540F1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C01540D1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m */; };
+		7C027F341EB1F401001682EA /* PagedListViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F331EB1F401001682EA /* PagedListViewControllerBase.m */; };
+		7C027F351EB1F401001682EA /* PagedListViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F331EB1F401001682EA /* PagedListViewControllerBase.m */; };
+		7C027F391EB1F76A001682EA /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F381EB1F76A001682EA /* GCDTimer.m */; };
+		7C027F3A1EB1F76A001682EA /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F381EB1F76A001682EA /* GCDTimer.m */; };
+		7C027F3D1EB1F77E001682EA /* CloneCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F3C1EB1F77E001682EA /* CloneCategory.m */; };
+		7C027F3E1EB1F77E001682EA /* CloneCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F3C1EB1F77E001682EA /* CloneCategory.m */; };
+		7C027F411EB1F92E001682EA /* ScrollBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F401EB1F92E001682EA /* ScrollBaseViewController.m */; };
+		7C027F421EB1F92E001682EA /* ScrollBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F401EB1F92E001682EA /* ScrollBaseViewController.m */; };
+		7C027F461EB2CC70001682EA /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */; };
+		7C027F471EB2CC70001682EA /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */; };
 		7C04C1C31E8A2AED0079F35C /* MistakeTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C21E8A2AED0079F35C /* MistakeTreeCell.m */; };
 		7C04C1C61E8A62050079F35C /* AccountIDInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C51E8A62050079F35C /* AccountIDInputView.m */; };
 		7C04C1C91E8BC8820079F35C /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C81E8BC8820079F35C /* BindPhoneViewController.m */; };
@@ -527,6 +533,10 @@
 		7C5A98021E8E2A97005E56B6 /* MistakeListByQIDsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A98011E8E2A97005E56B6 /* MistakeListByQIDsRequest.m */; };
 		7C5A98051E8E2BEE005E56B6 /* MistakePageListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A98041E8E2BEE005E56B6 /* MistakePageListFetcher.m */; };
 		7C5A980B1E8F8E23005E56B6 /* YXMistakeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A980A1E8F8E23005E56B6 /* YXMistakeListViewController.m */; };
+		7C5CA2981EB2F21B001734F3 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */; };
+		7C5CA2991EB2F21B001734F3 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */; };
+		7C5CA29C1EB2F831001734F3 /* UIViewController+NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA29B1EB2F831001734F3 /* UIViewController+NavigationItem.m */; };
+		7C5CA29D1EB2F831001734F3 /* UIViewController+NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA29B1EB2F831001734F3 /* UIViewController+NavigationItem.m */; };
 		7C5CBEDA1E6D373B00653394 /* MistakeRedoNumRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CBED91E6D373B00653394 /* MistakeRedoNumRequest.m */; };
 		7C5CBEE01E6E456600653394 /* SaveMistakeNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CBEDF1E6E456600653394 /* SaveMistakeNoteRequest.m */; };
 		7C5CBEE31E6E4CD700653394 /* MistakeRedoUploadImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CBEE21E6E4CD700653394 /* MistakeRedoUploadImageManager.m */; };
@@ -938,8 +948,6 @@
 		F773C9B71C4627F400AAE684 /* YXReportErrorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C50D1BFAC77D00DCA4FE /* YXReportErrorCell.m */; };
 		F773C9BA1C4627F400AAE684 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5231BFAF6EB00DCA4FE /* NJKWebViewProgress.m */; };
 		F773C9BB1C4627F400AAE684 /* YXDifficultyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C070B901C281E0300A4B140 /* YXDifficultyCell.m */; };
-		F773C9C11C4627F400AAE684 /* YXAVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DE2A641BD4946A00777EE4 /* YXAVPlayerManager.m */; };
-		F773C9C31C4627F400AAE684 /* PagedListViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D109DF1B5CA95B002C385B /* PagedListViewControllerBase.m */; };
 		F773C9C81C4627F400AAE684 /* YXDashLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F968CE1C113C52008036B6 /* YXDashLineCell.m */; };
 		F773C9CD1C4627F400AAE684 /* YXQAChooseAnswerCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C57F01C1823C2000B160D /* YXQAChooseAnswerCell2.m */; };
 		F773C9D91C4627F400AAE684 /* YXTestCoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0FF61B53568F00F46035 /* YXTestCoreTextViewController.m */; };
@@ -954,7 +962,6 @@
 		F773CA2A1C4627F400AAE684 /* TestUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F525591B4511EF00AE492E /* TestUploadRequest.m */; };
 		F773CA301C4627F400AAE684 /* YXApnsHomeworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F780882C1BB92BDE0025D1F6 /* YXApnsHomeworkViewController.m */; };
 		F773CA331C4627F400AAE684 /* YXJieXiFoldUnfoldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7470091B60F2410044CEBC /* YXJieXiFoldUnfoldViewController.m */; };
-		F773CA4F1C4627F400AAE684 /* YXTestImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 767C965B1BB55D3C00379AEB /* YXTestImagePickerViewController.m */; };
 		F773CA521C4627F400AAE684 /* YXCommentCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFC9CC51C29188A004EBAAA /* YXCommentCell2.m */; };
 		F773CA581C4627F400AAE684 /* YXJieXiShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7470061B60E3530044CEBC /* YXJieXiShowView.m */; };
 		F773CA651C4627F400AAE684 /* YXQAQuestionCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C57E71C17FEE2000B160D /* YXQAQuestionCell2.m */; };
@@ -1030,8 +1037,6 @@
 		F7754F7B1C4E43860002FE45 /* YXReportErrorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C50D1BFAC77D00DCA4FE /* YXReportErrorCell.m */; };
 		F7754F7E1C4E43860002FE45 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5231BFAF6EB00DCA4FE /* NJKWebViewProgress.m */; };
 		F7754F7F1C4E43860002FE45 /* YXDifficultyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C070B901C281E0300A4B140 /* YXDifficultyCell.m */; };
-		F7754F851C4E43860002FE45 /* YXAVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DE2A641BD4946A00777EE4 /* YXAVPlayerManager.m */; };
-		F7754F871C4E43860002FE45 /* PagedListViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D109DF1B5CA95B002C385B /* PagedListViewControllerBase.m */; };
 		F7754F8A1C4E43860002FE45 /* YXResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE4123C1B46572700EC3248 /* YXResetPasswordViewController.m */; };
 		F7754F8C1C4E43860002FE45 /* YXDashLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F968CE1C113C52008036B6 /* YXDashLineCell.m */; };
 		F7754F911C4E43860002FE45 /* YXQAChooseAnswerCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C57F01C1823C2000B160D /* YXQAChooseAnswerCell2.m */; };
@@ -1061,7 +1066,6 @@
 		F77550011C4E43860002FE45 /* YXJieXiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F770D1A41B5906FE0004A2E7 /* YXJieXiViewController.m */; };
 		F77550031C4E43860002FE45 /* YXGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5B99361B6DBE10005EAC78 /* YXGuideViewController.m */; };
 		F775500A1C4E43860002FE45 /* YXAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7FEF601B4E55FE00E86E51 /* YXAreaViewController.m */; };
-		F77550151C4E43860002FE45 /* YXTestImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 767C965B1BB55D3C00379AEB /* YXTestImagePickerViewController.m */; };
 		F77550181C4E43860002FE45 /* YXCommentCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFC9CC51C29188A004EBAAA /* YXCommentCell2.m */; };
 		F775501A1C4E43860002FE45 /* YXQATimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C38E7281C4E2C9B00EC18D0 /* YXQATimer.m */; };
 		F775501E1C4E43860002FE45 /* YXModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5D9E251B53AE4D0059E988 /* YXModifyPasswordViewController.m */; };
@@ -1162,8 +1166,6 @@
 		0F0D6E491C6050EE0034FC6C /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
 		0F0D6E4A1C6050EE0034FC6C /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
 		0F0D6E4B1C6050EE0034FC6C /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
-		0F0D6E511C6050FB0034FC6C /* PagedListFetcherBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListFetcherBase.h; sourceTree = "<group>"; };
-		0F0D6E521C6050FB0034FC6C /* PagedListFetcherBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListFetcherBase.m; sourceTree = "<group>"; };
 		0F235B141C5B060B00CFCAE3 /* YXPersonInfoViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPersonInfoViewController_Pad.h; sourceTree = "<group>"; };
 		0F235B151C5B060B00CFCAE3 /* YXPersonInfoViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPersonInfoViewController_Pad.m; sourceTree = "<group>"; };
 		0F235B171C5B071F00CFCAE3 /* YXMineBaseViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineBaseViewController_Pad.h; sourceTree = "<group>"; };
@@ -1344,8 +1346,6 @@
 		0FBD5AFF1C4F3344003B7D6D /* YXTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTipsView.m; sourceTree = "<group>"; };
 		0FBD5B001C4F3344003B7D6D /* YXToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXToastView.h; sourceTree = "<group>"; };
 		0FBD5B011C4F3344003B7D6D /* YXToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXToastView.m; sourceTree = "<group>"; };
-		0FBD5B591C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HttpBaseRequest+YXTokenInvalidMethod.h"; sourceTree = "<group>"; };
-		0FBD5B5A1C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HttpBaseRequest+YXTokenInvalidMethod.m"; sourceTree = "<group>"; };
 		0FBD5B5B1C4F3550003B7D6D /* YXCommonPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCommonPageModel.h; sourceTree = "<group>"; };
 		0FBD5B5C1C4F3550003B7D6D /* YXCommonPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCommonPageModel.m; sourceTree = "<group>"; };
 		0FBD5B5D1C4F3550003B7D6D /* YXGetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGetRequest.h; sourceTree = "<group>"; };
@@ -1614,12 +1614,21 @@
 		7671C5241BFAF6EB00DCA4FE /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
 		7671C5251BFAF6EB00DCA4FE /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		7671C5441BFC71F200DCA4FE /* YXJieXiReportErrorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXJieXiReportErrorDelegate.h; sourceTree = "<group>"; };
-		767C965A1BB55D3C00379AEB /* YXTestImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTestImagePickerViewController.h; sourceTree = "<group>"; };
-		767C965B1BB55D3C00379AEB /* YXTestImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTestImagePickerViewController.m; sourceTree = "<group>"; };
 		7C0154081D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQuestionTemplateTypeMapper.h; sourceTree = "<group>"; };
 		7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQuestionTemplateTypeMapper.m; sourceTree = "<group>"; };
 		7C01540C1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQuestionTypeSelectionViewController.h; sourceTree = "<group>"; };
 		7C01540D1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQuestionTypeSelectionViewController.m; sourceTree = "<group>"; };
+		7C027F321EB1F401001682EA /* PagedListViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListViewControllerBase.h; sourceTree = "<group>"; };
+		7C027F331EB1F401001682EA /* PagedListViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListViewControllerBase.m; sourceTree = "<group>"; };
+		7C027F371EB1F76A001682EA /* GCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
+		7C027F381EB1F76A001682EA /* GCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
+		7C027F3B1EB1F77E001682EA /* CloneCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloneCategory.h; sourceTree = "<group>"; };
+		7C027F3C1EB1F77E001682EA /* CloneCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloneCategory.m; sourceTree = "<group>"; };
+		7C027F3F1EB1F92E001682EA /* ScrollBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollBaseViewController.h; sourceTree = "<group>"; };
+		7C027F401EB1F92E001682EA /* ScrollBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollBaseViewController.m; sourceTree = "<group>"; };
+		7C027F431EB2CC70001682EA /* PagedListFetcherBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListFetcherBase.h; sourceTree = "<group>"; };
+		7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListFetcherBase.m; sourceTree = "<group>"; };
+		7C027F451EB2CC70001682EA /* PageListRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListRequestDelegate.h; sourceTree = "<group>"; };
 		7C04C1C11E8A2AED0079F35C /* MistakeTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MistakeTreeCell.h; sourceTree = "<group>"; };
 		7C04C1C21E8A2AED0079F35C /* MistakeTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeTreeCell.m; sourceTree = "<group>"; };
 		7C04C1C41E8A62050079F35C /* AccountIDInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountIDInputView.h; sourceTree = "<group>"; };
@@ -1852,9 +1861,12 @@
 		7C5A98011E8E2A97005E56B6 /* MistakeListByQIDsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeListByQIDsRequest.m; sourceTree = "<group>"; };
 		7C5A98031E8E2BEE005E56B6 /* MistakePageListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MistakePageListFetcher.h; sourceTree = "<group>"; };
 		7C5A98041E8E2BEE005E56B6 /* MistakePageListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakePageListFetcher.m; sourceTree = "<group>"; };
-		7C5A98061E8F5499005E56B6 /* PageListRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListRequestDelegate.h; sourceTree = "<group>"; };
 		7C5A98091E8F8E23005E56B6 /* YXMistakeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMistakeListViewController.h; sourceTree = "<group>"; };
 		7C5A980A1E8F8E23005E56B6 /* YXMistakeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMistakeListViewController.m; sourceTree = "<group>"; };
+		7C5CA2961EB2F21B001734F3 /* UIView+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Loading.h"; sourceTree = "<group>"; };
+		7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Loading.m"; sourceTree = "<group>"; };
+		7C5CA29A1EB2F831001734F3 /* UIViewController+NavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationItem.h"; sourceTree = "<group>"; };
+		7C5CA29B1EB2F831001734F3 /* UIViewController+NavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationItem.m"; sourceTree = "<group>"; };
 		7C5CBED81E6D373B00653394 /* MistakeRedoNumRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MistakeRedoNumRequest.h; sourceTree = "<group>"; };
 		7C5CBED91E6D373B00653394 /* MistakeRedoNumRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeRedoNumRequest.m; sourceTree = "<group>"; };
 		7C5CBEDE1E6E456600653394 /* SaveMistakeNoteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveMistakeNoteRequest.h; sourceTree = "<group>"; };
@@ -2475,12 +2487,8 @@
 		F7CB0FF61B53568F00F46035 /* YXTestCoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTestCoreTextViewController.m; sourceTree = "<group>"; };
 		F7CB0FF91B536B3800F46035 /* YXHtmlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHtmlCell.h; sourceTree = "<group>"; };
 		F7CB0FFA1B536B3800F46035 /* YXHtmlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHtmlCell.m; sourceTree = "<group>"; };
-		F7D109DE1B5CA95B002C385B /* PagedListViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListViewControllerBase.h; sourceTree = "<group>"; };
-		F7D109DF1B5CA95B002C385B /* PagedListViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListViewControllerBase.m; sourceTree = "<group>"; };
 		F7D75D1A1C58BCC30013097B /* YXExerciseChooseEdition_SubjectEditionListedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseEdition_SubjectEditionListedView.h; sourceTree = "<group>"; };
 		F7D75D1B1C58BCC30013097B /* YXExerciseChooseEdition_SubjectEditionListedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseEdition_SubjectEditionListedView.m; sourceTree = "<group>"; };
-		F7DE2A631BD4946A00777EE4 /* YXAVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAVPlayerManager.h; sourceTree = "<group>"; };
-		F7DE2A641BD4946A00777EE4 /* YXAVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAVPlayerManager.m; sourceTree = "<group>"; };
 		F7DE2A671BD4946A00777EE4 /* YXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAlbumListViewController.h; sourceTree = "<group>"; };
 		F7DE2A681BD4946A00777EE4 /* YXAlbumListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAlbumListViewController.m; sourceTree = "<group>"; };
 		F7DE2A691BD4946A00777EE4 /* YXPhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPhotoListViewController.h; sourceTree = "<group>"; };
@@ -2879,6 +2887,8 @@
 		0FBD5ABF1C4F3338003B7D6D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				7C027F3B1EB1F77E001682EA /* CloneCategory.h */,
+				7C027F3C1EB1F77E001682EA /* CloneCategory.m */,
 				7C3D0BA11DD1A8ED005ED76A /* UIButton+HighlightColor.h */,
 				7C3D0BA21DD1A8ED005ED76A /* UIButton+HighlightColor.m */,
 				7C3D0BA31DD1A8ED005ED76A /* UIImage+Color.h */,
@@ -2925,6 +2935,10 @@
 				30A1D3FA1D13AD2D006D8809 /* NSMutableDictionary+YXDictionarys.m */,
 				7C2251D71E1F3842004785D5 /* NSObject+BackgroundTask.h */,
 				7C2251D81E1F3842004785D5 /* NSObject+BackgroundTask.m */,
+				7C5CA2961EB2F21B001734F3 /* UIView+Loading.h */,
+				7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */,
+				7C5CA29A1EB2F831001734F3 /* UIViewController+NavigationItem.h */,
+				7C5CA29B1EB2F831001734F3 /* UIViewController+NavigationItem.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2974,11 +2988,6 @@
 			isa = PBXGroup;
 			children = (
 				7C3D0B7D1DD1A667005ED76A /* Base */,
-				0F0D6E511C6050FB0034FC6C /* PagedListFetcherBase.h */,
-				0F0D6E521C6050FB0034FC6C /* PagedListFetcherBase.m */,
-				7C5A98061E8F5499005E56B6 /* PageListRequestDelegate.h */,
-				0FBD5B591C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.h */,
-				0FBD5B5A1C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m */,
 				0FBD5B5B1C4F3550003B7D6D /* YXCommonPageModel.h */,
 				0FBD5B5C1C4F3550003B7D6D /* YXCommonPageModel.m */,
 				0FBD5B5D1C4F3550003B7D6D /* YXGetRequest.h */,
@@ -3023,12 +3032,10 @@
 				7C5565C91DCB0F2800966875 /* 练习历史 */,
 				761259F61BE854430073EEA3 /* 反馈 */,
 				F76D81551BE8554A006312EC /* 错题 */,
-				F7DE2A621BD4946A00777EE4 /* AVPlayerManager */,
 				F7DE2A651BD4946A00777EE4 /* ImagePicker */,
 				7C9739231BB13BA600F1CF91 /* 排行榜 */,
 				F78088261BB918D50025D1F6 /* 推送 */,
 				0F5B99341B6DBE10005EAC78 /* 引导 */,
-				F7D109D71B5CA936002C385B /* 分页框架 */,
 				0F6655A91B4B7136000DC407 /* 我 */,
 				0F6A066A1B50C801009632D0 /* 答题 */,
 				0FE412301B46379800EC3248 /* 登录 */,
@@ -3396,13 +3403,16 @@
 			path = ../../v1.3/PushWeb;
 			sourceTree = "<group>";
 		};
-		767C96591BB55D3C00379AEB /* TestImagePicker */ = {
+		7C027F361EB1F413001682EA /* 分页 */ = {
 			isa = PBXGroup;
 			children = (
-				767C965A1BB55D3C00379AEB /* YXTestImagePickerViewController.h */,
-				767C965B1BB55D3C00379AEB /* YXTestImagePickerViewController.m */,
+				7C027F321EB1F401001682EA /* PagedListViewControllerBase.h */,
+				7C027F331EB1F401001682EA /* PagedListViewControllerBase.m */,
+				7C027F431EB2CC70001682EA /* PagedListFetcherBase.h */,
+				7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */,
+				7C027F451EB2CC70001682EA /* PageListRequestDelegate.h */,
 			);
-			path = TestImagePicker;
+			name = "分页";
 			sourceTree = "<group>";
 		};
 		7C1A629C1E2E0F34009BA65C /* 重做 */ = {
@@ -3566,6 +3576,8 @@
 		7C38E6F61C4DE32300EC18D0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7C027F371EB1F76A001682EA /* GCDTimer.h */,
+				7C027F381EB1F76A001682EA /* GCDTimer.m */,
 				7C953ADD1C588F6B00A9A7AF /* YXQAUtils.h */,
 				7C953ADE1C588F6B00A9A7AF /* YXQAUtils.m */,
 			);
@@ -3668,12 +3680,15 @@
 		7C3D0B4E1DD1A1B4005ED76A /* 主框架 */ = {
 			isa = PBXGroup;
 			children = (
+				7C027F361EB1F413001682EA /* 分页 */,
 				7C3D0B531DD1A1E1005ED76A /* YXTabBarController.h */,
 				7C3D0B541DD1A1E1005ED76A /* YXTabBarController.m */,
 				7C3D0B4F1DD1A1C4005ED76A /* YXNavigationController.h */,
 				7C3D0B501DD1A1C4005ED76A /* YXNavigationController.m */,
 				7C3D0B571DD1A215005ED76A /* BaseViewController.h */,
 				7C3D0B581DD1A215005ED76A /* BaseViewController.m */,
+				7C027F3F1EB1F92E001682EA /* ScrollBaseViewController.h */,
+				7C027F401EB1F92E001682EA /* ScrollBaseViewController.m */,
 			);
 			path = "主框架";
 			sourceTree = "<group>";
@@ -4649,7 +4664,6 @@
 			isa = PBXGroup;
 			children = (
 				F7F968C31C104008008036B6 /* 2.0 */,
-				767C96591BB55D3C00379AEB /* TestImagePicker */,
 				F77624701B53B6D8008D02CA /* TextField */,
 				F7CB0FED1B53554700F46035 /* CoreText */,
 				F748D9C71B44D8B70028A24A /* YXAllHeaders.h */,
@@ -5564,24 +5578,6 @@
 			name = CoreText;
 			sourceTree = "<group>";
 		};
-		F7D109D71B5CA936002C385B /* 分页框架 */ = {
-			isa = PBXGroup;
-			children = (
-				F7D109DE1B5CA95B002C385B /* PagedListViewControllerBase.h */,
-				F7D109DF1B5CA95B002C385B /* PagedListViewControllerBase.m */,
-			);
-			path = "分页框架";
-			sourceTree = "<group>";
-		};
-		F7DE2A621BD4946A00777EE4 /* AVPlayerManager */ = {
-			isa = PBXGroup;
-			children = (
-				F7DE2A631BD4946A00777EE4 /* YXAVPlayerManager.h */,
-				F7DE2A641BD4946A00777EE4 /* YXAVPlayerManager.m */,
-			);
-			path = AVPlayerManager;
-			sourceTree = "<group>";
-		};
 		F7DE2A651BD4946A00777EE4 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -6072,6 +6068,7 @@
 				301DAE341CBDE83800AC5CF0 /* YXHomeworkCell2_2.m in Sources */,
 				0F235B1F1C5B07A300CFCAE3 /* YXModifyNicknameViewController_Pad.m in Sources */,
 				0FB211AB1C57268E00594BEA /* YXUserManager.m in Sources */,
+				7C027F3A1EB1F76A001682EA /* GCDTimer.m in Sources */,
 				F78C3E791C7595F300D81F4B /* YXApnsQAReportViewController_Pad.m in Sources */,
 				0FECC6381C5F2D6E00E8F48E /* YXClassInfoViewController_Pad.m in Sources */,
 				30B7C8AD1DC2FC6B00A09AB8 /* QAClassifyAnswersView.m in Sources */,
@@ -6136,6 +6133,7 @@
 				0FECC6691C5F321400E8F48E /* YXHomeworkListGroupsRequest.m in Sources */,
 				302E33AD1D4B2CED007F7CC6 /* LePlayerView.m in Sources */,
 				7C1A5E961E13B18600832DED /* PhotoAssetUtils.m in Sources */,
+				7C027F3E1EB1F77E001682EA /* CloneCategory.m in Sources */,
 				7CFAADCC1DACF19700F13532 /* QAYesNoQuestionViewContainer.m in Sources */,
 				7C953B511C5B44D400A9A7AF /* YXQAProgressView_Pad.m in Sources */,
 				7CFD1E911D50A1CA002C2624 /* YXQuestionDetailViewControllerBase.m in Sources */,
@@ -6272,6 +6270,7 @@
 				0FECC6731C5F321400E8F48E /* YXExitClassRequest.m in Sources */,
 				F773C9831C4627F400AAE684 /* YXQASheetView.m in Sources */,
 				0F68BE001C732BA600AB3382 /* YXRankHeaderView_Pad.m in Sources */,
+				7C027F471EB2CC70001682EA /* PagedListFetcherBase.m in Sources */,
 				0F2B6EAD1C7591A60055114E /* YXExerciseEmptyView.m in Sources */,
 				7CF6C83D1C71D86500AE88F8 /* YXQASubjectiveAddPhotoHandler.m in Sources */,
 				7C7841841E2DEF6500755BC0 /* QAChooseQuestionRedoView.m in Sources */,
@@ -6294,6 +6293,7 @@
 				0F235B2E1C5B0DE100CFCAE3 /* YXCitySelectViewController_Pad.m in Sources */,
 				7C953AEC1C58B5A300A9A7AF /* YXQAChooseView_Pad.m in Sources */,
 				7C78418C1E2DF12000755BC0 /* QAMultiChooseQuestionRedoView.m in Sources */,
+				7C027F421EB1F92E001682EA /* ScrollBaseViewController.m in Sources */,
 				7C5565CD1DCB151300966875 /* ExerciseHistorySubjectViewController.m in Sources */,
 				7CEE06EA1DC2FDF400AA898B /* KnpTreeDataFetcher.m in Sources */,
 				F7A3B4B31C571E860037245A /* YXSideMenuNormalCell_Pad.m in Sources */,
@@ -6331,10 +6331,8 @@
 				F773C9BA1C4627F400AAE684 /* NJKWebViewProgress.m in Sources */,
 				F773C9BB1C4627F400AAE684 /* YXDifficultyCell.m in Sources */,
 				7C3BB4CA1C575FAD0084AF24 /* YXSideMenuCopyrightView_Pad.m in Sources */,
-				F773C9C11C4627F400AAE684 /* YXAVPlayerManager.m in Sources */,
 				7CFD1E851D50762E002C2624 /* YXPaperMainViewController.m in Sources */,
 				7CF6C8561C731F7200AE88F8 /* YXPhotoEmptyView.m in Sources */,
-				F773C9C31C4627F400AAE684 /* PagedListViewControllerBase.m in Sources */,
 				F773C9C81C4627F400AAE684 /* YXDashLineCell.m in Sources */,
 				7C69F23D1E6D3ED10076984F /* MistakeRedoCatalogRequest.m in Sources */,
 				0F2B6EC31C7592DE0055114E /* YXProvinceCitySelectionCell.m in Sources */,
@@ -6412,11 +6410,9 @@
 				7CF6C8581C731F7200AE88F8 /* YXPhotoSelectBottomView.m in Sources */,
 				7CF6C8431C72EC8700AE88F8 /* YXPhotoBrowser_Pad.m in Sources */,
 				7C7BF7D61E0A6270007B017C /* QASubjectiveFillPlaceholderView.m in Sources */,
-				0F0D6E531C6050FB0034FC6C /* PagedListFetcherBase.m in Sources */,
 				F773CA111C4627F400AAE684 /* (null) in Sources */,
 				7CFAAD9F1DAC8A7300F13532 /* QASlideItemBaseView.m in Sources */,
 				F773CA101C4627F400AAE684 /* (null) in Sources */,
-				0FBD5B6F1C4F3567003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m in Sources */,
 				F773CA121C4627F400AAE684 /* TestPostRequest.m in Sources */,
 				7C3D0B971DD1A84F005ED76A /* GlobalUtils.m in Sources */,
 				7CFD1E8D1D5098E9002C2624 /* YXComplexQuestionDetailViewController.m in Sources */,
@@ -6435,6 +6431,7 @@
 				0FFA776C1C75BC0F00F9E8F9 /* YXAddToClassViewController.m in Sources */,
 				7C953B421C5B2C7700A9A7AF /* YXQAAnalysisMaterialView_Pad.m in Sources */,
 				7CDE19761DD0906A00469096 /* AppDelegateHelper.m in Sources */,
+				7C027F351EB1F401001682EA /* PagedListViewControllerBase.m in Sources */,
 				7C5565D11DCB1E8C00966875 /* ExerciseHistoryContentViewController.m in Sources */,
 				7C55F8351D54AA61006CAA11 /* QAClassifyQuestionAnalysisView.m in Sources */,
 				7C3D0BA81DD1A8ED005ED76A /* UIButton+HighlightColor.m in Sources */,
@@ -6471,7 +6468,6 @@
 				0FECC66D1C5F321400E8F48E /* YXHomeworkMock.m in Sources */,
 				0FB211AC1C57268E00594BEA /* YXUserModel.m in Sources */,
 				7C953B071C59B2B700A9A7AF /* YXQAAnalysisKnpCell_Pad.m in Sources */,
-				F773CA4F1C4627F400AAE684 /* YXTestImagePickerViewController.m in Sources */,
 				0F0D6E4D1C6050EE0034FC6C /* MJRefreshBaseView.m in Sources */,
 				F773CA521C4627F400AAE684 /* YXCommentCell2.m in Sources */,
 				7C553C6C1CBC97FB00A257F1 /* YXQASubmitSuccessView_Phone.m in Sources */,
@@ -6527,6 +6523,8 @@
 				7CFAADD81DACF23400F13532 /* QAConnectQuestionViewContainer.m in Sources */,
 				7C4554351DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m in Sources */,
 				7CF6C8931C7456B300AE88F8 /* YXGetSectionQBlockRequest.m in Sources */,
+				7C5CA29D1EB2F831001734F3 /* UIViewController+NavigationItem.m in Sources */,
+				7C5CA2991EB2F21B001734F3 /* UIView+Loading.m in Sources */,
 				7C953AE91C58A82C00A9A7AF /* YXQAYesNoChooseCell_Pad.m in Sources */,
 				0FECC6771C5F321400E8F48E /* YXJoinClassRequest.m in Sources */,
 				0F235B251C5B0CC700CFCAE3 /* YXSexViewController_Pad.m in Sources */,
@@ -6744,7 +6742,9 @@
 				E9973C7A1DB86D99004966AD /* QASingleChooseQuestionView.m in Sources */,
 				7CF6C8531C731F7200AE88F8 /* YXPhotoCollectionViewCell.m in Sources */,
 				0FECC6741C5F321400E8F48E /* YXClassInfoMock.m in Sources */,
+				7C027F391EB1F76A001682EA /* GCDTimer.m in Sources */,
 				7C3D0B5E1DD1A2A7005ED76A /* YXCrypt.m in Sources */,
+				7C027F341EB1F401001682EA /* PagedListViewControllerBase.m in Sources */,
 				0FB211B41C5726B400594BEA /* YXProduceCodeRequest.m in Sources */,
 				300084311DCB08AF0070FA08 /* ScaleView.m in Sources */,
 				7C5A97F91E8E2376005E56B6 /* MistakeKnpListRequest.m in Sources */,
@@ -6818,11 +6818,9 @@
 				0FECC6641C5F321400E8F48E /* YXHomework.m in Sources */,
 				7C861DB01DC87DD9004D11DA /* ImageUploadProgressView.m in Sources */,
 				E9C684991DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m in Sources */,
-				F7754F851C4E43860002FE45 /* YXAVPlayerManager.m in Sources */,
 				7CF6C8941C7456B300AE88F8 /* YXIntelligenceQuestion.m in Sources */,
 				7C83587E1DC1D7CD007BB067 /* GetChapterListRequest.m in Sources */,
 				30F669CE1D2A1028002B1C1D /* NSString+YXRecordContent.m in Sources */,
-				F7754F871C4E43860002FE45 /* PagedListViewControllerBase.m in Sources */,
 				0FB211BA1C5726C700594BEA /* YXOauthLoginRequest.m in Sources */,
 				7CFAADAA1DAC94C900F13532 /* QAQuestionBaseView.m in Sources */,
 				30DFECA81CB36F3D007BED17 /* YXHotNumberLabel.m in Sources */,
@@ -6857,7 +6855,6 @@
 				7C05188C1CB4E0E000F4557D /* YXQASubmitSuccessView_Phone.m in Sources */,
 				7C2B66E51DBF3A5B007DD16B /* GetEditionRequest.m in Sources */,
 				7C5565CC1DCB151300966875 /* ExerciseHistorySubjectViewController.m in Sources */,
-				0F0D6E541C6051080034FC6C /* PagedListFetcherBase.m in Sources */,
 				E9973C601DB86ADF004966AD /* QAYesNoQuestionView.m in Sources */,
 				0FFA77661C75B63100F9E8F9 /* YXClassHomeworkFetcher.m in Sources */,
 				0FECC66E1C5F321400E8F48E /* YXHomeworkToDoListRequest.m in Sources */,
@@ -6879,6 +6876,7 @@
 				7C1A629F1E2E0FAF009BA65C /* QAYesNoQuestionRedoView.m in Sources */,
 				7CFAADC71DACF18300F13532 /* QAMultiChooseQuestionViewContainer.m in Sources */,
 				7C0A2CFC1DD44CB700B17B1B /* AnswerCell.m in Sources */,
+				7C5CA29C1EB2F831001734F3 /* UIViewController+NavigationItem.m in Sources */,
 				0FBD5B681C4F3550003B7D6D /* YXCommonPageModel.m in Sources */,
 				30561BFD1E0A1DE200EF4C7C /* ClassInfoView.m in Sources */,
 				0FB211B81C5726C000594BEA /* YXUserModel.m in Sources */,
@@ -6890,6 +6888,7 @@
 				7CFAAD9C1DAC8A7300F13532 /* QASlideView.m in Sources */,
 				7CFBF3D11C5F70AB00E745F3 /* YXQAReportBirdRateView.m in Sources */,
 				7C90928F1E0A50AD0048C44F /* ListenComplexPromptView.m in Sources */,
+				7C027F411EB1F92E001682EA /* ScrollBaseViewController.m in Sources */,
 				F7754FBE1C4E43860002FE45 /* YXMyProfileViewController.m in Sources */,
 				7CFE55D21CD30D9F00A021E2 /* YXQASubmitSuccessAndBackView_Phone.m in Sources */,
 				0FBD5AE01C4F3338003B7D6D /* UIViewController+YXNavigationItem.m in Sources */,
@@ -6921,6 +6920,7 @@
 				0FECC66C1C5F321400E8F48E /* YXHomeworkMock.m in Sources */,
 				0FDD9BDC1C58B5EB00DBA379 /* YXThirdLoginButton.m in Sources */,
 				7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */,
+				7C5CA2981EB2F21B001734F3 /* UIView+Loading.m in Sources */,
 				F7754FD71C4E43860002FE45 /* TestPostRequest.m in Sources */,
 				0FBD5B071C4F3344003B7D6D /* YXCommonButton.m in Sources */,
 				F7754FD91C4E43860002FE45 /* YXHomeworkToDoViewController.m in Sources */,
@@ -6973,8 +6973,8 @@
 				E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */,
 				7C9092861E0A1B1F0048C44F /* JoinClassPromptView.m in Sources */,
 				F77550031C4E43860002FE45 /* YXGuideViewController.m in Sources */,
-				0FBD5B671C4F3550003B7D6D /* HttpBaseRequest+YXTokenInvalidMethod.m in Sources */,
 				7CF6C89C1C7456B300AE88F8 /* YXUploadImageRequest.m in Sources */,
+				7C027F3D1EB1F77E001682EA /* CloneCategory.m in Sources */,
 				0F68BDFD1C73298F00AB3382 /* YXRankRequest.m in Sources */,
 				F775500A1C4E43860002FE45 /* YXAreaViewController.m in Sources */,
 				7C2B66F41DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
@@ -6983,7 +6983,6 @@
 				0FBD5B081C4F3344003B7D6D /* YXCommonButtonCell.m in Sources */,
 				0FB211BD1C5726D000594BEA /* YXThirdRegisterRequest.m in Sources */,
 				7C78417E1E2DCF8B00755BC0 /* QARedoSubmitView.m in Sources */,
-				F77550151C4E43860002FE45 /* YXTestImagePickerViewController.m in Sources */,
 				7C3D0B791DD1A53A005ED76A /* RegularRecordEntity.m in Sources */,
 				E93C76061E0BD5D100F286CF /* LoginDataManager.m in Sources */,
 				7CFBF3DB1C60B2A600E745F3 /* UIViewController+YXPresent.m in Sources */,
@@ -7090,6 +7089,7 @@
 				F77550641C4E43860002FE45 /* (null) in Sources */,
 				0FE6CA131C5A11CA005FBD5B /* YXInitRequest.m in Sources */,
 				7C2991931DFE404F00AE921C /* AlertView.m in Sources */,
+				7C027F461EB2CC70001682EA /* PagedListFetcherBase.m in Sources */,
 				7C5CBEE01E6E456600653394 /* SaveMistakeNoteRequest.m in Sources */,
 				F77550681C4E43860002FE45 /* YXApnsQAReportViewController.m in Sources */,
 				7CF6C89A1C7456B300AE88F8 /* YXSubmitQuestionRequest.m in Sources */,

@@ -8,22 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark - 宏
-
-#define SAFE_CALL(obj,method) \
-([obj respondsToSelector:@selector(method)] ? [obj method] : nil)
-
-#define SAFE_CALL_OneParam(obj,method,firstParam) \
-([obj respondsToSelector:@selector(method:)] ? [obj method:firstParam] : nil)
-
-#define WEAK_SELF @weakify(self);
-#define STRONG_SELF @strongify(self); if(!self) {return;};
-
-#define BLOCK_EXEC(block, ...) if (block) { block(__VA_ARGS__); }; 
-
-#define SCREEN_WIDTH          ([UIScreen mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT         ([UIScreen mainScreen].bounds.size.height)
-
 @interface GlobalUtils : NSObject
 + (void)checkMainThread;
 + (void)setupCore;

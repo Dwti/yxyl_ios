@@ -76,7 +76,7 @@
     }];
 }
 
-- (void)requestForErrorsList:(int)page {
+- (void)requestForErrorsList:(NSInteger)page {
     if (self.isLoading) {
         return;
     }

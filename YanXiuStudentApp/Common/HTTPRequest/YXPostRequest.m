@@ -7,7 +7,6 @@
 //
 
 #import "YXPostRequest.h"
-#import "HttpBaseRequest+YXTokenInvalidMethod.h"
 
 @implementation YXPostRequest
 
@@ -25,17 +24,5 @@
     return self;
 }
 
-- (void)startRequestWithRetClass:(Class)retClass
-                andCompleteBlock:(HttpRequestCompleteBlock)completeBlock
-{
-    @weakify(self);
-    [super startRequestWithRetClass:retClass andCompleteBlock:^(id retItem, NSError *error) {
-        @strongify(self);
-        [self operationWithInvalidToken:self.token
-                                retItem:retItem
-                                  error:error
-                          completeBlock:completeBlock];
-    }];
-}
 
 @end
