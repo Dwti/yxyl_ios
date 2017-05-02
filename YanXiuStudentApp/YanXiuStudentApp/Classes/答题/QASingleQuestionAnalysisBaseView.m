@@ -38,9 +38,9 @@ YXQAAnalysisUnfoldDelegate
 - (void)setupUI {
     [super setupUI];
     [self setupRAC];
-    self.analysisCellCount = self.cellHeightArray.count;
+    NSInteger oriCount = self.cellHeightArray.count;
     [self setupSingleQuestionAnalysisContent];
-    self.analysisCellCount = self.cellHeightArray.count - self.analysisCellCount;
+    self.analysisCellCount = self.cellHeightArray.count - oriCount;
     
     [self.tableView registerClass:[YXDifficultyCell class] forCellReuseIdentifier:@"YXDifficultyCell"];
     [self.tableView registerClass:[YXKnpCell class] forCellReuseIdentifier:@"YXKnpCell"];
