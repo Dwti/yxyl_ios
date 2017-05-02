@@ -44,7 +44,7 @@
     [self setupResultView];
     [self setupConstraints];
     
-    [self startSchoolSearch:self.city.name];
+    [self startSchoolSearch:self.district.name];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -189,7 +189,7 @@
     }
     
     if (searchText.length == 0) {
-        searchText = self.city.name;
+        searchText = self.district.name;
     }
     
     self.request = [[YXSchoolSearchRequest alloc] init];
