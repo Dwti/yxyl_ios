@@ -10,4 +10,6 @@
 
 @interface UIButton (HighlightColor)
 - (void)updateWithDefaultHighlightColor;
+- (void)nyx_setBackgroundImage:(UIImage *)image forState:(UIControlState)state;
+- (void)nyx_setImage:(UIImage *)image forState:(UIControlState)state;
 @end

@@ -89,6 +89,11 @@ int ddLogLevel = DDLogLevelVerbose;
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     [MagicalRecord setShouldDeleteStoreOnModelMismatch:YES];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"CoreDataDB.sqlite"];
+    
+    // button highlight image
+    Swizzle([UIButton class], @selector(setBackgroundImage:forState:), @selector(nyx_setBackgroundImage:forState:));
+    Swizzle([UIButton class], @selector(setImage:forState:), @selector(nyx_setImage:forState:));
+    
 }
 
 + (void)clearCore {

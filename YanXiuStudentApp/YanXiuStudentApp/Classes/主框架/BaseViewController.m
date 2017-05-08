@@ -16,7 +16,7 @@
 @implementation BaseViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = YXBGGrayColor;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     if (!self.titleNormalColor) {
         self.titleNormalColor = [UIColor whiteColor];
     }

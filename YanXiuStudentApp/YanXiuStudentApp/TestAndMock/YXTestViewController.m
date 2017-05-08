@@ -10,6 +10,7 @@
 #import "YXAllHeaders.h"
 #import "YXMockPageRequest.h"
 #import <FileHash.h>
+#import "LoginViewController.h"
 
 @implementation YXTestViewController
 - (void)viewDidLoad {
@@ -51,6 +52,8 @@
 }
 
 - (void)test {
+    LoginViewController *vc = [[LoginViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     //    YXTestAutolayoutScrollViewController *vc = [[YXTestAutolayoutScrollViewController alloc] init];
     //    [self.navigationController pushViewController:vc animated:YES];
     

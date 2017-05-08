@@ -36,4 +36,6 @@
 
 - (UIImage *)scaleToSize:(CGSize)size;
 
+- (UIImage *)nyx_imageWithAlpha:(CGFloat)alpha;
+
 @end

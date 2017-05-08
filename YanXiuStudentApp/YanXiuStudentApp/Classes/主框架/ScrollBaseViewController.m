@@ -37,7 +37,7 @@
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
         make.width.mas_equalTo(self.scrollView.mas_width);
-        make.height.mas_equalTo(self.scrollView.mas_height);
+//        make.height.mas_equalTo(self.scrollView.mas_height);
     }];
 }
 

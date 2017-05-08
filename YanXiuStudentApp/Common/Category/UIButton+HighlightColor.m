@@ -23,5 +23,18 @@
     [self setImage:hImage forState:UIControlStateHighlighted];
 }
 
+- (void)nyx_setBackgroundImage:(UIImage *)image forState:(UIControlState)state {
+    [self nyx_setBackgroundImage:image forState:state];
+    if (state == UIControlStateNormal) {
+        [self nyx_setBackgroundImage:[image nyx_imageWithAlpha:0.76] forState:UIControlStateHighlighted];
+    }
+}
+
+- (void)nyx_setImage:(UIImage *)image forState:(UIControlState)state {
+    [self nyx_setImage:image forState:state];
+    if (state == UIControlStateNormal) {
+        [self nyx_setImage:[image nyx_imageWithAlpha:0.76] forState:UIControlStateHighlighted];
+    }
+}
 
 @end

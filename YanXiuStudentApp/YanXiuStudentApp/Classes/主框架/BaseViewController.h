@@ -13,13 +13,6 @@
 @property (nonatomic, strong) UIColor *titleNormalColor;
 @property (nonatomic, strong) UIButton *rightNaviButton;
 
-#pragma mark -
-
-// naviRightAction
-- (void)setupRightWithImageNamed:(NSString *)imagename;
-- (void)setupRightWithTitle:(NSString *)title;
-- (void)naviRightAction;
-
 #pragma mark - 相关的Util
 + (NSArray *)barButtonItemsWithButton:(UIButton *)button;
 

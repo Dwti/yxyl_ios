@@ -348,6 +348,8 @@
 		7C027F421EB1F92E001682EA /* ScrollBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F401EB1F92E001682EA /* ScrollBaseViewController.m */; };
 		7C027F461EB2CC70001682EA /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */; };
 		7C027F471EB2CC70001682EA /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */; };
+		7C03CA841EC15028003CA9C7 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C03CA831EC15028003CA9C7 /* ForgotPasswordViewController.m */; };
+		7C03CA851EC15028003CA9C7 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C03CA831EC15028003CA9C7 /* ForgotPasswordViewController.m */; };
 		7C04C1C31E8A2AED0079F35C /* MistakeTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C21E8A2AED0079F35C /* MistakeTreeCell.m */; };
 		7C04C1C61E8A62050079F35C /* AccountIDInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C51E8A62050079F35C /* AccountIDInputView.m */; };
 		7C04C1C91E8BC8820079F35C /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C81E8BC8820079F35C /* BindPhoneViewController.m */; };
@@ -491,6 +493,20 @@
 		7C3D0BAC1DD1A8ED005ED76A /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0BA61DD1A8ED005ED76A /* UIImage+FixOrientation.m */; };
 		7C3D0BAF1DD1A94F005ED76A /* YXAppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0BAE1DD1A94F005ED76A /* YXAppConstants.m */; };
 		7C3D0BB01DD1A94F005ED76A /* YXAppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0BAE1DD1A94F005ED76A /* YXAppConstants.m */; };
+		7C3ECACB1EC01EFD005C2B9C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECACA1EC01EFD005C2B9C /* LoginViewController.m */; };
+		7C3ECACC1EC01EFD005C2B9C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECACA1EC01EFD005C2B9C /* LoginViewController.m */; };
+		7C3ECACF1EC0201D005C2B9C /* LoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECACE1EC0201D005C2B9C /* LoginInputView.m */; };
+		7C3ECAD01EC0201D005C2B9C /* LoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECACE1EC0201D005C2B9C /* LoginInputView.m */; };
+		7C3ECAD31EC02405005C2B9C /* LoginActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAD21EC02405005C2B9C /* LoginActionView.m */; };
+		7C3ECAD41EC02405005C2B9C /* LoginActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAD21EC02405005C2B9C /* LoginActionView.m */; };
+		7C3ECAD71EC02C50005C2B9C /* AccountInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAD61EC02C50005C2B9C /* AccountInputView.m */; };
+		7C3ECAD81EC02C50005C2B9C /* AccountInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAD61EC02C50005C2B9C /* AccountInputView.m */; };
+		7C3ECADB1EC03AAC005C2B9C /* PasswordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECADA1EC03AAC005C2B9C /* PasswordInputView.m */; };
+		7C3ECADC1EC03AAC005C2B9C /* PasswordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECADA1EC03AAC005C2B9C /* PasswordInputView.m */; };
+		7C3ECADF1EC03C8B005C2B9C /* ThirdLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECADE1EC03C8B005C2B9C /* ThirdLoginView.m */; };
+		7C3ECAE01EC03C8B005C2B9C /* ThirdLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECADE1EC03C8B005C2B9C /* ThirdLoginView.m */; };
+		7C3ECAE31EC06E74005C2B9C /* VerifyCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */; };
+		7C3ECAE41EC06E74005C2B9C /* VerifyCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */; };
 		7C4554281DCADA6B001B0F26 /* YXChooseEditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4554271DCADA6B001B0F26 /* YXChooseEditionViewController.m */; };
 		7C4554291DCADA6B001B0F26 /* YXChooseEditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4554271DCADA6B001B0F26 /* YXChooseEditionViewController.m */; };
 		7C45542C1DCADC5B001B0F26 /* YXKnowledgePointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C45542B1DCADC5B001B0F26 /* YXKnowledgePointView.m */; };
@@ -1629,6 +1645,8 @@
 		7C027F431EB2CC70001682EA /* PagedListFetcherBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListFetcherBase.h; sourceTree = "<group>"; };
 		7C027F441EB2CC70001682EA /* PagedListFetcherBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListFetcherBase.m; sourceTree = "<group>"; };
 		7C027F451EB2CC70001682EA /* PageListRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListRequestDelegate.h; sourceTree = "<group>"; };
+		7C03CA821EC15028003CA9C7 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		7C03CA831EC15028003CA9C7 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		7C04C1C11E8A2AED0079F35C /* MistakeTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MistakeTreeCell.h; sourceTree = "<group>"; };
 		7C04C1C21E8A2AED0079F35C /* MistakeTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeTreeCell.m; sourceTree = "<group>"; };
 		7C04C1C41E8A62050079F35C /* AccountIDInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountIDInputView.h; sourceTree = "<group>"; };
@@ -1815,6 +1833,20 @@
 		7C3D0BA61DD1A8ED005ED76A /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		7C3D0BAD1DD1A94F005ED76A /* YXAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAppConstants.h; sourceTree = "<group>"; };
 		7C3D0BAE1DD1A94F005ED76A /* YXAppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAppConstants.m; sourceTree = "<group>"; };
+		7C3ECAC91EC01EFD005C2B9C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		7C3ECACA1EC01EFD005C2B9C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		7C3ECACD1EC0201D005C2B9C /* LoginInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInputView.h; sourceTree = "<group>"; };
+		7C3ECACE1EC0201D005C2B9C /* LoginInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInputView.m; sourceTree = "<group>"; };
+		7C3ECAD11EC02405005C2B9C /* LoginActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginActionView.h; sourceTree = "<group>"; };
+		7C3ECAD21EC02405005C2B9C /* LoginActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginActionView.m; sourceTree = "<group>"; };
+		7C3ECAD51EC02C50005C2B9C /* AccountInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInputView.h; sourceTree = "<group>"; };
+		7C3ECAD61EC02C50005C2B9C /* AccountInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInputView.m; sourceTree = "<group>"; };
+		7C3ECAD91EC03AAC005C2B9C /* PasswordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordInputView.h; sourceTree = "<group>"; };
+		7C3ECADA1EC03AAC005C2B9C /* PasswordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordInputView.m; sourceTree = "<group>"; };
+		7C3ECADD1EC03C8B005C2B9C /* ThirdLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdLoginView.h; sourceTree = "<group>"; };
+		7C3ECADE1EC03C8B005C2B9C /* ThirdLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdLoginView.m; sourceTree = "<group>"; };
+		7C3ECAE11EC06E74005C2B9C /* VerifyCodeInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeInputView.h; sourceTree = "<group>"; };
+		7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeInputView.m; sourceTree = "<group>"; };
 		7C4554261DCADA6B001B0F26 /* YXChooseEditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChooseEditionViewController.h; sourceTree = "<group>"; };
 		7C4554271DCADA6B001B0F26 /* YXChooseEditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChooseEditionViewController.m; sourceTree = "<group>"; };
 		7C45542A1DCADC5B001B0F26 /* YXKnowledgePointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXKnowledgePointView.h; sourceTree = "<group>"; };
@@ -3048,6 +3080,7 @@
 		0FE412301B46379800EC3248 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				7C3ECAC61EC01EAB005C2B9C /* New */,
 				7C7545B61DD024FA00B1E1C4 /* View */,
 				0FE412341B46382F00EC3248 /* Controller */,
 			);
@@ -3760,6 +3793,45 @@
 				7C3D0B9B1DD1A8B2005ED76A /* LogFormatter.m */,
 			);
 			name = Log;
+			sourceTree = "<group>";
+		};
+		7C3ECAC61EC01EAB005C2B9C /* New */ = {
+			isa = PBXGroup;
+			children = (
+				7C3ECAC81EC01EC7005C2B9C /* View */,
+				7C3ECAC71EC01EBD005C2B9C /* Controller */,
+			);
+			name = New;
+			sourceTree = "<group>";
+		};
+		7C3ECAC71EC01EBD005C2B9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7C3ECAC91EC01EFD005C2B9C /* LoginViewController.h */,
+				7C3ECACA1EC01EFD005C2B9C /* LoginViewController.m */,
+				7C03CA821EC15028003CA9C7 /* ForgotPasswordViewController.h */,
+				7C03CA831EC15028003CA9C7 /* ForgotPasswordViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7C3ECAC81EC01EC7005C2B9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7C3ECACD1EC0201D005C2B9C /* LoginInputView.h */,
+				7C3ECACE1EC0201D005C2B9C /* LoginInputView.m */,
+				7C3ECAD11EC02405005C2B9C /* LoginActionView.h */,
+				7C3ECAD21EC02405005C2B9C /* LoginActionView.m */,
+				7C3ECAD51EC02C50005C2B9C /* AccountInputView.h */,
+				7C3ECAD61EC02C50005C2B9C /* AccountInputView.m */,
+				7C3ECAD91EC03AAC005C2B9C /* PasswordInputView.h */,
+				7C3ECADA1EC03AAC005C2B9C /* PasswordInputView.m */,
+				7C3ECADD1EC03C8B005C2B9C /* ThirdLoginView.h */,
+				7C3ECADE1EC03C8B005C2B9C /* ThirdLoginView.m */,
+				7C3ECAE11EC06E74005C2B9C /* VerifyCodeInputView.h */,
+				7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		7C5565C91DCB0F2800966875 /* 练习历史 */ = {
@@ -6094,8 +6166,10 @@
 				0FBD5B271C4F33C3003B7D6D /* YXEdgeLabel.m in Sources */,
 				0FDD9BEE1C58D30300DBA379 /* YXSettingBaseViewController_Pad.m in Sources */,
 				7C2B66EA1DBF43B4007DD16B /* ExerciseSubjectManager.m in Sources */,
+				7C3ECAD41EC02405005C2B9C /* LoginActionView.m in Sources */,
 				0FBD5B2B1C4F33C3003B7D6D /* YXLoadingView.m in Sources */,
 				0FBD5B2F1C4F33C3003B7D6D /* YXNumberField.m in Sources */,
+				7C3ECACC1EC01EFD005C2B9C /* LoginViewController.m in Sources */,
 				0FBD5B311C4F33C3003B7D6D /* YXTipsView.m in Sources */,
 				0FBD5B331C4F33C3003B7D6D /* YXToastView.m in Sources */,
 				0FBD5B371C4F33C3003B7D6D /* NSDate+YXDate.m in Sources */,
@@ -6178,6 +6252,7 @@
 				F773C9351C4627F400AAE684 /* YXReportErrorViewController.m in Sources */,
 				309796CD1D214BFF00B64380 /* YXStatisticRequest.m in Sources */,
 				7C953B4A1C5B368B00A9A7AF /* YXQAReportViewController_Pad.m in Sources */,
+				7C3ECADC1EC03AAC005C2B9C /* PasswordInputView.m in Sources */,
 				F773C9401C4627F400AAE684 /* YXAlbumListViewController.m in Sources */,
 				7C3D0B871DD1A6C8005ED76A /* GetRequest.m in Sources */,
 				7C953B391C5B040000A9A7AF /* YXQAMaterialView_Pad.m in Sources */,
@@ -6269,6 +6344,7 @@
 				0FB211B21C57268E00594BEA /* YXWeixinSSOManager.m in Sources */,
 				0FECC6731C5F321400E8F48E /* YXExitClassRequest.m in Sources */,
 				F773C9831C4627F400AAE684 /* YXQASheetView.m in Sources */,
+				7C3ECAD81EC02C50005C2B9C /* AccountInputView.m in Sources */,
 				0F68BE001C732BA600AB3382 /* YXRankHeaderView_Pad.m in Sources */,
 				7C027F471EB2CC70001682EA /* PagedListFetcherBase.m in Sources */,
 				0F2B6EAD1C7591A60055114E /* YXExerciseEmptyView.m in Sources */,
@@ -6348,6 +6424,7 @@
 				7C7841881E2DF10900755BC0 /* QASingleChooseQuestionRedoView.m in Sources */,
 				7C3D0B561DD1A1E1005ED76A /* YXTabBarController.m in Sources */,
 				0FE6C9F31C5A1020005FBD5B /* YXUserInfoRequest.m in Sources */,
+				7C3ECAD01EC0201D005C2B9C /* LoginInputView.m in Sources */,
 				7C7545B51DD0225A00B1E1C4 /* UIView+Views.m in Sources */,
 				F705092E1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m in Sources */,
 				F773C9D91C4627F400AAE684 /* YXTestCoreTextViewController.m in Sources */,
@@ -6429,6 +6506,7 @@
 				F773CA201C4627F400AAE684 /* TestGetRequest.m in Sources */,
 				0FE6C9D31C59FB7E005FBD5B /* YXEditionListChooseViewController_Pad.m in Sources */,
 				0FFA776C1C75BC0F00F9E8F9 /* YXAddToClassViewController.m in Sources */,
+				7C3ECAE01EC03C8B005C2B9C /* ThirdLoginView.m in Sources */,
 				7C953B421C5B2C7700A9A7AF /* YXQAAnalysisMaterialView_Pad.m in Sources */,
 				7CDE19761DD0906A00469096 /* AppDelegateHelper.m in Sources */,
 				7C027F351EB1F401001682EA /* PagedListViewControllerBase.m in Sources */,
@@ -6487,6 +6565,7 @@
 				F773CA661C4627F400AAE684 /* YXTestBaseViewController.m in Sources */,
 				7C7841D01E3200E000755BC0 /* QARedoClozeComplexView.m in Sources */,
 				F773CA671C4627F400AAE684 /* YXTestViewController.m in Sources */,
+				7C3ECAE41EC06E74005C2B9C /* VerifyCodeInputView.m in Sources */,
 				0FB211C61C575F7500594BEA /* YXLoginViewController_Pad.m in Sources */,
 				0FFA776E1C75BC1500F9E8F9 /* YXHomeworkGroupViewController.m in Sources */,
 				0FDD9BDF1C58B5F400DBA379 /* YXLoginInputView.m in Sources */,
@@ -6502,6 +6581,7 @@
 				30F4561E1CBE326B00FF2CD9 /* YXRedManager.m in Sources */,
 				F773CA781C4627F400AAE684 /* YXFeedbackViewModel.m in Sources */,
 				7C2B66EE1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */,
+				7C03CA851EC15028003CA9C7 /* ForgotPasswordViewController.m in Sources */,
 				7C89DD1B1DA8927200194120 /* QATwoNumberAnswerQuestion.m in Sources */,
 				7CF6C8541C731F7200AE88F8 /* YXPhotoCollectionViewCell.m in Sources */,
 				7C3D0B761DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
@@ -6721,16 +6801,19 @@
 				30FAF0761D1149CB00C3821E /* NSDictionary+Dictionarys.m in Sources */,
 				7CEE06F11DC3028700AA898B /* ExerciseChapterTreeViewController.m in Sources */,
 				7CEA912F1E1CE83300E8D72D /* AlbumListTableViewCell.m in Sources */,
+				7C3ECAD71EC02C50005C2B9C /* AccountInputView.m in Sources */,
 				7C3D0B751DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
 				0FB211BC1C5726CD00594BEA /* YXSSOAuthManager.m in Sources */,
 				F7754F441C4E43860002FE45 /* YXEditProfileViewController.m in Sources */,
 				7C129BA71E6F979B00ED7B20 /* MistakeNoteTableViewCell.m in Sources */,
 				7CAE1E511DAF6863003C2F6A /* QATitleView.m in Sources */,
+				7C3ECACB1EC01EFD005C2B9C /* LoginViewController.m in Sources */,
 				7C7841C81E31FF3300755BC0 /* QARedoListenComplexView.m in Sources */,
 				E93C76161E0D037800F286CF /* ThirdRegisterByJoinClassModel.m in Sources */,
 				F7754F451C4E43860002FE45 /* YXQASheetView.m in Sources */,
 				0F2B6EBE1C7592D20055114E /* YXSchoolSearchCell.m in Sources */,
 				7CF6C86B1C731FFB00AE88F8 /* YXPhotoModel.m in Sources */,
+				7C3ECACF1EC0201D005C2B9C /* LoginInputView.m in Sources */,
 				7C7BF7C91E092660007B017C /* AddClassPromptView.m in Sources */,
 				7C9092921E0A55700048C44F /* ReportShareAlertView.m in Sources */,
 				F7754F4A1C4E43860002FE45 /* YXHomeworkViewController.m in Sources */,
@@ -6832,6 +6915,7 @@
 				F7754F8C1C4E43860002FE45 /* YXDashLineCell.m in Sources */,
 				0F2B6EC81C7592F50055114E /* YXHistoryCell.m in Sources */,
 				0F2B6EBD1C7592D20055114E /* YXProvinceCitySelectionCell.m in Sources */,
+				7C3ECAD31EC02405005C2B9C /* LoginActionView.m in Sources */,
 				7C3D0BAB1DD1A8ED005ED76A /* UIImage+FixOrientation.m in Sources */,
 				7C18016F1E5196E300BCF61A /* EditNoteViewController.m in Sources */,
 				7CA47B1C1D3F76DA00DDE44E /* LePlayerView.m in Sources */,
@@ -6886,6 +6970,7 @@
 				E9973C771DB86D5F004966AD /* QAChooseQuestionView.m in Sources */,
 				7C89DD0A1DA8927200194120 /* QANumberGroupAnswerQuestion.m in Sources */,
 				7CFAAD9C1DAC8A7300F13532 /* QASlideView.m in Sources */,
+				7C3ECADB1EC03AAC005C2B9C /* PasswordInputView.m in Sources */,
 				7CFBF3D11C5F70AB00E745F3 /* YXQAReportBirdRateView.m in Sources */,
 				7C90928F1E0A50AD0048C44F /* ListenComplexPromptView.m in Sources */,
 				7C027F411EB1F92E001682EA /* ScrollBaseViewController.m in Sources */,
@@ -6981,6 +7066,7 @@
 				301E576B1DC1DE7B00090087 /* OptionsStringView.m in Sources */,
 				E9973C7D1DB86DB1004966AD /* QAMultiChooseQuestionView.m in Sources */,
 				0FBD5B081C4F3344003B7D6D /* YXCommonButtonCell.m in Sources */,
+				7C3ECADF1EC03C8B005C2B9C /* ThirdLoginView.m in Sources */,
 				0FB211BD1C5726D000594BEA /* YXThirdRegisterRequest.m in Sources */,
 				7C78417E1E2DCF8B00755BC0 /* QARedoSubmitView.m in Sources */,
 				7C3D0B791DD1A53A005ED76A /* RegularRecordEntity.m in Sources */,
@@ -7021,6 +7107,7 @@
 				7C916BE91DBF4E9B00968B28 /* QAClozeContainerView.m in Sources */,
 				7C2B66ED1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */,
 				7C21D5541E3464B900EF9B76 /* AudioCommentCell.m in Sources */,
+				7C03CA841EC15028003CA9C7 /* ForgotPasswordViewController.m in Sources */,
 				F775502F1C4E43860002FE45 /* YXTestViewController.m in Sources */,
 				7CF6C8901C7456B300AE88F8 /* YXGetQuestionReportRequest.m in Sources */,
 				7C89DD0E1DA8927200194120 /* QAQuestion.m in Sources */,
@@ -7045,6 +7132,7 @@
 				F77550401C4E43860002FE45 /* YXFeedbackViewModel.m in Sources */,
 				30894B141DC32BF60045E762 /* QAClassifyOptionsCell.m in Sources */,
 				7C7BF81B1E0CCDF6007B017C /* YXUpdateUserInfoHelper.m in Sources */,
+				7C3ECAE31EC06E74005C2B9C /* VerifyCodeInputView.m in Sources */,
 				7C7545B91DD0250A00B1E1C4 /* YXHistoryTableView.m in Sources */,
 				F77550411C4E43860002FE45 /* YXSearchClassViewController.m in Sources */,
 				0FBD5ADE1C4F3338003B7D6D /* UIView+YXScale.m in Sources */,
