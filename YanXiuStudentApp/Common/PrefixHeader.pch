@@ -67,6 +67,7 @@ extern int ddLogLevel;
 #import "UIView+Loading.h"
 #import "UIViewController+NavigationItem.h"
 
+#import "YXMineManager.h"
 #import "YXSubjectImageHelper.h"
 #import "YXSmartDashLineView.h"
 #import "ExerciseSubjectManager.h"

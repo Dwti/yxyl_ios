@@ -12,11 +12,12 @@
 #import <FileHash.h>
 #import "LoginViewController.h"
 
+
 @implementation YXTestViewController
 - (void)viewDidLoad {
-    self.devTestActions = @[@"test",
+    self.devTestActions = @[@"登录注册",
                             @"testYXCuoTiViewController",
-                            @"待完成作业",
+                            @"加入班级",
                             @"题目",
                             @"解析",
                             @"testYXHomeworkGroupViewController",
@@ -46,12 +47,12 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)待完成作业 {
-    YXHomeworkToDoViewController *vc = [[YXHomeworkToDoViewController alloc] init];
+- (void)加入班级 {
+    AddClassViewController *vc = [[AddClassViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)test {
+- (void)登录注册 {
     LoginViewController *vc = [[LoginViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     //    YXTestAutolayoutScrollViewController *vc = [[YXTestAutolayoutScrollViewController alloc] init];

@@ -45,4 +45,9 @@
     [self.actionButton setTitle:title forState:UIControlStateNormal];
 }
 
+- (void)setIsActive:(BOOL)isActive {
+    _isActive = isActive;
+    self.actionButton.enabled = isActive;
+}
+
 @end

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "PrefixHeader.pch"
+#import "YXNavigationController.h"
 
 @interface BaseViewController : UIViewController
+@property (nonatomic, assign) NavigationBarTheme naviTheme;
 @property (nonatomic, strong) UIColor *titleNormalColor;
 @property (nonatomic, strong) UIButton *rightNaviButton;
 

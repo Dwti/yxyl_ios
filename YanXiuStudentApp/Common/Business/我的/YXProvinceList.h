@@ -19,7 +19,7 @@
 
 @property (nonatomic, copy) NSString *cid;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) NSMutableArray *districts;
+@property (nonatomic, strong) NSMutableArray<__kindof YXDistrict *> *districts;
 
 @end
 
@@ -27,14 +27,14 @@
 
 @property (nonatomic, copy) NSString *pid;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) NSMutableArray *citys;
+@property (nonatomic, strong) NSMutableArray<__kindof YXCity *> *citys;
 
 @end
 
 // 省市区（县）
 @interface YXProvinceList : NSObject
 
-@property (nonatomic, strong) NSMutableArray *provinces;
+@property (nonatomic, strong) NSMutableArray<__kindof YXProvince *> *provinces;
 
 - (BOOL)startParse;
 

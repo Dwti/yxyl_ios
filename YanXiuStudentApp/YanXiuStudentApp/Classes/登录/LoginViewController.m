@@ -12,10 +12,12 @@
 #import "LoginActionView.h"
 #import "ThirdLoginView.h"
 #import "ForgotPasswordViewController.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) AccountInputView *accountView;
 @property (nonatomic, strong) PasswordInputView *passwordView;
+@property (nonatomic, strong) LoginActionView *loginView;
 @end
 
 @implementation LoginViewController
@@ -50,12 +52,21 @@
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
     self.accountView = [[AccountInputView alloc]init];
+    WEAK_SELF
+    [self.accountView setTextChangeBlock:^{
+        STRONG_SELF
+        [self refreshLoginButton];
+    }];
     [containerView addSubview:self.accountView];
     [self.accountView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
         make.height.mas_equalTo(50);
     }];
     self.passwordView = [[PasswordInputView alloc]init];
+    [self.passwordView setTextChangeBlock:^{
+        STRONG_SELF
+        [self refreshLoginButton];
+    }];
     [containerView addSubview:self.passwordView];
     [self.passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.accountView.mas_bottom).mas_offset(1);
@@ -63,8 +74,8 @@
         make.height.mas_equalTo(50);
     }];
     LoginActionView *loginView = [[LoginActionView alloc]init];
+    self.loginView = loginView;
     loginView.title = @"登 录";
-    WEAK_SELF
     [loginView setActionBlock:^{
         STRONG_SELF
     }];
@@ -113,6 +124,16 @@
         make.top.mas_equalTo(loginView.mas_bottom).mas_offset(75*kPhoneWidthRatio);
         make.bottom.mas_equalTo(-40);
     }];
+    
+    [self refreshLoginButton];
+}
+
+- (void)refreshLoginButton {
+    if (!isEmpty([self.accountView text])&&!isEmpty([self.passwordView text])) {
+        self.loginView.isActive = YES;
+    }else {
+        self.loginView.isActive = NO;
+    }
 }
 
 - (void)gotoForgotPassword {
@@ -121,7 +142,8 @@
 }
 
 - (void)gotoRegister {
-    
+    RegisterViewController *vc = [[RegisterViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)gotoTouristLogin {

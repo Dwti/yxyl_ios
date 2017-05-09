@@ -10,19 +10,19 @@
 
 @implementation UIViewController (NavigationItem)
 - (void)nyx_setupLeftWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action{
-    UIImage *normalImage = [UIImage imageNamed:imageName];
-    UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
-    
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width, normalImage.size.height)];
+    [self nyx_setupLeftWithImage:[UIImage imageNamed:imageName] action:action];
+}
+
+- (void)nyx_setupLeftWithImage:(UIImage *)image action:(ActionBlock)action {
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     [self nyx_adjustFrameForView:backButton];
-    [backButton setImage:normalImage forState:UIControlStateNormal];
-    [backButton setImage:highlightImage forState:UIControlStateHighlighted];
+    [backButton setImage:image forState:UIControlStateNormal];
     [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         BLOCK_EXEC(action);
     }];
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItems = @[[self nyx_negativeBarButtonItem],leftItem];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:backButton]];
+    self.navigationItem.leftBarButtonItems = @[[self nyx_leftNegativeBarButtonItem],leftItem];
 }
 
 - (void)nyx_setupLeftWithCustomView:(UIView *)view{
@@ -33,24 +33,24 @@
     [containerView addSubview:view];
     view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:containerView];
-    self.navigationItem.leftBarButtonItems = @[[self nyx_negativeBarButtonItem],rightItem];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:containerView]];
+    self.navigationItem.leftBarButtonItems = @[[self nyx_leftNegativeBarButtonItem],rightItem];
 }
 
 - (void)nyx_setupRightWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action{
     UIImage *normalImage = [UIImage imageNamed:imageName];
-    UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
+//    UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
     
     UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width, normalImage.size.height)];
     [self nyx_adjustFrameForView:rightButton];
     [rightButton setImage:normalImage forState:UIControlStateNormal];
-    [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
+//    [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
     [[rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         BLOCK_EXEC(action);
     }];
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItems = @[[self nyx_negativeBarButtonItem],rightItem];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:rightButton]];
+    self.navigationItem.rightBarButtonItems = @[[self nyx_rightNegativeBarButtonItem],rightItem];
 }
 
 - (void)nyx_setupRightWithTitle:(NSString *)title action:(ActionBlock)action{
@@ -65,8 +65,8 @@
         BLOCK_EXEC(action);
     }];
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:b];
-    self.navigationItem.rightBarButtonItems = @[[self nyx_negativeBarButtonItem],rightItem];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:b]];
+    self.navigationItem.rightBarButtonItems = @[[self nyx_rightNegativeBarButtonItem],rightItem];
 }
 
 - (void)nyx_setupRightWithCustomView:(UIView *)view{
@@ -77,8 +77,8 @@
     [containerView addSubview:view];
     view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:containerView];
-    self.navigationItem.rightBarButtonItems = @[[self nyx_negativeBarButtonItem],rightItem];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:containerView]];
+    self.navigationItem.rightBarButtonItems = @[[self nyx_rightNegativeBarButtonItem],rightItem];
 }
 
 - (void)nyx_adjustFrameForView:(UIView *)view {
@@ -86,9 +86,23 @@
     view.height += 20;
 }
 
-- (UIBarButtonItem *)nyx_negativeBarButtonItem{
+- (UIView *)nyx_viewForItemView:(UIView *)itemView {
+    CGRect rect = itemView.bounds;
+    rect.size.height += 11;
+    UIView *v = [[UIView alloc]initWithFrame:rect];
+    [v addSubview:itemView];
+    return v;
+}
+
+- (UIBarButtonItem *)nyx_leftNegativeBarButtonItem{
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
+    negativeSpacer.width = -14;
+    return negativeSpacer;
+}
+
+- (UIBarButtonItem *)nyx_rightNegativeBarButtonItem{
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -11;
     return negativeSpacer;
 }
 

@@ -7,10 +7,8 @@
 //
 
 #import "PasswordInputView.h"
-#import "LoginInputView.h"
 
 @interface PasswordInputView()
-@property (nonatomic, strong) LoginInputView *inputView;
 @property (nonatomic, strong) UIButton *showHideButton;
 @end
 
@@ -19,6 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
+        [self setupObserver];
     }
     return self;
 }
@@ -42,6 +41,14 @@
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(self.showHideButton.mas_left).mas_offset(-17);
         make.top.bottom.mas_equalTo(0);
+    }];
+}
+
+- (void)setupObserver {
+    WEAK_SELF
+    [[self.inputView.textField rac_textSignal]subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.textChangeBlock)
     }];
 }
 

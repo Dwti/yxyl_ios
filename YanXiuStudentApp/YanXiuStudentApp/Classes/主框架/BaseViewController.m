@@ -17,8 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
-    if (!self.titleNormalColor) {
-        self.titleNormalColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    NSArray *vcArray = self.navigationController.viewControllers;
+    if (!isEmpty(vcArray)) {
+        if (vcArray[0] != self) {
+            WEAK_SELF
+            [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
+                STRONG_SELF
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
     }
 }
 
@@ -43,6 +51,8 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     NSLog(@"-----%@", [self class]);
+    YXNavigationController *navi = (YXNavigationController *)self.navigationController;
+    navi.theme = self.naviTheme;
 }
 
 #pragma mark - 相关的Util

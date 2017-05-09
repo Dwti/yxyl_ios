@@ -12,6 +12,10 @@
 - (id)clone {
     UIView *v = [UIView new];
     v.backgroundColor = self.backgroundColor;
+    v.layer.cornerRadius = self.layer.cornerRadius;
+    v.layer.borderWidth = self.layer.borderWidth;
+    v.layer.borderColor = self.layer.borderColor;
+    v.clipsToBounds = self.clipsToBounds;
     return v;
 }
 @end

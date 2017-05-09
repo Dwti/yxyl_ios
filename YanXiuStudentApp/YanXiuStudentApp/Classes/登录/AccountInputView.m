@@ -17,6 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
+        [self setupObserver];
     }
     return self;
 }
@@ -44,11 +45,17 @@
 }
 
 - (void)setupObserver {
-//    [self.inputView.textField rac_textSignal]
+    WEAK_SELF
+    [[self.inputView.textField rac_textSignal]subscribeNext:^(id x) {
+        STRONG_SELF
+        self.clearButton.hidden = isEmpty(x);
+        BLOCK_EXEC(self.textChangeBlock)
+    }];
 }
 
 - (void)clearAction {
     self.inputView.textField.text = @"";
+    BLOCK_EXEC(self.textChangeBlock)
     self.clearButton.hidden = YES;
 }
 
@@ -63,12 +70,6 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.clearButton.hidden = YES;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    self.clearButton.hidden = text.length==0;
-    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

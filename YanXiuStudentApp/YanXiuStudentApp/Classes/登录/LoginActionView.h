@@ -11,4 +11,5 @@
 @interface LoginActionView : UIView
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) void(^actionBlock) (void);
+@property (nonatomic, assign) BOOL isActive;
 @end

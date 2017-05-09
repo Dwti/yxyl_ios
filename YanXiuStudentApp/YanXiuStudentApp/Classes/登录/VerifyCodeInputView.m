@@ -23,6 +23,7 @@ static const NSInteger kTimerDuration = 10;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
+        [self setupObserver];
     }
     return self;
 }
@@ -66,6 +67,14 @@ static const NSInteger kTimerDuration = 10;
     }];
 }
 
+- (void)setupObserver {
+    WEAK_SELF
+    [[self.inputView.textField rac_textSignal]subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.textChangeBlock)
+    }];
+}
+
 - (void)btnAction {
     if (self.secondsRemained > 0) {
         return;
@@ -98,6 +107,10 @@ static const NSInteger kTimerDuration = 10;
         self.codeButton.enabled = NO;
         self.codeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
+}
+
+- (NSString *)text {
+    return [self.inputView.textField.text yx_stringByTrimmingCharacters];
 }
 
 @end
