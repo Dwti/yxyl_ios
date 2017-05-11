@@ -73,7 +73,7 @@
         make.height.mas_equalTo(50);
     }];
     self.resetPasswordView = [[LoginActionView alloc]init];
-    self.resetPasswordView.title = @"下一步";
+    self.resetPasswordView.title = @"确认重置";
     [self.resetPasswordView setActionBlock:^{
         STRONG_SELF
     }];
@@ -95,6 +95,31 @@
     }else {
         self.resetPasswordView.isActive = NO;
     }
+}
+
+- (void)gotoResetPassword {
+    if (![LoginUtils isPasswordValid:self.passwordView.text]) {
+        [self.view nyx_showToast:@"密码不符合要求"];
+        return;
+    }
+    if (![self.passwordView.text isEqualToString:self.confirmPasswordView.text]) {
+        [self.view nyx_showToast:@"两次输入密码不一致"];
+        return;
+    }
+    [self.view nyx_startLoading];
+    WEAK_SELF
+    [LoginDataManager resetPasswordWithMobileNumber:self.phoneNum password:self.passwordView.text completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+        } else {
+            [self.view nyx_showToast:@"重置密码成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            });
+        }
+    }];
 }
 
 @end

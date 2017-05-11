@@ -11,8 +11,12 @@
 #import "SchoolSearchAreaView.h"
 #import "SchoolSearchResultCell.h"
 
+
 @interface SchoolSearchViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) SchoolSearchBarView *searchView;
+@property (nonatomic, strong) YXSchoolSearchRequest *request;
+@property (nonatomic, strong) YXSchoolSearchItem *item;
 @end
 
 @implementation SchoolSearchViewController
@@ -35,6 +39,7 @@
 
 - (void)setupUI {
     SchoolSearchBarView *searchView = [[SchoolSearchBarView alloc]init];
+    self.searchView = searchView;
     WEAK_SELF
     [searchView setSearchBlock:^(NSString *text){
         STRONG_SELF
@@ -87,17 +92,33 @@
 
 - (void)searchSchoolWithKeyword:(NSString *)keyword {
     NSString *key = isEmpty(keyword)? self.currentDistrict.name:keyword;
-    DDLogWarn(@"search with key: %@",key);
+    [self.request stopRequest];
+    self.request = [[YXSchoolSearchRequest alloc] init];
+    self.request.school = key;
+    self.request.regionId = self.currentDistrict.did;
+    WEAK_SELF
+    [self.request startRequestWithRetClass:[YXSchoolSearchItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        STRONG_SELF
+        self.item = retItem;
+        [self.tableView reloadData];
+        if (self.item.data.count == 0) {
+            // 点击搜索后 才有提示框
+            if (!self.searchView.textField.isFirstResponder) {
+                [self.view nyx_showToast:@"没有搜索到相应的学校"];
+            }
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 13;
+    return self.item.data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SchoolSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolSearchResultCell"];
-    cell.title = @"fhifoegre";
+    YXSchool *school = self.item.data[indexPath.row];
+    cell.title = school.name;
     return cell;
 }
 
@@ -111,8 +132,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YXSchool *school = [[YXSchool alloc]init];
-    school.name = @"野鸡大学";
+    YXSchool *school = self.item.data[indexPath.row];
     BLOCK_EXEC(self.schoolSearchBlock,school);
     [self.navigationController popToViewController:self.baseVC animated:YES];
 }

@@ -20,4 +20,10 @@
 //验证验证码
 + (void)verifySMSCodeFormat:(NSString *)SMSCode completeBlock:(void(^)(BOOL isEmpty, BOOL formatIsCorrect))completeBlock;
 
+#pragma mark - new
++ (BOOL)isAccountValid:(NSString *)account;
++ (BOOL)isPasswordValid:(NSString *)password;
++ (BOOL)isPhoneNumberValid:(NSString *)phone;
++ (BOOL)isVerifyCodeValid:(NSString *)code;
+
 @end

@@ -11,10 +11,12 @@
 #import "LoginActionView.h"
 #import "ClassInfoViewController.h"
 #import "CompletePersonalInfoViewController.h"
+#import "ClassHomeworkUtils.h"
 
 @interface AddClassViewController ()
 @property (nonatomic, strong) ClassNumberInputView *numberInputView;
 @property (nonatomic, strong) LoginActionView *nextStepButton;
+@property (nonatomic, strong) NSString *classNumberString;
 @end
 
 @implementation AddClassViewController
@@ -23,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"加入班级";
+    [self nyx_setupLeftWithCustomView:[UIView new]];
     [self setupUI];
 }
 
@@ -46,6 +49,7 @@
     [self.numberInputView setTextChangeBlock:^(NSString *text){
         STRONG_SELF
         self.nextStepButton.isActive = !isEmpty(text);
+        self.classNumberString = text;
     }];
     [self.contentView addSubview:self.numberInputView];
     [self.numberInputView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,8 +73,7 @@
     nextStepView.isActive = NO;
     [nextStepView setActionBlock:^{
         STRONG_SELF
-        ClassInfoViewController *vc = [[ClassInfoViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self gotoSearchClass];
     }];
     [self.contentView addSubview:nextStepView];
     [nextStepView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,7 +106,34 @@
 
 - (void)skipAction {
     CompletePersonalInfoViewController *vc = [[CompletePersonalInfoViewController alloc]init];
+    vc.phoneNum = self.phoneNum;
+    vc.isThirdLogin = self.isThirdLogin;
+    vc.thirdLoginParams = self.thirdLoginParams;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gotoSearchClass {
+    if (![ClassHomeworkUtils isClassNumberValid:self.classNumberString]) {
+        [self.view nyx_showToast:@"请输入正确的班级号"];
+        return;
+    }
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [ClassHomeworkDataManager searchClassWithClassID:self.classNumberString completeBlock:^(YXSearchClassItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        YXSearchClassItem_Data *data = item.data[0];
+        data.mobile = self.phoneNum;
+        ClassInfoViewController *vc = [[ClassInfoViewController alloc] init];
+        vc.rawData = data;
+        vc.isThirdLogin = self.isThirdLogin;
+        vc.thirdLoginParams = self.thirdLoginParams;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 @end

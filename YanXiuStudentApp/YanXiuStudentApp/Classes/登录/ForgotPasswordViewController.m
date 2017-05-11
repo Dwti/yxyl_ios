@@ -11,6 +11,7 @@
 #import "VerifyCodeInputView.h"
 #import "LoginActionView.h"
 #import "ResetPasswordViewController.h"
+#import "LoginDataManager.h"
 
 @interface ForgotPasswordViewController ()
 @property (nonatomic, strong) AccountInputView *accountView;
@@ -51,11 +52,15 @@
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
     self.accountView = [[AccountInputView alloc]init];
+    self.accountView.inputView.textField.text = self.phoneNum;
     self.accountView.inputView.textField.keyboardType = UIKeyboardTypeNumberPad;
     self.accountView.inputView.placeHolder = @"请输入绑定或注册的手机号";
     WEAK_SELF
     [self.accountView setTextChangeBlock:^{
         STRONG_SELF
+        if (self.accountView.text.length>11) {
+            self.accountView.inputView.textField.text = [self.accountView.text substringToIndex:11];
+        }
         [self refreshVerifyCodeView];
         [self refreshNextStepButton];
     }];
@@ -74,6 +79,10 @@
         STRONG_SELF
         self.verifyCodeView.isActive = !isEmpty(self.accountView.text);
     }];
+    [self.verifyCodeView setSendAction:^{
+        STRONG_SELF
+        [self gotoGetVerifyCode];
+    }];
     [containerView addSubview:self.verifyCodeView];
     [self.verifyCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.accountView.mas_bottom).mas_offset(1);
@@ -84,8 +93,7 @@
     nextStepView.title = @"下一步";
     [nextStepView setActionBlock:^{
         STRONG_SELF
-        ResetPasswordViewController *vc = [[ResetPasswordViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self gotoNextStep];
     }];
     [self.contentView addSubview:nextStepView];
     [nextStepView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,6 +119,50 @@
 
 - (void)refreshVerifyCodeView {
     self.verifyCodeView.isActive = !isEmpty([self.accountView text]);
+}
+
+- (void)gotoGetVerifyCode {
+    if (![LoginUtils isPhoneNumberValid:self.accountView.text]) {
+        [self.view nyx_showToast:@"请输入正确的手机号码"];
+        return;
+    }
+    WEAK_SELF
+    NSString *type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeResetPassword)];
+    [self.view nyx_startLoading];
+    [LoginDataManager getVerifyCodeWithMobileNumber:self.accountView.text verifyType:type completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self.view nyx_showToast:@"验证码已发送，请注意查收"];
+    }];
+}
+
+- (void)gotoNextStep {
+    if (![LoginUtils isPhoneNumberValid:self.accountView.text]) {
+        [self.view nyx_showToast:@"请输入正确的手机号码"];
+        return;
+    }
+    if (![LoginUtils isVerifyCodeValid:self.verifyCodeView.text]) {
+        [self.view nyx_showToast:@"请输入正确的验证码"];
+        return;
+    }
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    NSString *type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeResetPassword)];
+    [LoginDataManager verifySMSCodeWithMobileNumber:self.accountView.text verifyCode:self.verifyCodeView.text codeType:type completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        ResetPasswordViewController *vc = [[ResetPasswordViewController alloc]init];
+        vc.phoneNum = self.accountView.text;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 @end

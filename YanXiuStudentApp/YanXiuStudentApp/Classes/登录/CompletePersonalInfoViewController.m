@@ -12,12 +12,19 @@
 #import "LoginActionView.h"
 #import "AreaSelectionViewController.h"
 #import "StageSelectionViewController.h"
+#import "YXSSOAuthDefine.h"
 
 @interface CompletePersonalInfoViewController ()
 @property (nonatomic, strong) ClassInfoItemView *nameView;
 @property (nonatomic, strong) PersonalInfoSelectionItemView *schoolView;
 @property (nonatomic, strong) PersonalInfoSelectionItemView *stageView;
 @property (nonatomic, strong) LoginActionView *submitButton;
+
+@property (nonatomic, strong) YXSchool *school;
+@property (nonatomic, strong) YXProvince *province;
+@property (nonatomic, strong) YXCity *city;
+@property (nonatomic, strong) YXDistrict *district;
+@property (nonatomic, strong) NSString *stageID;
 @end
 
 @implementation CompletePersonalInfoViewController
@@ -59,7 +66,11 @@
     WEAK_SELF
     [self.nameView setTextChangeBlock:^{
         STRONG_SELF
-        [self submitButton];
+        NSString *text = self.nameView.text;
+        if (text.length>16) {
+            self.nameView.inputView.textField.text = [text substringToIndex:16];
+        }
+        [self refreshSubmitButton];
     }];
     [containerView addSubview:self.nameView];
     [self.nameView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,6 +109,7 @@
     self.submitButton.title = @"提 交";
     [self.submitButton setActionBlock:^{
         STRONG_SELF
+        [self gotoSubmit];
     }];
     [self.contentView addSubview:self.submitButton];
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +124,7 @@
 }
 
 - (void)refreshSubmitButton {
-    self.submitButton.isActive = !isEmpty(self.nameView.text);
+    self.submitButton.isActive = !isEmpty(self.nameView.text)&&!isEmpty(self.stageView.text)&&!isEmpty(self.schoolView.text);
 }
 
 - (void)gotoStageSelection {
@@ -121,6 +133,7 @@
     [vc setCompleteBlock:^(NSString *stageName,NSString *stageID){
         STRONG_SELF
         self.stageView.text = stageName;
+        self.stageID = stageID;
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -131,9 +144,77 @@
     WEAK_SELF
     [vc setSchoolSearchBlock:^(YXSchool *school){
         STRONG_SELF
+        self.school = school;
         self.schoolView.text = school.name;
     }];
+    [vc setAreaSelectionBlock:^(YXProvince *province,YXCity *city,YXDistrict *district){
+        STRONG_SELF
+        self.province = province;
+        self.city = city;
+        self.district = district;
+    }];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gotoSubmit {
+    if (self.isThirdLogin) {
+        [self startThirdRequest];
+    } else {
+        [self startNormalRequest];
+    }
+}
+
+- (void)startNormalRequest {
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    
+    RegisterModel *model = [[RegisterModel alloc]init];
+    model.mobile = self.phoneNum;
+    model.realname = self.nameView.text;
+    model.provinceid = self.province.pid;
+    model.cityid = self.city.cid;
+    model.areaid = self.district.did;
+    model.stageid = self.stageID;
+    model.schoolName = self.school.name;
+    model.schoolid = self.school.sid;
+    model.validKey = [[NSString stringWithFormat:@"%@&%@", self.phoneNum, @"yxylmobile"] md5];
+    
+    [LoginDataManager registerWithModel:model completeBlock:^(YXRegisterRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+    }];
+}
+
+- (void)startThirdRequest {
+    WEAK_SELF;
+    [self.view nyx_startLoading];
+    
+    ThirdRegisterModel *model = [[ThirdRegisterModel alloc]init];
+    model.openid = [self.thirdLoginParams objectForKey:YXSSOAuthOpenidKey];
+    model.pltform = [self.thirdLoginParams objectForKey:YXSSOAuthPltformKey];
+    model.sex = [self.thirdLoginParams objectForKey:YXSSOAuthSexKey];
+    model.headimg = [self.thirdLoginParams objectForKey:YXSSOAuthHeadimgKey];
+    model.unionId = [self.thirdLoginParams objectForKey:YXSSOAuthUnionKey];
+    model.realname = self.nameView.text;
+    model.provinceid = self.province.pid;
+    model.cityid = self.city.cid;
+    model.areaid = self.district.did;
+    model.stageid = self.stageID;
+    model.schoolname = self.school.name;
+    model.schoolid = self.school.sid;
+    
+    [LoginDataManager thirdRegisterWithModel:model completeBlock:^(YXThirdRegisterRequestItem *item, NSError *error) {
+        STRONG_SELF;
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+    }];
 }
 
 @end

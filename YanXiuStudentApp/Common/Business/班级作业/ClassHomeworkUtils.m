@@ -31,4 +31,9 @@
     
 }
 
+#pragma mark - new
++ (BOOL)isClassNumberValid:(NSString *)classNumber {
+    return classNumber.length==8;
+}
+
 @end

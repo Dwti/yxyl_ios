@@ -94,9 +94,9 @@ NSString *const YXTokenInValidNotification = @"kYXTokenInValidNotification";
             && [error.domain isEqualToString:NetworkRequestErrorDomain]) {
             NSString *title = @"";
             if (error.code == ASIConnectionFailureErrorType) {
-                title = @"网络异常，请稍后重试";
+                title = @"网络未连接，请检查后重试";
             } else if (error.code == ASIRequestTimedOutErrorType) {
-                title = @"请求超时，请稍后重试";
+                title = @"网络未连接，请检查后重试";
             }
             error = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIConnectionFailureErrorType userInfo:@{NSLocalizedDescriptionKey:title}]; // 网络异常提示
         }
@@ -131,7 +131,7 @@ NSString *const YXTokenInValidNotification = @"kYXTokenInValidNotification";
     HttpBaseRequestItem *item = [[_retClass alloc] initWithString:json error:&error];
     // json格式错误
     if (error) {
-        error = [NSError errorWithDomain:error.domain code:-1 userInfo:@{NSLocalizedDescriptionKey:@"数据加载失败"}];
+        error = [NSError errorWithDomain:error.domain code:-1 userInfo:@{NSLocalizedDescriptionKey:@"出错了，请稍后再试"}];
         _completeBlock(nil, error);
         return;
     }

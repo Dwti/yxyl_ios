@@ -11,4 +11,7 @@
 @interface ClassHomeworkUtils : NSObject
 + (BOOL)classNumberFormatIsCorrect:(NSString *)classNumber;
 + (BOOL)classNumberLengthIsCorrect:(NSString *)classNumber;
+
+#pragma mark - new
++ (BOOL)isClassNumberValid:(NSString *)classNumber;
 @end

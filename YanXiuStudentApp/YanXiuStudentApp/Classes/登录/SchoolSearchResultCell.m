@@ -25,6 +25,17 @@
     // Configure the view for the selected state
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    }else {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        self.titleLabel.font = [UIFont systemFontOfSize:16];
+    }
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setupUI];

@@ -13,11 +13,15 @@
 #import "ThirdLoginView.h"
 #import "ForgotPasswordViewController.h"
 #import "RegisterViewController.h"
+#import "AddClassViewController.h"
+#import "YXSSOAuthManager.h"
+#import "YXInitRequest.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) AccountInputView *accountView;
 @property (nonatomic, strong) PasswordInputView *passwordView;
 @property (nonatomic, strong) LoginActionView *loginView;
+@property (nonatomic, strong) UIButton *touristButton;
 @end
 
 @implementation LoginViewController
@@ -26,11 +30,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    [self setupObserver];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupObserver {
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXInitSuccessNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        self.touristButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
+    }];
+    [YXSSOAuthManager sharedManager].thirdRegisterBlock = ^(UIViewController *rootViewController, NSDictionary *params) {
+        AddClassViewController *vc = [[AddClassViewController alloc] init];
+        vc.thirdLoginParams = params;
+        vc.isThirdLogin = YES;
+        [rootViewController.navigationController pushViewController:vc animated:YES];
+    };
 }
 
 - (void)setupUI {
@@ -78,6 +97,7 @@
     loginView.title = @"登 录";
     [loginView setActionBlock:^{
         STRONG_SELF
+        [self gotoLogin];
     }];
     [self.contentView addSubview:loginView];
     [loginView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -113,9 +133,21 @@
         make.top.mas_equalTo(forgotPasswordButton.mas_top);
         make.centerX.mas_equalTo(0);
     }];
+    self.touristButton = touristButton;
+    self.touristButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
+    
     ThirdLoginView *thirdView = [[ThirdLoginView alloc]init];
     [thirdView setLoginAction:^(ThirdLoginType type) {
         STRONG_SELF
+        if (![self isNetworkReachable]) {
+            [self.view nyx_showToast:@"网络未连接，请检查后重试"];
+            return;
+        }
+        if (type == ThirdLogin_Weixin) {
+            [[YXSSOAuthManager sharedManager] weixinLoginWithRootViewController:self];
+        }else {
+            [[YXSSOAuthManager sharedManager] qqLoginWithRootViewController:self];
+        }
     }];
     [self.contentView addSubview:thirdView];
     [thirdView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,6 +170,9 @@
 
 - (void)gotoForgotPassword {
     ForgotPasswordViewController *vc = [[ForgotPasswordViewController alloc]init];
+    if ([LoginUtils isPhoneNumberValid:self.accountView.text]) {
+        vc.phoneNum = self.accountView.text;
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -147,7 +182,47 @@
 }
 
 - (void)gotoTouristLogin {
-    
+    [self.view nyx_startLoading];
+    WEAK_SELF
+    [LoginDataManager touristLoginWithCompleteBlock:^(YXLoginRequestItem *item, NSError *error, BOOL isBind) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+    }];
+}
+
+- (void)gotoLogin {
+    if (![LoginUtils isAccountValid:self.accountView.text]) {
+        [self.view nyx_showToast:@"请输入正确的账号"];
+        return;
+    }
+    if (![LoginUtils isPasswordValid:self.passwordView.text]) {
+        [self.view nyx_showToast:@"密码不符合要求"];
+        return;
+    }
+    [self.view nyx_startLoading];
+    WEAK_SELF
+    [LoginDataManager loginWithMobileNumber:self.accountView.text password:self.passwordView.text isThirdLogin:NO completeBlock:^(YXLoginRequestItem *item, NSError *error, BOOL isBind) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }else {
+            if (!isBind) { //未绑定用户信息
+                AddClassViewController *vc = [[AddClassViewController alloc] init];
+                vc.phoneNum = self.accountView.text;
+                [self.navigationController pushViewController:vc animated:YES];
+                return;
+            }
+            if (item.data.count > 0) {
+                [self.view nyx_showToast:@"登录成功"];
+            }
+        }
+    }];
 }
 
 @end

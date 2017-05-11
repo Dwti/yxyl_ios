@@ -69,4 +69,22 @@
     }
     BLOCK_EXEC(completeBlock,isEmpty,formatIsCorrect);
 }
+
+#pragma mark - new
++ (BOOL)isAccountValid:(NSString *)account {
+    return account.length>=11 && account.length<=16;
+}
+
++ (BOOL)isPasswordValid:(NSString *)password {
+    return password.length>=6 && password.length<=18;
+}
+
++ (BOOL)isPhoneNumberValid:(NSString *)phone {
+    return [phone yx_isPhoneNum];
+}
+
++ (BOOL)isVerifyCodeValid:(NSString *)code {
+    return code.length==4;
+}
+
 @end

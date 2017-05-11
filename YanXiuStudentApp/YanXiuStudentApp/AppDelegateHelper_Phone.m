@@ -12,6 +12,7 @@
 #import "YXTabBarController.h"
 #import "YXApnsHomeworkViewController.h"
 #import "YXHomeworkListFetcher.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegateHelper_Phone
 
@@ -31,7 +32,7 @@
 }
 
 - (UIViewController *)loginViewController {
-    YXLoginViewController *vc = [[YXLoginViewController alloc] init];
+    LoginViewController *vc = [[LoginViewController alloc] init];
     return [[YXNavigationController alloc] initWithRootViewController:vc];
 }
 

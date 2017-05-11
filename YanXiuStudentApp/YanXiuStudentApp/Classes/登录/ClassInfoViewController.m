@@ -9,6 +9,7 @@
 #import "ClassInfoViewController.h"
 #import "ClassInfoItemView.h"
 #import "LoginActionView.h"
+#import "YXSSOAuthDefine.h"
 
 @interface ClassInfoViewController ()
 @property (nonatomic, strong) ClassInfoItemView *nameView;
@@ -55,7 +56,7 @@
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
     UILabel *classNameLabel = [[UILabel alloc]init];
-    classNameLabel.text = @"七年级20班";
+    classNameLabel.text = self.rawData.name;
     classNameLabel.font = [UIFont boldSystemFontOfSize:19];
     classNameLabel.textColor = [UIColor whiteColor];
     classNameLabel.textAlignment = NSTextAlignmentCenter;
@@ -77,7 +78,7 @@
     
     ClassInfoItemView *classCodeView = [[ClassInfoItemView alloc]init];
     classCodeView.name = @"班级号码";
-    classCodeView.inputView.textField.text = @"12345678";
+    classCodeView.inputView.textField.text = self.rawData.gid;
     classCodeView.userInteractionEnabled = NO;
     [containerView addSubview:classCodeView];
     [classCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,7 +87,7 @@
     }];
     ClassInfoItemView *teacherNameView = [[ClassInfoItemView alloc]init];
     teacherNameView.name = @"老师姓名";
-    teacherNameView.inputView.textField.text = @"宋江";
+    teacherNameView.inputView.textField.text = self.rawData.authorname;
     teacherNameView.userInteractionEnabled = NO;
     [containerView addSubview:teacherNameView];
     [teacherNameView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -96,7 +97,7 @@
     }];
     ClassInfoItemView *classMemberView = [[ClassInfoItemView alloc]init];
     classMemberView.name = @"班级成员";
-    classMemberView.inputView.textField.text = @"108人";
+    classMemberView.inputView.textField.text = [NSString stringWithFormat:@"%@人",self.rawData.stdnum];
     classMemberView.userInteractionEnabled = NO;
     [containerView addSubview:classMemberView];
     [classMemberView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -106,7 +107,7 @@
     }];
     ClassInfoItemView *schoolNameView = [[ClassInfoItemView alloc]init];
     schoolNameView.name = @"学校名称";
-    schoolNameView.inputView.textField.text = @"梁山大学";
+    schoolNameView.inputView.textField.text = self.rawData.schoolname;
     schoolNameView.userInteractionEnabled = NO;
     [containerView addSubview:schoolNameView];
     [schoolNameView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -124,6 +125,10 @@
     WEAK_SELF
     [self.nameView setTextChangeBlock:^{
         STRONG_SELF
+        NSString *text = self.nameView.text;
+        if (text.length>16) {
+            self.nameView.inputView.textField.text = [text substringToIndex:16];
+        }
         [self refreshAddClassButton];
     }];
     [self.contentView addSubview:self.nameView];
@@ -138,6 +143,7 @@
     self.addClassButton.title = @"加入班级";
     [self.addClassButton setActionBlock:^{
         STRONG_SELF
+        [self gotoJoinClass];
     }];
     [self.contentView addSubview:self.addClassButton];
     [self.addClassButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,6 +159,71 @@
 
 - (void)refreshAddClassButton {
     self.addClassButton.isActive = !isEmpty(self.nameView.text);
+}
+
+- (void)gotoJoinClass {
+    if ([self.rawData isMemeberFull]) {
+        [self.view nyx_showToast:@"班级已满，不能申请"];
+        return;
+    }
+    
+    if (self.isThirdLogin) {
+        [self startThirdJoin];
+    } else {
+        [self startNormalJoin];
+    }
+}
+
+- (void)startNormalJoin {
+    RegisterByJoinClassModel *model = [[RegisterByJoinClassModel alloc]init];
+    model.mobile = self.rawData.mobile;
+    model.realname = self.nameView.text;
+    model.provinceid = self.rawData.provinceid;
+    model.cityid = self.rawData.cityid;
+    model.areaid = self.rawData.areaid;
+    model.stageid = self.rawData.stageid;
+    model.schoolName = self.rawData.schoolname;
+    model.schoolid = self.rawData.schoolid;
+    model.classId = self.rawData.gid;
+    model.validKey = [[NSString stringWithFormat:@"%@&%@", self.rawData.mobile, @"yxylmobile"] md5];
+    
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [LoginDataManager registerByJoinClassWithModel:model completeBlock:^(RegisterRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+    }];
+}
+
+- (void)startThirdJoin {
+    ThirdRegisterByJoinClassModel *model = [[ThirdRegisterByJoinClassModel alloc]init];
+    model.openid = [self.thirdLoginParams objectForKey:YXSSOAuthOpenidKey];
+    model.pltform = [self.thirdLoginParams objectForKey:YXSSOAuthPltformKey];
+    model.sex = [self.thirdLoginParams objectForKey:YXSSOAuthSexKey];
+    model.headimg = [self.thirdLoginParams objectForKey:YXSSOAuthHeadimgKey];
+    model.realname = self.nameView.text;
+    model.provinceid = self.rawData.provinceid;
+    model.cityid = self.rawData.cityid;
+    model.areaid = self.rawData.areaid;
+    model.stageid = self.rawData.stageid;
+    model.schoolname = self.rawData.schoolname;
+    model.schoolid = self.rawData.schoolid;
+    model.classId = self.rawData.gid;
+    
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [LoginDataManager thirdRegisterByJoinClassWithModel:model completeBlock:^(ThirdRegisterRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+    }];
 }
 
 @end

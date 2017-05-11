@@ -9,5 +9,7 @@
 #import "ScrollBaseViewController.h"
 
 @interface AddClassViewController : ScrollBaseViewController
-
+@property (nonatomic, copy) NSString *phoneNum;
+@property (nonatomic, strong) NSDictionary *thirdLoginParams; //第三方登录时传参
+@property (nonatomic, assign) BOOL isThirdLogin;
 @end

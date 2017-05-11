@@ -17,6 +17,7 @@ static YXTipsView *_tipsView;
 @implementation UIView (Loading)
 
 - (void)nyx_startLoading {
+    [self endEditing:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [YXLoadingControl startLoadingWithSuperview:self];
 }

@@ -7,7 +7,6 @@
 //
 
 #import "AreaSelectionViewController.h"
-#import "YXProvinceList.h"
 #import "SchoolSearchViewController.h"
 
 @interface AreaSelectionViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
@@ -39,6 +38,7 @@
     WEAK_SELF
     [[naviRightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
+        BLOCK_EXEC(self.areaSelectionBlock,self.currentProvince,self.currentCity,self.currentDistrict);
         SchoolSearchViewController *vc = [[SchoolSearchViewController alloc]init];
         vc.currentProvince = self.currentProvince;
         vc.currentCity = self.currentCity;

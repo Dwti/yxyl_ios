@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SchoolSearchBarView : UIView
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) void(^searchBlock)(NSString *text);
 @end

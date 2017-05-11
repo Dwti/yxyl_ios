@@ -9,5 +9,7 @@
 #import "ScrollBaseViewController.h"
 
 @interface ClassInfoViewController : ScrollBaseViewController
-
+@property (nonatomic, assign) BOOL isThirdLogin;
+@property (nonatomic, strong) NSDictionary *thirdLoginParams; //第三方登录时传参
+@property (nonatomic, strong) YXSearchClassItem_Data *rawData;
 @end

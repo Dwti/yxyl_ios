@@ -9,5 +9,5 @@
 #import "ScrollBaseViewController.h"
 
 @interface ForgotPasswordViewController : ScrollBaseViewController
-
+@property (nonatomic, strong) NSString *phoneNum;
 @end

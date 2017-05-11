@@ -9,7 +9,7 @@
 #import "VerifyCodeInputView.h"
 #import "LoginInputView.h"
 
-static const NSInteger kTimerDuration = 10;
+static const NSInteger kTimerDuration = 45;
 
 @interface VerifyCodeInputView()
 @property (nonatomic, strong) LoginInputView *inputView;
@@ -69,8 +69,11 @@ static const NSInteger kTimerDuration = 10;
 
 - (void)setupObserver {
     WEAK_SELF
-    [[self.inputView.textField rac_textSignal]subscribeNext:^(id x) {
+    [[self.inputView.textField rac_textSignal]subscribeNext:^(NSString *text) {
         STRONG_SELF
+        if (text.length>4) {
+            self.inputView.textField.text = [text substringToIndex:4];
+        }
         BLOCK_EXEC(self.textChangeBlock)
     }];
 }
@@ -82,6 +85,7 @@ static const NSInteger kTimerDuration = 10;
     self.secondsRemained = kTimerDuration;
     [self refreshButton];
     [self.timer resume];
+    BLOCK_EXEC(self.sendAction);
 }
 
 - (void)refreshButton {

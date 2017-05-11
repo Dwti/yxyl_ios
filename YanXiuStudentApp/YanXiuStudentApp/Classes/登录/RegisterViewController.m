@@ -11,6 +11,7 @@
 #import "VerifyCodeInputView.h"
 #import "LoginActionView.h"
 #import "PasswordInputView.h"
+#import "AddClassViewController.h"
 
 @interface RegisterViewController ()
 @property (nonatomic, strong) AccountInputView *accountView;
@@ -57,6 +58,9 @@
     WEAK_SELF
     [self.accountView setTextChangeBlock:^{
         STRONG_SELF
+        if (self.accountView.text.length>11) {
+            self.accountView.inputView.textField.text = [self.accountView.text substringToIndex:11];
+        }
         [self refreshVerifyCodeView];
         [self refreshRegisterButton];
     }];
@@ -74,6 +78,10 @@
     [self.verifyCodeView setTimerPauseBlock:^{
         STRONG_SELF
         self.verifyCodeView.isActive = !isEmpty(self.accountView.text);
+    }];
+    [self.verifyCodeView setSendAction:^{
+        STRONG_SELF
+        [self gotoGetVerifyCode];
     }];
     [containerView addSubview:self.verifyCodeView];
     [self.verifyCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,7 +105,7 @@
     self.registerButton.title = @"注 册";
     [self.registerButton setActionBlock:^{
         STRONG_SELF
-        
+        [self gotoRegister];
     }];
     [self.contentView addSubview:self.registerButton];
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,6 +130,74 @@
 
 - (void)refreshVerifyCodeView {
     self.verifyCodeView.isActive = !isEmpty([self.accountView text]);
+}
+
+- (void)gotoGetVerifyCode {
+    if (![LoginUtils isPhoneNumberValid:self.accountView.text]) {
+        [self.view nyx_showToast:@"请输入正确的手机号码"];
+        return;
+    }
+    WEAK_SELF
+    NSString *type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeRegister)];
+    [self.view nyx_startLoading];
+    [LoginDataManager getVerifyCodeWithMobileNumber:self.accountView.text verifyType:type completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self.view nyx_showToast:@"验证码已发送，请注意查收"];
+    }];
+}
+
+- (void)gotoRegister {
+    if (![LoginUtils isAccountValid:self.accountView.text]) {
+        [self.view nyx_showToast:@"请输入正确的账号"];
+        return;
+    }
+    if (![LoginUtils isVerifyCodeValid:self.verifyCodeView.text]) {
+        [self.view nyx_showToast:@"请输入正确的验证码"];
+        return;
+    }
+    if (![LoginUtils isPasswordValid:self.passwordView.text]) {
+        [self.view nyx_showToast:@"密码不符合要求"];
+        return;
+    }
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    NSString *type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeRegister)];
+    [LoginDataManager verifySMSCodeWithMobileNumber:self.accountView.text verifyCode:self.verifyCodeView.text codeType:type completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        if (error) {
+            [self.view nyx_stopLoading];
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self registerAccount];
+    }];
+
+}
+
+- (void)registerAccount {
+    AccountRegisterModel *model = [[AccountRegisterModel alloc]init];
+    model.mobile = self.accountView.text;
+    model.password = self.passwordView.text;
+    model.code = self.verifyCodeView.text;
+    model.type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeRegister)];
+    WEAK_SELF
+    [LoginDataManager registerAccountWithModel:model completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        AddClassViewController *vc = [[AddClassViewController alloc] init];
+        vc.phoneNum = self.accountView.text;
+        vc.isThirdLogin = NO;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 @end
