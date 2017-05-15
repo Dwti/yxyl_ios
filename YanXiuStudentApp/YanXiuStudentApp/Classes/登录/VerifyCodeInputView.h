@@ -12,6 +12,6 @@
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, strong) void(^timerPauseBlock) ();
 @property (nonatomic, strong) void(^textChangeBlock) ();
-@property (nonatomic, strong) void(^sendAction) ();
+@property (nonatomic, strong) BOOL(^sendAction) ();
 @property (nonatomic, strong, readonly) NSString *text;
 @end

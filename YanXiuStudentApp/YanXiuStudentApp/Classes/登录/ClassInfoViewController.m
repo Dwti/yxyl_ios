@@ -119,6 +119,7 @@
     
     self.nameView = [[ClassInfoItemView alloc]init];
     self.nameView.name = @"你的姓名";
+    self.nameView.canEdit = YES;
     self.nameView.inputView.placeHolder = @"请输入你的真实姓名";
     self.nameView.layer.cornerRadius = 5;
     self.nameView.clipsToBounds = YES;

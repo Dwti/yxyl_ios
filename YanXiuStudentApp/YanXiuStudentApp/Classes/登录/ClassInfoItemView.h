@@ -11,6 +11,7 @@
 
 @interface ClassInfoItemView : UIView
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) BOOL canEdit;
 @property (nonatomic, strong) LoginInputView *inputView;
 @property (nonatomic, strong, readonly) NSString *text;
 @property (nonatomic, strong) void(^textChangeBlock) ();

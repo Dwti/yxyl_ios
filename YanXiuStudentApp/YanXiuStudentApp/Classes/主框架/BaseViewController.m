@@ -34,6 +34,7 @@
 {
     [super viewWillDisappear:animated];
     [self yx_stopLoading];
+    [self.view endEditing:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

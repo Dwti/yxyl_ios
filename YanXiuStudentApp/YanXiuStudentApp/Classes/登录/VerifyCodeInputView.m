@@ -82,10 +82,12 @@ static const NSInteger kTimerDuration = 45;
     if (self.secondsRemained > 0) {
         return;
     }
-    self.secondsRemained = kTimerDuration;
-    [self refreshButton];
-    [self.timer resume];
-    BLOCK_EXEC(self.sendAction);
+    BOOL success = self.sendAction();
+    if (success) {
+        self.secondsRemained = kTimerDuration;
+        [self refreshButton];
+        [self.timer resume];
+    }
 }
 
 - (void)refreshButton {

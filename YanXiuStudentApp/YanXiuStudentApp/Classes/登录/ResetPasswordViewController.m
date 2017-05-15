@@ -76,6 +76,7 @@
     self.resetPasswordView.title = @"确认重置";
     [self.resetPasswordView setActionBlock:^{
         STRONG_SELF
+        [self gotoResetPassword];
     }];
     [self.contentView addSubview:self.resetPasswordView];
     [self.resetPasswordView mas_makeConstraints:^(MASConstraintMaker *make) {

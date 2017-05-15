@@ -51,7 +51,7 @@ static const NSInteger kLabelTagBase = 555;
         lb.tag = kLabelTagBase+i;
         lb.textColor = [UIColor whiteColor];
         lb.textAlignment = NSTextAlignmentCenter;
-        lb.font = [UIFont fontWithName:YXFontMetro_Bold size:16.f];
+        lb.font = [UIFont fontWithName:YXFontMetro_Bold size:18.f];
         lb.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTapAction:)];
         [lb addGestureRecognizer:tap];

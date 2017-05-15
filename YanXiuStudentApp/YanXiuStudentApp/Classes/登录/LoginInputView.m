@@ -22,6 +22,7 @@
 }
 
 - (void)setupUI {
+    self.clipsToBounds = YES;
     self.textField = [[UITextField alloc]init];
     self.textField.font = [UIFont boldSystemFontOfSize:16];
     self.textField.textColor = [UIColor whiteColor];
@@ -29,7 +30,9 @@
     self.textField.returnKeyType = UIReturnKeyDone;
     [self addSubview:self.textField];
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.centerY.mas_equalTo(0);
+        make.height.mas_equalTo(20);
     }];
 }
 
