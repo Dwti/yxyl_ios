@@ -101,7 +101,6 @@
             return;
         }
         if (error) {
-            self.errorView.errorCode = [NSString stringWithFormat:@"%@", @(error.code)];
             self.errorView.hidden = NO;
             return;
         }

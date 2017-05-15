@@ -11,7 +11,7 @@
 #import "YXCommonErrorView.h"
 #import "MJRefresh.h"
 
-@interface PagedListViewControllerBase : BaseViewController
+@interface PagedListViewControllerBase : BaseViewController<UITableViewDataSource, UITableViewDelegate>
 {
     PagedListFetcherBase *_dataFetcher;
     long _total;

@@ -14,6 +14,7 @@ typedef void(^ActionBlock)();
 - (void)nyx_setupLeftWithImage:(UIImage *)image action:(ActionBlock)action;
 - (void)nyx_setupLeftWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action;
 - (void)nyx_setupLeftWithCustomView:(UIView *)view;
+- (void)nyx_setupRightWithImage:(UIImage *)image action:(ActionBlock)action;
 - (void)nyx_setupRightWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action;
 - (void)nyx_setupRightWithTitle:(NSString *)title action:(ActionBlock)action;
 - (void)nyx_setupRightWithCustomView:(UIView *)view;

@@ -1,38 +1,24 @@
 //
-//  ClassInfoViewController.m
+//  HomeworkClassInfoViewController.m
 //  YanXiuStudentApp
 //
-//  Created by niuzhaowang on 2017/5/9.
+//  Created by niuzhaowang on 2017/5/16.
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "ClassInfoViewController.h"
+#import "HomeworkClassInfoViewController.h"
 #import "ClassInfoItemView.h"
 #import "LoginActionView.h"
-#import "YXSSOAuthDefine.h"
 
-@interface ClassInfoViewController ()
-@property (nonatomic, strong) ClassInfoItemView *nameView;
-@property (nonatomic, strong) LoginActionView *addClassButton;
+@interface HomeworkClassInfoViewController ()
+
 @end
 
-@implementation ClassInfoViewController
+@implementation HomeworkClassInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if ([YXUserManager sharedManager].isLogin) {
-        self.navigationItem.title = @"加入班级";
-    }else {
-        UILabel *titleLabel = [[UILabel alloc]init];
-        titleLabel.textColor = [UIColor whiteColor];
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"加入班级 - 提交资料"];
-        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:19] range:NSMakeRange(0, 4)];
-        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:NSMakeRange(4, 7)];
-        titleLabel.attributedText = attrString;
-        [titleLabel sizeToFit];
-        self.navigationItem.titleView = titleLabel;
-    }
     [self setupUI];
 }
 
@@ -121,137 +107,61 @@
         make.bottom.mas_equalTo(0);
     }];
     
-    self.nameView = [[ClassInfoItemView alloc]init];
-    self.nameView.name = @"你的姓名";
-    self.nameView.canEdit = YES;
-    self.nameView.inputView.placeHolder = @"请输入你的真实姓名";
-    self.nameView.layer.cornerRadius = 5;
-    self.nameView.clipsToBounds = YES;
+    LoginActionView *actionView = [[LoginActionView alloc]init];
+    if (self.isVerifying) {
+        actionView.title = @"取消申请";
+    }else {
+        actionView.title = @"退出班级";
+    }
     WEAK_SELF
-    [self.nameView setTextChangeBlock:^{
+    [actionView setActionBlock:^{
         STRONG_SELF
-        NSString *text = self.nameView.text;
-        if (text.length>16) {
-            self.nameView.inputView.textField.text = [text substringToIndex:16];
-        }
-        [self refreshAddClassButton];
+        [self gotoClassAction];
     }];
-    [self.contentView addSubview:self.nameView];
-    [self.nameView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView addSubview:actionView];
+    [actionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(containerView.mas_left);
         make.right.mas_equalTo(containerView.mas_right);
         make.top.mas_equalTo(containerView.mas_bottom).mas_offset(15);
         make.height.mas_equalTo(50);
-    }];
-    
-    self.addClassButton = [[LoginActionView alloc]init];
-    self.addClassButton.title = @"加入班级";
-    [self.addClassButton setActionBlock:^{
-        STRONG_SELF
-        [self gotoJoinClass];
-    }];
-    [self.contentView addSubview:self.addClassButton];
-    [self.addClassButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.nameView.mas_left);
-        make.right.mas_equalTo(self.nameView.mas_right);
-        make.top.mas_equalTo(self.nameView.mas_bottom).mas_offset(15);
-        make.height.mas_equalTo(50);
         make.bottom.mas_equalTo(-40);
     }];
-    
-    [self refreshAddClassButton];
 }
 
-- (void)refreshAddClassButton {
-    self.addClassButton.isActive = !isEmpty(self.nameView.text);
-}
-
-- (void)gotoJoinClass {
-    if ([self.rawData isMemeberFull]) {
-        [self.view nyx_showToast:@"班级已满，不能申请"];
-        return;
-    }
-    
-    if ([YXUserManager sharedManager].isLogin) {
-        [self joinClass];
+- (void)gotoClassAction {
+    if (self.isVerifying) {
+        [self cancelJoiningClass];
     }else {
-        if (self.isThirdLogin) {
-            [self startThirdJoin];
-        } else {
-            [self startNormalJoin];
-        }
+        [self exitClass];
     }
 }
-
-- (void)startNormalJoin {
-    RegisterByJoinClassModel *model = [[RegisterByJoinClassModel alloc]init];
-    model.mobile = self.rawData.mobile;
-    model.realname = self.nameView.text;
-    model.provinceid = self.rawData.provinceid;
-    model.cityid = self.rawData.cityid;
-    model.areaid = self.rawData.areaid;
-    model.stageid = self.rawData.stageid;
-    model.schoolName = self.rawData.schoolname;
-    model.schoolid = self.rawData.schoolid;
-    model.classId = self.rawData.gid;
-    model.validKey = [[NSString stringWithFormat:@"%@&%@", self.rawData.mobile, @"yxylmobile"] md5];
-    
-    WEAK_SELF
+- (void)cancelJoiningClass {
     [self.view nyx_startLoading];
-    [LoginDataManager registerByJoinClassWithModel:model completeBlock:^(RegisterRequestItem *item, NSError *error) {
+    WEAK_SELF
+    [ClassHomeworkDataManager cancelJoiningClassWithClassID:self.rawData.gid completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
             [self.view nyx_showToast:error.localizedDescription];
             return;
-        }
-    }];
-}
-
-- (void)startThirdJoin {
-    ThirdRegisterByJoinClassModel *model = [[ThirdRegisterByJoinClassModel alloc]init];
-    model.openid = [self.thirdLoginParams objectForKey:YXSSOAuthOpenidKey];
-    model.pltform = [self.thirdLoginParams objectForKey:YXSSOAuthPltformKey];
-    model.sex = [self.thirdLoginParams objectForKey:YXSSOAuthSexKey];
-    model.headimg = [self.thirdLoginParams objectForKey:YXSSOAuthHeadimgKey];
-    model.realname = self.nameView.text;
-    model.provinceid = self.rawData.provinceid;
-    model.cityid = self.rawData.cityid;
-    model.areaid = self.rawData.areaid;
-    model.stageid = self.rawData.stageid;
-    model.schoolname = self.rawData.schoolname;
-    model.schoolid = self.rawData.schoolid;
-    model.classId = self.rawData.gid;
-    
-    WEAK_SELF
-    [self.view nyx_startLoading];
-    [LoginDataManager thirdRegisterByJoinClassWithModel:model completeBlock:^(ThirdRegisterRequestItem *item, NSError *error) {
-        STRONG_SELF
-        [self.view nyx_stopLoading];
-        if (error) {
-            [self.view nyx_showToast:error.localizedDescription];
-            return;
-        }
-    }];
-}
-
-- (void)joinClass {
-    [self.view nyx_startLoading];
-    WEAK_SELF
-    [ClassHomeworkDataManager joinClassWithClassID:self.rawData.gid verifyStatus:self.rawData.status verifyMessage:self.nameView.text completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
-        STRONG_SELF
-        [self.view nyx_stopLoading];
-        if (error) {
-            [self.view nyx_showToast:error.localizedDescription];
-            return;
-        }
-        if ([self.rawData needToVerify]) {
-            [self.view.window nyx_showToast:@"提交成功，等待老师审核"];
-        }else{
-            [self.view.window nyx_showToast:@"加入成功"];
         }
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
+- (void)exitClass {
+    [self.view nyx_startLoading];
+    WEAK_SELF
+    [ClassHomeworkDataManager exitClassWithClassID:self.rawData.gid completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
 
 @end

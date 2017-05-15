@@ -68,7 +68,6 @@
         }
         if (error) {
             self.tableView.hidden = YES;
-            self.errorView.errorCode = [NSString stringWithFormat:@"%@", @(error.code)];
             self.errorView.hidden = NO;
             self.saveButton.enabled = NO;
             return;

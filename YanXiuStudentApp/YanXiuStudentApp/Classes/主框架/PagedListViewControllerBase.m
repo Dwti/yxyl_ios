@@ -10,7 +10,7 @@
 #import "YXClassHomeworkFetcher.h"
 #import "GlobalUtils.h"
 
-@interface PagedListViewControllerBase () <UITableViewDataSource, UITableViewDelegate>
+@interface PagedListViewControllerBase () 
 @end
 
 @implementation PagedListViewControllerBase
@@ -55,10 +55,13 @@
         make.edges.mas_equalTo(@0);
     }];
     
+    if (!self.errorView) {
+        self.errorView = [[YXCommonErrorView alloc]init];
+    }
     @weakify(self);
     [self.errorView setRetryBlock:^{
         @strongify(self); if (!self) return;
-        [self yx_startLoading];
+        [self.view nyx_startLoading];
         [self firstPageFetch];
     }];
     [self.view addSubview:self.errorView];
@@ -90,7 +93,7 @@
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
     _total = (int)[self.dataArray count];
     self.requestDelegate = self.dataFetcher;
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [self firstPageFetch];
 }
 
@@ -106,12 +109,11 @@
         @strongify(self); if (!self) return;
         [self firstPageRequestBack];
         SAFE_CALL_OneParam(self.requestDelegate, requestEndRefreshWithError, error);
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         [self stopAnimation];
         if (error) {
             if (isEmpty(self.dataArray)) {  // no cache 强提示, 加载失败界面
                 self->_total = 0;
-                self.errorView.errorCode = [NSString stringWithFormat:@"%@", @(error.code)];
                 [self showErroView];
             } else {
                 [self yx_showToast:error.localizedDescription];
@@ -230,8 +232,8 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 100;
+//}
 
 @end

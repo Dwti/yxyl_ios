@@ -38,6 +38,9 @@
         self.delegate =self;
     }
     [self.navigationBar setShadowImage:[[UIImage alloc] init]];
+    self.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationBar.layer.shadowRadius = 1;
+    self.navigationBar.layer.shadowOpacity = 0.02;
     self.theme = NavigationBarTheme_Green;
 }
 
@@ -50,6 +53,7 @@
                                                     [UIColor whiteColor], NSForegroundColorAttributeName,
                                                     [UIFont boldSystemFontOfSize:19], NSFontAttributeName,
                                                     nil]];
+        self.navigationBar.layer.shadowColor = [UIColor clearColor].CGColor;
     }else if (theme == NavigationBarTheme_White){
         [self.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
         
@@ -57,6 +61,7 @@
                                                     [UIColor colorWithHexString:@"666666"], NSForegroundColorAttributeName,
                                                     [UIFont boldSystemFontOfSize:19], NSFontAttributeName,
                                                     nil]];
+        self.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
     }
 }
 

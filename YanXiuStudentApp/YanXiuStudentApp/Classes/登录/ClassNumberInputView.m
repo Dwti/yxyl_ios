@@ -99,6 +99,7 @@ static const NSInteger kLabelTagBase = 555;
     self.inputField.textColor = [UIColor clearColor];
     self.inputField.keyboardType = UIKeyboardTypeNumberPad;
     self.inputField.textAlignment = NSTextAlignmentCenter;
+    self.inputField.tintColor = [UIColor colorWithHexString:@"69ad0a"];
     self.inputField.delegate = self;
     self.inputPositionIndex = 0;
     [self addSubview:self.inputField];

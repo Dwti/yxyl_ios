@@ -38,13 +38,13 @@
 }
 
 - (void)nyx_setupRightWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action{
-    UIImage *normalImage = [UIImage imageNamed:imageName];
-//    UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
-    
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width, normalImage.size.height)];
+    [self nyx_setupRightWithImage:[UIImage imageNamed:imageName] action:action];
+}
+
+- (void)nyx_setupRightWithImage:(UIImage *)image action:(ActionBlock)action{
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     [self nyx_adjustFrameForView:rightButton];
-    [rightButton setImage:normalImage forState:UIControlStateNormal];
-//    [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
+    [rightButton setImage:image forState:UIControlStateNormal];
     [[rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         BLOCK_EXEC(action);
     }];
@@ -102,7 +102,7 @@
 
 - (UIBarButtonItem *)nyx_rightNegativeBarButtonItem{
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -11;
+    negativeSpacer.width = -14;
     return negativeSpacer;
 }
 

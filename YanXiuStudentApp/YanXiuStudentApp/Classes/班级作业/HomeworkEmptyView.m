@@ -1,21 +1,14 @@
 //
-//  YXCommonErrorView.m
+//  HomeworkEmptyView.m
 //  YanXiuStudentApp
 //
-//  Created by ChenJianjun on 15/12/28.
-//  Copyright © 2015年 yanxiu.com. All rights reserved.
+//  Created by niuzhaowang on 2017/5/15.
+//  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "YXCommonErrorView.h"
-#import "UIView+YXScale.h"
-#import "UIButton+YXButton.h"
-#import "UIColor+YXColor.h"
+#import "HomeworkEmptyView.h"
 
-@interface YXCommonErrorView ()
-
-@end
-
-@implementation YXCommonErrorView
+@implementation HomeworkEmptyView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -35,7 +28,7 @@
         make.height.mas_equalTo(250*kPhoneWidthRatio);
     }];
     UILabel *label = [[UILabel alloc]init];
-    label.text = @"页面加载失败...";
+    label.text = @"您加入的班级尚未布置过作业";
     label.textColor = [UIColor colorWithHexString:@"999999"];
     label.font = [UIFont boldSystemFontOfSize:14];
     label.textAlignment = NSTextAlignmentCenter;
@@ -45,7 +38,7 @@
         make.centerX.mas_equalTo(0);
     }];
     UIButton *refreshButton = [[UIButton alloc]init];
-    [refreshButton setTitle:@"点击重试" forState:UIControlStateNormal];
+    [refreshButton setTitle:@"点击刷新" forState:UIControlStateNormal];
     [refreshButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
     [refreshButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [refreshButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateHighlighted];
@@ -64,7 +57,7 @@
 }
 
 - (void)btnAction {
-    BLOCK_EXEC(self.retryBlock);
+    BLOCK_EXEC(self.refreshBlock);
 }
 
 @end

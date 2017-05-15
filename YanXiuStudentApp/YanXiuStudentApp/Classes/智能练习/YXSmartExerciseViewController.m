@@ -169,7 +169,6 @@
         self.errorView.hidden = YES;
         if (error) {
             if (!self.item.subjects) {
-                self.errorView.errorCode = [NSString stringWithFormat:@"%@", @(error.code)];
                 self.errorView.hidden = NO;
             }
             if (self.isViewAppear) {

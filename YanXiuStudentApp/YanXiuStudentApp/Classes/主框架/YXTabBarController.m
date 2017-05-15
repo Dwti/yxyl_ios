@@ -110,6 +110,13 @@
     //[self setupCustomTabBar];
 }
 
+- (void)viewWillLayoutSubviews{
+    CGRect tabFrame = self.tabBar.frame; //self.TabBar is IBOutlet of your TabBar
+    tabFrame.size.height = 65;
+    tabFrame.origin.y = self.view.frame.size.height - 65;
+    self.tabBar.frame = tabFrame;
+}
+
 - (void)setupCustomTabBar{
     self.bgView = [[UIView alloc]initWithFrame:self.tabBar.bounds];
     self.bgView.backgroundColor = [UIColor colorWithHexString:@"008080"];

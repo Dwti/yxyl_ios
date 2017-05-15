@@ -709,6 +709,24 @@
 		7CA30DE81DC33AB0008D4C38 /* TreeBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DE61DC33AB0008D4C38 /* TreeBaseCell.m */; };
 		7CA47B1B1D3F76DA00DDE44E /* LePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA47B171D3F76DA00DDE44E /* LePlayer.m */; };
 		7CA47B1C1D3F76DA00DDE44E /* LePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA47B191D3F76DA00DDE44E /* LePlayerView.m */; };
+		7CA92FE01EC960B500527D13 /* HomeworkAddClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */; };
+		7CA92FE11EC960B500527D13 /* HomeworkAddClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */; };
+		7CA92FE41EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FE31EC9653600527D13 /* HomeworkAddClassHelpViewController.m */; };
+		7CA92FE51EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FE31EC9653600527D13 /* HomeworkAddClassHelpViewController.m */; };
+		7CA92FE81EC983FE00527D13 /* HomeworkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FE71EC983FE00527D13 /* HomeworkMainViewController.m */; };
+		7CA92FE91EC983FE00527D13 /* HomeworkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FE71EC983FE00527D13 /* HomeworkMainViewController.m */; };
+		7CA92FEC1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FEB1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m */; };
+		7CA92FED1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FEB1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m */; };
+		7CA92FF01EC9AF2C00527D13 /* HomeworkEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FEF1EC9AF2C00527D13 /* HomeworkEmptyView.m */; };
+		7CA92FF11EC9AF2C00527D13 /* HomeworkEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FEF1EC9AF2C00527D13 /* HomeworkEmptyView.m */; };
+		7CA92FF91ECA880200527D13 /* HomeworkClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FF81ECA880200527D13 /* HomeworkClassInfoViewController.m */; };
+		7CA92FFA1ECA880200527D13 /* HomeworkClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FF81ECA880200527D13 /* HomeworkClassInfoViewController.m */; };
+		7CA92FFD1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FFC1ECA8F2800527D13 /* HomeworkSubjectCell.m */; };
+		7CA92FFE1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FFC1ECA8F2800527D13 /* HomeworkSubjectCell.m */; };
+		7CA930011ECACDF400527D13 /* HomeworkListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA930001ECACDF400527D13 /* HomeworkListCell.m */; };
+		7CA930021ECACDF400527D13 /* HomeworkListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA930001ECACDF400527D13 /* HomeworkListCell.m */; };
+		7CA930051ECAE68200527D13 /* HomeworkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA930041ECAE68200527D13 /* HomeworkListViewController.m */; };
+		7CA930061ECAE68200527D13 /* HomeworkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA930041ECAE68200527D13 /* HomeworkListViewController.m */; };
 		7CA98ED71EC2BACC000D49DE /* StageSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA98ED61EC2BACC000D49DE /* StageSelectionViewController.m */; };
 		7CA98ED81EC2BACC000D49DE /* StageSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA98ED61EC2BACC000D49DE /* StageSelectionViewController.m */; };
 		7CA98EDB1EC2BB44000D49DE /* PersonalInfoSelectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA98EDA1EC2BB44000D49DE /* PersonalInfoSelectionItemView.m */; };
@@ -2157,6 +2175,24 @@
 		7CA47B181D3F76DA00DDE44E /* LePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LePlayerView.h; sourceTree = "<group>"; };
 		7CA47B191D3F76DA00DDE44E /* LePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LePlayerView.m; sourceTree = "<group>"; };
 		7CA47B1A1D3F76DA00DDE44E /* SpacemanBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpacemanBlocks.h; sourceTree = "<group>"; };
+		7CA92FDE1EC960B500527D13 /* HomeworkAddClassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkAddClassView.h; sourceTree = "<group>"; };
+		7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkAddClassView.m; sourceTree = "<group>"; };
+		7CA92FE21EC9653600527D13 /* HomeworkAddClassHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkAddClassHelpViewController.h; sourceTree = "<group>"; };
+		7CA92FE31EC9653600527D13 /* HomeworkAddClassHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkAddClassHelpViewController.m; sourceTree = "<group>"; };
+		7CA92FE61EC983FD00527D13 /* HomeworkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkMainViewController.h; sourceTree = "<group>"; };
+		7CA92FE71EC983FE00527D13 /* HomeworkMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkMainViewController.m; sourceTree = "<group>"; };
+		7CA92FEA1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkClassApplicationVerifingView.h; sourceTree = "<group>"; };
+		7CA92FEB1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkClassApplicationVerifingView.m; sourceTree = "<group>"; };
+		7CA92FEE1EC9AF2C00527D13 /* HomeworkEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkEmptyView.h; sourceTree = "<group>"; };
+		7CA92FEF1EC9AF2C00527D13 /* HomeworkEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkEmptyView.m; sourceTree = "<group>"; };
+		7CA92FF71ECA880200527D13 /* HomeworkClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkClassInfoViewController.h; sourceTree = "<group>"; };
+		7CA92FF81ECA880200527D13 /* HomeworkClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkClassInfoViewController.m; sourceTree = "<group>"; };
+		7CA92FFB1ECA8F2800527D13 /* HomeworkSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkSubjectCell.h; sourceTree = "<group>"; };
+		7CA92FFC1ECA8F2800527D13 /* HomeworkSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkSubjectCell.m; sourceTree = "<group>"; };
+		7CA92FFF1ECACDF400527D13 /* HomeworkListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListCell.h; sourceTree = "<group>"; };
+		7CA930001ECACDF400527D13 /* HomeworkListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListCell.m; sourceTree = "<group>"; };
+		7CA930031ECAE68200527D13 /* HomeworkListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListViewController.h; sourceTree = "<group>"; };
+		7CA930041ECAE68200527D13 /* HomeworkListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListViewController.m; sourceTree = "<group>"; };
 		7CA98ED51EC2BACC000D49DE /* StageSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageSelectionViewController.h; sourceTree = "<group>"; };
 		7CA98ED61EC2BACC000D49DE /* StageSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageSelectionViewController.m; sourceTree = "<group>"; };
 		7CA98ED91EC2BB44000D49DE /* PersonalInfoSelectionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoSelectionItemView.h; sourceTree = "<group>"; };
@@ -3217,6 +3253,7 @@
 		0FE8173D1C33744900FF54B2 /* 班级作业 */ = {
 			isa = PBXGroup;
 			children = (
+				7CA92FDB1EC9534F00527D13 /* New */,
 				30DFECA51CB36EF7007BED17 /* View */,
 				0FE817AE1C33754400FF54B2 /* Controller */,
 			);
@@ -4359,6 +4396,47 @@
 				7CA47B1A1D3F76DA00DDE44E /* SpacemanBlocks.h */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		7CA92FDB1EC9534F00527D13 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				7CA92FDD1EC9539900527D13 /* View */,
+				7CA92FDC1EC9538D00527D13 /* Controller */,
+			);
+			name = New;
+			sourceTree = "<group>";
+		};
+		7CA92FDC1EC9538D00527D13 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CA92FE61EC983FD00527D13 /* HomeworkMainViewController.h */,
+				7CA92FE71EC983FE00527D13 /* HomeworkMainViewController.m */,
+				7CA92FE21EC9653600527D13 /* HomeworkAddClassHelpViewController.h */,
+				7CA92FE31EC9653600527D13 /* HomeworkAddClassHelpViewController.m */,
+				7CA92FF71ECA880200527D13 /* HomeworkClassInfoViewController.h */,
+				7CA92FF81ECA880200527D13 /* HomeworkClassInfoViewController.m */,
+				7CA930031ECAE68200527D13 /* HomeworkListViewController.h */,
+				7CA930041ECAE68200527D13 /* HomeworkListViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7CA92FDD1EC9539900527D13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CA92FDE1EC960B500527D13 /* HomeworkAddClassView.h */,
+				7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */,
+				7CA92FEA1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.h */,
+				7CA92FEB1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m */,
+				7CA92FEE1EC9AF2C00527D13 /* HomeworkEmptyView.h */,
+				7CA92FEF1EC9AF2C00527D13 /* HomeworkEmptyView.m */,
+				7CA92FFB1ECA8F2800527D13 /* HomeworkSubjectCell.h */,
+				7CA92FFC1ECA8F2800527D13 /* HomeworkSubjectCell.m */,
+				7CA92FFF1ECACDF400527D13 /* HomeworkListCell.h */,
+				7CA930001ECACDF400527D13 /* HomeworkListCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		7CB78BAD1E557C6A003F236E /* 答题卡 */ = {
@@ -6227,6 +6305,7 @@
 				7C027F3A1EB1F76A001682EA /* GCDTimer.m in Sources */,
 				F78C3E791C7595F300D81F4B /* YXApnsQAReportViewController_Pad.m in Sources */,
 				0FECC6381C5F2D6E00E8F48E /* YXClassInfoViewController_Pad.m in Sources */,
+				7CA92FE91EC983FE00527D13 /* HomeworkMainViewController.m in Sources */,
 				30B7C8AD1DC2FC6B00A09AB8 /* QAClassifyAnswersView.m in Sources */,
 				7C553C691CBC97E000A257F1 /* YXQAReportViewController.m in Sources */,
 				7CFAADAB1DAC94C900F13532 /* QAQuestionBaseView.m in Sources */,
@@ -6241,6 +6320,7 @@
 				300E74841D0521FC00C504A8 /* YXStatisticFileRequest.m in Sources */,
 				0FFA776B1C75B92600F9E8F9 /* YXHomeworkListFetcher.m in Sources */,
 				7CDE19741DD0906A00469096 /* AppDelegate.m in Sources */,
+				7CA930061ECAE68200527D13 /* HomeworkListViewController.m in Sources */,
 				0FBD5B211C4F33C3003B7D6D /* YXCommonLabel.m in Sources */,
 				30D399611D22153D006ED324 /* YXErrorTableViewCell.m in Sources */,
 				0FBD5B231C4F33C3003B7D6D /* YXDottedLineView+YXShadowLineMethod.m in Sources */,
@@ -6387,6 +6467,7 @@
 				F7A3B4B21C571E860037245A /* YXPersonalInfoCell_Pad.m in Sources */,
 				307A45941D4B2A5700EE1455 /* YXErrorsRequest.m in Sources */,
 				0FDD9BE01C58B5F700DBA379 /* YXPasswordInputView.m in Sources */,
+				7CA92FF11EC9AF2C00527D13 /* HomeworkEmptyView.m in Sources */,
 				0FDD9BF41C58D6B000DBA379 /* YXAboutViewController_Pad.m in Sources */,
 				308DF8001DC2EC44004359C2 /* QAClassifyManager.m in Sources */,
 				7CFBF3AF1C5EFAAF00E745F3 /* YXQASheetView_Pad.m in Sources */,
@@ -6407,6 +6488,7 @@
 				0F68BDF01C73289400AB3382 /* YXRankViewController_Pad.m in Sources */,
 				30500AD91D2BAE9100E4968A /* NSString+YXRecordContent.m in Sources */,
 				F773C96B1C4627F400AAE684 /* TestsRootViewController.m in Sources */,
+				7CA92FFA1ECA880200527D13 /* HomeworkClassInfoViewController.m in Sources */,
 				7C89DD051DA8927200194120 /* QAComplexAnswerQuestion.m in Sources */,
 				7C38E7A61C4F7A8B00EC18D0 /* UIImage+YXResize.m in Sources */,
 				F7A3B4A91C571E860037245A /* SecondViewController.m in Sources */,
@@ -6493,6 +6575,7 @@
 				7C953B181C59EFD600A9A7AF /* YXQAAnalysisSingleChooseView_Pad.m in Sources */,
 				7C953B0D1C59C3E700A9A7AF /* YXQAAnalysisUnfoldView_Pad.m in Sources */,
 				F773C9B71C4627F400AAE684 /* YXReportErrorCell.m in Sources */,
+				7CA92FFE1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */,
 				7CDE19611DD0687000469096 /* AppDelegateHelper_Pad.m in Sources */,
 				F773C9BA1C4627F400AAE684 /* NJKWebViewProgress.m in Sources */,
 				F773C9BB1C4627F400AAE684 /* YXDifficultyCell.m in Sources */,
@@ -6537,6 +6620,7 @@
 				0FE6CA0F1C5A11C3005FBD5B /* YXGetPracticeHistoryRequest.m in Sources */,
 				0FFA77671C75B63100F9E8F9 /* YXClassHomeworkFetcher.m in Sources */,
 				0FDD9BE21C58B5FC00DBA379 /* YXThirdLoginButton.m in Sources */,
+				7CA92FE11EC960B500527D13 /* HomeworkAddClassView.m in Sources */,
 				0FBD5B731C4F3571003B7D6D /* YXPostRequest.m in Sources */,
 				0FB211AD1C57268E00594BEA /* YXVerifySMSCodeRequest.m in Sources */,
 				7C2251C01E1CE018004785D5 /* UIImage+GIF.m in Sources */,
@@ -6563,6 +6647,7 @@
 				7C2991981DFE406300AE921C /* EEAlertView.m in Sources */,
 				0FFA77631C75B2A300F9E8F9 /* YXHomeworkToDoFetcher.m in Sources */,
 				7C7BF7D21E0A5FDA007B017C /* QASubjectiveQuestionCell.m in Sources */,
+				7CA92FED1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m in Sources */,
 				7C7BF7CE1E0A1D5F007B017C /* ClassHomeworkDataManager.m in Sources */,
 				7CD58E4E1D5B1F4E00492837 /* YXQAConnectLineView.m in Sources */,
 				0FE6CA111C5A11C3005FBD5B /* YXGetSectionMistakeRequest.m in Sources */,
@@ -6602,6 +6687,7 @@
 				7C3ECAE01EC03C8B005C2B9C /* ThirdLoginView.m in Sources */,
 				7C953B421C5B2C7700A9A7AF /* YXQAAnalysisMaterialView_Pad.m in Sources */,
 				7CDE19761DD0906A00469096 /* AppDelegateHelper.m in Sources */,
+				7CA930021ECACDF400527D13 /* HomeworkListCell.m in Sources */,
 				7C027F351EB1F401001682EA /* PagedListViewControllerBase.m in Sources */,
 				7C5565D11DCB1E8C00966875 /* ExerciseHistoryContentViewController.m in Sources */,
 				7C55F8351D54AA61006CAA11 /* QAClassifyQuestionAnalysisView.m in Sources */,
@@ -6622,6 +6708,7 @@
 				7CD58E3E1D59919800492837 /* YXQAConnectItemView.m in Sources */,
 				7CA30DE21DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */,
 				3063D8261D129FF100C574CC /* YXProblemItem.m in Sources */,
+				7CA92FE51EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */,
 				F773CA331C4627F400AAE684 /* YXJieXiFoldUnfoldViewController.m in Sources */,
 				F75136051C71D381003B280C /* YXMyMistakeChooseChapterKnpViewController_Pad.m in Sources */,
 				7C69F2411E6D3EF00076984F /* MistakeRedoFinishRequest.m in Sources */,
@@ -6794,6 +6881,7 @@
 				F7754EEC1C4E43860002FE45 /* YXMockPageRequest.m in Sources */,
 				0FECC67E1C5F486200E8F48E /* YXHomeworkSubjectCell.m in Sources */,
 				7C1A62B11E3065EB009BA65C /* LaunchAppItem.m in Sources */,
+				7CA92FF01EC9AF2C00527D13 /* HomeworkEmptyView.m in Sources */,
 				7C3D0B921DD1A82E005ED76A /* YXConfigManager.m in Sources */,
 				F7754EEE1C4E43860002FE45 /* YXMineBaseViewController.m in Sources */,
 				F7754EF11C4E43860002FE45 /* NJKWebViewProgressView.m in Sources */,
@@ -6820,6 +6908,7 @@
 				7C2991B91E0232C200AE921C /* QACoreTextViewStringScanner.m in Sources */,
 				30561C0A1E0A314C00EF4C7C /* NameView.m in Sources */,
 				7C69F2381E6D3E3F0076984F /* MistakeRedoPageRequest.m in Sources */,
+				7CA92FEC1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m in Sources */,
 				E93C760D1E0CBE3F00F286CF /* ThirdRegisterModel.m in Sources */,
 				7C5565D81DCB227900966875 /* ExerciseHistoryKnpViewController.m in Sources */,
 				301C1FD41DDC3F6C003E1BE7 /* CameraView.m in Sources */,
@@ -6993,6 +7082,7 @@
 				7C3D0B961DD1A84F005ED76A /* GlobalUtils.m in Sources */,
 				F75BA69F1E9C90EA00A4A7F1 /* YXMistakeListWithoutRedoViewController.m in Sources */,
 				0F0D6E571C6051150034FC6C /* MJRefreshConst.m in Sources */,
+				7CA92FE01EC960B500527D13 /* HomeworkAddClassView.m in Sources */,
 				7CD58E411D59ADE000492837 /* YXQAConnectGroupView.m in Sources */,
 				F7754F7B1C4E43860002FE45 /* YXReportErrorCell.m in Sources */,
 				0FBD5ADF1C4F3338003B7D6D /* UIViewController+YXLoading.m in Sources */,
@@ -7115,6 +7205,7 @@
 				F7754FD41C4E43860002FE45 /* YXCitySelectViewController.m in Sources */,
 				0FECC66C1C5F321400E8F48E /* YXHomeworkMock.m in Sources */,
 				0FDD9BDC1C58B5EB00DBA379 /* YXThirdLoginButton.m in Sources */,
+				7CA92FF91ECA880200527D13 /* HomeworkClassInfoViewController.m in Sources */,
 				7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */,
 				7C5CA2981EB2F21B001734F3 /* UIView+Loading.m in Sources */,
 				F7754FD71C4E43860002FE45 /* TestPostRequest.m in Sources */,
@@ -7166,6 +7257,7 @@
 				3000842F1DCB08AF0070FA08 /* EditPictureView.m in Sources */,
 				7C49B1951DC0574100E39555 /* QAAnalysisReadComplexView.m in Sources */,
 				E9098CFB1DC893710084C7A6 /* GetSubjectMistakeRequest.m in Sources */,
+				7CA92FE81EC983FE00527D13 /* HomeworkMainViewController.m in Sources */,
 				E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */,
 				7C9092861E0A1B1F0048C44F /* JoinClassPromptView.m in Sources */,
 				F77550031C4E43860002FE45 /* YXGuideViewController.m in Sources */,
@@ -7174,8 +7266,10 @@
 				0F68BDFD1C73298F00AB3382 /* YXRankRequest.m in Sources */,
 				F775500A1C4E43860002FE45 /* YXAreaViewController.m in Sources */,
 				7C2B66F41DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
+				7CA92FE41EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */,
 				301E576B1DC1DE7B00090087 /* OptionsStringView.m in Sources */,
 				E9973C7D1DB86DB1004966AD /* QAMultiChooseQuestionView.m in Sources */,
+				7CA930011ECACDF400527D13 /* HomeworkListCell.m in Sources */,
 				0FBD5B081C4F3344003B7D6D /* YXCommonButtonCell.m in Sources */,
 				7C3ECADF1EC03C8B005C2B9C /* ThirdLoginView.m in Sources */,
 				0FB211BD1C5726D000594BEA /* YXThirdRegisterRequest.m in Sources */,
@@ -7241,6 +7335,7 @@
 				7C4554381DCAE4D5001B0F26 /* YXIntelligenceQuestionListItem.m in Sources */,
 				0FECC68C1C5F487400E8F48E /* YXHomeworkTodoCell.m in Sources */,
 				7C916BE61DBF4AED00968B28 /* QAListenContainerView.m in Sources */,
+				7CA930051ECAE68200527D13 /* HomeworkListViewController.m in Sources */,
 				F77550401C4E43860002FE45 /* YXFeedbackViewModel.m in Sources */,
 				30894B141DC32BF60045E762 /* QAClassifyOptionsCell.m in Sources */,
 				7C7BF81B1E0CCDF6007B017C /* YXUpdateUserInfoHelper.m in Sources */,
@@ -7270,6 +7365,7 @@
 				F77550561C4E43860002FE45 /* YXFeedbackRequest.m in Sources */,
 				7C916BDD1DBEFA0800968B28 /* QAReadContainerView.m in Sources */,
 				7CFD1E9C1D518A5E002C2624 /* YXMultiChooseDetailViewController.m in Sources */,
+				7CA92FFD1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */,
 				0F0D6E591C60511A0034FC6C /* MJRefreshHeaderView.m in Sources */,
 				7CFAADD31DACF22100F13532 /* QASubjectiveQuestionViewContainer.m in Sources */,
 				7CD58E451D59D5AD00492837 /* YXConnectContentCell.m in Sources */,

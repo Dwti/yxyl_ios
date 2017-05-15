@@ -43,7 +43,7 @@
     [self configTabbarItem:homeVC.tabBarItem image:@"底部导航栏-智能学习-线框" selectedImage:@"底部导航栏-智能学习-填充"];
     YXNavigationController *homeNavi = [[YXNavigationController alloc] initWithRootViewController:homeVC];
     
-    UIViewController *groupVC = [[NSClassFromString(@"YXHomeworkGroupViewController") alloc] init];
+    UIViewController *groupVC = [[NSClassFromString(@"HomeworkMainViewController") alloc] init];
     groupVC.title = @"作业";
     [self configTabbarItem:groupVC.tabBarItem image:@"底部导航栏-作业群组-线框" selectedImage:@"底部导航栏-作业群组-填充"];
     YXNavigationController *groupNavi = [[YXNavigationController alloc] initWithRootViewController:groupVC];

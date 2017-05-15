@@ -80,7 +80,6 @@
         self.emptyView.hidden = YES;
         self.tableView.hidden = NO;
         if (error) {
-            self.errorView.errorCode = [NSString stringWithFormat:@"%@", @(error.code)];
             self.errorView.hidden = NO;
         }else{
             if (item.subjectMistakes.count == 0) {

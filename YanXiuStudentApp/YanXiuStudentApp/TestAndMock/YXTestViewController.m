@@ -16,7 +16,7 @@
 @implementation YXTestViewController
 - (void)viewDidLoad {
     self.devTestActions = @[@"登录注册",
-                            @"testYXCuoTiViewController",
+                            @"作业",
                             @"加入班级",
                             @"题目",
                             @"解析",
@@ -42,9 +42,9 @@
 //    YXTestImagePickerViewController *vc = [[YXTestImagePickerViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
 }
-- (void)testYXCuoTiViewController {
-//    YXCuoTiViewController *vc = [[YXCuoTiViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+- (void)作业 {
+    HomeworkMainViewController *vc = [[HomeworkMainViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)加入班级 {
