@@ -79,7 +79,6 @@
     [self.addClassView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    [self.addClassView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.2];
 }
 
 - (void)handleVerifyUserWithItem:(YXHomeworkListGroupsItem *)item {

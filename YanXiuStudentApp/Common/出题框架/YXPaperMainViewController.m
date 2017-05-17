@@ -24,6 +24,7 @@
 #import "YXImportPaperViewController.h"
 #import "YXServerEnvHelper.h"
 #import "MistakeRedoViewController.h"
+#import "QAAnswerQuestionViewController.h"
 
 @interface YXPaperMainViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -213,7 +214,7 @@
     }
     QAPaperModel *model = [[YXPaperManager sharedInstance]modelFromPaper];
     if (sender.tag == 100) { // 答题
-        YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc]init];
+        QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc]init];
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 101){ // 解析

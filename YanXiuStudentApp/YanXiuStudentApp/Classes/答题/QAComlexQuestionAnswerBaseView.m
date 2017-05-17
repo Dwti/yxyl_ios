@@ -9,7 +9,6 @@
 #import "QAComlexQuestionAnswerBaseView.h"
 #import "YXYueCell2.h"
 
-
 @interface QAComlexQuestionAnswerBaseView()
 
 @property (nonatomic, strong) UIView *upContainerView;
@@ -19,7 +18,12 @@
 
 
 @implementation QAComlexQuestionAnswerBaseView
-
+- (CGFloat)minTopHeight {
+    return 50;
+}
+- (CGFloat)maxTopHeight {
+    return SCREEN_HEIGHT-55-43-20-45;
+}
 #pragma mark - override
 - (void)enterForeground {
     [super enterForeground];
@@ -48,17 +52,20 @@
 
 - (void)setupMaterialView {
     self.upContainerView = [[UIView alloc] init];
+    self.upContainerView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.upContainerView];
+    
+    UIView<QAComplexTopContainerViewDelegate> *containerView = [self topContainerView];
+    [self.upContainerView addSubview:containerView];
+    
+    CGFloat height = MAX([containerView initialHeight], [self minTopHeight]);
+    height = MIN(height, 150);
     [self.upContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleView.mas_bottom);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(148);
+        make.height.mas_equalTo(height);
     }];
     
-    UIView *containerView = [self topContainerView];
-    containerView.backgroundColor = [UIColor yellowColor];
-    containerView.backgroundColor = [UIColor clearColor];
-    [self.upContainerView addSubview:containerView];
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
@@ -66,55 +73,68 @@
 
 - (void)setupMoveSliderView {
     self.middleContainerView = [[UIView alloc] init];
+    self.middleContainerView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.middleContainerView];
     [self.middleContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.upContainerView.mas_bottom).offset(0);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(70);
     }];
     
     UIImageView *imageView = [UIImageView new];
-    imageView.image = [UIImage imageNamed:@"上拉"];
+    imageView.image = [UIImage imageWithColor:[UIColor blueColor]];
     imageView.userInteractionEnabled = YES;
-    imageView.contentMode = UIViewContentModeCenter;
-    
+    imageView.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
+    imageView.layer.shadowOffset = CGSizeMake(0, -2.5);
+    imageView.layer.shadowRadius = 2.5;
+    imageView.layer.shadowOpacity = 0.02;
     [self.middleContainerView addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.width.mas_equalTo(53);
-        make.top.mas_offset(0);
+        make.top.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(69, 20));
     }];
     
-    [self addPanGestureRecognizerFor:imageView];
-    
-    UIImageView *leftLine = [UIImageView new];
-    leftLine.image = [UIImage imageNamed:@"间隔线"];
-    [self.middleContainerView addSubview:leftLine];
-    [leftLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(22);
-        make.right.equalTo(imageView.mas_left).offset(-11);
-        make.centerY.equalTo(imageView);
+    UIView *sepLineView = [[UIView alloc]init];
+    sepLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    [self.middleContainerView addSubview:sepLineView];
+    [sepLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(imageView.mas_bottom);
+        make.height.mas_equalTo(10);
     }];
     
-    UIImageView *rightLine = [UIImageView new];
-    rightLine.image = [UIImage imageNamed:@"间隔线"];
-    [self.middleContainerView addSubview:rightLine];
-    [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-22);
-        make.left.equalTo(imageView.mas_right).offset(11);
-        make.centerY.equalTo(imageView);
+    UIView *bottomLineView = [[UIView alloc]init];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    [self.middleContainerView addSubview:bottomLineView];
+    [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(sepLineView.mas_bottom).mas_offset(39);
+        make.height.mas_equalTo(1);
+    }];
+    
+    UILabel *qLabel = [[UILabel alloc]init];
+    qLabel.text = @"问题";
+    qLabel.textColor = [UIColor colorWithHexString:@"333333"];
+    qLabel.font = [UIFont boldSystemFontOfSize:14];
+    [self.middleContainerView addSubview:qLabel];
+    [qLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.top.mas_equalTo(sepLineView.mas_bottom);
+        make.bottom.mas_equalTo(bottomLineView.mas_top);
     }];
     
     self.progressLabel = [[UILabel alloc]init];
-    self.progressLabel.textAlignment = NSTextAlignmentCenter;
-    self.progressLabel.font = [UIFont systemFontOfSize:11];
-    self.progressLabel.textColor = [UIColor colorWithHexString:@"807c6c"];
-    
+    self.progressLabel.font = [UIFont fontWithName:YXFontMetro_Regular size:16];
+    self.progressLabel.textColor = [UIColor colorWithHexString:@"999999"];
+    self.progressLabel.textAlignment = NSTextAlignmentRight;
     [self.middleContainerView addSubview:self.progressLabel];
     [self.progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(imageView.mas_bottom).offset(8);
-        make.right.equalTo(self.upContainerView.mas_right).offset(-20);
+        make.right.mas_equalTo(-15);
+        make.centerY.mas_equalTo(qLabel.mas_centerY);
     }];
+    
+    [self addPanGestureRecognizerFor:imageView];
 }
 
 - (void)setupQAView {
@@ -147,12 +167,16 @@
         STRONG_SELF
         if (paramSender.state != UIGestureRecognizerStateEnded && paramSender.state != UIGestureRecognizerStateFailed) {
             CGPoint translation = [paramSender translationInView:self];
-            if ((self.upContainerView.height+translation.y) > 120 && self.upContainerView.height < self.bounds.size.height-50) {
-                [self.upContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.titleView.mas_bottom);
-                    make.left.right.mas_equalTo(0);
-                    make.height.mas_equalTo(self.upContainerView.height + translation.y);
-                }];
+            CGFloat height = self.upContainerView.height+translation.y;
+            height = MAX(height, [self minTopHeight]);
+            height = MIN(height, [self maxTopHeight]);
+            [self.upContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleView.mas_bottom);
+                make.left.right.mas_equalTo(0);
+                make.height.mas_equalTo(height);
+            }];
+            if ((self.upContainerView.height+translation.y) > [self minTopHeight] && self.upContainerView.height+translation.y < [self maxTopHeight]) {
+                
             }
             [paramSender setTranslation:CGPointZero inView:paramSender.view];
         }
@@ -160,8 +184,8 @@
 }
 
 // subclass need to override this func to add specific UI
-- (UIView *)topContainerView {
-    return [[UIView alloc] init];
+- (UIView<QAComplexTopContainerViewDelegate> *)topContainerView {
+    return nil;
 }
 
 #pragma mark - slide tab datasource delegate
@@ -179,6 +203,7 @@
     view.isSubQuestionView = YES;
     view.photoDelegate = self.addPhotoHandler;
     view.delegate = self;
+    view.answerStateChangeDelegate = self.answerStateChangeDelegate;
     return view;
 }
 
@@ -200,13 +225,10 @@
 }
 
 - (NSAttributedString *)attrbutedProgress:(QAQuestion *)item {
-    
     NSString *completeString = item.position.indexString;
-    NSString *indexString = [[completeString componentsSeparatedByString:@"/"] objectAtIndex:0];
-
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:completeString];
-    NSRange indexRange = [completeString rangeOfString:indexString];
-    [attrString addAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontMetro_Bold size:14],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"807c6c"]} range:indexRange];
+    NSRange slashRange = [completeString rangeOfString:@"/"];
+    [attrString addAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontMetro_Light size:16]} range:slashRange];
     
     return attrString;
 }

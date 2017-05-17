@@ -7,8 +7,7 @@
 //
 
 #import "QAReadContainerView.h"
-#import "YXYueCell2.h"
-
+#import "QAReadStemCell.h"
 
 @interface QAReadContainerView () <
 UITableViewDataSource,
@@ -17,7 +16,6 @@ YXHtmlCellHeightDelegate
 >
 
 @property (nonatomic, assign) CGFloat yueCellHeight;
-@property (nonatomic, strong) UIView *borderView;
 @property (nonatomic, strong) QAQuestion *qaData;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 
@@ -37,15 +35,7 @@ YXHtmlCellHeightDelegate
 }
 
 - (void)setupUI {
-    self.yueCellHeight = [YXYueCell2 heightForString:self.qaData.stem];
-
-    self.borderView = [[UIView alloc]init];
-    self.borderView.backgroundColor = [UIColor clearColor];
-    self.borderView.backgroundColor = [UIColor whiteColor];
-    self.borderView.clipsToBounds = YES;
-    self.borderView.layer.cornerRadius = 10;
-    self.borderView.layer.borderWidth = 2;
-    self.borderView.layer.borderColor = [UIColor colorWithHexString:@"ccc4a3"].CGColor;
+    self.yueCellHeight = [QAReadStemCell heightForString:self.qaData.stem isSubQuestion:NO];
     
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -53,25 +43,18 @@ YXHtmlCellHeightDelegate
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.userInteractionEnabled = YES;
-    [self.tableView registerClass:[YXYueCell2 class] forCellReuseIdentifier:@"YXYueCell2"];
+    [self.tableView registerClass:[QAReadStemCell class] forCellReuseIdentifier:@"QAReadStemCell"];
 }
 
-- (void)setupLayout {
-    [self addSubview:self.borderView];
-    [self.borderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(20).priorityHigh();
-        make.bottom.mas_equalTo(-9).priorityHigh();
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
-    }];
-    
+- (void)setupLayout {    
     [self addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(22);
-        make.right.mas_equalTo(-22);
-        make.top.mas_equalTo(22+15);
-        make.bottom.mas_equalTo(-16);
+        make.edges.mas_equalTo(0);
     }];
+}
+#pragma mark - QAComplexTopContainerViewDelegate
+- (CGFloat)initialHeight {
+    return self.yueCellHeight;
 }
 
 #pragma mark - tableView datasource
@@ -88,10 +71,9 @@ YXHtmlCellHeightDelegate
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YXYueCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXYueCell2"];
+    QAReadStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAReadStemCell"];
     cell.delegate = self;
-    cell.item = self.qaData;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell updateWithString:self.qaData.stem isSubQuestion:NO];
     return cell;
 }
 

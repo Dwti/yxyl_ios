@@ -10,8 +10,8 @@
 #import "YXQADashLineView.h"
 
 @interface QATitleView()
-@property (nonatomic, strong) UIImageView *typeImageView;
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *typeLabel;
+@property (nonatomic, strong) UILabel *indexLabel;
 @end
 
 @implementation QATitleView
@@ -25,57 +25,49 @@
 
 - (void)setupUI {
     self.clipsToBounds = YES;
-    
-    self.typeImageView = [[UIImageView alloc]init];
-    self.typeImageView.contentMode = UIViewContentModeLeft;
-    [self addSubview:self.typeImageView];
-    [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.top.mas_equalTo(10);
-        make.size.mas_equalTo(CGSizeMake(150, 16));
+    self.backgroundColor = [UIColor whiteColor];
+    self.typeLabel = [[UILabel alloc] init];
+    self.typeLabel.font = [UIFont systemFontOfSize:14];
+    self.typeLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+    [self addSubview:self.typeLabel];
+    [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.centerY.mas_equalTo(0);
     }];
-    
-    self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:11];
-    self.titleLabel.textColor = [UIColor colorWithHexString:@"b2a8bf"];
-    self.titleLabel.textAlignment = NSTextAlignmentRight;
-    [self addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(10);
-        make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(13);
+    self.indexLabel = [[UILabel alloc]init];
+    self.indexLabel.textColor = [UIColor colorWithHexString:@"666666"];
+    self.indexLabel.font = [UIFont fontWithName:YXFontMetro_Regular size:16];
+    [self addSubview:self.indexLabel];
+    [self.indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15);
+        make.centerY.mas_equalTo(0);
     }];
-    
-    YXQADashLineView *line = [[YXQADashLineView alloc]init];
-    [self addSubview:line];
-    [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-10);
-        make.bottom.mas_equalTo(0);
+    UIView *bottomLineView = [[UIView alloc]init];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    [self addSubview:bottomLineView];
+    [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1);
     }];
 }
 
 - (void)setTitle:(NSString *)title{
     if (title) {
-        self.titleLabel.attributedText = [self attrbutedProgress:title];
+        self.indexLabel.attributedText = [self attrbutedProgress:title];
     } else {
-        self.titleLabel.text = title;
+        self.indexLabel.text = title;
     }
 }
 
 - (void)setItem:(QAQuestion *)item{
-    self.typeImageView.image = [UIImage imageNamed:[item typeString]];
+    self.typeLabel.text = [item typeString];
     self.title = item.position.indexString;
 }
 
 - (NSAttributedString *)attrbutedProgress:(NSString *)title {
-    
-    NSString *indexString = [[title componentsSeparatedByString:@"/"] objectAtIndex:0];
-    
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:title];
-    NSRange indexRange = [title rangeOfString:indexString];
-    [attrString addAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontMetro_Bold size:15],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"807c6c"]} range:indexRange];
+    NSRange slashRange = [title rangeOfString:@"/"];
+    [attrString addAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontMetro_Light size:16]} range:slashRange];
     
     return attrString;
 }

@@ -8,6 +8,7 @@
 
 #import "YXGuideViewController.h"
 #import "YXLoginViewController.h"
+#import "LoginViewController.h"
 
 static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";
 
@@ -82,7 +83,7 @@ static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";
 
 - (void)pushLoginViewController
 {
-    YXLoginViewController *login = [[YXLoginViewController alloc] init];
+    LoginViewController *login = [[LoginViewController alloc] init];
     [self.navigationController pushViewController:login animated:YES];
 }
 

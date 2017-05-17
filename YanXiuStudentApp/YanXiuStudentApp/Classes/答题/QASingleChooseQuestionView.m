@@ -10,6 +10,8 @@
 @implementation QASingleChooseQuestionView
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row >= 1) {
+        YXQAAnswerState fromState = [self.data answerState];
+        
         NSInteger answerIndex = indexPath.row - 1;
         BOOL choose = [self.data.myAnswers[answerIndex] boolValue];
         for (int i = 0; i < [self.data.myAnswers count]; i++) {
@@ -17,12 +19,10 @@
         }
         self.data.myAnswers[answerIndex] = @(!choose);
         [self.tableView reloadData];
-        if (!choose) {
-            [self.delegate autoGoNextGoGoGo];
-        }else {
-            if ([self.delegate respondsToSelector:@selector(cancelAnswer)]) {
-                [self.delegate cancelAnswer];
-            }
+        
+        YXQAAnswerState toState = [self.data answerState];
+        if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
+            [self.answerStateChangeDelegate question:self.data didChangeAnswerStateFrom:fromState to:toState];
         }
     }
 }

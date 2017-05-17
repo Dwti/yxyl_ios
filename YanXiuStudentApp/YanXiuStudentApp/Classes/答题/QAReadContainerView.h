@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QAReadContainerView : UIView
+@interface QAReadContainerView : UIView<QAComplexTopContainerViewDelegate>
 
 - (instancetype)initWithData:(QAQuestion *)data; //designated init
 

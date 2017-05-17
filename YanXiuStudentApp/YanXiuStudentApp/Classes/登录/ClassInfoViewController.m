@@ -24,14 +24,7 @@
     if ([YXUserManager sharedManager].isLogin) {
         self.navigationItem.title = @"加入班级";
     }else {
-        UILabel *titleLabel = [[UILabel alloc]init];
-        titleLabel.textColor = [UIColor whiteColor];
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"加入班级 - 提交资料"];
-        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:19] range:NSMakeRange(0, 4)];
-        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:NSMakeRange(4, 7)];
-        titleLabel.attributedText = attrString;
-        [titleLabel sizeToFit];
-        self.navigationItem.titleView = titleLabel;
+        self.navigationItem.title = @"提交姓名";
     }
     [self setupUI];
 }
@@ -167,7 +160,7 @@
 }
 
 - (void)gotoJoinClass {
-    if ([self.rawData isMemeberFull]) {
+    if ([self.rawData memberIsFull]) {
         [self.view nyx_showToast:@"班级已满，不能申请"];
         return;
     }

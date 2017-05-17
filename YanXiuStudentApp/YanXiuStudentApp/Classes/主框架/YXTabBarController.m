@@ -9,11 +9,13 @@
 #import "YXTabBarController.h"
 #import "YXHotNumberLabel.h"
 #import "YXRedManager.h"
+#import <UIButton+WebCache.h>
 
 @interface YXTabBarController ()<UITabBarControllerDelegate>
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, assign) BOOL setupComplete;
 @property (nonatomic, strong) NSArray *numberLabels;
+@property (nonatomic, strong) UIButton *mineButton;
 @end
 
 @implementation YXTabBarController
@@ -38,12 +40,12 @@
 
 - (NSString *)practiseNumber
 {
-    return [self.numberLabels.firstObject text];
+    return [self.numberLabels[1] text];
 }
 
 - (NSString *)assignmentNumber
 {
-    return [self.numberLabels[1] text];
+    return [self.numberLabels[0] text];
 }
 
 - (NSString *)myNumber
@@ -54,12 +56,12 @@
 #pragma mark- Set
 - (void)setPractiseNumber:(NSString *)practiseNumber
 {
-    [self.numberLabels.firstObject setText:practiseNumber];
+    [self.numberLabels[1] setText:practiseNumber];
 }
 
 - (void)setAssignmentNumber:(NSString *)assignmentNumber
 {
-    [self.numberLabels[1] setText:assignmentNumber];
+    [self.numberLabels[0] setText:assignmentNumber];
 }
 
 - (void)setMyNumber:(NSString *)myNumber
@@ -95,6 +97,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUpdateHeadImgSuccessNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        [self refreshMineButton];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -103,11 +110,6 @@
         [self setupThreeButtons];
         self.setupComplete = YES;
     }
-//    static dispatch_once_t once;
-//    dispatch_once(&once, ^{
-//        [self setupThreeButtons];
-//    });
-    //[self setupCustomTabBar];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -115,32 +117,6 @@
     tabFrame.size.height = 65;
     tabFrame.origin.y = self.view.frame.size.height - 65;
     self.tabBar.frame = tabFrame;
-}
-
-- (void)setupCustomTabBar{
-    self.bgView = [[UIView alloc]initWithFrame:self.tabBar.bounds];
-    self.bgView.backgroundColor = [UIColor colorWithHexString:@"008080"];
-    self.bgView.userInteractionEnabled = NO;
-    [self.tabBar addSubview:self.bgView];
-    
-    UIView *bgUpperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tabBar.bounds.size.width, 3)];
-    bgUpperView.backgroundColor = [UIColor colorWithHexString:@"009999"];
-    [self.tabBar addSubview:bgUpperView];
-    
-    NSInteger count = self.tabButtons.count;
-    CGFloat gap = 10;
-    CGFloat w = (self.bgView.frame.size.width-gap*(count+1))/count;
-    CGFloat h = 30;
-    __block CGFloat x = gap;
-    CGFloat y = (self.bgView.frame.size.height-h)/2;
-    [self.tabButtons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *b = (UIButton *)obj;
-        b.userInteractionEnabled = NO;
-        b.frame = CGRectMake(x, y, w, h);
-        b.selected = idx==self.selectedIndex? YES:NO;
-        [self.bgView addSubview:b];
-        x += w + gap;
-    }];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{
@@ -160,29 +136,36 @@
     }
     UIButton *b = self.tabButtons[index];
     b.selected = YES;
+    [UIView animateWithDuration:0.1 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
+        b.transform = CGAffineTransformMakeScale(1.2, 1.2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration: 0.7 delay:0 usingSpringWithDamping:0.2 initialSpringVelocity:0 options:0 animations:^{
+            b.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        } completion:nil];
+    }];
 }
 
-static const CGFloat kBottomButtonGap = 5;
 #pragma mark - Hard Code 底部三个Button
 - (void)setupThreeButtons {
-    UIButton *b1 = [self bottemButtonWithTitle:@"练习"];
-    UIButton *b2 = [self bottemButtonWithTitle:@"作业"];
+    UIButton *b1 = [self bottemButtonWithTitle:@"作业"];
+    UIButton *b2 = [self bottemButtonWithTitle:@"练习"];
     UIButton *b3 = [self bottemButtonWithTitle:@"我的"];
+    self.mineButton = b3;
+    [self refreshMineButton];
     self.tabButtons = @[ b1, b2, b3 ];
     
-    UIView *bgView = [[UIView alloc]initWithFrame:self.tabBar.bounds];
+    CGRect rect = self.tabBar.bounds;
+    rect.size.height = 65;
+    UIView *bgView = [[UIView alloc]initWithFrame:rect];
     bgView.clipsToBounds = NO;
     bgView.userInteractionEnabled = NO;
-    bgView.backgroundColor = [UIColor colorWithHexString:@"008080"];
+    bgView.backgroundColor = [UIColor whiteColor];
     [self.tabBar addSubview:bgView];
-    UIView *bgUpperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tabBar.bounds.size.width, 3)];
-    bgUpperView.backgroundColor = [UIColor colorWithHexString:@"009999"];
-    [bgView addSubview:bgUpperView];
     
     for (int i = 0; i < 3; i++) {
         UIButton *b = self.tabButtons[i];
         b.userInteractionEnabled = NO;
-        b.frame = CGRectMake((kBottomButtonGap + b.frame.size.width) * i + kBottomButtonGap, 6, b.frame.size.width, 40);
+        b.frame = CGRectMake(b.width*i, 0, b.width, b.height);
         b.selected = i == self.selectedIndex? YES:NO;
         
         [bgView addSubview:b];
@@ -193,58 +176,62 @@ static const CGFloat kBottomButtonGap = 5;
         UILabel *label = self.numberLabels[i];
         [bgView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(b.mas_top).offset = 3;
-            make.right.mas_equalTo(b.mas_right).offset = -5;
+            make.centerY.mas_equalTo(b.mas_top).offset = 6;
+            make.right.mas_equalTo(b.mas_centerX).offset = 25;
         }];
     }
 }
 
 - (UIButton *)bottemButtonWithTitle:(NSString *)title {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
     
-    [btn setTitleColor:[UIColor colorWithHexString:@"006666"] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorWithHexString:@"805500"] forState:UIControlStateSelected];
+    [btn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateSelected];
 
-//    btn.titleLabel.layer.shadowColor = []
-//    btn.titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
-//    btn.titleLabel.layer.shadowOpacity = 1;
-//    btn.titleLabel.layer.shadowRadius = 1;
-
-    UIImage *bgNormal = [[UIImage imageNamed:@"tap栏按钮-未激活"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 40)];
-    UIImage *bgSelected = [[UIImage imageNamed:@"tap栏按钮-激活"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 40)];
-    [btn setBackgroundImage:bgNormal forState:UIControlStateNormal];
-    [btn setBackgroundImage:bgSelected forState:UIControlStateSelected];
-    
-    
-    UIImage *iconNormal = [UIImage imageNamed:[title stringByAppendingString:@"_未选"]];
-    UIImage *iconSelected = [UIImage imageNamed:[title stringByAppendingString:@"_选中"]];
+    UIImage *iconNormal = [UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 35, 35)];
     
     
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setImage:iconNormal forState:UIControlStateNormal];
-    [btn setImage:iconSelected forState:UIControlStateSelected];
-    
-    if ([UIScreen mainScreen].bounds.size.width > 320) {
-        [BaseViewController update_h_image_title_forButton:btn
-                                                withHeight:40
-                                                leftMargin:18
-                                   gapBetweenTitleAndImage:8
-                                               rightMargin:22];
-    } else {
-        [BaseViewController update_h_image_title_forButton:btn
-                                                withHeight:40
-                                                leftMargin:10
-                                   gapBetweenTitleAndImage:6
-                                               rightMargin:10];
-    }
+
+    [btn sizeToFit];
+    CGSize imageSize = btn.imageView.frame.size;
+    CGSize titleSize = btn.titleLabel.frame.size;
+    btn.imageEdgeInsets = UIEdgeInsetsMake(-titleSize.height/2+2, titleSize.width/2, titleSize.height/2-2, -titleSize.width/2);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(imageSize.height/2+2, -imageSize.width/2, -imageSize.height/2-2, imageSize.width/2);
     
     
-    CGFloat width = floorf((self.tabBar.frame.size.width - 4 * kBottomButtonGap) / 3);
-    btn.frame = CGRectMake(0, 0, width, 44);
-    btn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 5);
-    btn.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    CGFloat width = floorf((self.tabBar.frame.size.width) / 3);
+    btn.frame = CGRectMake(0, 0, width, 65);
+
     return btn;
+}
+
+- (void)refreshMineButton {
+    NSURL *headUrl = [NSURL URLWithString:[YXUserManager sharedManager].userModel.head];
+    UIImage *defaultImage = [UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 35, 35)];
+    WEAK_SELF
+    [self.mineButton sd_setImageWithURL:headUrl forState:UIControlStateNormal placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        STRONG_SELF
+        if (image) {
+            [self.mineButton setImage:[self scaledHeadImage:image] forState:UIControlStateNormal];
+        }
+    }];
+}
+
+- (UIImage *)scaledHeadImage:(UIImage *)image {
+    CGSize scaledSize = [image nyx_aspectFillSizeWithSize:CGSizeMake(35, 35)];
+    CGFloat x = (35-scaledSize.width)/2;
+    CGFloat y = (35-scaledSize.height)/2;
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(35, 35), NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextAddEllipseInRect(context, CGRectMake(0, 0, 35, 35));
+    CGContextClip(context);
+    [image drawInRect:CGRectMake(x, y, scaledSize.width, scaledSize.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
 }
 
 @end

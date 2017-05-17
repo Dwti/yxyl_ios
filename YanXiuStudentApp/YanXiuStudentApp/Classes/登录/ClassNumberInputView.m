@@ -52,9 +52,9 @@ static const NSInteger kLabelTagBase = 555;
         lb.textColor = [UIColor whiteColor];
         lb.textAlignment = NSTextAlignmentCenter;
         lb.font = [UIFont fontWithName:YXFontMetro_Bold size:18.f];
-        lb.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTapAction:)];
-        [lb addGestureRecognizer:tap];
+//        lb.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTapAction:)];
+//        [lb addGestureRecognizer:tap];
         [self addSubview:lb];
         
         UIView *line = [[UIView alloc]init];
@@ -98,13 +98,36 @@ static const NSInteger kLabelTagBase = 555;
     self.inputField = [[ClassNumberTextfield alloc] init];
     self.inputField.textColor = [UIColor clearColor];
     self.inputField.keyboardType = UIKeyboardTypeNumberPad;
-    self.inputField.textAlignment = NSTextAlignmentCenter;
+//    self.inputField.textAlignment = NSTextAlignmentCenter;
     self.inputField.tintColor = [UIColor colorWithHexString:@"69ad0a"];
-    self.inputField.delegate = self;
+//    self.inputField.delegate = self;
     self.inputPositionIndex = 0;
-    [self addSubview:self.inputField];
+//    [self addSubview:self.inputField];
+//    [self.inputField mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo([self.labelArray firstObject]).offset(0);
+//    }];
+    [self insertSubview:self.inputField atIndex:0];
     [self.inputField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo([self.labelArray firstObject]).offset(0);
+        make.edges.mas_equalTo(0);
+    }];
+    WEAK_SELF
+    [[self.inputField rac_textSignal]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSString *text = x;
+        text = [text yx_stringByTrimmingCharacters];        
+        if (text.length > self.numberCount) {
+            text = [text substringToIndex:self.numberCount];
+        }
+        self.inputField.text = text;
+        NSInteger len = MIN(text.length, self.numberCount);
+        [self.labelArray enumerateObjectsUsingBlock:^(__kindof UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (idx < len) {
+                obj.text = [text substringWithRange:NSMakeRange(idx, 1)];
+            }else{
+                obj.text = @"";
+            }
+        }];
+        BLOCK_EXEC(self.textChangeBlock,text);
     }];
 }
 

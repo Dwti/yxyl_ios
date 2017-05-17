@@ -14,6 +14,7 @@
 #import "YXAutoGoNextDelegate.h"
 #import "QATitleView.h"
 #import "QAAnalysisEditNoteDelegate.h"
+#import "QAAnswerStateChangeDelegate.h"
 
 @class QAQuestionBaseView;
 @protocol QAQuestionViewSlideDelegate <NSObject>
@@ -32,6 +33,7 @@
 @property (nonatomic, assign) id<YXAutoGoNextDelegate> delegate;
 @property (nonatomic, weak) id<YXQASubjectiveAddPhotoDelegate> photoDelegate;
 @property (nonatomic, weak) id<QAQuestionViewSlideDelegate> slideDelegate;
+@property (nonatomic, weak) id<QAAnswerStateChangeDelegate> answerStateChangeDelegate;
 
 @property (nonatomic, assign) BOOL analysisDataHidden;
 @property (nonatomic, assign) BOOL canDoExerciseFromKnp;

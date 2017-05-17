@@ -8,8 +8,19 @@
 
 #import "LoginInputView.h"
 
-@interface LoginInputView ()<UITextFieldDelegate>
+@implementation LoginInputField
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, 0, 15);
+}
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, 0, 15);
+}
+- (CGRect)placeholderRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, 0, 15);
+}
+@end
 
+@interface LoginInputView ()<UITextFieldDelegate>
 @end
 
 @implementation LoginInputView
@@ -23,16 +34,15 @@
 
 - (void)setupUI {
     self.clipsToBounds = YES;
-    self.textField = [[UITextField alloc]init];
+    self.textField = [[LoginInputField alloc]init];
     self.textField.font = [UIFont boldSystemFontOfSize:16];
     self.textField.textColor = [UIColor whiteColor];
     self.textField.delegate = self;
     self.textField.returnKeyType = UIReturnKeyDone;
+    self.textField.clipsToBounds = YES;
     [self addSubview:self.textField];
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.centerY.mas_equalTo(0);
-        make.height.mas_equalTo(20);
+        make.edges.mas_equalTo(0);
     }];
 }
 

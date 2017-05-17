@@ -53,7 +53,7 @@
     [self configTabbarItem:mineVC.tabBarItem image:@"底部导航栏-我的-线框" selectedImage:@"底部导航栏-我的-填充"];
     YXNavigationController *mineNavi = [[YXNavigationController alloc] initWithRootViewController:mineVC];
     
-    tabBarController.viewControllers = @[homeNavi, groupNavi, mineNavi];
+    tabBarController.viewControllers = @[groupNavi, homeNavi, mineNavi];
     tabBarController.tabBar.tintColor = YXMainBlueColor;
     return tabBarController;
 }
@@ -99,7 +99,7 @@
 }
 
 - (void)apnsGoHomework:(YXApnsContentModel *)model {
-    [self switchToTabIndex:1];
+    [self switchToTabIndex:0];
 }
 
 - (void)switchToTabIndex:(NSInteger)index {

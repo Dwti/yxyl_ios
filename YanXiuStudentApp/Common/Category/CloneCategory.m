@@ -25,10 +25,13 @@
     UILabel *label = [[UILabel alloc]init];
     label.backgroundColor = self.backgroundColor;
     label.textColor = self.textColor;
+    label.text = self.text;
     label.font = self.font;
     label.textAlignment = self.textAlignment;
     label.lineBreakMode = self.lineBreakMode;
     label.numberOfLines = self.numberOfLines;
+    label.layer.cornerRadius = self.layer.cornerRadius;
+    label.clipsToBounds = self.clipsToBounds;
     return label;
 }
 @end

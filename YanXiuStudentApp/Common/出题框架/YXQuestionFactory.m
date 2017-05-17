@@ -242,7 +242,6 @@
     q.type_id = @"14";
     q.qTemplate = @"multi";
     q.stem = @"这是一道复合题 :---首节开打，美国队延续了之前几场的慢热。尽管，杜兰特和巴恩斯的三分球，一度帮他们9-2领先。但在防守端，梦之队却表现的非常松散，尼日利亚这边，尤佐突破暴扣得手，尼日利亚将分差迫近到1分。";
-    
     YXQuestion_Pad *pad = [[YXQuestion_Pad alloc]init];
     pad.jsonAnswer = @[];
     q.pad = pad;

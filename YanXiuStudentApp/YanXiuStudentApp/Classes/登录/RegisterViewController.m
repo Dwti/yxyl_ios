@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"我要注册";
+    self.navigationItem.title = @"注册";
     [self setupUI];
 }
 
@@ -90,7 +90,7 @@
         make.height.mas_equalTo(50);
     }];
     self.passwordView = [[PasswordInputView alloc]init];
-    self.passwordView.inputView.placeHolder = @"请输入6~18位密码";
+    self.passwordView.inputView.placeHolder = @"请输入6-18位密码";
     [self.passwordView setTextChangeBlock:^{
         STRONG_SELF
         [self refreshRegisterButton];

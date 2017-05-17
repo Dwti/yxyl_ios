@@ -37,5 +37,9 @@
 - (UIImage *)scaleToSize:(CGSize)size;
 
 - (UIImage *)nyx_imageWithAlpha:(CGFloat)alpha;
+- (CGSize)nyx_aspectFillSizeWithSize:(CGSize)size;
+- (CGSize)nyx_aspectFitSizeWithSize:(CGSize)size;
+- (UIImage *)nyx_aspectFillImageWithSize:(CGSize)size;
+- (UIImage *)nyx_aspectFitImageWithSize:(CGSize)size;
 
 @end

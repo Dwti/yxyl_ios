@@ -83,4 +83,42 @@
     return newImage;
 }
 
+- (CGSize)nyx_aspectFillSizeWithSize:(CGSize)size {
+    CGFloat scaleW = self.size.width/size.width;
+    CGFloat scaleH = self.size.height/size.height;
+    CGFloat scale = MIN(scaleH, scaleW);
+    CGSize scaledSize = CGSizeMake(self.size.width/scale, self.size.height/scale);
+    return scaledSize;
+}
+
+- (CGSize)nyx_aspectFitSizeWithSize:(CGSize)size {
+    CGFloat scaleW = self.size.width/size.width;
+    CGFloat scaleH = self.size.height/size.height;
+    CGFloat scale = MAX(scaleH, scaleW);
+    CGSize scaledSize = CGSizeMake(self.size.width/scale, self.size.height/scale);
+    return scaledSize;
+}
+
+- (UIImage *)nyx_aspectFillImageWithSize:(CGSize)size {
+    CGSize scaledSize = [self nyx_aspectFillSizeWithSize:size];
+    CGFloat x = -(scaledSize.width-size.width)/2;
+    CGFloat y = -(scaledSize.height-size.height)/2;
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [self drawInRect:CGRectMake(x, y, scaledSize.width, scaledSize.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
+- (UIImage *)nyx_aspectFitImageWithSize:(CGSize)size {
+    CGSize scaledSize = [self nyx_aspectFitSizeWithSize:size];
+    CGFloat x = (size.width-scaledSize.width)/2;
+    CGFloat y = (size.height-scaledSize.height)/2;
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [self drawInRect:CGRectMake(x, y, scaledSize.width, scaledSize.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
 @end

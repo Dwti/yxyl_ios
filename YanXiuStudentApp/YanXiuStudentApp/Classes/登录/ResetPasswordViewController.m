@@ -49,7 +49,7 @@
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
     self.passwordView = [[PasswordInputView alloc]init];
-    self.passwordView.inputView.placeHolder = @"请输入6~18位密码";
+    self.passwordView.inputView.placeHolder = @"请输入6-18位密码";
     WEAK_SELF
     [self.passwordView setTextChangeBlock:^{
         STRONG_SELF
@@ -61,7 +61,7 @@
         make.height.mas_equalTo(50);
     }];
     self.confirmPasswordView = [[PasswordInputView alloc]init];
-    self.confirmPasswordView.inputView.placeHolder = @"请输入6~18位密码";
+    self.confirmPasswordView.inputView.placeHolder = @"请再次输入密码";
     [self.confirmPasswordView setTextChangeBlock:^{
         STRONG_SELF
         [self refreshResetPasswordView];

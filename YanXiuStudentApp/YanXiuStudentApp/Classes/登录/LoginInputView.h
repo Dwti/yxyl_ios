@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PrefixHeader.pch"
+
+@interface LoginInputField : UITextField
+@end
 
 @interface LoginInputView : UIView
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) LoginInputField *textField;
 @property (nonatomic, strong) NSString *placeHolder;
 @end

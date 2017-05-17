@@ -47,7 +47,7 @@
 }
 
 - (void)setupUI{
-    CGFloat titleHeight = self.isSubQuestionView? 0:35;
+    CGFloat titleHeight = self.isSubQuestionView? 0:43;
     self.titleView = [[QATitleView alloc]init];
     self.titleView.item = self.data;
     [self addSubview:self.titleView];

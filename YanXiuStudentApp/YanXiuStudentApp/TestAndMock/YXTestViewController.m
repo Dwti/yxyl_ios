@@ -20,7 +20,7 @@
                             @"加入班级",
                             @"题目",
                             @"解析",
-                            @"testYXHomeworkGroupViewController",
+                            @"testYXAnswerQuestionViewController",
                             @"testCells",
                             @"testGet",
                             @"testPost",
@@ -71,7 +71,7 @@
 }
 
 - (void)testYXAnswerQuestionViewController {
-    YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
+    QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -77,10 +77,17 @@
 - (void)setName:(NSString *)name {
     _name = name;
     self.nameLabel.text = name;
+    [self.nameLabel sizeToFit];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(20);
+        make.width.mas_equalTo(self.nameLabel.width);
+    }];
 }
 
 - (NSString *)text {
     return [self.inputView.textField.text yx_stringByTrimmingCharacters];
 }
+
 
 @end

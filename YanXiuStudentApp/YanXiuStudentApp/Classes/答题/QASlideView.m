@@ -16,6 +16,7 @@ static const NSInteger kItemViewTagBase = 1234;
 @property (nonatomic, assign) BOOL layoutComplete;
 @property (nonatomic, strong) NSMutableArray *remainedItemViewArray;
 @property (nonatomic, assign) NSInteger lastCurrentIndex;
+@property (nonatomic, assign) CGPoint offsetBeforeDecelerate;
 @end
 
 @implementation QASlideView
@@ -188,7 +189,17 @@ static const NSInteger kItemViewTagBase = 1234;
     }
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (decelerate) {
+        self.offsetBeforeDecelerate = scrollView.contentOffset;
+    }
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    //此处需要特殊处理一下，在scrollview不能滑动时，仍然能相应手势执行这个回调，导致逻辑异常
+    if (CGPointEqualToPoint(scrollView.contentOffset, self.offsetBeforeDecelerate)) {
+        return;
+    }
     [self handleCurrentItemChange];
 }
 
