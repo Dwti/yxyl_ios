@@ -11,6 +11,7 @@
 @interface QAQuestionSwitchView()
 @property (nonatomic, strong) UIButton *preButton;
 @property (nonatomic, strong) UIButton *nextButton;
+@property (nonatomic, strong) UIButton *completeButton;
 @end
 
 @implementation QAQuestionSwitchView
@@ -61,6 +62,18 @@
         make.top.bottom.mas_equalTo(0);
         make.width.mas_equalTo(self.nextButton.width+10);
     }];
+    
+    self.completeButton = [[UIButton alloc]init];
+    [self.completeButton setTitle:@"完成" forState:UIControlStateNormal];
+    [self.completeButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+    self.completeButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    [self.completeButton addTarget:self action:@selector(completeAction) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.completeButton];
+    [self.completeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-12);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(40);
+    }];
 }
 
 - (void)preAction {
@@ -71,6 +84,10 @@
 - (void)nextAction {
     BLOCK_EXEC(self.nextBlock);
     self.nextButton.userInteractionEnabled = NO;
+}
+
+- (void)completeAction {
+    BLOCK_EXEC(self.completeBlock);
 }
 
 - (void)updateWithTotal:(NSInteger)total question:(QAQuestion *)question childIndex:(NSInteger)index {
@@ -93,6 +110,7 @@
             self.nextButton.hidden = YES;
         }
     }
+    self.completeButton.hidden = !self.nextButton.hidden;
 }
 
 @end

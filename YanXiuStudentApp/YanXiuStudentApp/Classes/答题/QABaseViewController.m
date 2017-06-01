@@ -76,6 +76,10 @@
             [self.slideView scrollToItemIndex:self.slideView.currentIndex+1 animated:YES];
         }
     }];
+    [self.switchView setCompleteBlock:^{
+        STRONG_SELF
+        DDLogInfo(@"Complete button triggered!");
+    }];
 }
 
 #pragma mark - QASlideViewDataSource

@@ -11,6 +11,7 @@
 @interface QAQuestionSwitchView : UIView
 @property (nonatomic, strong) void(^preBlock)();
 @property (nonatomic, strong) void(^nextBlock)();
+@property (nonatomic, strong) void(^completeBlock)();
 
 - (void)updateWithTotal:(NSInteger)total question:(QAQuestion *)question childIndex:(NSInteger)index;
 @end
