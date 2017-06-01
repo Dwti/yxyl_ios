@@ -65,10 +65,11 @@
             question.position = position;
             oriIndex++;
         }else{
+            QAQuestionPosition *position = [[QAQuestionPosition alloc]init];
+            position.firstLevelIndex = firstLevelIndex;
+            question.position = position;
             if (question.questionType == YXQAItemSolve || question.questionType == YXQAItemCalculate) {
-                QAQuestionPosition *position = [[QAQuestionPosition alloc]init];
                 position.indexString = [self indexStringWithIndex:oriIndex total:total];
-                question.position = position;
                 for (NSInteger secondLevelIndex=0; secondLevelIndex<question.childQuestions.count; secondLevelIndex++) {
                     QAQuestion *childQuestion = question.childQuestions[secondLevelIndex];
                     QAQuestionPosition *position = [[QAQuestionPosition alloc]init];

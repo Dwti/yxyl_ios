@@ -69,7 +69,7 @@
 - (void)handleLoginSuccess {
     YXTabBarController *tabBarController = (YXTabBarController *)[self mainViewController];
     if ([[YXUserManager sharedManager] isRegisterByJoinClass]) {
-        [tabBarController setSelectedIndex:1];
+        [tabBarController setSelectedIndex:0];
     }
     self.window.rootViewController = tabBarController;
 }
