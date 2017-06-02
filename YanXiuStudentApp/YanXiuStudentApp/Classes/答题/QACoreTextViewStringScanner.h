@@ -12,4 +12,5 @@ typedef void(^ScanResultBlock)(NSInteger index, NSInteger total, CGRect frame);
 
 @interface QACoreTextViewStringScanner : NSObject
 - (void)scanCoreTextView:(DTAttributedTextContentView *)view string:(NSString *)string scanBlock:(ScanResultBlock)scanBlock;
+- (void)scanCoreTextView:(DTAttributedTextContentView *)view stringRange:(NSRange)range resultBlock:(void(^)(NSArray *frameArray))resultBlock;
 @end

@@ -155,6 +155,7 @@
     q.type_id = @"3";
     q.qTemplate = @"fill";
     q.stem = @"这是一道填空题：请填第一个空(_)，请填第二个空(_)，请填第三个空(_)";
+    q.stem = @"hello (_),L(_), ff(_)";
     q.answer = @[@"one",@"two",@"three"];
     q.analysis = @"这是填空题的解析blablabla~~~";
     q.difficulty = @"3";

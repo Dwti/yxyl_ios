@@ -1,0 +1,245 @@
+//
+//  QAFillBlankCell.m
+//  YanXiuStudentApp
+//
+//  Created by niuzhaowang on 2017/6/2.
+//  Copyright © 2017年 yanxiu.com. All rights reserved.
+//
+
+#import "QAFillBlankCell.h"
+#import "QACoreTextViewStringScanner.h"
+#import "QABlankItemInfo.h"
+
+static const NSInteger kMaxBlankWidth = 4;
+static const NSInteger kBlankWidth = 3;
+
+@interface QAFillBlankCell()<UITextFieldDelegate>
+@property (nonatomic, strong) DTAttributedTextContentView *htmlView;
+@property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
+@property (nonatomic, strong) QACoreTextViewStringScanner *scanner;
+@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) NSMutableArray<QABlankItemInfo *> *blankItemArray;
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UITextField *hiddenTextField;
+@property (nonatomic, assign) NSInteger currentIndex;
+@end
+
+@implementation QAFillBlankCell
+
++ (CGFloat)maxContentWidth {
+    return SCREEN_WIDTH-30;
+}
+
++ (CGFloat)totalHeightWithContentHeight:(CGFloat)height{
+    return height+50;
+}
+
++ (CGFloat)heightForString:(NSString *)string {
+    CGFloat maxWidth = [self maxContentWidth];
+    NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForLevel1];
+    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:maxWidth];
+    CGFloat height = [self totalHeightWithContentHeight:stringHeight];
+    return height;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.blankItemArray = [NSMutableArray array];
+        self.placeholder = @"------";
+        self.scanner = [[QACoreTextViewStringScanner alloc]init];
+        [self setupUI];
+        [self setupObserver];
+    }
+    return self;
+}
+
+- (void)setupUI {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.htmlView = [[DTAttributedTextContentView alloc] init];
+    [self.contentView addSubview:self.htmlView];
+    [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(25);
+        make.left.mas_equalTo(15);
+        make.bottom.mas_equalTo(-25);
+        make.right.mas_equalTo(-15);
+    }];
+    
+    self.coreTextHandler = [[QACoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:[QAFillBlankCell maxContentWidth]];
+    WEAK_SELF
+    self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
+        STRONG_SELF
+        CGFloat totalHeight = [QAFillBlankCell totalHeightWithContentHeight:height];
+        [self.delegate tableViewCell:self updateWithHeight:totalHeight];
+    };
+    
+    UIView *bottomLineView = [[UIView alloc]init];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    [self.contentView addSubview:bottomLineView];
+    [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    
+    self.textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    self.textField.returnKeyType = UIReturnKeyDone;
+    self.textField.backgroundColor = [UIColor redColor];
+    self.textField.delegate = self;
+    
+    self.hiddenTextField = [[UITextField alloc]init];
+    self.hiddenTextField.hidden = YES;
+    self.hiddenTextField.inputAccessoryView = self.textField;
+    self.hiddenTextField.returnKeyType = UIReturnKeyDone;
+    self.hiddenTextField.delegate = self;
+    [self.contentView addSubview:self.hiddenTextField];
+}
+
+- (void)setupObserver {
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DTAttributedTextContentViewDidFinishLayoutNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSNotification *noti = x;
+        if (self.htmlView != noti.object) {
+            return;
+        }
+        [self.blankItemArray enumerateObjectsUsingBlock:^(QABlankItemInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.scanner scanCoreTextView:self.htmlView stringRange:obj.blankRange resultBlock:^(NSArray *frameArray) {
+                [self setupViewsForBlankIndex:idx frames:frameArray];
+            }];
+        }];
+    }];
+}
+
+- (void)setupViewsForBlankIndex:(NSInteger)index frames:(NSArray *)frameArray {
+    QABlankItemInfo *info = self.blankItemArray[index];
+    if (isEmpty(info.answer)) {
+        NSValue *value = frameArray.firstObject;
+        CGRect rect = value.CGRectValue;
+        UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
+        bgButton.backgroundColor = [UIColor colorWithHexString:@"ebebeb"];
+        [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgButton.frame.size.height-2, bgButton.frame.size.width, 2)];
+        line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+        [bgButton addSubview:line];
+        [self.htmlView addSubview:bgButton];
+        [info.viewArray addObject:bgButton];
+        bgButton.tag = 100*index;
+    }else {
+        [frameArray enumerateObjectsUsingBlock:^(NSValue *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            CGRect rect = obj.CGRectValue;
+            UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
+            [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgButton.frame.size.height-2, bgButton.frame.size.width, 2)];
+            line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+            [bgButton addSubview:line];
+            [self.htmlView addSubview:bgButton];
+            [info.viewArray addObject:bgButton];
+            bgButton.tag = 100*index+idx;
+        }];
+    }
+}
+
+- (void)clickAction:(UIButton *)sender {
+    self.currentIndex = sender.tag/100;
+    self.textField.text = self.question.myAnswers[self.currentIndex];
+    if (![self.textField isFirstResponder]) {
+        [self.hiddenTextField becomeFirstResponder];
+    }
+}
+
+- (void)setQuestion:(QAQuestion *)question {
+    if (self.question == question) {
+        return;
+    }
+    _question = question;
+
+    [self refresh];
+}
+
+- (void)refresh {
+    NSAttributedString *attrString = [self attrStringForString:self.question.stem];
+    NSString *plainString = [attrString plainTextString];
+    
+    NSRegularExpression *reg = [self regForBlank];
+    NSArray<NSTextCheckingResult *> *results = [reg matchesInString:plainString options:NSMatchingReportCompletion range:NSMakeRange(0, plainString.length)];
+    
+    for (QABlankItemInfo *info in self.blankItemArray) {
+        for (UIView *v in info.viewArray) {
+            [v removeFromSuperview];
+        }
+    }
+    [self.blankItemArray removeAllObjects];
+    __block NSInteger locationOffset = 0;
+    [results enumerateObjectsUsingBlock:^(NSTextCheckingResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSRange range = obj.range;
+        if (range.length > kMaxBlankWidth) {
+            range = NSMakeRange(range.location+range.length-kBlankWidth, kBlankWidth);
+        }
+        
+        QABlankItemInfo *info = [[QABlankItemInfo alloc]init];
+        info.placeholder = self.placeholder;
+        info.answer = self.question.myAnswers[idx];
+        NSRange blankRange = NSMakeRange(range.location+locationOffset, info.displayedString.length);
+        info.blankRange = blankRange;
+        [self.blankItemArray addObject:info];
+        locationOffset += (info.displayedString.length-range.length);
+    }];
+    
+    NSString *finalStem = self.question.stem;
+    NSTextCheckingResult *result = [reg firstMatchInString:finalStem options:NSMatchingReportCompletion range:NSMakeRange(0, finalStem.length)];
+    NSInteger index = 0;
+    while (result) {
+        QABlankItemInfo *info = self.blankItemArray[index];
+        NSString *template;
+        if (isEmpty(info.answer)) {
+            template = info.placeholder;
+        }else {
+            template = [self blankAnswerHtmlStringWithString:info.answer];
+        }
+        
+        NSRange range = result.range;
+        if (range.length > kMaxBlankWidth) {
+            range = NSMakeRange(range.location+range.length-kBlankWidth, kBlankWidth);
+        }
+        
+        finalStem = [reg stringByReplacingMatchesInString:finalStem
+                                                  options:NSMatchingReportCompletion
+                                                    range:range
+                                             withTemplate:template];
+        result = [reg firstMatchInString:finalStem options:NSMatchingReportCompletion range:NSMakeRange(0, finalStem.length)];
+        index++;
+    }
+    
+    self.htmlView.attributedString = [self attrStringForString:finalStem];
+}
+
+- (NSAttributedString *)attrStringForString:(NSString *)string {
+    NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForLevel1];
+    return [YXQACoreTextHelper attributedStringWithString:string options:dic];
+}
+
+- (NSRegularExpression *)regForBlank {
+    NSString *pattern = @"[a-zA-Z]{0,}\\(_\\)";
+    NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+    return reg;
+}
+
+- (NSString *)blankAnswerHtmlStringWithString:(NSString *)string {
+    return [NSString stringWithFormat:@"<font color=\"#89E00D\">%@</font>",string];
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.hiddenTextField) {
+        [self.textField becomeFirstResponder];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.textField resignFirstResponder];
+    [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:textField.text];
+    [self refresh];
+    return YES;
+}
+
+@end

@@ -9,8 +9,10 @@
 #import "QAFillQuestionView.h"
 #import "YXQAQuestionCell2.h"
 #import "QAFillQuestionCell.h"
+#import "QAFillBlankCell.h"
 
 @interface QAFillQuestionView ()
+@property (nonatomic, strong) QAFillBlankCell *cell;
 @end
 
 @implementation QAFillQuestionView
@@ -39,23 +41,21 @@
 
 - (void)setupUI {
     [super setupUI];
-    [self.tableView registerClass:[QAFillQuestionCell class] forCellReuseIdentifier:@"QAFillQuestionCell"];
+    [self.tableView registerClass:[QAFillBlankCell class] forCellReuseIdentifier:@"QAFillBlankCell"];
 }
 
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([YXQAQuestionCell2 heightForString:self.data.stem dashHidden:NO])];
+    [heightArray addObject:@([QAFillBlankCell heightForString:self.data.stem])];
     return heightArray;
 }
 
 #pragma mark - tableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    QAFillQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillQuestionCell"];
+    QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
     cell.delegate = self;
-    cell.placeHolder = [QAQuestionUtil answerPlaceholderWithQuestion:self.data maxLength:[QAFillQuestionCell maxContentWidth]];
-    cell.item = self.data;
-    cell.dashLineHidden = YES;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.question = self.data;
+    self.cell = cell;
     return cell;
 }
 

@@ -47,6 +47,50 @@
     }];
 }
 
+- (void)scanCoreTextView:(DTAttributedTextContentView *)view stringRange:(NSRange)range resultBlock:(void(^)(NSArray *frameArray))resultBlock {
+    if (!self.imagePositionArray) {
+        self.imagePositionArray = [NSMutableArray array];
+        NSRange entireRange = NSMakeRange(0, [view.attributedString length]);
+        [view.attributedString enumerateAttribute:NSAttachmentAttributeName inRange:entireRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
+            if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
+                [self.imagePositionArray addObject:[NSNumber numberWithUnsignedInteger:range.location]];
+            }
+        }];
+    }
+    
+    self.indexArray = [NSArray arrayWithArray:[view.layoutFrame stringIndices]];
+    
+    NSInteger start = [self glyphIndexForStringIndex:range.location];
+    NSInteger end = [self glyphIndexForStringIndex:range.location+range.length-1];
+    CGRect startFrame = [view.layoutFrame frameOfGlyphAtIndex:start];
+    CGRect endFrame = [view.layoutFrame frameOfGlyphAtIndex:end];
+    if (ceilf(startFrame.origin.y) == ceilf(endFrame.origin.y)) {
+        NSValue *value = [self rectValueFromRect:startFrame toRect:endFrame];
+        BLOCK_EXEC(resultBlock,@[value]);
+    }else {
+        NSMutableArray *mArray = [NSMutableArray array];
+        NSInteger temp = end;
+        while (temp > start) {
+            temp--;
+            CGRect frame = [view.layoutFrame frameOfGlyphAtIndex:temp];
+            if (ceilf(frame.origin.y) == ceilf(endFrame.origin.y)) {
+                continue;
+            }else {
+                NSInteger index = temp+1;
+                CGRect lineStartFrame = [view.layoutFrame frameOfGlyphAtIndex:index];
+                [mArray insertObject:[self rectValueFromRect:lineStartFrame toRect:endFrame] atIndex:0];
+                endFrame = frame;
+            }
+            
+            if (ceilf(startFrame.origin.y) == ceilf(frame.origin.y)) {
+                [mArray insertObject:[self rectValueFromRect:startFrame toRect:frame] atIndex:0];
+                break;
+            }
+        }
+        BLOCK_EXEC(resultBlock,mArray);
+    }
+}
+
 - (NSInteger)glyphIndexForStringIndex:(NSInteger)index {
     NSInteger adjustIndex = index;
     for (NSNumber *i in self.imagePositionArray) {
@@ -64,6 +108,10 @@
     }
     glyphIndex--;
     return glyphIndex;
+}
+
+- (NSValue *)rectValueFromRect:(CGRect)from toRect:(CGRect)to {
+    return [NSValue valueWithCGRect:CGRectMake(floorf(from.origin.x), floorf(from.origin.y), ceilf(to.origin.x-from.origin.x+to.size.width), ceilf(from.size.height))];
 }
 
 @end
