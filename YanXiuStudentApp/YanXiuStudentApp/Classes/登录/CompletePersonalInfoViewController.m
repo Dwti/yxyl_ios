@@ -61,7 +61,7 @@
     }];
     
     self.nameView = [[ClassInfoItemView alloc]init];
-    self.nameView.name = @"你的姓名";
+    self.nameView.name = @"姓名";
     self.nameView.canEdit = YES;
     self.nameView.inputView.placeHolder = @"请输入真实姓名";
     WEAK_SELF
