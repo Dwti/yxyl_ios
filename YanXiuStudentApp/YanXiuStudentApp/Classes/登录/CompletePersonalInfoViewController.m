@@ -135,6 +135,7 @@
         STRONG_SELF
         self.stageView.text = stageName;
         self.stageID = stageID;
+         [self refreshSubmitButton];
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -147,6 +148,7 @@
         STRONG_SELF
         self.school = school;
         self.schoolView.text = school.name;
+        [self refreshSubmitButton];
     }];
     [vc setAreaSelectionBlock:^(YXProvince *province,YXCity *city,YXDistrict *district){
         STRONG_SELF

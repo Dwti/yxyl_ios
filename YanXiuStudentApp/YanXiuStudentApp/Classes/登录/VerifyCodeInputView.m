@@ -12,6 +12,7 @@
 static const NSInteger kTimerDuration = 45;
 
 @interface VerifyCodeInputView()
+
 @property (nonatomic, strong) LoginInputView *inputView;
 @property (nonatomic, strong) UIButton *codeButton;
 @property (nonatomic, strong) GCDTimer *timer;
@@ -59,12 +60,6 @@ static const NSInteger kTimerDuration = 45;
         make.right.mas_equalTo(seperatorView.mas_left).mas_offset(-20);
     }];
     
-    WEAK_SELF
-    self.timer = [[GCDTimer alloc]initWithInterval:1 repeats:YES triggerBlock:^{
-        STRONG_SELF
-        self.secondsRemained--;
-        [self refreshButton];
-    }];
 }
 
 - (void)setupObserver {
@@ -82,29 +77,10 @@ static const NSInteger kTimerDuration = 45;
     if (self.secondsRemained > 0) {
         return;
     }
-    BOOL success = self.sendAction();
-    if (success) {
-        self.secondsRemained = kTimerDuration;
-        [self refreshButton];
-        [self.timer resume];
-    }
-}
-
-- (void)refreshButton {
-    if (self.secondsRemained > 0) {
-        NSString *title = [NSString stringWithFormat:@"%@S",@(self.secondsRemained)];
-        [self.codeButton setTitle:title forState:UIControlStateNormal];
-    }else{
-        [self.timer suspend];
-        BLOCK_EXEC(self.timerPauseBlock)
-        [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    }
+    BLOCK_EXEC(self.sendAction);
 }
 
 - (void)setIsActive:(BOOL)isActive {
-    if (self.secondsRemained > 0) {
-        return;
-    }
     _isActive = isActive;
     if (isActive) {
         self.codeButton.enabled = YES;
@@ -119,4 +95,34 @@ static const NSInteger kTimerDuration = 45;
     return [self.inputView.textField.text yx_stringByTrimmingCharacters];
 }
 
+#pragma mark - timer
+- (void)startTimer {
+    if (!self.timer) {
+        self.secondsRemained = kTimerDuration;
+        WEAK_SELF
+        self.timer = [[GCDTimer alloc]initWithInterval:1 repeats:YES triggerBlock:^{
+            STRONG_SELF
+            [self countdownTimer];
+        }];
+        [self.timer resume];
+    }
+}
+
+- (void)countdownTimer {
+    if (self.secondsRemained <= 0) {
+        [self stopTimer];
+    } else {
+        self.secondsRemained--;
+        NSString *title = [NSString stringWithFormat:@"%@S",@(self.secondsRemained)];
+        [self.codeButton setTitle:title forState:UIControlStateNormal];
+    }
+    [self setIsActive:self.secondsRemained <= 0];
+}
+
+- (void)stopTimer {
+    self.timer = nil;
+    self.secondsRemained = 0;
+    [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [self setIsActive:self.secondsRemained <= 0];
+}
 @end
