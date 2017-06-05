@@ -64,7 +64,7 @@
     NSInteger end = [self glyphIndexForStringIndex:range.location+range.length-1];
     CGRect startFrame = [view.layoutFrame frameOfGlyphAtIndex:start];
     CGRect endFrame = [view.layoutFrame frameOfGlyphAtIndex:end];
-    if (ceilf(startFrame.origin.y) == ceilf(endFrame.origin.y)) {
+    if ([self isSameLineForStartFrame:startFrame endFrame:endFrame]) {
         NSValue *value = [self rectValueFromRect:startFrame toRect:endFrame];
         BLOCK_EXEC(resultBlock,@[value]);
     }else {
@@ -73,7 +73,7 @@
         while (temp > start) {
             temp--;
             CGRect frame = [view.layoutFrame frameOfGlyphAtIndex:temp];
-            if (ceilf(frame.origin.y) == ceilf(endFrame.origin.y)) {
+            if ([self isSameLineForStartFrame:frame endFrame:endFrame]) {
                 continue;
             }else {
                 NSInteger index = temp+1;
@@ -82,7 +82,7 @@
                 endFrame = frame;
             }
             
-            if (ceilf(startFrame.origin.y) == ceilf(frame.origin.y)) {
+            if ([self isSameLineForStartFrame:startFrame endFrame:frame]) {
                 [mArray insertObject:[self rectValueFromRect:startFrame toRect:frame] atIndex:0];
                 break;
             }
@@ -108,6 +108,13 @@
     }
     glyphIndex--;
     return glyphIndex;
+}
+
+- (BOOL)isSameLineForStartFrame:(CGRect)start endFrame:(CGRect)end {
+    if (ABS(start.origin.y-end.origin.y)<10) {
+        return YES;
+    }
+    return NO;
 }
 
 - (NSValue *)rectValueFromRect:(CGRect)from toRect:(CGRect)to {

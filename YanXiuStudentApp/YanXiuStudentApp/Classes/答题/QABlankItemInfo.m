@@ -14,6 +14,7 @@
     if (self = [super init]) {
         self.viewArray = [NSMutableArray array];
         self.blankRange = NSMakeRange(0, 0);
+        self.prefixLetter = @"";
     }
     return self;
 }
@@ -22,6 +23,6 @@
     if (isEmpty(self.answer)) {
         return self.placeholder;
     }
-    return self.answer;
+    return [NSString stringWithFormat:@"%@%@",self.prefixLetter,self.answer];
 }
 @end

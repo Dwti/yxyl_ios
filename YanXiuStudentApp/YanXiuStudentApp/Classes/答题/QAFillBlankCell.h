@@ -11,6 +11,7 @@
 @interface QAFillBlankCell : UITableViewCell
 @property (nonatomic, strong) QAQuestion *question;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
+@property (nonatomic, weak) id<QAAnswerStateChangeDelegate> answerStateChangeDelegate;
 
 + (CGFloat)heightForString:(NSString *)string;
 

@@ -12,7 +12,6 @@
 #import "QAFillBlankCell.h"
 
 @interface QAFillQuestionView ()
-@property (nonatomic, strong) QAFillBlankCell *cell;
 @end
 
 @implementation QAFillQuestionView
@@ -55,7 +54,7 @@
     QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
     cell.delegate = self;
     cell.question = self.data;
-    self.cell = cell;
+    cell.answerStateChangeDelegate = self.answerStateChangeDelegate;
     return cell;
 }
 
@@ -72,8 +71,8 @@
     NSDictionary *dic = noti.userInfo;
     NSValue *keyboardFrameValue = [dic valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrame = keyboardFrameValue.CGRectValue;
-    CGFloat bottom = [UIScreen mainScreen].bounds.size.height-keyboardFrame.origin.y-50;
-    bottom = MAX(bottom, 20);
+    CGFloat bottom = [UIScreen mainScreen].bounds.size.height-keyboardFrame.origin.y;
+    bottom = MAX(bottom, 45);
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottom, 0);
 }
 

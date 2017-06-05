@@ -12,6 +12,7 @@
 @property (nonatomic, assign) NSRange blankRange;
 @property (nonatomic, strong) NSString *answer;
 @property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) NSString *prefixLetter;
 @property (nonatomic, strong) NSMutableArray *viewArray;
 
 - (NSString *)displayedString;

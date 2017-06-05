@@ -18,6 +18,7 @@ static const NSInteger kBlankWidth = 3;
 @property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
 @property (nonatomic, strong) QACoreTextViewStringScanner *scanner;
 @property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) NSString *placeholderForPrefix;
 @property (nonatomic, strong) NSMutableArray<QABlankItemInfo *> *blankItemArray;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UITextField *hiddenTextField;
@@ -45,7 +46,9 @@ static const NSInteger kBlankWidth = 3;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.blankItemArray = [NSMutableArray array];
-        self.placeholder = @"------";
+        self.currentIndex = -1;
+        self.placeholder = @"--------";
+        self.placeholderForPrefix = @"---------";
         self.scanner = [[QACoreTextViewStringScanner alloc]init];
         [self setupUI];
         [self setupObserver];
@@ -112,35 +115,106 @@ static const NSInteger kBlankWidth = 3;
 
 - (void)setupViewsForBlankIndex:(NSInteger)index frames:(NSArray *)frameArray {
     QABlankItemInfo *info = self.blankItemArray[index];
+    for (UIView *v in info.viewArray) {
+        [v removeFromSuperview];
+    }
     if (isEmpty(info.answer)) {
         NSValue *value = frameArray.firstObject;
         CGRect rect = value.CGRectValue;
-        UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
-        bgButton.backgroundColor = [UIColor colorWithHexString:@"ebebeb"];
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
+        bgView.backgroundColor = [UIColor whiteColor];
+        bgView.clipsToBounds = YES;
+        UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, bgView.width, bgView.height+6)];
+        bgButton.layer.cornerRadius = 6;
+        bgButton.clipsToBounds = YES;
+        [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"ebebeb"]] forState:UIControlStateHighlighted];
+        [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"ebebeb"]] forState:UIControlStateSelected];
         [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgButton.frame.size.height-2, bgButton.frame.size.width, 2)];
+        [bgView addSubview:bgButton];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
         line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
-        [bgButton addSubview:line];
-        [self.htmlView addSubview:bgButton];
-        [info.viewArray addObject:bgButton];
+        [bgView addSubview:line];
+        if (!isEmpty(info.prefixLetter)) {
+            UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
+            prefixLabel.text = info.prefixLetter;
+            prefixLabel.font = [UIFont boldSystemFontOfSize:17];
+            prefixLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+            [bgView addSubview:prefixLabel];
+            [prefixLabel sizeToFit];
+            CGRect lineFrame = line.frame;
+            lineFrame.origin.x += prefixLabel.width;
+            lineFrame.size.width -= prefixLabel.width;
+            line.frame = lineFrame;
+            CGRect buttonFrame = bgButton.frame;
+            buttonFrame.origin.x += prefixLabel.width;
+            buttonFrame.size.width -= prefixLabel.width;
+            bgButton.frame = buttonFrame;
+        }
+        [self.htmlView addSubview:bgView];
+        [info.viewArray addObject:bgView];
         bgButton.tag = 100*index;
     }else {
         [frameArray enumerateObjectsUsingBlock:^(NSValue *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGRect rect = obj.CGRectValue;
-            UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
+            UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
+            bgView.clipsToBounds = YES;
+            UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, bgView.width, bgView.height+6)];
+            bgButton.layer.cornerRadius = 6;
+            bgButton.clipsToBounds = YES;
+            [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+            [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"ebebeb"]] forState:UIControlStateHighlighted];
+            [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"ebebeb"]] forState:UIControlStateSelected];
             [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgButton.frame.size.height-2, bgButton.frame.size.width, 2)];
+            [bgView addSubview:bgButton];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
             line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
-            [bgButton addSubview:line];
-            [self.htmlView addSubview:bgButton];
-            [info.viewArray addObject:bgButton];
+            [bgView addSubview:line];
+            if (idx==0 && !isEmpty(info.prefixLetter)) {
+                UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
+                prefixLabel.text = info.prefixLetter;
+                prefixLabel.font = [UIFont boldSystemFontOfSize:17];
+                prefixLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+                [prefixLabel sizeToFit];
+                CGRect lineFrame = line.frame;
+                lineFrame.origin.x += prefixLabel.width;
+                lineFrame.size.width -= prefixLabel.width;
+                line.frame = lineFrame;
+                CGRect buttonFrame = bgButton.frame;
+                buttonFrame.origin.x += prefixLabel.width;
+                buttonFrame.size.width -= prefixLabel.width;
+                bgButton.frame = buttonFrame;
+            }
+            [self.htmlView addSubview:bgView];
+            [info.viewArray addObject:bgView];
             bgButton.tag = 100*index+idx;
         }];
     }
 }
 
 - (void)clickAction:(UIButton *)sender {
-    self.currentIndex = sender.tag/100;
+    NSInteger preIndex = self.currentIndex;
+    NSInteger curIndex = sender.tag/100;
+    if (preIndex>=0) {
+        QABlankItemInfo *preItem = self.blankItemArray[preIndex];
+        for (UIView *view in preItem.viewArray) {
+            for (UIButton *b in view.subviews) {
+                if ([b isKindOfClass:[UIButton class]]) {
+                    b.selected = NO;
+                }
+            }
+        }
+    }
+    
+    self.currentIndex = curIndex;
+    QABlankItemInfo *curItem = self.blankItemArray[curIndex];
+    for (UIView *view in curItem.viewArray) {
+        for (UIButton *b in view.subviews) {
+            if ([b isKindOfClass:[UIButton class]]) {
+                b.selected = YES;
+            }
+        }
+    }
     self.textField.text = self.question.myAnswers[self.currentIndex];
     if (![self.textField isFirstResponder]) {
         [self.hiddenTextField becomeFirstResponder];
@@ -148,11 +222,7 @@ static const NSInteger kBlankWidth = 3;
 }
 
 - (void)setQuestion:(QAQuestion *)question {
-    if (self.question == question) {
-        return;
-    }
     _question = question;
-
     [self refresh];
 }
 
@@ -175,10 +245,13 @@ static const NSInteger kBlankWidth = 3;
         if (range.length > kMaxBlankWidth) {
             range = NSMakeRange(range.location+range.length-kBlankWidth, kBlankWidth);
         }
-        
         QABlankItemInfo *info = [[QABlankItemInfo alloc]init];
         info.placeholder = self.placeholder;
         info.answer = self.question.myAnswers[idx];
+        if (range.length == kMaxBlankWidth) {
+            info.prefixLetter = [plainString substringWithRange:NSMakeRange(range.location, 1)];
+            info.placeholder = self.placeholderForPrefix;
+        }
         NSRange blankRange = NSMakeRange(range.location+locationOffset, info.displayedString.length);
         info.blankRange = blankRange;
         [self.blankItemArray addObject:info];
@@ -194,7 +267,7 @@ static const NSInteger kBlankWidth = 3;
         if (isEmpty(info.answer)) {
             template = info.placeholder;
         }else {
-            template = [self blankAnswerHtmlStringWithString:info.answer];
+            template = [self blankAnswerHtmlStringWithString:info.displayedString];
         }
         
         NSRange range = result.range;
@@ -237,8 +310,15 @@ static const NSInteger kBlankWidth = 3;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.textField resignFirstResponder];
-    [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:textField.text];
-    [self refresh];
+    if (![textField.text isEqualToString:self.question.myAnswers[self.currentIndex]]) {
+        YXQAAnswerState fromState = [self.question answerState];
+        [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:textField.text];
+        YXQAAnswerState toState = [self.question answerState];
+        if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
+            [self.answerStateChangeDelegate question:self.question didChangeAnswerStateFrom:fromState to:toState];
+        }
+        [self refresh];
+    }
     return YES;
 }
 
