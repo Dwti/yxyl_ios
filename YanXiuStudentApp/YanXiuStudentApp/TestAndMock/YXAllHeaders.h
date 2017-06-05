@@ -225,6 +225,7 @@
 #import "QATitleView.h"
 #import "QAUnknownQuestionView.h"
 #import "QAUnknownQuestionViewContainer.h"
+#import "QAYesNoOptionCell.h"
 #import "QAYesNoQuestionAnalysisView.h"
 #import "QAYesNoQuestionRedoView.h"
 #import "QAYesNoQuestionView.h"

@@ -1008,6 +1008,7 @@
 		E915A2DB1DB8A1690088758A /* QAChooseQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E915A2DA1DB8A1690088758A /* QAChooseQuestionAnalysisView.m */; };
 		E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E915A2DD1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m */; };
 		E915A2E11DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E915A2E01DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.m */; };
+		E927988C1EE6660A00839CF3 /* QAYesNoOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E927988B1EE6660A00839CF3 /* QAYesNoOptionCell.m */; };
 		E93C76061E0BD5D100F286CF /* LoginDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76051E0BD5D100F286CF /* LoginDataManager.m */; };
 		E93C760A1E0CBE1C00F286CF /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76091E0CBE1C00F286CF /* RegisterModel.m */; };
 		E93C760D1E0CBE3F00F286CF /* ThirdRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C760C1E0CBE3F00F286CF /* ThirdRegisterModel.m */; };
@@ -2567,6 +2568,8 @@
 		E915A2DD1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QASingleChooseQuestionAnalysisView.m; sourceTree = "<group>"; };
 		E915A2DF1DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAMultiChooseQuestionAnalysisView.h; sourceTree = "<group>"; };
 		E915A2E01DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAMultiChooseQuestionAnalysisView.m; sourceTree = "<group>"; };
+		E927988A1EE6660A00839CF3 /* QAYesNoOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoOptionCell.h; sourceTree = "<group>"; };
+		E927988B1EE6660A00839CF3 /* QAYesNoOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAYesNoOptionCell.m; sourceTree = "<group>"; };
 		E93C76041E0BD5D100F286CF /* LoginDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDataManager.h; sourceTree = "<group>"; };
 		E93C76051E0BD5D100F286CF /* LoginDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDataManager.m; sourceTree = "<group>"; };
 		E93C76081E0CBE1C00F286CF /* RegisterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
@@ -4218,11 +4221,13 @@
 		7C64D18C1DB77601003803F3 /* 判断题 */ = {
 			isa = PBXGroup;
 			children = (
-				7CFC9CD01C2BECE9004EBAAA /* YXQAYesNoChooseCell.h */,
-				7CFC9CD11C2BECE9004EBAAA /* YXQAYesNoChooseCell.m */,
+				E927988A1EE6660A00839CF3 /* QAYesNoOptionCell.h */,
+				E927988B1EE6660A00839CF3 /* QAYesNoOptionCell.m */,
 				E9973C5C1DB86AB4004966AD /* 答题 */,
 				E9973C5D1DB86ABC004966AD /* 解析 */,
 				7C1A629C1E2E0F34009BA65C /* 重做 */,
+				7CFC9CD01C2BECE9004EBAAA /* YXQAYesNoChooseCell.h */,
+				7CFC9CD11C2BECE9004EBAAA /* YXQAYesNoChooseCell.m */,
 			);
 			name = "判断题";
 			sourceTree = "<group>";
@@ -7433,6 +7438,7 @@
 				7C1A62BD1E31E09D009BA65C /* AudioItemView.m in Sources */,
 				0FECC6701C5F321400E8F48E /* YXCancelReplyClassRequest.m in Sources */,
 				30B9CE5A1CB4B06200C071A9 /* YXHomeworkCell2_2.m in Sources */,
+				E927988C1EE6660A00839CF3 /* QAYesNoOptionCell.m in Sources */,
 				0FE6CA191C5A11E2005FBD5B /* YXGetSectionMistakeRequest.m in Sources */,
 				7CFAADDF1DACF37300F13532 /* QAClozeQuestionViewContainer.m in Sources */,
 				7C2903621ED58A28005F7F55 /* QAReadStemCell.m in Sources */,
