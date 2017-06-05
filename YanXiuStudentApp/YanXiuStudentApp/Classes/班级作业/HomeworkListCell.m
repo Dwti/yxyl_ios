@@ -137,7 +137,7 @@
         [self hideComment];
         NSString *answeredNum = isEmpty(data.answernum)? @"0":data.answernum;
         self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",answeredNum,data.quesnum];
-        if (isEmpty(data.remaindertimeStr)) {
+        if (isEmpty(data.remaindertimeStr) || (data.remaindertimeStr.intValue <= 0)) {
             self.descLabel.text = @"可补做";
         }else{
             self.descLabel.text = [NSString stringWithFormat:@"剩余时间 %@",data.remaindertimeStr];
