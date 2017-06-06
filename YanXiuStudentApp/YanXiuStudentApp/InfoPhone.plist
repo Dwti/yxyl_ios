@@ -82,6 +82,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Metro Playtype.otf</string>
+		<string>Arial Narrow Bold.ttf</string>
+		<string>Arial Narrow.ttf</string>
 		<string>METRO-LIGHT PLAYTYPE.OTF</string>
 		<string>FZZZHONGJW GB 1 0(方正正中黑简体).ttf</string>
 		<string>Arial Rounded Bold.ttf</string>

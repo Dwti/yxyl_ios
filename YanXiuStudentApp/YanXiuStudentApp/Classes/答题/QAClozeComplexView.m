@@ -9,6 +9,8 @@
 #import "QAClozeComplexView.h"
 #import "QAClozeContainerView.h"
 
+static const CGFloat kClozeOptionsHeight = 256+45;
+
 @interface QAClozeComplexView() <QAClozeQuestionCellDelegate>
 
 @property (nonatomic, strong) QAClozeContainerView *clozeContainerView;
@@ -18,48 +20,92 @@
 
 @implementation QAClozeComplexView
 
+- (void)setupUI {
+    [super setupUI];
+    [self.middleContainerView removeFromSuperview];
+    [self.upContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleView.mas_bottom);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.downContainerView.mas_top);
+    }];
+    [self.downContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.upContainerView.mas_bottom);
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(kClozeOptionsHeight);
+    }];
+}
+
 - (UIView *)topContainerView {
     self.clozeContainerView = [[QAClozeContainerView alloc] initWithData:self.data];
     self.clozeContainerView.currentIndex = self.nextLevelStartIndex;
     self.clozeContainerView.delegate = self;
-    self.clozeContainerView.isAnalysis = NO;
     return self.clozeContainerView;
 }
 
-#pragma mark- QAClozeContainerViewDelegate
+#pragma mark- QAClozeQuestionCellDelegate
 - (void)didSelectItemAtIndex:(NSInteger)index {
-    [self.slideView scrollToItemIndex:index animated:YES];
+    if ([self isDownContainerHidden]) {
+        [self.slideView scrollToItemIndex:index animated:NO];
+        [self.slideView layoutIfNeeded];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.downContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.upContainerView.mas_bottom);
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(kClozeOptionsHeight);
+            }];
+            [self layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            [self.clozeContainerView scrollCurrentBlankToVisible];
+        }];
+    }else {
+        [self.slideView scrollToItemIndex:index animated:YES];
+    }
 }
 
 - (void)layoutRefreshed {
-    [self.clozeContainerView.tableView scrollRectToVisible:[self.clozeContainerView.clozeCell.selectedButton convertRect:self.clozeContainerView.clozeCell.selectedButton.bounds toView:self.clozeContainerView.tableView] animated:YES];
+    [self.clozeContainerView scrollCurrentBlankToVisible];
+}
+
+- (void)stemClicked {
+    if ([self isDownContainerHidden]) {
+        return;
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.downContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.upContainerView.mas_bottom);
+            make.left.right.bottom.height.mas_equalTo(0);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+
+- (BOOL)isDownContainerHidden {
+    return self.downContainerView.y > SCREEN_HEIGHT-kClozeOptionsHeight;
 }
 
 #pragma mark- SliderView
 - (void)slideView:(QASlideView *)slideView didSlideFromIndex:(NSInteger)from toIndex:(NSInteger)to {
     [super slideView:slideView didSlideFromIndex:from toIndex:to];
 
-    if (to < self.clozeContainerView.clozeCell.buttonArray.count) {
-        self.clozeContainerView.clozeCell.selectedButton = self.clozeContainerView.clozeCell.buttonArray[to];
-        [self.clozeContainerView.tableView scrollRectToVisible:[self.clozeContainerView.clozeCell.selectedButton convertRect:self.clozeContainerView.clozeCell.selectedButton.bounds toView:self.clozeContainerView.tableView] animated:YES];
-    }
+    self.clozeContainerView.clozeCell.currentIndex = to;
+    [self.clozeContainerView scrollCurrentBlankToVisible];
 }
 
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
     QAQuestionBaseView *view = (QAQuestionBaseView *)[super slideView:slideView itemViewAtIndex:index];
     view.hideQuestion = YES;
+    view.delegate = self;
     return view;
 }
 
 - (void)autoGoNextGoGoGo {
     [super autoGoNextGoGoGo];
-    if ([self.clozeContainerView.clozeCell.buttonArray containsObject:self.clozeContainerView.clozeCell.selectedButton]) {
-        [self.clozeContainerView.clozeCell selectAnswerWithQuestion:[self.clozeContainerView.clozeCell.buttonArray indexOfObject:self.clozeContainerView.clozeCell.selectedButton]];
-    }
+    [self.clozeContainerView.clozeCell refresh];
+    self.clozeContainerView.clozeCell.currentIndex = MIN(self.clozeContainerView.clozeCell.currentIndex+1, self.data.childQuestions.count-1);
 }
 
 - (void)cancelAnswer {
-    [self.clozeContainerView.clozeCell selectAnswerWithQuestion:[self.clozeContainerView.clozeCell.buttonArray indexOfObject:self.clozeContainerView.clozeCell.selectedButton]];
+    [self.clozeContainerView.clozeCell refresh];
 }
 
 @end

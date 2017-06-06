@@ -273,7 +273,7 @@
     YXQuestion *q = [[YXQuestion alloc]init];
     q.type_id = @"15";
     q.qTemplate = @"cloze";
-    q.stem = @"这是一道完形填空题 :第1道题的答案是 (_).";
+    q.stem = @"这是一道完形填空题 :第1道题howfhoehogoi hoi hgo hie hio45h o45 hoi45 hyio45 ho4i5 hyo4 的答案是 (_).";
     
     YXQuestion_Pad *pad = [[YXQuestion_Pad alloc]init];
     pad.jsonAnswer = @[];

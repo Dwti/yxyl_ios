@@ -24,6 +24,13 @@
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
             [self.answerStateChangeDelegate question:self.data didChangeAnswerStateFrom:fromState to:toState];
         }
+        
+        if (choose && self.delegate && [self.delegate respondsToSelector:@selector(cancelAnswer)]) {
+            [self.delegate cancelAnswer];
+        }
+        if (!choose && self.delegate && [self.delegate respondsToSelector:@selector(autoGoNextGoGoGo)]) {
+            [self.delegate autoGoNextGoGoGo];
+        }
     }
 }
 @end

@@ -21,7 +21,7 @@ QASlideViewDelegate
 >
 
 @property (nonatomic, strong) QASlideView *slideView;
-
+@property (nonatomic, strong) UIView *upContainerView;
 @property (nonatomic, strong) UIView *middleContainerView;
 @property (nonatomic, strong) UIView *downContainerView;
 // subclass need to override this func to implement specific UI

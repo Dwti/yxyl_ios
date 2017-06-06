@@ -7,9 +7,7 @@
 //
 
 #import "QAClozeContainerView.h"
-#import "YXQAUtils.h"
-#import "QAQuestionUtil.h"
-
+#import "QAClozeStemCell.h"
 
 @interface QAClozeContainerView () <
 UITableViewDataSource,
@@ -18,12 +16,6 @@ YXHtmlCellHeightDelegate
 >
 
 @property (nonatomic, assign) CGFloat yueCellHeight;
-@property (nonatomic, strong) NSArray *indexArray;
-@property (nonatomic, strong) NSMutableArray *myAnswerArray;
-@property (nonatomic, strong) NSMutableArray *imagePositionArray;
-@property (nonatomic, strong) UIView *borderView;
-@property (nonatomic, strong) UIImageView *qImageView;
-@property (nonatomic, strong) UIImageView *stemBgView;
 @property (nonatomic, strong) QAQuestion *qaData;
 
 @end
@@ -36,55 +28,41 @@ YXHtmlCellHeightDelegate
         self.qaData = data;
         
         [self setupUI];
-        [self setupLayout];
     }
     return self;
 }
 
 - (void)setupUI {
-    self.yueCellHeight = [QAClozeQuestionCell heightForString:self.qaData.stem];
-
-    self.qImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Q"]];
-    
-    self.stemBgView = [[UIImageView alloc]initWithImage:[YXQAUtils stemBgImage]];
-    self.stemBgView.clipsToBounds = YES;
-    self.stemBgView.userInteractionEnabled = YES;
+    self.yueCellHeight = [QAClozeStemCell heightForString:self.qaData.stem];
  
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[QAClozeQuestionCell class] forCellReuseIdentifier:@"QAClozeQuestionCell"];
-}
-
-- (void)setupLayout {
-    [self addSubview:self.qImageView];
-    [self.qImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.top.mas_equalTo(27);
-        make.size.mas_equalTo(CGSizeMake(28, 30));
-    }];
-    
-    [self addSubview:self.stemBgView];
-    [self.stemBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(53);
-        make.top.mas_equalTo(20).priorityHigh();
-        make.right.mas_equalTo(-20);
-        make.bottom.mas_equalTo(self.mas_bottom).priorityHigh().offset = -9;
-    }];
-    
+    [self.tableView registerClass:[QAClozeStemCell class] forCellReuseIdentifier:@"QAClozeStemCell"];
     [self addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(62);
-        make.right.mas_equalTo(-22);
-        make.top.mas_equalTo(22);
-        make.bottom.mas_equalTo(-16);
+        make.edges.mas_equalTo(0);
+    }];
+    
+    UIView *bottomLineView = [[UIView alloc]init];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    [self addSubview:bottomLineView];
+    [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(1);
     }];
 }
 
-- (NSString *)itemPositon:(QAQuestion *)item {
-    return [[item.position.indexDetailString componentsSeparatedByString:@"/"] objectAtIndex:0];
+- (void)scrollCurrentBlankToVisible {
+    UIView *view = [self.clozeCell currentBlankView];
+    [self.tableView scrollRectToVisible:[view convertRect:view.bounds toView:self.tableView] animated:YES];
+}
+
+#pragma mark - QAComplexTopContainerViewDelegate
+- (CGFloat)initialHeight {
+    return self.yueCellHeight;
 }
 
 #pragma mark- UITableView
@@ -101,15 +79,20 @@ YXHtmlCellHeightDelegate
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    QAClozeQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAClozeQuestionCell"];
-    cell.isAnalysis = self.isAnalysis;
+    QAClozeStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAClozeStemCell"];
     cell.delegate = self;
     cell.selectItemDelegate = self.delegate;
-    cell.qaData = self.qaData;
-    cell.currentIndex = self.currentIndex;
+    cell.question = self.qaData;
+    cell.currentIndex = self.clozeCell.currentIndex;
     self.clozeCell = cell;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(stemClicked)]) {
+        [self.delegate stemClicked];
+    }
 }
 
 - (void)tableViewCell:(UITableViewCell *)cell updateWithHeight:(CGFloat)height {

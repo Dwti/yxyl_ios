@@ -11,7 +11,6 @@
 
 @interface QAComlexQuestionAnswerBaseView()
 
-@property (nonatomic, strong) UIView *upContainerView;
 @property (nonatomic, strong) UILabel *progressLabel;
 
 @end
@@ -48,6 +47,9 @@
 
     // “问答” 部分
     [self setupQAView];
+    
+    //监听键盘
+    [self setupKeyboardObserver];
 }
 
 - (void)setupMaterialView {
@@ -74,6 +76,7 @@
 - (void)setupMoveSliderView {
     self.middleContainerView = [[UIView alloc] init];
     self.middleContainerView.backgroundColor = [UIColor whiteColor];
+    self.middleContainerView.clipsToBounds = YES;
     [self addSubview:self.middleContainerView];
     [self.middleContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.upContainerView.mas_bottom).offset(0);
@@ -179,6 +182,29 @@
                 
             }
             [paramSender setTranslation:CGPointZero inView:paramSender.view];
+        }
+    }];
+}
+
+- (void)setupKeyboardObserver {
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSNotification *noti = (NSNotification *)x;
+        NSDictionary *dic = noti.userInfo;
+        NSValue *keyboardFrameValue = [dic valueForKey:UIKeyboardFrameEndUserInfoKey];
+        CGRect keyboardFrame = keyboardFrameValue.CGRectValue;
+        NSNumber *duration = [dic valueForKey:UIKeyboardAnimationDurationUserInfoKey];
+        CGRect rect = [self.middleContainerView convertRect:self.middleContainerView.bounds toView:self.window];
+        if (rect.origin.y+rect.size.height > keyboardFrame.origin.y) {
+            [UIView animateWithDuration:duration.floatValue animations:^{
+                [self.upContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.titleView.mas_bottom);
+                    make.left.right.mas_equalTo(0);
+                    make.height.mas_equalTo([self minTopHeight]);
+                }];
+                [self layoutIfNeeded];
+            }];
         }
     }];
 }

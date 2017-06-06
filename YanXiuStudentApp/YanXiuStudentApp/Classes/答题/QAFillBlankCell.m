@@ -58,6 +58,10 @@ static const NSInteger kBlankWidth = 3;
 
 - (void)setupUI {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.layer.shadowOffset = CGSizeMake(0, 2.5);
+    self.layer.shadowRadius = 2.5;
+    self.layer.shadowOpacity = 0.02;
+    self.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
     
     self.htmlView = [[DTAttributedTextContentView alloc] init];
     [self.contentView addSubview:self.htmlView];
@@ -75,14 +79,6 @@ static const NSInteger kBlankWidth = 3;
         CGFloat totalHeight = [QAFillBlankCell totalHeightWithContentHeight:height];
         [self.delegate tableViewCell:self updateWithHeight:totalHeight];
     };
-    
-    UIView *bottomLineView = [[UIView alloc]init];
-    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
-    [self.contentView addSubview:bottomLineView];
-    [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(1);
-    }];
     
     self.textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
     self.textField.returnKeyType = UIReturnKeyDone;
@@ -134,6 +130,8 @@ static const NSInteger kBlankWidth = 3;
         [bgView addSubview:bgButton];
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
         line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+        line.layer.cornerRadius = 1;
+        line.clipsToBounds = YES;
         [bgView addSubview:line];
         if (!isEmpty(info.prefixLetter)) {
             UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
@@ -169,6 +167,8 @@ static const NSInteger kBlankWidth = 3;
             [bgView addSubview:bgButton];
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
             line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+            line.layer.cornerRadius = 1;
+            line.clipsToBounds = YES;
             [bgView addSubview:line];
             if (idx==0 && !isEmpty(info.prefixLetter)) {
                 UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
@@ -318,6 +318,15 @@ static const NSInteger kBlankWidth = 3;
             [self.answerStateChangeDelegate question:self.question didChangeAnswerStateFrom:fromState to:toState];
         }
         [self refresh];
+    }else {
+        QABlankItemInfo *curItem = self.blankItemArray[self.currentIndex];
+        for (UIView *view in curItem.viewArray) {
+            for (UIButton *b in view.subviews) {
+                if ([b isKindOfClass:[UIButton class]]) {
+                    b.selected = NO;
+                }
+            }
+        }
     }
     return YES;
 }

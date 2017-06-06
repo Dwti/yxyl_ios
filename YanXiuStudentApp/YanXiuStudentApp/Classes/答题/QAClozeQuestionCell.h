@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol QAClozeQuestionCellDelegate <NSObject>
-- (void)didSelectItemAtIndex:(NSInteger)index;
-- (void)layoutRefreshed;
-@end
+#import "QAClozeQuestionCellDelegate.h"
 
 @interface QAClozeQuestionCell : UITableViewCell
 @property (nonatomic, assign) BOOL isAnalysis;

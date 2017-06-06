@@ -100,6 +100,18 @@
     return option;
 }
 
++ (NSDictionary *)optionsForClozeStem {
+    UIFont *font = [UIFont fontWithName:YXFontArialNarrow size:17];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(17), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"333333"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
 + (CGFloat)heightForString:(NSString *)string options:(NSDictionary *)option width:(CGFloat)width{
     DTAttributedTextContentView *v = [[DTAttributedTextContentView alloc]init];
     NSAttributedString *attrString = [self attributedStringWithString:string options:option];

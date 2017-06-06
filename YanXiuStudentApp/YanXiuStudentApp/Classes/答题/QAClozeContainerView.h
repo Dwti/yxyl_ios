@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QAClozeQuestionCell.h"
-
+#import "QAClozeStemCell.h"
 
 @interface QAClozeContainerView : UIView
-
-@property (nonatomic, assign) BOOL isAnalysis;
-@property (nonatomic, strong) QAClozeQuestionCell *clozeCell;
+@property (nonatomic, strong) QAClozeStemCell *clozeCell;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, weak) id<QAClozeQuestionCellDelegate> delegate;
 @property (nonatomic, assign) NSInteger currentIndex;
 
 - (instancetype)initWithData:(QAQuestion *)data; //designated init
+
+- (void)scrollCurrentBlankToVisible;
 
 @end

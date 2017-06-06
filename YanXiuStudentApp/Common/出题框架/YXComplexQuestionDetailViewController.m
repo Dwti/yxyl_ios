@@ -151,7 +151,7 @@
     if ([self.question templateType] == YXQATemplateClozeComplex) {
         NSString *stem = @"这是一道完形填空题 :";
         for (int i=0; i<self.question.children.count; i++) {
-            NSString *s = [NSString stringWithFormat:@"第%@道题的答案是 (_).",@(i+1)];
+            NSString *s = [NSString stringWithFormat:@"第%@道题 bfeb gerb gkegb kerb gireb gkebg kerbnk eb k ernk 4nhk4 ny4k5y的答案是 (_).",@(i+1)];
             stem = [stem stringByAppendingString:s];
         }
         self.question.stem = stem;

@@ -42,6 +42,8 @@
 + (NSDictionary *)defaultOptionsForLevel2;
 //用于其他，比如选项
 + (NSDictionary *)defaultOptionsForLevel3;
+//用于完形填空
++ (NSDictionary *)optionsForClozeStem;
 
 + (CGFloat)heightForString:(NSString *)string options:(NSDictionary *)option width:(CGFloat)width;
 + (NSAttributedString *)attributedStringWithString:(NSString *)string options:(NSDictionary *)option;

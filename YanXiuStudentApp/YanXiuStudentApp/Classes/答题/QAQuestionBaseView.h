@@ -30,7 +30,7 @@
 @property (nonatomic, assign) NSInteger nextLevelStartIndex;
 @property (nonatomic, assign) BOOL showChildIndexFromOne;
 @property (nonatomic, strong) YXQASubjectiveAddPhotoHandler *addPhotoHandler;
-@property (nonatomic, assign) id<YXAutoGoNextDelegate> delegate;
+@property (nonatomic, weak) id<YXAutoGoNextDelegate> delegate;
 @property (nonatomic, weak) id<YXQASubjectiveAddPhotoDelegate> photoDelegate;
 @property (nonatomic, weak) id<QAQuestionViewSlideDelegate> slideDelegate;
 @property (nonatomic, weak) id<QAAnswerStateChangeDelegate> answerStateChangeDelegate;

@@ -79,19 +79,19 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(redChanged:)
-                                                     name:YXRedNotification
-                                                   object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(redChanged:)
+//                                                     name:YXRedNotification
+//                                                   object:nil];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:YXRedNotification
-                                                  object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:YXRedNotification
+//                                                  object:nil];
 }
 
 - (void)viewDidLoad {

@@ -30,6 +30,9 @@
 #define YXFontMetro_Regular     @"Metro"
 #define YXFontMetro_Light       @"Metro-Light"
 
+#define YXFontArialNarrow     @"ArialNarrow"
+#define YXFontArialNarrow_Bold       @"ArialNarrow-Bold"
+
 @interface YXAppConstants : NSObject
 
 + (UIColor *)colorWithHexString:(NSString *)string;

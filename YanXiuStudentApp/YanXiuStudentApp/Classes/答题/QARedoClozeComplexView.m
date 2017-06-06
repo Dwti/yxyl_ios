@@ -19,7 +19,6 @@
     self.clozeContainerView = [[QAClozeContainerView alloc] initWithData:self.data];
     self.clozeContainerView.currentIndex = self.nextLevelStartIndex;
     self.clozeContainerView.delegate = self;
-    self.clozeContainerView.isAnalysis = NO;
     return self.clozeContainerView;
 }
 
@@ -29,34 +28,32 @@
 }
 
 - (void)layoutRefreshed {
-    [self.clozeContainerView.tableView scrollRectToVisible:[self.clozeContainerView.clozeCell.selectedButton convertRect:self.clozeContainerView.clozeCell.selectedButton.bounds toView:self.clozeContainerView.tableView] animated:YES];
+    [self.clozeContainerView scrollCurrentBlankToVisible];
 }
 
 #pragma mark- SliderView
 - (void)slideView:(QASlideView *)slideView didSlideFromIndex:(NSInteger)from toIndex:(NSInteger)to {
     [super slideView:slideView didSlideFromIndex:from toIndex:to];
     
-    if (to < self.clozeContainerView.clozeCell.buttonArray.count) {
-        self.clozeContainerView.clozeCell.selectedButton = self.clozeContainerView.clozeCell.buttonArray[to];
-        [self.clozeContainerView.tableView scrollRectToVisible:[self.clozeContainerView.clozeCell.selectedButton convertRect:self.clozeContainerView.clozeCell.selectedButton.bounds toView:self.clozeContainerView.tableView] animated:YES];
-    }
+    self.clozeContainerView.clozeCell.currentIndex = to;
+    [self.clozeContainerView scrollCurrentBlankToVisible];
 }
 
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
     QAQuestionBaseView *view = (QAQuestionBaseView *)[super slideView:slideView itemViewAtIndex:index];
     view.hideQuestion = YES;
+    view.delegate = self;
     return view;
 }
 
 - (void)autoGoNextGoGoGo {
     [super autoGoNextGoGoGo];
-    if ([self.clozeContainerView.clozeCell.buttonArray containsObject:self.clozeContainerView.clozeCell.selectedButton]) {
-        [self.clozeContainerView.clozeCell selectAnswerWithQuestion:[self.clozeContainerView.clozeCell.buttonArray indexOfObject:self.clozeContainerView.clozeCell.selectedButton]];
-    }
+    [self.clozeContainerView.clozeCell refresh];
+    self.clozeContainerView.clozeCell.currentIndex = MIN(self.clozeContainerView.clozeCell.currentIndex+1, self.data.childQuestions.count-1);
 }
 
 - (void)cancelAnswer {
-    [self.clozeContainerView.clozeCell selectAnswerWithQuestion:[self.clozeContainerView.clozeCell.buttonArray indexOfObject:self.clozeContainerView.clozeCell.selectedButton]];
+    [self.clozeContainerView.clozeCell refresh];
 }
 
 @end
