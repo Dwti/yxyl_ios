@@ -29,7 +29,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupUI];
     [self setupObservers];
-    [self searchSchoolWithKeyword:@""];
+    [self searchSchoolWithKeyword:self.searchView.textField.text];
 }
 
 - (void)didReceiveMemoryWarning {
