@@ -1009,12 +1009,14 @@
 		E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E915A2DD1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m */; };
 		E915A2E11DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E915A2E01DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.m */; };
 		E927988C1EE6660A00839CF3 /* QAYesNoOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E927988B1EE6660A00839CF3 /* QAYesNoOptionCell.m */; };
+		E927988F1EE684AD00839CF3 /* QAListenStemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E927988E1EE684AD00839CF3 /* QAListenStemCell.m */; };
 		E93C76061E0BD5D100F286CF /* LoginDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76051E0BD5D100F286CF /* LoginDataManager.m */; };
 		E93C760A1E0CBE1C00F286CF /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76091E0CBE1C00F286CF /* RegisterModel.m */; };
 		E93C760D1E0CBE3F00F286CF /* ThirdRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C760C1E0CBE3F00F286CF /* ThirdRegisterModel.m */; };
 		E93C76101E0CD56F00F286CF /* AccountRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C760F1E0CD56F00F286CF /* AccountRegisterModel.m */; };
 		E93C76131E0CFA1E00F286CF /* RegisterByJoinClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76121E0CFA1E00F286CF /* RegisterByJoinClassModel.m */; };
 		E93C76161E0D037800F286CF /* ThirdRegisterByJoinClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76151E0D037800F286CF /* ThirdRegisterByJoinClassModel.m */; };
+		E94E98D81EE8EC2200E94F5C /* QAListenPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */; };
 		E95DE7541E10E9B300B25435 /* LoginUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E95DE7531E10E9B300B25435 /* LoginUtils.m */; };
 		E96FE8401E09399000837DDA /* ClassHomeworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */; };
 		E9973C601DB86ADF004966AD /* QAYesNoQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */; };
@@ -2570,6 +2572,8 @@
 		E915A2E01DB8A3220088758A /* QAMultiChooseQuestionAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAMultiChooseQuestionAnalysisView.m; sourceTree = "<group>"; };
 		E927988A1EE6660A00839CF3 /* QAYesNoOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoOptionCell.h; sourceTree = "<group>"; };
 		E927988B1EE6660A00839CF3 /* QAYesNoOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAYesNoOptionCell.m; sourceTree = "<group>"; };
+		E927988D1EE684AD00839CF3 /* QAListenStemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListenStemCell.h; sourceTree = "<group>"; };
+		E927988E1EE684AD00839CF3 /* QAListenStemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListenStemCell.m; sourceTree = "<group>"; };
 		E93C76041E0BD5D100F286CF /* LoginDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDataManager.h; sourceTree = "<group>"; };
 		E93C76051E0BD5D100F286CF /* LoginDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDataManager.m; sourceTree = "<group>"; };
 		E93C76081E0CBE1C00F286CF /* RegisterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
@@ -2582,6 +2586,8 @@
 		E93C76121E0CFA1E00F286CF /* RegisterByJoinClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterByJoinClassModel.m; sourceTree = "<group>"; };
 		E93C76141E0D037800F286CF /* ThirdRegisterByJoinClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdRegisterByJoinClassModel.h; sourceTree = "<group>"; };
 		E93C76151E0D037800F286CF /* ThirdRegisterByJoinClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdRegisterByJoinClassModel.m; sourceTree = "<group>"; };
+		E94E98D61EE8EC2200E94F5C /* QAListenPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListenPlayView.h; sourceTree = "<group>"; };
+		E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListenPlayView.m; sourceTree = "<group>"; };
 		E95DE7521E10E9B300B25435 /* LoginUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUtils.h; sourceTree = "<group>"; };
 		E95DE7531E10E9B300B25435 /* LoginUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUtils.m; sourceTree = "<group>"; };
 		E96FE83E1E09399000837DDA /* ClassHomeworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHomeworkUtils.h; sourceTree = "<group>"; };
@@ -4347,11 +4353,15 @@
 		7C64D1921DB776FD003803F3 /* 听力复合题 */ = {
 			isa = PBXGroup;
 			children = (
+				7C916BE41DBF4AED00968B28 /* QAListenContainerView.h */,
+				7C916BE51DBF4AED00968B28 /* QAListenContainerView.m */,
+				E927988D1EE684AD00839CF3 /* QAListenStemCell.h */,
+				E927988E1EE684AD00839CF3 /* QAListenStemCell.m */,
+				E94E98D61EE8EC2200E94F5C /* QAListenPlayView.h */,
+				E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */,
 				7C7841CC1E31FFCF00755BC0 /* 答题 */,
 				7C7841CB1E31FFC800755BC0 /* 解析 */,
 				7C7841CA1E31FFBA00755BC0 /* 重做 */,
-				7C916BE41DBF4AED00968B28 /* QAListenContainerView.h */,
-				7C916BE51DBF4AED00968B28 /* QAListenContainerView.m */,
 				7C2E8A691DBDBA3A00C8EB7F /* QAListenComplexCell.h */,
 				7C2E8A6A1DBDBA3A00C8EB7F /* QAListenComplexCell.m */,
 				7C90928D1E0A50AD0048C44F /* ListenComplexPromptView.h */,
@@ -7092,6 +7102,7 @@
 				7C89DD081DA8927200194120 /* QANumberAnswerQuestion.m in Sources */,
 				7CA30DE71DC33AB0008D4C38 /* TreeBaseCell.m in Sources */,
 				7CA98EE51EC2BB6E000D49DE /* ClassInfoItemView.m in Sources */,
+				E927988F1EE684AD00839CF3 /* QAListenStemCell.m in Sources */,
 				7CDE19951DD093D700469096 /* YXApnsContentModel.m in Sources */,
 				7C7A1A321EC1B3DF00685B38 /* CompletePersonalInfoViewController.m in Sources */,
 				7C5CBEE31E6E4CD700653394 /* MistakeRedoUploadImageManager.m in Sources */,
@@ -7554,6 +7565,7 @@
 				0FE6C9F81C5A102F005FBD5B /* YXSchoolSearchRequest.m in Sources */,
 				7CF6C8511C731F7200AE88F8 /* YXAddPhotoView.m in Sources */,
 				F775502D1C4E43860002FE45 /* YXQAQuestionCell2.m in Sources */,
+				E94E98D81EE8EC2200E94F5C /* QAListenPlayView.m in Sources */,
 				7C2251D91E1F3842004785D5 /* NSObject+BackgroundTask.m in Sources */,
 				7C3D0B771DD1A53A005ED76A /* LogRecordEntity+CoreDataProperties.m in Sources */,
 				F775502E1C4E43860002FE45 /* YXTestBaseViewController.m in Sources */,

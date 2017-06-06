@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QAListenComplexCell.h"
+#import "QAListenStemCell.h"
 
-@interface QAListenContainerView : UIView
+@interface QAListenContainerView : UIView<QAComplexTopContainerViewDelegate>
 
-@property (nonatomic, weak) QAListenComplexCell *cell;
+@property (nonatomic, weak) QAListenStemCell *cell;
+
 
 - (instancetype)initWithData:(QAQuestion *)data; //designated init
 
