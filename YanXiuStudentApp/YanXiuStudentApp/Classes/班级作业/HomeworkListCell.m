@@ -150,7 +150,7 @@
         if (data.hasTeacherComments) {
             [self showComment];
             self.stateLabel.text = @"已批改";
-            self.descLabel.text = @"";
+            self.descLabel.text = [NSString stringWithFormat:@"正确率 %@%@",data.paperStatus.scoreRate,@"%"];
             NSString *teacherString = [NSString stringWithFormat:@"%@评语：",data.paperStatus.teacherName];
             NSString *totalString = [NSString stringWithFormat:@"%@%@",teacherString,data.paperStatus.teachercomments];
             NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:totalString];
