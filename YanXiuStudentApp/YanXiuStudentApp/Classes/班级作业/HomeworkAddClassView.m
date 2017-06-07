@@ -30,6 +30,7 @@
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     UIScrollView *contentView = [[UIScrollView alloc]init];
+    contentView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     [self addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
