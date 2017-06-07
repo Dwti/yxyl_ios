@@ -171,6 +171,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.state == HomeworkFetch_Success) {
+        [self firstPageFetch];
+    }
+}
+
 - (void)setupUI {
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 10)];
     self.tableView.tableHeaderView = headerView;
