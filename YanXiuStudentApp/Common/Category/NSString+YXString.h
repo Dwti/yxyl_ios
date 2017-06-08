@@ -46,4 +46,6 @@
 // 加密
 - (NSString *)yx_md5;
 
+- (BOOL)nyx_isPureInt;
+
 @end

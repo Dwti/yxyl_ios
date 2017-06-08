@@ -72,10 +72,19 @@
     self.clearButton.hidden = YES;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.keyboardType != UIKeyboardTypeNumberPad) {
+        return YES;
+    }
+    if (isEmpty(string) || [string nyx_isPureInt]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

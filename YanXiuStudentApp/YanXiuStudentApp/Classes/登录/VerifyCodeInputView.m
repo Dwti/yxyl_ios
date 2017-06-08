@@ -11,7 +11,7 @@
 
 static const NSInteger kTimerDuration = 45;
 
-@interface VerifyCodeInputView()
+@interface VerifyCodeInputView()<UITextFieldDelegate>
 
 @property (nonatomic, strong) LoginInputView *inputView;
 @property (nonatomic, strong) UIButton *codeButton;
@@ -52,6 +52,7 @@ static const NSInteger kTimerDuration = 45;
     }];
     self.inputView = [[LoginInputView alloc]init];
     self.inputView.textField.keyboardType = UIKeyboardTypeNumberPad;
+    self.inputView.textField.delegate = self;
     self.inputView.placeHolder = @"请输入验证码";
     [self addSubview:self.inputView];
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -124,5 +125,13 @@ static const NSInteger kTimerDuration = 45;
     self.secondsRemained = 0;
     [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [self setIsActive:self.secondsRemained <= 0];
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (isEmpty(string) || [string nyx_isPureInt]) {
+        return YES;
+    }
+    return NO;
 }
 @end
