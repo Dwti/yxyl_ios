@@ -87,4 +87,17 @@
     return height;
 }
 
+#pragma QAComplexHeaderCellDelegate
+- (CGFloat)heightForQuestion:(QAQuestion *)question {
+    return [QAReadStemCell heightForString:question.stem isSubQuestion:NO];
+}
+
+- (void)setCellHeightDelegate:(id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
+    self.delegate = cellHeightDelegate;
+}
+
+- (id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
+    return self.delegate;
+}
+
 @end

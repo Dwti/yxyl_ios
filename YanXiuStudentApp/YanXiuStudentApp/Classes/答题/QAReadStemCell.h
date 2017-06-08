@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QAComplexHeaderCellDelegate.h"
 
-@interface QAReadStemCell : UITableViewCell
+@interface QAReadStemCell : UITableViewCell<QAComplexHeaderCellDelegate>
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 
 - (void)updateWithString:(NSString *)string isSubQuestion:(BOOL)isSub;

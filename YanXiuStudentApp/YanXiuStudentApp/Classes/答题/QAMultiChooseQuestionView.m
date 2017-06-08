@@ -9,10 +9,10 @@
 #import "QAMultiChooseQuestionView.h"
 @implementation QAMultiChooseQuestionView
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row >= 1) {
+    if (indexPath.row >= 2) {
         YXQAAnswerState fromState = [self.data answerState];
         
-        NSInteger answerIndex = indexPath.row - 1;
+        NSInteger answerIndex = indexPath.row - 2;
         self.data.myAnswers[answerIndex] = @(![self.data.myAnswers[answerIndex] boolValue]);
         [self.tableView reloadData];
         

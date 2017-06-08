@@ -10,7 +10,8 @@
 
 @implementation QAQuestionViewContainerFactory
 
-+ (QAQuestionViewContainer *)containerWithTemplate:(YXQATemplateType)templateType{
++ (QAQuestionViewContainer *)containerWithQuestion:(QAQuestion *)question{
+    YXQATemplateType templateType = question.templateType;
     if (templateType == YXQATemplateSingleChoose) {
         return [[QASingleChooseQuestionViewContainer alloc]init];
     }else if (templateType == YXQATemplateMultiChoose){
@@ -26,7 +27,11 @@
     }else if (templateType == YXQATemplateSubjective){
         return [[QASubjectiveQuestionViewContainer alloc]init];
     }else if (templateType == YXQATemplateReadComplex){
-        return [[QAReadQuestionViewContainer alloc]init];
+        if (question.childQuestions.count > 1) {
+            return [[QAReadQuestionViewContainer alloc]init];
+        }
+        QAQuestion *q = question.childQuestions[0];
+        return [self containerWithQuestion:q];
     }else if (templateType == YXQATemplateClozeComplex){
         return [[QAClozeQuestionViewContainer alloc]init];
     }else if (templateType == YXQATemplateListenComplex){

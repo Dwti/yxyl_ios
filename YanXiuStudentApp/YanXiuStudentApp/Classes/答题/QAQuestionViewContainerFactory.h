@@ -21,6 +21,6 @@
 
 @interface QAQuestionViewContainerFactory : NSObject
 
-+ (QAQuestionViewContainer *)containerWithTemplate:(YXQATemplateType)templateType;
++ (QAQuestionViewContainer *)containerWithQuestion:(QAQuestion *)question;
 
 @end

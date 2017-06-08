@@ -9,10 +9,10 @@
 #import "QASingleChooseQuestionView.h"
 @implementation QASingleChooseQuestionView
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row >= 1) {
+    if (indexPath.row >= 2) {
         YXQAAnswerState fromState = [self.data answerState];
         
-        NSInteger answerIndex = indexPath.row - 1;
+        NSInteger answerIndex = indexPath.row - 2;
         BOOL choose = [self.data.myAnswers[answerIndex] boolValue];
         for (int i = 0; i < [self.data.myAnswers count]; i++) {
             self.data.myAnswers[i] = @(NO);

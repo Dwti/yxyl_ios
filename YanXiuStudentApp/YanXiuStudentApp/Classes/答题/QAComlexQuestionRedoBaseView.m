@@ -89,7 +89,7 @@
     QAQuestion *data = [self.data.childQuestions objectAtIndex:index];
     data.wrongQuestionID = self.data.wrongQuestionID;
     
-    QAQuestionViewContainer *container = [QAQuestionViewContainerFactory containerWithTemplate:data.templateType];
+    QAQuestionViewContainer *container = [QAQuestionViewContainerFactory containerWithQuestion:data];
     QAQuestionBaseView *view = [container questionRedoView];
     view.data = data;
     view.isPaperSubmitted = self.isPaperSubmitted;

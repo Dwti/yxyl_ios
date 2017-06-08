@@ -222,7 +222,7 @@
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
     QAQuestion *data = [self.data.childQuestions objectAtIndex:index];
     
-    QAQuestionViewContainer *container = [QAQuestionViewContainerFactory containerWithTemplate:data.templateType];
+    QAQuestionViewContainer *container = [QAQuestionViewContainerFactory containerWithQuestion:data];
     QAQuestionBaseView *view = [container questionAnswerView];
     view.data = data;
     view.isPaperSubmitted = self.isPaperSubmitted;
