@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.naviTheme = NavigationBarTheme_White;
-    self.navigationItem.title = @"选择省市区县";
+    self.navigationItem.title = @"选择地区";
     UIButton *naviRightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 35)];
     [naviRightButton setTitle:@"确定" forState:UIControlStateNormal];
     [naviRightButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
