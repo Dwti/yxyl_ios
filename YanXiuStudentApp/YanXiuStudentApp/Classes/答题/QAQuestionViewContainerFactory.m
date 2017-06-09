@@ -35,7 +35,11 @@
     }else if (templateType == YXQATemplateClozeComplex){
         return [[QAClozeQuestionViewContainer alloc]init];
     }else if (templateType == YXQATemplateListenComplex){
-        return [[QAListenQuestionViewContainer alloc]init];
+        if (question.childQuestions.count > 1) {
+            return [[QAListenQuestionViewContainer alloc]init];
+        }
+        QAQuestion *q = question.childQuestions[0];
+        return [self containerWithQuestion:q];
     }else if (templateType == YXQATemplateUnknown){
         return [[QAUnknownQuestionViewContainer alloc]init];
     }else{

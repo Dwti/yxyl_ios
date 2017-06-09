@@ -12,12 +12,14 @@
 #import "UIView+YXScale.h"
 #import "YXCommonLabel.h"
 #import "ListenComplexPromptView.h"
-#import "QAListenPlayView.h"
 
+static const CGFloat kHtmlViewTopMargin = 25.0f;
+static const NSUInteger kPlayViewTopMargin = 12.0f;
+static const NSUInteger kPlayViewHeight = 45.0f;
 @interface QAListenStemCell()
-@property (nonatomic, strong) DTAttributedTextContentView *htmlView;
+
 @property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
-@property (nonatomic, strong) QAListenPlayView *playView;
+
 @end
 
 @implementation QAListenStemCell
@@ -53,7 +55,8 @@
     WEAK_SELF
     self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
         STRONG_SELF
-        CGFloat totalHeight = [QAListenStemCell totalHeightWithContentHeight:height];
+        CGFloat bottomMargin = self.height - CGRectGetMaxY(self.playView.frame);
+        CGFloat totalHeight = height + kHtmlViewTopMargin + kPlayViewTopMargin + kPlayViewHeight + bottomMargin;
         [self.delegate tableViewCell:self updateWithHeight:totalHeight];
     };
 }
@@ -61,17 +64,16 @@
 - (void)setupLayout {
     [self.contentView addSubview:self.htmlView];
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(25);
+        make.top.mas_equalTo(kHtmlViewTopMargin);
         make.left.mas_equalTo(15);
-        make.bottom.mas_equalTo(-75);
         make.right.mas_equalTo(-15);
     }];
     
     [self.contentView addSubview:self.playView];
     [self.playView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.htmlView.mas_bottom).offset(12.0f);
-        make.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.htmlView.mas_bottom).offset(kPlayViewTopMargin);
+        make.bottom.mas_equalTo(-12);
     }];
 }
 
@@ -94,7 +96,7 @@
 }
 
 + (CGFloat)totalHeightWithContentHeight:(CGFloat)height {
-    return height+100;
+    return height + 100;
 }
 
 + (CGFloat)heightForString:(NSString *)string isSubQuestion:(BOOL)isSub {
@@ -119,4 +121,16 @@
     self.playView.item = item;
 }
 
+#pragma QAComplexHeaderCellDelegate
+- (CGFloat)heightForQuestion:(QAQuestion *)question {
+    return [QAListenStemCell heightForString:question.stem isSubQuestion:NO] - 31;
+}
+
+- (void)setCellHeightDelegate:(id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
+    self.delegate = cellHeightDelegate;
+}
+
+- (id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
+    return self.delegate;
+}
 @end

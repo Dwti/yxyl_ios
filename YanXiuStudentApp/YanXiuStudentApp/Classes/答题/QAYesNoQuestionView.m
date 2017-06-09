@@ -9,8 +9,24 @@
 #import "QAYesNoQuestionView.h"
 #import "QAYesNoOptionCell.h"
 #import "QAQuestionStemCell.h"
+#import "QAComplexHeaderFactory.h"
+
+@interface QAYesNoQuestionView()
+@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
+@property (nonatomic, strong) QAQuestion *oriData;
+@end
 
 @implementation QAYesNoQuestionView
+
+- (void)setData:(QAQuestion *)data {
+    if (data.childQuestions.count == 1) {
+        self.oriData = data;
+        [super setData:data.childQuestions.firstObject];
+        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    }else {
+        [super setData:data];
+    }
+}
 
 - (void)setupUI {
     [super setupUI];
@@ -21,7 +37,8 @@
 
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-     [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
+    [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
     for (int i = 0; i < [self.data.myAnswers count]; i++) {
         [heightArray addObject:@(55)];
     }
@@ -30,22 +47,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
+        UITableViewCell<QAComplexHeaderCellDelegate> *cell = [tableView dequeueReusableCellWithIdentifier:kHeaderCellReuseID];
+        if (!cell) {
+            cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+            cell.cellHeightDelegate = self;
+        }
+        return cell;
+    }
+    
+    if (indexPath.row == 1) {
         QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
         cell.delegate = self;
         [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
         return cell;
     }
-
+    
     QAYesNoOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAYesNoOptionCell"];
     cell.choosed = NO;
-    if (indexPath.row == 1) {
+    if (indexPath.row == 2) {
         cell.title = @"正确";
         cell.isLast = NO;
     }else {
         cell.title = @"错误";
         cell.isLast = YES;
     }
-    NSInteger answerIndex = indexPath.row - 1;
+    NSInteger answerIndex = indexPath.row - 2;
     if ([self.data.myAnswers[answerIndex] boolValue]) {
         cell.choosed = YES;
     }
@@ -53,10 +79,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row >= 1) {
+    if (indexPath.row >= 2) {
         YXQAAnswerState fromState = [self.data answerState];
         
-        NSInteger answerIndex = indexPath.row - 1;
+        NSInteger answerIndex = indexPath.row - 2;
         BOOL choose = [self.data.myAnswers[answerIndex] boolValue];
         for (int i = 0; i < [self.data.myAnswers count]; i++) {
             self.data.myAnswers[i] = @(NO);

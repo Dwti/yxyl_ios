@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QAComplexHeaderCellDelegate.h"
+#import "QAListenPlayView.h"
 
-@interface QAListenStemCell : UITableViewCell
+@interface QAListenStemCell : UITableViewCell<QAComplexHeaderCellDelegate>
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 @property (nonatomic, strong) QAQuestion *item;
-
+@property (nonatomic, strong) DTAttributedTextContentView *htmlView;
+@property (nonatomic, strong) QAListenPlayView *playView;
 - (void)updateWithString:(NSString *)string isSubQuestion:(BOOL)isSub;
 + (CGFloat)heightForString:(NSString *)string isSubQuestion:(BOOL)isSub;
 
