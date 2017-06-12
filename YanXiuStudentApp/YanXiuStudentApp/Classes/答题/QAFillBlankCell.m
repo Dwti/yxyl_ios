@@ -82,7 +82,7 @@ static const NSInteger kBlankWidth = 3;
     
     self.textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
     self.textField.returnKeyType = UIReturnKeyDone;
-    self.textField.backgroundColor = [UIColor redColor];
+    self.textField.backgroundColor = [UIColor whiteColor];
     self.textField.delegate = self;
     
     self.hiddenTextField = [[UITextField alloc]init];
@@ -312,7 +312,8 @@ static const NSInteger kBlankWidth = 3;
     [self.textField resignFirstResponder];
     if (![textField.text isEqualToString:self.question.myAnswers[self.currentIndex]]) {
         YXQAAnswerState fromState = [self.question answerState];
-        [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:textField.text];
+        NSString *answer = [textField.text nyx_stringByTrimmingExtraSpaces];
+        [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:answer];
         YXQAAnswerState toState = [self.question answerState];
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
             [self.answerStateChangeDelegate question:self.question didChangeAnswerStateFrom:fromState to:toState];

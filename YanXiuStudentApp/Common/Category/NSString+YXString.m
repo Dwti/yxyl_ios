@@ -36,6 +36,23 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (NSString *)nyx_stringByTrimmingExtraSpaces {    
+    NSArray *array = [self componentsSeparatedByString:@" "];
+    NSMutableArray *marray = [NSMutableArray new];
+    for (NSString *stringOne in array) {
+        //删除字符串中的所有空格
+        NSString *zufuchuan = [[stringOne stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+        if (zufuchuan.length != 0) {
+            [marray addObject:stringOne];
+        }
+    }
+    
+    NSString *mString = [marray componentsJoinedByString:@" "];
+    //去除 字符串两端的空格 和回车
+    mString = [mString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
+    return mString;
+}
+
 - (NSString *)yx_encodeString
 {
     CFStringRef stringFef = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,

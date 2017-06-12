@@ -21,6 +21,9 @@
 // 去除字符串两端的空格及换行
 - (NSString *)yx_stringByTrimmingCharacters;
 
+// 去掉两端空白，并合并中间多余空白
+- (NSString *)nyx_stringByTrimmingExtraSpaces;
+
 
 #pragma mark - encode & decode
 
