@@ -11,78 +11,41 @@
 #import "YXAddPhotoTableViewCell.h"
 #import "QAQuestionUtil.h"
 #import "QASubjectiveQuestionCell.h"
+#import "QAQuestionStemCell.h"
+#import "QASubjectivePhotoCell.h"
 @interface QASubjectiveQuestionView ()
-@property (nonatomic, strong) YXAddPhotoTableViewCell *addPhotoCell;
 @end
 @implementation QASubjectiveQuestionView
 
-- (void)setData:(QAQuestion *)data
-{
-    [super setData:data];
-}
-
 - (void)setupUI {
     [super setupUI];
-    [self.tableView registerClass:[QASubjectiveQuestionCell class] forCellReuseIdentifier:@"QASubjectiveQuestionCell"];
-    [self.tableView registerClass:[YXAddPhotoTableViewCell class] forCellReuseIdentifier:@"YXAddPhotoTableViewCell"];
+    [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
+    [self.tableView registerClass:[QASubjectivePhotoCell class] forCellReuseIdentifier:@"QASubjectivePhotoCell"];
 }
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([YXQAQuestionCell2 heightForString:self.data.stem dashHidden:NO])];
-    [heightArray addObject:@([self getSubjectiveQuestionCellHeight])];
+    [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    [heightArray addObject:@(100)];
     return heightArray;
 }
-- (CGFloat)getSubjectiveQuestionCellHeight {
-    YXAddPhotoTableViewCell * cell = [[YXAddPhotoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    [cell reloadViewWithArray:self.data.myAnswers addEnable:YES];
-    return [cell height];
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        QASubjectiveQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QASubjectiveQuestionCell"];
+        QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
         cell.delegate = self;
-        cell.item = self.data;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
         return cell;
-    }
-    if (self.addPhotoCell) {
-        self.addPhotoCell.indexPath = indexPath;
-        return self.addPhotoCell;
     }else {
-        YXAddPhotoTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXAddPhotoTableViewCell"];
-        [cell reloadViewWithArray:self.data.myAnswers addEnable:YES];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        cell.backgroundColor = [UIColor clearColor];
-        WEAK_SELF
-        cell.photosChangedBlock = ^(NSArray *photos){
-            STRONG_SELF
-            self.data.myAnswers = [NSMutableArray arrayWithArray:photos];
-        };
-        self.addPhotoCell = cell;
-        self.addPhotoCell.indexPath = indexPath;
+        QASubjectivePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"QASubjectivePhotoCell"];
+        QAImageAnswer *a1 = [[QAImageAnswer alloc]init];
+        a1.data = [UIImage imageWithColor:[UIColor blueColor]];
+        QAImageAnswer *a2 = [[QAImageAnswer alloc]init];
+        a2.data = [UIImage imageWithColor:[UIColor brownColor]];
+        QAImageAnswer *a3 = [[QAImageAnswer alloc]init];
+        a3.data = [UIImage imageWithColor:[UIColor greenColor]];
+        [cell updateWithPhotos:[NSMutableArray arrayWithObjects:a1,a2,a3, nil] editable:YES];
         return cell;
     }
 }
-#pragma mark - YXQASubjectiveAddPhotoDelegate
-- (void)photoViewHeightChanged:(CGFloat)height {
-    CGFloat cellHeight = [self.cellHeightArray[1] floatValue];
-    CGFloat newCellHeight = ceilf(height);
-    if (cellHeight != newCellHeight) {
-        [self.cellHeightArray replaceObjectAtIndex:1 withObject:@(newCellHeight)];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-        [self.tableView layoutIfNeeded];
-        [self.tableView reloadData];
-    }
-}
-- (void)addPhotoWithViewModel:(YXAlbumViewModel *)viewModel {
-    if (self.photoDelegate && [self.photoDelegate respondsToSelector:@selector(addPhotoWithViewModel:)]) {
-        [self.photoDelegate addPhotoWithViewModel:viewModel];
-    }
-}
-- (void)photoClickedWithModel:(YXAlbumViewModel *)viewModel index:(NSInteger)index canDelete:(BOOL)canDelete {
-    if (self.photoDelegate && [self.photoDelegate respondsToSelector:@selector(photoClickedWithModel:index:canDelete:)]) {
-        [self.photoDelegate photoClickedWithModel:viewModel index:index canDelete:canDelete];
-    }
-}
+
 @end
