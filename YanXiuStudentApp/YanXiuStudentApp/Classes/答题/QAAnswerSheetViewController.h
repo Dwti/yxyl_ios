@@ -13,5 +13,6 @@ typedef void(^SelectedActionBlock)(QAQuestion *item);
 @interface QAAnswerSheetViewController : BaseViewController
 
 @property (nonatomic, strong) QAPaperModel *model;
+@property (nonatomic, assign) BOOL allHasWrote;
 - (void)setSelectedActionBlock:(SelectedActionBlock)block;
 @end

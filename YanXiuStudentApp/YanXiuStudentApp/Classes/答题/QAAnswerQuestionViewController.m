@@ -31,7 +31,7 @@
     WEAK_SELF
     [self nyx_setupRightWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 38, 38)] action:^{
         STRONG_SELF
-        [self submitAnswers];
+        [self showAnswerSheet];
     }];
     self.hasShowAnswerSheet = NO;
     [self setupProgressData];
@@ -109,6 +109,31 @@
     }];
 }
 
+- (void)completeButtonAction {
+    [self showAnswerSheet];
+}
+
+- (void)showAnswerSheet {
+    self.slideView.isActive = NO;
+    if ([self.navigationController.childViewControllers.lastObject isKindOfClass:[QAAnswerSheetViewController class]]) {
+        return;
+    }
+    QAAnswerSheetViewController *vc = [[QAAnswerSheetViewController alloc]init];
+    vc.model = self.model;
+    if (self.answeredQuestionCount == self.totalQuestionCount) {
+        vc.allHasWrote = YES;
+    }else {
+        vc.allHasWrote = NO;
+    }
+    WEAK_SELF
+    [vc setSelectedActionBlock:^(QAQuestion *item) {
+        STRONG_SELF
+        [self slideToQAItem:item];
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 - (void)slideToQAItem:(QAQuestion *)item {
     [self.slideView scrollToItemIndex:item.position.firstLevelIndex animated:NO];
     QAComlexQuestionAnswerBaseView *mv = (QAComlexQuestionAnswerBaseView *)[self.slideView itemViewAtIndex:self.slideView.currentIndex];
@@ -118,47 +143,6 @@
     }
 }
 
-- (void)completeButtonAction {
-    [self submitAnswers];
-}
-
-- (void)submitAnswers {
-    DDLogDebug(@"submitAnswers");
-    self.slideView.isActive = NO;
-   self.hasShowAnswerSheet = YES;
-    if (self.answeredQuestionCount == self.totalQuestionCount) {
-        [self goReport];
-        self.slideView.isActive = YES;
-        return;
-    }
-    @weakify(self);
-    EEAlertView *alert = [[EEAlertView alloc] init];
-    alert.title = @"还有未做完的题目，确定提交吗?";
-    [alert addButtonWithTitle:@"取消" action:^{
-        @strongify(self);
-        self.slideView.isActive = YES;
-        self.hasShowAnswerSheet = NO;
-    }];
-    [alert addButtonWithTitle:@"提交" action:^{
-        @strongify(self);
-        [self goReport];
-        self.slideView.isActive = YES;
-        self.hasShowAnswerSheet = NO;
-    }];
-    [alert showInView:self.navigationController.view];
-    
-}
-
-- (void)goReport {
-    QAAnswerSheetViewController *vc = [[QAAnswerSheetViewController alloc]init];
-    vc.model = self.model;
-    WEAK_SELF
-    [vc setSelectedActionBlock:^(QAQuestion *item) {
-        STRONG_SELF
-        [self slideToQAItem:item];
-    }];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 #pragma mark - QASlideViewDataSource
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
     QAQuestion *data = [self.model.questions objectAtIndex:index];
@@ -168,15 +152,16 @@
     view.data = data;
     view.isPaperSubmitted = [self.model isPaperSubmitted];
     view.isSubQuestionView = NO;
-//    view.addPhotoHandler = self.addPhotoHandler;
-//    view.delegate = self;
+    //    view.addPhotoHandler = self.addPhotoHandler;
+    //    view.delegate = self;
     view.slideDelegate = self;
     view.answerStateChangeDelegate = self;
-//    view.photoDelegate = self.addPhotoHandler;
+    //    view.photoDelegate = self.addPhotoHandler;
     
     return view;
 }
 
+#pragma mark - QASlideViewDelegate
 - (void)slideViewDidReachMostRight:(QASlideView *)slideView{
     QASlideItemBaseView *view = [self.slideView itemViewAtIndex:slideView.currentIndex];
     if ([view isKindOfClass:[QAComlexQuestionAnswerBaseView class]]) {
@@ -188,10 +173,9 @@
             }
         }
     }
-    if (!self.hasShowAnswerSheet) {
-        [self submitAnswers];
-    }
+    [self showAnswerSheet];
 }
+
 #pragma mark - QAAnswerStateChangeDelegate
 - (void)question:(QAQuestion *)question didChangeAnswerStateFrom:(YXQAAnswerState)from to:(YXQAAnswerState)to {
     if ([self isQuestionStateAnswered:from] && ![self isQuestionStateAnswered:to]) {

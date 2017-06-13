@@ -22,7 +22,6 @@
     self.naviTheme = NavigationBarTheme_White;
     [self setupUI];
     self.title = self.model.paperTitle;
-    self.sheetView.model = self.model;
     [self setupObserver];
     // Do any additional setup after loading the view.
 }
@@ -34,10 +33,26 @@
 
 - (void)setupUI {
     self.sheetView = [[QAAnswerSheetView alloc]init];
+    self.sheetView.model = self.model;
     WEAK_SELF
     [self.sheetView setSubmitActionBlock:^{
         STRONG_SELF
-        DDLogDebug(@"提交答案");
+        if (self.allHasWrote) {
+            [self submitAnswers];
+            return;
+        }
+        WEAK_SELF
+        EEAlertView *alert = [[EEAlertView alloc] init];
+        alert.title = @"还有未做完的题目，确定提交吗?";
+        [alert addButtonWithTitle:@"取消" action:^{
+            STRONG_SELF
+            
+        }];
+        [alert addButtonWithTitle:@"提交" action:^{
+            STRONG_SELF
+            [self submitAnswers];
+        }];
+        [alert showInView:self.navigationController.view];
     }];
     [self.view addSubview:self.sheetView];
     [self.sheetView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,6 +70,11 @@
         [self.navigationController popViewControllerAnimated:YES];
         BLOCK_EXEC(self.buttonActionBlock,item);
     }];
+}
+
+
+- (void)submitAnswers {
+    DDLogDebug(@"提交答案");
 }
 
 - (void)setSelectedActionBlock:(SelectedActionBlock)block {
