@@ -1019,6 +1019,8 @@
 		E94E98D81EE8EC2200E94F5C /* QAListenPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */; };
 		E95DE7541E10E9B300B25435 /* LoginUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E95DE7531E10E9B300B25435 /* LoginUtils.m */; };
 		E96FE8401E09399000837DDA /* ClassHomeworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */; };
+		E98516081EF121AD0092C91F /* QAAnswerSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */; };
+		E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E985160A1EF121E40092C91F /* QAAnswerSheetView.m */; };
 		E9973C601DB86ADF004966AD /* QAYesNoQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */; };
 		E9973C651DB86B14004966AD /* QAFillQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C641DB86B14004966AD /* QAFillQuestionView.m */; };
 		E9973C6A1DB86B38004966AD /* QASubjectiveQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C691DB86B38004966AD /* QASubjectiveQuestionView.m */; };
@@ -1026,6 +1028,8 @@
 		E9973C771DB86D5F004966AD /* QAChooseQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C761DB86D5F004966AD /* QAChooseQuestionView.m */; };
 		E9973C7A1DB86D99004966AD /* QASingleChooseQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C791DB86D99004966AD /* QASingleChooseQuestionView.m */; };
 		E9973C7D1DB86DB1004966AD /* QAMultiChooseQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C7C1DB86DB1004966AD /* QAMultiChooseQuestionView.m */; };
+		E9AEC27D1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEC27C1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m */; };
+		E9B425A61EF226BC00F99485 /* QAAnswerSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */; };
 		E9C684991DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C684981DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m */; };
 		E9C6849C1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C6849B1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.m */; };
 		E9C6849F1DBDAC3F00717D82 /* QASubjectiveQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C6849E1DBDAC3F00717D82 /* QASubjectiveQuestionAnalysisView.m */; };
@@ -2592,6 +2596,10 @@
 		E95DE7531E10E9B300B25435 /* LoginUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUtils.m; sourceTree = "<group>"; };
 		E96FE83E1E09399000837DDA /* ClassHomeworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHomeworkUtils.h; sourceTree = "<group>"; };
 		E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHomeworkUtils.m; sourceTree = "<group>"; };
+		E98516061EF121AD0092C91F /* QAAnswerSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetViewController.h; sourceTree = "<group>"; };
+		E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetViewController.m; sourceTree = "<group>"; };
+		E98516091EF121E40092C91F /* QAAnswerSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetView.h; sourceTree = "<group>"; };
+		E985160A1EF121E40092C91F /* QAAnswerSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetView.m; sourceTree = "<group>"; };
 		E9973C5E1DB86ADF004966AD /* QAYesNoQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoQuestionView.h; sourceTree = "<group>"; };
 		E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAYesNoQuestionView.m; sourceTree = "<group>"; };
 		E9973C631DB86B14004966AD /* QAFillQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAFillQuestionView.h; sourceTree = "<group>"; };
@@ -2606,6 +2614,10 @@
 		E9973C791DB86D99004966AD /* QASingleChooseQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QASingleChooseQuestionView.m; sourceTree = "<group>"; };
 		E9973C7B1DB86DB1004966AD /* QAMultiChooseQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAMultiChooseQuestionView.h; sourceTree = "<group>"; };
 		E9973C7C1DB86DB1004966AD /* QAMultiChooseQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAMultiChooseQuestionView.m; sourceTree = "<group>"; };
+		E9AEC27B1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionIndexDetailView.h; sourceTree = "<group>"; };
+		E9AEC27C1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAQuestionIndexDetailView.m; sourceTree = "<group>"; };
+		E9B425A41EF226BC00F99485 /* QAAnswerSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetCell.h; sourceTree = "<group>"; };
+		E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetCell.m; sourceTree = "<group>"; };
 		E9C684971DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoQuestionAnalysisView.h; sourceTree = "<group>"; };
 		E9C684981DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAYesNoQuestionAnalysisView.m; sourceTree = "<group>"; };
 		E9C6849A1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAFillQuestionAnalysisView.h; sourceTree = "<group>"; };
@@ -4187,6 +4199,7 @@
 		7C64D1881DB7748B003803F3 /* 答题卡 */ = {
 			isa = PBXGroup;
 			children = (
+				E9AEC2711EF27CD000CB6CCD /* New */,
 				7CEFF5611C19658E006B538B /* YXQASheetView.h */,
 				7CEFF5621C19658E006B538B /* YXQASheetView.m */,
 			);
@@ -5052,6 +5065,19 @@
 				E9C684A11DBDAC5000717D82 /* QAConnectQuestionAnalysisView.m */,
 			);
 			name = "解析";
+			sourceTree = "<group>";
+		};
+		E9AEC2711EF27CD000CB6CCD /* New */ = {
+			isa = PBXGroup;
+			children = (
+				E9B425A41EF226BC00F99485 /* QAAnswerSheetCell.h */,
+				E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */,
+				E98516091EF121E40092C91F /* QAAnswerSheetView.h */,
+				E985160A1EF121E40092C91F /* QAAnswerSheetView.m */,
+				E9AEC27B1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.h */,
+				E9AEC27C1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m */,
+			);
+			name = New;
 			sourceTree = "<group>";
 		};
 		EF379A48BDE7CA004951EEF8 /* Frameworks */ = {
@@ -6105,6 +6131,8 @@
 				7C75A2761ED2B48C001A3EB3 /* QABaseViewController.m */,
 				7C75A2791ED2B54A001A3EB3 /* QAAnswerQuestionViewController.h */,
 				7C75A27A1ED2B54A001A3EB3 /* QAAnswerQuestionViewController.m */,
+				E98516061EF121AD0092C91F /* QAAnswerSheetViewController.h */,
+				E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */,
 				F770D1A31B5906FE0004A2E7 /* YXJieXiViewController.h */,
 				F770D1A41B5906FE0004A2E7 /* YXJieXiViewController.m */,
 				7C7470081B60F2410044CEBC /* YXJieXiFoldUnfoldViewController.h */,
@@ -7170,6 +7198,7 @@
 				7C3D0BAF1DD1A94F005ED76A /* YXAppConstants.m in Sources */,
 				E9973C651DB86B14004966AD /* QAFillQuestionView.m in Sources */,
 				F7754F131C4E43860002FE45 /* YXTestTableView.m in Sources */,
+				E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */,
 				7CDE196A1DD08D5C00469096 /* YXGeTuiManager.m in Sources */,
 				7CF6C8691C731FFB00AE88F8 /* YXPhotoManager.m in Sources */,
 				7C5A98051E8E2BEE005E56B6 /* MistakePageListFetcher.m in Sources */,
@@ -7243,6 +7272,7 @@
 				7C2903B51EE12DB8005F7F55 /* QABlankItemInfo.m in Sources */,
 				7CEA912F1E1CE83300E8D72D /* AlbumListTableViewCell.m in Sources */,
 				7C3ECAD71EC02C50005C2B9C /* AccountInputView.m in Sources */,
+				E9B425A61EF226BC00F99485 /* QAAnswerSheetCell.m in Sources */,
 				7C3D0B751DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
 				0FB211BC1C5726CD00594BEA /* YXSSOAuthManager.m in Sources */,
 				F7754F441C4E43860002FE45 /* YXEditProfileViewController.m in Sources */,
@@ -7307,6 +7337,7 @@
 				7CA98EEF1EC2E08F000D49DE /* SchoolSearchViewController.m in Sources */,
 				F7754F681C4E43860002FE45 /* YXFeedbackView.m in Sources */,
 				F7754F691C4E43860002FE45 /* YXHtmlCell.m in Sources */,
+				E9AEC27D1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m in Sources */,
 				7C7841CF1E3200E000755BC0 /* QARedoClozeComplexView.m in Sources */,
 				F7754F6D1C4E43860002FE45 /* YXDistrictSelectViewController.m in Sources */,
 				7C2904241EEE3EA2005F7F55 /* QASubjectiveSinglePhotoView.m in Sources */,
@@ -7511,6 +7542,7 @@
 				30B7C8AC1DC2FC6B00A09AB8 /* QAClassifyAnswersView.m in Sources */,
 				7C3D0B8C1DD1A6C8005ED76A /* UploadRequest.m in Sources */,
 				7C89DD101DA8927200194120 /* QAQuestionFactory.m in Sources */,
+				E98516081EF121AD0092C91F /* QAAnswerSheetViewController.m in Sources */,
 				F77550011C4E43860002FE45 /* YXJieXiViewController.m in Sources */,
 				7CD58E551D5DB43800492837 /* YXImportPaperViewController.m in Sources */,
 				7CF6C8571C731F7200AE88F8 /* YXPhotoSelectBottomView.m in Sources */,

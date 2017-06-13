@@ -79,6 +79,7 @@
     [self.switchView setCompleteBlock:^{
         STRONG_SELF
         DDLogInfo(@"Complete button triggered!");
+        SAFE_CALL(self, completeButtonAction);
     }];
 }
 
@@ -115,5 +116,7 @@
     [self.switchView updateWithTotal:self.model.questions.count question:self.model.questions[self.slideView.currentIndex] childIndex:complexView.slideView.currentIndex];
 }
 
-
+- (void)completeButtonAction {
+    //子类提交答案时实现
+}
 @end

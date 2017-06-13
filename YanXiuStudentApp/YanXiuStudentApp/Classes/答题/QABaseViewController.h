@@ -13,4 +13,5 @@
 @property (nonatomic, strong) QASlideView *slideView;
 
 - (void)setupUI;
+- (void)completeButtonAction;
 @end
