@@ -41,7 +41,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     self.wrongQuestionID = rawData.wqid;
     self.isFavorite = rawData.isfavorite.boolValue;
     self.audioUrl = question.url;
-    self.stem = [question completeStem];
+    self.stem = [self adjustedStemForStem:[question completeStem]];
     self.options = question.content.choices;
     self.difficulty = question.difficulty;
     self.answerDetailID = question.pad.padid;
@@ -62,6 +62,16 @@ static NSString * const kAnswerMarkedFlag = @"5";
     self.redoCompleted = rawData.redostatus.boolValue;
     self.noteText = question.jsonNote.text;
     self.noteImages = [self noteImagesAnswerWithRawData:question.jsonNote.images];
+}
+
+- (NSString *)adjustedStemForStem:(NSString *)stem {
+    NSString *adjustedStem = stem;
+    NSRange range = [adjustedStem rangeOfString:@"(_)(_)"];
+    while (range.location != NSNotFound) {
+        adjustedStem = [adjustedStem stringByReplacingOccurrencesOfString:@"(_)(_)" withString:@"(_) (_)"];
+        range = [adjustedStem rangeOfString:@"(_)(_)"];
+    }
+    return adjustedStem;
 }
 
 - (BOOL)isAnswerMarkedWithStatus:(NSString *)status{

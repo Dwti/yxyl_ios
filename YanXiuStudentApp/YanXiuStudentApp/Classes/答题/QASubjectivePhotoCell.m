@@ -55,7 +55,7 @@ static const NSInteger kMaxPhotoCount = 3;
 
 - (void)setupAddPhotoView {
     UIButton *addPhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 50)];
-    addPhotoButton.center = CGPointMake(self.window.width/2, self.contentView.height/2);
+    addPhotoButton.center = CGPointMake(SCREEN_WIDTH/2, 50);
     [addPhotoButton setTitle:@"开始作答" forState:UIControlStateNormal];
     [addPhotoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addPhotoButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
@@ -84,7 +84,8 @@ static const NSInteger kMaxPhotoCount = 3;
         photoView.imageAnswer = obj;
         WEAK_SELF
         [photoView setClickBlock:^{
-            
+            STRONG_SELF
+            [self goBrowsePhotosWithIndex:idx];
         }];
         [photoView setDeleteBlock:^{
             STRONG_SELF
@@ -119,8 +120,21 @@ static const NSInteger kMaxPhotoCount = 3;
 
 #pragma mark - Photo handle
 - (void)goAddPhoto {
+    WEAK_SELF
     [self.photoHandler addPhotoWithCompleteBlock:^(UIImage *image) {
-        
+        STRONG_SELF
+        QAImageAnswer *answer = [[QAImageAnswer alloc]init];
+        answer.data = image;
+        [self.photoArray addObject:answer];
+        [self updateWithPhotos:self.photoArray editable:self.isEditable];
+    }];
+}
+
+- (void)goBrowsePhotosWithIndex:(NSInteger)index {
+    WEAK_SELF
+    [self.photoHandler browsePhotos:self.photoArray oriIndex:index editable:self.isEditable deleteBlock:^{
+        STRONG_SELF
+        [self updateWithPhotos:self.photoArray editable:self.isEditable];
     }];
 }
 

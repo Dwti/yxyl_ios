@@ -37,13 +37,7 @@
         return cell;
     }else {
         QASubjectivePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"QASubjectivePhotoCell"];
-        QAImageAnswer *a1 = [[QAImageAnswer alloc]init];
-        a1.data = [UIImage imageWithColor:[UIColor blueColor]];
-        QAImageAnswer *a2 = [[QAImageAnswer alloc]init];
-        a2.data = [UIImage imageWithColor:[UIColor brownColor]];
-        QAImageAnswer *a3 = [[QAImageAnswer alloc]init];
-        a3.data = [UIImage imageWithColor:[UIColor greenColor]];
-        [cell updateWithPhotos:[NSMutableArray arrayWithObjects:a1,a2,a3, nil] editable:YES];
+        [cell updateWithPhotos:self.data.myAnswers editable:YES];
         return cell;
     }
 }

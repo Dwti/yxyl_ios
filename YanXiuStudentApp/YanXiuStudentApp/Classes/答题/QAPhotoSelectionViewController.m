@@ -10,6 +10,7 @@
 #import "QAPhotoSelectionCell.h"
 #import "QAPhotoSelectionTitleView.h"
 #import "QAPhotoCollectionsView.h"
+#import "QAPhotoClipViewController.h"
 
 @interface QAPhotoSelectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) QAPhotoSelectionTitleView *titleView;
@@ -22,7 +23,6 @@
 @end
 
 @implementation QAPhotoSelectionViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -112,7 +112,7 @@
     self.collectionArray = [NSMutableArray array];
     PHFetchResult *results = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     for (PHAssetCollection *collection in results) {
-        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumRecentlyAdded) {
             [self.collectionArray insertObject:collection atIndex:0];
         }else if (collection.assetCollectionSubtype!=PHAssetCollectionSubtypeSmartAlbumVideos && collection.assetCollectionSubtype!=PHAssetCollectionSubtypeSmartAlbumSlomoVideos) {
             [self.collectionArray addObject:collection];
@@ -144,12 +144,36 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     QAPhotoSelectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"QAPhotoSelectionCell" forIndexPath:indexPath];
-    cell.photoItem = self.assetArray[indexPath.row];
+    QAPhotoItem *item = self.assetArray[indexPath.row];
+    cell.photoItem = item;
     WEAK_SELF
     [cell setClickBlock:^{
         STRONG_SELF
+        [self requestImageFromAsset:item.asset];
     }];
     return cell;
+}
+
+- (void)requestImageFromAsset:(PHAsset *)asset {
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.synchronous = YES;
+    WEAK_SELF
+    [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        STRONG_SELF
+        [self gotoClipVCWithImage:result];
+    }];
+}
+
+- (void)gotoClipVCWithImage:(UIImage *)image {
+    QAPhotoClipViewController *vc = [[QAPhotoClipViewController alloc]init];
+    vc.oriImage = image;
+    WEAK_SELF
+    [vc setClippedBlock:^(UIImage *clippedImage){
+        STRONG_SELF
+//        [self dismissViewControllerAnimated:NO completion:nil];
+        BLOCK_EXEC(self.clippedImageBlock,clippedImage);
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

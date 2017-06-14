@@ -77,7 +77,7 @@
     
     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
     if (author == ALAuthorizationStatusAuthorized) {
-        PHFetchResult *results = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+        PHFetchResult *results = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumRecentlyAdded options:nil];
         if (results.count > 0) {
             PHAssetCollection *collection = results.firstObject;
             PHFetchOptions *options = [[PHFetchOptions alloc] init];

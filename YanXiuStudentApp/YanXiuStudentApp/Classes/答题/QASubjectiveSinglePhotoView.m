@@ -46,6 +46,9 @@
 - (void)setImageAnswer:(QAImageAnswer *)imageAnswer {
     _imageAnswer = imageAnswer;
     self.photoImageView.image = imageAnswer.data;
+    if (imageAnswer.url) {
+        [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:imageAnswer.url] placeholderImage:nil];
+    }
 }
 
 - (void)deleteAction {

@@ -29,6 +29,7 @@
 
 #define YXFontMetro_Regular     @"Metro"
 #define YXFontMetro_Light       @"Metro-Light"
+#define YXFontMetro_DemiBold       @"Metro-DemiBold"
 
 #define YXFontArialNarrow     @"ArialNarrow"
 #define YXFontArialNarrow_Bold       @"ArialNarrow-Bold"

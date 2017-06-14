@@ -10,4 +10,5 @@
 
 @interface QASubjectivePhotoHandler : NSObject
 - (void)addPhotoWithCompleteBlock:(void(^)(UIImage *image))completeBlock;
+- (void)browsePhotos:(NSMutableArray<QAImageAnswer *> *)photos oriIndex:(NSInteger)index editable:(BOOL)editable deleteBlock:(void(^)())deleteBlock;
 @end

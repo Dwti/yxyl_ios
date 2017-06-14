@@ -10,13 +10,17 @@
 #import "UIViewController+YXPresent.h"
 #import "QACameraOverlayView.h"
 #import "QAPhotoSelectionViewController.h"
+#import "QAPhotoClipViewController.h"
+#import "QAPhotoBrowseViewController.h"
 
 @interface QASubjectivePhotoHandler()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
-@property (nonatomic, strong) void(^addPhotoBlock)();
+@property (nonatomic, strong) void(^addPhotoBlock)(UIImage *image);
+@property (nonatomic, strong) void(^deleteBlock)();
 @end
 
 @implementation QASubjectivePhotoHandler
+#pragma mark - 照片选取
 - (void)addPhotoWithCompleteBlock:(void(^)(UIImage *image))completeBlock {
     self.addPhotoBlock = completeBlock;
     [self showCamera];
@@ -94,6 +98,12 @@
     }
     
     QAPhotoSelectionViewController *vc = [[QAPhotoSelectionViewController alloc]init];
+    WEAK_SELF
+    [vc setClippedImageBlock:^(UIImage *image){
+        STRONG_SELF
+        [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+        BLOCK_EXEC(self.addPhotoBlock,image);
+    }];
     YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
     [self.imagePickerController presentViewController:navi animated:YES completion:nil];
 }
@@ -116,14 +126,37 @@
 }
 
 #pragma mark - UIImagePickerController delegte
-- (void) imagePickerController: (UIImagePickerController*) picker didFinishPickingMediaWithInfo: (NSDictionary*) info {
+- (void)imagePickerController: (UIImagePickerController*) picker didFinishPickingMediaWithInfo: (NSDictionary*) info {
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//    [self showEditPicViewControllerWithImage:image rootVC:self.vc];
-    [picker dismissViewControllerAnimated: NO completion:nil];
+    QAPhotoClipViewController *vc = [[QAPhotoClipViewController alloc]init];
+    vc.oriImage = image;
+    WEAK_SELF
+    [vc setClippedBlock:^(UIImage *image){
+        STRONG_SELF
+        [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+        BLOCK_EXEC(self.addPhotoBlock,image);
+    }];
+    [self.imagePickerController pushViewController:vc animated:YES];
 }
 
 - (void)imagePickerControllerDidCancel: (UIImagePickerController*) picker {
     [picker dismissViewControllerAnimated: YES completion: ^{}];
+}
+
+#pragma mark - 照片浏览
+- (void)browsePhotos:(NSMutableArray<QAImageAnswer *> *)photos oriIndex:(NSInteger)index editable:(BOOL)editable deleteBlock:(void(^)())deleteBlock {
+    self.deleteBlock = deleteBlock;
+    QAPhotoBrowseViewController *vc = [[QAPhotoBrowseViewController alloc]init];
+    vc.itemArray = photos;
+    vc.oriIndex = index;
+    vc.canDelete = editable;
+    WEAK_SELF
+    [vc setDeleteBlock:^{
+        STRONG_SELF
+        BLOCK_EXEC(self.deleteBlock);
+    }];
+    UIViewController *baseVC = [[UIApplication sharedApplication].keyWindow.rootViewController nyx_visibleViewController];
+    [baseVC.navigationController pushViewController:vc animated:YES];
 }
 
 @end

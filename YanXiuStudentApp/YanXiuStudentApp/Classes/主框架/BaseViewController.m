@@ -53,7 +53,9 @@
     self.navigationController.navigationBarHidden = NO;
     NSLog(@"-----%@", [self class]);
     YXNavigationController *navi = (YXNavigationController *)self.navigationController;
-    navi.theme = self.naviTheme;
+    if ([navi isKindOfClass:[YXNavigationController class]]) {
+        navi.theme = self.naviTheme;
+    }
 }
 
 #pragma mark - 相关的Util

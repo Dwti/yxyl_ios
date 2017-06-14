@@ -89,6 +89,7 @@
 		<string>Arial Rounded Bold.ttf</string>
 		<string>METRO-BOLD PLAYTYPE.otf</string>
 		<string>METRO-MEDIUM PLAYTYPE.otf</string>
+		<string>METRO-DEMIBOLD PLAYTYPE.OTF</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

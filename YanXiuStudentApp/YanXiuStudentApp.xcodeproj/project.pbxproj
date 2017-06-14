@@ -478,6 +478,12 @@
 		7C33F6E61E4C0B5B003FD304 /* MistakeRedoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C33F6E41E4C0B5B003FD304 /* MistakeRedoViewController.m */; };
 		7C3438B11EEFE022003BA6B8 /* QAPhotoCollectionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438B01EEFE022003BA6B8 /* QAPhotoCollectionsView.m */; };
 		7C3438B21EEFE022003BA6B8 /* QAPhotoCollectionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438B01EEFE022003BA6B8 /* QAPhotoCollectionsView.m */; };
+		7C3438B61EF2245F003BA6B8 /* QAPhotoClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438B51EF2245F003BA6B8 /* QAPhotoClipViewController.m */; };
+		7C3438B71EF2245F003BA6B8 /* QAPhotoClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438B51EF2245F003BA6B8 /* QAPhotoClipViewController.m */; };
+		7C3438BA1EF22701003BA6B8 /* QAPhotoClipBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438B91EF22701003BA6B8 /* QAPhotoClipBottomView.m */; };
+		7C3438BB1EF22701003BA6B8 /* QAPhotoClipBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438B91EF22701003BA6B8 /* QAPhotoClipBottomView.m */; };
+		7C3438BE1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438BD1EF22FE5003BA6B8 /* QAPhotoClipView.m */; };
+		7C3438BF1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3438BD1EF22FE5003BA6B8 /* QAPhotoClipView.m */; };
 		7C3566861D9B4E5700DFB876 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3566851D9B4E5700DFB876 /* libc++.tbd */; };
 		7C3566881D9B4E6200DFB876 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3566871D9B4E6200DFB876 /* libz.tbd */; };
 		7C35668A1D9B4E6E00DFB876 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3566891D9B4E6E00DFB876 /* libsqlite3.tbd */; };
@@ -686,6 +692,14 @@
 		7C8358831DC1DAF1007BB067 /* GetKnpListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8358811DC1DAF1007BB067 /* GetKnpListRequest.m */; };
 		7C861DB01DC87DD9004D11DA /* ImageUploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C861DAF1DC87DD9004D11DA /* ImageUploadProgressView.m */; };
 		7C861DB11DC87DD9004D11DA /* ImageUploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C861DAF1DC87DD9004D11DA /* ImageUploadProgressView.m */; };
+		7C8885551EF8B2970073EF1F /* QAPhotoBrowseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885541EF8B2970073EF1F /* QAPhotoBrowseView.m */; };
+		7C8885561EF8B2970073EF1F /* QAPhotoBrowseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885541EF8B2970073EF1F /* QAPhotoBrowseView.m */; };
+		7C8885591EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885581EF8B2C30073EF1F /* QAPhotoBrowseViewController.m */; };
+		7C88855A1EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885581EF8B2C30073EF1F /* QAPhotoBrowseViewController.m */; };
+		7C88855D1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C88855C1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m */; };
+		7C88855E1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C88855C1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m */; };
+		7C8885601EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
+		7C8885611EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
 		7C89DD041DA8927200194120 /* QAComplexAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C89DCED1DA8927200194120 /* QAComplexAnswerQuestion.m */; };
 		7C89DD051DA8927200194120 /* QAComplexAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C89DCED1DA8927200194120 /* QAComplexAnswerQuestion.m */; };
 		7C89DD061DA8927200194120 /* QAImageAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C89DCEF1DA8927200194120 /* QAImageAnswerQuestion.m */; };
@@ -1925,6 +1939,12 @@
 		7C33F6E41E4C0B5B003FD304 /* MistakeRedoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeRedoViewController.m; sourceTree = "<group>"; };
 		7C3438AF1EEFE022003BA6B8 /* QAPhotoCollectionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoCollectionsView.h; sourceTree = "<group>"; };
 		7C3438B01EEFE022003BA6B8 /* QAPhotoCollectionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoCollectionsView.m; sourceTree = "<group>"; };
+		7C3438B41EF2245F003BA6B8 /* QAPhotoClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoClipViewController.h; sourceTree = "<group>"; };
+		7C3438B51EF2245F003BA6B8 /* QAPhotoClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoClipViewController.m; sourceTree = "<group>"; };
+		7C3438B81EF22701003BA6B8 /* QAPhotoClipBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoClipBottomView.h; sourceTree = "<group>"; };
+		7C3438B91EF22701003BA6B8 /* QAPhotoClipBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoClipBottomView.m; sourceTree = "<group>"; };
+		7C3438BC1EF22FE5003BA6B8 /* QAPhotoClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoClipView.h; sourceTree = "<group>"; };
+		7C3438BD1EF22FE5003BA6B8 /* QAPhotoClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoClipView.m; sourceTree = "<group>"; };
 		7C3566851D9B4E5700DFB876 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		7C3566871D9B4E6200DFB876 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7C3566891D9B4E6E00DFB876 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -2162,6 +2182,13 @@
 		7C8358811DC1DAF1007BB067 /* GetKnpListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetKnpListRequest.m; sourceTree = "<group>"; };
 		7C861DAE1DC87DD9004D11DA /* ImageUploadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUploadProgressView.h; sourceTree = "<group>"; };
 		7C861DAF1DC87DD9004D11DA /* ImageUploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUploadProgressView.m; sourceTree = "<group>"; };
+		7C8885531EF8B2970073EF1F /* QAPhotoBrowseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoBrowseView.h; sourceTree = "<group>"; };
+		7C8885541EF8B2970073EF1F /* QAPhotoBrowseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoBrowseView.m; sourceTree = "<group>"; };
+		7C8885571EF8B2C30073EF1F /* QAPhotoBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoBrowseViewController.h; sourceTree = "<group>"; };
+		7C8885581EF8B2C30073EF1F /* QAPhotoBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoBrowseViewController.m; sourceTree = "<group>"; };
+		7C88855B1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoBrowseTopBarView.h; sourceTree = "<group>"; };
+		7C88855C1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoBrowseTopBarView.m; sourceTree = "<group>"; };
+		7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-DEMIBOLD PLAYTYPE.OTF"; sourceTree = "<group>"; };
 		7C89DCEC1DA8927200194120 /* QAComplexAnswerQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAComplexAnswerQuestion.h; sourceTree = "<group>"; };
 		7C89DCED1DA8927200194120 /* QAComplexAnswerQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAComplexAnswerQuestion.m; sourceTree = "<group>"; };
 		7C89DCEE1DA8927200194120 /* QAImageAnswerQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAImageAnswerQuestion.h; sourceTree = "<group>"; };
@@ -3027,6 +3054,7 @@
 				F7F968BD1C103823008036B6 /* Arial Rounded Bold.ttf */,
 				F7F968BE1C103823008036B6 /* METRO-BOLD PLAYTYPE.otf */,
 				F72481D81C52379D00BA4B95 /* METRO-MEDIUM PLAYTYPE.otf */,
+				7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */,
 				F7F968BF1C103823008036B6 /* FZZZHONGJW GB 1 0(方正正中黑简体).ttf */,
 				0F646BAA1BE34D1200606EBA /* exerciseList */,
 				0F5D09DA1BB2472100B6C038 /* test.html */,
@@ -3806,6 +3834,12 @@
 				7C3438B01EEFE022003BA6B8 /* QAPhotoCollectionsView.m */,
 				7C29043E1EEFD53D005F7F55 /* QAPhotoCollectionCell.h */,
 				7C29043F1EEFD53D005F7F55 /* QAPhotoCollectionCell.m */,
+				7C3438B41EF2245F003BA6B8 /* QAPhotoClipViewController.h */,
+				7C3438B51EF2245F003BA6B8 /* QAPhotoClipViewController.m */,
+				7C3438B81EF22701003BA6B8 /* QAPhotoClipBottomView.h */,
+				7C3438B91EF22701003BA6B8 /* QAPhotoClipBottomView.m */,
+				7C3438BC1EF22FE5003BA6B8 /* QAPhotoClipView.h */,
+				7C3438BD1EF22FE5003BA6B8 /* QAPhotoClipView.m */,
 			);
 			name = "图片选取";
 			sourceTree = "<group>";
@@ -4276,6 +4310,7 @@
 				E9973C661DB86B25004966AD /* 解析 */,
 				7C21D5551E3469B000EF9B76 /* 语音批注 */,
 				7C3438B31EF10E35003BA6B8 /* 图片选取 */,
+				7C8885521EF8B1790073EF1F /* 图片浏览 */,
 				7C7BF7CF1E0A5FDA007B017C /* QASubjectiveQuestionCell.h */,
 				7C7BF7D01E0A5FDA007B017C /* QASubjectiveQuestionCell.m */,
 				7C7BF7D31E0A6270007B017C /* QASubjectiveFillPlaceholderView.h */,
@@ -4514,6 +4549,19 @@
 				7C2E8A611DBDB45A00C8EB7F /* QAClozeComplexView.m */,
 			);
 			name = "答题";
+			sourceTree = "<group>";
+		};
+		7C8885521EF8B1790073EF1F /* 图片浏览 */ = {
+			isa = PBXGroup;
+			children = (
+				7C8885571EF8B2C30073EF1F /* QAPhotoBrowseViewController.h */,
+				7C8885581EF8B2C30073EF1F /* QAPhotoBrowseViewController.m */,
+				7C8885531EF8B2970073EF1F /* QAPhotoBrowseView.h */,
+				7C8885541EF8B2970073EF1F /* QAPhotoBrowseView.m */,
+				7C88855B1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.h */,
+				7C88855C1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m */,
+			);
+			name = "图片浏览";
 			sourceTree = "<group>";
 		};
 		7C9092801E09456B0048C44F /* View */ = {
@@ -6339,6 +6387,7 @@
 				F773CAC61C4627F400AAE684 /* test.html in Resources */,
 				F773CAC81C4627F400AAE684 /* 2.html in Resources */,
 				F7C98BD41C55D80C00A6C56D /* CommonImage.xcassets in Resources */,
+				7C8885611EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */,
 				F773CAC91C4627F400AAE684 /* t@2x.png in Resources */,
 				7C20D34E1E5D7FFA0045AF77 /* input.json in Resources */,
 				0FBD5B4D1C4F3411003B7D6D /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -6375,6 +6424,7 @@
 				F775508B1C4E43860002FE45 /* 引导3.png in Resources */,
 				7CDE19871DD0919A00469096 /* Images2.0.xcassets in Resources */,
 				0F0D6E551C60510F0034FC6C /* MJRefresh.bundle in Resources */,
+				7C8885601EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */,
 				F775508D1C4E43860002FE45 /* FZZZHONGJW GB 1 0(方正正中黑简体).ttf in Resources */,
 				7CDE198D1DD0924F00469096 /* yxConfig.plist in Resources */,
 				F775508E1C4E43860002FE45 /* 0.html in Resources */,
@@ -6543,6 +6593,7 @@
 				7C89DD111DA8927200194120 /* QAQuestionFactory.m in Sources */,
 				301DAE341CBDE83800AC5CF0 /* YXHomeworkCell2_2.m in Sources */,
 				0F235B1F1C5B07A300CFCAE3 /* YXModifyNicknameViewController_Pad.m in Sources */,
+				7C8885561EF8B2970073EF1F /* QAPhotoBrowseView.m in Sources */,
 				0FB211AB1C57268E00594BEA /* YXUserManager.m in Sources */,
 				7C027F3A1EB1F76A001682EA /* GCDTimer.m in Sources */,
 				F78C3E791C7595F300D81F4B /* YXApnsQAReportViewController_Pad.m in Sources */,
@@ -6735,6 +6786,7 @@
 				7C2B66F51DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
 				0FB211C51C575F7100594BEA /* YXLoginBaseViewController_Pad.m in Sources */,
 				F773C9691C4627F400AAE684 /* YXPhotoBrowser.m in Sources */,
+				7C88855A1EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */,
 				0F68BDF01C73289400AB3382 /* YXRankViewController_Pad.m in Sources */,
 				30500AD91D2BAE9100E4968A /* NSString+YXRecordContent.m in Sources */,
 				F773C96B1C4627F400AAE684 /* TestsRootViewController.m in Sources */,
@@ -6822,6 +6874,7 @@
 				F773C9AE1C4627F400AAE684 /* YXChapterPointSegmentControl.m in Sources */,
 				7C3D0B781DD1A53A005ED76A /* LogRecordEntity+CoreDataProperties.m in Sources */,
 				7C38E72C1C4E2C9B00EC18D0 /* YXQAUploadImageManager.m in Sources */,
+				7C3438BB1EF22701003BA6B8 /* QAPhotoClipBottomView.m in Sources */,
 				7C2903C81EE686A3005F7F55 /* QAClozeBlankView.m in Sources */,
 				7CEE06E61DC2FC3900AA898B /* ChapterTreeDataFetcher.m in Sources */,
 				0F0D6E401C604E610034FC6C /* YXPagedListViewControllerBase_Pad.m in Sources */,
@@ -6832,6 +6885,7 @@
 				F7A3B4B01C571E860037245A /* YXExerciseHomeworkHeaderView_Pad.m in Sources */,
 				7CFD1E801D5069FB002C2624 /* YXQuestionFactory.m in Sources */,
 				7C953B181C59EFD600A9A7AF /* YXQAAnalysisSingleChooseView_Pad.m in Sources */,
+				7C88855E1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m in Sources */,
 				7C953B0D1C59C3E700A9A7AF /* YXQAAnalysisUnfoldView_Pad.m in Sources */,
 				F773C9B71C4627F400AAE684 /* YXReportErrorCell.m in Sources */,
 				7CA92FFE1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */,
@@ -6846,6 +6900,7 @@
 				7C69F23D1E6D3ED10076984F /* MistakeRedoCatalogRequest.m in Sources */,
 				0F2B6EC31C7592DE0055114E /* YXProvinceCitySelectionCell.m in Sources */,
 				0FB211B01C57268E00594BEA /* YXSSOAuthManager.m in Sources */,
+				7C3438BF1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */,
 				F773C9CD1C4627F400AAE684 /* YXQAChooseAnswerCell2.m in Sources */,
 				7CD58E461D59D5AD00492837 /* YXConnectContentCell.m in Sources */,
 				7C5565D91DCB227900966875 /* ExerciseHistoryKnpViewController.m in Sources */,
@@ -6899,6 +6954,7 @@
 				F7D75D1D1C58BCC30013097B /* YXExerciseChooseEdition_SubjectEditionListedView.m in Sources */,
 				7C2904411EEFD53D005F7F55 /* QAPhotoCollectionCell.m in Sources */,
 				7C3D0B7A1DD1A53A005ED76A /* RegularRecordEntity.m in Sources */,
+				7C3438B71EF2245F003BA6B8 /* QAPhotoClipViewController.m in Sources */,
 				7C89DD0D1DA8927200194120 /* QAPaperModel.m in Sources */,
 				7CFAADB31DAC95D800F13532 /* QAComlexQuestionAnswerBaseView.m in Sources */,
 				7C1C3D051E52BA6000B156A8 /* MistakeQuestionSheetView.m in Sources */,
@@ -7209,6 +7265,7 @@
 				7C49B1981DC057D500E39555 /* QAAnalysisListenComplexView.m in Sources */,
 				7C9092891E0A2D700048C44F /* SearchClassPromptView.m in Sources */,
 				0FB211BB1C5726CA00594BEA /* YXSSOAuthDefine.m in Sources */,
+				7C8885591EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */,
 				7C89DD161DA8927200194120 /* QAQuestionUtil.m in Sources */,
 				0FBD5B091C4F3344003B7D6D /* YXCommonErrorView.m in Sources */,
 				7C75A27B1ED2B54A001A3EB3 /* QAAnswerQuestionViewController.m in Sources */,
@@ -7321,6 +7378,7 @@
 				0FECC6801C5F486200E8F48E /* YXUnfinishedHeaderCell.m in Sources */,
 				7C04C1C61E8A62050079F35C /* AccountIDInputView.m in Sources */,
 				7C5565D01DCB1E8C00966875 /* ExerciseHistoryContentViewController.m in Sources */,
+				7C3438BE1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */,
 				0FECC6781C5F321400E8F48E /* YXSearchClassRequest.m in Sources */,
 				0FBD5ADA1C4F3338003B7D6D /* UIColor+YXColor.m in Sources */,
 				7CCF96AD1D546A8E002B2F9F /* YXQAReportCorrectRateCell.m in Sources */,
@@ -7347,6 +7405,7 @@
 				7C01540A1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */,
 				7CDE19991DD1758E00469096 /* MistakeQuestionManager.m in Sources */,
 				F7754F701C4E43860002FE45 /* YXQADataManager.m in Sources */,
+				7C3438BA1EF22701003BA6B8 /* QAPhotoClipBottomView.m in Sources */,
 				7C3D0B8A1DD1A6C8005ED76A /* PostRequest.m in Sources */,
 				7C9EDC4F1DCDA0220001C048 /* RegisterByJoinClassRequest.m in Sources */,
 				7C2904301EEF90DE005F7F55 /* QACameraOverlayView.m in Sources */,
@@ -7520,6 +7579,7 @@
 				F7754FF01C4E43860002FE45 /* TestUploadRequest.m in Sources */,
 				0FE6C9F61C5A1029005FBD5B /* YXModifyPasswordRequest.m in Sources */,
 				7C1C3D001E51651400B156A8 /* QAUnknownQuestionViewContainer.m in Sources */,
+				7C88855D1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m in Sources */,
 				7C38E79D1C4F7A5100EC18D0 /* YXGradientView.m in Sources */,
 				7CBFF54B1E88F17400C363BD /* MistakeSegmentView.m in Sources */,
 				F7754FF61C4E43860002FE45 /* YXApnsHomeworkViewController.m in Sources */,
@@ -7533,6 +7593,7 @@
 				0FE6C9FB1C5A1039005FBD5B /* YXUserInfoRequest.m in Sources */,
 				7C69F2341E6D3DFA0076984F /* MistakeRedoFirstRequest.m in Sources */,
 				7CDE19601DD0687000469096 /* AppDelegateHelper_Pad.m in Sources */,
+				7C8885551EF8B2970073EF1F /* QAPhotoBrowseView.m in Sources */,
 				7C3D0B861DD1A6C8005ED76A /* GetRequest.m in Sources */,
 				F7754FFE1C4E43860002FE45 /* YXModifyNickNameViewController.m in Sources */,
 				7C2904401EEFD53D005F7F55 /* QAPhotoCollectionCell.m in Sources */,
@@ -7696,6 +7757,7 @@
 				0FE6C9FA1C5A1036005FBD5B /* YXUploadHeadImgRequest.m in Sources */,
 				0FE6CA161C5A11D9005FBD5B /* YXGetPracticeEditionRequest.m in Sources */,
 				0FBD5ADB1C4F3338003B7D6D /* UIImage+YXImage.m in Sources */,
+				7C3438B61EF2245F003BA6B8 /* QAPhotoClipViewController.m in Sources */,
 				7C3D0B731DD1A53A005ED76A /* InstantRecordEntity+CoreDataProperties.m in Sources */,
 				7CDE19771DD0906A00469096 /* main.m in Sources */,
 				F775506F1C4E43860002FE45 /* YXQAUploadImageManager.m in Sources */,

@@ -31,16 +31,15 @@
                             @"testYXScrollViewController",
                             @"testYXFillBlankViewController",
                             @"testRank",
-                            @"testImagePicker",
+                            @"testPhotoClip",
                             @"testDiagnose",
                             @"蔡雷_01",
                             ];
     [super viewDidLoad];
 }
-- (void)testImagePicker
-{
-//    YXTestImagePickerViewController *vc = [[YXTestImagePickerViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+- (void)testPhotoClip {
+    QAPhotoClipViewController *vc = [[QAPhotoClipViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)作业 {
     HomeworkMainViewController *vc = [[HomeworkMainViewController alloc] init];
