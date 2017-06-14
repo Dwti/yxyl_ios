@@ -41,4 +41,29 @@
     }];
 }
 
+- (UIViewController *)nyx_visibleViewController{
+    if(self.presentingViewController){
+        return self;
+    }
+    else{
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        UIViewController *rootViewController = window.rootViewController;
+        return [UIViewController nyx_getVisibleViewControllerFrom:rootViewController];
+    }
+}
++ (UIViewController *)nyx_getVisibleViewControllerFrom:(UIViewController *) vc {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        return [UIViewController nyx_getVisibleViewControllerFrom:[((UINavigationController *) vc) visibleViewController]];
+    }
+    else if ([vc isKindOfClass:[UITabBarController class]]) {
+        return [UIViewController nyx_getVisibleViewControllerFrom:[((UITabBarController *) vc) selectedViewController]];
+    } else {
+        if (vc.presentedViewController) {
+            return [UIViewController nyx_getVisibleViewControllerFrom:vc.presentedViewController];
+        } else {
+            return vc;
+        }
+    }
+}
+
 @end

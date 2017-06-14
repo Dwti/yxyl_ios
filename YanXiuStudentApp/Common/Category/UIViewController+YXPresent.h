@@ -13,4 +13,6 @@
 - (void)yx_presentViewController:(UIViewController *)vc completion:(void (^)(void))completion;
 - (void)yx_dismiss;
 
+- (UIViewController *)nyx_visibleViewController;
+
 @end

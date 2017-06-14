@@ -9,6 +9,7 @@
 #import "QASubjectivePhotoCell.h"
 #import "QASubjectiveSinglePhotoView.h"
 #import "QASubjectiveAddPhotoView.h"
+#import "QASubjectivePhotoHandler.h"
 
 static const NSInteger kMaxPhotoCount = 3;
 
@@ -16,6 +17,7 @@ static const NSInteger kMaxPhotoCount = 3;
 @property (nonatomic, strong) NSMutableArray<QAImageAnswer *> *photoArray;
 @property (nonatomic, assign) BOOL isEditable;
 @property (nonatomic, strong) NSMutableArray<QASubjectiveSinglePhotoView *> *photoViewArray;
+@property (nonatomic, strong) QASubjectivePhotoHandler *photoHandler;
 @end
 
 @implementation QASubjectivePhotoCell
@@ -23,6 +25,7 @@ static const NSInteger kMaxPhotoCount = 3;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.photoViewArray = [NSMutableArray array];
+        self.photoHandler = [[QASubjectivePhotoHandler alloc]init];
         [self setupUI];
     }
     return self;
@@ -64,7 +67,7 @@ static const NSInteger kMaxPhotoCount = 3;
 }
 
 - (void)addPhotoAction {
-    
+    [self goAddPhoto];
 }
 
 - (void)setupPhotosView {
@@ -96,8 +99,10 @@ static const NSInteger kMaxPhotoCount = 3;
     
     if (self.isEditable && self.photoArray.count<kMaxPhotoCount) {
         QASubjectiveAddPhotoView *view = [[QASubjectiveAddPhotoView alloc]initWithFrame:CGRectMake(x+8, 15, 70, 70)];
+        WEAK_SELF
         [view setAddAction:^{
-            
+            STRONG_SELF
+            [self goAddPhoto];
         }];
         [self.contentView addSubview:view];
     }
@@ -110,6 +115,13 @@ static const NSInteger kMaxPhotoCount = 3;
         }
     }
     return nil;
+}
+
+#pragma mark - Photo handle
+- (void)goAddPhoto {
+    [self.photoHandler addPhotoWithCompleteBlock:^(UIImage *image) {
+        
+    }];
 }
 
 @end
