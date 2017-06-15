@@ -176,6 +176,7 @@
 #import "QAFillQuestionRedoView.h"
 #import "QAFillQuestionView.h"
 #import "QAFillQuestionViewContainer.h"
+#import "QAInputAccessoryView.h"
 #import "QAListenComplexCell.h"
 #import "QAListenComplexView.h"
 #import "QAListenContainerView.h"

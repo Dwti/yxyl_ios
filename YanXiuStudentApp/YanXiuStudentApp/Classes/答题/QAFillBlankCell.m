@@ -9,19 +9,20 @@
 #import "QAFillBlankCell.h"
 #import "QACoreTextViewStringScanner.h"
 #import "QABlankItemInfo.h"
+#import "QAInputAccessoryView.h"
 
 static const NSInteger kMaxBlankWidth = 4;
 static const NSInteger kBlankWidth = 3;
 
-@interface QAFillBlankCell()<UITextFieldDelegate>
+@interface QAFillBlankCell()<UITextViewDelegate>
 @property (nonatomic, strong) DTAttributedTextContentView *htmlView;
 @property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
 @property (nonatomic, strong) QACoreTextViewStringScanner *scanner;
 @property (nonatomic, strong) NSString *placeholder;
 @property (nonatomic, strong) NSString *placeholderForPrefix;
 @property (nonatomic, strong) NSMutableArray<QABlankItemInfo *> *blankItemArray;
-@property (nonatomic, strong) UITextField *textField;
-@property (nonatomic, strong) UITextField *hiddenTextField;
+@property (nonatomic, strong) QAInputAccessoryView *costomTextView;
+@property (nonatomic, strong) UITextView *hiddenTextView;
 @property (nonatomic, assign) NSInteger currentIndex;
 @end
 
@@ -80,17 +81,17 @@ static const NSInteger kBlankWidth = 3;
         [self.delegate tableViewCell:self updateWithHeight:totalHeight];
     };
     
-    self.textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
-    self.textField.returnKeyType = UIReturnKeyDone;
-    self.textField.backgroundColor = [UIColor whiteColor];
-    self.textField.delegate = self;
+    self.costomTextView = [[QAInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55.0f)];
+    self.costomTextView.confirmBlock = ^{
+        STRONG_SELF
+        [self confirmClick];
+    };
     
-    self.hiddenTextField = [[UITextField alloc]init];
-    self.hiddenTextField.hidden = YES;
-    self.hiddenTextField.inputAccessoryView = self.textField;
-    self.hiddenTextField.returnKeyType = UIReturnKeyDone;
-    self.hiddenTextField.delegate = self;
-    [self.contentView addSubview:self.hiddenTextField];
+    self.hiddenTextView = [[UITextView alloc]init];
+    self.hiddenTextView.hidden = YES;
+    self.hiddenTextView.inputAccessoryView = self.costomTextView;
+    self.hiddenTextView.delegate = self;
+    [self.contentView addSubview:self.hiddenTextView];
 }
 
 - (void)setupObserver {
@@ -215,9 +216,9 @@ static const NSInteger kBlankWidth = 3;
             }
         }
     }
-    self.textField.text = self.question.myAnswers[self.currentIndex];
-    if (![self.textField isFirstResponder]) {
-        [self.hiddenTextField becomeFirstResponder];
+    self.costomTextView.inputTextView.text = self.question.myAnswers[self.currentIndex];
+    if (![self.costomTextView.inputTextView isFirstResponder]) {
+        [self.hiddenTextView becomeFirstResponder];
     }
 }
 
@@ -301,18 +302,10 @@ static const NSInteger kBlankWidth = 3;
     return [NSString stringWithFormat:@"<font color=\"#89E00D\">%@</font>",string];
 }
 
-#pragma mark - UITextFieldDelegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.hiddenTextField) {
-        [self.textField becomeFirstResponder];
-    }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.textField resignFirstResponder];
-    if (![textField.text isEqualToString:self.question.myAnswers[self.currentIndex]]) {
+- (void)confirmClick {
+    if (![self.costomTextView.inputTextView.text isEqualToString:self.question.myAnswers[self.currentIndex]]) {
         YXQAAnswerState fromState = [self.question answerState];
-        NSString *answer = [textField.text nyx_stringByTrimmingExtraSpaces];
+        NSString *answer = [self.costomTextView.inputTextView.text nyx_stringByTrimmingExtraSpaces];
         [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:answer];
         YXQAAnswerState toState = [self.question answerState];
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
@@ -329,7 +322,14 @@ static const NSInteger kBlankWidth = 3;
             }
         }
     }
-    return YES;
+    [self endEditing:YES];
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (textView == self.hiddenTextView) {
+        [self.costomTextView.inputTextView becomeFirstResponder];
+    }
 }
 
 @end

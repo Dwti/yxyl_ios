@@ -334,6 +334,7 @@
 		30F4561F1CBE328200FF2CD9 /* YXRedNumberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB92C81CBE182500B72D87 /* YXRedNumberRequest.m */; };
 		30F669CE1D2A1028002B1C1D /* NSString+YXRecordContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F669CD1D2A1028002B1C1D /* NSString+YXRecordContent.m */; };
 		30FAF0761D1149CB00C3821E /* NSDictionary+Dictionarys.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FAF0751D1149CB00C3821E /* NSDictionary+Dictionarys.m */; };
+		433E64671EF257A300AA447B /* QAInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E64661EF257A300AA447B /* QAInputAccessoryView.m */; };
 		7C01540A1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540B1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C01540D1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m */; };
@@ -1711,6 +1712,8 @@
 		30FAF0741D1149CB00C3821E /* NSDictionary+Dictionarys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Dictionarys.h"; sourceTree = "<group>"; };
 		30FAF0751D1149CB00C3821E /* NSDictionary+Dictionarys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Dictionarys.m"; sourceTree = "<group>"; };
 		313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		433E64651EF257A300AA447B /* QAInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAInputAccessoryView.h; sourceTree = "<group>"; };
+		433E64661EF257A300AA447B /* QAInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAInputAccessoryView.m; sourceTree = "<group>"; };
 		479A925F547662E3DE8C6CE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		48385987A8376EDFB24EE3F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		761259F71BE854D40073EEA3 /* YXFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFeedbackViewController.h; sourceTree = "<group>"; };
@@ -4233,6 +4236,8 @@
 				7C2903B01EE104E3005F7F55 /* QAFillBlankCell.m */,
 				7C2903B31EE12DB7005F7F55 /* QABlankItemInfo.h */,
 				7C2903B41EE12DB8005F7F55 /* QABlankItemInfo.m */,
+				433E64651EF257A300AA447B /* QAInputAccessoryView.h */,
+				433E64661EF257A300AA447B /* QAInputAccessoryView.m */,
 				E9973C611DB86AF8004966AD /* 答题 */,
 				E9973C621DB86AFC004966AD /* 解析 */,
 				7C1A62A01E2F0891009BA65C /* 重做 */,
@@ -7621,6 +7626,7 @@
 				7CDE19911DD0934F00469096 /* AppDelegateHelper_Phone.m in Sources */,
 				301E576A1DC1DE7B00090087 /* OptionsImageView.m in Sources */,
 				7C953AD51C586F4800A9A7AF /* YXQACoreTextHelper.m in Sources */,
+				433E64671EF257A300AA447B /* QAInputAccessoryView.m in Sources */,
 				F77550611C4E43860002FE45 /* YXAddPhotoTableViewCell.m in Sources */,
 				F77550631C4E43860002FE45 /* YXYueCell2.m in Sources */,
 				7C89DD0C1DA8927200194120 /* QAPaperModel.m in Sources */,
