@@ -26,6 +26,7 @@
 #import "MistakeRedoViewController.h"
 #import "QAAnswerQuestionViewController.h"
 #import "QAAnalysisViewController.h"
+#import "QAReportViewController.h"
 
 @interface YXPaperMainViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -223,9 +224,9 @@
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 102){ // 报告
-        YXQAReportViewController *vc = [[YXQAReportViewController alloc] init];
+        QAReportViewController *vc = [[QAReportViewController alloc] init];
         vc.model = model;
-        vc.canDoExerciseAgain = NO;
+//        vc.canDoExerciseAgain = NO;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 103){ // 重做
         MistakeRedoViewController *vc = [[MistakeRedoViewController alloc] init];

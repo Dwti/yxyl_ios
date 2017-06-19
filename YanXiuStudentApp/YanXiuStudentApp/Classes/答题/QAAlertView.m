@@ -97,7 +97,7 @@ CGFloat const kQADefaultContentViewWith = 327;
     UIView *defaultView = [[UIView alloc]init];
     UIImageView *contentBGView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"作业上传保存失败断网的弹窗背景"]];
     
-    UIImageView *tipIconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+    UIImageView *tipIconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:self.imageName]];
     tipIconView.backgroundColor = [UIColor blueColor];
 
     UILabel *titleLabel = [[UILabel alloc]init];

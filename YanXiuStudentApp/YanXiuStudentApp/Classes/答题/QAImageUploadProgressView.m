@@ -30,7 +30,7 @@
     [self addSubview:containerView];
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(327, 202));
+        make.size.mas_equalTo(CGSizeMake(327 * kPhoneWidthRatio, 202 * kPhoneWidthRatio));
     }];
     
     UIImageView *bgImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"作业提交保存进度条背景"]];
@@ -46,7 +46,7 @@
     self.promptLabel.text = @"作业图片提交中...";
     [containerView addSubview:self.promptLabel];
     [self.promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(containerView.mas_top).mas_offset(30);
+        make.top.mas_equalTo(containerView.mas_top).mas_offset(30 * kPhoneWidthRatio);
         make.centerX.mas_equalTo(0);
     }];
     
@@ -56,7 +56,7 @@
     self.progressLabel.textColor = [UIColor colorWithHexString:@"336600"];
     [containerView addSubview:self.progressLabel];
     [self.progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.promptLabel.mas_bottom).mas_offset(15.0f);
+        make.top.mas_equalTo(self.promptLabel.mas_bottom).mas_offset(15.0f * kPhoneWidthRatio);
         make.centerX.mas_equalTo(0);
     }];
     
@@ -66,9 +66,9 @@
     bgBarView.clipsToBounds = YES;
     [containerView addSubview:bgBarView];
     [bgBarView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-30);
+        make.bottom.mas_equalTo(-30 * kPhoneWidthRatio);
         make.centerX.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(255, 6));
+        make.size.mas_equalTo(CGSizeMake(255 * kPhoneWidthRatio, 6 * kPhoneWidthRatio));
     }];
     self.progressBarView = [[UIView alloc]init];
     self.progressBarView.backgroundColor = [UIColor colorWithHexString:@"336600"];
@@ -87,16 +87,16 @@
     self.progressLabel.attributedText = [self uploadProgress:[NSString stringWithFormat:@"%@",@(uploadedCount)] withTotal:[NSString stringWithFormat:@"%@",@(totalCount)]];
     CGFloat progress = 0.f;
     if (totalCount > 0) {
-        progress = (CGFloat)uploadedCount/(CGFloat)totalCount;
+        progress = (CGFloat)uploadedCount/(CGFloat)totalCount * 0.95;
     }
     [self.progressBarView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.top.bottom.mas_equalTo(0);
         make.width.mas_equalTo(self.progressBarView.superview.mas_width).multipliedBy(progress);
     }];
     [self.progressTipImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.progressBarView.mas_right).mas_offset(-6);
+        make.left.mas_equalTo(self.progressBarView.mas_right).mas_offset(-6 * kPhoneWidthRatio);
         make.bottom.mas_equalTo(self.progressBarView.mas_top);
-        make.size.mas_equalTo(CGSizeMake(30, 46));
+        make.size.mas_equalTo(CGSizeMake(30 * kPhoneWidthRatio, 46 * kPhoneWidthRatio));
     }];
 }
 

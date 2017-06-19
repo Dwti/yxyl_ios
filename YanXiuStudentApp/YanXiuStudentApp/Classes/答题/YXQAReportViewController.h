@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "YXSubmitQuestionRequest.h"
+#import "YXSubmitQuestionRequest.h" 
 #import "YXQAAnalysisDataConfig.h"
 
 @interface YXQAReportViewController : BaseViewController

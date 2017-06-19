@@ -12,6 +12,8 @@
 #import "YXQAReportViewController.h"
 #import "MistakeRedoViewController.h"
 #import "QAAnalysisViewController.h"
+#import "QAAnswerQuestionViewController.h"
+#import "QAReportViewController.h"
 
 @interface PaperListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -112,7 +114,7 @@
 }
 
 - (void)gotoAnswer:(QAPaperModel *)model {
-    YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc]init];
+    QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc]init];
     vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -124,9 +126,9 @@
 }
 
 - (void)gotoReport:(QAPaperModel *)model {
-    YXQAReportViewController *vc = [[YXQAReportViewController alloc] init];
+    QAReportViewController *vc = [[QAReportViewController alloc] init];
     vc.model = model;
-    vc.canDoExerciseAgain = NO;
+//    vc.canDoExerciseAgain = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

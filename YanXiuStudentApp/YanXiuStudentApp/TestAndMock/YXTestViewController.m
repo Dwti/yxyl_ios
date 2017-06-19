@@ -187,7 +187,7 @@ TestUploadRequest *_TestUploadRequest;
 }
 
 - (void)testDiagnose{
-    YXQAReportViewController *vc = [[YXQAReportViewController alloc]init];
+    QAReportViewController *vc = [[QAReportViewController alloc]init];
 //    vc.canDoAgain = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

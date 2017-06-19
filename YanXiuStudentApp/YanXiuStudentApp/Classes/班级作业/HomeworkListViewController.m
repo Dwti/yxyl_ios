@@ -10,6 +10,7 @@
 #import "YXHomeworkListFetcher.h"
 #import "HomeworkListCell.h"
 #import "QAAnswerQuestionViewController.h"
+#import "QAReportViewController.h"
 
 @interface HomeworkListViewController ()
 @property (nonatomic, strong) YXHomeworkListGroupsItem_Data *data;
@@ -149,11 +150,11 @@
             return;
         }
         if (item.data.count > 0) {
-//            YXIntelligenceQuestion *question = item.data[0];
-//            YXQAReportViewController *vc = [[YXQAReportViewController alloc] init];
-//            vc.model = [QAPaperModel modelFromRawData:question];
+            YXIntelligenceQuestion *question = item.data[0];
+            QAReportViewController *vc = [[QAReportViewController alloc] init];
+            vc.model = [QAPaperModel modelFromRawData:question];
 //            vc.pType = YXPTypeGroupHomework;
-//            [self.navigationController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }];
 }

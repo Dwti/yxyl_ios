@@ -13,6 +13,7 @@
 #import "YXRecordManager.h"
 #import "YXProblemItem.h"
 #import "QAAlertView.h"
+#import "QAReportViewController.h"
 
 @interface QAAnswerSheetViewController ()
 @property (nonatomic, strong) QAAnswerSheetView *sheetView;
@@ -52,6 +53,7 @@
         QAAlertView *alert = [[QAAlertView alloc] init];
         alert.title = @"还有未答完的题目";
         alert.describe = @"确定要提交吗";
+        alert.imageName = @"";
         [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
             STRONG_SELF
         }];
@@ -90,6 +92,10 @@
         STRONG_SELF
         [self.uploadImageView removeFromSuperview];
         [self.view nyx_stopLoading];
+        //测试用
+//        QAReportViewController *vc = [[QAReportViewController alloc]init];
+//        vc.model = self.model;
+//        [self.navigationController pushViewController:vc animated:YES];
         if (error) {
             [self handleSubmitFailure:error];
         }else{
@@ -108,7 +114,12 @@
             item.questionID = questions;
             [YXRecordManager addRecord:item];
             
-//            if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
+            // 提交成功后清除本地保存的答案
+            [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj clearAnswer];
+            }];
+            
+            if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
 //                YXQASubmitSuccessAndBackView_Phone *backView = [[YXQASubmitSuccessAndBackView_Phone alloc]init];
 //                backView.endDate = reportModel.homeworkEndDate;
 //                WEAK_SELF
@@ -120,8 +131,13 @@
 //                [backView mas_makeConstraints:^(MASConstraintMaker *make) {
 //                    make.edges.mas_equalTo(0);
 //                }];
-//                return;
-//            }
+                NSDateFormatter *formater = [[NSDateFormatter alloc]init];
+                [formater setDateFormat:@"yyyy/MM/dd HH:mm"];
+                NSString *dateString = [formater stringFromDate:reportModel.homeworkEndDate];
+                NSString *totalString = [NSString stringWithFormat:@"截止时间为：%@",dateString];
+                [self.view nyx_showToast:[NSString stringWithFormat:@"需要等到截止期%@之后才能显示报告",totalString]];
+                return;
+            }
 //            if (self.pType != YXPTypeGroupHomework) {
 //                [YXQADataManager sharedInstance].hasDoExerciseToday = YES;
 //            }
@@ -141,6 +157,10 @@
 //            [successView mas_makeConstraints:^(MASConstraintMaker *make) {
 //                make.edges.mas_equalTo(0);
 //            }];
+            
+            QAReportViewController *vc = [[QAReportViewController alloc]init];
+            vc.model = reportModel;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }];
 }
@@ -174,6 +194,7 @@
     QAAlertView *alert = [[QAAlertView alloc] init];
     alert.title = @"作业上传失败";
     alert.describe = @"请检查网络是否异常后重试";
+    alert.imageName = @"";
     [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
         STRONG_SELF
     }];

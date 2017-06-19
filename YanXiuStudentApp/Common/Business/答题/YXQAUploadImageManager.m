@@ -79,9 +79,7 @@
     [item.myAnswers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         QAImageAnswer *answer = (QAImageAnswer *)obj;
         if (isEmpty(answer.url)) {
-            MWPhoto *photo = (MWPhoto *)answer.data;
-            [photo loadUnderlyingImageAndNotify];
-            UIImage *image = [photo underlyingImage];
+            UIImage *image = answer.data;
             UIImage *compressedImage = [self compressedImageWithImage:image];
             NSData *jpgData = UIImageJPEGRepresentation(compressedImage, 1);
             NSString *fileName = [NSString stringWithFormat:@"%@.jpg",@(idx)];
