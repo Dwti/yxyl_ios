@@ -1035,6 +1035,7 @@
 		E96FE8401E09399000837DDA /* ClassHomeworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */; };
 		E98516081EF121AD0092C91F /* QAAnswerSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */; };
 		E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E985160A1EF121E40092C91F /* QAAnswerSheetView.m */; };
+		E996C21F1EF76C5D00D2C460 /* QAImageUploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */; };
 		E9973C601DB86ADF004966AD /* QAYesNoQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */; };
 		E9973C651DB86B14004966AD /* QAFillQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C641DB86B14004966AD /* QAFillQuestionView.m */; };
 		E9973C6A1DB86B38004966AD /* QASubjectiveQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C691DB86B38004966AD /* QASubjectiveQuestionView.m */; };
@@ -2627,6 +2628,8 @@
 		E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetViewController.m; sourceTree = "<group>"; };
 		E98516091EF121E40092C91F /* QAAnswerSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetView.h; sourceTree = "<group>"; };
 		E985160A1EF121E40092C91F /* QAAnswerSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetView.m; sourceTree = "<group>"; };
+		E996C21D1EF76C5D00D2C460 /* QAImageUploadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAImageUploadProgressView.h; sourceTree = "<group>"; };
+		E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAImageUploadProgressView.m; sourceTree = "<group>"; };
 		E9973C5E1DB86ADF004966AD /* QAYesNoQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoQuestionView.h; sourceTree = "<group>"; };
 		E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAYesNoQuestionView.m; sourceTree = "<group>"; };
 		E9973C631DB86B14004966AD /* QAFillQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAFillQuestionView.h; sourceTree = "<group>"; };
@@ -5124,6 +5127,8 @@
 				E985160A1EF121E40092C91F /* QAAnswerSheetView.m */,
 				E9AEC27B1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.h */,
 				E9AEC27C1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m */,
+				E996C21D1EF76C5D00D2C460 /* QAImageUploadProgressView.h */,
+				E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -7379,6 +7384,7 @@
 				7C04C1C61E8A62050079F35C /* AccountIDInputView.m in Sources */,
 				7C5565D01DCB1E8C00966875 /* ExerciseHistoryContentViewController.m in Sources */,
 				7C3438BE1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */,
+				E996C21F1EF76C5D00D2C460 /* QAImageUploadProgressView.m in Sources */,
 				0FECC6781C5F321400E8F48E /* YXSearchClassRequest.m in Sources */,
 				0FBD5ADA1C4F3338003B7D6D /* UIColor+YXColor.m in Sources */,
 				7CCF96AD1D546A8E002B2F9F /* YXQAReportCorrectRateCell.m in Sources */,

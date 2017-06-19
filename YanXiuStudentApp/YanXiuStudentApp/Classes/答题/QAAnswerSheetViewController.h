@@ -14,5 +14,6 @@ typedef void(^SelectedActionBlock)(QAQuestion *item);
 
 @property (nonatomic, strong) QAPaperModel *model;
 @property (nonatomic, assign) BOOL allHasWrote;
+@property (nonatomic, strong) YXQARequestParams *requestParams;
 - (void)setSelectedActionBlock:(SelectedActionBlock)block;
 @end
