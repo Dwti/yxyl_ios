@@ -129,6 +129,8 @@
 #import "OptionsImageView.h"
 #import "OptionsStringView.h"
 #import "OptionsView.h"
+#import "QAAlertButton.h"
+#import "QAAlertView.h"
 #import "QAAnalysisClozeComplexView.h"
 #import "QAAnalysisListenComplexView.h"
 #import "QAAnalysisReadComplexView.h"

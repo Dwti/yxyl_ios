@@ -9,5 +9,5 @@
 #import "QABaseViewController.h"
 
 @interface QAAnswerQuestionViewController : QABaseViewController
-
+@property (nonatomic, assign) YXPType pType;
 @end

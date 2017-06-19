@@ -13,7 +13,10 @@ typedef void(^SelectedActionBlock)(QAQuestion *item);
 @interface QAAnswerSheetViewController : BaseViewController
 
 @property (nonatomic, strong) QAPaperModel *model;
-@property (nonatomic, assign) BOOL allHasWrote;
+@property (nonatomic, assign) YXPType pType;
+@property (nonatomic, assign) NSInteger totalQuestionCount;
+@property (nonatomic, assign) NSInteger answeredQuestionCount;
 @property (nonatomic, strong) YXQARequestParams *requestParams;
+
 - (void)setSelectedActionBlock:(SelectedActionBlock)block;
 @end

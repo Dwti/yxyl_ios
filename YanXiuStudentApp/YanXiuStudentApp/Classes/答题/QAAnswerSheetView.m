@@ -59,7 +59,7 @@ static const CGFloat kMinMargin = 15;
     [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submitButton setTitle:@"提交作业" forState:UIControlStateNormal];
     [submitButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
-     [submitButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateHighlighted];
+    [submitButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateHighlighted];
     [submitButton addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:submitButton];
     [submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,7 +72,6 @@ static const CGFloat kMinMargin = 15;
 }
 
 #pragma mark - UICollectionViewDataSource
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -89,7 +88,6 @@ static const CGFloat kMinMargin = 15;
 }
 
 #pragma mark - UICollectionViewDelegate
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(kItemWidth, kItemWidth);
 }
@@ -100,14 +98,13 @@ static const CGFloat kMinMargin = 15;
 }
 
 #pragma mark - setter
-
 - (void)setSubmitActionBlock:(SubmitActionBlock)block {
     self.buttonActionBlock = block;
 }
 
 - (void)setModel:(QAPaperModel *)model{
     _model = model;
-   
+    
     self.questionArray = [self.model allQuestions];
     
     self.stateArray = [NSMutableArray array];

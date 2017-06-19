@@ -18,7 +18,6 @@
 @property (nonatomic, strong) QAProgressView *progressView;
 @property (nonatomic, assign) NSInteger totalQuestionCount;
 @property (nonatomic, assign) NSInteger answeredQuestionCount;
-@property (nonatomic, assign) BOOL hasShowAnswerSheet;
 @end
 
 @implementation QAAnswerQuestionViewController
@@ -33,7 +32,6 @@
         STRONG_SELF
         [self showAnswerSheet];
     }];
-    self.hasShowAnswerSheet = NO;
     [self setupProgressData];
     [self refreshProgress];
     [self setupTimer];
@@ -120,11 +118,9 @@
     }
     QAAnswerSheetViewController *vc = [[QAAnswerSheetViewController alloc]init];
     vc.model = self.model;
-    if (self.answeredQuestionCount == self.totalQuestionCount) {
-        vc.allHasWrote = YES;
-    }else {
-        vc.allHasWrote = NO;
-    }
+    vc.pType = self.pType;
+    vc.answeredQuestionCount = self.answeredQuestionCount;
+    vc.totalQuestionCount = self.totalQuestionCount;
     WEAK_SELF
     [vc setSelectedActionBlock:^(QAQuestion *item) {
         STRONG_SELF
@@ -132,7 +128,6 @@
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 - (void)slideToQAItem:(QAQuestion *)item {
     [self.slideView scrollToItemIndex:item.position.firstLevelIndex animated:NO];

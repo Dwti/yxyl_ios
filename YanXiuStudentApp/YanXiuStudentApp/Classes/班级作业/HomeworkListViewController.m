@@ -89,6 +89,7 @@
                 STRONG_SELF
                 QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
                 vc.model = [QAPaperModel modelFromRawData:item.data[0]];
+                vc.pType = YXPTypeGroupHomework;
                 [self.navigationController pushViewController:vc animated:YES];
             }];
         }

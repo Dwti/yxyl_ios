@@ -1036,6 +1036,8 @@
 		E98516081EF121AD0092C91F /* QAAnswerSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */; };
 		E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E985160A1EF121E40092C91F /* QAAnswerSheetView.m */; };
 		E996C21F1EF76C5D00D2C460 /* QAImageUploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */; };
+		E996C2311EF7B38C00D2C460 /* QAAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E996C2301EF7B38C00D2C460 /* QAAlertButton.m */; };
+		E996C23A1EF7BE1400D2C460 /* QAAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E996C2391EF7BE1400D2C460 /* QAAlertView.m */; };
 		E9973C601DB86ADF004966AD /* QAYesNoQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */; };
 		E9973C651DB86B14004966AD /* QAFillQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C641DB86B14004966AD /* QAFillQuestionView.m */; };
 		E9973C6A1DB86B38004966AD /* QASubjectiveQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C691DB86B38004966AD /* QASubjectiveQuestionView.m */; };
@@ -2630,6 +2632,10 @@
 		E985160A1EF121E40092C91F /* QAAnswerSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetView.m; sourceTree = "<group>"; };
 		E996C21D1EF76C5D00D2C460 /* QAImageUploadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAImageUploadProgressView.h; sourceTree = "<group>"; };
 		E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAImageUploadProgressView.m; sourceTree = "<group>"; };
+		E996C22F1EF7B38C00D2C460 /* QAAlertButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAlertButton.h; sourceTree = "<group>"; };
+		E996C2301EF7B38C00D2C460 /* QAAlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAlertButton.m; sourceTree = "<group>"; };
+		E996C2381EF7BE1400D2C460 /* QAAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAlertView.h; sourceTree = "<group>"; };
+		E996C2391EF7BE1400D2C460 /* QAAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAlertView.m; sourceTree = "<group>"; };
 		E9973C5E1DB86ADF004966AD /* QAYesNoQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoQuestionView.h; sourceTree = "<group>"; };
 		E9973C5F1DB86ADF004966AD /* QAYesNoQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAYesNoQuestionView.m; sourceTree = "<group>"; };
 		E9973C631DB86B14004966AD /* QAFillQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAFillQuestionView.h; sourceTree = "<group>"; };
@@ -5129,6 +5135,10 @@
 				E9AEC27C1EF28F3B00CB6CCD /* QAQuestionIndexDetailView.m */,
 				E996C21D1EF76C5D00D2C460 /* QAImageUploadProgressView.h */,
 				E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */,
+				E996C22F1EF7B38C00D2C460 /* QAAlertButton.h */,
+				E996C2301EF7B38C00D2C460 /* QAAlertButton.m */,
+				E996C2381EF7BE1400D2C460 /* QAAlertView.h */,
+				E996C2391EF7BE1400D2C460 /* QAAlertView.m */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -7221,6 +7231,7 @@
 				F7754EF61C4E43860002FE45 /* YXReportErrorViewController.m in Sources */,
 				7CF077A81DDE9DB800108B2E /* NameInputView.m in Sources */,
 				7CCF96A91D54699A002B2F9F /* YXQAReportTitleCell.m in Sources */,
+				E996C23A1EF7BE1400D2C460 /* QAAlertView.m in Sources */,
 				7C33F6E51E4C0B5B003FD304 /* MistakeRedoViewController.m in Sources */,
 				7C3390F81E8FDF0E00FC377B /* BindNewMobileRequest.m in Sources */,
 				0FEA8F8C1C7AAA60003077A2 /* YXImagePickerController.m in Sources */,
@@ -7236,6 +7247,7 @@
 				7C5A980B1E8F8E23005E56B6 /* YXMistakeListViewController.m in Sources */,
 				305318D91D019765004BE7E1 /* YXRecordManager.m in Sources */,
 				7C89DD181DA8927200194120 /* QAStringAnswerQuestion.m in Sources */,
+				E996C2311EF7B38C00D2C460 /* QAAlertButton.m in Sources */,
 				7C2991B91E0232C200AE921C /* QACoreTextViewStringScanner.m in Sources */,
 				7C2903501ED3F1B2005F7F55 /* QAChooseOptionCell.m in Sources */,
 				30561C0A1E0A314C00EF4C7C /* NameView.m in Sources */,

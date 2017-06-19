@@ -12,6 +12,7 @@
 #import "QAImageUploadProgressView.h"
 #import "YXRecordManager.h"
 #import "YXProblemItem.h"
+#import "QAAlertView.h"
 
 @interface QAAnswerSheetViewController ()
 @property (nonatomic, strong) QAAnswerSheetView *sheetView;
@@ -43,20 +44,20 @@
     WEAK_SELF
     [self.sheetView setSubmitActionBlock:^{
         STRONG_SELF
-        if (self.allHasWrote) {
-            [self submitAnswers];
+        if (self.answeredQuestionCount == self.totalQuestionCount) {
+            [self submitPaper];
             return;
         }
         WEAK_SELF
-        EEAlertView *alert = [[EEAlertView alloc] init];
-        alert.title = @"还有未做完的题目，确定提交吗?";
-        [alert addButtonWithTitle:@"取消" action:^{
+        QAAlertView *alert = [[QAAlertView alloc] init];
+        alert.title = @"还有未答完的题目";
+        alert.describe = @"确定要提交吗";
+        [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
             STRONG_SELF
-            
         }];
-        [alert addButtonWithTitle:@"提交" action:^{
+        [alert addButtonWithTitle:@"提交" style:QAAlertActionStyle_Default action:^{
             STRONG_SELF
-            [self submitAnswers];
+             [self submitPaper];
         }];
         [alert showInView:self.navigationController.view];
     }];
@@ -78,23 +79,7 @@
     }];
 }
 
-
-- (void)submitAnswers {
-    DDLogDebug(@"提交答案");
-//    self.uploadImageView = [[QAImageUploadProgressView alloc]init];
-//    [self.view addSubview:self.uploadImageView];
-//    [self.uploadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(0);
-//    }];
-//    [self.uploadImageView updateWithUploadedCount:13 totalCount:30];
-    [self goReport];
-}
-
-- (void)setSelectedActionBlock:(SelectedActionBlock)block {
-    self.buttonActionBlock = block;
-}
-
-- (void)goReport {
+- (void)submitPaper {
     if (![self isNetworkReachable]) {
         [self yx_showToast:@"网络异常，请检查网络后重试"];
         return;
@@ -103,17 +88,17 @@
     WEAK_SELF
     [[YXQADataManager sharedInstance]submitPaperWithModel:self.model beginDate:self.beginDate requestParams:self.requestParams completeBlock:^(NSError *error, QAPaperModel *reportModel) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.uploadImageView removeFromSuperview];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self.uploadImageView removeFromSuperview];
             [self handleSubmitFailure:error];
         }else{
             
             YXProblemItem *item = [YXProblemItem new];
-//            item.paperType      = @(self.pType == YXPTypeGroupHomework? 1: 0);
+            item.paperType      = @(self.pType == YXPTypeGroupHomework? 1: 0);
             item.editionID      = self.requestParams.editionId;
             item.subjectID      = self.requestParams.subjectId;
-//            item.quesNum        = self.sheetView.wrote.length? self.sheetView.wrote: @"0";
+            item.quesNum        = [NSString stringWithFormat:@"%@",@(self.answeredQuestionCount)];
             item.gradeID        = self.model.gradeID;
             item.type           = YXRecordSubmitWorkType;
             NSMutableArray *questions = [NSMutableArray new];
@@ -162,7 +147,7 @@
 
 - (void)setupUploadImageView {
     self.uploadImageView = [[QAImageUploadProgressView alloc]init];
-    [self.view addSubview:self.uploadImageView];
+    [self.navigationController.view addSubview:self.uploadImageView];
     [self.uploadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
@@ -170,30 +155,36 @@
     [[YXQADataManager sharedInstance]setUploadImageBlock:^(NSInteger index, NSInteger total) {
         STRONG_SELF
         if (index == total) {
-            [self.uploadImageView removeFromSuperview];
-            [self yx_startLoading];
+            if (total == 0) {
+                [self.uploadImageView removeFromSuperview];
+                [self.view nyx_startLoading];
+            }
             return;
         }
-        [self.uploadImageView updateWithUploadedCount:index totalCount:total + 1];
+        [self.uploadImageView updateWithUploadedCount:index totalCount:total];
     }];
 }
 
 - (void)handleSubmitFailure:(NSError *)error {
     if ([self isNetworkReachable]) {
-        [self yx_showToast:error.localizedDescription];
+        [self.view nyx_showToast:error.localizedDescription];
         return;
     }
     WEAK_SELF
-    EEAlertView *alert = [[EEAlertView alloc] init];
-    alert.title = @"作业上传失败，请检查网络后重试";
-    [alert addButtonWithTitle:@"取消" action:^{
+    QAAlertView *alert = [[QAAlertView alloc] init];
+    alert.title = @"作业上传失败";
+    alert.describe = @"请检查网络是否异常后重试";
+    [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
         STRONG_SELF
     }];
-    [alert addButtonWithTitle:@"再试一次" action:^{
+    [alert addButtonWithTitle:@"再试一次" style:QAAlertActionStyle_Default action:^{
         STRONG_SELF
-        [self goReport];
+        [self submitPaper];
     }];
-    [alert showInView:self.view];
+    [alert showInView:self.navigationController.view];
 }
 
+- (void)setSelectedActionBlock:(SelectedActionBlock)block {
+    self.buttonActionBlock = block;
+}
 @end

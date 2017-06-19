@@ -94,7 +94,7 @@
         make.width.mas_equalTo(self.progressBarView.superview.mas_width).multipliedBy(progress);
     }];
     [self.progressTipImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.progressBarView.mas_right).mas_offset(-7);
+        make.left.mas_equalTo(self.progressBarView.mas_right).mas_offset(-6);
         make.bottom.mas_equalTo(self.progressBarView.mas_top);
         make.size.mas_equalTo(CGSizeMake(30, 46));
     }];
