@@ -92,4 +92,52 @@
     return [NSArray arrayWithArray:answerArray];
 }
 
+#pragma mark - 答案本地保存
+- (void)saveAnswer {
+    if (![self questionKey]) {
+        return;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSData *data = [NSJSONSerialization dataWithJSONObject:[self answerForReport] options:0 error:nil];
+        NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        QuestionAnswerEntity *entity = [QuestionAnswerEntity MR_findFirstByAttribute:@"questionKey" withValue:[self questionKey] inContext:localContext];
+        if (!entity) {
+            entity = [QuestionAnswerEntity MR_createEntityInContext:localContext];
+            entity.questionKey = [self questionKey];
+        }
+        entity.questionAnswer = str;
+    }];
+}
+
+- (void)loadAnswer {
+    if (![self questionKey]) {
+        return;
+    }
+    QuestionAnswerEntity *entity = [QuestionAnswerEntity MR_findFirstByAttribute:@"questionKey" withValue:[self questionKey]];
+    if (entity) {
+        NSData *data = [entity.questionAnswer dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if (arr.count > 0) {
+            NSString *answer = arr[0];
+            [self setAnsweredIndex:answer.integerValue toAnswerArray:self.myAnswers];
+        }
+    }
+}
+
+- (void)clearAnswer {
+    if (![self questionKey]) {
+        return;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        QuestionAnswerEntity *entity = [QuestionAnswerEntity MR_findFirstByAttribute:@"questionKey" withValue:[self questionKey] inContext:localContext];
+        if (entity) {
+            [entity MR_deleteEntityInContext:localContext];
+        }
+    }];
+}
+
 @end

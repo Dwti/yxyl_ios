@@ -39,6 +39,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     self.answerDetailID = question.pad.padid;
     self.questionID = rawData.qid;
     self.wrongQuestionID = rawData.wqid;
+    self.paperID = rawData.pid;
     self.isFavorite = rawData.isfavorite.boolValue;
     self.audioUrl = question.url;
     self.stem = [self adjustedStemForStem:[question completeStem]];
@@ -219,6 +220,26 @@ static NSString * const kAnswerMarkedFlag = @"5";
     else{
         return @"3";
     }
+}
+
+#pragma mark - 答案本地保存
+- (void)saveAnswer {
+    
+}
+
+- (void)loadAnswer {
+    
+}
+
+- (void)clearAnswer {
+    
+}
+
+- (NSString *)questionKey {
+    if (!self.paperID || !self.testID || !self.questionID) {
+        return nil;
+    }
+    return [NSString stringWithFormat:@"%@-%@-%@",self.paperID,self.testID,self.questionID];
 }
 
 @end

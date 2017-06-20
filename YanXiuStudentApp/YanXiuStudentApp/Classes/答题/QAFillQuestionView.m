@@ -12,6 +12,7 @@
 #import "QAFillBlankCell.h"
 
 @interface QAFillQuestionView ()
+@property (nonatomic, strong) QAFillBlankCell *blankCell;
 @end
 
 @implementation QAFillQuestionView
@@ -55,6 +56,7 @@
     cell.delegate = self;
     cell.question = self.data;
     cell.answerStateChangeDelegate = self.answerStateChangeDelegate;
+    self.blankCell = cell;
     return cell;
 }
 
@@ -74,6 +76,18 @@
     CGFloat bottom = [UIScreen mainScreen].bounds.size.height-keyboardFrame.origin.y;
     bottom = MAX(bottom, 45);
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottom, 0);
+    
+    
+    if ([UIScreen mainScreen].bounds.size.height > keyboardFrame.origin.y) {
+        UIView *v = [self.blankCell currentBlankView];
+        CGRect rect = [v convertRect:v.bounds toView:self.window];
+        CGFloat visibleHeight = keyboardFrame.origin.y;
+        if (rect.origin.y+rect.size.height > visibleHeight) {
+            CGPoint offset = self.tableView.contentOffset;
+            offset.y = offset.y+rect.origin.y+rect.size.height-visibleHeight;
+            [self.tableView setContentOffset:offset animated:YES];
+        }
+    }
 }
 
 @end

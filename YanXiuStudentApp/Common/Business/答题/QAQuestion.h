@@ -10,6 +10,7 @@
 #import "YXIntelligenceQuestion.h"
 #import "YXQADefinitions.h"
 #import "YXSubmitQuestionRequest.h"
+#import "QuestionAnswerEntity+CoreDataProperties.h"
 
 typedef NS_ENUM(NSUInteger, QARedoStatus) {
     QARedoStatus_Init = 0,
@@ -45,6 +46,7 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 @property (nonatomic, copy) NSString *questionID;
 @property (nonatomic, copy) NSString *answerDetailID;
 @property (nonatomic, copy) NSString *wrongQuestionID;
+@property (nonatomic, copy) NSString *paperID;
 
 @property (nonatomic, copy) NSString *stem;
 @property (nonatomic, copy) NSString *audioUrl;
@@ -91,5 +93,11 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 - (NSArray *)answerForReport; // 需子类实现
 
 - (NSArray *)noteImageURLArray;
+
+#pragma mark - 答案本地保存
+- (void)saveAnswer;
+- (void)loadAnswer;
+- (void)clearAnswer;
+- (NSString *)questionKey;
 
 @end

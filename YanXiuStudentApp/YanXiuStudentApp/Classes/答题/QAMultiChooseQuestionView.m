@@ -15,6 +15,7 @@
         NSInteger answerIndex = indexPath.row - 2;
         self.data.myAnswers[answerIndex] = @(![self.data.myAnswers[answerIndex] boolValue]);
         [self.tableView reloadData];
+        [self.data saveAnswer];
         
         YXQAAnswerState toState = [self.data answerState];
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {

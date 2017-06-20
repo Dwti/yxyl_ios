@@ -25,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    for (QAQuestion *q in [self.model allQuestions]) {
+        [q loadAnswer];
+    }
     self.clockView = [[QAClockView alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
     self.navigationItem.titleView = self.clockView;
     WEAK_SELF
@@ -147,11 +150,8 @@
     view.data = data;
     view.isPaperSubmitted = [self.model isPaperSubmitted];
     view.isSubQuestionView = NO;
-    //    view.addPhotoHandler = self.addPhotoHandler;
-    //    view.delegate = self;
     view.slideDelegate = self;
     view.answerStateChangeDelegate = self;
-    //    view.photoDelegate = self.addPhotoHandler;
     
     return view;
 }

@@ -65,6 +65,10 @@ UIImagePickerControllerDelegate
 }
 
 - (void)showCamera {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        DDLogDebug(@"设备不支持拍照");
+        return;
+    }
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusNotDetermined) {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:nil];

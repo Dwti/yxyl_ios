@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface QASubjectivePhotoCell : UITableViewCell
+@property (nonatomic, strong) void(^numberChangedBlock)(NSInteger from,NSInteger to);
 - (void)updateWithPhotos:(NSMutableArray *)photos editable:(BOOL)isEditable;
 @end

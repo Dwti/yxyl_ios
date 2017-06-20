@@ -37,6 +37,16 @@
         return cell;
     }else {
         QASubjectivePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"QASubjectivePhotoCell"];
+        WEAK_SELF
+        [cell setNumberChangedBlock:^(NSInteger from,NSInteger to){
+            STRONG_SELF
+            [self.data saveAnswer];
+            YXQAAnswerState fromState = from==0? YXAnswerStateNotAnswer:YXAnswerStateAnswered;
+            YXQAAnswerState toState = to==0? YXAnswerStateNotAnswer:YXAnswerStateAnswered;
+            if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
+                [self.answerStateChangeDelegate question:self.data didChangeAnswerStateFrom:fromState to:toState];
+            }
+        }];
         [cell updateWithPhotos:self.data.myAnswers editable:YES];
         return cell;
     }

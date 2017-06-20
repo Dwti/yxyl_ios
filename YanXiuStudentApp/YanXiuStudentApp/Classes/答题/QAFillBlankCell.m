@@ -47,7 +47,6 @@ static const NSInteger kBlankWidth = 3;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.blankItemArray = [NSMutableArray array];
-        self.currentIndex = -1;
         self.placeholder = @"--------";
         self.placeholderForPrefix = @"---------";
         self.scanner = [[QACoreTextViewStringScanner alloc]init];
@@ -307,6 +306,7 @@ static const NSInteger kBlankWidth = 3;
         YXQAAnswerState fromState = [self.question answerState];
         NSString *answer = [self.costomTextView.inputTextView.text nyx_stringByTrimmingExtraSpaces];
         [self.question.myAnswers replaceObjectAtIndex:self.currentIndex withObject:answer];
+        [self.question saveAnswer];
         YXQAAnswerState toState = [self.question answerState];
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
             [self.answerStateChangeDelegate question:self.question didChangeAnswerStateFrom:fromState to:toState];
@@ -323,6 +323,11 @@ static const NSInteger kBlankWidth = 3;
         }
     }
     [self endEditing:YES];
+}
+
+- (UIView *)currentBlankView {
+    QABlankItemInfo *curItem = self.blankItemArray[self.currentIndex];
+    return curItem.viewArray.lastObject;
 }
 
 #pragma mark - UITextViewDelegate

@@ -19,6 +19,7 @@
         }
         self.data.myAnswers[answerIndex] = @(!choose);
         [self.tableView reloadData];
+        [self.data saveAnswer];
         
         YXQAAnswerState toState = [self.data answerState];
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {

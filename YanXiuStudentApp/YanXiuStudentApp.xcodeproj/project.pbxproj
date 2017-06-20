@@ -700,6 +700,10 @@
 		7C88855E1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C88855C1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m */; };
 		7C8885601EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
 		7C8885611EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
+		7C8885661EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885631EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m */; };
+		7C8885671EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885631EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m */; };
+		7C8885681EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885651EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m */; };
+		7C8885691EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8885651EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m */; };
 		7C89DD041DA8927200194120 /* QAComplexAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C89DCED1DA8927200194120 /* QAComplexAnswerQuestion.m */; };
 		7C89DD051DA8927200194120 /* QAComplexAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C89DCED1DA8927200194120 /* QAComplexAnswerQuestion.m */; };
 		7C89DD061DA8927200194120 /* QAImageAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C89DCEF1DA8927200194120 /* QAImageAnswerQuestion.m */; };
@@ -2192,6 +2196,10 @@
 		7C88855B1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAPhotoBrowseTopBarView.h; sourceTree = "<group>"; };
 		7C88855C1EF8C7970073EF1F /* QAPhotoBrowseTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAPhotoBrowseTopBarView.m; sourceTree = "<group>"; };
 		7C88855F1EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-DEMIBOLD PLAYTYPE.OTF"; sourceTree = "<group>"; };
+		7C8885621EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QuestionAnswerEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		7C8885631EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QuestionAnswerEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		7C8885641EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QuestionAnswerEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		7C8885651EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QuestionAnswerEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		7C89DCEC1DA8927200194120 /* QAComplexAnswerQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAComplexAnswerQuestion.h; sourceTree = "<group>"; };
 		7C89DCED1DA8927200194120 /* QAComplexAnswerQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAComplexAnswerQuestion.m; sourceTree = "<group>"; };
 		7C89DCEE1DA8927200194120 /* QAImageAnswerQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAImageAnswerQuestion.h; sourceTree = "<group>"; };
@@ -4043,6 +4051,10 @@
 			isa = PBXGroup;
 			children = (
 				7C3D0B611DD1A527005ED76A /* v1_2Model.xcdatamodeld */,
+				7C8885621EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.h */,
+				7C8885631EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m */,
+				7C8885641EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.h */,
+				7C8885651EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m */,
 				7C3D0B651DD1A53A005ED76A /* InstantRecordEntity.h */,
 				7C3D0B661DD1A53A005ED76A /* InstantRecordEntity.m */,
 				7C3D0B671DD1A53A005ED76A /* InstantRecordEntity+CoreDataProperties.h */,
@@ -6753,6 +6765,7 @@
 				F79238821C586F4100F70D42 /* YXExerciseChooseEdition_ContainerView.m in Sources */,
 				0FECC6891C5F487400E8F48E /* YXHomeworkCell.m in Sources */,
 				7C2903CE1EE9248A005F7F55 /* QAComplexHeaderFactory.m in Sources */,
+				7C8885671EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m in Sources */,
 				7CCF96B61D54753D002B2F9F /* YXQAReportGroupHeaderView.m in Sources */,
 				7CA98EE61EC2BB6E000D49DE /* ClassInfoItemView.m in Sources */,
 				7C953B3C1C5B0C2E00A9A7AF /* YXQAWenHeaderView_Pad.m in Sources */,
@@ -7096,6 +7109,7 @@
 				7C7841C91E31FF3300755BC0 /* QARedoListenComplexView.m in Sources */,
 				F7A3B4B51C571E860037245A /* YXSideMenuViewController_Pad.m in Sources */,
 				0FB211AE1C57268E00594BEA /* YXOauthLoginRequest.m in Sources */,
+				7C8885691EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m in Sources */,
 				30F4561E1CBE326B00FF2CD9 /* YXRedManager.m in Sources */,
 				F773CA781C4627F400AAE684 /* YXFeedbackViewModel.m in Sources */,
 				7C2B66EE1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */,
@@ -7386,6 +7400,7 @@
 				30561C041E0A2B9100EF4C7C /* ChangeView.m in Sources */,
 				0FFA77621C75B2A300F9E8F9 /* YXHomeworkToDoFetcher.m in Sources */,
 				F7754F591C4E43860002FE45 /* YXAddToClassViewController.m in Sources */,
+				7C8885661EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m in Sources */,
 				7C49B19B1DC058CC00E39555 /* QAAnalysisClozeComplexView.m in Sources */,
 				7CEE06E91DC2FDF400AA898B /* KnpTreeDataFetcher.m in Sources */,
 				7CA47B1B1D3F76DA00DDE44E /* LePlayer.m in Sources */,
@@ -7512,6 +7527,7 @@
 				7CD58E4D1D5B1F4E00492837 /* YXQAConnectLineView.m in Sources */,
 				7CA98EDF1EC2BB58000D49DE /* AreaSelectionViewController.m in Sources */,
 				0FDD9BDA1C58B5EB00DBA379 /* YXPasswordInputView.m in Sources */,
+				7C8885681EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.m in Sources */,
 				7C5565DC1DCB28E900966875 /* ExerciseHistoryListViewController.m in Sources */,
 				E9973C6A1DB86B38004966AD /* QASubjectiveQuestionView.m in Sources */,
 				7CD0F6491E4AF35F00187A36 /* CommentCell.m in Sources */,

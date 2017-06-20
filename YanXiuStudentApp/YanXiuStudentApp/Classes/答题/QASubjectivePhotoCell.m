@@ -91,6 +91,7 @@ static const NSInteger kMaxPhotoCount = 3;
             STRONG_SELF
             [self.photoArray removeObject:obj];
             [self updateWithPhotos:self.photoArray editable:self.isEditable];
+            BLOCK_EXEC(self.numberChangedBlock,self.photoArray.count+1,self.photoArray.count);
         }];
         [self.contentView addSubview:photoView];
         [viewArray addObject:photoView];
@@ -127,6 +128,7 @@ static const NSInteger kMaxPhotoCount = 3;
         answer.data = image;
         [self.photoArray addObject:answer];
         [self updateWithPhotos:self.photoArray editable:self.isEditable];
+        BLOCK_EXEC(self.numberChangedBlock,self.photoArray.count-1,self.photoArray.count);
     }];
 }
 
@@ -135,6 +137,7 @@ static const NSInteger kMaxPhotoCount = 3;
     [self.photoHandler browsePhotos:self.photoArray oriIndex:index editable:self.isEditable deleteBlock:^{
         STRONG_SELF
         [self updateWithPhotos:self.photoArray editable:self.isEditable];
+        BLOCK_EXEC(self.numberChangedBlock,self.photoArray.count+1,self.photoArray.count);
     }];
 }
 
