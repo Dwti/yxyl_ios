@@ -100,6 +100,30 @@
     return option;
 }
 
++ (NSDictionary *)defaultOptionsForLevel3_Correct {
+    UIFont *font = [UIFont systemFontOfSize:15];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(15), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"89e00d"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
++ (NSDictionary *)defaultOptionsForLevel3_Wrong {
+    UIFont *font = [UIFont systemFontOfSize:15];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(15), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"ff6d05"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
 + (NSDictionary *)optionsForClozeStem {
     UIFont *font = [UIFont fontWithName:YXFontArialNarrow size:17];
     NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -107,6 +131,18 @@
                             font.fontName, DTDefaultFontName,
                             @(17), DTDefaultFontSize,
                             [UIColor colorWithHexString:@"333333"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
++ (NSDictionary *)defaultOptionsForAnalysisItems {
+    UIFont *font = [UIFont systemFontOfSize:15];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(15), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"336600"], DTDefaultTextColor,
                             @(1.5), DTDefaultLineHeightMultiplier,
                             nil];
     return option;

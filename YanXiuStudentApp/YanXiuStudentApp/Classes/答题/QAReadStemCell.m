@@ -10,7 +10,6 @@
 #import "QACoreTextViewHandler.h"
 
 @interface QAReadStemCell()
-@property (nonatomic, strong) DTAttributedTextContentView *htmlView;
 @property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
 @end
 
@@ -51,7 +50,8 @@
     WEAK_SELF
     self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
         STRONG_SELF
-        CGFloat totalHeight = [QAReadStemCell totalHeightWithContentHeight:height];
+        CGFloat bottomMargin = self.contentView.height-CGRectGetMaxY(self.htmlView.frame);
+        CGFloat totalHeight = self.htmlView.y+height+bottomMargin;
         [self.delegate tableViewCell:self updateWithHeight:totalHeight];
     };
 }
@@ -89,7 +89,7 @@
 
 #pragma QAComplexHeaderCellDelegate
 - (CGFloat)heightForQuestion:(QAQuestion *)question {
-    return [QAReadStemCell heightForString:question.stem isSubQuestion:NO];
+    return [QAReadStemCell heightForString:question.stem isSubQuestion:NO]-20;
 }
 
 - (void)setCellHeightDelegate:(id<YXHtmlCellHeightDelegate>)cellHeightDelegate {

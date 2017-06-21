@@ -11,6 +11,7 @@
 #import "YXJieXiViewController.h"
 #import "YXQAReportViewController.h"
 #import "MistakeRedoViewController.h"
+#import "QAAnalysisViewController.h"
 
 @interface PaperListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -117,10 +118,8 @@
 }
 
 - (void)gotoAnalysis:(QAPaperModel *)model {
-    YXJieXiViewController *vc = [[YXJieXiViewController alloc]init];
+    QAAnalysisViewController *vc = [[QAAnalysisViewController alloc]init];
     vc.model = model;
-    vc.canDoExerciseFromKnp = NO;
-    vc.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

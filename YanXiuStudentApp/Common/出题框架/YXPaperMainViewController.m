@@ -25,6 +25,7 @@
 #import "YXServerEnvHelper.h"
 #import "MistakeRedoViewController.h"
 #import "QAAnswerQuestionViewController.h"
+#import "QAAnalysisViewController.h"
 
 @interface YXPaperMainViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -218,10 +219,8 @@
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 101){ // 解析
-        YXJieXiViewController *vc = [[YXJieXiViewController alloc]init];
+        QAAnalysisViewController *vc = [[QAAnalysisViewController alloc]init];
         vc.model = model;
-        vc.canDoExerciseFromKnp = NO;
-        vc.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 102){ // 报告
         YXQAReportViewController *vc = [[YXQAReportViewController alloc] init];

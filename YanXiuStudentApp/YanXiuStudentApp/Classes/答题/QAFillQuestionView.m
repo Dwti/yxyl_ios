@@ -10,9 +10,12 @@
 #import "YXQAQuestionCell2.h"
 #import "QAFillQuestionCell.h"
 #import "QAFillBlankCell.h"
+#import "QAComplexHeaderFactory.h"
 
 @interface QAFillQuestionView ()
 @property (nonatomic, strong) QAFillBlankCell *blankCell;
+@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
+@property (nonatomic, strong) QAQuestion *oriData;
 @end
 
 @implementation QAFillQuestionView
@@ -35,8 +38,13 @@
 }
 
 - (void)setData:(QAQuestion *)data {
-    [super setData:data];
-    [self.tableView reloadData];
+    if (data.childQuestions.count == 1) {
+        self.oriData = data;
+        [super setData:data.childQuestions.firstObject];
+        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    }else {
+        [super setData:data];
+    }
 }
 
 - (void)setupUI {
@@ -46,12 +54,21 @@
 
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
+    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
     [heightArray addObject:@([QAFillBlankCell heightForString:self.data.stem])];
     return heightArray;
 }
 
 #pragma mark - tableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        UITableViewCell<QAComplexHeaderCellDelegate> *cell = [tableView dequeueReusableCellWithIdentifier:kHeaderCellReuseID];
+        if (!cell) {
+            cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+            cell.cellHeightDelegate = self;
+        }
+        return cell;
+    }
     QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
     cell.delegate = self;
     cell.question = self.data;

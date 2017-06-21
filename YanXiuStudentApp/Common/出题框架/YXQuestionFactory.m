@@ -213,7 +213,7 @@
     q.aid = [[NSUUID UUID]UUIDString];
     q.type_id = @"3";
     q.qTemplate = @"answer";
-    q.stem = @"这是一道主观题--请完成老师留下的作业~~~(_)";
+    q.stem = @"这是一道主观题--请完成老师留下的作业~~~(_)giugi(_)";
     q.analysis = @"这是主观题的解析blablabla~~~";
     q.difficulty = @"3";
     

@@ -239,7 +239,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     if (!self.paperID || !self.testID || !self.questionID) {
         return nil;
     }
-    return [NSString stringWithFormat:@"%@-%@-%@",self.paperID,self.testID,self.questionID];
+    return [NSString stringWithFormat:@"%@-%@-%@-%@",[YXUserManager sharedManager].userModel.passport.uid,self.paperID,self.testID,self.questionID];
 }
 
 @end

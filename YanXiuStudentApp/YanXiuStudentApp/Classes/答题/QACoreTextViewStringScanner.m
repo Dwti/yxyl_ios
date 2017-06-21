@@ -42,7 +42,7 @@
         aFrame = [view.layoutFrame frameOfGlyphAtIndex:aPos];
         bFrame = [view.layoutFrame frameOfGlyphAtIndex:bPos];
         
-        CGRect frame = CGRectMake(aFrame.origin.x, aFrame.origin.y, bFrame.origin.x - aFrame.origin.x + bFrame.size.width, aFrame.size.height);
+        CGRect frame = [self rectValueFromRect:aFrame toRect:bFrame].CGRectValue;
         BLOCK_EXEC(scanBlock,idx,match.count,frame);
     }];
 }

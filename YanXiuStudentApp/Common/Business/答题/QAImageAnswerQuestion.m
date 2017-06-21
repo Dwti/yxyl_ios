@@ -73,19 +73,20 @@
     [self removeImageFolder];
     [self createImageFolderIfNeeded];
     NSString *folderPath = [self imageFolderPath];
-    NSMutableArray *pathArray = [NSMutableArray array];
+    NSMutableArray *fileArray = [NSMutableArray array];
     [self.myAnswers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         QAImageAnswer *answer = (QAImageAnswer *)obj;
         UIImage *image = (UIImage *)answer.data;
         NSData *data = UIImagePNGRepresentation(image);
-        NSString *path = [folderPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",@(idx)]];
+        NSString *filename = [NSString stringWithFormat:@"%@.png",@(idx)];
+        NSString *path = [folderPath stringByAppendingPathComponent:filename];
         [data writeToFile:path atomically:YES];
-        [pathArray addObject:path];
+        [fileArray addObject:filename];
     }];
     WEAK_SELF
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
         STRONG_SELF
-        NSData *data = [NSJSONSerialization dataWithJSONObject:pathArray options:0 error:nil];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:fileArray options:0 error:nil];
         NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         QuestionAnswerEntity *entity = [QuestionAnswerEntity MR_findFirstByAttribute:@"questionKey" withValue:key inContext:localContext];
         if (!entity) {
@@ -106,8 +107,10 @@
         NSData *data = [entity.questionAnswer dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         [self.myAnswers removeAllObjects];
-        for (NSString *path in arr) {
+        NSString *folderPath = [self imageFolderPath];
+        for (NSString *file in arr) {
             QAImageAnswer *answer = [[QAImageAnswer alloc]init];
+            NSString *path = [folderPath stringByAppendingPathComponent:file];
             NSData *imageData = [[NSData alloc]initWithContentsOfFile:path];
             UIImage *image = [[UIImage alloc]initWithData:imageData];
             answer.data = image;

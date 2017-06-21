@@ -42,8 +42,14 @@
 + (NSDictionary *)defaultOptionsForLevel2;
 //用于其他，比如选项
 + (NSDictionary *)defaultOptionsForLevel3;
+//用于标识正确，如作答正确的选项
++ (NSDictionary *)defaultOptionsForLevel3_Correct;
+//用于标识错误，如作答错误的选项
++ (NSDictionary *)defaultOptionsForLevel3_Wrong;
 //用于完形填空
 + (NSDictionary *)optionsForClozeStem;
+//用于解析项
++ (NSDictionary *)defaultOptionsForAnalysisItems;
 
 + (CGFloat)heightForString:(NSString *)string options:(NSDictionary *)option width:(CGFloat)width;
 + (NSAttributedString *)attributedStringWithString:(NSString *)string options:(NSDictionary *)option;

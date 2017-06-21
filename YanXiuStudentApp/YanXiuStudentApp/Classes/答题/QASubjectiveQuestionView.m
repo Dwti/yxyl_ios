@@ -7,31 +7,52 @@
 //
 
 #import "QASubjectiveQuestionView.h"
-#import "YXQAQuestionCell2.h"
 #import "YXAddPhotoTableViewCell.h"
 #import "QAQuestionUtil.h"
 #import "QASubjectiveQuestionCell.h"
-#import "QAQuestionStemCell.h"
+#import "QASubjectiveStemCell.h"
 #import "QASubjectivePhotoCell.h"
+#import "QAComplexHeaderFactory.h"
+
 @interface QASubjectiveQuestionView ()
+@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
+@property (nonatomic, strong) QAQuestion *oriData;
 @end
 @implementation QASubjectiveQuestionView
 
+- (void)setData:(QAQuestion *)data {
+    if (data.childQuestions.count == 1) {
+        self.oriData = data;
+        [super setData:data.childQuestions.firstObject];
+        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    }else {
+        [super setData:data];
+    }
+}
+
 - (void)setupUI {
     [super setupUI];
-    [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
+    [self.tableView registerClass:[QASubjectiveStemCell class] forCellReuseIdentifier:@"QASubjectiveStemCell"];
     [self.tableView registerClass:[QASubjectivePhotoCell class] forCellReuseIdentifier:@"QASubjectivePhotoCell"];
 }
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
+    [heightArray addObject:@([QASubjectiveStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
     [heightArray addObject:@(100)];
     return heightArray;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
+        UITableViewCell<QAComplexHeaderCellDelegate> *cell = [tableView dequeueReusableCellWithIdentifier:kHeaderCellReuseID];
+        if (!cell) {
+            cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+            cell.cellHeightDelegate = self;
+        }
+        return cell;
+    }else if (indexPath.row == 1) {
+        QASubjectiveStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QASubjectiveStemCell"];
         cell.delegate = self;
         [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
         return cell;
