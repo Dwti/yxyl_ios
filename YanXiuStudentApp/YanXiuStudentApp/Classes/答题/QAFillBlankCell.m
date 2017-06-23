@@ -114,6 +114,12 @@ static const NSInteger kBlankWidth = 3;
     for (UIView *v in info.viewArray) {
         [v removeFromSuperview];
     }
+    UIColor *color;
+    if (self.isAnalysis && ![info.answer isEqualToString:self.question.correctAnswers[index]]) {
+        color = [UIColor colorWithHexString:@"ff7a05"];
+    }else {
+        color = [UIColor colorWithHexString:@"89e00d"];
+    }
     if (isEmpty(info.answer)) {
         NSValue *value = frameArray.firstObject;
         CGRect rect = value.CGRectValue;
@@ -129,7 +135,7 @@ static const NSInteger kBlankWidth = 3;
         [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:bgButton];
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
-        line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+        line.backgroundColor = color;
         line.layer.cornerRadius = 1;
         line.clipsToBounds = YES;
         [bgView addSubview:line];
@@ -137,7 +143,7 @@ static const NSInteger kBlankWidth = 3;
             UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
             prefixLabel.text = info.prefixLetter;
             prefixLabel.font = [UIFont boldSystemFontOfSize:17];
-            prefixLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+            prefixLabel.textColor = color;
             [bgView addSubview:prefixLabel];
             [prefixLabel sizeToFit];
             CGRect lineFrame = line.frame;
@@ -166,7 +172,7 @@ static const NSInteger kBlankWidth = 3;
             [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
             [bgView addSubview:bgButton];
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
-            line.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+            line.backgroundColor = color;
             line.layer.cornerRadius = 1;
             line.clipsToBounds = YES;
             [bgView addSubview:line];
@@ -174,7 +180,7 @@ static const NSInteger kBlankWidth = 3;
                 UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
                 prefixLabel.text = info.prefixLetter;
                 prefixLabel.font = [UIFont boldSystemFontOfSize:17];
-                prefixLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+                prefixLabel.textColor = color;
                 [prefixLabel sizeToFit];
                 CGRect lineFrame = line.frame;
                 lineFrame.origin.x += prefixLabel.width;
@@ -267,7 +273,7 @@ static const NSInteger kBlankWidth = 3;
         if (isEmpty(info.answer)) {
             template = info.placeholder;
         }else {
-            template = [self blankAnswerHtmlStringWithString:info.displayedString];
+            template = [self blankAnswerHtmlStringWithString:info.displayedString index:index];
         }
         
         NSRange range = result.range;
@@ -297,8 +303,15 @@ static const NSInteger kBlankWidth = 3;
     return reg;
 }
 
-- (NSString *)blankAnswerHtmlStringWithString:(NSString *)string {
-    return [NSString stringWithFormat:@"<font color=\"#89E00D\">%@</font>",string];
+- (NSString *)blankAnswerHtmlStringWithString:(NSString *)string index:(NSInteger)index{
+    QABlankItemInfo *info = self.blankItemArray[index];
+    NSString *colorString;
+    if (self.isAnalysis && ![info.answer isEqualToString:self.question.correctAnswers[index]]) {
+        colorString = @"FF7A05";
+    }else {
+        colorString = @"89E00D";
+    }
+    return [NSString stringWithFormat:@"<font color=\"#%@\">%@</font>",colorString,string];
 }
 
 - (void)confirmClick {

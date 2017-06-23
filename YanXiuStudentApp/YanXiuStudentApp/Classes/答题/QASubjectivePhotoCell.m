@@ -47,6 +47,8 @@ static const NSInteger kMaxPhotoCount = 3;
     if (photos.count == 0) {
         if (self.isEditable) {
             [self setupAddPhotoView];
+        }else {
+            [self setupEmptyView];
         }
     }else {
         [self setupPhotosView];
@@ -70,6 +72,18 @@ static const NSInteger kMaxPhotoCount = 3;
     [self goAddPhoto];
 }
 
+- (void)setupEmptyView {
+    UILabel *emptyLabel = [[UILabel alloc]init];
+    emptyLabel.text = @"本题未作答";
+    emptyLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
+    emptyLabel.font = [UIFont boldSystemFontOfSize:17];
+    emptyLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:emptyLabel];
+    [emptyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(0);
+    }];
+}
+
 - (void)setupPhotosView {
     NSMutableArray *viewArray = [NSMutableArray array];
     __block CGFloat x = 15-8;
@@ -82,6 +96,7 @@ static const NSInteger kMaxPhotoCount = 3;
         }
         photoView.canDelete = self.isEditable;
         photoView.imageAnswer = obj;
+        photoView.showImageBorder = !self.isEditable;
         WEAK_SELF
         [photoView setClickBlock:^{
             STRONG_SELF

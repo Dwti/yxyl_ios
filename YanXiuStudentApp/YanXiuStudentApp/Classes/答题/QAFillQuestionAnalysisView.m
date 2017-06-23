@@ -52,6 +52,7 @@
     }else if (indexPath.row == 1) {
         QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
         cell.delegate = self;
+        cell.isAnalysis = YES;
         cell.question = self.data;
         cell.userInteractionEnabled = NO;
         return cell;

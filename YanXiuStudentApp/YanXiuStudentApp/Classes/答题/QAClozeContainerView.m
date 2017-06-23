@@ -100,6 +100,7 @@ YXHtmlCellHeightDelegate
     QAClozeStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAClozeStemCell"];
     cell.delegate = self;
     cell.selectItemDelegate = self.delegate;
+    cell.isAnalysis = self.isAnalysis;
     cell.question = self.qaData;
     cell.currentIndex = self.clozeCell.currentIndex;
     self.clozeCell = cell;

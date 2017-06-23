@@ -22,7 +22,7 @@
 @implementation QAClozeStemCell
 
 + (CGFloat)maxContentWidth {
-    return SCREEN_WIDTH-30;
+    return SCREEN_WIDTH-30-5;
 }
 
 + (CGFloat)totalHeightWithContentHeight:(CGFloat)height{
@@ -105,12 +105,17 @@
         [self.selectItemDelegate didSelectItemAtIndex:index];
     }];
     
+    BOOL isCurrent = index==self.currentIndex;
+    if (self.isAnalysis) {
+        QAQuestion *q = self.question.childQuestions[index];
+        [view updateWithState:[q answerState] current:isCurrent];
+    }
+    
     [self.htmlView addSubview:view];
     info.coverView = view;
     
-    if (index == self.currentIndex) {
-        QAClozeBlankView *curView = (QAClozeBlankView *)info.coverView;
-        [curView enterAnimated:NO];
+    if (isCurrent && !self.isAnalysis) {
+        [view enterAnimated:NO];
     }
 }
 
@@ -133,6 +138,11 @@
 
 - (void)setCurrentIndex:(NSInteger)currentIndex {
     if (currentIndex == self.currentIndex) {
+        return;
+    }
+    if (self.isAnalysis) {
+        _currentIndex = currentIndex;
+        [self refresh];
         return;
     }
     QAClozeItemInfo *preInfo = self.blankItemArray[self.currentIndex];
@@ -211,8 +221,11 @@
         CGFloat spaceWidth = ceilf(spaceSize.width);
         
         CGSize size = [answer sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontArialNarrow_Bold size:17]}];
+        if (self.isAnalysis && index == self.currentIndex) {
+            size.width += 10;
+        }
         CGFloat width = MIN(size.width+21, [QAClozeStemCell maxContentWidth]);
-        NSInteger spaceNum = ceilf(width/spaceWidth);
+        NSInteger spaceNum = ceil(width/spaceWidth);
         NSString *s = @"";
         for (NSInteger i = 0; i < spaceNum; i++) {
             s = [s stringByAppendingString:@"-"];

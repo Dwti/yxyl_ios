@@ -14,4 +14,5 @@
 
 @property (nonatomic, assign) BOOL canDelete;
 @property (nonatomic, strong) QAImageAnswer *imageAnswer;
+@property (nonatomic, assign) BOOL showImageBorder;
 @end

@@ -11,6 +11,7 @@
 @interface QAClozeBlankView()
 @property (nonatomic, strong) UILabel *indexLabel;
 @property (nonatomic, strong) UILabel *answerLabel;
+@property (nonatomic, strong) UIView *lineView;
 @end
 
 @implementation QAClozeBlankView
@@ -24,6 +25,7 @@
 
 - (void)setupUI {
     self.backgroundColor = [UIColor whiteColor];
+    self.clipsToBounds = YES;
     UIButton *bgButton = [[UIButton alloc]initWithFrame:self.bounds];
     [bgButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:bgButton];
@@ -33,6 +35,7 @@
     line.layer.cornerRadius = 1;
     line.clipsToBounds = YES;
     [self addSubview:line];
+    self.lineView = line;
     
     self.indexLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.height-2-1-16, 16, 16)];
     self.indexLabel.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
@@ -88,6 +91,44 @@
         [UIView animateWithDuration:0.2 animations:^{
             self.indexLabel.frame = CGRectMake((self.width-self.indexLabel.width)/2, self.indexLabel.y, self.indexLabel.width, self.indexLabel.height);
         }];
+    }
+}
+
+- (void)updateWithState:(YXQAAnswerState)state current:(BOOL)isCurrent {
+    if (isCurrent) {
+        [self.answerLabel sizeToFit];
+        CGFloat x = (self.width-self.indexLabel.width-self.answerLabel.width-5)/2;
+        if (state == YXAnswerStateNotAnswer) {
+            x = (self.width-self.indexLabel.width)/2;
+        }
+        self.indexLabel.frame = CGRectMake(x, self.indexLabel.y, self.indexLabel.width, self.indexLabel.height);
+        self.answerLabel.frame = CGRectMake(x+self.answerLabel.x, self.answerLabel.y, self.width-x*2-self.indexLabel.width-5, self.answerLabel.height);
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height+6)];
+        bgView.layer.cornerRadius = 6;
+        bgView.clipsToBounds = YES;
+        [self insertSubview:bgView atIndex:0];
+        if (state == YXAnswerStateCorrect) {
+            self.indexLabel.backgroundColor = [UIColor whiteColor];
+            self.indexLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+            self.answerLabel.textColor = [UIColor whiteColor];
+            self.lineView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+            bgView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+        }else {
+            self.indexLabel.backgroundColor = [UIColor whiteColor];
+            self.indexLabel.textColor = [UIColor colorWithHexString:@"ff7a05"];
+            self.answerLabel.textColor = [UIColor whiteColor];
+            self.lineView.backgroundColor = [UIColor colorWithHexString:@"ff7a05"];
+            bgView.backgroundColor = [UIColor colorWithHexString:@"ff7a05"];
+        }
+    }else {
+        if (state == YXAnswerStateCorrect) {
+            
+        }else {
+            self.indexLabel.backgroundColor = [UIColor colorWithHexString:@"ff7a05"];
+            self.indexLabel.textColor = [UIColor whiteColor];
+            self.answerLabel.textColor = [UIColor colorWithHexString:@"ff7a05"];
+            self.lineView.backgroundColor = [UIColor colorWithHexString:@"ff7a05"];
+        }
     }
 }
 

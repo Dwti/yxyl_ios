@@ -12,8 +12,9 @@
 @property (nonatomic, strong) void(^clickAction)();
 
 - (void)updateWithIndex:(NSInteger)index answer:(NSString *)answer;
-
 - (void)enter;
 - (void)enterAnimated:(BOOL)animated;
 - (void)leave;
+
+- (void)updateWithState:(YXQAAnswerState)state current:(BOOL)isCurrent;
 @end

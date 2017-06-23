@@ -27,6 +27,7 @@
     self.photoImageView.center = CGPointMake(self.width/2, self.height/2);
     self.photoImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.photoImageView.layer.cornerRadius = 6;
+    self.photoImageView.layer.borderWidth = 2;
     self.photoImageView.clipsToBounds = YES;
     self.photoImageView.userInteractionEnabled = YES;
     [self addSubview:self.photoImageView];
@@ -48,6 +49,15 @@
     self.photoImageView.image = imageAnswer.data;
     if (imageAnswer.url) {
         [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:imageAnswer.url] placeholderImage:nil];
+    }
+}
+
+- (void)setShowImageBorder:(BOOL)showImageBorder {
+    _showImageBorder = showImageBorder;
+    if (showImageBorder) {
+        self.photoImageView.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
+    }else {
+        self.photoImageView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 

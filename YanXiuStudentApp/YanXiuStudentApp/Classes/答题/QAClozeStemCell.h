@@ -12,6 +12,7 @@
 @interface QAClozeStemCell : UITableViewCell
 @property (nonatomic, strong) QAQuestion *question;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) BOOL isAnalysis;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 @property (nonatomic, weak) id<QAClozeQuestionCellDelegate> selectItemDelegate;
 

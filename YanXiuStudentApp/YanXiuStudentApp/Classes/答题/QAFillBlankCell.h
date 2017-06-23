@@ -10,6 +10,7 @@
 
 @interface QAFillBlankCell : UITableViewCell
 @property (nonatomic, strong) QAQuestion *question;
+@property (nonatomic, assign) BOOL isAnalysis;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 @property (nonatomic, weak) id<QAAnswerStateChangeDelegate> answerStateChangeDelegate;
 
