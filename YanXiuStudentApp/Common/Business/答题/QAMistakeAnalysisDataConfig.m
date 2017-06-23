@@ -15,7 +15,6 @@
         qaType == YXQATemplateMultiChoose ||
         qaType == YXQATemplateYesNo ) {
         if (analysisType == YXAnalysisCurrentStatus ||
-            analysisType == YXAnalysisStatistic ||
             analysisType == YXAnalysisDifficulty ||
             analysisType == YXAnalysisAnalysis ||
             analysisType == YXAnalysisKnowledgePoint ||
@@ -29,7 +28,6 @@
                qaType == YXQATemplateConnect ||
                qaType == YXQATemplateClassify) {
         if (analysisType == YXAnalysisCurrentStatus ||
-            analysisType == YXAnalysisStatistic ||
             analysisType == YXAnalysisDifficulty ||
             analysisType == YXAnalysisAnalysis ||
             analysisType == YXAnalysisKnowledgePoint ||

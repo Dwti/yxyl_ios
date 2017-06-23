@@ -15,11 +15,9 @@
         qaType == YXQATemplateMultiChoose ||
         qaType == YXQATemplateYesNo ) {
         if (analysisType == YXAnalysisCurrentStatus ||
-            analysisType == YXAnalysisStatistic ||
             analysisType == YXAnalysisDifficulty ||
             analysisType == YXAnalysisAnalysis ||
-            analysisType == YXAnalysisKnowledgePoint ||
-            analysisType == YXAnalysisErrorReport
+            analysisType == YXAnalysisKnowledgePoint
          ) {
             return YES;
         }else{
@@ -28,13 +26,11 @@
     } else if (qaType == YXQATemplateFill ||
                qaType == YXQATemplateConnect ||
                qaType == YXQATemplateClassify) {
-        if (analysisType == YXAnalysisCurrentStatus ||
-            analysisType == YXAnalysisStatistic ||
+        if (analysisType == YXAnalysisCurrentStatus  ||
             analysisType == YXAnalysisDifficulty ||
             analysisType == YXAnalysisAnalysis ||
             analysisType == YXAnalysisKnowledgePoint ||
-            analysisType == YXAnalysisAnswer ||
-            analysisType == YXAnalysisErrorReport
+            analysisType == YXAnalysisAnswer
         ) {
             return YES;
         }else{
@@ -48,8 +44,7 @@
             analysisType == YXAnalysisDifficulty ||
             analysisType == YXAnalysisAnalysis ||
             analysisType == YXAnalysisAnswer ||
-            analysisType == YXAnalysisKnowledgePoint ||
-            analysisType == YXAnalysisErrorReport) {
+            analysisType == YXAnalysisKnowledgePoint) {
             return YES;
         }else{
             return NO;

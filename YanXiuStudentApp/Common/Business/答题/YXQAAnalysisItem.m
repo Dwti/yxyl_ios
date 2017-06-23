@@ -20,8 +20,6 @@
 - (NSString *)typeString{
     if (self.type == YXAnalysisCurrentStatus) {
         return @"作答结果";
-    }else if (self.type == YXAnalysisStatistic){
-        return @"个人统计";
     }else if (self.type == YXAnalysisDifficulty){
         return @"难度";
     }else if (self.type == YXAnalysisAnswer){

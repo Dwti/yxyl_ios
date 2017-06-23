@@ -8,6 +8,7 @@
 
 #import "QAAnalysisViewController.h"
 #import "YXQAAnalysisDataConfig.h"
+#import "QAReportErrorViewController.h"
 
 @interface QAAnalysisViewController ()
 @property (nonatomic, strong) YXQAAnalysisDataConfig *analysisDataDelegate;
@@ -39,10 +40,18 @@
     self.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];
     self.slideView.currentIndex = self.firstLevel;
     self.switchView.lastButtonHidden = YES;
+    if (self.model.allQuestions.count == 1) {
+        self.switchView.hidden = YES;
+    }else {
+        self.switchView.hidden = NO;
+    }
 }
 
 - (void)reportError {
-    
+    QAQuestion *question = self.model.questions[self.slideView.currentIndex];
+    QAReportErrorViewController * viewController = [[QAReportErrorViewController alloc] init];
+    viewController.questionID = question.questionID;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - QASlideViewDataSource
@@ -56,10 +65,10 @@
     view.title = self.model.paperTitle;
     view.isSubQuestionView = NO;
     view.slideDelegate = self;
-//    view.canDoExerciseFromKnp = self.canDoExerciseFromKnp;
-//    view.pointClickDelegate = self;
-//    view.reportErrorDelegate = self;
-//    view.editNoteDelegate = self;
+    //    view.canDoExerciseFromKnp = self.canDoExerciseFromKnp;
+    //    view.pointClickDelegate = self;
+    //    view.reportErrorDelegate = self;
+    //    view.editNoteDelegate = self;
     view.analysisDataDelegate = self.analysisDataDelegate;
     if (index == self.firstLevel) {
         if (self.secondLevel >= 0) {
@@ -70,5 +79,6 @@
     
     return view;
 }
+
 
 @end

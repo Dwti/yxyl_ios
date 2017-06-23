@@ -15,7 +15,7 @@ typedef void(^ButtonActionBlock)(void);
 @interface QAAlertView : AlertView
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *describe;
-@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) BOOL hideAlertWhenButtonTapped; // default is YES
 
 - (void)addButtonWithTitle:(NSString *)title style:(QAAlertActionStyle)style action:(ButtonActionBlock)buttonActionBlock;

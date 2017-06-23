@@ -30,8 +30,8 @@
 
 - (BOOL)hasTeacherComments
 {
-    if ([self.paperStatus.teachercomments yx_isValidString]
-        && [self.paperStatus.teacherName yx_isValidString]) {
+    if (([self.paperStatus.teachercomments yx_isValidString]
+        || [self.paperStatus.teachercomments isEqualToString:@""]) ) {
         return YES;
     }
     return NO;

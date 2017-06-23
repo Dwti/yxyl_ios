@@ -15,6 +15,7 @@
 #import "QAReportNavView.h"
 #import "QAAnswerSheetViewController.h"
 #import "QAAnswerQuestionViewController.h"
+#import "QAAnalysisViewController.h"
 
 static const CGFloat kItemWidth = 60;
 static const CGFloat kMinMargin = 15;
@@ -137,6 +138,15 @@ static const CGFloat kMinMargin = 15;
         [cell setChoseActionBlock:^(QAQuestion *item) {
             STRONG_SELF
             DDLogDebug(@"%@题目",item.stem);
+            QAAnalysisViewController *vc = [[QAAnalysisViewController alloc]init];
+//            vc.requestParams = self.requestParams;
+            vc.model = self.model;
+            vc.firstLevel = item.position.firstLevelIndex;
+            vc.secondLevel = item.position.secondLevelIndex;
+//            vc.pType = self.pType;
+//            vc.canDoExerciseFromKnp = self.canDoExerciseAgain;
+//            vc.analysisDataDelegate = self.analysisDataConfig;
+            [self.navigationController pushViewController:vc animated:YES];
         }];
         return cell;
     }
@@ -172,7 +182,11 @@ static const CGFloat kMinMargin = 15;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return CGSizeMake(collectionView.frame.size.width, 370 *kPhoneWidthRatio);
+        if (self.model.checked) {
+            return CGSizeMake(collectionView.frame.size.width, 370 *kPhoneWidthRatio);
+        }else {
+           return CGSizeMake(collectionView.frame.size.width, 270 *kPhoneWidthRatio);
+        }
     }else if (indexPath.section == 1){
         return CGSizeMake(collectionView.frame.size.width, 45.0f * kPhoneWidthRatio);
     }

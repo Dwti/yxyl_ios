@@ -27,7 +27,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
-        [self setupLayout];
+        [self updateLayout];
     }
     return self;
 }
@@ -36,8 +36,12 @@
     self.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     
     self.bgImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"分数报告背景"]];
+    [self addSubview:self.bgImageView];
+    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(375 * kPhoneWidthRatio, 370 *kPhoneWidthRatio));
+    }];
     
-        
     self.correctRateLabel = [[QAShadowLabel alloc]init];
     self.correctRateLabel.font = [UIFont fontWithName:YXFontMetro_DemiBold size:55.0f];
     self.correctRateLabel.textColor = [UIColor colorWithHexString:@"336600"];
@@ -71,21 +75,17 @@
     self.durationLabel = [self.correctCountLabel clone];
 }
 
-- (void)setupLayout {
-    [self addSubview:self.bgImageView];
-    [self addSubview:self.correctRateLabel];
-    [self addSubview:self.percentLabel];
-    [self addSubview:self.descLabel];
-    [self addSubview:self.lineView];
-    [self addSubview:self.totalCountLabel];
-    [self addSubview:self.correctCountLabel];
-    [self addSubview:self.timeDescLabel];
-    [self addSubview:self.durationLabel];
+- (void)updateLayout {
     
-    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(375 * kPhoneWidthRatio, 370 *kPhoneWidthRatio));
-    }];
+    [self.bgImageView addSubview:self.correctRateLabel];
+    [self.bgImageView addSubview:self.percentLabel];
+    [self.bgImageView addSubview:self.descLabel];
+    [self.bgImageView addSubview:self.lineView];
+    [self.bgImageView addSubview:self.totalCountLabel];
+    [self.bgImageView addSubview:self.correctCountLabel];
+    [self.bgImageView addSubview:self.timeDescLabel];
+    [self.bgImageView addSubview:self.durationLabel];
+    
     [self.correctRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.bgImageView);
         make.centerY.equalTo(self.bgImageView).offset(-20 *kPhoneWidthRatio);
@@ -123,10 +123,20 @@
 
 - (void)setModel:(QAPaperModel *)model {
     _model = model;
-    self.correctRateLabel.text = [NSString stringWithFormat:@"%.0f",model.correctRate*100];
-    self.totalCountLabel.text = [NSString stringWithFormat:@"共%@题",@(model.totalQuestionNumber)];
-    self.correctCountLabel.text = [NSString stringWithFormat:@"答对%@题",@([self resultCorrectCountWithModel:model])];
-    self.durationLabel.text = [self formatTimeWithDuration:model.paperAnswerDuration];
+    if (model.checked) {
+        [self updateLayout];
+        self.correctRateLabel.text = [NSString stringWithFormat:@"%.0f",model.correctRate*100];
+        self.totalCountLabel.text = [NSString stringWithFormat:@"共%@题",@(model.totalQuestionNumber)];
+        self.correctCountLabel.text = [NSString stringWithFormat:@"答对%@题",@([self resultCorrectCountWithModel:model])];
+        self.durationLabel.text = [self formatTimeWithDuration:model.paperAnswerDuration];
+    }else {
+        [self.bgImageView removeAllSubviews];
+        self.bgImageView.image = [UIImage imageNamed:@"等待老师批改"];
+        [self.bgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(375 * kPhoneWidthRatio, 270 *kPhoneWidthRatio));
+        }];
+    }
 }
 
 - (NSInteger)resultCorrectCountWithModel:(QAPaperModel *)model {
@@ -149,4 +159,5 @@
     time = [NSString stringWithFormat:@"%02d:%02d:%02d",hour,min,sec];
     return time;
 }
+
 @end

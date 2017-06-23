@@ -147,19 +147,25 @@
         self.stateLabel.text = @"逾期未交";
         self.descLabel.text = @"";
     }else if (data.paperStatus.status.intValue == 2){ //已完成
-        if (data.hasTeacherComments) {
-            [self showComment];
+        if (data.subquesnum.integerValue == 0) {//只有客观题
+            [self hideComment];
             self.stateLabel.text = @"已批改";
             self.descLabel.text = @"";
-            NSString *teacherString = [NSString stringWithFormat:@"%@评语：",data.paperStatus.teacherName];
-            NSString *totalString = [NSString stringWithFormat:@"%@%@",teacherString,data.paperStatus.teachercomments];
-            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:totalString];
-            [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:NSMakeRange(0, teacherString.length)];
-            self.commentLabel.attributedText = attrString;
         }else {
-            [self hideComment];
-            self.stateLabel.text = @"已完成，等待老师批改";
-            self.descLabel.text = @"";
+            if (data.hasTeacherComments) {
+                self.stateLabel.text = @"已批改";
+                self.descLabel.text = @"";
+                [self showComment];
+                NSString *teacherString = [NSString stringWithFormat:@"%@评语：",data.paperStatus.teacherName];
+                NSString *totalString = [NSString stringWithFormat:@"%@%@",teacherString,data.paperStatus.teachercomments];
+                NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:totalString];
+                [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:NSMakeRange(0, teacherString.length)];
+                self.commentLabel.attributedText = attrString;
+            }else {
+                [self hideComment];
+                self.stateLabel.text = @"已完成，等待老师批改";
+                self.descLabel.text = @"";
+            }
         }
     }
 }

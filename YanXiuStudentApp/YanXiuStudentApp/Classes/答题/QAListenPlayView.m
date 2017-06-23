@@ -57,7 +57,7 @@
     self.playProgressView.userInteractionEnabled = NO;
     
     self.playButton = [[UIButton alloc] init];
-    self.playButton.backgroundColor = [UIColor blueColor];
+//    self.playButton.backgroundColor = [UIColor blueColor];
     [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
     [self addSubview:self.playButton];
     [self addRACSignalForButtonTapped];

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "QAChooseOptionCell.h"
 @interface QAYesNoOptionCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL isLast;
 @property (nonatomic, assign) BOOL choosed;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) BOOL isAnalysis;
+@property (nonatomic, assign) OptionCellMarkType markType;
 
 @end

@@ -74,7 +74,6 @@ typedef NS_ENUM(NSUInteger, YXQAAnswerState) {
 // 解析类型
 typedef NS_ENUM(NSUInteger, YXQAAnalysisType) {
     YXAnalysisCurrentStatus, // 当前状态
-    YXAnalysisStatistic, // 个人统计
     YXAnalysisDifficulty, // 难度
     YXAnalysisAnswer,     //答案
     YXAnalysisAnalysis, // 题目解析

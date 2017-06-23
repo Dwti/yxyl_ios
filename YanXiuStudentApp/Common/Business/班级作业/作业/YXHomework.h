@@ -56,7 +56,7 @@
 @property (nonatomic, copy) NSString<Optional> *showana;   //是否显示报告 0 显示 1 不显示
 @property (nonatomic, copy) NSString<Optional> *answernum;
 @property (nonatomic, copy) NSString<Optional> *remaindertimeStr;
-
+@property (nonatomic, copy) NSString<Optional> *subquesnum;//主观题数
 - (BOOL)hasTeacherComments;
 - (BOOL)shouldDisplayTheReport;
 @end

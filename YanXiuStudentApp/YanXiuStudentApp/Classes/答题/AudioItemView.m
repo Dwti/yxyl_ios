@@ -37,24 +37,24 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     
     self.voiceView = [[UIView alloc] init];
-    self.voiceView.backgroundColor = [UIColor whiteColor];
-    self.voiceView.layer.cornerRadius = 6;
+    self.voiceView.backgroundColor = [UIColor colorWithHexString:@"ccff00"];
+    self.voiceView.layer.cornerRadius = 10;
     self.voiceView.layer.borderWidth = 2;
-    self.voiceView.layer.borderColor = [UIColor colorWithHexString:@"ccc4a3"].CGColor;
+    self.voiceView.layer.borderColor = [UIColor colorWithHexString:@"336600"].CGColor;
     
-    UIImage *audio1 = [UIImage imageNamed:@"语音1"];
-    UIImage *audio2 = [UIImage imageNamed:@"语音2"];
-    UIImage *audio3 = [UIImage imageNamed:@"语音3"];
-
+    UIImage *audio1 = [UIImage imageNamed:@"语音点"];
+    UIImage *audio2 = [UIImage imageNamed:@"语音短"];
+    UIImage *audio3 = [UIImage imageNamed:@"语音长"];
+    
     self.volumeImageView = [[UIImageView alloc] init];
     self.volumeImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.volumeImageView.image = audio3;
+    self.volumeImageView.image = [UIImage imageNamed:@"语音"];
     self.volumeImageView.animationImages = @[audio1, audio2, audio3];
     self.volumeImageView.animationDuration = 1.0;
     
     self.durationLabel = [[UILabel alloc] init];
     self.durationLabel.font = [UIFont systemFontOfSize:14];
-    self.durationLabel.textColor = [UIColor colorWithHexString:@"ccc4a3"];
+    self.durationLabel.textColor = [UIColor colorWithHexString:@"336600"];
 }
 
 - (void)setupLayout {
@@ -77,10 +77,11 @@
         make.bottom.mas_offset(-4);
     }];
     
-    [self.contentView addSubview:self.durationLabel];
+    [self.voiceView addSubview:self.durationLabel];
     [self.durationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.voiceView.mas_right).offset(5);
-        make.bottom.equalTo(self.voiceView.mas_bottom).offset(0);
+        make.left.equalTo(self.volumeImageView.mas_right).offset(15);
+        //        make.bottom.equalTo(self.voiceView.mas_bottom).offset(0);
+        make.centerY.equalTo(self.volumeImageView);
     }];
 }
 
@@ -105,7 +106,7 @@
         }
         
         NSURL *url= [NSURL URLWithString:self.audioComment.url];
-
+        
         self.player = [[LePlayer alloc] init];
         self.player.videoUrl = url;
         [self addRACObserverForTimePlayed];
@@ -116,14 +117,14 @@
     } else if (state == AudioPlayState_Stopped) {
         self.player = nil;
         [self.volumeImageView stopAnimating];
-
+        
     } else if (state == AudioPlayState_Finished) {
         self.player.playPauseState = PlayerView_State_Finished;
         self.player = nil;
         [self.volumeImageView stopAnimating];
         
     } else if (state == AudioPlayState_Default) {
-
+        
     }
 }
 
@@ -132,7 +133,16 @@
     
     [self setupLayout];
     
-    self.durationLabel.text = [NSString stringWithFormat:@"%@''", audioComment.duration];
+    CGFloat durationTime = audioComment.duration.floatValue;
+    NSInteger minute = durationTime / 60.0;
+    NSInteger second = durationTime - minute * 60.0;
+    NSString *duration = [NSString string];
+    if (minute > 0) {
+        duration = [NSString stringWithFormat:@"%@'%02zd''",@(minute),second];
+    }else {
+        duration = [NSString stringWithFormat:@"%02zd''",second];
+    }
+    self.durationLabel.text = duration;
 }
 
 #pragma mark - Network
@@ -155,13 +165,20 @@
 }
 
 #pragma mark - Helper
-- (CGFloat)audioButtonWidth {
-    CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width - 10 - 17 - 20 - 20 - 30 - 4;
-    CGFloat audioWidth = (maxWidth - 75) / 180 * self.audioComment.duration.integerValue + 75;
-    CGFloat width = MIN(maxWidth, audioWidth);
-    return width;
-}
+//- (CGFloat)audioButtonWidth {
+//    CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width - 10 - 17 - 20 - 20 - 30 - 4;
+//    CGFloat audioWidth = (maxWidth - 75) / 180 * self.audioComment.duration.integerValue + 75;
+//    CGFloat width = MIN(maxWidth, audioWidth);
+//    return width;
+//}
 
+-(CGFloat)audioButtonWidth {
+    CGFloat maxWidth = 300 * kPhoneWidthRatio;
+    CGFloat minWidth = 80 * kPhoneWidthRatio;
+    
+    CGFloat buttonWidth = self.audioComment.duration.floatValue / (3.0f * 60 ) * (maxWidth - minWidth) + minWidth;
+    return buttonWidth;
+}
 - (void)showAlertView {
     EEAlertView *alertView = [[EEAlertView alloc]init];
     
@@ -188,7 +205,7 @@
         if (![x longLongValue]) {
             return ;
         }
-
+        
         if (self.player.duration - [x floatValue] < 1) {//播放完成
             self.state = AudioPlayState_Finished;
             self.playFinished(self.tag);

@@ -10,6 +10,7 @@
 
 @interface QAYesNoOptionCell()
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIImageView *orderBgImageView;
 @property (nonatomic, strong) UIImageView *selectionImageView;
 @property (nonatomic, strong) UIView *bottomLineView;
 
@@ -19,6 +20,9 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
+    if (self.isAnalysis) {
+        return;
+    }
     if (highlighted) {
         self.contentView.backgroundColor = [UIColor whiteColor];
     }else {
@@ -34,8 +38,11 @@
 }
 
 - (void)setupUI {
-    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.layer.shadowOffset = CGSizeMake(0, 2.5);
+    self.layer.shadowRadius = 2.5;
+    self.layer.shadowOpacity = 0.02;
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -44,6 +51,14 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
+    }];
+    
+    self.orderBgImageView = [[UIImageView alloc]init];
+    [self.contentView insertSubview:self.orderBgImageView belowSubview:self.titleLabel];
+    [self.orderBgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.titleLabel.mas_centerY);
+        make.centerX.mas_equalTo(self.titleLabel.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(39, 39));
     }];
     
     self.selectionImageView = [[UIImageView alloc]init];
@@ -79,9 +94,9 @@
 - (void)setChoosed:(BOOL)choosed {
     _choosed = choosed;
     if (choosed) {
-        self.selectionImageView.backgroundColor = [UIColor greenColor];
+        self.selectionImageView.image = [UIImage imageNamed:@"单选选择框已选择"];
     }else {
-        self.selectionImageView.backgroundColor = [UIColor redColor];
+        self.selectionImageView.image = [UIImage imageNamed:@"单选选择框"];
     }
 }
 
@@ -90,5 +105,19 @@
     self.titleLabel.text = title;
 }
 
+- (void)setMarkType:(OptionCellMarkType)markType {
+    _markType = markType;
+    if (markType == OptionMarkType_Correct) {
+        self.orderBgImageView.image = [UIImage imageNamed:@"答对题目-正常态"];
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.choosed = self.choosed;
+    }else if (markType == OptionMarkType_Wrong) {
+        self.orderBgImageView.image = [UIImage imageNamed:@"答错题目-正常态"];
+        self.titleLabel.textColor = [UIColor whiteColor];
+    }else {
+        self.orderBgImageView.image = nil;
+        self.choosed = self.choosed;
+    }
+}
 
 @end

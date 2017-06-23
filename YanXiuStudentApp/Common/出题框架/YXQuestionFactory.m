@@ -80,7 +80,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -112,7 +111,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -141,7 +139,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -171,7 +168,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -200,7 +196,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -230,7 +225,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -330,7 +324,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     
@@ -372,7 +365,6 @@
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
     YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
     extendData.answerCompare = @"这是当前状态";
-    extendData.globalStatis = @"这是个人统计";
     extend.data = extendData;
     q.extend = extend;
     

@@ -32,7 +32,7 @@ NSString * const kHeaderCellReuseID = @"kHeaderCellReuseID";
         [cell.playView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(cell.htmlView.mas_bottom).offset(12.0f);
-            make.bottom.mas_equalTo(10.0f);
+            make.bottom.mas_equalTo(6.0f);
         }];
         return cell;
     }

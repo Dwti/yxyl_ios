@@ -8,8 +8,8 @@
 
 #import "YXStarRateView.h"
 
-#define SELECT_STAR_IMAGE_NAME @"难度star粉色"
-#define DEFAULT_STAR_IMAGE_NAME @"难度star灰色"
+#define SELECT_STAR_IMAGE_NAME @"难度-评星-有星"
+#define DEFAULT_STAR_IMAGE_NAME @"难度-评星-无星"
 #define DEFALUT_STAR_COUNT 5
 @interface YXStarRateView ()
 @property (nonatomic, strong) UIView *  foregroundStarView;

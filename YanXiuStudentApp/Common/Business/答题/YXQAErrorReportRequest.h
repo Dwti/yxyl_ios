@@ -13,5 +13,5 @@
 @property (nonatomic, strong) NSString *uid;
 @property (nonatomic, strong) NSString *quesId;
 @property (nonatomic, strong) NSString *content;
-
+@property (nonatomic, strong) NSString *type;
 @end

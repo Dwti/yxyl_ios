@@ -97,7 +97,7 @@ CGFloat const kQADefaultContentViewWith = 327;
     UIView *defaultView = [[UIView alloc]init];
     UIImageView *contentBGView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"作业上传保存失败断网的弹窗背景"]];
     
-    UIImageView *tipIconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:self.imageName]];
+    UIImageView *tipIconView = [[UIImageView alloc]initWithImage:self.image];
     tipIconView.backgroundColor = [UIColor blueColor];
 
     UILabel *titleLabel = [[UILabel alloc]init];
@@ -111,6 +111,7 @@ CGFloat const kQADefaultContentViewWith = 327;
     describeLabel.font = [UIFont systemFontOfSize:14];
     describeLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
     describeLabel.text = self.describe;
+    describeLabel.numberOfLines = 0;
     
     UIView *bottomView = [[UIView alloc]init];
     
@@ -125,8 +126,8 @@ CGFloat const kQADefaultContentViewWith = 327;
     }];
     [tipIconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.bottom.mas_equalTo(contentBGView.mas_top).offset(56 * kPhoneWidthRatio);
-        make.size.mas_equalTo(CGSizeMake(250 * kPhoneWidthRatio, 130 * kPhoneWidthRatio));
+        make.bottom.mas_equalTo(contentBGView.mas_top).offset(self.image.size.height * 0.5);
+        make.size.mas_equalTo(self.image.size);
     }];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(tipIconView.mas_bottom).mas_offset(12 * kPhoneWidthRatio);

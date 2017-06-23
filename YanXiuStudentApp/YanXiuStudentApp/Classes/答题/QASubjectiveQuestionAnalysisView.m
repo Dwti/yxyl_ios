@@ -63,4 +63,7 @@
     }
 }
 
+- (void)leaveForeground {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LeaveForegroundNotification" object:nil];
+}
 @end

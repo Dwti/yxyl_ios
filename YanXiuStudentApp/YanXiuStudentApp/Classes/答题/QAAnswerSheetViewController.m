@@ -14,6 +14,7 @@
 #import "YXProblemItem.h"
 #import "QAAlertView.h"
 #import "QAReportViewController.h"
+#import "QAAnswerQuestionViewController.h"
 
 @interface QAAnswerSheetViewController ()
 @property (nonatomic, strong) QAAnswerSheetView *sheetView;
@@ -53,7 +54,7 @@
         QAAlertView *alert = [[QAAlertView alloc] init];
         alert.title = @"还有未答完的题目";
         alert.describe = @"确定要提交吗";
-        alert.imageName = @"";
+        alert.image = [UIImage imageNamed:@"提交成功图标"];
         [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
             STRONG_SELF
         }];
@@ -120,23 +121,7 @@
             }];
             
             if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
-//                YXQASubmitSuccessAndBackView_Phone *backView = [[YXQASubmitSuccessAndBackView_Phone alloc]init];
-//                backView.endDate = reportModel.homeworkEndDate;
-//                WEAK_SELF
-//                backView.actionBlock = ^{
-//                    STRONG_SELF
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                };
-//                [self.view addSubview:backView];
-//                [backView mas_makeConstraints:^(MASConstraintMaker *make) {
-//                    make.edges.mas_equalTo(0);
-//                }];
-                NSDateFormatter *formater = [[NSDateFormatter alloc]init];
-                [formater setDateFormat:@"yyyy/MM/dd HH:mm"];
-                NSString *dateString = [formater stringFromDate:reportModel.homeworkEndDate];
-                NSString *totalString = [NSString stringWithFormat:@"截止时间为：%@",dateString];
-                [self.view nyx_showToast:[NSString stringWithFormat:@"需要等到截止期%@之后才能显示报告",totalString]];
-                return;
+                [self showSubmitSuccessfullyTipViewWithEndDate:reportModel.homeworkEndDate];
             }
 //            if (self.pType != YXPTypeGroupHomework) {
 //                [YXQADataManager sharedInstance].hasDoExerciseToday = YES;
@@ -194,13 +179,39 @@
     QAAlertView *alert = [[QAAlertView alloc] init];
     alert.title = @"作业上传失败";
     alert.describe = @"请检查网络是否异常后重试";
-    alert.imageName = @"";
+    alert.image = [UIImage imageNamed:@"提交成功图标"];
     [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
         STRONG_SELF
     }];
     [alert addButtonWithTitle:@"再试一次" style:QAAlertActionStyle_Default action:^{
         STRONG_SELF
         [self submitPaper];
+    }];
+    [alert showInView:self.navigationController.view];
+}
+
+- (void)showSubmitSuccessfullyTipViewWithEndDate:(NSDate *)date {
+    NSMutableArray *vcArray = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    for (UIViewController *vc in vcArray) {
+        if ([vc isKindOfClass:[QAAnswerQuestionViewController class]]) {
+            [vcArray removeObject:vc];
+            break;
+        }
+    }
+    self.navigationController.viewControllers = vcArray;
+    
+    NSDateFormatter *formater = [[NSDateFormatter alloc]init];
+    [formater setDateFormat:@"yyyy/MM/dd HH:mm"];
+    NSString *dateString = [formater stringFromDate:date];
+    NSString *totalString = [NSString stringWithFormat:@"本作业被设定为: 截止时间后显示答案解析%@截止时间: %@",@"\n",dateString];
+    WEAK_SELF
+    QAAlertView *alert = [[QAAlertView alloc] init];
+    alert.title = @"提交成功";
+    alert.describe = totalString;
+    alert.image = [UIImage imageNamed:@"提交成功图标"];
+    [alert addButtonWithTitle:@"确定" style:QAAlertActionStyle_Default action:^{
+        STRONG_SELF
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     [alert showInView:self.navigationController.view];
 }

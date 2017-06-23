@@ -7,5 +7,9 @@
 //
 
 #import "QASingleQuestionAnswerBaseView.h"
+#import "QAAnalysisBackGroundView.h"
+
 @interface QASingleQuestionAnalysisBaseView : QASingleQuestionAnswerBaseView
+@property (nonatomic, strong) QAAnalysisBackGroundView *analysisBGView;
+
 @end
