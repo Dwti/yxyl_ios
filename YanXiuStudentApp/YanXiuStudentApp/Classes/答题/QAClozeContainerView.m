@@ -17,6 +17,7 @@ YXHtmlCellHeightDelegate
 
 @property (nonatomic, assign) CGFloat yueCellHeight;
 @property (nonatomic, strong) QAQuestion *qaData;
+@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -53,6 +54,23 @@ YXHtmlCellHeightDelegate
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1);
     }];
+    self.lineView = bottomLineView;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
+    [self.tableView addGestureRecognizer:tap];
+}
+
+- (void)tapAction {
+    if ([self.delegate respondsToSelector:@selector(stemClicked)]) {
+        [self.delegate stemClicked];
+    }
+}
+
+- (void)setIsAnalysis:(BOOL)isAnalysis {
+    _isAnalysis = isAnalysis;
+    if (isAnalysis) {
+        [self.lineView removeFromSuperview];
+    }
 }
 
 - (void)scrollCurrentBlankToVisible {
@@ -87,12 +105,6 @@ YXHtmlCellHeightDelegate
     self.clozeCell = cell;
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(stemClicked)]) {
-        [self.delegate stemClicked];
-    }
 }
 
 - (void)tableViewCell:(UITableViewCell *)cell updateWithHeight:(CGFloat)height {

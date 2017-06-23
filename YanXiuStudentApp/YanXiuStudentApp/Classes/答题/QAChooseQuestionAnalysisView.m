@@ -7,52 +7,86 @@
 //
 
 #import "QAChooseQuestionAnalysisView.h"
-#import "YXQAQuestionCell2.h"
-#import "YXQAChooseAnswerCell2.h"
+#import "QAQuestionStemCell.h"
+#import "QAChooseOptionCell.h"
+#import "QAComplexHeaderFactory.h"
+
 @interface QAChooseQuestionAnalysisView ()
+@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
+@property (nonatomic, strong) QAQuestion *oriData;
 @end
 @implementation QAChooseQuestionAnalysisView
 
+- (void)setData:(QAQuestion *)data {
+    if (data.childQuestions.count == 1) {
+        self.oriData = data;
+        [super setData:data.childQuestions.firstObject];
+        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    }else {
+        [super setData:data];
+    }
+}
 - (void)setupUI {
     [super setupUI];
-    [self.tableView registerClass:[YXQAQuestionCell2 class] forCellReuseIdentifier:@"YXQAQuestionCell2"];
-    [self.tableView registerClass:[YXQAChooseAnswerCell2 class] forCellReuseIdentifier:@"YXQAChooseAnswerCell2"];
+    [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
+    [self.tableView registerClass:[QAChooseOptionCell class] forCellReuseIdentifier:@"QAChooseOptionCell"];
 }
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([YXQAQuestionCell2 heightForString:self.data.stem dashHidden:NO])];
-    for (int i = 0; i < [self.data.options count]; i++) {
-        [heightArray addObject:@([YXQAChooseAnswerCell2 heightForString:self.data.options[i]])];
+    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
+    if (self.hideQuestion) {
+        [heightArray addObject:@(0.0001)];
+    }else {
+        [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    }
+    for (int i = 0; i < self.data.options.count; i++) {
+        [heightArray addObject:@([QAChooseOptionCell heightForString:self.data.options[i]])];
     }
     return heightArray;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        if (indexPath.row == 0) {
-            YXQAQuestionCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXQAQuestionCell2"];
-            cell.delegate = self;
-            cell.item = self.data;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }else if(indexPath.row <= self.data.options.count){
-            NSInteger answerIndex = indexPath.row - 1;
-            YXQAChooseAnswerCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXQAChooseAnswerCell2" forIndexPath:indexPath];
-            cell.delegate = self;
-            cell.bChoosed = NO;
-            cell.markType = EMarkNone;
-            if (!self.analysisDataHidden) {
-                if ([self.data.myAnswers[answerIndex] boolValue]) {
-                    cell.bChoosed = YES;
-                    cell.markType = EMarkWrong;
-                }
-                if ([self.data.correctAnswers[answerIndex] boolValue]) {
-                    cell.markType = EMarkCorrect;
-                }
-            }
-            [cell updateWithItem:self.data forIndex:answerIndex];
-            return cell;
-        }else{
-            UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        UITableViewCell<QAComplexHeaderCellDelegate> *cell = [tableView dequeueReusableCellWithIdentifier:kHeaderCellReuseID];
+        if (!cell) {
+            cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+            cell.cellHeightDelegate = self;
+        }
+        return cell;
+    }
+    if (indexPath.row == 1) {
+        if (self.hideQuestion) {
+            UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             return cell;
         }
+        QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
+        cell.delegate = self;
+        [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
+        return cell;
+    }else if(indexPath.row <= self.data.options.count+1) {
+        NSInteger answerIndex = indexPath.row - 2;
+        QAChooseOptionCell *cell = [[QAChooseOptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.delegate = self;
+        cell.isAnalysis = YES;
+        cell.isLast = indexPath.row==self.data.options.count+1;
+        cell.isMulti = self.data.templateType == YXQATemplateMultiChoose;
+        cell.choosed = NO;
+        cell.markType = OptionMarkType_None;
+        if (!self.analysisDataHidden) {
+            if ([self.data.myAnswers[answerIndex] boolValue]) {
+                cell.choosed = YES;
+                cell.markType = OptionMarkType_Wrong;
+            }
+            if ([self.data.correctAnswers[answerIndex] boolValue]) {
+                cell.markType = OptionMarkType_Correct;
+            }
+        }
+        [cell updateWithOption:self.data.options[answerIndex] forIndex:answerIndex];
+        return cell;
+    }else{
+        UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        return cell;
+    }
 }
+
 @end

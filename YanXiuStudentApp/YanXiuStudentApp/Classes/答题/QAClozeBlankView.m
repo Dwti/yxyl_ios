@@ -69,9 +69,14 @@
 }
 
 - (void)enter {
+    [self enterAnimated:YES];
+}
+
+- (void)enterAnimated:(BOOL)animated {
     self.answerLabel.textColor = [UIColor colorWithHexString:@"333333"];
     if (isEmpty(self.answerLabel.text)) {
-        [UIView animateWithDuration:0.2 animations:^{
+        NSTimeInterval duration = animated? 0.2:0;
+        [UIView animateWithDuration:duration animations:^{
             self.indexLabel.frame = CGRectMake(0, self.indexLabel.y, self.indexLabel.width, self.indexLabel.height);
         }];
     }

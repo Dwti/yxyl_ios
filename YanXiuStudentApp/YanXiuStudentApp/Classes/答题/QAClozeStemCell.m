@@ -110,7 +110,7 @@
     
     if (index == self.currentIndex) {
         QAClozeBlankView *curView = (QAClozeBlankView *)info.coverView;
-        [curView enter];
+        [curView enterAnimated:NO];
     }
 }
 
@@ -211,8 +211,8 @@
         CGFloat spaceWidth = ceilf(spaceSize.width);
         
         CGSize size = [answer sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontArialNarrow_Bold size:17]}];
-        CGFloat width = MIN(size.width+30, [QAClozeStemCell maxContentWidth]);
-        NSInteger spaceNum = width/spaceWidth;
+        CGFloat width = MIN(size.width+21, [QAClozeStemCell maxContentWidth]);
+        NSInteger spaceNum = ceilf(width/spaceWidth);
         NSString *s = @"";
         for (NSInteger i = 0; i < spaceNum; i++) {
             s = [s stringByAppendingString:@"-"];

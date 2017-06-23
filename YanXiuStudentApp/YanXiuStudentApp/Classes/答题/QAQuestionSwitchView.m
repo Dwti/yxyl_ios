@@ -110,7 +110,11 @@
             self.nextButton.hidden = YES;
         }
     }
-    self.completeButton.hidden = !self.nextButton.hidden;
+    if (!self.lastButtonHidden) {
+        self.completeButton.hidden = !self.nextButton.hidden;
+    }else {
+        self.completeButton.hidden = YES;
+    }
 }
 
 @end

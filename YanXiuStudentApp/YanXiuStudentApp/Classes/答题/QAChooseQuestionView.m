@@ -34,7 +34,11 @@
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
     [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
-    [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    if (self.hideQuestion) {
+        [heightArray addObject:@(0.0001)];
+    }else {
+        [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    }
     for (int i = 0; i < self.data.options.count; i++) {
         [heightArray addObject:@([QAChooseOptionCell heightForString:self.data.options[i]])];
     }
@@ -50,6 +54,10 @@
         return cell;
     }
     if (indexPath.row == 1) {
+        if (self.hideQuestion) {
+            UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            return cell;
+        }
         QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
         cell.delegate = self;
         [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
@@ -59,6 +67,7 @@
     QAChooseOptionCell *cell = [[QAChooseOptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.delegate = self;
     cell.isLast = indexPath.row==self.data.options.count+1;
+    cell.isMulti = self.data.templateType == YXQATemplateMultiChoose;
     cell.choosed = NO;
     if ([self.data.myAnswers[answerIndex] boolValue]) {
         cell.choosed = YES;

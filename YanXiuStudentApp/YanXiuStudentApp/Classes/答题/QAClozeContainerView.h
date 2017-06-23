@@ -14,6 +14,7 @@
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, weak) id<QAClozeQuestionCellDelegate> delegate;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) BOOL isAnalysis;
 
 - (instancetype)initWithData:(QAQuestion *)data; //designated init
 

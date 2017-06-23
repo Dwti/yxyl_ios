@@ -38,6 +38,7 @@
     
     self.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];
     self.slideView.currentIndex = self.firstLevel;
+    self.switchView.lastButtonHidden = YES;
 }
 
 - (void)reportError {

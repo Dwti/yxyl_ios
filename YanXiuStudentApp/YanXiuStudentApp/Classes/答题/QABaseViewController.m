@@ -7,10 +7,9 @@
 //
 
 #import "QABaseViewController.h"
-#import "QAQuestionSwitchView.h"
 
 @interface QABaseViewController ()
-@property (nonatomic, strong) QAQuestionSwitchView *switchView;
+
 @end
 
 @implementation QABaseViewController

@@ -10,6 +10,7 @@
 
 @interface QAChooseOptionCell()
 @property (nonatomic, strong) UILabel *orderLabel;
+@property (nonatomic, strong) UIImageView *orderBgImageView;
 @property (nonatomic, strong) UIImageView *selectionImageView;
 @property (nonatomic, strong) UIView *bottomLineView;
 @property (nonatomic, strong) DTAttributedTextContentView *htmlView;
@@ -29,6 +30,9 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
+    if (self.isAnalysis) {
+        return;
+    }
     if (highlighted) {
         self.contentView.backgroundColor = [UIColor whiteColor];
     }else {
@@ -45,6 +49,7 @@
 }
 
 - (void)setupUI {
+    self.contentView.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.layer.shadowOffset = CGSizeMake(0, 2.5);
     self.layer.shadowRadius = 2.5;
@@ -57,6 +62,14 @@
     [self.orderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
+    }];
+    
+    self.orderBgImageView = [[UIImageView alloc]init];
+    [self.contentView insertSubview:self.orderBgImageView belowSubview:self.orderLabel];
+    [self.orderBgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.orderLabel.mas_centerY);
+        make.centerX.mas_equalTo(self.orderLabel.mas_centerX).mas_offset(-2);
+        make.size.mas_equalTo(CGSizeMake(31, 31));
     }];
     
     self.selectionImageView = [[UIImageView alloc]init];
@@ -94,22 +107,40 @@
         make.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1);
     }];
+    
+    self.markType = OptionMarkType_None;
 }
 
 - (void)updateWithOption:(NSString *)option forIndex:(NSInteger)index {
     char c = 'A' + index;
     NSString *cString = [NSString stringWithFormat:@"%c.", c];
     self.orderLabel.text = cString;
+    self.orderLabel.textColor = [UIColor colorWithHexString:@"666666"];
     NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForLevel3];
+    if (self.markType == OptionMarkType_Correct) {
+        self.orderLabel.textColor = [UIColor whiteColor];
+        dic = [YXQACoreTextHelper defaultOptionsForLevel3_Correct];
+    }else if (self.markType == OptionMarkType_Wrong) {
+        self.orderLabel.textColor = [UIColor whiteColor];
+        dic = [YXQACoreTextHelper defaultOptionsForLevel3_Wrong];
+    }
     self.htmlView.attributedString = [YXQACoreTextHelper attributedStringWithString:option options:dic];
 }
 
 - (void)setChoosed:(BOOL)choosed {
     _choosed = choosed;
-    if (choosed) {
-        self.selectionImageView.backgroundColor = [UIColor greenColor];
+    if (self.isMulti) {
+        if (choosed) {
+            self.selectionImageView.image = [UIImage imageNamed:@"多选选择框-已选择"];
+        }else {
+            self.selectionImageView.image = [UIImage imageNamed:@"多选选择框"];
+        }
     }else {
-        self.selectionImageView.backgroundColor = [UIColor redColor];
+        if (choosed) {
+            self.selectionImageView.image = [UIImage imageNamed:@"单选选择框已选择"];
+        }else {
+            self.selectionImageView.image = [UIImage imageNamed:@"单选选择框"];
+        }
     }
 }
 
@@ -121,6 +152,26 @@
     }else {
         self.bottomLineView.hidden = NO;
         self.layer.shadowColor = [UIColor clearColor].CGColor;
+    }
+}
+
+- (void)setMarkType:(OptionCellMarkType)markType {
+    _markType = markType;
+    if (markType == OptionMarkType_Correct) {
+        self.orderBgImageView.image = [UIImage imageNamed:@"答对题目-正常态"];
+        self.choosed = self.choosed;
+    }else if (markType == OptionMarkType_Wrong) {
+        self.orderBgImageView.image = [UIImage imageNamed:@"答错题目-正常态"];
+        if (self.choosed) {
+            if (self.isMulti) {
+                self.selectionImageView.backgroundColor = [UIColor redColor];
+            }else {
+                self.selectionImageView.backgroundColor = [UIColor redColor];
+            }
+        }
+    }else {
+        self.orderBgImageView.image = nil;
+        self.choosed = self.choosed;
     }
 }
 

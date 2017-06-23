@@ -9,6 +9,7 @@
 #import "QAAnalysisClozeComplexView.h"
 #import "QAClozeContainerView.h"
 
+static const CGFloat kClozeOptionsHeight = 256+45;
 
 @interface QAAnalysisClozeComplexView () <QAClozeQuestionCellDelegate>
 
@@ -22,17 +23,26 @@
 - (UIView *)topContainerView {    
     self.clozeContainerView = [[QAClozeContainerView alloc] initWithData:self.data];
     self.clozeContainerView.currentIndex = self.nextLevelStartIndex;
+    self.clozeContainerView.isAnalysis = YES;
     self.clozeContainerView.delegate = self;
     return self.clozeContainerView;
 }
 
-#pragma mark- QAClozeContainerViewDelegate
+#pragma mark- QAClozeQuestionCellDelegate
 - (void)didSelectItemAtIndex:(NSInteger)index {
     [self.slideView scrollToItemIndex:index animated:YES];
 }
 
 - (void)layoutRefreshed {
     [self.clozeContainerView scrollCurrentBlankToVisible];
+}
+
+- (void)stemClicked {
+
+}
+
+- (BOOL)isDownContainerHidden {
+    return self.downContainerView.y > SCREEN_HEIGHT-kClozeOptionsHeight;
 }
 
 #pragma mark- SliderView

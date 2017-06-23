@@ -14,5 +14,6 @@
 - (void)updateWithIndex:(NSInteger)index answer:(NSString *)answer;
 
 - (void)enter;
+- (void)enterAnimated:(BOOL)animated;
 - (void)leave;
 @end
