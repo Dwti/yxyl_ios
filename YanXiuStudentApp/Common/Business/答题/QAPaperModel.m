@@ -31,6 +31,7 @@
     model.homeworkEndDate = [NSDate dateWithTimeIntervalSince1970:rawData.endtime.doubleValue/1000];
     model.paperAnswerDuration = rawData.paperStatus.costtime.doubleValue;
     model.canShowHomeworkAnalysis = !rawData.showana.boolValue;
+    model.checked = rawData.paperStatus.checkStatus.boolValue;
     model.gradeID = rawData.gradeid;
     model.questions = [self questionsWithRawData:rawData];
     

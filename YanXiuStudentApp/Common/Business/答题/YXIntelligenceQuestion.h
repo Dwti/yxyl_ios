@@ -53,7 +53,7 @@
 @property (nonatomic, copy) NSString<Optional> *begintime;
 @property (nonatomic, copy) NSString<Optional> *endtime;
 @property (nonatomic, copy) NSString<Optional> *costtime;
-
+@property (nonatomic, copy) NSString<Optional> *checkStatus;
 @end
 
 

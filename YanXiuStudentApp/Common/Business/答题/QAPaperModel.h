@@ -29,6 +29,7 @@
 @property (nonatomic, copy) NSString *gradeID;
 @property (nonatomic, copy) NSString *chapterID;
 
+@property (nonatomic, assign) BOOL checked; // 是否批改，YES已批改，NO未批改
 @property (nonatomic, assign) BOOL canShowHomeworkAnalysis; //用于作业，未到作业截止日之前不可以显示解析，以免其它还未作答的同学知道答案
 @property (nonatomic, assign) NSInteger totalQuestionNumber; // 题目总数，按小题计算
 
