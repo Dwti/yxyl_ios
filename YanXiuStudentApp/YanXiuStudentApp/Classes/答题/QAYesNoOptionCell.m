@@ -108,12 +108,15 @@
 - (void)setMarkType:(OptionCellMarkType)markType {
     _markType = markType;
     if (markType == OptionMarkType_Correct) {
-        self.orderBgImageView.image = [UIImage imageNamed:@"答对题目-正常态"];
+        self.orderBgImageView.image = [UIImage imageNamed:@"题目解析-正确答案标记"];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.choosed = self.choosed;
     }else if (markType == OptionMarkType_Wrong) {
-        self.orderBgImageView.image = [UIImage imageNamed:@"答错题目-正常态"];
+        self.orderBgImageView.image = [UIImage imageNamed:@"题目解析-错误答案标记"];
         self.titleLabel.textColor = [UIColor whiteColor];
+        if (self.choosed) {
+            self.selectionImageView.backgroundColor = [UIColor redColor];
+        }
     }else {
         self.orderBgImageView.image = nil;
         self.choosed = self.choosed;

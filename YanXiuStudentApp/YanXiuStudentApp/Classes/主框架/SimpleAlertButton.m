@@ -1,31 +1,31 @@
 //
-//  QAAlertButton.m
+//  SimpleAlertButton.m
 //  YanXiuStudentApp
 //
-//  Created by ZLL on 2017/6/19.
+//  Created by ZLL on 2017/7/4.
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "QAAlertButton.h"
+#import "SimpleAlertButton.h"
 
-@implementation QAAlertButton
+@implementation SimpleAlertButton
 
-- (void)setStyle:(QAAlertActionStyle)style {
+- (void)setStyle:(SimpleAlertActionStyle)style {
     _style = style;
-    if (style == QAAlertActionStyle_Cancel) {
+    if (style == SimpleAlertActionStyle_Cancel) {
         self.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         self.layer.cornerRadius = 5.0f;
         self.clipsToBounds = YES;
         [self setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateNormal];
     }
-    else if (style == QAAlertActionStyle_Default){
+    else if (style == SimpleAlertActionStyle_Default){
         self.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         self.layer.cornerRadius = 5.0f;
         self.clipsToBounds = YES;
         [self setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-    }else if(style == QAAlertActionStyle_Alone){
+    }else if(style == SimpleAlertActionStyle_Alone){
         self.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         self.layer.cornerRadius = 5.0f;
         self.clipsToBounds = YES;
@@ -33,6 +33,5 @@
         [self setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     }
 }
-
 
 @end

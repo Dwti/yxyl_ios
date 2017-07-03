@@ -7,22 +7,12 @@
 //
 
 #import "QASingleQuestionAnalysisBaseView.h"
-#import "YXDifficultyCell.h"
-#import "YXKnpCell.h"
-#import "YXReportErrorCell.h"
 #import "YXQAAnalysisUnfoldDelegate.h"
-#import "YXLabelHtmlCell2.h"
-#import "YXAnalysisCell.h"
-#import "YXCommentCell2.h"
 #import "YXJieXiShowView.h"
-#import "AnswerCell.h"
 #import "QAQuestion.h"
-#import "AudioCommentCell.h"
-#import "CommentCell.h"
 #import "MistakeNoteTableViewCell.h"
 #import "EditNoteViewController.h"
 #import "QAAnaysisGapCell.h"
-#import "QAAnalysisBaseCell.h"
 #import "QAAnalysisResultCell.h"
 #import "QAAnalysisScoreCell.h"
 #import "QAAnalysisDifficultyCell.h"
@@ -32,14 +22,11 @@
 #import "QAAnalysisAudioCommentCell.h"
 
 @interface QASingleQuestionAnalysisBaseView() <
-YXKnowledgePointViewDelegate,
-YXQAAnalysisReportErrorViewDelegate,
 YXQAAnalysisUnfoldDelegate
 >
 
 @property (nonatomic, strong) NSMutableArray *analysisDataArray;
 @property (nonatomic, assign) NSUInteger analysisCellCount;
-@property (nonatomic, strong) NSArray *testArray;
 
 @end
 
@@ -56,19 +43,8 @@ YXQAAnalysisUnfoldDelegate
     [self setupSingleQuestionAnalysisContent];
     self.analysisCellCount = self.cellHeightArray.count - oriCount - 1;
     
-    [self.tableView registerClass:[YXDifficultyCell class] forCellReuseIdentifier:@"YXDifficultyCell"];
-    [self.tableView registerClass:[YXKnpCell class] forCellReuseIdentifier:@"YXKnpCell"];
-    [self.tableView registerClass:[YXReportErrorCell class] forCellReuseIdentifier:@"YXReportErrorCell"];
-    [self.tableView registerClass:[AudioCommentCell class] forCellReuseIdentifier:@"AudioCommentCell"];
-    [self.tableView registerClass:[YXLabelHtmlCell2 class] forCellReuseIdentifier:@"YXLabelHtmlCell2"];
-    [self.tableView registerClass:[AnswerCell class] forCellReuseIdentifier:@"AnswerCell"];
-    [self.tableView registerClass:[YXAnalysisCell class] forCellReuseIdentifier:@"YXAnalysisCell"];
-    [self.tableView registerClass:[YXCommentCell2 class] forCellReuseIdentifier:@"YXCommentCell2"];
-    [self.tableView registerClass:[CommentCell class] forCellReuseIdentifier:@"CommentCell"];
     [self.tableView registerClass:[MistakeNoteTableViewCell class] forCellReuseIdentifier:@"MistakeNoteTableViewCell"];
-    
     [self.tableView registerClass:[QAAnaysisGapCell class] forCellReuseIdentifier:@"QAAnaysisGapCell"];
-    [self.tableView registerClass:[QAAnalysisBaseCell class] forCellReuseIdentifier:@"QAAnalysisBaseCell"];
     [self.tableView registerClass:[QAAnalysisResultCell class] forCellReuseIdentifier:@"QAAnalysisResultCell"];
     [self.tableView registerClass:[QAAnalysisScoreCell class] forCellReuseIdentifier:@"QAAnalysisScoreCell"];
     [self.tableView registerClass:[QAAnalysisDifficultyCell class] forCellReuseIdentifier:@"QAAnalysisDifficultyCell"];
@@ -114,8 +90,8 @@ YXQAAnalysisUnfoldDelegate
             }
         }
     }
-    
 }
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     [self setupAnalysisBGViewLayout];
 }
@@ -130,8 +106,8 @@ YXQAAnalysisUnfoldDelegate
         }
     }];
     self.analysisBGView.frame = CGRectMake(0, startPostion, self.tableView.width, self.tableView.contentSize.height - startPostion);
-    
 }
+
 - (void)setupRAC {
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:MistakeNoteSaveNotification object:nil] subscribeNext:^(id x) {
@@ -172,11 +148,6 @@ YXQAAnalysisUnfoldDelegate
         YXQAAnalysisItem *data = self.analysisDataArray[analysisDataIndex];
         
         if (data.type == YXAnalysisCurrentStatus) {
-            //            YXLabelHtmlCell2 *cell = [[YXLabelHtmlCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            //            cell.delegate = self;
-            //            cell.item = data;
-            //            cell.htmlString = self.data.answerCompare;
-            //            return cell;
             QAAnalysisResultCell *cell = [[QAAnalysisResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.delegate = self;
             cell.item = data;
@@ -187,21 +158,12 @@ YXQAAnalysisUnfoldDelegate
             return cell;
         }
         else if (data.type == YXAnalysisDifficulty) {
-            //            YXDifficultyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXDifficultyCell" forIndexPath:indexPath];
-            //            cell.item = data;
-            //            cell.difficulty = self.data.difficulty;
-            //            return cell;
             QAAnalysisDifficultyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisDifficultyCell" forIndexPath:indexPath];
             cell.item = data;
             cell.difficulty = self.data.difficulty;
             return cell;
             
         } else if (data.type == YXAnalysisAnswer) {
-            //            AnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerCell" forIndexPath:indexPath];
-            //            cell.delegate = self;
-            //            cell.item = data;
-            //            cell.htmlString = [self.data answerPresentation];
-            //            return cell;
             QAAnalysisAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisAnswerCell" forIndexPath:indexPath];
             cell.delegate = self;
             cell.item = data;
@@ -209,11 +171,6 @@ YXQAAnalysisUnfoldDelegate
             return cell;
             
         } else if (data.type == YXAnalysisAnalysis) {
-            //            YXAnalysisCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXAnalysisCell" forIndexPath:indexPath];
-            //            cell.delegate = self;
-            //            cell.item = data;
-            //            cell.htmlString = self.data.analysis;
-            //            return cell;
             QAAnalysisAnalysisCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisAnalysisCell" forIndexPath:indexPath];
             cell.delegate = self;
             cell.item = data;
@@ -221,27 +178,12 @@ YXQAAnalysisUnfoldDelegate
             return cell;
             
         } else if (data.type == YXAnalysisKnowledgePoint) {
-            //            YXKnpCell *cell = [[YXKnpCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXKnpCell"];
-            //            cell.delegate = self;
-            //            cell.item = data;
-            //            cell.knpClickable = self.canDoExerciseFromKnp;
-            //            cell.knpArray = self.data.knowledgePoints;
-            //            return cell;
             QAAnalysisKnowledgePointCell *cell = [[QAAnalysisKnowledgePointCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXKnpCell"];
             cell.item = data;
-            //            cell.knowledgePointArray = self.data.knowledgePoints;
-            cell.knowledgePointArray = self.testArray;
+            cell.knowledgePointArray = self.data.knowledgePoints;
             cell.isShowLine = NO;
             return cell;
         } else if (data.type == YXAnalysisScore) {
-            //            YXCommentCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXCommentCell2" forIndexPath:indexPath];
-            //            cell.comment = self.data.comment;
-            //            cell.item = data;
-            //            cell.score = self.data.score/5;
-            //            cell.marked = self.data.isMarked;
-            //            [cell updateUI];
-            //            return cell;
-            
             QAAnalysisScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisScoreCell" forIndexPath:indexPath];
             cell.item = data;
             cell.score = self.data.score;
@@ -249,12 +191,6 @@ YXQAAnalysisUnfoldDelegate
             [cell updateUI];
             return cell;
         } else if (data.type == YXAnalysisResult) {
-            //            CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
-            //            cell.item = data;
-            //            cell.isMarked = self.data.isMarked;
-            //            cell.isCorrect = self.data.score == 5 ? YES : NO;
-            //            [cell updateUI];
-            //            return cell;
             QAAnalysisResultCell *cell = [[QAAnalysisResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.delegate = self;
             cell.item = data;
@@ -265,10 +201,6 @@ YXQAAnalysisUnfoldDelegate
             [cell updateUI];
             return cell;
         } else if (data.type == YXAnalysisAudioComment) {
-            //            AudioCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AudioCommentCell" forIndexPath:indexPath];
-            //            cell.analysisItem = data;
-            //            cell.questionItem = self.data;
-            //            return cell;
             QAAnalysisAudioCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisAudioCommentCell" forIndexPath:indexPath];
             cell.item = data;
             cell.questionItem = self.data;
@@ -287,14 +219,7 @@ YXQAAnalysisUnfoldDelegate
                 [self.editNoteDelegate editNoteButtonTapped:self.data];
             }];
             return cell;
-        }
-        //        else if (data.type == YXAnalysisErrorReport) {
-        //            YXReportErrorCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YXReportErrorCell" forIndexPath:indexPath];
-        //            cell.delegate = self;
-        //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        //            return cell;
-        //        }
-        else {
+        }else {
             return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         }
     }
@@ -352,11 +277,9 @@ YXQAAnalysisUnfoldDelegate
                 self.data.questionType == YXQAItemTranslate ||
                 self.data.questionType == YXQAItemCorrect) {
                 item.type = YXAnalysisResult;
-                //                [self.cellHeightArray addObject:@([CommentCell heightForStatus])];
                 [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:self.data.answerCompare])];
             } else {
                 item.type = YXAnalysisScore;
-                //                [self.cellHeightArray addObject:@([YXCommentCell2 heightForMarkStatus:self.data.isMarked score:self.data.score/5 comment:self.data.comment])];
                 [self.cellHeightArray addObject:@([QAAnalysisScoreCell height])];
             }
             
@@ -378,7 +301,6 @@ YXQAAnalysisUnfoldDelegate
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
             item.type = YXAnalysisCurrentStatus;
             [self.analysisDataArray addObject:item];
-            //            [self.cellHeightArray addObject:@([YXLabelHtmlCell2 heightForString:self.data.answerCompare])];
             [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:self.data.answerCompare])];
         }
     }
@@ -387,7 +309,6 @@ YXQAAnalysisUnfoldDelegate
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
             item.type = YXAnalysisDifficulty;
             [self.analysisDataArray addObject:item];
-            //            [self.cellHeightArray addObject:@([YXDifficultyCell height])];
             [self.cellHeightArray addObject:@([QAAnalysisDifficultyCell height])];
         }
     }
@@ -396,8 +317,6 @@ YXQAAnalysisUnfoldDelegate
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
             item.type = YXAnalysisAnswer;
             [self.analysisDataArray addObject:item];
-            
-            //            [self.cellHeightArray addObject:@([AnswerCell heightForString:[self.data answerPresentation]])];
             [self.cellHeightArray addObject:@([QAAnalysisAnswerCell heightForString:[self.data answerPresentation]])];
         }
     }
@@ -406,7 +325,6 @@ YXQAAnalysisUnfoldDelegate
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
             item.type = YXAnalysisAnalysis;
             [self.analysisDataArray addObject:item];
-            //            [self.cellHeightArray addObject:@([YXAnalysisCell heightForString:self.data.analysis])];
             [self.cellHeightArray addObject:@([QAAnalysisAnalysisCell heightForString:self.data.analysis])];
             
         }
@@ -416,35 +334,8 @@ YXQAAnalysisUnfoldDelegate
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
             item.type = YXAnalysisKnowledgePoint;
             [self.analysisDataArray addObject:item];
-            //            [self.cellHeightArray addObject:@([YXKnpCell heightForPoints:self.data.knowledgePoints])];
-            
-            QAKnowledgePoint *p0 = [[QAKnowledgePoint alloc]init];
-            p0.name = @"历史";
-            QAKnowledgePoint *p1 = [[QAKnowledgePoint alloc]init];
-            p1.name = @"秦朝";
-            QAKnowledgePoint *p2 = [[QAKnowledgePoint alloc]init];
-            p2.name = @"御史大夫";
-            QAKnowledgePoint *p3 = [[QAKnowledgePoint alloc]init];
-            p3.name = @"小章节";
-            QAKnowledgePoint *p4 = [[QAKnowledgePoint alloc]init];
-            p4.name = @"检查职能";
-            QAKnowledgePoint *p5 = [[QAKnowledgePoint alloc]init];
-            p5.name = @"知识点";
-            QAKnowledgePoint *p6 = [[QAKnowledgePoint alloc]init];
-            p6.name = @"机构";
-            NSArray *testArray = @[
-                                   p0,
-                                   p1,
-                                   p2,
-                                   p3,
-                                   p4,
-                                   p5,
-                                   p6
-                                   ];
-            self.testArray = testArray;
-            
             QAAnalysisKnowledgePointCell *cell = [[QAAnalysisKnowledgePointCell alloc]init];
-            [self.cellHeightArray addObject:@([cell heightWithKnowledgePointArray:self.testArray])];
+            [self.cellHeightArray addObject:@([cell heightWithKnowledgePointArray:self.data.knowledgePoints])];
         }
     }
     if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisNote]) {
@@ -453,12 +344,6 @@ YXQAAnalysisUnfoldDelegate
         [self.analysisDataArray addObject:item2];
         [self.cellHeightArray addObject:@([MistakeNoteTableViewCell heightForNoteWithQuestion:self.data isEditable:NO])];
     }
-    //    if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisErrorReport]) {
-    //        YXQAAnalysisItem *item2 = [[YXQAAnalysisItem alloc]init];
-    //        item2.type = YXAnalysisErrorReport;
-    //        [self.analysisDataArray addObject:item2];
-    //        [self.cellHeightArray addObject:@([YXReportErrorCell height])];
-    //    }
 }
 
 - (BOOL)isShowAnswer:(QAQuestion *)data {
@@ -470,22 +355,6 @@ YXQAAnalysisUnfoldDelegate
         }
     }
     return NO;
-}
-
-#pragma mark - YXKnowledgePointViewDelegate
-- (void)knowledgePointView:(YXKnowledgePointView *)pointView didSelectIndex:(NSInteger)index {
-    QAKnowledgePoint *knowledgePoint = self.data.knowledgePoints[index];
-    if (self.pointClickDelegate && [self.pointClickDelegate respondsToSelector:@selector(knpClickedWithID:)]) {
-        [self.pointClickDelegate knpClickedWithID:knowledgePoint.knpID];
-    }
-}
-
-#pragma mark - YXQAAnalysisReportErrorViewDelegate
-- (void)reportErrorViewClicked {
-    NSString * questionID = self.data.questionID;
-    if (self.reportErrorDelegate && [self.reportErrorDelegate respondsToSelector:@selector(reportAnalysisErrorWithID:)]) {
-        [self.reportErrorDelegate reportAnalysisErrorWithID:questionID];
-    }
 }
 
 @end

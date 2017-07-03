@@ -1,24 +1,24 @@
 //
-//  QAAlertView.h
+//  SimpleAlertView.h
 //  YanXiuStudentApp
 //
-//  Created by ZLL on 2017/6/19.
+//  Created by ZLL on 2017/7/4.
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
 #import "AlertView.h"
-#import "QAAlertButton.h"
+#import "SimpleAlertButton.h"
 
 extern CGFloat const kQADefaultContentViewWith;
 typedef void(^ButtonActionBlock)(void);
 
-@interface QAAlertView : AlertView
+@interface SimpleAlertView : AlertView
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *describe;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) BOOL hideAlertWhenButtonTapped; // default is YES
 
-- (void)addButtonWithTitle:(NSString *)title style:(QAAlertActionStyle)style action:(ButtonActionBlock)buttonActionBlock;
+- (void)addButtonWithTitle:(NSString *)title style:(SimpleAlertActionStyle)style action:(ButtonActionBlock)buttonActionBlock;
 - (void)show;
 - (void)show:(BOOL)animated;
 - (void)showInView:(UIView *)view;

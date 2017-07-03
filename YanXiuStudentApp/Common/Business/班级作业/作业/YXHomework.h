@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSString<Optional> *endtime;
 @property (nonatomic, copy) NSString<Optional> *teachercomments;
 @property (nonatomic, copy) NSString<Optional> *teacherName;
-
+@property (nonatomic, copy) NSString<Optional> *scoreRate;
 @end
 
 @interface YXHomework_Group : JSONModel

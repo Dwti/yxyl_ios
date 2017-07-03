@@ -12,7 +12,7 @@
 #import "QAImageUploadProgressView.h"
 #import "YXRecordManager.h"
 #import "YXProblemItem.h"
-#import "QAAlertView.h"
+#import "SimpleAlertView.h"
 #import "QAReportViewController.h"
 #import "QAAnswerQuestionViewController.h"
 
@@ -51,14 +51,14 @@
             return;
         }
         WEAK_SELF
-        QAAlertView *alert = [[QAAlertView alloc] init];
+        SimpleAlertView *alert = [[SimpleAlertView alloc] init];
         alert.title = @"还有未答完的题目";
         alert.describe = @"确定要提交吗";
         alert.image = [UIImage imageNamed:@"提交成功图标"];
-        [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
+        [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
             STRONG_SELF
         }];
-        [alert addButtonWithTitle:@"提交" style:QAAlertActionStyle_Default action:^{
+        [alert addButtonWithTitle:@"提交" style:SimpleAlertActionStyle_Default action:^{
             STRONG_SELF
              [self submitPaper];
         }];
@@ -83,20 +83,16 @@
 }
 
 - (void)submitPaper {
-    if (![self isNetworkReachable]) {
-        [self yx_showToast:@"网络异常，请检查网络后重试"];
-        return;
-    }
+//    if (![self isNetworkReachable]) {
+//        [self yx_showToast:@"网络异常，请检查网络后重试"];
+//        return;
+//    }
     [self setupUploadImageView];
     WEAK_SELF
     [[YXQADataManager sharedInstance]submitPaperWithModel:self.model beginDate:self.beginDate requestParams:self.requestParams completeBlock:^(NSError *error, QAPaperModel *reportModel) {
         STRONG_SELF
         [self.uploadImageView removeFromSuperview];
         [self.view nyx_stopLoading];
-        //测试用
-//        QAReportViewController *vc = [[QAReportViewController alloc]init];
-//        vc.model = self.model;
-//        [self.navigationController pushViewController:vc animated:YES];
         if (error) {
             [self handleSubmitFailure:error];
         }else{
@@ -123,25 +119,6 @@
             if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
                 [self showSubmitSuccessfullyTipViewWithEndDate:reportModel.homeworkEndDate];
             }
-//            if (self.pType != YXPTypeGroupHomework) {
-//                [YXQADataManager sharedInstance].hasDoExerciseToday = YES;
-//            }
-//            YXQASubmitSuccessView_Phone *successView = [[YXQASubmitSuccessView_Phone alloc]init];
-//            successView.pType = self.pType;
-//            WEAK_SELF
-//            successView.actionBlock = ^{
-//                STRONG_SELF
-//                YXQAReportViewController *vc = [[YXQAReportViewController alloc] init];
-//                vc.model = reportModel;
-//                vc.requestParams = self.requestParams;
-//                vc.pType = self.pType;
-//                vc.canDoExerciseAgain = self.pType == YXPTypeIntelligenceExercise? YES:NO;
-//                [self.navigationController pushViewController:vc animated:YES];
-//            };
-//            [self.view addSubview:successView];
-//            [successView mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.edges.mas_equalTo(0);
-//            }];
             
             QAReportViewController *vc = [[QAReportViewController alloc]init];
             vc.model = reportModel;
@@ -176,14 +153,14 @@
         return;
     }
     WEAK_SELF
-    QAAlertView *alert = [[QAAlertView alloc] init];
+    SimpleAlertView *alert = [[SimpleAlertView alloc] init];
     alert.title = @"作业上传失败";
     alert.describe = @"请检查网络是否异常后重试";
     alert.image = [UIImage imageNamed:@"提交成功图标"];
-    [alert addButtonWithTitle:@"取消" style:QAAlertActionStyle_Cancel action:^{
+    [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
         STRONG_SELF
     }];
-    [alert addButtonWithTitle:@"再试一次" style:QAAlertActionStyle_Default action:^{
+    [alert addButtonWithTitle:@"再试一次" style:SimpleAlertActionStyle_Default action:^{
         STRONG_SELF
         [self submitPaper];
     }];
@@ -205,11 +182,11 @@
     NSString *dateString = [formater stringFromDate:date];
     NSString *totalString = [NSString stringWithFormat:@"本作业被设定为: 截止时间后显示答案解析%@截止时间: %@",@"\n",dateString];
     WEAK_SELF
-    QAAlertView *alert = [[QAAlertView alloc] init];
+    SimpleAlertView *alert = [[SimpleAlertView alloc] init];
     alert.title = @"提交成功";
     alert.describe = totalString;
     alert.image = [UIImage imageNamed:@"提交成功图标"];
-    [alert addButtonWithTitle:@"确定" style:QAAlertActionStyle_Default action:^{
+    [alert addButtonWithTitle:@"确定" style:SimpleAlertActionStyle_Default action:^{
         STRONG_SELF
         [self.navigationController popViewControllerAnimated:YES];
     }];

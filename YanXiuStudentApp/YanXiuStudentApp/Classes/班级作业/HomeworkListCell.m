@@ -147,14 +147,15 @@
         self.stateLabel.text = @"逾期未交";
         self.descLabel.text = @"";
     }else if (data.paperStatus.status.intValue == 2){ //已完成
-        if (data.subquesnum.integerValue == 0) {//只有客观题
+        if (data.subquesnum.integerValue == 0 || [data.paperStatus.teachercomments isEqualToString:@""] ) {
             [self hideComment];
             self.stateLabel.text = @"已批改";
-            self.descLabel.text = @"";
+            CGFloat scoreRate = data.paperStatus.scoreRate.floatValue;
+            self.descLabel.text = [NSString stringWithFormat:@"正确率 %.0f%@",scoreRate*100,@"%"];
         }else {
-            if (data.hasTeacherComments) {
+            if (data.paperStatus.teachercomments.length) {
                 self.stateLabel.text = @"已批改";
-                self.descLabel.text = @"";
+                self.descLabel.text = [NSString stringWithFormat:@"正确率 %@",data.paperStatus.scoreRate];
                 [self showComment];
                 NSString *teacherString = [NSString stringWithFormat:@"%@评语：",data.paperStatus.teacherName];
                 NSString *totalString = [NSString stringWithFormat:@"%@%@",teacherString,data.paperStatus.teachercomments];

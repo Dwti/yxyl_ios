@@ -11,6 +11,7 @@
 #import "HomeworkListCell.h"
 #import "QAAnswerQuestionViewController.h"
 #import "QAReportViewController.h"
+#import "QAAnalysisViewController.h"
 
 @interface HomeworkListViewController ()
 @property (nonatomic, strong) YXHomeworkListGroupsItem_Data *data;
@@ -97,15 +98,15 @@
             break;
         case 1: // 进入解析界面（1 未完成）
         {
-//            WEAK_SELF
-//            [self requestQuestionListWithHomework:homework completion:^(YXIntelligenceQuestionListItem *item, NSError *error) {
-//                STRONG_SELF
-//                YXJieXiViewController *vc = [[YXJieXiViewController alloc] init];
-//                vc.model = [QAPaperModel modelFromRawData:item.data[0]];
+            WEAK_SELF
+            [self requestQuestionListWithHomework:homework completion:^(YXIntelligenceQuestionListItem *item, NSError *error) {
+                STRONG_SELF
+                QAAnalysisViewController *vc = [[QAAnalysisViewController alloc] init];
+                vc.model = [QAPaperModel modelFromRawData:item.data[0]];
 //                vc.pType = YXPTypeGroupHomework;
 //                vc.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];
-//                [self.navigationController pushViewController:vc animated:YES];
-//            }];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
         }
             break;
         case 2: // 进入答题报告界面（2 已完成）

@@ -1,28 +1,28 @@
 //
-//  QAAlertView.m
+//  SimpleAlertView.m
 //  YanXiuStudentApp
 //
-//  Created by ZLL on 2017/6/19.
+//  Created by ZLL on 2017/7/4.
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "QAAlertView.h"
+#import "SimpleAlertView.h"
 
 CGFloat const kQADefaultContentViewWith = 327;
 
-@interface QAAlertButtonItem : NSObject
+@interface SimpleAlertButtonItem : NSObject
 @property (nonatomic, strong) UIButton *button;
 @property (nonatomic, copy) ButtonActionBlock block;
 @end
 
-@implementation QAAlertButtonItem
+@implementation SimpleAlertButtonItem
 @end
 
-@interface QAAlertView ()
-@property (nonatomic, strong) NSMutableArray<QAAlertButtonItem *> *alertButtonItems;//有1~2个按钮
+@interface SimpleAlertView ()
+@property (nonatomic, strong) NSMutableArray<SimpleAlertButtonItem *> *alertButtonItems;//有1~2个按钮
 @end
 
-@implementation QAAlertView
+@implementation SimpleAlertView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -33,25 +33,25 @@ CGFloat const kQADefaultContentViewWith = 327;
 }
 
 #pragma mark - addButton
-- (void)addButtonWithTitle:(NSString *)title style:(QAAlertActionStyle)style action:(ButtonActionBlock)buttonActionBlock {
+- (void)addButtonWithTitle:(NSString *)title style:(SimpleAlertActionStyle)style action:(ButtonActionBlock)buttonActionBlock {
     if (self.alertButtonItems.count > 2) {
         return;
     }
-    QAAlertButton *button = [[QAAlertButton alloc]init];
+    SimpleAlertButton *button = [[SimpleAlertButton alloc]init];
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     button.style = style;
-    QAAlertButtonItem *item = [[QAAlertButtonItem alloc]init];
+    SimpleAlertButtonItem *item = [[SimpleAlertButtonItem alloc]init];
     item.button = button;
     item.block = buttonActionBlock;
     [self.alertButtonItems addObject:item];
 }
 
-- (void)buttonAction:(QAAlertButton *)sender {
+- (void)buttonAction:(SimpleAlertButton *)sender {
     if (self.hideAlertWhenButtonTapped) {
         [self hide];
     }
-    [self.alertButtonItems enumerateObjectsUsingBlock:^(QAAlertButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.alertButtonItems enumerateObjectsUsingBlock:^(SimpleAlertButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([sender isEqual:obj.button]) {
             BLOCK_EXEC(obj.block);
             *stop = YES;
@@ -99,7 +99,7 @@ CGFloat const kQADefaultContentViewWith = 327;
     
     UIImageView *tipIconView = [[UIImageView alloc]initWithImage:self.image];
     tipIconView.backgroundColor = [UIColor blueColor];
-
+    
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont boldSystemFontOfSize:21];
@@ -138,7 +138,7 @@ CGFloat const kQADefaultContentViewWith = 327;
         make.top.mas_equalTo(titleLabel.mas_bottom).mas_offset(10.0f * kPhoneWidthRatio);
         make.left.right.equalTo(titleLabel);
     }];
-    [self.alertButtonItems enumerateObjectsUsingBlock:^(QAAlertButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.alertButtonItems enumerateObjectsUsingBlock:^(SimpleAlertButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = obj.button;
         [bottomView addSubview:button];
     }];
@@ -171,5 +171,6 @@ CGFloat const kQADefaultContentViewWith = 327;
     }
     return  defaultView;
 }
+
 
 @end
