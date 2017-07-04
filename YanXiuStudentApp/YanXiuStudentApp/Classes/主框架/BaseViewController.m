@@ -153,5 +153,11 @@
     return UIStatusBarStyleLightContent;
 }
 
-
+- (void)setNaviTheme:(NavigationBarTheme)naviTheme {
+    _naviTheme = naviTheme;
+    if (self.navigationController) {
+        YXNavigationController *navi = (YXNavigationController *)self.navigationController;
+        navi.theme = self.naviTheme;
+    }
+}
 @end

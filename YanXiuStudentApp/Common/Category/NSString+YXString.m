@@ -132,6 +132,12 @@
             result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]];
 }
 
+- (BOOL)nyx_isPureInt{
+    NSScanner* scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
 - (NSDictionary *)dictionary{
     if (self == nil) {
         return nil;

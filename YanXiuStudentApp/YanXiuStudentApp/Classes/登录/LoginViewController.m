@@ -74,6 +74,9 @@
     WEAK_SELF
     [self.accountView setTextChangeBlock:^{
         STRONG_SELF
+        if (self.accountView.text.length>16) {
+            self.accountView.inputView.textField.text = [self.accountView.text substringToIndex:16];
+        }
         [self refreshLoginButton];
     }];
     [containerView addSubview:self.accountView];

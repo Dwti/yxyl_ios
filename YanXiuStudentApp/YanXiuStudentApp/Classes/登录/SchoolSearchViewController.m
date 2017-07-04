@@ -29,7 +29,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupUI];
     [self setupObservers];
-    [self searchSchoolWithKeyword:self.currentDistrict.name];
+    [self searchSchoolWithKeyword:self.searchView.textField.text];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,10 +91,9 @@
 }
 
 - (void)searchSchoolWithKeyword:(NSString *)keyword {
-    NSString *key = isEmpty(keyword)? self.currentDistrict.name:keyword;
     [self.request stopRequest];
     self.request = [[YXSchoolSearchRequest alloc] init];
-    self.request.school = key;
+    self.request.school = keyword;
     self.request.regionId = self.currentDistrict.did;
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXSchoolSearchItem class] andCompleteBlock:^(id retItem, NSError *error) {

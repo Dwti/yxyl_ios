@@ -53,7 +53,8 @@
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
     UILabel *classNameLabel = [[UILabel alloc]init];
-    classNameLabel.text = self.rawData.name;
+    NSString *classInfo = [NSString stringWithFormat:@"%@%@",self.rawData.gradename,self.rawData.name];
+    classNameLabel.text = classInfo;
     classNameLabel.font = [UIFont boldSystemFontOfSize:19];
     classNameLabel.textColor = [UIColor whiteColor];
     classNameLabel.textAlignment = NSTextAlignmentCenter;
@@ -84,7 +85,7 @@
     }];
     ClassInfoItemView *teacherNameView = [[ClassInfoItemView alloc]init];
     teacherNameView.name = @"老师姓名";
-    teacherNameView.inputView.textField.text = self.rawData.authorname;
+    teacherNameView.inputView.textField.text = self.rawData.adminName;
     teacherNameView.userInteractionEnabled = NO;
     [containerView addSubview:teacherNameView];
     [teacherNameView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -117,6 +118,7 @@
     self.nameView = [[ClassInfoItemView alloc]init];
     self.nameView.name = @"你的姓名";
     self.nameView.canEdit = YES;
+    self.nameView.inputView.textField.text = [YXUserManager sharedManager].userModel.realname;
     self.nameView.inputView.placeHolder = @"请输入你的真实姓名";
     self.nameView.layer.cornerRadius = 5;
     self.nameView.clipsToBounds = YES;

@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"班级信息";
     [self setupUI];
 }
 
@@ -46,7 +47,8 @@
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
     UILabel *classNameLabel = [[UILabel alloc]init];
-    classNameLabel.text = self.rawData.name;
+    NSString *classInfo = [NSString stringWithFormat:@"%@%@",self.rawData.gradename,self.rawData.name];
+    classNameLabel.text = classInfo;
     classNameLabel.font = [UIFont boldSystemFontOfSize:19];
     classNameLabel.textColor = [UIColor whiteColor];
     classNameLabel.textAlignment = NSTextAlignmentCenter;
@@ -77,7 +79,7 @@
     }];
     ClassInfoItemView *teacherNameView = [[ClassInfoItemView alloc]init];
     teacherNameView.name = @"老师姓名";
-    teacherNameView.inputView.textField.text = self.rawData.authorname;
+    teacherNameView.inputView.textField.text = self.rawData.adminName;
     teacherNameView.userInteractionEnabled = NO;
     [containerView addSubview:teacherNameView];
     [teacherNameView mas_makeConstraints:^(MASConstraintMaker *make) {

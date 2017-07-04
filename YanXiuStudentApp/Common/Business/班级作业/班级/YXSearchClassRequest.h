@@ -33,7 +33,7 @@
 @property (nonatomic, copy) NSString<Optional> *teachernum;     //老师人数
 @property (nonatomic, copy) NSString<Optional> *periodid;
 @property (nonatomic, copy) NSString<Optional> *adminid;
-@property (nonatomic, copy) NSString<Optional> *adminName;
+@property (nonatomic, copy) NSString<Optional> *adminName; //老师姓名
 
 @property (nonatomic, copy) NSString<Optional> *areaid;     
 @property (nonatomic, copy) NSString<Optional> *cityid;

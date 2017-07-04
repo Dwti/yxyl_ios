@@ -77,7 +77,7 @@
         }
         YXSearchClassItem_Data *data = ret.data[0];
         if (data.status.integerValue == 2) {
-            NSError *cannotJoinError = [NSError errorWithDomain:@"cannot join" code:2 userInfo:@{NSLocalizedDescriptionKey:@"该班级不允许加入"}];
+            NSError *cannotJoinError = [NSError errorWithDomain:@"cannot join" code:2 userInfo:@{NSLocalizedDescriptionKey:@"此班级不允许学生加入"}];
             BLOCK_EXEC(completeBlock,retItem,cannotJoinError);
             return;
         }

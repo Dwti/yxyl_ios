@@ -16,6 +16,7 @@
 @implementation GCDTimer
 
 - (void)dealloc {
+//    [self suspend];
     dispatch_source_cancel(self.timerSource);
 }
 

@@ -75,13 +75,9 @@
         STRONG_SELF
         [self refreshRegisterButton];
     }];
-    [self.verifyCodeView setTimerPauseBlock:^{
+    [self.verifyCodeView setSendAction:^{
         STRONG_SELF
-        self.verifyCodeView.isActive = !isEmpty(self.accountView.text);
-    }];
-    [self.verifyCodeView setSendAction:^BOOL{
-        @strongify(self);
-        return [self gotoGetVerifyCode];
+        [self gotoGetVerifyCode];
     }];
     [containerView addSubview:self.verifyCodeView];
     [self.verifyCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,24 +128,25 @@
     self.verifyCodeView.isActive = !isEmpty([self.accountView text]);
 }
 
-- (BOOL)gotoGetVerifyCode {
+- (void)gotoGetVerifyCode {
     if (![LoginUtils isPhoneNumberValid:self.accountView.text]) {
         [self.view nyx_showToast:@"请输入正确的手机号码"];
-        return NO;
+        return;
     }
     WEAK_SELF
     NSString *type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeRegister)];
     [self.view nyx_startLoading];
+    [self.verifyCodeView startTimer];
     [LoginDataManager getVerifyCodeWithMobileNumber:self.accountView.text verifyType:type completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
+            [self.verifyCodeView stopTimer];
             [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         [self.view nyx_showToast:@"验证码已发送，请注意查收"];
     }];
-    return YES;
 }
 
 - (void)gotoRegister {
