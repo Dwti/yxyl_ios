@@ -54,6 +54,7 @@
 @property (nonatomic, copy) NSString<Optional> *endtime;
 @property (nonatomic, copy) NSString<Optional> *costtime;
 @property (nonatomic, copy) NSString<Optional> *checkStatus;
+@property (nonatomic, copy) NSString<Optional> *scoreRate;
 @end
 
 

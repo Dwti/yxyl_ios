@@ -22,6 +22,7 @@
 @property (nonatomic, assign) NSTimeInterval paperCreatingTime;
 @property (nonatomic, assign) NSTimeInterval paperBeginingTime;
 @property (nonatomic, assign) NSTimeInterval paperAnswerDuration;
+@property (nonatomic, assign) CGFloat paperCorrectRate;
 
 @property (nonatomic, strong) NSDate *homeworkEndDate;
 @property (nonatomic, strong) NSDate *paperFinishDate;

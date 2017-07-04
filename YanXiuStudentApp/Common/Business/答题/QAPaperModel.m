@@ -26,6 +26,7 @@
     model.paperStatusID = rawData.paperStatus.paperstatusid;
     model.paperCreatingTime = rawData.buildtime.doubleValue;
     model.paperBeginingTime = rawData.paperStatus.begintime.doubleValue;
+    model.paperCorrectRate = rawData.paperStatus.scoreRate.floatValue;
     model.paperStatus = rawData.paperStatus.status;
     model.paperFinishDate = [NSDate dateWithTimeIntervalSince1970:rawData.paperStatus.endtime.doubleValue/1000];
     model.homeworkEndDate = [NSDate dateWithTimeIntervalSince1970:rawData.endtime.doubleValue/1000];
