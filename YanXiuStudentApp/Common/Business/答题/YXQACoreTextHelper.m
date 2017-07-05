@@ -137,7 +137,19 @@
 }
 
 + (NSDictionary *)defaultOptionsForAnalysisItems {
-    UIFont *font = [UIFont systemFontOfSize:15];
+    UIFont *font = [UIFont boldSystemFontOfSize:17];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(17), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"336600"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
++ (NSDictionary *)defaultOptionsForAnalysisResultItem {
+    UIFont *font = [UIFont boldSystemFontOfSize:15];
     NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
                             font.familyName, DTDefaultFontFamily,
                             font.fontName, DTDefaultFontName,

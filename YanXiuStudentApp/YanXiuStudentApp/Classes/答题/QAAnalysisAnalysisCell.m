@@ -28,7 +28,7 @@
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(11).priorityHigh();
         make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-11).priorityHigh();
+        make.bottom.mas_equalTo(-9).priorityHigh();
     }];
     
     self.coreTextHandler = [[QACoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:[QAAnalysisAnalysisCell maxContentWidth]];
@@ -41,17 +41,19 @@
 }
 
 + (CGFloat)maxContentWidth{
-    return [UIScreen mainScreen].bounds.size.width - 15 -15;
+    return [UIScreen mainScreen].bounds.size.width - 15 - 15;
 }
 
 + (CGFloat)totalHeightWithContentHeight:(CGFloat)height{
-    CGFloat fixHeight = 13 + 14 + 13 + 13;
+    CGFloat fixHeight = 13 + 14 + 13 + 9;
     return ceilf(height + fixHeight);
 }
 
 + (CGFloat)heightForString:(NSString *)string{
-    CGFloat maxWidth = [QAAnalysisAnalysisCell maxContentWidth];
-    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string constraintedToWidth:maxWidth];
+    CGFloat maxWidth = [self maxContentWidth];
+    NSDictionary *dic = nil;
+    dic = [YXQACoreTextHelper defaultOptionsForAnalysisItems];
+    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:maxWidth];
     CGFloat height = [QAAnalysisAnalysisCell totalHeightWithContentHeight:stringHeight];
     return height;
 }

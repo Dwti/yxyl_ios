@@ -70,7 +70,9 @@ static NSString *kQAAnswerResultState_Wrong = @"回答错误";
 
 + (CGFloat)heightForString:(NSString *)string{
     CGFloat maxWidth = [QAAnalysisResultCell maxContentWidth];
-    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string constraintedToWidth:maxWidth];
+    NSDictionary *dic = nil;
+    dic = [YXQACoreTextHelper defaultOptionsForAnalysisResultItem];
+    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:maxWidth];
     CGFloat height = [QAAnalysisResultCell totalHeightWithContentHeight:stringHeight];
     return height;
 }

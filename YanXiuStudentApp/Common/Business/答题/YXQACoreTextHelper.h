@@ -50,7 +50,8 @@
 + (NSDictionary *)optionsForClozeStem;
 //用于解析项
 + (NSDictionary *)defaultOptionsForAnalysisItems;
-
+//用于解析中 作答结果项
++ (NSDictionary *)defaultOptionsForAnalysisResultItem;
 + (CGFloat)heightForString:(NSString *)string options:(NSDictionary *)option width:(CGFloat)width;
 + (NSAttributedString *)attributedStringWithString:(NSString *)string options:(NSDictionary *)option;
 

@@ -51,7 +51,9 @@
 
 + (CGFloat)heightForString:(NSString *)string{
     CGFloat maxWidth = [QAAnalysisAnswerCell maxContentWidth];
-    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string constraintedToWidth:maxWidth];
+    NSDictionary *dic = nil;
+    dic = [YXQACoreTextHelper defaultOptionsForAnalysisItems];
+    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:maxWidth];
     CGFloat height = [QAAnalysisAnswerCell totalHeightWithContentHeight:stringHeight];
     return height;
 }
