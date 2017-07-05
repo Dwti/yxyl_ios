@@ -25,9 +25,7 @@
 - (void)setupUI{
     self.itemButton = [[UIButton alloc]init];
     self.itemButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.itemButton.titleLabel.font = [UIFont systemFontOfSize:17.0f];
-    [self.itemButton setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateNormal];
-    
+    self.itemButton.titleLabel.font = [UIFont boldSystemFontOfSize:17.0f];
     [self addSubview:self.itemButton];
     [self.itemButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
@@ -36,7 +34,9 @@
 
 - (void)setKnowledgePoint:(NSString *)knowledgePoint {
     _knowledgePoint = knowledgePoint;
-    [self.itemButton setTitle:knowledgePoint forState:UIControlStateNormal];
+    NSDictionary *dic = nil;
+    dic = [YXQACoreTextHelper defaultOptionsForAnalysisItems];
+    [self.itemButton setAttributedTitle:[[NSAttributedString alloc]initWithString:knowledgePoint attributes:dic] forState:UIControlStateNormal];
 }
 
 + (CGSize)sizeForTitle:(NSString *)title {
