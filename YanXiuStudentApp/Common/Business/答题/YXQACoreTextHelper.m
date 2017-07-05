@@ -160,6 +160,43 @@
     return option;
 }
 
++ (NSDictionary *)defaultOptionsForClassifyOptions {
+    UIFont *font = [UIFont systemFontOfSize:17];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(17), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"666666"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
++ (NSDictionary *)defaultOptionsForClassifyOptionsInClass {
+    UIFont *font = [UIFont systemFontOfSize:17];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(17), DTDefaultFontSize,
+                            [UIColor whiteColor], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            nil];
+    return option;
+}
+
++ (NSDictionary *)defaultOptionsForConnectOptions {
+    UIFont *font = [UIFont systemFontOfSize:17];
+    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
+                            font.familyName, DTDefaultFontFamily,
+                            font.fontName, DTDefaultFontName,
+                            @(17), DTDefaultFontSize,
+                            [UIColor colorWithHexString:@"666666"], DTDefaultTextColor,
+                            @(1.5), DTDefaultLineHeightMultiplier,
+                            @(kCTTextAlignmentCenter),DTDefaultTextAlignment,
+                            nil];
+    return option;
+}
+
 + (CGFloat)heightForString:(NSString *)string options:(NSDictionary *)option width:(CGFloat)width{
     DTAttributedTextContentView *v = [[DTAttributedTextContentView alloc]init];
     NSAttributedString *attrString = [self attributedStringWithString:string options:option];

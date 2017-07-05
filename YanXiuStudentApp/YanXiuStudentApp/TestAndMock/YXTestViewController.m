@@ -20,6 +20,7 @@
                             @"加入班级",
                             @"题目",
                             @"解析",
+                            @"testClassify",
                             @"testYXAnswerQuestionViewController",
                             @"testCells",
                             @"testGet",
@@ -30,7 +31,6 @@
                             @"testCoreText",
                             @"testYXScrollViewController",
                             @"testYXFillBlankViewController",
-                            @"testRank",
                             @"testPhotoClip",
                             @"testDiagnose",
                             @"蔡雷_01",
@@ -181,9 +181,9 @@ TestUploadRequest *_TestUploadRequest;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)testRank{
-//    YXRankViewController *vc = [[YXRankViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+- (void)testClassify{
+    TestClassifyViewController *vc = [[TestClassifyViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)testDiagnose{

@@ -52,6 +52,12 @@
 + (NSDictionary *)defaultOptionsForAnalysisItems;
 //用于解析中 作答结果项
 + (NSDictionary *)defaultOptionsForAnalysisResultItem;
+//用于归类
++ (NSDictionary *)defaultOptionsForClassifyOptions;
++ (NSDictionary *)defaultOptionsForClassifyOptionsInClass;
+//用于连线
++ (NSDictionary *)defaultOptionsForConnectOptions;
+
 + (CGFloat)heightForString:(NSString *)string options:(NSDictionary *)option width:(CGFloat)width;
 + (NSAttributedString *)attributedStringWithString:(NSString *)string options:(NSDictionary *)option;
 
