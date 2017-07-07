@@ -135,8 +135,10 @@
     self.titleLabel.text = data.name;
     if (data.paperStatus.status.intValue == 0) { //待完成
         [self hideComment];
-        NSString *answeredNum = isEmpty(data.answernum)? @"0":data.answernum;
-        self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",answeredNum,data.quesnum];
+        NSString *prefix = [NSString stringWithFormat:@"%@-%@",[YXUserManager sharedManager].userModel.passport.uid,data.paperId];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"questionKey BEGINSWITH %@",prefix];
+        NSArray *array = [QuestionAnswerEntity MR_findAllWithPredicate:predicate];
+        self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",@(array.count),data.quesnum];
         if (isEmpty(data.remaindertimeStr) || (data.remaindertimeStr.intValue <= 0)) {
             self.descLabel.text = @"可补做";
         }else{
@@ -172,13 +174,14 @@
 }
 
 - (void)hideComment {
+    [self.commentLineView removeFromSuperview];
+    [self.commentBgView removeFromSuperview];
+    
     [self.stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.top.mas_equalTo(self.stateLineView.mas_bottom).mas_offset(20);
         make.bottom.mas_equalTo(-20);
     }];
-    [self.commentLineView removeFromSuperview];
-    [self.commentBgView removeFromSuperview];
 }
 
 - (void)showComment {

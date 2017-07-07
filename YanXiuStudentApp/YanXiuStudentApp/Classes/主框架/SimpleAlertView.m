@@ -122,7 +122,6 @@ CGFloat const kQADefaultContentViewWith = 327;
     [defaultView  addSubview:bottomView];
     [contentBGView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(defaultView);
-        make.height.mas_equalTo(222 * kPhoneWidthRatio);
     }];
     [tipIconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
@@ -143,6 +142,7 @@ CGFloat const kQADefaultContentViewWith = 327;
         [bottomView addSubview:button];
     }];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.greaterThanOrEqualTo(describeLabel.mas_bottom).offset(20.0f * kPhoneWidthRatio);
         make.left.right.equalTo(defaultView);
         make.height.mas_equalTo(65 * kPhoneWidthRatio);
         make.bottom.equalTo(defaultView).offset(-15 * kPhoneWidthRatio);

@@ -118,6 +118,7 @@
             
             if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
                 [self showSubmitSuccessfullyTipViewWithEndDate:reportModel.homeworkEndDate];
+                return;
             }
             
             QAReportViewController *vc = [[QAReportViewController alloc]init];

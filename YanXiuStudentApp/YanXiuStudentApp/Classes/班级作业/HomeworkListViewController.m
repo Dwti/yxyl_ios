@@ -71,7 +71,8 @@
 
 #pragma mark - tableview datasource & delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HomeworkListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListCell"];
+//    HomeworkListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListCell"];
+    HomeworkListCell *cell = [[HomeworkListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.data = self.dataArray[indexPath.row];
     return cell;
 }
