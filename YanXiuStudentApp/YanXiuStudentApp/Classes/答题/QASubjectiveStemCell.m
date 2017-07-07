@@ -80,7 +80,7 @@
 
 - (void)setupBlankViewWithIndex:(NSInteger)index total:(NSInteger)total frame:(CGRect)frame {
     QASubjectiveStemBlankView *view = [[QASubjectiveStemBlankView alloc]initWithFrame:frame];
-    view.index = index;
+    view.index = index+1;
     if (total == 1) {
         view.indexHidden = YES;
     }
