@@ -54,7 +54,7 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
     
     CGFloat maxWidth = self.maxWidth;
-    CGSize scaledSize = CGSizeMake(size.width/[UIScreen mainScreen].scale, size.height/[UIScreen mainScreen].scale);
+    CGSize scaledSize = CGSizeMake(size.width/1.f, size.height/1.f);
     if (scaledSize.width > maxWidth) {
         CGFloat height = scaledSize.height * maxWidth / scaledSize.width;
         scaledSize = CGSizeMake(maxWidth, floorf(height));
