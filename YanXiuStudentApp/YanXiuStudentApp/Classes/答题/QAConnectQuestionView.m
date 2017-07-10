@@ -9,40 +9,43 @@
 #import "QAConnectQuestionView.h"
 #import "YXQAConnectTitleCell.h"
 #import "YXConnectContentCell.h"
+#import "QAConnectTitleView.h"
+#import "QAConnectContentCell.h"
+#import "QAConnectContentView.h"
 
 @interface QAConnectQuestionView ()
 @property (nonatomic, strong) NSMutableArray *contentGroupArray;
+@property (nonatomic, strong) QAConnectTitleView *connectTitleView;
+@property (nonatomic, strong) QAConnectContentView *contentView;
 @end
 
 @implementation QAConnectQuestionView
 
 - (void)setupUI {
     [super setupUI];
-    [self.tableView registerClass:[YXQAConnectTitleCell class] forCellReuseIdentifier:@"YXQAConnectTitleCell"];
-    [self.tableView registerClass:[YXConnectContentCell class] forCellReuseIdentifier:@"YXConnectContentCell"];
+    self.tableView.hidden = YES;
+    self.backgroundColor = [UIColor whiteColor];
+    
+    self.connectTitleView = [[QAConnectTitleView alloc]init];
+    [self.connectTitleView updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView] ;
+    [self addSubview:self.connectTitleView];
+    CGFloat height = [QAConnectTitleView heightForString:self.data.stem isSubQuestion:self.isSubQuestionView];
+    [self.connectTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleView.mas_bottom);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(height);
+    }];
+    
+    self.contentView = [[QAConnectContentView alloc]init];
+    self.contentView.item = self.data;
+    [self addSubview:self.contentView];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.connectTitleView.mas_bottom);
+        make.left.mas_equalTo(15.0f);
+        make.right.mas_equalTo(-15.0f);
+        make.bottom.mas_equalTo(-80);
+    }];
 }
-- (NSMutableArray *)heightArrayForCell {
-    NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([YXQAConnectTitleCell heightForString:self.data.stem])];
-    [heightArray addObject:@([YXConnectContentCell heightForItem:self.data])];
-    return heightArray;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        YXQAConnectTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXQAConnectTitleCell"];
-        cell.delegate = self;
-        cell.title = self.data.stem;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    YXConnectContentCell *cell = [[YXConnectContentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    if (self.contentGroupArray) {
-        cell.groupArray = self.contentGroupArray;
-    }
-    cell.item = self.data;
-    cell.delegate = self;
-    self.contentGroupArray = cell.groupArray;
-    return cell;
-}
+
 
 @end

@@ -1,0 +1,16 @@
+//
+//  QAConnectTitleView.h
+//  YanXiuStudentApp
+//
+//  Created by ZLL on 2017/7/10.
+//  Copyright © 2017年 yanxiu.com. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface QAConnectTitleView : UIView
+@property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
+
+- (void)updateWithString:(NSString *)string isSubQuestion:(BOOL)isSub;
++ (CGFloat)heightForString:(NSString *)string isSubQuestion:(BOOL)isSub;
+@end

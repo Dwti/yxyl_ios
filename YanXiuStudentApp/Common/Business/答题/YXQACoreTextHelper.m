@@ -192,7 +192,7 @@
                             @(17), DTDefaultFontSize,
                             [UIColor colorWithHexString:@"666666"], DTDefaultTextColor,
                             @(1.5), DTDefaultLineHeightMultiplier,
-                            @(kCTTextAlignmentCenter),DTDefaultTextAlignment,
+                            @(2),DTDefaultTextAlignment,
                             nil];
     return option;
 }
