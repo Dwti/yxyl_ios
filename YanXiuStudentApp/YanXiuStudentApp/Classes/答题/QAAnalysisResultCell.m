@@ -43,7 +43,7 @@ static NSString *kQAAnswerResultState_Wrong = @"回答错误";
     }];
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.resultLabel.mas_bottom).mas_offset(9).priorityHigh();
-        make.left.right.equalTo(self.resultLabel);
+        make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-13).priorityHigh();
     }];
     

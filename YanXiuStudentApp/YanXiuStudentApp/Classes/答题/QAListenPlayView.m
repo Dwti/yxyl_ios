@@ -116,7 +116,6 @@
             [self.player play];
             
         } else if (self.player.state == PlayerView_State_Finished) {
-            [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
             [self.player seekTo:0];
             [self.player play];
             
@@ -162,9 +161,9 @@
         self.isFirstPlay = NO;
         CGFloat progress = [x longLongValue] / self.player.duration;
         if (self.player.duration - [x floatValue] < 1) {
-            [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
             self.playProgress = 0;
-            [self updateUI];
+            [self.player seekTo:0];
+            [self stop];
             return;
         }
         self.playProgress = progress;
@@ -285,7 +284,6 @@
 
 - (void)stop {
     [self.player pause];
-    [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
     [self updateUI];
 }
 

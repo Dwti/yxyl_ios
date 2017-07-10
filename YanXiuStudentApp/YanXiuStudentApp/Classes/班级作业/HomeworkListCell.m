@@ -29,7 +29,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -157,7 +157,8 @@
         }else {
             if (data.paperStatus.teachercomments.length) {
                 self.stateLabel.text = @"已批改";
-                self.descLabel.text = [NSString stringWithFormat:@"正确率 %@",data.paperStatus.scoreRate];
+                CGFloat scoreRate = data.paperStatus.scoreRate.floatValue;
+                self.descLabel.text = [NSString stringWithFormat:@"正确率 %.0f%@",scoreRate*100,@"%"];
                 [self showComment];
                 NSString *teacherString = [NSString stringWithFormat:@"%@评语：",data.paperStatus.teacherName];
                 NSString *totalString = [NSString stringWithFormat:@"%@%@",teacherString,data.paperStatus.teachercomments];

@@ -19,12 +19,15 @@
 
 static const CGFloat kItemWidth = 60;
 static const CGFloat kMinMargin = 15;
+static const CGFloat kNavViewHeight = 55.0f;
 
 @interface QAReportViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) QAReportNavView *navView;
 @property (nonatomic, strong) NSArray *groupArray;
 @property (nonatomic, assign) CGFloat margin;
+@property (nonatomic, assign) CGFloat titleHeight;
+
 @end
 
 @implementation QAReportViewController
@@ -105,7 +108,7 @@ static const CGFloat kMinMargin = 15;
     [self.view addSubview:self.navView];
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(55 *kPhoneWidthRatio);
+        make.height.mas_equalTo(kNavViewHeight *kPhoneWidthRatio);
     }];
 }
 
@@ -183,9 +186,11 @@ static const CGFloat kMinMargin = 15;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (self.model.checked) {
-            return CGSizeMake(collectionView.frame.size.width, 370 *kPhoneWidthRatio);
+            self.titleHeight = 370 *kPhoneWidthRatio;
+            return CGSizeMake(collectionView.frame.size.width, self.titleHeight);
         }else {
-           return CGSizeMake(collectionView.frame.size.width, 270 *kPhoneWidthRatio);
+            self.titleHeight = 270 *kPhoneWidthRatio;
+           return CGSizeMake(collectionView.frame.size.width, self.titleHeight);
         }
     }else if (indexPath.section == 1){
         return CGSizeMake(collectionView.frame.size.width, 45.0f * kPhoneWidthRatio);
@@ -212,5 +217,13 @@ static const CGFloat kMinMargin = 15;
         return UIEdgeInsetsMake(20 * kPhoneWidthRatio, self.margin, 20, self.margin);
     }
     return UIEdgeInsetsZero;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat minAlphaOffset = - 64;
+    CGFloat maxAlphaOffset = self.titleHeight - kNavViewHeight *kPhoneWidthRatio;
+    CGFloat offset = scrollView.contentOffset.y;
+    CGFloat alpha = (offset - minAlphaOffset) / (maxAlphaOffset - minAlphaOffset);
+    self.navView.backgroundColor = [[UIColor colorWithHexString:@"89e00d"]colorWithAlphaComponent:alpha];
 }
 @end

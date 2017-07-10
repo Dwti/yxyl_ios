@@ -243,11 +243,7 @@
 }
 
 - (void)autoGoNextGoGoGo {
-    if (self.slideView.currentIndex == ([self.data.childQuestions count] - 1)) {
-        [self.delegate autoGoNextGoGoGo];
-        return;
-    }
-    [self.slideView scrollToItemIndex:self.slideView.currentIndex+1 animated:YES];
+
 }
 
 - (NSAttributedString *)attrbutedProgress:(QAQuestion *)item {
