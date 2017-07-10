@@ -96,12 +96,12 @@
     WEAK_SELF
     [self.photoCollectionsView setCollectionSelectBlock:^(PHAssetCollection *collection){
         STRONG_SELF
+        self.titleView.isFold = YES;
+        [self hideCollectionsView];
         if (collection == self.currentCollection) {
             return;
         }
         self.titleView.title = collection.localizedTitle;
-        self.titleView.isFold = YES;
-        [self hideCollectionsView];
         [self loadAssetsFromCollection:collection];
         [self.collectionView reloadData];
     }];

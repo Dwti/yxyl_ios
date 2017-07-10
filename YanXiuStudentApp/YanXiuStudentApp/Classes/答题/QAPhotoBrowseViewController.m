@@ -59,6 +59,9 @@
             self.topBarView.canDelete = NO;
         }
         BLOCK_EXEC(self.deleteBlock);
+        if (self.itemArray.count == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }];
     [self.view addSubview:self.topBarView];
     [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
