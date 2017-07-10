@@ -147,9 +147,19 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
     return NO;
 }
 
-//- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-//    return YES;
-//}
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
+    CGPoint touchPoint = [touch locationInView:self];
+    CGRect rect = self.frame;
+    rect.size.width  = rect.size.width + 70;
+    rect.size.height = rect.size.height + 70;
+
+    if (CGRectContainsPoint(rect, touchPoint)) {
+        [self setSubviewsTextColor:self.highlightedTextColor];
+    }else {
+        [self setSubviewsTextColor:self.textColor];
+    }
+    return YES;
+}
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     [self setSubviewsTextColor:self.textColor];

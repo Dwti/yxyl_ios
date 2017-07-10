@@ -211,6 +211,7 @@
         }
         entity.duration = @(duration);
     }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:YXSavePaperSuccessNotification object:nil];
 }
 
 - (NSTimeInterval)loadPaperDurationWithPaperID:(NSString *)paperID {
