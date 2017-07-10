@@ -14,6 +14,7 @@ typedef void (^LayoutBlock) (AlertView * view);
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIColor *maskColor;
 @property (nonatomic, assign) BOOL hideWhenMaskClicked;
+@property (nonatomic, strong) void(^hideBlock) (AlertView *view);//custom action for hide
 
 - (void)showWithLayout:(LayoutBlock)layoutBlock;
 - (void)showInView:(UIView *)view withLayout:(LayoutBlock)layoutBlock;

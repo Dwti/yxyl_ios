@@ -12,4 +12,5 @@
 @property (nonatomic, strong) NSString *option;
 @property (nonatomic, assign) CGSize size;
 @property (nonatomic, assign) BOOL selected;
+@property (nonatomic, assign) NSInteger index;
 @end

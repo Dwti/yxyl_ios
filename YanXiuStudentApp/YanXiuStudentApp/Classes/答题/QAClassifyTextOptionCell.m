@@ -41,7 +41,7 @@
     self.optionLabel.backgroundColor = [UIColor clearColor];
     [self.labelBgView addSubview:self.optionLabel];
     [self.optionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(17, 17, 17, 17));
+        make.edges.mas_equalTo(UIEdgeInsetsMake(17, 19, 17, 15));
     }];
     
     self.deleteButton = [[UIButton alloc]init];

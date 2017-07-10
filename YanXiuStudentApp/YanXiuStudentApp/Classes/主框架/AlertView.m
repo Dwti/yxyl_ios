@@ -59,7 +59,11 @@
 
 #pragma mark - hide
 - (void)hide {
-    [self removeFromSuperview];
+    if (self.hideBlock) {
+        self.hideBlock(self);
+    }else {
+        [self removeFromSuperview];
+    }
 }
 
 #pragma mark - set
