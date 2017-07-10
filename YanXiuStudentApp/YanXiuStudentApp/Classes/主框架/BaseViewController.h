@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UIColor *titleNormalColor;
 @property (nonatomic, strong) UIButton *rightNaviButton;
 
+- (void)backAction;
+
 #pragma mark - 相关的Util
 + (NSArray *)barButtonItemsWithButton:(UIButton *)button;
 

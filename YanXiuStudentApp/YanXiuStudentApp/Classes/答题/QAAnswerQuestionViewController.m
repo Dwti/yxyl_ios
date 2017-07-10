@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.model.paperAnswerDuration = [[YXQADataManager sharedInstance]loadPaperDurationWithPaperID:self.model.paperID];
     for (QAQuestion *q in [self.model allQuestions]) {
         [q loadAnswer];
     }
@@ -35,10 +36,16 @@
         STRONG_SELF
         [self showAnswerSheet];
     }];
+    
     [self setupProgressData];
     [self refreshProgress];
     [self setupTimer];
     [self setupObserver];
+}
+
+- (void)backAction {
+    [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
+    [super backAction];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -115,6 +115,7 @@
             [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [obj clearAnswer];
             }];
+            [[YXQADataManager sharedInstance]clearPaperDurationWithPaperID:self.model.paperID];
             
             if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
                 [self showSubmitSuccessfullyTipViewWithEndDate:reportModel.homeworkEndDate];

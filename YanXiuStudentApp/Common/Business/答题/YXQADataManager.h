@@ -53,6 +53,9 @@ static NSString *const YXSavePaperSuccessNotification = @"YXSavePaperSuccessNoti
 
 - (void)setUploadImageBlock:(UploadImageProgressBlock)block;
 
+- (void)savePaperDurationWithPaperID:(NSString *)paperID duration:(NSTimeInterval)duration;
+- (NSTimeInterval)loadPaperDurationWithPaperID:(NSString *)paperID;
+- (void)clearPaperDurationWithPaperID:(NSString *)paperID;
 
 
 @end

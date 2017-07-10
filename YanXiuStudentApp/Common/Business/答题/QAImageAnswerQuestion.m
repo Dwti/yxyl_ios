@@ -70,6 +70,11 @@
     if (!key) {
         return;
     }
+    YXQAAnswerState state = [self answerState];
+    if (state == YXAnswerStateNotAnswer) {
+        [self clearAnswer];
+        return;
+    }
     [self removeImageFolder];
     [self createImageFolderIfNeeded];
     NSString *folderPath = [self imageFolderPath];
