@@ -14,8 +14,7 @@
 
 @interface QAFillQuestionView ()
 @property (nonatomic, strong) QAFillBlankCell *blankCell;
-@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
-@property (nonatomic, strong) QAQuestion *oriData;
+
 @end
 
 @implementation QAFillQuestionView
@@ -38,16 +37,6 @@
     [super leaveForeground];
 }
 
-- (void)setData:(QAQuestion *)data {
-    if (data.childQuestions.count == 1) {
-        self.oriData = data;
-        [super setData:data.childQuestions.firstObject];
-        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
-    }else {
-        [super setData:data];
-    }
-}
-
 - (void)setupUI {
     [super setupUI];
     [self.tableView registerClass:[QAFillBlankCell class] forCellReuseIdentifier:@"QAFillBlankCell"];
@@ -55,7 +44,8 @@
 
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
+    UITableViewCell<QAComplexHeaderCellDelegate> *headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    [heightArray addObject:@([headerCell heightForQuestion:self.oriData])];
     [heightArray addObject:@([QAFillBlankCell heightForString:self.data.stem])];
     return heightArray;
 }

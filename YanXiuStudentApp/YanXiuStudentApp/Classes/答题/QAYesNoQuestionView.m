@@ -12,21 +12,10 @@
 #import "QAComplexHeaderFactory.h"
 
 @interface QAYesNoQuestionView()
-@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
-@property (nonatomic, strong) QAQuestion *oriData;
+
 @end
 
 @implementation QAYesNoQuestionView
-
-- (void)setData:(QAQuestion *)data {
-    if (data.childQuestions.count == 1) {
-        self.oriData = data;
-        [super setData:data.childQuestions.firstObject];
-        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
-    }else {
-        [super setData:data];
-    }
-}
 
 - (void)setupUI {
     [super setupUI];
@@ -37,8 +26,13 @@
 
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
-    [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    UITableViewCell<QAComplexHeaderCellDelegate> *headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    [heightArray addObject:@([headerCell heightForQuestion:self.oriData])];
+    if (self.hideQuestion) {
+        [heightArray addObject:@(0.0001)];
+    }else {
+        [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    }    
     for (int i = 0; i < [self.data.myAnswers count]; i++) {
         [heightArray addObject:@(55)];
     }
@@ -56,6 +50,10 @@
     }
     
     if (indexPath.row == 1) {
+        if (self.hideQuestion) {
+            UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            return cell;
+        }
         QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
         cell.delegate = self;
         [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];

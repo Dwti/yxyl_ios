@@ -12,20 +12,11 @@
 #import "QAComplexHeaderFactory.h"
 
 @interface QAChooseQuestionView()
-@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
-@property (nonatomic, strong) QAQuestion *oriData;
+
 @end
 
 @implementation QAChooseQuestionView
-- (void)setData:(QAQuestion *)data {
-    if (data.childQuestions.count == 1) {
-        self.oriData = data;
-        [super setData:data.childQuestions.firstObject];
-        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
-    }else {
-        [super setData:data];
-    }
-}
+
 - (void)setupUI {
     [super setupUI];
     [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
@@ -33,7 +24,8 @@
 }
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
+    UITableViewCell<QAComplexHeaderCellDelegate> *headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    [heightArray addObject:@([headerCell heightForQuestion:self.oriData])];
     if (self.hideQuestion) {
         [heightArray addObject:@(0.0001)];
     }else {

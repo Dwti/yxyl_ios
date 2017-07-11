@@ -13,21 +13,10 @@
 #import "QAComplexHeaderFactory.h"
 
 @interface QAFillQuestionAnalysisView ()
-@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
-@property (nonatomic, strong) QAQuestion *oriData;
+
 @end
 
 @implementation QAFillQuestionAnalysisView
-
-- (void)setData:(QAQuestion *)data {
-    if (data.childQuestions.count == 1) {
-        self.oriData = data;
-        [super setData:data.childQuestions.firstObject];
-        self.headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
-    }else {
-        [super setData:data];
-    }
-}
 
 - (void)setupUI {
     [super setupUI];
@@ -36,7 +25,8 @@
 
 - (NSMutableArray *)heightArrayForCell {
     NSMutableArray *heightArray = [NSMutableArray array];
-    [heightArray addObject:@([self.headerCell heightForQuestion:self.oriData])];
+    UITableViewCell<QAComplexHeaderCellDelegate> *headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    [heightArray addObject:@([headerCell heightForQuestion:self.oriData])];
     [heightArray addObject:@([QAFillBlankCell heightForString:self.data.stem])];
     return heightArray;
 }

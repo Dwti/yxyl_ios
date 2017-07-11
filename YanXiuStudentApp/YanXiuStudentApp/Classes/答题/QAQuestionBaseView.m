@@ -11,6 +11,7 @@
 @interface QAQuestionBaseView()
 @property (nonatomic, strong) NSDate *beginDate;
 @property (nonatomic, assign) BOOL layoutComplete;
+@property (nonatomic, strong) QAQuestion *oriData;
 @end
 
 @implementation QAQuestionBaseView
@@ -35,6 +36,24 @@
             item.position.indexString = [NSString stringWithFormat:@"%@ / %@",@(idx+1),@(self.data.childQuestions.count)];
         }];
     }
+}
+
+- (void)setData:(QAQuestion *)data {
+    self.oriData = data;
+    if (data.childQuestions.count == 1) {
+        QAQuestion *question = data.childQuestions.firstObject;
+        question.questionType = data.questionType;
+        _data = question;
+        
+        if (question.templateType != YXQATemplateFill) {
+            self.hideQuestion = YES;
+            if (!isEmpty(question.stem)) {
+                self.oriData.stem = [NSString stringWithFormat:@"%@<br>%@",self.oriData.stem,question.stem];
+            }
+        }
+        return;
+    }
+    _data = data;
 }
 
 - (void)layoutSubviews {
