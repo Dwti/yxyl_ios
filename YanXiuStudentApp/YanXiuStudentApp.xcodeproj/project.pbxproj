@@ -1131,6 +1131,7 @@
 		E9E6C2FE1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6C2FD1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.m */; };
 		E9E6C3041F024F6800F93E98 /* QAAnalysisAudioCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6C3031F024F6800F93E98 /* QAAnalysisAudioCommentCell.m */; };
 		E9E6C30D1F03A2D600F93E98 /* QAReportErrorOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6C30C1F03A2D600F93E98 /* QAReportErrorOptionView.m */; };
+		E9F4C6721F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */; };
 		F70509241C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F70509231C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m */; };
 		F705092E1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F705092D1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m */; };
 		F708EA6D1C50AD0B00580ECC /* yxConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F708EA6C1C50AD0B00580ECC /* yxConfig.plist */; };
@@ -2812,6 +2813,8 @@
 		E9E6C3031F024F6800F93E98 /* QAAnalysisAudioCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisAudioCommentCell.m; sourceTree = "<group>"; };
 		E9E6C30B1F03A2D600F93E98 /* QAReportErrorOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAReportErrorOptionView.h; sourceTree = "<group>"; };
 		E9E6C30C1F03A2D600F93E98 /* QAReportErrorOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAReportErrorOptionView.m; sourceTree = "<group>"; };
+		E9F4C6701F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnalysisSubjectiveResultCell.h; sourceTree = "<group>"; };
+		E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisSubjectiveResultCell.m; sourceTree = "<group>"; };
 		F70509221C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseChapterKnpViewController_Pad.h; sourceTree = "<group>"; };
 		F70509231C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseChapterKnpViewController_Pad.m; sourceTree = "<group>"; };
 		F705092C1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseQuizViewController_Pad.h; sourceTree = "<group>"; };
@@ -4363,6 +4366,8 @@
 				E9E6C2D61EFE355100F93E98 /* QAAnalysisBackGroundView.m */,
 				E9E6C2ED1F020B8A00F93E98 /* QAAnalysisResultCell.h */,
 				E9E6C2EE1F020B8A00F93E98 /* QAAnalysisResultCell.m */,
+				E9F4C6701F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.h */,
+				E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */,
 				E9E6C2F01F020C8D00F93E98 /* QAAnalysisScoreCell.h */,
 				E9E6C2F11F020C8D00F93E98 /* QAAnalysisScoreCell.m */,
 				E9E6C2E41F01FF0200F93E98 /* QAAnalysisDifficultyCell.h */,
@@ -7602,6 +7607,7 @@
 				0FB211B51C5726B700594BEA /* YXRegisterRequest.m in Sources */,
 				7C9EDC521DCDBAFD0001C048 /* RegisterByUserInfoRequest.m in Sources */,
 				307A45911D4B2A4D00EE1455 /* YXGetWrongQRequest.m in Sources */,
+				E9F4C6721F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m in Sources */,
 				F7754F251C4E43860002FE45 /* YXQAYesNoChooseCell.m in Sources */,
 				F792387D1C5866DF00F70D42 /* YXExerciseChooseEdition_SubjectView.m in Sources */,
 				30CB92C61CBE180800B72D87 /* YXRedManager.m in Sources */,

@@ -22,6 +22,7 @@ NSString * const kHeaderCellReuseID = @"kHeaderCellReuseID";
     }
     if (question.templateType == YXQATemplateListenComplex) {
         QAListenStemCell *cell = [[QAListenStemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHeaderCellReuseID];
+        cell.item = question;
         [cell updateWithString:question.stem isSubQuestion:NO];
         return cell;
     }

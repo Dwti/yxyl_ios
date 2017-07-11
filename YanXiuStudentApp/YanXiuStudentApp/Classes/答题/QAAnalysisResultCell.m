@@ -83,31 +83,11 @@ static NSString *kQAAnswerResultState_Wrong = @"回答错误";
 }
 
 - (void)updateUI {
-    if (self.type == QAAnswerResultType_Objective) {
-        if (self.isCorrect) {
-            self.resultLabel.text = kQAAnswerResultState_Corret;
-        } else {
-            self.resultLabel.text = kQAAnswerResultState_Wrong;
-        }
-    }else if (self.type == QAAnswerResultType_Subjective) {
-        if (self.isMarked) {
-            if (self.isCorrect) {
-                self.resultLabel.text = kQAAnswerResultState_Corret;
-            } else {
-                self.resultLabel.text = kQAAnswerResultState_Wrong;
-            }
-        } else {
-            self.resultLabel.text = @"未批改";
-        }
+    if (self.isCorrect) {
+        self.resultLabel.text = kQAAnswerResultState_Corret;
+        
+    } else {
+        self.resultLabel.text = kQAAnswerResultState_Wrong;
     }
-    
-    if (self.htmlString.length > 0) {
-        return;
-    }
-    [self.resultLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(11.0f);
-        make.left.mas_equalTo(0);
-        make.bottom.mas_equalTo(-13.0f);
-    }];
 }
 @end
