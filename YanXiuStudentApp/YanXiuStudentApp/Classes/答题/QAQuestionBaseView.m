@@ -42,14 +42,10 @@
     self.oriData = data;
     if (data.childQuestions.count == 1) {
         QAQuestion *question = data.childQuestions.firstObject;
-        question.questionType = data.questionType;
         _data = question;
         
         if (question.templateType != YXQATemplateFill) {
             self.hideQuestion = YES;
-            if (!isEmpty(question.stem)) {
-                self.oriData.stem = [NSString stringWithFormat:@"%@<br>%@",self.oriData.stem,question.stem];
-            }
         }
         return;
     }
