@@ -34,6 +34,7 @@
 
 - (void)leaveForeground {
     [self endEditing:YES];
+    [self.blankCell resetCurrentBlank];
     [super leaveForeground];
 }
 

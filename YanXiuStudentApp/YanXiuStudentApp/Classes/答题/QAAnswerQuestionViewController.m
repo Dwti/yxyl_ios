@@ -135,6 +135,7 @@
     [vc setSelectedActionBlock:^(QAQuestion *item) {
         STRONG_SELF
         [self slideToQAItem:item];
+        self.slideView.isActive = YES;
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }
