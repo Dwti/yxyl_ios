@@ -43,10 +43,6 @@
     if (data.childQuestions.count == 1) {
         QAQuestion *question = data.childQuestions.firstObject;
         _data = question;
-        
-        if (question.templateType != YXQATemplateFill) {
-            self.hideQuestion = YES;
-        }
         return;
     }
     _data = data;

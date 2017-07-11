@@ -17,15 +17,6 @@
                 obj.stem = [QAQuestionUtil stemByAddingIndexNumber:idx+1 inFrontOfStem:obj.stem];
             }];
         }
-        if (self.childQuestions.count == 1) {
-            QAQuestion *question = self.childQuestions.firstObject;
-            question.questionType = self.questionType;
-            if (question.templateType != YXQATemplateFill) {
-                if (!isEmpty(question.stem)) {
-                    self.stem = [NSString stringWithFormat:@"%@<br>%@",self.stem,question.stem];
-                }
-            }
-        }
     }
     return self;
 }
