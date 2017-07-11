@@ -59,7 +59,7 @@
 }
 
 - (void)updateWithIndex:(NSInteger)index answer:(NSString *)answer {
-    self.indexLabel.text = [NSString stringWithFormat:@"%@",@(index+1)];
+    self.indexLabel.text = [NSString stringWithFormat:@"%@",@(index)];
     self.answerLabel.text = answer;
     if (isEmpty(answer)) {
         self.indexLabel.frame = CGRectMake((self.width-self.indexLabel.width)/2, self.indexLabel.y, self.indexLabel.width, self.indexLabel.height);
