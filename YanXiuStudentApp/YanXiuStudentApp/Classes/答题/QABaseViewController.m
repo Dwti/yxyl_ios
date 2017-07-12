@@ -105,7 +105,7 @@
     NSInteger index = 0;
     QASlideItemBaseView *curView = [self.slideView itemViewAtIndex:to];
     if ([curView isKindOfClass:[QAComlexQuestionAnswerBaseView class]]) {
-        QAComlexQuestionAnswerBaseView *complexView = (QAComlexQuestionAnswerBaseView *)view;
+        QAComlexQuestionAnswerBaseView *complexView = (QAComlexQuestionAnswerBaseView *)curView;
         index = complexView.slideView.currentIndex;
     }
     [self.switchView updateWithTotal:self.model.questions.count question:self.model.questions[to] childIndex:index];
