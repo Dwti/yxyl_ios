@@ -15,9 +15,15 @@
 #import "QAComplexHeaderFactory.h"
 
 @interface QASubjectiveQuestionView ()
+@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 
 @end
 @implementation QASubjectiveQuestionView
+
+- (void)leaveForeground {
+    [super leaveForeground];
+    SAFE_CALL(self.headerCell, leaveForeground);
+}
 
 - (void)setupUI {
     [super setupUI];
@@ -43,6 +49,7 @@
         if (!cell) {
             cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
             cell.cellHeightDelegate = self;
+            self.headerCell = cell;
         }
         return cell;
     }else if (indexPath.row == 1) {

@@ -12,4 +12,5 @@
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> cellHeightDelegate;
 
 - (CGFloat)heightForQuestion:(QAQuestion *)question;
+- (void)leaveForeground;
 @end

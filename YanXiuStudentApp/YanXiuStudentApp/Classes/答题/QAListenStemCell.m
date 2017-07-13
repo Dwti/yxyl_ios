@@ -146,4 +146,8 @@ static const NSUInteger kPlayViewHeight = 45.0f;
 - (id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
     return self.delegate;
 }
+
+- (void)leaveForeground {
+    [self stop];
+}
 @end

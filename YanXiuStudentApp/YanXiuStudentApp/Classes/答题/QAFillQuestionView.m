@@ -14,6 +14,7 @@
 
 @interface QAFillQuestionView ()
 @property (nonatomic, strong) QAFillBlankCell *blankCell;
+@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 
 @end
 
@@ -35,6 +36,7 @@
     [self endEditing:YES];
     [self.blankCell resetCurrentBlank];
     [super leaveForeground];
+    SAFE_CALL(self.headerCell, leaveForeground);
 }
 
 - (void)setupUI {
@@ -57,6 +59,7 @@
         if (!cell) {
             cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
             cell.cellHeightDelegate = self;
+            self.headerCell = cell;
         }
         return cell;
     }

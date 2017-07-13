@@ -138,6 +138,10 @@
         [self slideToQAItem:item];
         self.slideView.isActive = YES;
     }];
+    [vc setBackActionBlock:^{
+        STRONG_SELF
+        self.slideView.isActive = YES;
+    }];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
