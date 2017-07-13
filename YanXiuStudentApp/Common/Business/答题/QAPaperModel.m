@@ -70,7 +70,7 @@
             QAQuestionPosition *position = [[QAQuestionPosition alloc]init];
             position.firstLevelIndex = firstLevelIndex;
             question.position = position;
-            if (question.questionType == YXQAItemSolve || question.questionType == YXQAItemCalculate) {
+            if ([question isSingleQuestion]) {
                 position.indexString = [self indexStringWithIndex:oriIndex total:total];
                 for (NSInteger secondLevelIndex=0; secondLevelIndex<question.childQuestions.count; secondLevelIndex++) {
                     QAQuestion *childQuestion = question.childQuestions[secondLevelIndex];
@@ -105,7 +105,7 @@
         if (question.childQuestions.count == 0) {
             total++;
         }else {
-            if (question.questionType == YXQAItemSolve || question.questionType == YXQAItemCalculate) {
+            if ([question isSingleQuestion]) {
                 total++;
             }else {
                 total += question.childQuestions.count;

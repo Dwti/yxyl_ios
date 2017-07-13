@@ -135,10 +135,8 @@
     self.titleLabel.text = data.name;
     if (data.paperStatus.status.intValue == 0) { //待完成
         [self hideComment];
-        NSString *prefix = [NSString stringWithFormat:@"%@-%@",[YXUserManager sharedManager].userModel.passport.uid,data.paperId];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"questionKey BEGINSWITH %@",prefix];
-        NSArray *array = [QuestionAnswerEntity MR_findAllWithPredicate:predicate];
-        self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",@(array.count),data.quesnum];
+        NSInteger answeredNum = [[YXQADataManager sharedInstance]loadPaperAnsweredQuestionNumWithPaperID:data.paperId];
+        self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",@(answeredNum),data.quesnum];
         if (isEmpty(data.remaindertimeStr) || (data.remaindertimeStr.intValue <= 0)) {
             self.descLabel.text = @"可补做";
         }else{

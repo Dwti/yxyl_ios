@@ -11,6 +11,11 @@
         <attribute name="paperID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PaperAnsweredNumEntity" representedClassName="PaperAnsweredNumEntity" syncable="YES">
+        <attribute name="answeredNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="paperID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="QuestionAnswerEntity" representedClassName="QuestionAnswerEntity" syncable="YES">
         <attribute name="questionAnswer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionKey" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,8 +26,9 @@
     <elements>
         <element name="InstantRecordEntity" positionX="-630" positionY="-81" width="128" height="60"/>
         <element name="LogRecordEntity" positionX="-621" positionY="-72" width="128" height="60"/>
+        <element name="PaperAnswerDurationEntity" positionX="-621" positionY="-54" width="128" height="90"/>
         <element name="QuestionAnswerEntity" positionX="-621" positionY="-63" width="128" height="75"/>
         <element name="RegularRecordEntity" positionX="-612" positionY="-63" width="128" height="60"/>
-        <element name="PaperAnswerDurationEntity" positionX="-621" positionY="-54" width="128" height="90"/>
+        <element name="PaperAnsweredNumEntity" positionX="-612" positionY="-36" width="128" height="90"/>
     </elements>
 </model>

@@ -45,6 +45,7 @@
 
 - (void)backAction {
     [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
+    [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
     [super backAction];
 }
 

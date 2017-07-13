@@ -116,6 +116,7 @@
                 [obj clearAnswer];
             }];
             [[YXQADataManager sharedInstance]clearPaperDurationWithPaperID:self.model.paperID];
+            [[YXQADataManager sharedInstance]clearPaperAnsweredQuestionNumWithPaperID:self.model.paperID];
             
             if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
                 [self showSubmitSuccessfullyTipViewWithEndDate:reportModel.homeworkEndDate];
