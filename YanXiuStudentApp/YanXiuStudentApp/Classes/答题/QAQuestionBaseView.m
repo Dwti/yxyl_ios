@@ -42,6 +42,7 @@
     self.oriData = data;
     if (data.childQuestions.count == 1) {
         QAQuestion *question = data.childQuestions.firstObject;
+        question.questionType = data.questionType;
         _data = question;
         return;
     }

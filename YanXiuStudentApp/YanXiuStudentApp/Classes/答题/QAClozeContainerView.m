@@ -102,7 +102,7 @@ YXHtmlCellHeightDelegate
     cell.selectItemDelegate = self.delegate;
     cell.isAnalysis = self.isAnalysis;
     cell.question = self.qaData;
-    cell.currentIndex = self.clozeCell.currentIndex;
+    cell.currentIndex = self.currentIndex;
     self.clozeCell = cell;
     
     return cell;

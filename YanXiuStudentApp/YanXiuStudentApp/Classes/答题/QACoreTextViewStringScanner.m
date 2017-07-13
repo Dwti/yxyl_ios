@@ -48,15 +48,14 @@
 }
 
 - (void)scanCoreTextView:(DTAttributedTextContentView *)view stringRange:(NSRange)range resultBlock:(void(^)(NSArray *frameArray))resultBlock {
-    if (!self.imagePositionArray) {
-        self.imagePositionArray = [NSMutableArray array];
-        NSRange entireRange = NSMakeRange(0, [view.attributedString length]);
-        [view.attributedString enumerateAttribute:NSAttachmentAttributeName inRange:entireRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
-            if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
-                [self.imagePositionArray addObject:[NSNumber numberWithUnsignedInteger:range.location]];
-            }
-        }];
-    }
+    
+    self.imagePositionArray = [NSMutableArray array];
+    NSRange entireRange = NSMakeRange(0, [view.attributedString length]);
+    [view.attributedString enumerateAttribute:NSAttachmentAttributeName inRange:entireRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
+        if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
+            [self.imagePositionArray addObject:[NSNumber numberWithUnsignedInteger:range.location]];
+        }
+    }];
     
     self.indexArray = [NSArray arrayWithArray:[view.layoutFrame stringIndices]];
     
