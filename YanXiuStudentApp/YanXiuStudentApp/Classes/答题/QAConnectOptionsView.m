@@ -9,7 +9,7 @@
 #import "QAConnectOptionsView.h"
 #import "QAConnectContentCell.h"
 
-@interface QAConnectOptionsView ()<UITableViewDataSource,UITableViewDelegate,YXHtmlCellHeightDelegate>
+@interface QAConnectOptionsView ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *cellHeightArray;
 @property (nonatomic, strong) NSIndexPath *oldIndexPath;
@@ -27,8 +27,24 @@
 }
 
 - (void)setupUI{
+    self.backgroundColor = [UIColor colorWithHexString:@"e3e6e4"];;
+    
+    UIImageView *topShadowView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"连线题灰底上阴影"]];
+    [self addSubview:topShadowView];
+    [topShadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(20.f);
+    }];
+    
+    UIImageView *bottomShadowView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"连线题灰底下阴影"]];
+    [self addSubview:bottomShadowView];
+    [bottomShadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(20.f);
+    }];
+    
     self.tableView = [[UITableView alloc]init];
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"e3e6e4"];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -42,30 +58,32 @@
 
 #pragma mark - UITableViewDataSource&Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.optionsArray.count;
+    return self.optionInfoArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    QAConnectContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAConnectContentCell"];
     QAConnectContentCell *cell = [[QAConnectContentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.maxContentWidth = [QAConnectOptionsView maxContentWidth];
-    cell.content = self.optionsArray[indexPath.row];
-    cell.delegate = self;
+    cell.optionString = self.optionInfoArray[indexPath.row].option;
+    WEAK_SELF
+    [cell setHeightChangeBlock:^(CGFloat height) {
+        STRONG_SELF
+        CGFloat cellHeight = self.optionInfoArray[indexPath.row].size.height;
+        CGFloat newCellHeight = ceilf(height);
+        if (cellHeight < newCellHeight) {
+            CGSize size = self.optionInfoArray[indexPath.row].size;
+            size.height = newCellHeight;
+            self.optionInfoArray[indexPath.row].size = size;
+            [self.tableView beginUpdates];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView endUpdates];
+        }
+    }];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.cellHeightArray[indexPath.row] floatValue];
-}
-
-- (NSMutableArray *)cellHeightArray {
-    if (_cellHeightArray == nil) {
-        _cellHeightArray = [NSMutableArray array];
-        [self.optionsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [_cellHeightArray addObject:@([QAConnectContentCell heightForString:obj width:[QAConnectOptionsView maxContentWidth]])];
-        }];
-    }
-    return _cellHeightArray;
+    return self.optionInfoArray[indexPath.row].size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,42 +94,16 @@
         }
     }
     self.oldIndexPath = indexPath;
-    BLOCK_EXEC(self.selectedActionBlock,self.optionsArray[indexPath.row]);
-}
-#pragma mark - YXHtmlCellHeightDelegate
-- (void)tableViewCell:(UITableViewCell *)cell updateWithHeight:(CGFloat)height {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    if (!indexPath) {
-        return;
-    }
-    CGFloat cellHeight = [self.cellHeightArray[indexPath.row] floatValue];
-    CGFloat newCellHeight = ceilf(height);
-    if (cellHeight < newCellHeight) {
-        [self.cellHeightArray replaceObjectAtIndex:indexPath.row withObject:@(newCellHeight)];
-        [self.tableView beginUpdates];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [self.tableView endUpdates];
-    }
+    BLOCK_EXEC(self.selectedActionBlock,self.optionInfoArray[indexPath.row]);
 }
 
-+ (CGFloat)maxContentWidth {
-    return (SCREEN_WIDTH - 45)/2 - 40 - 30;
-}
 -(void)setSelectedOptionCellActionBlock:(SelectedOptionCellActionBlock)block {
     self.selectedActionBlock = block;
 }
 
 - (void)reloadData {
     self.oldIndexPath = nil;
-    [self updateCellHeight];
     [self.tableView reloadData];
-    [self.tableView layoutIfNeeded];
 }
 
-- (void)updateCellHeight {
-    [self.cellHeightArray removeAllObjects];
-    [self.optionsArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.cellHeightArray addObject:@([QAConnectContentCell heightForString:obj width:[QAConnectOptionsView maxContentWidth]])];
-    }];
-}
 @end

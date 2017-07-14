@@ -1,18 +1,17 @@
 //
-//  YXQAConnectGroupView.h
+//  QAConnectAnalysisGroupView.h
 //  YanXiuStudentApp
 //
-//  Created by niuzhaowang on 16/8/9.
-//  Copyright © 2016年 yanxiu.com. All rights reserved.
+//  Created by ZLL on 2017/7/18.
+//  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "YXQAConnectItemView.h"
 #import "QAConnectItemView.h"
 
-@interface YXQAConnectGroupView : UIView
-@property (nonatomic, strong) YXQAConnectItemView *leftView;
-@property (nonatomic, strong) YXQAConnectItemView *rightView;
+@interface QAConnectAnalysisGroupView : UIView
+@property (nonatomic, strong) QAConnectItemView *leftView;
+@property (nonatomic, strong) QAConnectItemView *rightView;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 
 - (void)updateWithLeftContent:(NSString *)left rightContent:(NSString *)right;

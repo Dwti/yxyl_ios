@@ -26,6 +26,9 @@
         groupAnswer.answers = [self groupAnswerArrayWithElementCount:rawData.content.choices.count answerString:answerString];
         [correctAnswerArray addObject:groupAnswer];
     }];
+    if (self.templateType == YXQATemplateConnect) {
+        correctAnswerArray = [self orderedArrayWithGroupAnswerArray:correctAnswerArray];
+    }
     return [NSArray arrayWithArray:correctAnswerArray];
 }
 
@@ -74,6 +77,34 @@
     answerArray[index] = @YES;
 }
 
+- (NSMutableArray *)orderedArrayWithGroupAnswerArray:(NSMutableArray *)groupAnswerArray {
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i=0; i<groupAnswerArray.count; i++) {
+        [array addObject:[NSNull null]];
+    }
+    NSMutableArray *unansweredArray = [NSMutableArray array];
+    [groupAnswerArray enumerateObjectsUsingBlock:^(QANumberGroupAnswer *  _Nonnull groupAnswer, NSUInteger idx, BOOL * _Nonnull stop) {
+        __block BOOL hasAnswer = NO;
+        [groupAnswer.answers enumerateObjectsUsingBlock:^(NSNumber *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.boolValue) {
+                [array replaceObjectAtIndex:idx withObject:groupAnswer];
+                hasAnswer = YES;
+                *stop = YES;
+            }
+        }];
+        if (!hasAnswer) {
+            [unansweredArray addObject:groupAnswer];
+        }
+    }];
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSNull class]]) {
+            [array replaceObjectAtIndex:idx withObject:unansweredArray[0]];
+            [unansweredArray removeObjectAtIndex:0];
+        }
+    }];
+    return array;
+}
+
 #pragma mark - get my answer
 - (NSMutableArray *)myAnswersWithRawData:(YXQuestion *)rawData{
     NSMutableArray *myAnswerArray = [self initializedMyAnswerArrayWithRawData:rawData];
@@ -81,6 +112,9 @@
         QANumberGroupAnswer *groupAnswer = myAnswerArray[idx];
         [self setupGroupAnswerArray:groupAnswer.answers withAnswerString:obj];
     }];
+    if (self.templateType == YXQATemplateConnect) {
+        myAnswerArray = [self orderedArrayWithGroupAnswerArray:myAnswerArray];
+    }
     return myAnswerArray;
 }
 

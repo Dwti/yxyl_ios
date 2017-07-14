@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QAConnectContentCell.h"
+#import "QAConnectItemView.h"
+@class QAConnectTwinOptionInfo;
+
+typedef void(^CellHeightChangeBlock)(CGFloat height);
+typedef void(^DeleteOptionActionBlock)(QAConnectTwinOptionInfo *twinOption);
 
 @interface QAConnectSelectedCell : UITableViewCell
-@property (nonatomic, strong) QAConnectContentCell *leftView;
-@property (nonatomic, strong) QAConnectContentCell *rightView;
+@property (nonatomic, strong) QAConnectItemView *leftView;
+@property (nonatomic, strong) QAConnectItemView *rightView;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 
-//- (void)updateWithLeftContent:(NSString *)left rightContent:(NSString *)right;
-//+ (CGFloat)heightForLeftContent:(NSString *)left rightContent:(NSString *)right;
+- (void)setCellHeightChangeBlock:(CellHeightChangeBlock)block;
+- (void)setDeleteOptionActionBlock:(DeleteOptionActionBlock)block;
+- (void)updateWithTwinOption:(QAConnectTwinOptionInfo *)twinOption;
++ (CGFloat)heightForTwinOption:(QAConnectTwinOptionInfo *)twinOption;
 
 @end

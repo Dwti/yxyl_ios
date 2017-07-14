@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QAConnectOptionInfo.h"
+
+typedef void(^SelectedTwinOptionActionBlock)(QAConnectOptionInfo *leftOptionInfo,QAConnectOptionInfo *rightOptionInfo);
 
 @interface QAConnectContentView : UIView
-@property (nonatomic, strong) QAQuestion *item;
-@property (nonatomic, strong) NSMutableArray *groupArray;
+@property (nonatomic, strong) NSMutableArray<QAConnectOptionInfo *> *optionInfoArray;
+
+- (void)updateWithLeftOptionArray:(NSMutableArray *)leftArray rightOPtionArray:(NSMutableArray *)rightArray;
+- (void)setSelectedTwinOptionActionBlock:(SelectedTwinOptionActionBlock)block;
 
 @end

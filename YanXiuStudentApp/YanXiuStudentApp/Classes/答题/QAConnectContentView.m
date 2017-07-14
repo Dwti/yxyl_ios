@@ -14,12 +14,12 @@ static const CGFloat kGapWidth = 15.f;
 @interface QAConnectContentView ()
 @property (nonatomic, strong) QAConnectOptionsView *leftView;
 @property (nonatomic, strong) QAConnectOptionsView *rightView;
-@property (nonatomic, strong) NSMutableArray *leftOPtionArray;
-@property (nonatomic, strong) NSMutableArray *rightOptionArray;
-@property (nonatomic, copy) NSString *leftSelectedOptionString;
-@property (nonatomic, copy) NSString *rightSelectedOptionString;
-@property (nonatomic, strong) NSMutableArray *leftSelectedArray;
-@property (nonatomic, strong) NSMutableArray *rightSelectedArray;
+@property (nonatomic, strong) NSMutableArray<QAConnectOptionInfo *> *leftOPtionArray;
+@property (nonatomic, strong) NSMutableArray<QAConnectOptionInfo *> *rightOptionArray;
+@property (nonatomic, strong) QAConnectOptionInfo *leftSelectedOptionInfo;
+@property (nonatomic, strong) QAConnectOptionInfo *rightSelectedOptionInfo;
+@property (nonatomic, copy) SelectedTwinOptionActionBlock selectedActionBlock;
+
 @end
 
 @implementation QAConnectContentView
@@ -27,10 +27,6 @@ static const CGFloat kGapWidth = 15.f;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
-        self.leftOPtionArray = [NSMutableArray array];
-        self.rightOptionArray = [NSMutableArray array];
-        self.leftSelectedArray = [NSMutableArray array];
-        self.rightSelectedArray = [NSMutableArray array];
     }
     return self;
 }
@@ -38,17 +34,15 @@ static const CGFloat kGapWidth = 15.f;
 - (void)setupUI{
     self.leftView = [[QAConnectOptionsView alloc]init];
     WEAK_SELF
-    [self.leftView setSelectedOptionCellActionBlock:^(NSString *optionString) {
+    [self.leftView setSelectedOptionCellActionBlock:^(QAConnectOptionInfo *optionInfo) {
         STRONG_SELF
-        DDLogDebug(@"左边-选中了%@cell的选项",optionString);
-        self.leftSelectedOptionString = optionString;
+        self.leftSelectedOptionInfo = optionInfo;
         [self resetSelectedOPtions];
     }];
     self.rightView = [[QAConnectOptionsView alloc]init];
-    [self.rightView setSelectedOptionCellActionBlock:^(NSString *optionString) {
+    [self.rightView setSelectedOptionCellActionBlock:^(QAConnectOptionInfo *optionInfo) {
         STRONG_SELF
-        DDLogDebug(@"右边-选中了%@cell的选项",optionString);
-        self.rightSelectedOptionString = optionString;
+        self.rightSelectedOptionInfo = optionInfo;
         [self resetSelectedOPtions];
     }];
     
@@ -61,49 +55,30 @@ static const CGFloat kGapWidth = 15.f;
     }];
 }
 
-
-- (void)setItem:(QAQuestion *)item{
-    //    if (self.item) {
-    //        return;
-    //    }
-    _item = item;
+- (void)updateWithLeftOptionArray:(NSMutableArray *)leftArray rightOPtionArray:(NSMutableArray *)rightArray {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"selected = NO"];
+    NSArray *leftOPtionArray = [leftArray filteredArrayUsingPredicate:predicate];
+    self.leftOPtionArray = [NSMutableArray arrayWithArray:leftOPtionArray];
+    self.leftView.optionInfoArray = self.leftOPtionArray;
+    [self.leftView reloadData];
     
-    NSMutableArray *groupArray = [NSMutableArray array];
-    NSMutableArray *leftArray = [NSMutableArray array];
-    NSMutableArray *rightArray = [NSMutableArray array];
-    NSInteger groupCount = item.options.count/2;
-    for (int i = 0; i < groupCount; i++) {
-        NSString *leftOption = item.options[i];
-        NSString *rightOption = item.options[i+groupCount];
-        [leftArray addObject:leftOption];
-        [rightArray addObject:rightOption];
-    }
-    self.leftView.optionsArray = leftArray;
-    self.rightView.optionsArray = rightArray;
-    self.leftOPtionArray = leftArray;
-    self.rightOptionArray = rightArray;
-    [groupArray arrayByAddingObjectsFromArray:leftArray];
-    [groupArray addObjectsFromArray:rightArray];
-    self.groupArray = groupArray.copy;
+    NSArray *rightOPtionArray = [rightArray filteredArrayUsingPredicate:predicate];
+    self.rightOptionArray = [NSMutableArray arrayWithArray:rightOPtionArray];
+    self.rightView.optionInfoArray = self.rightOptionArray;
+    [self.rightView reloadData];
 }
 
 - (void)resetSelectedOPtions {
-    DDLogDebug(@"重置状态:左边选中%@----右边选中%@",self.leftSelectedOptionString,self.rightSelectedOptionString);
-    if (!isEmpty(self.leftSelectedOptionString) && !isEmpty(self.rightSelectedOptionString)) {
-        if ([self.leftOPtionArray containsObject:self.leftSelectedOptionString]) {
-            [self.leftOPtionArray removeObject:self.leftSelectedOptionString];
-            self.leftView.optionsArray = self.leftOPtionArray;
-            [self.leftView reloadData];
-            [self.leftSelectedArray addObject:self.leftSelectedOptionString];
+    if (!isEmpty(self.leftSelectedOptionInfo) && !isEmpty(self.rightSelectedOptionInfo)) {
+        if ([self.leftOPtionArray containsObject:self.leftSelectedOptionInfo] && [self.rightOptionArray containsObject:self.rightSelectedOptionInfo]) {
+            BLOCK_EXEC(self.selectedActionBlock,self.leftSelectedOptionInfo,self.rightSelectedOptionInfo);
+            self.leftSelectedOptionInfo = nil;
+            self.rightSelectedOptionInfo = nil;
         }
-        if ([self.rightOptionArray containsObject:self.rightSelectedOptionString]) {
-            [self.rightOptionArray removeObject:self.rightSelectedOptionString];
-            self.rightView.optionsArray = self.rightOptionArray;
-            [self.rightView reloadData];
-            [self.rightSelectedArray addObject:self.rightSelectedOptionString];
-        }
-        self.leftSelectedOptionString = nil;
-        self.rightSelectedOptionString = nil;
     }
+}
+
+-(void)setSelectedTwinOptionActionBlock:(SelectedTwinOptionActionBlock)block {
+    self.selectedActionBlock = block;
 }
 @end

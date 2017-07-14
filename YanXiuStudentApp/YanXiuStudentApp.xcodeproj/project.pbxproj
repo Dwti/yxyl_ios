@@ -1143,6 +1143,9 @@
 		E9973C771DB86D5F004966AD /* QAChooseQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C761DB86D5F004966AD /* QAChooseQuestionView.m */; };
 		E9973C7A1DB86D99004966AD /* QASingleChooseQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C791DB86D99004966AD /* QASingleChooseQuestionView.m */; };
 		E9973C7D1DB86DB1004966AD /* QAMultiChooseQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9973C7C1DB86DB1004966AD /* QAMultiChooseQuestionView.m */; };
+		E9A471781F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A471771F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m */; };
+		E9A4717B1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A4717A1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m */; };
+		E9A4717E1F1E101D0010F1EA /* QAConnectAnalysisLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A4717D1F1E101D0010F1EA /* QAConnectAnalysisLineView.m */; };
 		E9B425A61EF226BC00F99485 /* QAAnswerSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */; };
 		E9C684991DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C684981DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m */; };
 		E9C6849C1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C6849B1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.m */; };
@@ -1174,8 +1177,12 @@
 		E9F4C67B1F15DCAE00696FD0 /* QAConnectOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C67A1F15DCAE00696FD0 /* QAConnectOptionsView.m */; };
 		E9F4C67E1F174B4500696FD0 /* QAConnectSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C67D1F174B4500696FD0 /* QAConnectSelectedView.m */; };
 		E9F4C6841F1774D300696FD0 /* QAConnectSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6831F1774D300696FD0 /* QAConnectSelectedCell.m */; };
+		E9F4C68A1F187BF100696FD0 /* QAConnectItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6891F187BF100696FD0 /* QAConnectItemView.m */; };
+		E9F4C68D1F1C550A00696FD0 /* QAConnectOptionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C68C1F1C550A00696FD0 /* QAConnectOptionInfo.m */; };
+		E9F4C68E1F1C551600696FD0 /* QAConnectOptionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C68C1F1C550A00696FD0 /* QAConnectOptionInfo.m */; };
+		E9F4C68F1F1C553000696FD0 /* QAConnectSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C67D1F174B4500696FD0 /* QAConnectSelectedView.m */; };
+		E9F4C6901F1C553200696FD0 /* QAConnectSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6831F1774D300696FD0 /* QAConnectSelectedCell.m */; };
 		E9F992D11F13873800586DEE /* QAConnectContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F992D01F13873800586DEE /* QAConnectContentCell.m */; };
-		E9FD6EBD1F13850A0097539A /* QAConnectTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FD6EBC1F13850A0097539A /* QAConnectTitleView.m */; };
 		F70509241C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F70509231C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m */; };
 		F705092E1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F705092D1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m */; };
 		F708EA6D1C50AD0B00580ECC /* yxConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F708EA6C1C50AD0B00580ECC /* yxConfig.plist */; };
@@ -2843,6 +2850,12 @@
 		E9973C791DB86D99004966AD /* QASingleChooseQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QASingleChooseQuestionView.m; sourceTree = "<group>"; };
 		E9973C7B1DB86DB1004966AD /* QAMultiChooseQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAMultiChooseQuestionView.h; sourceTree = "<group>"; };
 		E9973C7C1DB86DB1004966AD /* QAMultiChooseQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAMultiChooseQuestionView.m; sourceTree = "<group>"; };
+		E9A471761F1E0FD00010F1EA /* QAConnectAnalysisGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectAnalysisGroupView.h; sourceTree = "<group>"; };
+		E9A471771F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectAnalysisGroupView.m; sourceTree = "<group>"; };
+		E9A471791F1E0FF50010F1EA /* QAConnectAnalysisContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectAnalysisContentCell.h; sourceTree = "<group>"; };
+		E9A4717A1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectAnalysisContentCell.m; sourceTree = "<group>"; };
+		E9A4717C1F1E101D0010F1EA /* QAConnectAnalysisLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectAnalysisLineView.h; sourceTree = "<group>"; };
+		E9A4717D1F1E101D0010F1EA /* QAConnectAnalysisLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectAnalysisLineView.m; sourceTree = "<group>"; };
 		E9B425A41EF226BC00F99485 /* QAAnswerSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetCell.h; sourceTree = "<group>"; };
 		E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetCell.m; sourceTree = "<group>"; };
 		E9C684971DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoQuestionAnalysisView.h; sourceTree = "<group>"; };
@@ -2905,10 +2918,12 @@
 		E9F4C67D1F174B4500696FD0 /* QAConnectSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectSelectedView.m; sourceTree = "<group>"; };
 		E9F4C6821F1774D300696FD0 /* QAConnectSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectSelectedCell.h; sourceTree = "<group>"; };
 		E9F4C6831F1774D300696FD0 /* QAConnectSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectSelectedCell.m; sourceTree = "<group>"; };
+		E9F4C6881F187BF100696FD0 /* QAConnectItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectItemView.h; sourceTree = "<group>"; };
+		E9F4C6891F187BF100696FD0 /* QAConnectItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectItemView.m; sourceTree = "<group>"; };
+		E9F4C68B1F1C550A00696FD0 /* QAConnectOptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectOptionInfo.h; sourceTree = "<group>"; };
+		E9F4C68C1F1C550A00696FD0 /* QAConnectOptionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectOptionInfo.m; sourceTree = "<group>"; };
 		E9F992CF1F13873800586DEE /* QAConnectContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectContentCell.h; sourceTree = "<group>"; };
 		E9F992D01F13873800586DEE /* QAConnectContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectContentCell.m; sourceTree = "<group>"; };
-		E9FD6EBB1F13850A0097539A /* QAConnectTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectTitleView.h; sourceTree = "<group>"; };
-		E9FD6EBC1F13850A0097539A /* QAConnectTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectTitleView.m; sourceTree = "<group>"; };
 		F70509221C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseChapterKnpViewController_Pad.h; sourceTree = "<group>"; };
 		F70509231C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseChapterKnpViewController_Pad.m; sourceTree = "<group>"; };
 		F705092C1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseQuizViewController_Pad.h; sourceTree = "<group>"; };
@@ -4719,18 +4734,26 @@
 		7C64D1901DB7764A003803F3 /* 连线题 */ = {
 			isa = PBXGroup;
 			children = (
-				E9FD6EBB1F13850A0097539A /* QAConnectTitleView.h */,
-				E9FD6EBC1F13850A0097539A /* QAConnectTitleView.m */,
+				E9F4C6881F187BF100696FD0 /* QAConnectItemView.h */,
+				E9F4C6891F187BF100696FD0 /* QAConnectItemView.m */,
 				E9F992CF1F13873800586DEE /* QAConnectContentCell.h */,
 				E9F992D01F13873800586DEE /* QAConnectContentCell.m */,
 				E9F4C6791F15DCAE00696FD0 /* QAConnectOptionsView.h */,
 				E9F4C67A1F15DCAE00696FD0 /* QAConnectOptionsView.m */,
 				E9F4C6761F15DC3300696FD0 /* QAConnectContentView.h */,
 				E9F4C6771F15DC3300696FD0 /* QAConnectContentView.m */,
-				E9F4C67C1F174B4500696FD0 /* QAConnectSelectedView.h */,
-				E9F4C67D1F174B4500696FD0 /* QAConnectSelectedView.m */,
 				E9F4C6821F1774D300696FD0 /* QAConnectSelectedCell.h */,
 				E9F4C6831F1774D300696FD0 /* QAConnectSelectedCell.m */,
+				E9F4C67C1F174B4500696FD0 /* QAConnectSelectedView.h */,
+				E9F4C67D1F174B4500696FD0 /* QAConnectSelectedView.m */,
+				E9F4C68B1F1C550A00696FD0 /* QAConnectOptionInfo.h */,
+				E9F4C68C1F1C550A00696FD0 /* QAConnectOptionInfo.m */,
+				E9A471761F1E0FD00010F1EA /* QAConnectAnalysisGroupView.h */,
+				E9A471771F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m */,
+				E9A471791F1E0FF50010F1EA /* QAConnectAnalysisContentCell.h */,
+				E9A4717A1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m */,
+				E9A4717C1F1E101D0010F1EA /* QAConnectAnalysisLineView.h */,
+				E9A4717D1F1E101D0010F1EA /* QAConnectAnalysisLineView.m */,
 				E9973C701DB86BB4004966AD /* 答题 */,
 				E9973C711DB86BBA004966AD /* 解析 */,
 				7C1A62AB1E2F41B1009BA65C /* 重做 */,
@@ -7205,6 +7228,7 @@
 				7C953AE01C588F6B00A9A7AF /* YXQAUtils.m in Sources */,
 				7C01540F1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */,
 				7C38E72E1C4E2C9B00EC18D0 /* YXQATimer.m in Sources */,
+				E9F4C6901F1C553200696FD0 /* QAConnectSelectedCell.m in Sources */,
 				7C89DD151DA8927200194120 /* QAQuestionTypeMappingTable.m in Sources */,
 				302E33AC1D4B2CE5007F7CC6 /* LePlayer.m in Sources */,
 				30A1D3FC1D13ADEA006D8809 /* NSMutableDictionary+YXDictionarys.m in Sources */,
@@ -7219,6 +7243,7 @@
 				7C3D0B521DD1A1C4005ED76A /* YXNavigationController.m in Sources */,
 				0FDD9BEB1C58D2B800DBA379 /* YXModifyPasswordViewController_Pad.m in Sources */,
 				7CF6C8681C731FFB00AE88F8 /* YXAlbumViewModel.m in Sources */,
+				E9F4C68F1F1C553000696FD0 /* QAConnectSelectedView.m in Sources */,
 				F7232C191C5B15D0008467D5 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */,
 				0FDD9BFA1C58D79D00DBA379 /* YXStageChooseViewController_Pad.m in Sources */,
 				7C2B66E21DBF34A4007DD16B /* GetSubjectRequest.m in Sources */,
@@ -7325,6 +7350,7 @@
 				7CFD1E891D508CE6002C2624 /* YXPaperManager.m in Sources */,
 				0FECC67F1C5F486200E8F48E /* YXHomeworkSubjectCell.m in Sources */,
 				7CFBF3D21C5F70AB00E745F3 /* YXQAReportBirdRateView.m in Sources */,
+				E9F4C68E1F1C551600696FD0 /* QAConnectOptionInfo.m in Sources */,
 				7CDE19781DD0906A00469096 /* main.m in Sources */,
 				7C38E7221C4E2C3C00EC18D0 /* YXQAAnalysisItem.m in Sources */,
 				F773C9A51C4627F400AAE684 /* YXFeedbackView.m in Sources */,
@@ -7883,6 +7909,7 @@
 				7CF6C8531C731F7200AE88F8 /* YXPhotoCollectionViewCell.m in Sources */,
 				0FECC6741C5F321400E8F48E /* YXClassInfoMock.m in Sources */,
 				7C027F391EB1F76A001682EA /* GCDTimer.m in Sources */,
+				E9F4C68D1F1C550A00696FD0 /* QAConnectOptionInfo.m in Sources */,
 				7C3D0B5E1DD1A2A7005ED76A /* YXCrypt.m in Sources */,
 				7C027F341EB1F401001682EA /* PagedListViewControllerBase.m in Sources */,
 				0FB211B41C5726B400594BEA /* YXProduceCodeRequest.m in Sources */,
@@ -7908,6 +7935,7 @@
 				7C8885741EFB940D0073EF1F /* QAAnalysisViewController.m in Sources */,
 				F7754F5A1C4E43860002FE45 /* YXSexViewController.m in Sources */,
 				0FECC6801C5F486200E8F48E /* YXUnfinishedHeaderCell.m in Sources */,
+				E9A471781F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m in Sources */,
 				7C04C1C61E8A62050079F35C /* AccountIDInputView.m in Sources */,
 				7C5565D01DCB1E8C00966875 /* ExerciseHistoryContentViewController.m in Sources */,
 				7C3438BE1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */,
@@ -8114,7 +8142,6 @@
 				0FB211BE1C5726D300594BEA /* YXWeixinSSOManager.m in Sources */,
 				7C1628DE1E94D8BA00CDA456 /* MistakeMockDataManager.m in Sources */,
 				7C9092D31E0BB5A50048C44F /* NumberInputView.m in Sources */,
-				E9FD6EBD1F13850A0097539A /* QAConnectTitleView.m in Sources */,
 				7C5CBEDA1E6D373B00653394 /* MistakeRedoNumRequest.m in Sources */,
 				F7754FDC1C4E43860002FE45 /* YXChooseVolumnView.m in Sources */,
 				0FECC6661C5F321400E8F48E /* YXHomeworkGroupMock.m in Sources */,
@@ -8178,6 +8205,7 @@
 				7CA930011ECACDF400527D13 /* HomeworkListCell.m in Sources */,
 				0FBD5B081C4F3344003B7D6D /* YXCommonButtonCell.m in Sources */,
 				7C3ECADF1EC03C8B005C2B9C /* ThirdLoginView.m in Sources */,
+				E9F4C68A1F187BF100696FD0 /* QAConnectItemView.m in Sources */,
 				0FB211BD1C5726D000594BEA /* YXThirdRegisterRequest.m in Sources */,
 				7C78417E1E2DCF8B00755BC0 /* QARedoSubmitView.m in Sources */,
 				7C3D0B791DD1A53A005ED76A /* RegularRecordEntity.m in Sources */,
@@ -8271,6 +8299,7 @@
 				E915A2DB1DB8A1690088758A /* QAChooseQuestionAnalysisView.m in Sources */,
 				F77550481C4E43860002FE45 /* YXAnswerQuestionViewController.m in Sources */,
 				7CEE06F51DC302A600AA898B /* ExerciseKnpTreeViewController.m in Sources */,
+				E9A4717B1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m in Sources */,
 				F775504B1C4E43860002FE45 /* YXSchoolSearchViewController.m in Sources */,
 				7C5565D41DCB225C00966875 /* ExerciseHistoryChapterViewController.m in Sources */,
 				308DF7FF1DC2EC44004359C2 /* QAClassifyManager.m in Sources */,
@@ -8283,6 +8312,7 @@
 				0FBD5B111C4F3344003B7D6D /* YXNumberField.m in Sources */,
 				7CFAADBF1DACF00800F13532 /* QAQuestionViewContainer.m in Sources */,
 				0FECC6881C5F487400E8F48E /* YXHomeworkCell.m in Sources */,
+				E9A4717E1F1E101D0010F1EA /* QAConnectAnalysisLineView.m in Sources */,
 				7C29042C1EEE9D4A005F7F55 /* QASubjectivePhotoHandler.m in Sources */,
 				7C5A98021E8E2A97005E56B6 /* MistakeListByQIDsRequest.m in Sources */,
 				7CFAADBA1DAC962100F13532 /* QAComlexQuestionAnalysisBaseView.m in Sources */,

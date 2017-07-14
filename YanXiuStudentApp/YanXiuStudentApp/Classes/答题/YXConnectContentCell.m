@@ -128,6 +128,7 @@
                 make.height.mas_equalTo(item.height);
             }];
         }
+        
         [leftArray addObject:item.view.leftView];
         [rightArray addObject:item.view.rightView];
     }];

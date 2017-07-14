@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^HeightChangeBlock)(CGFloat height);
+
 @interface QAConnectContentCell : UITableViewCell
-@property (nonatomic, assign) CGFloat maxContentWidth;
-@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSString *optionString;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 
-+ (CGFloat)heightForString:(NSString *)string width:(CGFloat)width;
+- (void)setHeightChangeBlock:(HeightChangeBlock)block;
 
+- (CGSize)defaultSize;
 @end

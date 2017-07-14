@@ -7,12 +7,14 @@
 //
 
 #import "QAConnectContentCell.h"
+#import "QAConnectItemView.h"
 
-@interface QAConnectContentCell()<UIGestureRecognizerDelegate>
+static const CGFloat kFixHeight = 20.f;
+
+@interface QAConnectContentCell()<YXHtmlCellHeightDelegate>
+@property (nonatomic, strong) QAConnectItemView *itemView;
 @property (nonatomic, strong) UIView *containerView;
-@property(nonatomic, strong) DTAttributedTextContentView *htmlView;
-@property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
-
+@property (nonatomic, copy) HeightChangeBlock block;
 @end
 
 
@@ -27,21 +29,11 @@
     [super setSelected:selected animated:animated];
     
     if (selected) {
-        self.containerView.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
-        self.containerView.clipsToBounds = NO;
-        [self setShadow];
+        self.itemView.isSelected = YES;
     }else {
-        self.containerView.layer.borderColor = [UIColor colorWithHexString:@"cccccc"].CGColor;
-        self.containerView.clipsToBounds = YES;
+        self.itemView.isSelected = NO;
     }
     // Configure the view for the selected state
-}
-
-- (void)setShadow {
-    self.containerView.layer.shadowColor = [UIColor colorWithHexString:@"89e00d"].CGColor;;
-    self.containerView.layer.shadowOffset = CGSizeMake(0,0);
-    self.containerView.layer.shadowOpacity = 0.24;
-    self.containerView.layer.shadowRadius = 8;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -56,53 +48,41 @@
     self.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.containerView = [[UIImageView alloc]init];
-    self.containerView.backgroundColor = [UIColor whiteColor];
-    self.containerView.layer.cornerRadius = 6.0f;
-    self.containerView.layer.borderWidth = 2.0f;
-    self.containerView.layer.borderColor = [UIColor colorWithHexString:@"cccccc"].CGColor;
-    [self.contentView addSubview:self.containerView];
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.itemView = [[QAConnectItemView alloc]init];
+    self.itemView.isSelected = NO;
+    self.itemView.delegate = self;
+    self.itemView.maxContentWidth = [self maxContentWidth];
+    [self addSubview:self.itemView];
+    [self.itemView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(10, 20, 10, 20));
     }];
-    
-    self.htmlView = [[DTAttributedTextContentView alloc] init];
-    self.htmlView.backgroundColor = [UIColor clearColor];
-    [self.containerView addSubview:self.htmlView];
-    [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(13, 15, 13, 15));
-    }];
 }
 
-- (void)setMaxContentWidth:(CGFloat)maxContentWidth{
-    _maxContentWidth = maxContentWidth;
-    self.coreTextHandler = [[QACoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:self.maxContentWidth];
-    WEAK_SELF
-    self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
-        STRONG_SELF
-        CGFloat totalHeight = [QAConnectContentCell totalHeightWithContentHeight:height];
-        [self.delegate tableViewCell:(UITableViewCell *)self updateWithHeight:totalHeight];
-    };
-}
-
-- (void)setContent:(NSString *)content{
-    if ([_content isEqualToString:content]) {
+- (void)setOptionString:(NSString *)optionString {
+    if ([_optionString isEqualToString:optionString]) {
         return;
     }
-    _content = content;
-    NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForConnectOptions];
-    self.htmlView.attributedString = [YXQACoreTextHelper attributedStringWithString:content options:dic];
+    _optionString = optionString;
+    self.itemView.content = optionString;
 }
 
-+ (CGFloat)totalHeightWithContentHeight:(CGFloat)height{
-    CGFloat h = 10 + 13 + height + 13 + 10;
-    return ceilf(h);
+- (CGSize)defaultSize {
+    return CGSizeMake([self maxContentWidth], [self heightForString:self.optionString]);
 }
 
-+ (CGFloat)heightForString:(NSString *)string width:(CGFloat)width {
-    NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForConnectOptions];
-    CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:width];
-    CGFloat height = [self totalHeightWithContentHeight:stringHeight];
-    return height;
+- (CGFloat)maxContentWidth {
+    return (SCREEN_WIDTH - 70 - 55)/2 - 30;
+}
+
+- (CGFloat)heightForString:(NSString *)string {
+    return [QAConnectItemView heightForString:string width:[self maxContentWidth]] + kFixHeight;
+}
+
+- (void)tableViewCell:(UITableViewCell *)cell updateWithHeight:(CGFloat)height {
+    BLOCK_EXEC(self.block,height + kFixHeight);
+}
+
+-(void)setHeightChangeBlock:(HeightChangeBlock)block {
+    self.block = block;
 }
 @end

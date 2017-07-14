@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void(^SelectedOptionCellActionBlock)(NSString *optionString);
+#import "QAConnectOptionInfo.h"
+
+typedef void(^SelectedOptionCellActionBlock)(QAConnectOptionInfo *optionInfo);
 
 
 @interface QAConnectOptionsView : UIView
-@property (nonatomic, strong) NSMutableArray *optionsArray;
+@property (nonatomic, strong) NSMutableArray<QAConnectOptionInfo *> *optionInfoArray;
 
 - (void)setSelectedOptionCellActionBlock:(SelectedOptionCellActionBlock)block;
 - (void)reloadData;
