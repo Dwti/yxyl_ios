@@ -9,6 +9,8 @@
 #import "YXQADataManager.h"
 #import "YXSubmitQuestionRequest.h"
 #import "YXGetQuestionReportRequest.h"
+#import "PaperAnswerDurationEntity+CoreDataProperties.h"
+#import "PaperAnsweredNumEntity+CoreDataClass.h"
 
 @interface YXQADataManager()
 @property (nonatomic, strong) YXSubmitQuestionRequest *submitRequest;
@@ -193,7 +195,123 @@
     [[YXQAUploadImageManager sharedInstance] setUploadImageBlock:block];
 }
 
+#pragma mark - 本地保存答题时间
+- (void)savePaperDurationWithPaperID:(NSString *)paperID duration:(NSTimeInterval)duration {
+    if (isEmpty(paperID)) {
+        return;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+        PaperAnswerDurationEntity *entity = [PaperAnswerDurationEntity MR_findFirstWithPredicate:predicate inContext:localContext];
+        if (!entity) {
+            entity = [PaperAnswerDurationEntity MR_createEntityInContext:localContext];
+            entity.uid = [YXUserManager sharedManager].userModel.passport.uid;
+            entity.paperID = paperID;
+        }
+        entity.duration = @(duration);
+    }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:YXSavePaperSuccessNotification object:nil];
+}
 
+- (NSTimeInterval)loadPaperDurationWithPaperID:(NSString *)paperID {
+    if (isEmpty(paperID)) {
+        return 0;
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+    PaperAnswerDurationEntity *entity = [PaperAnswerDurationEntity MR_findFirstWithPredicate:predicate];
+    if (!entity) {
+        return 0;
+    }
+    return entity.duration.floatValue;
+}
 
+- (void)clearPaperDurationWithPaperID:(NSString *)paperID {
+    if (isEmpty(paperID)) {
+        return;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+        PaperAnswerDurationEntity *entity = [PaperAnswerDurationEntity MR_findFirstWithPredicate:predicate inContext:localContext];
+        [entity MR_deleteEntityInContext:localContext];
+    }];
+}
+
+#pragma mark - 试卷完成题目数量
+- (void)savePaperAnsweredQuestionNumWithPaperModel:(QAPaperModel *)model {
+    if (isEmpty(model.paperID)) {
+        return;
+    }
+    NSInteger answeredNum = 0;
+    for (QAQuestion *question in model.questions) {
+        if (question.childQuestions.count == 0) {
+            YXQAAnswerState state = [question answerState];
+            if (state==YXAnswerStateWrong || state==YXAnswerStateCorrect || state==YXAnswerStateAnswered) {
+                answeredNum++;
+            }
+        }else {
+            if ([question isSingleQuestion]) {
+                BOOL answered = YES;
+                for (QAQuestion *subQ in question.childQuestions) {
+                    YXQAAnswerState state = [subQ answerState];
+                    if (state==YXAnswerStateNotAnswer || state==YXAnswerStatePartAnswer) {
+                        answered = NO;
+                        break;
+                    }
+                }
+                if (answered) {
+                    answeredNum++;
+                }
+            }else {
+                for (QAQuestion *subQ in question.childQuestions) {
+                    YXQAAnswerState state = [subQ answerState];
+                    if (state==YXAnswerStateWrong || state==YXAnswerStateCorrect || state==YXAnswerStateAnswered) {
+                        answeredNum++;
+                    }
+                }
+            }
+        }
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,model.paperID];
+        PaperAnsweredNumEntity *entity = [PaperAnsweredNumEntity MR_findFirstWithPredicate:predicate inContext:localContext];
+        if (!entity) {
+            entity = [PaperAnsweredNumEntity MR_createEntityInContext:localContext];
+            entity.uid = [YXUserManager sharedManager].userModel.passport.uid;
+            entity.paperID = model.paperID;
+        }
+        entity.answeredNum = @(answeredNum);
+    }];
+}
+
+- (NSInteger)loadPaperAnsweredQuestionNumWithPaperID:(NSString *)paperID {
+    if (isEmpty(paperID)) {
+        return 0;
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+    PaperAnsweredNumEntity *entity = [PaperAnsweredNumEntity MR_findFirstWithPredicate:predicate];
+    if (!entity) {
+        return 0;
+    }
+    return entity.answeredNum.integerValue;
+}
+
+- (void)clearPaperAnsweredQuestionNumWithPaperID:(NSString *)paperID {
+    if (isEmpty(paperID)) {
+        return;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+        PaperAnsweredNumEntity *entity = [PaperAnsweredNumEntity MR_findFirstWithPredicate:predicate inContext:localContext];
+        [entity MR_deleteEntityInContext:localContext];
+    }];
+}
 
 @end

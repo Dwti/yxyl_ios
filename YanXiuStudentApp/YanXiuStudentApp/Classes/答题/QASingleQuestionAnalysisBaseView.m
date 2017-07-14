@@ -20,6 +20,7 @@
 #import "QAAnalysisAnswerCell.h"
 #import "QAAnalysisKnowledgePointCell.h"
 #import "QAAnalysisAudioCommentCell.h"
+#import "QAAnalysisSubjectiveResultCell.h"
 
 @interface QASingleQuestionAnalysisBaseView() <
 YXQAAnalysisUnfoldDelegate
@@ -52,7 +53,8 @@ YXQAAnalysisUnfoldDelegate
     [self.tableView registerClass:[QAAnalysisAnswerCell class] forCellReuseIdentifier:@"QAAnalysisAnswerCell"];
     [self.tableView registerClass:[QAAnalysisKnowledgePointCell class] forCellReuseIdentifier:@"QAAnalysisKnowledgePointCell"];
     [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisAudioCommentCell"];
-    
+    [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisSubjectiveResultCell"];
+
     [self setupAnalysisBGViewUI];
 }
 
@@ -152,7 +154,6 @@ YXQAAnalysisUnfoldDelegate
             cell.delegate = self;
             cell.item = data;
             cell.htmlString = self.data.answerCompare;
-            cell.type = QAAnswerResultType_Objective;
             cell.isCorrect = self.data.answerState == YXAnswerStateCorrect ? YES : NO;
             [cell updateUI];
             return cell;
@@ -191,11 +192,8 @@ YXQAAnalysisUnfoldDelegate
             [cell updateUI];
             return cell;
         } else if (data.type == YXAnalysisResult) {
-            QAAnalysisResultCell *cell = [[QAAnalysisResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cell.delegate = self;
+            QAAnalysisSubjectiveResultCell *cell = [[QAAnalysisSubjectiveResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.item = data;
-            cell.htmlString = self.data.answerCompare;
-            cell.type = QAAnswerResultType_Subjective;
             cell.isCorrect = self.data.score == 5 ? YES : NO;
             cell.isMarked = self.data.isMarked;
             [cell updateUI];
@@ -277,7 +275,7 @@ YXQAAnalysisUnfoldDelegate
                 self.data.questionType == YXQAItemTranslate ||
                 self.data.questionType == YXQAItemCorrect) {
                 item.type = YXAnalysisResult;
-                [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:self.data.answerCompare])];
+                [self.cellHeightArray addObject:@([QAAnalysisSubjectiveResultCell height])];
             } else {
                 item.type = YXAnalysisScore;
                 [self.cellHeightArray addObject:@([QAAnalysisScoreCell height])];

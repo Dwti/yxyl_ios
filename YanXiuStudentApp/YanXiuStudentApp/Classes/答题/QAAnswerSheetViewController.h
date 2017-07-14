@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 typedef void(^SelectedActionBlock)(QAQuestion *item);
+typedef void(^BackActionBlock)(void);
 
 @interface QAAnswerSheetViewController : BaseViewController
 
@@ -19,4 +20,6 @@ typedef void(^SelectedActionBlock)(QAQuestion *item);
 @property (nonatomic, strong) YXQARequestParams *requestParams;
 
 - (void)setSelectedActionBlock:(SelectedActionBlock)block;
+- (void)setBackActionBlock:(BackActionBlock)block;
+
 @end

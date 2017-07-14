@@ -106,10 +106,14 @@ static const CGFloat ktextViewHeight = 200.f;
         make.top.equalTo(self.errorOptionView.mas_bottom);
         make.height.mas_equalTo(ktextViewHeight);
     }];
+    CGFloat height = SCREEN_HEIGHT - kErrorOptionViewHeight - ktextViewHeight;
+    if (height < 110.f) {
+        height = 110.f;
+    }
     [self.submitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.textView.mas_bottom);
         make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(SCREEN_HEIGHT - kErrorOptionViewHeight - ktextViewHeight);
+        make.height.mas_equalTo(height);
     }];
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(30);

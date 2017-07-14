@@ -18,22 +18,12 @@ NSString * const kHeaderCellReuseID = @"kHeaderCellReuseID";
     if (question.templateType == YXQATemplateReadComplex) {
         QAReadStemCell *cell = [[QAReadStemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHeaderCellReuseID];
         [cell updateWithString:question.stem isSubQuestion:NO];
-        [cell.htmlView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(25);
-            make.left.mas_equalTo(15);
-            make.bottom.mas_equalTo(0);
-            make.right.mas_equalTo(-15);
-        }];
         return cell;
     }
     if (question.templateType == YXQATemplateListenComplex) {
         QAListenStemCell *cell = [[QAListenStemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHeaderCellReuseID];
+        cell.item = question;
         [cell updateWithString:question.stem isSubQuestion:NO];
-        [cell.playView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(cell.htmlView.mas_bottom).offset(12.0f);
-            make.bottom.mas_equalTo(6.0f);
-        }];
         return cell;
     }
     

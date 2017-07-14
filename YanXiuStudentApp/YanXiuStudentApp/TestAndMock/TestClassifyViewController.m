@@ -24,14 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    NSString *categoryName = @"hello, what is your name? my name is hanmeimei";
-    CGFloat width = [QAClassifyCategoryView widthForCategory:categoryName];
-    QAClassifyCategoryView *v = [[QAClassifyCategoryView alloc]initWithFrame:CGRectMake(10, 100, width, 90)];
-    v.backgroundColor = [UIColor redColor];
-    v.categoryName = categoryName;
-    v.optionsCount = 24;
-    [self.view addSubview:v];
-    return;
+//    NSString *categoryName = @"hello, what is your name? my name is hanmeimei";
+//    CGFloat width = [QAClassifyCategoryView widthForCategory:categoryName];
+//    QAClassifyCategoryView *v = [[QAClassifyCategoryView alloc]initWithFrame:CGRectMake(10, 100, width, 90)];
+//    v.backgroundColor = [UIColor redColor];
+//    v.categoryName = categoryName;
+//    v.optionsCount = 24;
+//    [self.view addSubview:v];
+//    return;
     // Do any additional setup after loading the view.
     NSArray *arr = @[@"肥肉节日哦",@"fei erign gerg reing gergi",@"丰富热不过更热弄人通融通过",@"给你二哥光荣通过Orthodox后庭花能够以让他很难跟肉感让他该内容呢干呢org干牛肉汤该内容个north",@"版本",@"啦啦啦",@"nirngrtngnrothnortnhortnhortnhortnhortnorhnorothnorthnoirgenorenog",@"h",@"哈"];
     arr = @[

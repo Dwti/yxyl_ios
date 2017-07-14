@@ -97,7 +97,10 @@
     NSValue *value = frameArray.firstObject;
     CGRect rect = value.CGRectValue;
     QAClozeBlankView *view = [[QAClozeBlankView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
-    [view updateWithIndex:index answer:[self answerForIndex:index]];
+    QAQuestion *question = self.question.childQuestions[index];
+    NSArray *arr = [question.position.indexString componentsSeparatedByString:@"/"];
+    NSString *indexStr = [arr.firstObject yx_stringByTrimmingCharacters];
+    [view updateWithIndex:indexStr.integerValue answer:[self answerForIndex:index]];
     WEAK_SELF
     [view setClickAction:^{
         STRONG_SELF

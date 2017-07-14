@@ -35,7 +35,7 @@
     WEAK_SELF
     [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
         STRONG_SELF
-        [self dismissViewControllerAnimated:YES completion:nil];
+        BLOCK_EXEC(self.exitBlock);
     }];
     self.titleView = [[QAPhotoSelectionTitleView alloc]initWithFrame:CGRectMake(0, 0, 120, 40)];
     self.titleView.title = self.currentCollection.localizedTitle;
@@ -96,14 +96,15 @@
     WEAK_SELF
     [self.photoCollectionsView setCollectionSelectBlock:^(PHAssetCollection *collection){
         STRONG_SELF
+        self.titleView.isFold = YES;
+        [self hideCollectionsView];
         if (collection == self.currentCollection) {
             return;
         }
         self.titleView.title = collection.localizedTitle;
-        self.titleView.isFold = YES;
-        [self hideCollectionsView];
         [self loadAssetsFromCollection:collection];
         [self.collectionView reloadData];
+        self.currentCollection = collection;
     }];
     [self.view addSubview:self.photoCollectionsView];
 }

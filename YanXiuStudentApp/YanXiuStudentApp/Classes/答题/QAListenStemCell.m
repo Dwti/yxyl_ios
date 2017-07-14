@@ -89,6 +89,19 @@ static const NSUInteger kPlayViewHeight = 45.0f;
         dic = [YXQACoreTextHelper defaultOptionsForLevel1];
     }
     self.htmlView.attributedString = [YXQACoreTextHelper attributedStringWithString:string options:dic];
+    if (string.length == 0) {
+        [self.playView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(17.0f);
+            make.bottom.mas_equalTo(-12);
+        }];
+    }else {
+        [self.playView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(self.htmlView.mas_bottom).offset(kPlayViewTopMargin);
+            make.bottom.mas_equalTo(-12);
+        }];
+    }
 }
 
 + (CGFloat)maxContentWidth {
@@ -132,5 +145,9 @@ static const NSUInteger kPlayViewHeight = 45.0f;
 
 - (id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
     return self.delegate;
+}
+
+- (void)leaveForeground {
+    [self stop];
 }
 @end

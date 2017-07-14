@@ -100,4 +100,8 @@
     return self.delegate;
 }
 
+- (void)leaveForeground {
+    
+}
+
 @end

@@ -21,6 +21,8 @@
 @property (nonatomic, strong) QAImageUploadProgressView *uploadImageView;
 @property (nonatomic, strong) NSDate *beginDate;
 @property (nonatomic, copy) SelectedActionBlock buttonActionBlock;
+@property (nonatomic, copy) BackActionBlock backBlock;
+
 @end
 
 @implementation QAAnswerSheetViewController
@@ -82,6 +84,10 @@
     }];
 }
 
+- (void)backAction {
+    [super backAction];
+    BLOCK_EXEC(self.backBlock);
+}
 - (void)submitPaper {
 //    if (![self isNetworkReachable]) {
 //        [self yx_showToast:@"网络异常，请检查网络后重试"];
@@ -115,6 +121,8 @@
             [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [obj clearAnswer];
             }];
+            [[YXQADataManager sharedInstance]clearPaperDurationWithPaperID:self.model.paperID];
+            [[YXQADataManager sharedInstance]clearPaperAnsweredQuestionNumWithPaperID:self.model.paperID];
             
             if (self.pType == YXPTypeGroupHomework && !reportModel.canShowHomeworkAnalysis) {
                 [self showSubmitSuccessfullyTipViewWithEndDate:reportModel.homeworkEndDate];
@@ -196,5 +204,9 @@
 
 - (void)setSelectedActionBlock:(SelectedActionBlock)block {
     self.buttonActionBlock = block;
+}
+
+- (void)setBackActionBlock:(BackActionBlock)block {
+    self.backBlock = block;
 }
 @end

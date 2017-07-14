@@ -24,10 +24,14 @@
             WEAK_SELF
             [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
                 STRONG_SELF
-                [self.navigationController popViewControllerAnimated:YES];
+                [self backAction];
             }];
         }
     }
+}
+
+- (void)backAction {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

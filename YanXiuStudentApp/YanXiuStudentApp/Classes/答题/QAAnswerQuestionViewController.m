@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.model.paperAnswerDuration = [[YXQADataManager sharedInstance]loadPaperDurationWithPaperID:self.model.paperID];
     for (QAQuestion *q in [self.model allQuestions]) {
         [q loadAnswer];
     }
@@ -35,10 +36,17 @@
         STRONG_SELF
         [self showAnswerSheet];
     }];
+    
     [self setupProgressData];
     [self refreshProgress];
     [self setupTimer];
     [self setupObserver];
+}
+
+- (void)backAction {
+    [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
+    [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
+    [super backAction];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,6 +136,11 @@
     [vc setSelectedActionBlock:^(QAQuestion *item) {
         STRONG_SELF
         [self slideToQAItem:item];
+        self.slideView.isActive = YES;
+    }];
+    [vc setBackActionBlock:^{
+        STRONG_SELF
+        self.slideView.isActive = YES;
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }

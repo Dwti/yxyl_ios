@@ -102,7 +102,13 @@
         }
     }
     // 更新上一题/下一题
-    [self.switchView updateWithTotal:self.model.questions.count question:self.model.questions[to] childIndex:0];
+    NSInteger index = 0;
+    QASlideItemBaseView *curView = [self.slideView itemViewAtIndex:to];
+    if ([curView isKindOfClass:[QAComlexQuestionAnswerBaseView class]]) {
+        QAComlexQuestionAnswerBaseView *complexView = (QAComlexQuestionAnswerBaseView *)curView;
+        index = complexView.slideView.currentIndex;
+    }
+    [self.switchView updateWithTotal:self.model.questions.count question:self.model.questions[to] childIndex:index];
 }
 
 #pragma mark - QAQuestionViewSlideDelegate

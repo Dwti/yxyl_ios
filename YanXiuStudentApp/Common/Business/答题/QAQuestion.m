@@ -146,6 +146,13 @@ static NSString * const kAnswerMarkedFlag = @"5";
     return [NSArray arrayWithArray:questionArray];
 }
 
+- (BOOL)isSingleQuestion {
+    if (self.childQuestions.count == 0) {
+        return YES;
+    }
+    return self.questionType == YXQAItemSolve || self.questionType == YXQAItemCalculate;
+}
+
 #pragma mark - 答题状态
 - (YXQAAnswerState)answerState{
     return YXAnswerStateUnKnown;

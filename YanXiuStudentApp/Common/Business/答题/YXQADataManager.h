@@ -53,6 +53,14 @@ static NSString *const YXSavePaperSuccessNotification = @"YXSavePaperSuccessNoti
 
 - (void)setUploadImageBlock:(UploadImageProgressBlock)block;
 
+#pragma mark - 本地保存答题时间
+- (void)savePaperDurationWithPaperID:(NSString *)paperID duration:(NSTimeInterval)duration;
+- (NSTimeInterval)loadPaperDurationWithPaperID:(NSString *)paperID;
+- (void)clearPaperDurationWithPaperID:(NSString *)paperID;
+#pragma mark - 试卷完成题目数量
+- (void)savePaperAnsweredQuestionNumWithPaperModel:(QAPaperModel *)model;
+- (NSInteger)loadPaperAnsweredQuestionNumWithPaperID:(NSString *)paperID;
+- (void)clearPaperAnsweredQuestionNumWithPaperID:(NSString *)paperID;
 
 
 @end

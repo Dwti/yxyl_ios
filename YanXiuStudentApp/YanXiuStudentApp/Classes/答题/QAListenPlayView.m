@@ -57,7 +57,7 @@
     self.playProgressView.userInteractionEnabled = NO;
     
     self.playButton = [[UIButton alloc] init];
-//    self.playButton.backgroundColor = [UIColor blueColor];
+    //    self.playButton.backgroundColor = [UIColor blueColor];
     [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
     [self addSubview:self.playButton];
     [self addRACSignalForButtonTapped];
@@ -116,8 +116,10 @@
             [self.player play];
             
         } else if (self.player.state == PlayerView_State_Finished) {
-            [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
             [self.player seekTo:0];
+            [self.player play];
+            
+        }else if (self.player.state == PlayerView_State_Buffering) {
             [self.player play];
             
         } else {
@@ -162,9 +164,9 @@
         self.isFirstPlay = NO;
         CGFloat progress = [x longLongValue] / self.player.duration;
         if (self.player.duration - [x floatValue] < 1) {
-            [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
             self.playProgress = 0;
-            [self updateUI];
+            [self.player seekTo:0];
+            [self stop];
             return;
         }
         self.playProgress = progress;
@@ -203,7 +205,7 @@
     }else if (sender.state == UIGestureRecognizerStateChanged) {
         CGPoint touchPoint = [sender locationInView:self];
         CGFloat startX = self.wholeProgressView.bounds.origin.x - 6;
-        CGFloat endX = self.wholeProgressView.bounds.origin.x + self.wholeProgressView.bounds.size.width - 33;
+        CGFloat endX = self.wholeProgressView.bounds.origin.x + self.wholeProgressView.bounds.size.width - 35;
         touchPoint.x = MAX(startX, touchPoint.x);
         touchPoint.x = MIN(endX, touchPoint.x);
         
@@ -239,7 +241,7 @@
     
     [self.playButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(45.0f, 45.0f));
-        make.left.mas_equalTo(self.wholeProgressView.mas_left).mas_offset((self.wholeProgressView.bounds.size.width - 33) * self.playProgress - 6);
+        make.left.mas_equalTo(self.wholeProgressView.mas_left).mas_offset((self.wholeProgressView.bounds.size.width - 35) * self.playProgress - 6);
         make.top.mas_equalTo(0);
     }];
     
@@ -285,7 +287,6 @@
 
 - (void)stop {
     [self.player pause];
-    [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
     [self updateUI];
 }
 

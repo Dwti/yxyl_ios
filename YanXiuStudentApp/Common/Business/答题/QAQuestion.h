@@ -88,6 +88,7 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 - (NSString *)answerPresentation; // 需子类实现
 - (NSString *)typeString;
 - (NSString *)stemForMistake; // 错题列表的题干
+- (BOOL)isSingleQuestion;
 
 - (YXAnswersItem_PaperDetail *)questionReport;
 - (NSArray *)answerForReport; // 需子类实现

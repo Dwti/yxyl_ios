@@ -202,28 +202,25 @@ static const NSInteger kBlankWidth = 3;
     NSInteger preIndex = self.currentIndex;
     NSInteger curIndex = sender.tag/100;
     if (preIndex>=0) {
-        QABlankItemInfo *preItem = self.blankItemArray[preIndex];
-        for (UIView *view in preItem.viewArray) {
-            for (UIButton *b in view.subviews) {
-                if ([b isKindOfClass:[UIButton class]]) {
-                    b.selected = NO;
-                }
-            }
-        }
+        [self refreshBlankWithIndex:preIndex selected:NO];
     }
     
     self.currentIndex = curIndex;
-    QABlankItemInfo *curItem = self.blankItemArray[curIndex];
-    for (UIView *view in curItem.viewArray) {
-        for (UIButton *b in view.subviews) {
-            if ([b isKindOfClass:[UIButton class]]) {
-                b.selected = YES;
-            }
-        }
-    }
+    [self refreshBlankWithIndex:curIndex selected:YES];
     self.costomTextView.inputTextView.text = self.question.myAnswers[self.currentIndex];
     if (![self.costomTextView.inputTextView isFirstResponder]) {
         [self.hiddenTextView becomeFirstResponder];
+    }
+}
+
+- (void)refreshBlankWithIndex:(NSInteger)index selected:(BOOL)selected {
+    QABlankItemInfo *item = self.blankItemArray[index];
+    for (UIView *view in item.viewArray) {
+        for (UIButton *b in view.subviews) {
+            if ([b isKindOfClass:[UIButton class]]) {
+                b.selected = selected;
+            }
+        }
     }
 }
 
@@ -326,14 +323,7 @@ static const NSInteger kBlankWidth = 3;
         }
         [self refresh];
     }else {
-        QABlankItemInfo *curItem = self.blankItemArray[self.currentIndex];
-        for (UIView *view in curItem.viewArray) {
-            for (UIButton *b in view.subviews) {
-                if ([b isKindOfClass:[UIButton class]]) {
-                    b.selected = NO;
-                }
-            }
-        }
+        [self refreshBlankWithIndex:self.currentIndex selected:NO];
     }
     [self endEditing:YES];
 }
@@ -341,6 +331,10 @@ static const NSInteger kBlankWidth = 3;
 - (UIView *)currentBlankView {
     QABlankItemInfo *curItem = self.blankItemArray[self.currentIndex];
     return curItem.viewArray.lastObject;
+}
+
+- (void)resetCurrentBlank {
+    [self refreshBlankWithIndex:self.currentIndex selected:NO];
 }
 
 #pragma mark - UITextViewDelegate

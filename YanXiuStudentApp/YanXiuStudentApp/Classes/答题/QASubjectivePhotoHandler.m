@@ -15,6 +15,7 @@
 
 @interface QASubjectivePhotoHandler()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) YXNavigationController *photoSelectionNavi;
 @property (nonatomic, strong) void(^addPhotoBlock)(UIImage *image);
 @property (nonatomic, strong) void(^deleteBlock)();
 @end
@@ -97,15 +98,29 @@
         return;
     }
     
-    QAPhotoSelectionViewController *vc = [[QAPhotoSelectionViewController alloc]init];
-    WEAK_SELF
-    [vc setClippedImageBlock:^(UIImage *image){
-        STRONG_SELF
-        [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-        BLOCK_EXEC(self.addPhotoBlock,image);
+    if (!self.photoSelectionNavi) {
+        QAPhotoSelectionViewController *vc = [[QAPhotoSelectionViewController alloc]init];
+        WEAK_SELF
+        [vc setClippedImageBlock:^(UIImage *image){
+            STRONG_SELF
+            [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+            BLOCK_EXEC(self.addPhotoBlock,image);
+        }];
+        [vc setExitBlock:^{
+            STRONG_SELF
+            [UIView animateWithDuration:0.2 animations:^{
+                self.photoSelectionNavi.view.frame = CGRectMake(0, self.imagePickerController.view.height, self.imagePickerController.view.width, self.imagePickerController.view.height);
+            }];
+        }];
+        YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
+        self.photoSelectionNavi = navi;
+    }
+    [self.photoSelectionNavi popToRootViewControllerAnimated:NO];
+    [self.imagePickerController.view addSubview:self.photoSelectionNavi.view];
+    self.photoSelectionNavi.view.frame = CGRectMake(0, self.imagePickerController.view.height, self.imagePickerController.view.width, self.imagePickerController.view.height);
+    [UIView animateWithDuration:0.2 animations:^{
+        self.photoSelectionNavi.view.frame = self.imagePickerController.view.bounds;
     }];
-    YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
-    [self.imagePickerController presentViewController:navi animated:YES completion:nil];
 }
 
 - (void)showAlertWithTitle:(NSString *)title rootVC:(UIViewController *)vc {

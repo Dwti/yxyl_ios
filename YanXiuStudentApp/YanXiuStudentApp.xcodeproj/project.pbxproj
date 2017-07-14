@@ -392,6 +392,14 @@
 		7C2251DA1E1F3842004785D5 /* NSObject+BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2251D81E1F3842004785D5 /* NSObject+BackgroundTask.m */; };
 		7C2729DC1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */; };
 		7C2729DD1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */; };
+		7C2729D61F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */; };
+		7C2729D71F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */; };
+		7C2729D81F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */; };
+		7C2729D91F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */; };
+		7C2729E21F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */; };
+		7C2729E31F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */; };
+		7C2729E41F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */; };
+		7C2729E51F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */; };
 		7C2903441ED2D6A4005F7F55 /* QAClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2903431ED2D6A4005F7F55 /* QAClockView.m */; };
 		7C2903451ED2D6A4005F7F55 /* QAClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2903431ED2D6A4005F7F55 /* QAClockView.m */; };
 		7C29034C1ED3E0EF005F7F55 /* QAQuestionStemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C29034B1ED3E0EF005F7F55 /* QAQuestionStemCell.m */; };
@@ -1131,6 +1139,7 @@
 		E9E6C2FE1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6C2FD1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.m */; };
 		E9E6C3041F024F6800F93E98 /* QAAnalysisAudioCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6C3031F024F6800F93E98 /* QAAnalysisAudioCommentCell.m */; };
 		E9E6C30D1F03A2D600F93E98 /* QAReportErrorOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6C30C1F03A2D600F93E98 /* QAReportErrorOptionView.m */; };
+		E9F4C6721F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */; };
 		F70509241C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F70509231C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m */; };
 		F705092E1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F705092D1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.m */; };
 		F708EA6D1C50AD0B00580ECC /* yxConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F708EA6C1C50AD0B00580ECC /* yxConfig.plist */; };
@@ -1930,6 +1939,14 @@
 		7C2251D81E1F3842004785D5 /* NSObject+BackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BackgroundTask.m"; sourceTree = "<group>"; };
 		7C2729DA1F14B54E00C85182 /* QAClassifyPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClassifyPopupView.h; sourceTree = "<group>"; };
 		7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyPopupView.m; sourceTree = "<group>"; };
+		7C2729D21F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnswerDurationEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnswerDurationEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		7C2729D41F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnswerDurationEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnswerDurationEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		7C2729DE1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnsweredNumEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnsweredNumEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		7C2729E01F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnsweredNumEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnsweredNumEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		7C2903421ED2D6A4005F7F55 /* QAClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClockView.h; sourceTree = "<group>"; };
 		7C2903431ED2D6A4005F7F55 /* QAClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClockView.m; sourceTree = "<group>"; };
 		7C29034A1ED3E0EF005F7F55 /* QAQuestionStemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionStemCell.h; sourceTree = "<group>"; };
@@ -2812,6 +2829,8 @@
 		E9E6C3031F024F6800F93E98 /* QAAnalysisAudioCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisAudioCommentCell.m; sourceTree = "<group>"; };
 		E9E6C30B1F03A2D600F93E98 /* QAReportErrorOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAReportErrorOptionView.h; sourceTree = "<group>"; };
 		E9E6C30C1F03A2D600F93E98 /* QAReportErrorOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAReportErrorOptionView.m; sourceTree = "<group>"; };
+		E9F4C6701F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnalysisSubjectiveResultCell.h; sourceTree = "<group>"; };
+		E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisSubjectiveResultCell.m; sourceTree = "<group>"; };
 		F70509221C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseChapterKnpViewController_Pad.h; sourceTree = "<group>"; };
 		F70509231C5F0A6E0073310A /* YXExerciseChooseChapterKnpViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseChapterKnpViewController_Pad.m; sourceTree = "<group>"; };
 		F705092C1C5F0BFC0073310A /* YXExerciseQuizViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseQuizViewController_Pad.h; sourceTree = "<group>"; };
@@ -4196,6 +4215,14 @@
 			isa = PBXGroup;
 			children = (
 				7C3D0B611DD1A527005ED76A /* v1_2Model.xcdatamodeld */,
+				7C2729DE1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.h */,
+				7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */,
+				7C2729E01F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.h */,
+				7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */,
+				7C2729D21F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.h */,
+				7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */,
+				7C2729D41F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.h */,
+				7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */,
 				7C8885621EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.h */,
 				7C8885631EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m */,
 				7C8885641EFA10210073EF1F /* QuestionAnswerEntity+CoreDataProperties.h */,
@@ -4359,6 +4386,8 @@
 				E9E6C2D61EFE355100F93E98 /* QAAnalysisBackGroundView.m */,
 				E9E6C2ED1F020B8A00F93E98 /* QAAnalysisResultCell.h */,
 				E9E6C2EE1F020B8A00F93E98 /* QAAnalysisResultCell.m */,
+				E9F4C6701F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.h */,
+				E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */,
 				E9E6C2F01F020C8D00F93E98 /* QAAnalysisScoreCell.h */,
 				E9E6C2F11F020C8D00F93E98 /* QAAnalysisScoreCell.m */,
 				E9E6C2E41F01FF0200F93E98 /* QAAnalysisDifficultyCell.h */,
@@ -6888,6 +6917,7 @@
 				0FBD5B2B1C4F33C3003B7D6D /* YXLoadingView.m in Sources */,
 				0FBD5B2F1C4F33C3003B7D6D /* YXNumberField.m in Sources */,
 				7C3ECACC1EC01EFD005C2B9C /* LoginViewController.m in Sources */,
+				7C2729E31F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */,
 				0FBD5B311C4F33C3003B7D6D /* YXTipsView.m in Sources */,
 				0FBD5B331C4F33C3003B7D6D /* YXToastView.m in Sources */,
 				0FBD5B371C4F33C3003B7D6D /* NSDate+YXDate.m in Sources */,
@@ -6922,6 +6952,7 @@
 				7C1C3D091E52BAE900B156A8 /* MistakeQuestionItemCell.m in Sources */,
 				7CF6C8361C71C41F00AE88F8 /* YXQAAddPhotoCell_Pad.m in Sources */,
 				F7A3B4A71C571E860037245A /* FirstViewController.m in Sources */,
+				7C2729D71F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */,
 				7C7841C21E31ED7400755BC0 /* QARedoReadComplexView.m in Sources */,
 				7C2991A41DFE407500AE921C /* EEAlertButton.m in Sources */,
 				F773C9131C4627F400AAE684 /* YXBaseWebViewController.m in Sources */,
@@ -6945,6 +6976,7 @@
 				7C29043D1EEFCC81005F7F55 /* QAPhotoSelectionTitleView.m in Sources */,
 				0FE6C9D81C5A0F55005FBD5B /* YXMineSelectCell.m in Sources */,
 				0F0D6E501C6050EE0034FC6C /* MJRefreshHeaderView.m in Sources */,
+				7C2729D91F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */,
 				0FEA8F961C7AAE8F003077A2 /* YXWebViewController_Pad.m in Sources */,
 				E92610C51F0A1A140084EFA5 /* QAAnalysisBackGroundView.m in Sources */,
 				7C4554411DCAE8B1001B0F26 /* YXQARequestParams.m in Sources */,
@@ -7057,6 +7089,7 @@
 				7CFAADB71DAC95FC00F13532 /* QASingleQuestionAnalysisBaseView.m in Sources */,
 				7C2B66F51DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
 				0FB211C51C575F7100594BEA /* YXLoginBaseViewController_Pad.m in Sources */,
+				7C2729E51F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */,
 				F773C9691C4627F400AAE684 /* YXPhotoBrowser.m in Sources */,
 				7C88855A1EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */,
 				0F68BDF01C73289400AB3382 /* YXRankViewController_Pad.m in Sources */,
@@ -7603,6 +7636,7 @@
 				0FB211B51C5726B700594BEA /* YXRegisterRequest.m in Sources */,
 				7C9EDC521DCDBAFD0001C048 /* RegisterByUserInfoRequest.m in Sources */,
 				307A45911D4B2A4D00EE1455 /* YXGetWrongQRequest.m in Sources */,
+				E9F4C6721F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m in Sources */,
 				F7754F251C4E43860002FE45 /* YXQAYesNoChooseCell.m in Sources */,
 				F792387D1C5866DF00F70D42 /* YXExerciseChooseEdition_SubjectView.m in Sources */,
 				30CB92C61CBE180800B72D87 /* YXRedManager.m in Sources */,
@@ -7662,6 +7696,7 @@
 				7C7BF7C91E092660007B017C /* AddClassPromptView.m in Sources */,
 				7C29035E1ED5420C005F7F55 /* QAProgressView.m in Sources */,
 				7C9092921E0A55700048C44F /* ReportShareAlertView.m in Sources */,
+				7C2729E41F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */,
 				F7754F4A1C4E43860002FE45 /* YXHomeworkViewController.m in Sources */,
 				F7754F4B1C4E43860002FE45 /* YXMistakeContentViewController.m in Sources */,
 				0FECC6621C5F321400E8F48E /* YXSubjectImageHelper.m in Sources */,
@@ -7682,6 +7717,7 @@
 				0FDD9BDB1C58B5EB00DBA379 /* YXPhoneInputView.m in Sources */,
 				7C3D0B881DD1A6C8005ED76A /* HttpBaseRequest.m in Sources */,
 				7C2903C71EE686A3005F7F55 /* QAClozeBlankView.m in Sources */,
+				7C2729E21F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */,
 				7CEA912C1E1CDD0400E8D72D /* ChooseAlbumListButton.m in Sources */,
 				7CF6C8981C7456B300AE88F8 /* YXQuestion.m in Sources */,
 				30561C041E0A2B9100EF4C7C /* ChangeView.m in Sources */,
@@ -7982,6 +8018,7 @@
 				7C29034C1ED3E0EF005F7F55 /* QAQuestionStemCell.m in Sources */,
 				F775501E1C4E43860002FE45 /* YXModifyPasswordViewController.m in Sources */,
 				7CFAADE31DACF38400F13532 /* QAListenQuestionViewContainer.m in Sources */,
+				7C2729D61F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */,
 				7C3D0B631DD1A527005ED76A /* v1_2Model.xcdatamodeld in Sources */,
 				7C2B66E91DBF43B4007DD16B /* ExerciseSubjectManager.m in Sources */,
 				F775501F1C4E43860002FE45 /* YXJieXiShowView.m in Sources */,
@@ -8087,6 +8124,7 @@
 				0FB211B91C5726C300594BEA /* YXVerifySMSCodeRequest.m in Sources */,
 				7C78418B1E2DF12000755BC0 /* QAMultiChooseQuestionRedoView.m in Sources */,
 				7C8885701EFB6C2F0073EF1F /* QASubjectiveStemBlankView.m in Sources */,
+				7C2729D81F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */,
 				7C1A62A31E2F0920009BA65C /* QAFillQuestionRedoView.m in Sources */,
 				F77550641C4E43860002FE45 /* (null) in Sources */,
 				0FE6CA131C5A11CA005FBD5B /* YXInitRequest.m in Sources */,

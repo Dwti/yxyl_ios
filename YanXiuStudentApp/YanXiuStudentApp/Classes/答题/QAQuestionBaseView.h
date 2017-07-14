@@ -25,6 +25,7 @@
 @property (nonatomic, assign) BOOL isSubQuestionView;
 @property (nonatomic, assign) BOOL hideQuestion;
 @property (nonatomic, strong) QAQuestion *data;
+@property (nonatomic, strong, readonly) QAQuestion *oriData;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isPaperSubmitted;
 @property (nonatomic, assign) NSInteger nextLevelStartIndex;

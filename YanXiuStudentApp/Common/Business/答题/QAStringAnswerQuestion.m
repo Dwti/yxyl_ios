@@ -67,6 +67,11 @@
     if (![self questionKey]) {
         return;
     }
+    YXQAAnswerState state = [self answerState];
+    if (state == YXAnswerStateNotAnswer) {
+        [self clearAnswer];
+        return;
+    }
     WEAK_SELF
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
         STRONG_SELF

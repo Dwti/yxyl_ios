@@ -144,6 +144,7 @@
 #import "QAAnalysisReadComplexView.h"
 #import "QAAnalysisResultCell.h"
 #import "QAAnalysisScoreCell.h"
+#import "QAAnalysisSubjectiveResultCell.h"
 #import "QAAnalysisViewController.h"
 #import "QAAnaysisGapCell.h"
 #import "QAAnswerDetailsCell.h"

@@ -125,7 +125,7 @@
     _model = model;
     if (model.checked) {
         [self updateLayout];
-        self.correctRateLabel.text = [NSString stringWithFormat:@"%.0f",model.correctRate*100];
+        self.correctRateLabel.text = [NSString stringWithFormat:@"%.0f",model.paperCorrectRate*100];
         self.totalCountLabel.text = [NSString stringWithFormat:@"共%@题",@(model.totalQuestionNumber)];
         self.correctCountLabel.text = [NSString stringWithFormat:@"答对%@题",@([self resultCorrectCountWithModel:model])];
         self.durationLabel.text = [self formatTimeWithDuration:model.paperAnswerDuration];

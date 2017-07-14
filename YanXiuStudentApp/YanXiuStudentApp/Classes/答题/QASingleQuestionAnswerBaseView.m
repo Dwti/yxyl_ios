@@ -34,9 +34,6 @@
     return [[UITableViewCell alloc]init];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.hideQuestion && indexPath.row == 0) {
-        return 0.000001;
-    }
     return [self.cellHeightArray[indexPath.row] floatValue];
 }
 #pragma mark - YXHtmlCellHeightDelegate

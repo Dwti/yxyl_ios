@@ -17,5 +17,6 @@
 + (CGFloat)heightForString:(NSString *)string;
 
 - (UIView *)currentBlankView;
+- (void)resetCurrentBlank;
 
 @end

@@ -29,7 +29,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -135,10 +135,8 @@
     self.titleLabel.text = data.name;
     if (data.paperStatus.status.intValue == 0) { //待完成
         [self hideComment];
-        NSString *prefix = [NSString stringWithFormat:@"%@-%@",[YXUserManager sharedManager].userModel.passport.uid,data.paperId];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"questionKey BEGINSWITH %@",prefix];
-        NSArray *array = [QuestionAnswerEntity MR_findAllWithPredicate:predicate];
-        self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",@(array.count),data.quesnum];
+        NSInteger answeredNum = [[YXQADataManager sharedInstance]loadPaperAnsweredQuestionNumWithPaperID:data.paperId];
+        self.stateLabel.text = [NSString stringWithFormat:@"完成题量 %@/%@",@(answeredNum),data.quesnum];
         if (isEmpty(data.remaindertimeStr) || (data.remaindertimeStr.intValue <= 0)) {
             self.descLabel.text = @"可补做";
         }else{
@@ -157,7 +155,8 @@
         }else {
             if (data.paperStatus.teachercomments.length) {
                 self.stateLabel.text = @"已批改";
-                self.descLabel.text = [NSString stringWithFormat:@"正确率 %@",data.paperStatus.scoreRate];
+                CGFloat scoreRate = data.paperStatus.scoreRate.floatValue;
+                self.descLabel.text = [NSString stringWithFormat:@"正确率 %.0f%@",scoreRate*100,@"%"];
                 [self showComment];
                 NSString *teacherString = [NSString stringWithFormat:@"%@评语：",data.paperStatus.teacherName];
                 NSString *totalString = [NSString stringWithFormat:@"%@%@",teacherString,data.paperStatus.teachercomments];

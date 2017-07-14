@@ -27,7 +27,7 @@
     }else if (self.type == YXAnalysisAnalysis){
         return @"题目解析";
     }else if (self.type == YXAnalysisKnowledgePoint){
-        return @"考点";
+        return @"知识点";
     }else if (self.type == YXAnalysisAudioComment){
         return @"老师批语";
     }else if (self.type == YXAnalysisScore){

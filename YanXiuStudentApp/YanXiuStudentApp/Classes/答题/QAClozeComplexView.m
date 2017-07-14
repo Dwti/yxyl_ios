@@ -99,9 +99,11 @@ static const CGFloat kClozeOptionsHeight = 256+45;
 }
 
 - (void)autoGoNextGoGoGo {
-    [super autoGoNextGoGoGo];
     [self.clozeContainerView.clozeCell refresh];
     self.clozeContainerView.clozeCell.currentIndex = MIN(self.clozeContainerView.clozeCell.currentIndex+1, self.data.childQuestions.count-1);
+    if (self.slideView.currentIndex < ([self.data.childQuestions count] - 1)) {
+        [self.slideView scrollToItemIndex:self.slideView.currentIndex+1 animated:YES];
+    }
 }
 
 - (void)cancelAnswer {
