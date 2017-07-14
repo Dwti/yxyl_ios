@@ -103,6 +103,15 @@
     }
 }
 
+- (void)setIsCorrect:(BOOL)isCorrect {
+    [super setIsCorrect:isCorrect];
+    if (isCorrect) {
+        self.labelBgView.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
+    }else {
+        self.labelBgView.layer.borderColor = [UIColor colorWithHexString:@"ff7a05"].CGColor;
+    }
+}
+
 - (void)setOptionString:(NSString *)optionString {
     [super setOptionString:optionString];
     [self updateOptionLabel];

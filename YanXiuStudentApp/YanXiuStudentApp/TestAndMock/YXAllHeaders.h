@@ -160,6 +160,8 @@
 #import "QAChooseQuestionAnalysisView.h"
 #import "QAChooseQuestionRedoView.h"
 #import "QAChooseQuestionView.h"
+#import "QAClassifyAnswerGroupHeaderView.h"
+#import "QAClassifyAnswerResultCell.h"
 #import "QAClassifyAnswersView.h"
 #import "QAClassifyCategoryView.h"
 #import "QAClassifyClassesCell.h"

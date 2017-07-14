@@ -14,7 +14,6 @@
 #import "QAClassifyCategoryView.h"
 #import "QAClassifyPopupView.h"
 #import "QAComplexHeaderCellDelegate.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QAClassifyQuestionView()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) DTAttributedLabel *stemLabel;
@@ -24,14 +23,9 @@
 @property (nonatomic, strong) NSMutableArray<QAClassifyOptionInfo *> *allOptionInfoArray;
 @property (nonatomic, strong) QAClassifyPopupView *popupView;
 @property (nonatomic, strong) AlertView *alertView;
-@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 @end
 
 @implementation QAClassifyQuestionView
-- (void)leaveForeground {
-    [super leaveForeground];
-    SAFE_CALL(self.headerCell, leaveForeground);
-}
 
 - (void)setData:(QAQuestion *)data {
     [super setData:data];

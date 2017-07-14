@@ -13,4 +13,5 @@
 @property (nonatomic, assign) CGSize size;
 @property (nonatomic, assign) BOOL selected;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) BOOL isCorrect; // used for analysis
 @end

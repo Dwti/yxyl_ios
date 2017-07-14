@@ -116,6 +116,15 @@ static const CGFloat kDefaultHeight = 80.f+10.f;
     }
 }
 
+- (void)setIsCorrect:(BOOL)isCorrect {
+    [super setIsCorrect:isCorrect];
+    if (isCorrect) {
+        self.imageBgView.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
+    }else {
+        self.imageBgView.layer.borderColor = [UIColor colorWithHexString:@"ff7a05"].CGColor;
+    }
+}
+
 - (void)setOptionString:(NSString *)optionString {
     [super setOptionString:optionString];
     NSRange range = [optionString rangeOfString:@"src=\".+?\"" options:NSRegularExpressionSearch];

@@ -390,16 +390,20 @@
 		7C2251C01E1CE018004785D5 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2251BE1E1CE018004785D5 /* UIImage+GIF.m */; };
 		7C2251D91E1F3842004785D5 /* NSObject+BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2251D81E1F3842004785D5 /* NSObject+BackgroundTask.m */; };
 		7C2251DA1E1F3842004785D5 /* NSObject+BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2251D81E1F3842004785D5 /* NSObject+BackgroundTask.m */; };
-		7C2729DC1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */; };
-		7C2729DD1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */; };
 		7C2729D61F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */; };
 		7C2729D71F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */; };
 		7C2729D81F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */; };
 		7C2729D91F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */; };
+		7C2729DC1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */; };
+		7C2729DD1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */; };
 		7C2729E21F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */; };
 		7C2729E31F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */; };
 		7C2729E41F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */; };
 		7C2729E51F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */; };
+		7C2729E81F18A5B400C85182 /* QAClassifyAnswerResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E71F18A5B400C85182 /* QAClassifyAnswerResultCell.m */; };
+		7C2729E91F18A5B400C85182 /* QAClassifyAnswerResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E71F18A5B400C85182 /* QAClassifyAnswerResultCell.m */; };
+		7C2729EC1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */; };
+		7C2729ED1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */; };
 		7C2903441ED2D6A4005F7F55 /* QAClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2903431ED2D6A4005F7F55 /* QAClockView.m */; };
 		7C2903451ED2D6A4005F7F55 /* QAClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2903431ED2D6A4005F7F55 /* QAClockView.m */; };
 		7C29034C1ED3E0EF005F7F55 /* QAQuestionStemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C29034B1ED3E0EF005F7F55 /* QAQuestionStemCell.m */; };
@@ -1937,16 +1941,20 @@
 		7C2251BE1E1CE018004785D5 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
 		7C2251D71E1F3842004785D5 /* NSObject+BackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BackgroundTask.h"; sourceTree = "<group>"; };
 		7C2251D81E1F3842004785D5 /* NSObject+BackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BackgroundTask.m"; sourceTree = "<group>"; };
-		7C2729DA1F14B54E00C85182 /* QAClassifyPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClassifyPopupView.h; sourceTree = "<group>"; };
-		7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyPopupView.m; sourceTree = "<group>"; };
 		7C2729D21F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnswerDurationEntity+CoreDataClass.h"; sourceTree = "<group>"; };
 		7C2729D31F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnswerDurationEntity+CoreDataClass.m"; sourceTree = "<group>"; };
 		7C2729D41F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnswerDurationEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
 		7C2729D51F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnswerDurationEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		7C2729DA1F14B54E00C85182 /* QAClassifyPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClassifyPopupView.h; sourceTree = "<group>"; };
+		7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyPopupView.m; sourceTree = "<group>"; };
 		7C2729DE1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnsweredNumEntity+CoreDataClass.h"; sourceTree = "<group>"; };
 		7C2729DF1F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnsweredNumEntity+CoreDataClass.m"; sourceTree = "<group>"; };
 		7C2729E01F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaperAnsweredNumEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
 		7C2729E11F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PaperAnsweredNumEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		7C2729E61F18A5B400C85182 /* QAClassifyAnswerResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClassifyAnswerResultCell.h; sourceTree = "<group>"; };
+		7C2729E71F18A5B400C85182 /* QAClassifyAnswerResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyAnswerResultCell.m; sourceTree = "<group>"; };
+		7C2729EA1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClassifyAnswerGroupHeaderView.h; sourceTree = "<group>"; };
+		7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyAnswerGroupHeaderView.m; sourceTree = "<group>"; };
 		7C2903421ED2D6A4005F7F55 /* QAClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClockView.h; sourceTree = "<group>"; };
 		7C2903431ED2D6A4005F7F55 /* QAClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClockView.m; sourceTree = "<group>"; };
 		7C29034A1ED3E0EF005F7F55 /* QAQuestionStemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionStemCell.h; sourceTree = "<group>"; };
@@ -4591,6 +4599,10 @@
 				7CCBE4811F13295500AA78BC /* QAClassifyCategoryView.m */,
 				7C2729DA1F14B54E00C85182 /* QAClassifyPopupView.h */,
 				7C2729DB1F14B54E00C85182 /* QAClassifyPopupView.m */,
+				7C2729E61F18A5B400C85182 /* QAClassifyAnswerResultCell.h */,
+				7C2729E71F18A5B400C85182 /* QAClassifyAnswerResultCell.m */,
+				7C2729EA1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.h */,
+				7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */,
 			);
 			name = "归类题";
 			sourceTree = "<group>";
@@ -6899,6 +6911,7 @@
 				3000842E1DCB08AF0070FA08 /* ShadeView.m in Sources */,
 				F7A3B4A81C571E860037245A /* NextViewController.m in Sources */,
 				0FBD5B1D1C4F33C3003B7D6D /* YXCommonButtonCell.m in Sources */,
+				7C2729ED1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */,
 				0FBD5B1F1C4F33C3003B7D6D /* YXCommonErrorView.m in Sources */,
 				300E74841D0521FC00C504A8 /* YXStatisticFileRequest.m in Sources */,
 				0FFA776B1C75B92600F9E8F9 /* YXHomeworkListFetcher.m in Sources */,
@@ -7140,6 +7153,7 @@
 				7C89DD191DA8927200194120 /* QAStringAnswerQuestion.m in Sources */,
 				7CDE19961DD093D700469096 /* YXApnsContentModel.m in Sources */,
 				7CCBE46F1F0CC64000AA78BC /* QAClassifyOptionCell.m in Sources */,
+				7C2729E91F18A5B400C85182 /* QAClassifyAnswerResultCell.m in Sources */,
 				7CFAADC81DACF18300F13532 /* QAMultiChooseQuestionViewContainer.m in Sources */,
 				7C2903BE1EE65780005F7F55 /* QAClozeItemInfo.m in Sources */,
 				7CCF96AE1D546A8E002B2F9F /* YXQAReportCorrectRateCell.m in Sources */,
@@ -7565,6 +7579,7 @@
 				7C6FA8931DF90796007B7F24 /* QAFillQuestionCell.m in Sources */,
 				7CFAADDB1DACF24A00F13532 /* QAClassifyQuestionViewContainer.m in Sources */,
 				3017A6A41D4B295400B776E6 /* YXErrorsRequest.m in Sources */,
+				7C2729EC1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */,
 				7CEE06ED1DC3020C00AA898B /* TreeBaseViewController.m in Sources */,
 				E92610AB1F04E4240084EFA5 /* QAReportErrorViewController.m in Sources */,
 				7C1A62AA1E2F22C3009BA65C /* QAClassifyRedoView.m in Sources */,
@@ -8072,6 +8087,7 @@
 				0FECC68C1C5F487400E8F48E /* YXHomeworkTodoCell.m in Sources */,
 				7C916BE61DBF4AED00968B28 /* QAListenContainerView.m in Sources */,
 				7CA930051ECAE68200527D13 /* HomeworkListViewController.m in Sources */,
+				7C2729E81F18A5B400C85182 /* QAClassifyAnswerResultCell.m in Sources */,
 				F77550401C4E43860002FE45 /* YXFeedbackViewModel.m in Sources */,
 				30894B141DC32BF60045E762 /* QAClassifyOptionsCell.m in Sources */,
 				7C75A2711ECD4DDC001A3EB3 /* UIButton+WaveHighlight.m in Sources */,

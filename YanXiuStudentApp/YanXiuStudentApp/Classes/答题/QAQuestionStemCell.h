@@ -10,6 +10,7 @@
 
 @interface QAQuestionStemCell : UITableViewCell
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
+@property (nonatomic, assign) BOOL bottomLineHidden;
 
 - (void)updateWithString:(NSString *)string isSubQuestion:(BOOL)isSub;
 + (CGFloat)heightForString:(NSString *)string isSubQuestion:(BOOL)isSub;

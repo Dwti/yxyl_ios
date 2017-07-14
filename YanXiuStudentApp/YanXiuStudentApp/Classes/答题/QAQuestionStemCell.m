@@ -12,6 +12,7 @@
 @interface QAQuestionStemCell()
 @property (nonatomic, strong) DTAttributedTextContentView *htmlView;
 @property (nonatomic, strong) QACoreTextViewHandler *coreTextHandler;
+@property (nonatomic, strong) UIView *bottomLineView;
 @end
 
 @implementation QAQuestionStemCell
@@ -62,6 +63,7 @@
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1);
     }];
+    self.bottomLineView = bottomLineView;
 }
 
 - (void)updateWithString:(NSString *)string isSubQuestion:(BOOL)isSub {
@@ -72,6 +74,11 @@
         dic = [YXQACoreTextHelper defaultOptionsForLevel1];
     }
     self.htmlView.attributedString = [YXQACoreTextHelper attributedStringWithString:string options:dic];
+}
+
+- (void)setBottomLineHidden:(BOOL)bottomLineHidden {
+    _bottomLineHidden = bottomLineHidden;
+    self.bottomLineView.hidden = bottomLineHidden;
 }
 
 + (CGFloat)maxContentWidth {
