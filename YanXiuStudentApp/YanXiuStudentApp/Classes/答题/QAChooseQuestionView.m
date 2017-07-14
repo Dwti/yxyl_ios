@@ -9,18 +9,13 @@
 #import "QAChooseQuestionView.h"
 #import "QAQuestionStemCell.h"
 #import "QAChooseOptionCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QAChooseQuestionView()
-@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
+
 @end
 
 @implementation QAChooseQuestionView
 
-- (void)leaveForeground {
-    [super leaveForeground];
-    SAFE_CALL(self.headerCell, leaveForeground);
-}
 - (void)setupUI {
     [super setupUI];
     [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];

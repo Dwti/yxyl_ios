@@ -9,7 +9,6 @@
 #import "QASubjectiveQuestionAnalysisView.h"
 #import "QASubjectiveStemCell.h"
 #import "QASubjectivePhotoCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QASubjectiveQuestionAnalysisView ()
 @end
@@ -40,6 +39,7 @@
         if (!cell) {
             cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
             cell.cellHeightDelegate = self;
+            self.headerCell = cell;
         }
         return cell;
     }else if (indexPath.row == 1) {

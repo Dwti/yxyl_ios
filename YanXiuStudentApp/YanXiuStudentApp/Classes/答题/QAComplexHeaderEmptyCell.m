@@ -33,4 +33,9 @@
 - (id<YXHtmlCellHeightDelegate>)cellHeightDelegate {
     return nil;
 }
+
+- (void)leaveForeground {
+    
+}
+
 @end

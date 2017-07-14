@@ -9,7 +9,6 @@
 #import "QAChooseQuestionAnalysisView.h"
 #import "QAQuestionStemCell.h"
 #import "QAChooseOptionCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QAChooseQuestionAnalysisView ()
 
@@ -42,6 +41,7 @@
         if (!cell) {
             cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
             cell.cellHeightDelegate = self;
+            self.headerCell = cell;
         }
         return cell;
     }

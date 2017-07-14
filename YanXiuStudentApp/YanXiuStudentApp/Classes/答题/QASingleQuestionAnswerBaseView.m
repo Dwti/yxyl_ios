@@ -8,6 +8,10 @@
 
 #import "QASingleQuestionAnswerBaseView.h"
 @implementation QASingleQuestionAnswerBaseView
+- (void)leaveForeground {
+    [super leaveForeground];
+    SAFE_CALL(self.headerCell, leaveForeground);
+}
 - (void)setupUI {
     [super setupUI];
     self.cellHeightArray = [self heightArrayForCell];
