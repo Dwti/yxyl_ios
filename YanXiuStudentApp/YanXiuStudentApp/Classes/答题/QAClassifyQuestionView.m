@@ -13,6 +13,8 @@
 #import "QAClassifyOptionInfo.h"
 #import "QAClassifyCategoryView.h"
 #import "QAClassifyPopupView.h"
+#import "QAComplexHeaderCellDelegate.h"
+#import "QAComplexHeaderFactory.h"
 
 @interface QAClassifyQuestionView()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) DTAttributedLabel *stemLabel;
@@ -22,15 +24,20 @@
 @property (nonatomic, strong) NSMutableArray<QAClassifyOptionInfo *> *allOptionInfoArray;
 @property (nonatomic, strong) QAClassifyPopupView *popupView;
 @property (nonatomic, strong) AlertView *alertView;
+@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 @end
 
 @implementation QAClassifyQuestionView
+- (void)leaveForeground {
+    [super leaveForeground];
+    SAFE_CALL(self.headerCell, leaveForeground);
+}
 
 - (void)setData:(QAQuestion *)data {
     [super setData:data];
     self.allOptionInfoArray = [NSMutableArray array];
     NSInteger index = 0;
-    for (NSString *option in data.options) {
+    for (NSString *option in self.data.options) {
         QAClassifyOptionInfo *info = [[QAClassifyOptionInfo alloc]init];
         info.option = option;
         info.index = index;
@@ -52,9 +59,23 @@
     self.optionInfoArray = [NSMutableArray arrayWithArray:array];
 }
 
+- (NSMutableArray *)heightArrayForCell {
+    NSMutableArray *heightArray = [NSMutableArray array];
+    UITableViewCell<QAComplexHeaderCellDelegate> *headerCell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+    [heightArray addObject:@([headerCell heightForQuestion:self.oriData])];
+    if (self.hideQuestion) {
+        [heightArray addObject:@(0.0001)];
+    }else {
+        [heightArray addObject:@([QAQuestionStemCell heightForString:self.data.stem isSubQuestion:self.isSubQuestionView])];
+    }
+    return heightArray;
+}
+
 - (void)setupUI{    
     [super setupUI];
-    self.tableView.hidden = YES;
+    self.tableView.scrollEnabled = NO;
+    [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
+    [self updateTableViewLayout];
     
     UIView *optionsBgView = [[UIView alloc]init];
     optionsBgView.backgroundColor = [UIColor whiteColor];
@@ -65,26 +86,8 @@
     [self addSubview:optionsBgView];
     [optionsBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.titleView.mas_bottom);
+        make.top.mas_equalTo(self.tableView.mas_bottom).mas_offset(-10);
         make.bottom.mas_equalTo(-155);
-    }];
-    
-    NSString *stem = self.data.stem;
-    self.stemLabel = [[DTAttributedLabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-30, 999)];
-    NSDictionary *dic = nil;
-    if (self.isSubQuestionView) {
-        dic = [YXQACoreTextHelper defaultOptionsForLevel2];
-    }else{
-        dic = [YXQACoreTextHelper defaultOptionsForLevel1];
-    }
-    self.stemLabel.attributedString = [YXQACoreTextHelper attributedStringWithString:stem options:dic];
-    [self.stemLabel sizeToFit];
-    [optionsBgView addSubview:self.stemLabel];
-    [self.stemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
-        make.top.mas_equalTo(25);
-        make.height.mas_equalTo(self.stemLabel.height);
     }];
     
     CollectionViewEqualSpaceFlowLayout *layout = [[CollectionViewEqualSpaceFlowLayout alloc]init];
@@ -102,7 +105,7 @@
     self.collectionView.allowsMultipleSelection = YES;
     [optionsBgView addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.stemLabel.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-25);
     }];
@@ -146,6 +149,18 @@
     }else {
         scrollView.contentSize = CGSizeMake(x, 110);
     }
+}
+
+- (void)updateTableViewLayout {
+    CGFloat tableHeight = 0.f;
+    for (NSNumber *num in self.cellHeightArray) {
+        tableHeight += num.floatValue;
+    }
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleView.mas_bottom);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(tableHeight);
+    }];
 }
 
 - (NSInteger)optionsCountForCategoryIndex:(NSInteger)index {
@@ -301,6 +316,33 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.optionInfoArray[indexPath.row].selected = NO;
+}
+
+#pragma mark - UITableViewDataSource
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        UITableViewCell<QAComplexHeaderCellDelegate> *cell = [tableView dequeueReusableCellWithIdentifier:kHeaderCellReuseID];
+        if (!cell) {
+            cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
+            cell.cellHeightDelegate = self;
+            self.headerCell = cell;
+        }
+        return cell;
+    }
+    if (self.hideQuestion) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        return cell;
+    }
+    QAQuestionStemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAQuestionStemCell"];
+    cell.delegate = self;
+    [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
+    return cell;
+}
+
+#pragma mark - YXHtmlCellHeightDelegate
+- (void)tableViewCell:(UITableViewCell *)cell updateWithHeight:(CGFloat)height {
+    [super tableViewCell:cell updateWithHeight:height];
+    [self updateTableViewLayout];
 }
 
 @end

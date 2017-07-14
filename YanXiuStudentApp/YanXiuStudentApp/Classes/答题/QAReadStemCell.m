@@ -51,7 +51,7 @@
     self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
         STRONG_SELF
         CGFloat bottomMargin = self.contentView.height-CGRectGetMaxY(self.htmlView.frame);
-        CGFloat totalHeight = self.htmlView.y+height+bottomMargin;
+        CGFloat totalHeight = height==0? 0.f:self.htmlView.y+height+bottomMargin;
         [self.delegate tableViewCell:self updateWithHeight:totalHeight];
     };
 }
@@ -75,6 +75,9 @@
 }
 
 + (CGFloat)heightForString:(NSString *)string isSubQuestion:(BOOL)isSub{
+    if (isEmpty(string)) {
+        return 0.f;
+    }
     CGFloat maxWidth = [self maxContentWidth];
     NSDictionary *dic = nil;
     if (isSub) {

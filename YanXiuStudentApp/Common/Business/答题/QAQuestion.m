@@ -67,6 +67,9 @@ static NSString * const kAnswerMarkedFlag = @"5";
 
 - (NSString *)adjustedStemForStem:(NSString *)stem {
     NSString *adjustedStem = stem;
+    if (isEmpty(adjustedStem)) {
+        return adjustedStem;
+    }
     NSRange range = [adjustedStem rangeOfString:@"(_)(_)"];
     while (range.location != NSNotFound) {
         adjustedStem = [adjustedStem stringByReplacingOccurrencesOfString:@"(_)(_)" withString:@"(_) (_)"];

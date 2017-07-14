@@ -51,7 +51,7 @@
     WEAK_SELF
     self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
         STRONG_SELF
-        CGFloat totalHeight = [QAQuestionStemCell totalHeightWithContentHeight:height];
+        CGFloat totalHeight = height==0.f? 0:[QAQuestionStemCell totalHeightWithContentHeight:height];
         [self.delegate tableViewCell:self updateWithHeight:totalHeight];
     };
     
@@ -83,6 +83,9 @@
 }
 
 + (CGFloat)heightForString:(NSString *)string isSubQuestion:(BOOL)isSub{
+    if (isEmpty(string)) {
+        return 0.f;
+    }
     CGFloat maxWidth = [self maxContentWidth];
     NSDictionary *dic = nil;
     if (isSub) {
