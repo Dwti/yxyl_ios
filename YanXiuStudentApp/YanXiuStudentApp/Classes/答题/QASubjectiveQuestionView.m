@@ -12,18 +12,11 @@
 #import "QASubjectiveQuestionCell.h"
 #import "QASubjectiveStemCell.h"
 #import "QASubjectivePhotoCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QASubjectiveQuestionView ()
-@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 
 @end
 @implementation QASubjectiveQuestionView
-
-- (void)leaveForeground {
-    [super leaveForeground];
-    SAFE_CALL(self.headerCell, leaveForeground);
-}
 
 - (void)setupUI {
     [super setupUI];

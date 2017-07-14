@@ -10,7 +10,6 @@
 #import "YXQAQuestionCell2.h"
 #import "QAFillQuestionCell.h"
 #import "QAFillBlankCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QAFillQuestionAnalysisView ()
 
@@ -37,6 +36,7 @@
         if (!cell) {
             cell = [QAComplexHeaderFactory headerCellClassForQuestion:self.oriData];
             cell.cellHeightDelegate = self;
+            self.headerCell = cell;
         }
         return cell;
     }else if (indexPath.row == 1) {

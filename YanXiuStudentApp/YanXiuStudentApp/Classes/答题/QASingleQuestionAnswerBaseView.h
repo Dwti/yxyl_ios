@@ -8,10 +8,12 @@
 
 #import "QAQuestionBaseView.h"
 #import "YXHtmlCellHeightDelegate.h"
+#import "QAComplexHeaderFactory.h"
 @interface QASingleQuestionAnswerBaseView : QAQuestionBaseView<UITableViewDataSource,
     UITableViewDelegate,
     YXHtmlCellHeightDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *cellHeightArray;
+@property (nonatomic, strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 - (NSMutableArray *)heightArrayForCell;
 @end

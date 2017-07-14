@@ -9,19 +9,12 @@
 #import "QAYesNoQuestionView.h"
 #import "QAYesNoOptionCell.h"
 #import "QAQuestionStemCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QAYesNoQuestionView()
-@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
 
 @end
 
 @implementation QAYesNoQuestionView
-
-- (void)leaveForeground {
-    [super leaveForeground];
-    SAFE_CALL(self.headerCell, leaveForeground);
-}
 
 - (void)setupUI {
     [super setupUI];

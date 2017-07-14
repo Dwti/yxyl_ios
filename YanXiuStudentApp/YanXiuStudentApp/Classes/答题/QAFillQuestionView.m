@@ -10,12 +10,9 @@
 #import "YXQAQuestionCell2.h"
 #import "QAFillQuestionCell.h"
 #import "QAFillBlankCell.h"
-#import "QAComplexHeaderFactory.h"
 
 @interface QAFillQuestionView ()
 @property (nonatomic, strong) QAFillBlankCell *blankCell;
-@property (nonatomic,strong) UITableViewCell<QAComplexHeaderCellDelegate> *headerCell;
-
 @end
 
 @implementation QAFillQuestionView
@@ -36,7 +33,6 @@
     [self endEditing:YES];
     [self.blankCell resetCurrentBlank];
     [super leaveForeground];
-    SAFE_CALL(self.headerCell, leaveForeground);
 }
 
 - (void)setupUI {
