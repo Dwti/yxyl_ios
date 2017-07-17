@@ -45,7 +45,7 @@ extern NSString *const YXInitSuccessNotification;
 @interface YXInitRequestItem : HttpBaseRequestItem
 
 @property (nonatomic, copy) YXInitRequestItem_Property<Optional> *property;
-@property (nonatomic, copy) NSArray<YXInitRequestItem_Body, Optional> *body;
+@property (nonatomic, copy) NSArray<YXInitRequestItem_Body, Optional> *data;
 
 @end
 

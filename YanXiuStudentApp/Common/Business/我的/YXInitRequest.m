@@ -181,11 +181,11 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 - (void)showUpgradeForInit:(BOOL)isInit
 {
-    if (!self.item || self.item.body.count <= 0) {
+    if (!self.item || self.item.data.count <= 0) {
         return;
     }
     
-    self.body = self.item.body[0];
+    self.body = self.item.data[0];
     
     if ([self.body isTest]) { //测试环境
 #ifndef DEBUG
