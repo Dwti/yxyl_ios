@@ -62,7 +62,8 @@ extern NSString *const YXInitSuccessNotification;
 @property (nonatomic, strong) NSString<Optional> *phone;      //手机号码
 @property (nonatomic, strong) NSString<Optional> *remoteIp;   //客户端IP
 @property (nonatomic, strong) NSString<Optional> *mode;       //正式环境、测试环境
-
+@property (nonatomic, strong) NSString<Optional> *osVer;
+@property (nonatomic, strong) NSString<Optional> *debugtoken;
 @end
 
 @interface YXInitHelper : NSObject

@@ -59,13 +59,15 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _brand = [YXConfigManager sharedInstance].deviceType;
         [self setCurrentNetType];
         
-        _osModel = [UIDevice currentDevice].model;
+        _osModel = @"ios";
+        _osVer = [UIDevice currentDevice].systemVersion;
         _appVersion = [YXConfigManager sharedInstance].clientVersion;
         _content = @"";
         _operType = @"app.upload.log";
         _phone = [YXUserManager sharedManager].userModel.mobile;
         _remoteIp = @"";
         _mode = [YXConfigManager sharedInstance].mode;
+        _debugtoken = @"";
         self.urlHead = [YXConfigManager sharedInstance].initializeUrl;
     }
 

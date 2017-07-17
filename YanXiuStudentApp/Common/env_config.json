@@ -2,27 +2,27 @@
     "server":"http://test.hwk.yanxiu.com/",
     "loginServer":"http://test.hwk.yanxiu.com/",
     "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
-    "initializeUrl":"http://mobile.yanxiu.com/test/api/initialize",
+    "initializeUrl":"http://test.hwk.yanxiu.com/app/log/uploadDeviceLog/release.do",
     "mode":"test",
     "relServer":{
         "server":"http://mobile.hwk.yanxiu.com/",
         "loginServer":"http://mobile.hwk.yanxiu.com/",
         "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
-        "initializeUrl":"http://mobile.yanxiu.com/test/api/initialize",
+        "initializeUrl":"http://appadmin.yanxiu.com/app/log/uploadDeviceLog/release.do",
         "mode":"release"
     },
     "devServer":{
         "server":"http://dev.hwk.yanxiu.com/",
         "loginServer":"http://dev.hwk.yanxiu.com/",
         "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
-        "initializeUrl":"http://mobile.yanxiu.com/test/api/initialize",
+        "initializeUrl":"http://dev.hwk.yanxiu.com/app/log/uploadDeviceLog/release.do",
         "mode":"test"
     },
     "testServer":{
         "server":"http://test.hwk.yanxiu.com/",
         "loginServer":"http://test.hwk.yanxiu.com/",
         "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
-        "initializeUrl":"http://mobile.yanxiu.com/test/api/initialize",
+        "initializeUrl":"http://test.hwk.yanxiu.com/app/log/uploadDeviceLog/release.do",
         "mode":"test"
     }
 }
