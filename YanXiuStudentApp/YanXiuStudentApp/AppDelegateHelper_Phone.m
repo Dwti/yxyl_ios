@@ -48,7 +48,7 @@
     [self configTabbarItem:groupVC.tabBarItem image:@"底部导航栏-作业群组-线框" selectedImage:@"底部导航栏-作业群组-填充"];
     YXNavigationController *groupNavi = [[YXNavigationController alloc] initWithRootViewController:groupVC];
     
-    UIViewController *mineVC = [[NSClassFromString(@"YXMineViewController") alloc] init];
+    UIViewController *mineVC = [[NSClassFromString(@"MineViewController") alloc] init];
     mineVC.title = @"我的";
     [self configTabbarItem:mineVC.tabBarItem image:@"底部导航栏-我的-线框" selectedImage:@"底部导航栏-我的-填充"];
     YXNavigationController *mineNavi = [[YXNavigationController alloc] initWithRootViewController:mineVC];
@@ -111,7 +111,7 @@
 
 #pragma mark -
 - (void)handleStageChange {
-    [self switchToTabIndex:0];
+//    [self switchToTabIndex:0];
 }
 
 @end

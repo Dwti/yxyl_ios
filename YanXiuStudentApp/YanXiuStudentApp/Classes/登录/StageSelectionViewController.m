@@ -7,11 +7,11 @@
 //
 
 #import "StageSelectionViewController.h"
+#import "SimpleAlertView.h"
 
 @interface StageSelectionViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, assign) BOOL separatorSetupComplete;
-@property (nonatomic, assign) NSInteger currentIndex;
 @end
 
 @implementation StageSelectionViewController
@@ -34,8 +34,7 @@
     WEAK_SELF
     [[naviRightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
-        BLOCK_EXEC(self.completeBlock,[YXMineManager stageNames][self.currentIndex],[YXMineManager stageIds][self.currentIndex]);
-        [self.navigationController popViewControllerAnimated:YES];
+        [self handleSelectStage];
     }];
     [self nyx_setupRightWithCustomView:naviRightButton];
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
@@ -53,10 +52,57 @@
     self.pickerView.delegate = self;
     [self.view addSubview:self.pickerView];
     [self.pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
+        make.left.mas_equalTo(125*kPhoneWidthRatio);
+        make.right.mas_equalTo(-125*kPhoneWidthRatio);
         make.height.mas_equalTo(400);
         make.centerY.mas_equalTo(self.view.mas_centerY).mas_offset(-30);
+    }];
+    [self.pickerView selectRow:self.currentIndex inComponent:0 animated:NO];
+}
+
+- (void)handleSelectStage {
+    if (![[YXUserManager sharedManager] isLogin]) {
+        BLOCK_EXEC(self.completeBlock,[YXMineManager stageNames][self.currentIndex],[YXMineManager stageIds][self.currentIndex]);
+        [self.navigationController popViewControllerAnimated:YES];
+    }else {
+        WEAK_SELF
+        SimpleAlertView *alert = [[SimpleAlertView alloc] init];
+        alert.title = @"你确定要更改吗？";
+        alert.describe = @"学段更改后，练习将切换到相应学段";
+        alert.image = [UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 90, 90)];
+        [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
+            STRONG_SELF
+        }];
+        [alert addButtonWithTitle:@"确定" style:SimpleAlertActionStyle_Default action:^{
+            STRONG_SELF
+            [self changeStage];
+        }];
+        [alert showInView:self.navigationController.view];
+    }
+}
+
+- (void)changeStage {
+    NSString *stageName = [YXMineManager stageNames][self.currentIndex];
+    NSString *stageID = [YXMineManager stageIds][self.currentIndex];
+    if ([stageID isEqualToString:[YXUserManager sharedManager].userModel.stageid]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    NSDictionary *param = @{@"stageid": stageID,
+                            @"stageName": stageName};
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [self nyx_disableRightNavigationItem];
+    [[YXUpdateUserInfoHelper instance] requestWithType:YXUpdateUserInfoTypeStage param:param completion:^(NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        [self nyx_enableRightNavigationItem];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        BLOCK_EXEC(self.completeBlock,stageName,stageID);
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 
@@ -71,7 +117,7 @@
 
 #pragma mark - UIPickerViewDelegate
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return (self.view.width-30);
+    return 120;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {

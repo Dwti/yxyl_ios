@@ -15,12 +15,13 @@
 + (NSArray *)sexIds
 {
     return @[[self stringWithType:YXSexTypeMan],
-             [self stringWithType:YXSexTypeWoman]];
+             [self stringWithType:YXSexTypeWoman],
+              [self stringWithType:YXSexTypeUnknown]];
 }
 
 + (NSArray *)sexNames
 {
-    return @[@"男", @"女"];
+    return @[@"男生", @"女生" ,@"保密"];
 }
 
 + (NSUInteger)indexWithSexId:(NSString *)sexId

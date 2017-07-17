@@ -33,7 +33,7 @@
         NSInteger maximumSpacing = self.minimumInteritemSpacing;
         NSInteger origin = CGRectGetMaxX(prevLayoutAttributes.frame);
         
-        if(origin + maximumSpacing + currentLayoutAttributes.frame.size.width < self.collectionViewContentSize.width) {
+        if(currentLayoutAttributes.frame.origin.y == prevLayoutAttributes.frame.origin.y) {
             CGRect frame = currentLayoutAttributes.frame;
             frame.origin.x = origin + maximumSpacing;
             currentLayoutAttributes.frame = frame;

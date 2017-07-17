@@ -32,7 +32,7 @@
                             @"testYXScrollViewController",
                             @"testYXFillBlankViewController",
                             @"testPhotoClip",
-                            @"testDiagnose",
+                            @"testImagePicker",
                             @"蔡雷_01",
                             ];
     [super viewDidLoad];
@@ -186,9 +186,8 @@ TestUploadRequest *_TestUploadRequest;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)testDiagnose{
-    QAReportViewController *vc = [[QAReportViewController alloc]init];
-//    vc.canDoAgain = YES;
+- (void)testImagePicker{
+    TestImagePickerViewController *vc = [[TestImagePickerViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

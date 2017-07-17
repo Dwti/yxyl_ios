@@ -9,6 +9,6 @@
 #import "BaseViewController.h"
 
 @interface QAPhotoSelectionViewController : BaseViewController
-@property (nonatomic, strong) void(^clippedImageBlock)(UIImage *image);
+@property (nonatomic, strong) void(^imageSelectionBlock)(UIImage *image);
 @property (nonatomic, strong) void(^exitBlock)();
 @end

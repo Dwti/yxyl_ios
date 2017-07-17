@@ -101,10 +101,9 @@
     if (!self.photoSelectionNavi) {
         QAPhotoSelectionViewController *vc = [[QAPhotoSelectionViewController alloc]init];
         WEAK_SELF
-        [vc setClippedImageBlock:^(UIImage *image){
+        [vc setImageSelectionBlock:^(UIImage *image){
             STRONG_SELF
-            [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-            BLOCK_EXEC(self.addPhotoBlock,image);
+            [self goClipVCWithImage:image baseNavi:self.photoSelectionNavi];
         }];
         [vc setExitBlock:^{
             STRONG_SELF
@@ -121,6 +120,18 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.photoSelectionNavi.view.frame = self.imagePickerController.view.bounds;
     }];
+}
+
+- (void)goClipVCWithImage:(UIImage *)image baseNavi:(UINavigationController *)baseNavi{
+    QAPhotoClipViewController *vc = [[QAPhotoClipViewController alloc]init];
+    vc.oriImage = image;
+    WEAK_SELF
+    [vc setClippedBlock:^(UIImage *clippedImage){
+        STRONG_SELF
+        [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+        BLOCK_EXEC(self.addPhotoBlock,clippedImage);
+    }];
+    [baseNavi pushViewController:vc animated:YES];
 }
 
 - (void)showAlertWithTitle:(NSString *)title rootVC:(UIViewController *)vc {
@@ -143,15 +154,7 @@
 #pragma mark - UIImagePickerController delegte
 - (void)imagePickerController: (UIImagePickerController*) picker didFinishPickingMediaWithInfo: (NSDictionary*) info {
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    QAPhotoClipViewController *vc = [[QAPhotoClipViewController alloc]init];
-    vc.oriImage = image;
-    WEAK_SELF
-    [vc setClippedBlock:^(UIImage *image){
-        STRONG_SELF
-        [self.imagePickerController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-        BLOCK_EXEC(self.addPhotoBlock,image);
-    }];
-    [self.imagePickerController pushViewController:vc animated:YES];
+    [self goClipVCWithImage:image baseNavi:self.imagePickerController];
 }
 
 - (void)imagePickerControllerDidCancel: (UIImagePickerController*) picker {

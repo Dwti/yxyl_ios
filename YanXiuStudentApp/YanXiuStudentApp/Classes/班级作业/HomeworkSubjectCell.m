@@ -23,8 +23,11 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (selected) {
+        self.contentView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    }else {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -78,8 +81,8 @@
     self.subjectLabel.text = data.name;
     if (data.waitFinishNum.integerValue > 0) {
         self.statusLabel.text = [NSString stringWithFormat:@"%@份待完成", data.waitFinishNum];
-        self.statusLabel.textColor = [UIColor colorWithHexString:@"99cc00"];
-        self.dotView.image = [UIImage imageWithColor:[UIColor colorWithHexString:@"99cc00"]];
+        self.statusLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+        self.dotView.image = [UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]];
     }else {
         self.statusLabel.text = @"查看已完成";
         self.statusLabel.textColor = [UIColor colorWithHexString:@"999999"];

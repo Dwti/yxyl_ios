@@ -12,4 +12,5 @@
 @property (nonatomic, strong) void(^exitBlock)();
 @property (nonatomic, strong) void(^confirmBlock)();
 @property (nonatomic, strong) void(^resetBlock)();
+@property (nonatomic, assign) BOOL canReset;//default is YES
 @end

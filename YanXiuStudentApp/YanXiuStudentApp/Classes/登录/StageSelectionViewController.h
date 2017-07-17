@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface StageSelectionViewController : BaseViewController
+@property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, strong) void(^completeBlock)(NSString *stageName,NSString *stageID);
 @end

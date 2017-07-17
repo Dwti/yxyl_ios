@@ -166,15 +166,7 @@
 }
 
 - (void)gotoClipVCWithImage:(UIImage *)image {
-    QAPhotoClipViewController *vc = [[QAPhotoClipViewController alloc]init];
-    vc.oriImage = image;
-    WEAK_SELF
-    [vc setClippedBlock:^(UIImage *clippedImage){
-        STRONG_SELF
-//        [self dismissViewControllerAnimated:NO completion:nil];
-        BLOCK_EXEC(self.clippedImageBlock,clippedImage);
-    }];
-    [self.navigationController pushViewController:vc animated:YES];
+    BLOCK_EXEC(self.imageSelectionBlock,image);
 }
 
 @end

@@ -64,6 +64,13 @@
         make.center.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(50, 35));
     }];
+    
+    self.canReset = YES;
+}
+
+- (void)setCanReset:(BOOL)canReset {
+    _canReset = canReset;
+    self.resetButton.hidden = !canReset;
 }
 
 - (void)exitAction {

@@ -404,6 +404,14 @@
 		7C2729E91F18A5B400C85182 /* QAClassifyAnswerResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729E71F18A5B400C85182 /* QAClassifyAnswerResultCell.m */; };
 		7C2729EC1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */; };
 		7C2729ED1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */; };
+		7C2729F31F1C698200C85182 /* HeadImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729F21F1C698200C85182 /* HeadImageHandler.m */; };
+		7C2729F41F1C698200C85182 /* HeadImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729F21F1C698200C85182 /* HeadImageHandler.m */; };
+		7C2729F71F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729F61F1C729A00C85182 /* HeadImageCameraOverlayView.m */; };
+		7C2729F81F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729F61F1C729A00C85182 /* HeadImageCameraOverlayView.m */; };
+		7C2729FB1F1C864F00C85182 /* TestImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729FA1F1C864F00C85182 /* TestImagePickerViewController.m */; };
+		7C2729FC1F1C864F00C85182 /* TestImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729FA1F1C864F00C85182 /* TestImagePickerViewController.m */; };
+		7C2729FF1F1C8A6C00C85182 /* HeadImageClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729FE1F1C8A6C00C85182 /* HeadImageClipViewController.m */; };
+		7C272A001F1C8A6C00C85182 /* HeadImageClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2729FE1F1C8A6C00C85182 /* HeadImageClipViewController.m */; };
 		7C2903441ED2D6A4005F7F55 /* QAClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2903431ED2D6A4005F7F55 /* QAClockView.m */; };
 		7C2903451ED2D6A4005F7F55 /* QAClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2903431ED2D6A4005F7F55 /* QAClockView.m */; };
 		7C29034C1ED3E0EF005F7F55 /* QAQuestionStemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C29034B1ED3E0EF005F7F55 /* QAQuestionStemCell.m */; };
@@ -806,6 +814,24 @@
 		7CA30DE81DC33AB0008D4C38 /* TreeBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DE61DC33AB0008D4C38 /* TreeBaseCell.m */; };
 		7CA47B1B1D3F76DA00DDE44E /* LePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA47B171D3F76DA00DDE44E /* LePlayer.m */; };
 		7CA47B1C1D3F76DA00DDE44E /* LePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA47B191D3F76DA00DDE44E /* LePlayerView.m */; };
+		7CA5A97D1F1CA7D9004F34D3 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A97C1F1CA7D9004F34D3 /* MineViewController.m */; };
+		7CA5A97E1F1CA7D9004F34D3 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A97C1F1CA7D9004F34D3 /* MineViewController.m */; };
+		7CA5A9811F1CA85F004F34D3 /* MineItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9801F1CA85F004F34D3 /* MineItemCell.m */; };
+		7CA5A9821F1CA85F004F34D3 /* MineItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9801F1CA85F004F34D3 /* MineItemCell.m */; };
+		7CA5A9851F1CB0F1004F34D3 /* MineTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9841F1CB0F1004F34D3 /* MineTableHeaderView.m */; };
+		7CA5A9861F1CB0F1004F34D3 /* MineTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9841F1CB0F1004F34D3 /* MineTableHeaderView.m */; };
+		7CA5A9891F1DDB54004F34D3 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9881F1DDB54004F34D3 /* MyProfileViewController.m */; };
+		7CA5A98A1F1DDB54004F34D3 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9881F1DDB54004F34D3 /* MyProfileViewController.m */; };
+		7CA5A98D1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A98C1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m */; };
+		7CA5A98E1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A98C1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m */; };
+		7CA5A9911F1DE589004F34D3 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9901F1DE589004F34D3 /* EditNameViewController.m */; };
+		7CA5A9921F1DE589004F34D3 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9901F1DE589004F34D3 /* EditNameViewController.m */; };
+		7CA5A9951F1DF6BF004F34D3 /* SexSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9941F1DF6BF004F34D3 /* SexSelectionViewController.m */; };
+		7CA5A9961F1DF6BF004F34D3 /* SexSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9941F1DF6BF004F34D3 /* SexSelectionViewController.m */; };
+		7CA5A9991F1EF3F9004F34D3 /* HeadImagePickerOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */; };
+		7CA5A99A1F1EF3F9004F34D3 /* HeadImagePickerOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */; };
+		7CA5A99D1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */; };
+		7CA5A99E1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */; };
 		7CA92FE01EC960B500527D13 /* HomeworkAddClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */; };
 		7CA92FE11EC960B500527D13 /* HomeworkAddClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */; };
 		7CA92FE41EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FE31EC9653600527D13 /* HomeworkAddClassHelpViewController.m */; };
@@ -1955,6 +1981,14 @@
 		7C2729E71F18A5B400C85182 /* QAClassifyAnswerResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyAnswerResultCell.m; sourceTree = "<group>"; };
 		7C2729EA1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClassifyAnswerGroupHeaderView.h; sourceTree = "<group>"; };
 		7C2729EB1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClassifyAnswerGroupHeaderView.m; sourceTree = "<group>"; };
+		7C2729F11F1C698200C85182 /* HeadImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageHandler.h; sourceTree = "<group>"; };
+		7C2729F21F1C698200C85182 /* HeadImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImageHandler.m; sourceTree = "<group>"; };
+		7C2729F51F1C729A00C85182 /* HeadImageCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageCameraOverlayView.h; sourceTree = "<group>"; };
+		7C2729F61F1C729A00C85182 /* HeadImageCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImageCameraOverlayView.m; sourceTree = "<group>"; };
+		7C2729F91F1C864F00C85182 /* TestImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestImagePickerViewController.h; sourceTree = "<group>"; };
+		7C2729FA1F1C864F00C85182 /* TestImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestImagePickerViewController.m; sourceTree = "<group>"; };
+		7C2729FD1F1C8A6C00C85182 /* HeadImageClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageClipViewController.h; sourceTree = "<group>"; };
+		7C2729FE1F1C8A6C00C85182 /* HeadImageClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImageClipViewController.m; sourceTree = "<group>"; };
 		7C2903421ED2D6A4005F7F55 /* QAClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClockView.h; sourceTree = "<group>"; };
 		7C2903431ED2D6A4005F7F55 /* QAClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAClockView.m; sourceTree = "<group>"; };
 		7C29034A1ED3E0EF005F7F55 /* QAQuestionStemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionStemCell.h; sourceTree = "<group>"; };
@@ -2449,6 +2483,24 @@
 		7CA47B181D3F76DA00DDE44E /* LePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LePlayerView.h; sourceTree = "<group>"; };
 		7CA47B191D3F76DA00DDE44E /* LePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LePlayerView.m; sourceTree = "<group>"; };
 		7CA47B1A1D3F76DA00DDE44E /* SpacemanBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpacemanBlocks.h; sourceTree = "<group>"; };
+		7CA5A97B1F1CA7D9004F34D3 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		7CA5A97C1F1CA7D9004F34D3 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		7CA5A97F1F1CA85F004F34D3 /* MineItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineItemCell.h; sourceTree = "<group>"; };
+		7CA5A9801F1CA85F004F34D3 /* MineItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineItemCell.m; sourceTree = "<group>"; };
+		7CA5A9831F1CB0F1004F34D3 /* MineTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableHeaderView.h; sourceTree = "<group>"; };
+		7CA5A9841F1CB0F1004F34D3 /* MineTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableHeaderView.m; sourceTree = "<group>"; };
+		7CA5A9871F1DDB54004F34D3 /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
+		7CA5A9881F1DDB54004F34D3 /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		7CA5A98B1F1DDBAD004F34D3 /* MyProfileTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableHeaderView.h; sourceTree = "<group>"; };
+		7CA5A98C1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableHeaderView.m; sourceTree = "<group>"; };
+		7CA5A98F1F1DE589004F34D3 /* EditNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNameViewController.h; sourceTree = "<group>"; };
+		7CA5A9901F1DE589004F34D3 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
+		7CA5A9931F1DF6BF004F34D3 /* SexSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SexSelectionViewController.h; sourceTree = "<group>"; };
+		7CA5A9941F1DF6BF004F34D3 /* SexSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SexSelectionViewController.m; sourceTree = "<group>"; };
+		7CA5A9971F1EF3F9004F34D3 /* HeadImagePickerOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImagePickerOptionView.h; sourceTree = "<group>"; };
+		7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImagePickerOptionView.m; sourceTree = "<group>"; };
+		7CA5A99B1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImagePickerOptionItemView.h; sourceTree = "<group>"; };
+		7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImagePickerOptionItemView.m; sourceTree = "<group>"; };
 		7CA92FDE1EC960B500527D13 /* HomeworkAddClassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkAddClassView.h; sourceTree = "<group>"; };
 		7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkAddClassView.m; sourceTree = "<group>"; };
 		7CA92FE21EC9653600527D13 /* HomeworkAddClassHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkAddClassHelpViewController.h; sourceTree = "<group>"; };
@@ -3134,6 +3186,7 @@
 		0F6655A91B4B7136000DC407 /* 我 */ = {
 			isa = PBXGroup;
 			children = (
+				7C2729EE1F1C67A400C85182 /* New */,
 				7C9092801E09456B0048C44F /* View */,
 				0F6655AA1B4B714E000DC407 /* Controller */,
 			);
@@ -3971,6 +4024,44 @@
 				7C1A62BC1E31E09D009BA65C /* AudioItemView.m */,
 			);
 			name = "语音批注";
+			sourceTree = "<group>";
+		};
+		7C2729EE1F1C67A400C85182 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				7C2729EF1F1C67B400C85182 /* View */,
+				7C2729F01F1C67BD00C85182 /* Controller */,
+			);
+			name = New;
+			sourceTree = "<group>";
+		};
+		7C2729EF1F1C67B400C85182 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CA5A97A1F1C9EA5004F34D3 /* 头像选取 */,
+				7CA5A97F1F1CA85F004F34D3 /* MineItemCell.h */,
+				7CA5A9801F1CA85F004F34D3 /* MineItemCell.m */,
+				7CA5A9831F1CB0F1004F34D3 /* MineTableHeaderView.h */,
+				7CA5A9841F1CB0F1004F34D3 /* MineTableHeaderView.m */,
+				7CA5A98B1F1DDBAD004F34D3 /* MyProfileTableHeaderView.h */,
+				7CA5A98C1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7C2729F01F1C67BD00C85182 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CA5A97B1F1CA7D9004F34D3 /* MineViewController.h */,
+				7CA5A97C1F1CA7D9004F34D3 /* MineViewController.m */,
+				7CA5A9871F1DDB54004F34D3 /* MyProfileViewController.h */,
+				7CA5A9881F1DDB54004F34D3 /* MyProfileViewController.m */,
+				7CA5A98F1F1DE589004F34D3 /* EditNameViewController.h */,
+				7CA5A9901F1DE589004F34D3 /* EditNameViewController.m */,
+				7CA5A9931F1DF6BF004F34D3 /* SexSelectionViewController.h */,
+				7CA5A9941F1DF6BF004F34D3 /* SexSelectionViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		7C2991AD1DFE408500AE921C /* Widgets */ = {
@@ -4907,6 +4998,23 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		7CA5A97A1F1C9EA5004F34D3 /* 头像选取 */ = {
+			isa = PBXGroup;
+			children = (
+				7C2729F11F1C698200C85182 /* HeadImageHandler.h */,
+				7C2729F21F1C698200C85182 /* HeadImageHandler.m */,
+				7C2729F51F1C729A00C85182 /* HeadImageCameraOverlayView.h */,
+				7C2729F61F1C729A00C85182 /* HeadImageCameraOverlayView.m */,
+				7C2729FD1F1C8A6C00C85182 /* HeadImageClipViewController.h */,
+				7C2729FE1F1C8A6C00C85182 /* HeadImageClipViewController.m */,
+				7CA5A9971F1EF3F9004F34D3 /* HeadImagePickerOptionView.h */,
+				7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */,
+				7CA5A99B1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.h */,
+				7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */,
+			);
+			name = "头像选取";
+			sourceTree = "<group>";
+		};
 		7CA92FDB1EC9534F00527D13 /* New */ = {
 			isa = PBXGroup;
 			children = (
@@ -5467,6 +5575,8 @@
 				F748D9BC1B44CF6E0028A24A /* YXTestViewController.m */,
 				7CCBE4781F0DD3CD00AA78BC /* TestClassifyViewController.h */,
 				7CCBE4791F0DD3CD00AA78BC /* TestClassifyViewController.m */,
+				7C2729F91F1C864F00C85182 /* TestImagePickerViewController.h */,
+				7C2729FA1F1C864F00C85182 /* TestImagePickerViewController.m */,
 				F748D9C41B44D7860028A24A /* t@2x.png */,
 				F748D9C11B44D7290028A24A /* YXTestBaseViewController.h */,
 				F748D9C21B44D7290028A24A /* YXTestBaseViewController.m */,
@@ -6905,6 +7015,8 @@
 				7C553C691CBC97E000A257F1 /* YXQAReportViewController.m in Sources */,
 				7CFAADAB1DAC94C900F13532 /* QAQuestionBaseView.m in Sources */,
 				7C3D0B5A1DD1A215005ED76A /* BaseViewController.m in Sources */,
+				7CA5A97E1F1CA7D9004F34D3 /* MineViewController.m in Sources */,
+				7CA5A99E1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */,
 				7CEE06F21DC3028700AA898B /* ExerciseChapterTreeViewController.m in Sources */,
 				0FBD5B191C4F33C3003B7D6D /* YXBarButtonItemCustomView.m in Sources */,
 				0FBD5B1B1C4F33C3003B7D6D /* YXCommonButton.m in Sources */,
@@ -6925,6 +7037,7 @@
 				0FBD5B271C4F33C3003B7D6D /* YXEdgeLabel.m in Sources */,
 				0FDD9BEE1C58D30300DBA379 /* YXSettingBaseViewController_Pad.m in Sources */,
 				7C2B66EA1DBF43B4007DD16B /* ExerciseSubjectManager.m in Sources */,
+				7CA5A98A1F1DDB54004F34D3 /* MyProfileViewController.m in Sources */,
 				E92610B41F0A19880084EFA5 /* QAListenPlayView.m in Sources */,
 				7C3ECAD41EC02405005C2B9C /* LoginActionView.m in Sources */,
 				0FBD5B2B1C4F33C3003B7D6D /* YXLoadingView.m in Sources */,
@@ -6997,6 +7110,7 @@
 				7C3D0B9F1DD1A8B2005ED76A /* LogFormatter.m in Sources */,
 				F773C9241C4627F400AAE684 /* YXFeedbackViewController.m in Sources */,
 				7C553C6A1CBC97E600A257F1 /* YXJieXiViewController.m in Sources */,
+				7CA5A98E1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m in Sources */,
 				0FB211C41C57467400594BEA /* YXEditProfileViewController_Pad.m in Sources */,
 				7CFBF3DC1C60B2A600E745F3 /* UIViewController+YXPresent.m in Sources */,
 				7CD58E4A1D5AE3C100492837 /* YXQAConnectStateManager.m in Sources */,
@@ -7225,9 +7339,11 @@
 				F773C9C81C4627F400AAE684 /* YXDashLineCell.m in Sources */,
 				7C7A1A1C1EC1841C00685B38 /* RegisterViewController.m in Sources */,
 				7C69F23D1E6D3ED10076984F /* MistakeRedoCatalogRequest.m in Sources */,
+				7CA5A9961F1DF6BF004F34D3 /* SexSelectionViewController.m in Sources */,
 				0F2B6EC31C7592DE0055114E /* YXProvinceCitySelectionCell.m in Sources */,
 				0FB211B01C57268E00594BEA /* YXSSOAuthManager.m in Sources */,
 				7C3438BF1EF22FE5003BA6B8 /* QAPhotoClipView.m in Sources */,
+				7CA5A9921F1DE589004F34D3 /* EditNameViewController.m in Sources */,
 				F773C9CD1C4627F400AAE684 /* YXQAChooseAnswerCell2.m in Sources */,
 				7CD58E461D59D5AD00492837 /* YXConnectContentCell.m in Sources */,
 				7C5565D91DCB227900966875 /* ExerciseHistoryKnpViewController.m in Sources */,
@@ -7236,6 +7352,7 @@
 				0FECC66B1C5F321400E8F48E /* YXHomeworkListRequest.m in Sources */,
 				7CFAADBB1DAC962100F13532 /* QAComlexQuestionAnalysisBaseView.m in Sources */,
 				7CF6C8521C731F7200AE88F8 /* YXAddPhotoView.m in Sources */,
+				7C272A001F1C8A6C00C85182 /* HeadImageClipViewController.m in Sources */,
 				E92610B21F0A197B0084EFA5 /* QAListenContainerView.m in Sources */,
 				0FBD5B741C4F3574003B7D6D /* YXUploadRequest.m in Sources */,
 				7CCBE47B1F0DD3CD00AA78BC /* TestClassifyViewController.m in Sources */,
@@ -7362,6 +7479,7 @@
 				F7A3B4B41C571E860037245A /* YXSideMenuNormalHeaderView_Pad.m in Sources */,
 				0F235B1C1C5B078C00CFCAE3 /* YXModifyNameViewController_Pad.m in Sources */,
 				F773CA301C4627F400AAE684 /* YXApnsHomeworkViewController.m in Sources */,
+				7CA5A9861F1CB0F1004F34D3 /* MineTableHeaderView.m in Sources */,
 				7CD58E3E1D59919800492837 /* YXQAConnectItemView.m in Sources */,
 				7CA30DE21DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */,
 				3063D8261D129FF100C574CC /* YXProblemItem.m in Sources */,
@@ -7378,6 +7496,7 @@
 				F792387E1C5866DF00F70D42 /* YXExerciseChooseEdition_SubjectView.m in Sources */,
 				7CFE55D51CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m in Sources */,
 				E92610B31F0A19830084EFA5 /* QAListenStemCell.m in Sources */,
+				7C2729F41F1C698200C85182 /* HeadImageHandler.m in Sources */,
 				7C2991A61DFE407500AE921C /* EEAlertContentBackgroundImageView.m in Sources */,
 				7C953B0A1C59B8FB00A9A7AF /* YXQAAnalysisCommentCell_Pad.m in Sources */,
 				0FECC6811C5F486200E8F48E /* YXUnfinishedHeaderCell.m in Sources */,
@@ -7410,6 +7529,7 @@
 				0FDD9BDF1C58B5F400DBA379 /* YXLoginInputView.m in Sources */,
 				7C3D0B7C1DD1A53A005ED76A /* RegularRecordEntity+CoreDataProperties.m in Sources */,
 				F773CA6C1C4627F400AAE684 /* YXFillBlankViewController.m in Sources */,
+				7CA5A99A1F1EF3F9004F34D3 /* HeadImagePickerOptionView.m in Sources */,
 				7CF6C8911C7456B300AE88F8 /* YXGetQuestionReportRequest.m in Sources */,
 				F75136081C71D59B003B280C /* YXCuoTiViewController_Pad.m in Sources */,
 				E92610C71F0A1A1A0084EFA5 /* QAAnalysisScoreCell.m in Sources */,
@@ -7432,6 +7552,7 @@
 				7C3D0B761DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
 				7CFD1E991D51898F002C2624 /* YXSingleChooseDetailViewController.m in Sources */,
 				7CA30DE41DC337E8008D4C38 /* ExerciseKnpTreeCell.m in Sources */,
+				7CA5A9821F1CA85F004F34D3 /* MineItemCell.m in Sources */,
 				7C1C3D111E5425D900B156A8 /* MistakeRedoReportView.m in Sources */,
 				E92610CF1F0A1A320084EFA5 /* QAReportErrorOptionView.m in Sources */,
 				0FCF22961C586A4A00CE363D /* YXGuideViewController_Pad.m in Sources */,
@@ -7471,6 +7592,7 @@
 				7C553C6B1CBC97EC00A257F1 /* YXAnswerQuestionViewController.m in Sources */,
 				7C75A27C1ED2B54A001A3EB3 /* QAAnswerQuestionViewController.m in Sources */,
 				7C45543D1DCAE868001B0F26 /* YXExerciseListParams.m in Sources */,
+				7C2729FC1F1C864F00C85182 /* TestImagePickerViewController.m in Sources */,
 				0F2B6EC41C7592E10055114E /* YXSchoolSearchCell.m in Sources */,
 				7CA98EF01EC2E08F000D49DE /* SchoolSearchViewController.m in Sources */,
 				0FECC6461C5F2ED000E8F48E /* YXHomeworkViewController_Pad.m in Sources */,
@@ -7496,6 +7618,7 @@
 				F773CA9F1C4627F400AAE684 /* YXApnsQAReportViewController.m in Sources */,
 				0F235B161C5B060B00CFCAE3 /* YXPersonInfoViewController_Pad.m in Sources */,
 				7C3D0B8D1DD1A6C8005ED76A /* UploadRequest.m in Sources */,
+				7C2729F81F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */,
 				0FDD9BE71C58D1EF00DBA379 /* YXSettingViewController_Pad.m in Sources */,
 				0F235B191C5B071F00CFCAE3 /* YXMineBaseViewController_Pad.m in Sources */,
 				E92610C91F0A1A200084EFA5 /* QAAnalysisAnalysisCell.m in Sources */,
@@ -7589,6 +7712,7 @@
 				7C89DD181DA8927200194120 /* QAStringAnswerQuestion.m in Sources */,
 				7C2991B91E0232C200AE921C /* QACoreTextViewStringScanner.m in Sources */,
 				7C2903501ED3F1B2005F7F55 /* QAChooseOptionCell.m in Sources */,
+				7CA5A98D1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m in Sources */,
 				30561C0A1E0A314C00EF4C7C /* NameView.m in Sources */,
 				7C69F2381E6D3E3F0076984F /* MistakeRedoPageRequest.m in Sources */,
 				7CA92FEC1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m in Sources */,
@@ -7639,7 +7763,9 @@
 				7C89DD041DA8927200194120 /* QAComplexAnswerQuestion.m in Sources */,
 				E95DE7541E10E9B300B25435 /* LoginUtils.m in Sources */,
 				7C2729DC1F14B54E00C85182 /* QAClassifyPopupView.m in Sources */,
+				7CA5A9991F1EF3F9004F34D3 /* HeadImagePickerOptionView.m in Sources */,
 				7CFAADCF1DACF1A900F13532 /* QAFillQuestionViewContainer.m in Sources */,
+				7CA5A99D1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */,
 				7CFAADB21DAC95D800F13532 /* QAComlexQuestionAnswerBaseView.m in Sources */,
 				7C1C3CFC1E51635000B156A8 /* QAUnknownQuestionView.m in Sources */,
 				7CA98EF71EC2F10B000D49DE /* SchoolSearchResultCell.m in Sources */,
@@ -7670,6 +7796,7 @@
 				F7754F311C4E43860002FE45 /* YXReportErrorViewModel.m in Sources */,
 				7CE55E401DCC6AA700F36352 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				E93C76101E0CD56F00F286CF /* AccountRegisterModel.m in Sources */,
+				7C2729F31F1C698200C85182 /* HeadImageHandler.m in Sources */,
 				7C38E7991C4F7A4400EC18D0 /* YXSmartDashLineView.m in Sources */,
 				7CA98EE71EC2BB6E000D49DE /* ClassNumberInputView.m in Sources */,
 				7C2991A51DFE407500AE921C /* EEAlertContentBackgroundImageView.m in Sources */,
@@ -7717,6 +7844,8 @@
 				0FECC6621C5F321400E8F48E /* YXSubjectImageHelper.m in Sources */,
 				E9E655511EFB5AB200E56881 /* QAReportTitleCell.m in Sources */,
 				7C9BB2191EC179F900A75E86 /* ResetPasswordViewController.m in Sources */,
+				7CA5A9911F1DE589004F34D3 /* EditNameViewController.m in Sources */,
+				7C2729FB1F1C864F00C85182 /* TestImagePickerViewController.m in Sources */,
 				7C90928C1E0A39590048C44F /* StagePromptView.m in Sources */,
 				0FBD5B131C4F3344003B7D6D /* YXToastView.m in Sources */,
 				0FB211B71C5726BD00594BEA /* YXUserManager.m in Sources */,
@@ -7781,6 +7910,7 @@
 				7C9EDC4F1DCDA0220001C048 /* RegisterByJoinClassRequest.m in Sources */,
 				7C2904301EEF90DE005F7F55 /* QACameraOverlayView.m in Sources */,
 				7C1C3D101E5425D900B156A8 /* MistakeRedoReportView.m in Sources */,
+				7CA5A97D1F1CA7D9004F34D3 /* MineViewController.m in Sources */,
 				0FB211B61C5726BA00594BEA /* YXResetPasswordRequest.m in Sources */,
 				F7232C181C5B15D0008467D5 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */,
 				7C3CBF821DCAEC5C006AD382 /* YXBottomGradientView.m in Sources */,
@@ -7822,6 +7952,7 @@
 				7CFAADAA1DAC94C900F13532 /* QAQuestionBaseView.m in Sources */,
 				7C7A1A1B1EC1841C00685B38 /* RegisterViewController.m in Sources */,
 				30DFECA81CB36F3D007BED17 /* YXHotNumberLabel.m in Sources */,
+				7CA5A9811F1CA85F004F34D3 /* MineItemCell.m in Sources */,
 				E9E6C2FE1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.m in Sources */,
 				7CF6C8651C731FFB00AE88F8 /* PhotoAssetManager.m in Sources */,
 				E9E6C2FB1F022B6D00F93E98 /* QAKnowledgePointCell.m in Sources */,
@@ -7848,6 +7979,7 @@
 				F7754FA01C4E43860002FE45 /* YXSettingViewController.m in Sources */,
 				7CA30DE11DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */,
 				F7754FA41C4E43860002FE45 /* YXAboutViewController.m in Sources */,
+				7CA5A9891F1DDB54004F34D3 /* MyProfileViewController.m in Sources */,
 				7C3D0B591DD1A215005ED76A /* BaseViewController.m in Sources */,
 				0F0D6E561C6051130034FC6C /* MJRefreshBaseView.m in Sources */,
 				7C04C1C91E8BC8820079F35C /* BindPhoneViewController.m in Sources */,
@@ -7994,6 +8126,7 @@
 				7C49B1951DC0574100E39555 /* QAAnalysisReadComplexView.m in Sources */,
 				E9098CFB1DC893710084C7A6 /* GetSubjectMistakeRequest.m in Sources */,
 				7C88856C1EFB665A0073EF1F /* QASubjectiveStemCell.m in Sources */,
+				7C2729F71F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */,
 				7CA92FE81EC983FE00527D13 /* HomeworkMainViewController.m in Sources */,
 				E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */,
 				7C9092861E0A1B1F0048C44F /* JoinClassPromptView.m in Sources */,
@@ -8109,6 +8242,7 @@
 				7C2991AB1DFE407500AE921C /* EEAlertTitleLabel.m in Sources */,
 				0FBD5B121C4F3344003B7D6D /* YXTipsView.m in Sources */,
 				F78C26101EA44C6E00C2E3DB /* YXProduceCodeByBindRequest.m in Sources */,
+				7CA5A9851F1CB0F1004F34D3 /* MineTableHeaderView.m in Sources */,
 				F775504F1C4E43860002FE45 /* YXChooseVolumnButton.m in Sources */,
 				0FBD5B111C4F3344003B7D6D /* YXNumberField.m in Sources */,
 				7CFAADBF1DACF00800F13532 /* QAQuestionViewContainer.m in Sources */,
@@ -8129,6 +8263,7 @@
 				F775505A1C4E43860002FE45 /* YXPhotoListViewController.m in Sources */,
 				0FECC6681C5F321400E8F48E /* YXHomeworkListGroupsRequest.m in Sources */,
 				0FE6C9F71C5A102C005FBD5B /* YXProvinceList.m in Sources */,
+				7CA5A9951F1DF6BF004F34D3 /* SexSelectionViewController.m in Sources */,
 				7CDE19911DD0934F00469096 /* AppDelegateHelper_Phone.m in Sources */,
 				301E576A1DC1DE7B00090087 /* OptionsImageView.m in Sources */,
 				7C953AD51C586F4800A9A7AF /* YXQACoreTextHelper.m in Sources */,
@@ -8140,6 +8275,7 @@
 				0FB211B91C5726C300594BEA /* YXVerifySMSCodeRequest.m in Sources */,
 				7C78418B1E2DF12000755BC0 /* QAMultiChooseQuestionRedoView.m in Sources */,
 				7C8885701EFB6C2F0073EF1F /* QASubjectiveStemBlankView.m in Sources */,
+				7C2729FF1F1C8A6C00C85182 /* HeadImageClipViewController.m in Sources */,
 				7C2729D81F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */,
 				7C1A62A31E2F0920009BA65C /* QAFillQuestionRedoView.m in Sources */,
 				F77550641C4E43860002FE45 /* (null) in Sources */,

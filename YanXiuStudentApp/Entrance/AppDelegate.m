@@ -42,7 +42,8 @@ static const BOOL kTestEntrance = NO;
     [TalkingData setSignalReportEnabled:YES];
     [TalkingData sessionStarted:[YXConfigManager sharedInstance].TalkingDataAppID withChannelId:[YXConfigManager sharedInstance].channel];
     // 初始化请求，检测版本更新等
-    [[YXInitHelper sharedHelper] requestCompeletion:nil];
+#warning 暂时注掉
+//    [[YXInitHelper sharedHelper] requestCompeletion:nil];
     // 内部统计
     [YXRecordManager startRegularReport];
     [self addLaunchAppStatisticWithType:YXRecordStartType];

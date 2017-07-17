@@ -58,7 +58,7 @@
     }];
     self.nameLabel = [[UILabel alloc]init];
     self.nameLabel.font = [UIFont systemFontOfSize:17];
-    self.nameLabel.textColor = [UIColor colorWithHexString:@"666666"];
+    self.nameLabel.textColor = [UIColor colorWithHexString:@"333333"];
     [self.contentView addSubview:self.nameLabel];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.collectionImageView.mas_right).mas_offset(15);

@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, YXStageType) {
 };
 
 typedef NS_ENUM(NSInteger, YXSexType) {
+    YXSexTypeUnknown = 0,   //保密
     YXSexTypeWoman = 1,   //女
     YXSexTypeMan = 2      //男
 };

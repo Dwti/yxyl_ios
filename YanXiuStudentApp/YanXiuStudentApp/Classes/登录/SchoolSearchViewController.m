@@ -32,6 +32,11 @@
     [self searchSchoolWithKeyword:self.searchView.textField.text];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.layer.shadowColor = [UIColor clearColor].CGColor;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -132,8 +137,58 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YXSchool *school = self.item.data[indexPath.row];
-    BLOCK_EXEC(self.schoolSearchBlock,school);
-    [self.navigationController popToViewController:self.baseVC animated:YES];
+    [self handleSelectSchool:school];
+}
+
+- (void)handleSelectSchool:(YXSchool *)school {
+    if (![[YXUserManager sharedManager] isLogin]) {
+        BLOCK_EXEC(self.schoolSearchBlock,school);
+        [self.navigationController popToViewController:self.baseVC animated:YES];
+    }else {
+        if ([school.sid isEqualToString:[YXUserManager sharedManager].userModel.schoolid]) {
+            [self.navigationController popToViewController:self.baseVC animated:YES];
+            return;
+        }
+        
+        NSDictionary *param = @{@"provinceid":self.currentProvince.pid,
+                                @"provinceName":self.currentProvince.name,
+                                @"cityid":self.currentCity.cid,
+                                @"cityName":self.currentCity.name,
+                                @"areaid":self.currentDistrict.did,
+                                @"areaName":self.currentDistrict.name,
+                                };
+        WEAK_SELF
+        [self nyx_disableRightNavigationItem];
+        [self.view nyx_startLoading];
+        [[YXUpdateUserInfoHelper instance] requestWithType:YXUpdateUserInfoTypeArea param:param completion:^(NSError *error) {
+            STRONG_SELF
+            if (error) {
+                [self nyx_enableRightNavigationItem];
+                [self.view nyx_stopLoading];
+                [self yx_showToast:error.localizedDescription];
+                return;
+            }
+            [self updateSchool:school];
+        }];
+    }
+}
+
+- (void)updateSchool:(YXSchool *)school {
+    NSMutableDictionary *param = [@{@"schoolName": school.name} mutableCopy];
+    if ([school.sid yx_isValidString]) {
+        [param setObject:school.sid forKey:@"schoolid"];
+    }
+    WEAK_SELF
+    [[YXUpdateUserInfoHelper instance] requestWithType:YXUpdateUserInfoTypeSchool param:param completion:^(NSError *error) {
+        STRONG_SELF
+        [self nyx_enableRightNavigationItem];
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self yx_showToast:error.localizedDescription];
+            return;
+        }
+        [self.navigationController popToViewController:self.baseVC animated:YES];
+    }];
 }
 
 @end

@@ -54,7 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     NSLog(@"-----%@", [self class]);
     YXNavigationController *navi = (YXNavigationController *)self.navigationController;
     if ([navi isKindOfClass:[YXNavigationController class]]) {

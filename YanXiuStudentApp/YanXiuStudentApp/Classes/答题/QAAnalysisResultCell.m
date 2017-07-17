@@ -82,6 +82,17 @@ static NSString *kQAAnswerResultState_Wrong = @"回答错误";
     self.htmlView.attributedString = [YXQACoreTextHelper attributedStringForString:htmlString];
 }
 
+- (void)setMaxImageWidth:(CGFloat)maxImageWidth {
+    _maxImageWidth = maxImageWidth;
+    self.coreTextHandler = [[QACoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:maxImageWidth];
+    WEAK_SELF
+    self.coreTextHandler.heightChangeBlock = ^(CGFloat height){
+        STRONG_SELF
+        CGFloat totalHeight = [QAAnalysisResultCell totalHeightWithContentHeight:height];
+        [self.delegate tableViewCell:self updateWithHeight:totalHeight];
+    };
+}
+
 - (void)updateUI {
     if (self.isCorrect) {
         self.resultLabel.text = kQAAnswerResultState_Corret;

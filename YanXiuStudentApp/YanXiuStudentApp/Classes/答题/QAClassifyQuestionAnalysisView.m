@@ -9,6 +9,7 @@
 #import "QAClassifyQuestionView.h"
 #import "QAClassifyAnswerResultCell.h"
 #import "QAQuestionStemCell.h"
+#import "QAAnalysisResultCell.h"
 
 @interface QAClassifyQuestionAnalysisView()
 
@@ -61,7 +62,12 @@
         cell.delegate = self;
         return cell;
     }else {
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        if ([cell isKindOfClass:[QAAnalysisResultCell class]]) {
+            QAAnalysisResultCell *resultCell = (QAAnalysisResultCell *)cell;
+            resultCell.maxImageWidth = 80;
+        }
+        return cell;
     }
 }
 

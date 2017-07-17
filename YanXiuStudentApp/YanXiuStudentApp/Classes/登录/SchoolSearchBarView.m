@@ -85,4 +85,12 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.layer.borderColor = [UIColor colorWithHexString:@"cccccc"].CGColor;
+}
+
 @end
