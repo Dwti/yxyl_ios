@@ -64,7 +64,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _appVersion = [YXConfigManager sharedInstance].clientVersion;
         _content = @"";
         _operType = @"app.upload.log";
-        _phone = [YXUserManager sharedManager].userModel.mobile;
+        _phone = [YXUserManager sharedManager].userModel.mobile? :@"";
         _remoteIp = @"";
         _mode = [YXConfigManager sharedInstance].mode;
         _debugtoken = @"";
@@ -208,6 +208,9 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     [self.promptView setCancelAction:^{
         STRONG_SELF
         [self.alertView hide];
+        if ([self.body isForce]) {
+            exit(0);
+        }
     }];
     
     [self.promptView setUpdateAction:^{
