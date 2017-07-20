@@ -73,6 +73,11 @@
         cell.choosed = NO;
         cell.markType = OptionMarkType_None;
         NSInteger answerIndex = indexPath.row - 2;
+        if (answerIndex == 0) {
+            answerIndex = 1;
+        }else {
+            answerIndex = 0;
+        }
         if (!self.analysisDataHidden) {
             if ([self.data.myAnswers[answerIndex] boolValue]) {
                 cell.choosed = YES;
