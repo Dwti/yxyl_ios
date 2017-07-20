@@ -7,58 +7,56 @@
 //
 
 #import "YXMistakeContentViewController.h"
-#import "YXGetWrongQRequest.h"
 #import "YXDelMistakeRequest.h"
 #import "YXLoadingView.h"
 #import "YXQAAnalysisDataConfig.h"
 #import "QAMistakeAnalysisDataConfig.h"
 
-@interface YXMistakeContentViewController ()
+@interface YXMistakeContentViewController ()<QAAnalysisEditNoteDelegate>
 @property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, strong) PagedListFetcherBase *fetcher;
+@property (nonatomic, strong) QAMistakeAnalysisDataConfig *analysisDataDelegate;
 @end
 
 @implementation YXMistakeContentViewController
 
-- (void)dealloc{
-    DDLogWarn(@"release======>>%@",NSStringFromClass([self class]));
+- (instancetype)initWithFetcher:(PagedListFetcherBase *)fetcher {
+    if (self = [super init]) {
+        self.fetcher = fetcher;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.analysisDataDelegate = [[QAMistakeAnalysisDataConfig alloc] init];
-    [self setupUI];
-    self.slideView.currentIndex = self.index;
-}
-
-#pragma mark - setupUI
-- (void)setupUI {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"删除icon"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"删除icon按下"] forState:UIControlStateHighlighted];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(26);
-        make.size.mas_equalTo(CGSizeMake(56, 40));
+    self.navigationItem.title = @"题目解析";
+    WEAK_SELF
+    [self nyx_setupRightWithImage:[UIImage imageNamed:@"题目解析中删除错题icon"] action:^{
+        STRONG_SELF
+        [self requestForDeleteCurrentQuestion];
     }];
-    [button addTarget:self action:@selector(naviRightAction:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-#pragma mark - button Action
-- (void)naviRightAction:(UIButton *)sender {
-    [self requestForDeleteCurrentQuestion];
+    
+    [QAPaperModel resetIndexStringWithModel:self.model total:self.total];
+    self.analysisDataDelegate = [[QAMistakeAnalysisDataConfig alloc]init];
+    self.slideView.currentIndex = self.index;
+    self.switchView.lastButtonHidden = YES;
+    if (self.model.allQuestions.count == 1) {
+        self.switchView.hidden = YES;
+    }else {
+        self.switchView.hidden = NO;
+    }
 }
 
 #pragma mark - request
 - (void)requestForDeleteCurrentQuestion {
     QAQuestion *item = [self.model.questions objectAtIndex:self.slideView.currentIndex];
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [[MistakeQuestionManager sharedInstance] deleteMistakeQuestion:item completeBlock:^(NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         [self deleteQuestionsItem:self.slideView.currentIndex];
@@ -80,26 +78,25 @@
         return;
     }
     self.isLoading = YES;
-    NSString *page = [NSString stringWithFormat:@"%@", @(self.curPage)];
-    NSString *currentID = [self.model.questions.lastObject wrongQuestionID];
     WEAK_SELF
-    [[MistakeQuestionManager sharedInstance]requestMistakeListWithsubjectID:self.subject.subjectID page:page currentID:currentID completeBlock:^(YXIntelligenceQuestionListItem *item, NSError *error) {
+    [self.fetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         self.isLoading = NO;
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
-        [self saveNewDatas:item];
+        self.total = total;
+        [self saveNewDatas:retItemArray];
     }];
 }
 
 #pragma mark - format data
-- (void)saveNewDatas:(YXIntelligenceQuestionListItem *)ret {
-    NSArray *datas = [QAPaperModel modelFromRawData:ret.data[0]].questions;
+- (void)saveNewDatas:(NSArray *)datas {
     NSMutableArray *questions = [[NSMutableArray alloc] initWithArray:self.model.questions];
     [questions addObjectsFromArray:datas];
     self.model.questions = questions;
+    [QAPaperModel resetIndexStringWithModel:self.model total:self.total];
     [self.slideView reloadData];
 }
 - (void)deleteQuestionsItem:(NSInteger)integer {
@@ -118,39 +115,36 @@
 }
 
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
-    QAQuestionBaseView *view = (QAQuestionBaseView *)[super slideView:slideView itemViewAtIndex:index];
+    QAQuestion *data = [self.model.questions objectAtIndex:index];
+    
+    QAQuestionViewContainer *container = [QAQuestionViewContainerFactory containerWithQuestion:data];
+    QAQuestionBaseView *view = [container questionAnalysisView];
+    view.data = data;
+    view.title = self.model.paperTitle;
+    view.isSubQuestionView = NO;
+    view.slideDelegate = self;
     view.editNoteDelegate = self;
+    view.analysisDataDelegate = self.analysisDataDelegate;
+    view.isPaperSubmitted = YES;
+    
     return view;
 }
 
 #pragma mark - QASlideViewDelegate
 - (void)slideView:(QASlideView *)slideView didSlideFromIndex:(NSInteger)from toIndex:(NSInteger)to {
-    [QAPaperModel resetIndexStringWithModel:self.model total:self.total];
+    [super slideView:slideView didSlideFromIndex:from toIndex:to];
 
     if ([self startPreLoading:to]) {
         [self requestForErrorsList];
     }
 }
-- (NSInteger)numberOfItemsInSlideView:(QASlideView *)slideView {
-    return self.model.questions.count;
+
+#pragma - QAAnalysisEditNoteDelegate
+- (void)editNoteButtonTapped:(QAQuestion *)item {
+    EditNoteViewController *vc = [[EditNoteViewController alloc] init];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - QAQuestionViewSlideDelegate
-- (void)questionView:(QAQuestionBaseView *)view didSlideToChildQuestion:(QAQuestion *)question{
-    [QAPaperModel resetIndexStringWithModel:self.model total:self.total];
-
-    if (view != [self.slideView itemViewAtIndex:self.slideView.currentIndex]) {
-        return;
-    }
-}
-
-
-- (void)setFetcher:(MistakePageListFetcher *)fetcher {
-    _fetcher = [[MistakePageListFetcher alloc] init];
-    _fetcher.error = [fetcher.error copy];
-    _fetcher.subjectID = [fetcher.subjectID copy];
-    _fetcher.qids = [fetcher.qids copy];
-    _fetcher.currentID = [fetcher.currentID copy];
-}
 
 @end

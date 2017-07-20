@@ -294,15 +294,25 @@
         QAQuestionPosition *position = [[QAQuestionPosition alloc]init];
         position.indexString = [self indexStringWithIndex:idx total:total];
         position.indexDetailString = [self indexStringWithIndex:idx total:total];
+        position.firstLevelIndex = idx;
         question.position = position;
         
         if (question.childQuestions.count != 0) {
             for (NSInteger index=0; index<question.childQuestions.count; index++) {
                 QAQuestion *childQuestion = question.childQuestions[index];
                 QAQuestionPosition *position = [[QAQuestionPosition alloc]init];
-                position.indexString = @"";
-                position.indexDetailString = [NSString stringWithFormat:@"%@",@(index + 1)];
+                position.indexString = [self indexStringWithIndex:index total:question.childQuestions.count];
+                position.indexDetailString = @"";
+                position.firstLevelIndex = idx;
+                position.secondLevelIndex = index;
                 childQuestion.position = position;
+            }
+        }
+        //针对复合题转单题做特殊处理
+        if (question.childQuestions.count == 1) {
+            QAQuestion *firstQ = question.childQuestions.firstObject;
+            if (question.templateType != YXQATemplateClozeComplex) {
+                firstQ.position = question.position;
             }
         }
     }];

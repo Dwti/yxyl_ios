@@ -10,10 +10,8 @@
 
 @interface YXErrorsPagedListFetcher : PagedListFetcherBase
 
-@property (nonatomic, copy) void (^error)(NSError *error);
 @property (nonatomic, copy) NSString *subjectID;
 @property (nonatomic, copy) NSString *stageID;
-@property (nonatomic, copy) NSString *currentID;
 
 
 @end

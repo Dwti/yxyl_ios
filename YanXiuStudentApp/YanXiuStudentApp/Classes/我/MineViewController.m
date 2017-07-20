@@ -11,6 +11,7 @@
 #import "MineTableHeaderView.h"
 #import "StageSelectionViewController.h"
 #import "MyProfileViewController.h"
+#import "YXMistakeSubjectViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -156,7 +157,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            
+            YXMistakeSubjectViewController *vc = [[YXMistakeSubjectViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }else {
             
         }

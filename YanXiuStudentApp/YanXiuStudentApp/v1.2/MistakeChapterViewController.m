@@ -16,7 +16,6 @@
 #import "MistakeChapterListRequest.h"
 #import "MistakePageListFetcher.h"
 #import "MistakeListViewController.h"
-#import "YXMistakeListViewController.h"
 #import "YXMistakeListWithoutRedoViewController.h"
 
 @interface MistakeChapterViewController ()

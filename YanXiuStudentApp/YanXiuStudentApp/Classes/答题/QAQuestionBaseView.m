@@ -28,16 +28,6 @@
     }
 }
 
-- (void)setShowChildIndexFromOne:(BOOL)showChildIndexFromOne{
-    _showChildIndexFromOne = showChildIndexFromOne;
-    if (showChildIndexFromOne) {
-        [self.data.childQuestions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            QAQuestion *item = (QAQuestion *)obj;
-            item.position.indexString = [NSString stringWithFormat:@"%@ / %@",@(idx+1),@(self.data.childQuestions.count)];
-        }];
-    }
-}
-
 - (void)setData:(QAQuestion *)data {
     self.oriData = data;
     if (data.childQuestions.count == 1) {

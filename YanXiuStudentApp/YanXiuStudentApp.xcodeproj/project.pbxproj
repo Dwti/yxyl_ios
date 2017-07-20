@@ -629,7 +629,6 @@
 		7C5A97FF1E8E278C005E56B6 /* MistakeKnpTreeDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A97FE1E8E278C005E56B6 /* MistakeKnpTreeDataFetcher.m */; };
 		7C5A98021E8E2A97005E56B6 /* MistakeListByQIDsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A98011E8E2A97005E56B6 /* MistakeListByQIDsRequest.m */; };
 		7C5A98051E8E2BEE005E56B6 /* MistakePageListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A98041E8E2BEE005E56B6 /* MistakePageListFetcher.m */; };
-		7C5A980B1E8F8E23005E56B6 /* YXMistakeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A980A1E8F8E23005E56B6 /* YXMistakeListViewController.m */; };
 		7C5CA2981EB2F21B001734F3 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */; };
 		7C5CA2991EB2F21B001734F3 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */; };
 		7C5CA29C1EB2F831001734F3 /* UIViewController+NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CA29B1EB2F831001734F3 /* UIViewController+NavigationItem.m */; };
@@ -832,6 +831,8 @@
 		7CA5A99A1F1EF3F9004F34D3 /* HeadImagePickerOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */; };
 		7CA5A99D1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */; };
 		7CA5A99E1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */; };
+		7CA5A9A11F204A27004F34D3 /* MistakeSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9A01F204A27004F34D3 /* MistakeSubjectCell.m */; };
+		7CA5A9A21F204A27004F34D3 /* MistakeSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A9A01F204A27004F34D3 /* MistakeSubjectCell.m */; };
 		7CA92FE01EC960B500527D13 /* HomeworkAddClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */; };
 		7CA92FE11EC960B500527D13 /* HomeworkAddClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */; };
 		7CA92FE41EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA92FE31EC9653600527D13 /* HomeworkAddClassHelpViewController.m */; };
@@ -2237,8 +2238,6 @@
 		7C5A98011E8E2A97005E56B6 /* MistakeListByQIDsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeListByQIDsRequest.m; sourceTree = "<group>"; };
 		7C5A98031E8E2BEE005E56B6 /* MistakePageListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MistakePageListFetcher.h; sourceTree = "<group>"; };
 		7C5A98041E8E2BEE005E56B6 /* MistakePageListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakePageListFetcher.m; sourceTree = "<group>"; };
-		7C5A98091E8F8E23005E56B6 /* YXMistakeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMistakeListViewController.h; sourceTree = "<group>"; };
-		7C5A980A1E8F8E23005E56B6 /* YXMistakeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMistakeListViewController.m; sourceTree = "<group>"; };
 		7C5CA2961EB2F21B001734F3 /* UIView+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Loading.h"; sourceTree = "<group>"; };
 		7C5CA2971EB2F21B001734F3 /* UIView+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Loading.m"; sourceTree = "<group>"; };
 		7C5CA29A1EB2F831001734F3 /* UIViewController+NavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationItem.h"; sourceTree = "<group>"; };
@@ -2514,6 +2513,8 @@
 		7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImagePickerOptionView.m; sourceTree = "<group>"; };
 		7CA5A99B1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImagePickerOptionItemView.h; sourceTree = "<group>"; };
 		7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImagePickerOptionItemView.m; sourceTree = "<group>"; };
+		7CA5A99F1F204A27004F34D3 /* MistakeSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MistakeSubjectCell.h; sourceTree = "<group>"; };
+		7CA5A9A01F204A27004F34D3 /* MistakeSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeSubjectCell.m; sourceTree = "<group>"; };
 		7CA92FDE1EC960B500527D13 /* HomeworkAddClassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkAddClassView.h; sourceTree = "<group>"; };
 		7CA92FDF1EC960B500527D13 /* HomeworkAddClassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkAddClassView.m; sourceTree = "<group>"; };
 		7CA92FE21EC9653600527D13 /* HomeworkAddClassHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkAddClassHelpViewController.h; sourceTree = "<group>"; };
@@ -3853,6 +3854,8 @@
 				7CBFF54A1E88F17400C363BD /* MistakeSegmentView.m */,
 				7C04C1C11E8A2AED0079F35C /* MistakeTreeCell.h */,
 				7C04C1C21E8A2AED0079F35C /* MistakeTreeCell.m */,
+				7CA5A99F1F204A27004F34D3 /* MistakeSubjectCell.h */,
+				7CA5A9A01F204A27004F34D3 /* MistakeSubjectCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5763,8 +5766,6 @@
 			children = (
 				0F7FEF461B4E1D2900E86E51 /* YXMistakeSubjectViewController.h */,
 				0F7FEF471B4E1D2900E86E51 /* YXMistakeSubjectViewController.m */,
-				7C5A98091E8F8E23005E56B6 /* YXMistakeListViewController.h */,
-				7C5A980A1E8F8E23005E56B6 /* YXMistakeListViewController.m */,
 				F772E9221B662E0900DDEEBD /* YXMistakeContentViewController.h */,
 				F772E9231B662E0900DDEEBD /* YXMistakeContentViewController.m */,
 				7C33F6E31E4C0B5B003FD304 /* MistakeRedoViewController.h */,
@@ -7565,6 +7566,7 @@
 				7CE55E411DCC6AA700F36352 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				0F235B2B1C5B0D4B00CFCAE3 /* YXAreaSelectViewController_Pad.m in Sources */,
 				307A45921D4B2A4D00EE1455 /* YXGetWrongQRequest.m in Sources */,
+				7CA5A9A21F204A27004F34D3 /* MistakeSubjectCell.m in Sources */,
 				F773CA581C4627F400AAE684 /* YXJieXiShowView.m in Sources */,
 				7C33F6E61E4C0B5B003FD304 /* MistakeRedoViewController.m in Sources */,
 				0F235B221C5B0C0900CFCAE3 /* YXSchoolSearchViewController_Pad.m in Sources */,
@@ -7762,7 +7764,6 @@
 				7CEE06ED1DC3020C00AA898B /* TreeBaseViewController.m in Sources */,
 				E92610AB1F04E4240084EFA5 /* QAReportErrorViewController.m in Sources */,
 				7C1A62AA1E2F22C3009BA65C /* QAClassifyRedoView.m in Sources */,
-				7C5A980B1E8F8E23005E56B6 /* YXMistakeListViewController.m in Sources */,
 				E93732C91F0B7C00008C1248 /* SimpleAlertView.m in Sources */,
 				305318D91D019765004BE7E1 /* YXRecordManager.m in Sources */,
 				7C89DD181DA8927200194120 /* QAStringAnswerQuestion.m in Sources */,
@@ -8324,6 +8325,7 @@
 				7CFD1E9C1D518A5E002C2624 /* YXMultiChooseDetailViewController.m in Sources */,
 				7CA92FFD1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */,
 				0F0D6E591C60511A0034FC6C /* MJRefreshHeaderView.m in Sources */,
+				7CA5A9A11F204A27004F34D3 /* MistakeSubjectCell.m in Sources */,
 				7CFAADD31DACF22100F13532 /* QASubjectiveQuestionViewContainer.m in Sources */,
 				7CD58E451D59D5AD00492837 /* YXConnectContentCell.m in Sources */,
 				F775505A1C4E43860002FE45 /* YXPhotoListViewController.m in Sources */,

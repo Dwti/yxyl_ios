@@ -27,7 +27,7 @@
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
     QAQuestionBaseView *view = (QAQuestionBaseView *)[super slideView:slideView itemViewAtIndex:index];
     view.analysisDataHidden = YES;
-    view.showChildIndexFromOne = YES;
+//    view.showChildIndexFromOne = YES;
     view.isPaperSubmitted = YES;
     return view;
 }

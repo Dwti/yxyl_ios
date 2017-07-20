@@ -57,17 +57,17 @@
     if (error) {
         self.pageindex = self.pre_pageindex;
         self.lastID = self.pre_lastID;
+    }else {
+        self.pageindex++;
     }
 }
 
 - (void)requestWillFetchMore {
-    self.pageindex += 1;
+
 }
 
 - (void)requestEndFetchMoreWithError:(NSError *)error {
-    if (error) {
-        self.pageindex -= 1;
-    }
+
 }
 
 @end

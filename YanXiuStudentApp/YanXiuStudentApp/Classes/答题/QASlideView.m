@@ -209,7 +209,10 @@ static const NSInteger kItemViewTagBase = 1234;
 
 #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer*) gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer {
-    if (otherGestureRecognizer.view == self.mainScrollView) {
+    if ([otherGestureRecognizer.view isKindOfClass:[UIScrollView class]] && [otherGestureRecognizer.view.superview isKindOfClass:[self class]]) {
+        return YES;
+    }
+    if ([otherGestureRecognizer.view isKindOfClass:[self class]]) {
         return YES;
     }
     return NO;

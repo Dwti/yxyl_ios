@@ -17,10 +17,8 @@
 
 @interface YXErrorTableViewCell : UITableViewCell
 @property (nonatomic, strong) QAQuestion *item;
-@property (nonatomic, assign) BOOL dashLineHidden;
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate, YXErrorTableViewCellDelegate> delegate;
-@property (nonatomic, assign) BOOL showSeparator;
 
-+ (CGFloat)heightForString:(NSString *)string dashHidden:(BOOL)dashHidden;
++ (CGFloat)heightForString:(NSString *)string;
 
 @end

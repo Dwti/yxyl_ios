@@ -7,17 +7,17 @@
 //
 
 #import "YXMistakeSubjectViewController.h"
-#import "YXMineTableViewCell.h"
+#import "MistakeSubjectCell.h"
 #import "YXSubjectImageHelper.h"
 #import "UIColor+YXColor.h"
-#import "YXMistakeListViewController.h"
 #import "YXCommonErrorView.h"
 #import "YXExerciseEmptyView.h"
-#import "YXMistakeListViewController.h"
 #import "MistakeAllViewController.h"
+#import "YXErrorsPagedListFetcher.h"
+#import "MistakeListViewController.h"
 
-@interface YXMistakeSubjectViewController ()
-
+@interface YXMistakeSubjectViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) GetSubjectMistakeRequestItem *requestItem;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
 @property (nonatomic, strong) YXExerciseEmptyView *emptyView;
@@ -31,8 +31,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的错题";
-    [self yx_setupLeftBackBarButtonItem];
+    self.navigationItem.title = @"我的错题";
+    self.naviTheme = NavigationBarTheme_White;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     [self setupUI];
     [self setupLayout];
     [self requestForMistakeEdition];
@@ -48,6 +49,17 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
+    self.tableView = [[UITableView alloc]init];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.rowHeight = 50;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 10)];
+    self.tableView.tableHeaderView = headerView;
+    [self.tableView registerClass:[MistakeSubjectCell class] forCellReuseIdentifier:@"MistakeSubjectCell"];
+    [self.view addSubview:self.tableView];
+    
     self.errorView = [[YXCommonErrorView alloc] init];
     self.errorView.hidden = YES;
     WEAK_SELF
@@ -62,6 +74,9 @@
     [self.view addSubview:_emptyView];
 }
 - (void)setupLayout {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
     [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
@@ -72,10 +87,10 @@
 #pragma mark - request
 - (void)requestForMistakeEdition {
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [[MistakeQuestionManager sharedInstance]requestSubjectMistakeWithCompleteBlock:^(GetSubjectMistakeRequestItem *item, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         self.errorView.hidden = YES;
         self.emptyView.hidden = YES;
         self.tableView.hidden = NO;
@@ -101,21 +116,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YXMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kYXMineCellIdentifier];
-    cell.isTextLabelInset = YES;
-    cell.showLine = [self showLineAtIndexPath:indexPath];
-    GetSubjectMistakeRequestItem_subjectMistake *subject = self.requestItem.subjectMistakes[indexPath.row];
-    [cell setTitle:subject.name image:[UIImage
-                                       imageNamed:[YXSubjectImageHelper myImageNameWithType:[subject.subjectID integerValue]]]];
-    [cell updateWithAccessoryCustomText:subject.data.wrongQuestionsCount];
+    MistakeSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MistakeSubjectCell"];
+    cell.data = self.requestItem.subjectMistakes[indexPath.row];
+    cell.shouldShowBottomLine = indexPath.row==self.requestItem.subjectMistakes.count-1;
     return cell;
 }
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MistakeAllViewController *mistakeListVC = [[MistakeAllViewController alloc] init];
-    mistakeListVC.subject = self.requestItem.subjectMistakes[indexPath.row];
-    [self.navigationController pushViewController:mistakeListVC animated:YES];
+    GetSubjectMistakeRequestItem_subjectMistake *subject = self.requestItem.subjectMistakes[indexPath.row];
+    YXErrorsPagedListFetcher *dataFetcher = [[YXErrorsPagedListFetcher alloc] init];
+    dataFetcher.subjectID = subject.subjectID;
+    dataFetcher.stageID = [YXUserManager sharedManager].userModel.stageid;
+    
+    MistakeListViewController *vc = [[MistakeListViewController alloc] initWithFetcher:dataFetcher];
+    vc.subject = subject;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -29,7 +29,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isPaperSubmitted;
 @property (nonatomic, assign) NSInteger nextLevelStartIndex;
-@property (nonatomic, assign) BOOL showChildIndexFromOne;
 @property (nonatomic, strong) YXQASubjectiveAddPhotoHandler *addPhotoHandler;
 @property (nonatomic, weak) id<YXAutoGoNextDelegate> delegate;
 @property (nonatomic, weak) id<YXQASubjectiveAddPhotoDelegate> photoDelegate;

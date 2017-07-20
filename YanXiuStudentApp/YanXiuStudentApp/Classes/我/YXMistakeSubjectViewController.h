@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 yanxiu.com. All rights reserved.
 //
 
-#import "YXMineBaseViewController.h"
+#import "BaseViewController.h"
 
-@interface YXMistakeSubjectViewController : YXMineBaseViewController
+@interface YXMistakeSubjectViewController : BaseViewController
 
 @end
