@@ -232,6 +232,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXHomeworkListGroupsItem_Data *data = self.dataArray[indexPath.row];
     HomeworkListViewController *vc = [[HomeworkListViewController alloc]initWithData:data];
+    WEAK_SELF
+    [vc setEmptyBlock:^{
+        STRONG_SELF
+        [self.view nyx_startLoading];
+        [self firstPageFetch];
+    }];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

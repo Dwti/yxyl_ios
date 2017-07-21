@@ -25,6 +25,12 @@
         self.data = data;
         YXHomeworkListFetcher *fetcher = [[YXHomeworkListFetcher alloc] init];
         fetcher.gid = data.groupId;
+        WEAK_SELF
+        [fetcher setEmptyBlock:^{
+            STRONG_SELF
+            [self.view nyx_showToast:@"还没有作业哦"];
+            BLOCK_EXEC(self.emptyBlock);
+        }];
         self.dataFetcher = fetcher;
     }
     return self;
@@ -63,6 +69,11 @@
         [self firstPageFetch];
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSubmitQuestionSuccessNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        [self.view nyx_startLoading];
+        [self firstPageFetch];
+    }];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSubmitQuestionPaperNotExistNotification object:nil]subscribeNext:^(id x) {
         STRONG_SELF
         [self.view nyx_startLoading];
         [self firstPageFetch];

@@ -32,6 +32,9 @@
                                       return;
                                   }
                                   aCompleteBlock([ret.page.totalCou intValue], ret.data, nil);
+                                  if (ret.data.count == 0) {
+                                      BLOCK_EXEC(self.emptyBlock);
+                                  }
                               }];
 }
 

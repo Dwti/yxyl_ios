@@ -11,5 +11,6 @@
 @interface YXHomeworkListFetcher : PagedListFetcherBase
 
 @property (nonatomic, copy) NSString *gid;
+@property (nonatomic, strong) void (^emptyBlock)();
 
 @end

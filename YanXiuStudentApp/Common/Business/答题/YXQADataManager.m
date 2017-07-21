@@ -127,7 +127,11 @@
     [self.submitRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self)
         if (error) {
-            self.submitCompleteBlock(error, nil);
+            if (error.code == 66) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:YXSubmitQuestionPaperNotExistNotification object:nil];
+            }else {
+                self.submitCompleteBlock(error, nil);
+            }
         }else{
             [self getReport];
             //答题提交成功发送通知，刷新界面
