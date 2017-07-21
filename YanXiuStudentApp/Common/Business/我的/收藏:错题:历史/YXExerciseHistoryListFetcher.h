@@ -13,6 +13,7 @@
 @interface YXExerciseHistoryListFetcher : PagedListFetcherBase
 
 @property (nonatomic, strong) GetPracticeEditionRequestItem_subject *subject;
+@property (nonatomic, copy) NSString *volumeID;
 @property (nonatomic, copy) void (^emptyBlock)(NSError *error);
 @property (nonatomic, copy) void (^errorBlock)(NSError *error);
 

@@ -10,7 +10,7 @@
 #import "YXUserManager.h"
 
 @interface YXChapterPointSegmentControl ()
-@property (nonatomic, strong) UIImageView *slideView;
+@property (nonatomic, strong) UIView *slideView;
 @property (nonatomic, strong) UILabel *chapterLabel;
 @property (nonatomic, strong) UILabel *pointLabel;
 @end
@@ -27,43 +27,36 @@
 }
 
 - (void)_setupUI {
-    UIImage *bgImage = [UIImage imageNamed:@"选择控件"];
-    self.frame = CGRectMake(0, 0, bgImage.size.width + 20, bgImage.size.height); // none 20
+    self.frame = CGRectMake(0, 0, 134, 35);
+    self.backgroundColor = [UIColor colorWithHexString:@"cccccc"];
+    self.layer.cornerRadius = 6;
+    self.layer.borderColor = [UIColor colorWithHexString:@"cccccc"].CGColor;
+    self.layer.borderWidth = 2;
+    self.clipsToBounds = YES;
     
-    UIImageView *bgView = [[UIImageView alloc] init];
-    bgView.image = bgImage;
-    [self addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    
-    self.slideView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"选择控件-滑块"]];
+    self.slideView = [[UIView alloc] init];
+    self.slideView.backgroundColor = [UIColor whiteColor];
+    self.slideView.layer.cornerRadius = 4;
+    self.slideView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.slideView.layer.borderWidth = 2;
     [self addSubview:self.slideView];
     [self.slideView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(4);
+        make.left.mas_equalTo(2);
         make.centerY.mas_equalTo(0);
-        make.width.mas_equalTo(80); // none
+        make.size.mas_equalTo(CGSizeMake(63, 31));
     }];
     
     self.chapterLabel = [[UILabel alloc] init];
-    self.chapterLabel.textColor = [UIColor colorWithHexString:@"805500"];
+    self.chapterLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
     self.chapterLabel.text = @"章节";
     self.chapterLabel.textAlignment = NSTextAlignmentLeft;
-    self.chapterLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.chapterLabel.layer.shadowColor = [UIColor colorWithHexString:@"ffff99"].CGColor;
-    self.chapterLabel.layer.shadowOffset = CGSizeMake(0, 1);
-    self.chapterLabel.layer.shadowOpacity = 1;
-    self.chapterLabel.layer.shadowRadius = 0;
+    self.chapterLabel.font = [UIFont boldSystemFontOfSize:14];
     
     self.pointLabel = [[UILabel alloc] init];
-    self.pointLabel.textColor = [UIColor colorWithHexString:@"00e6e6"];
+    self.pointLabel.textColor = [UIColor whiteColor];
     self.pointLabel.text = @"知识点";
     self.pointLabel.textAlignment = NSTextAlignmentRight;
-    self.pointLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.pointLabel.layer.shadowColor = [UIColor colorWithHexString:@"005959"].CGColor;
-    self.pointLabel.layer.shadowOffset = CGSizeMake(0, 1);
-    self.pointLabel.layer.shadowOpacity = 1;
-    self.pointLabel.layer.shadowRadius = 0;
+    self.pointLabel.font = [UIFont boldSystemFontOfSize:14];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     tap.numberOfTapsRequired = 1;
@@ -73,12 +66,12 @@
     [self addSubview:self.pointLabel];
     
     [self.chapterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(28); //22
+        make.centerX.mas_equalTo(-33.5);
         make.centerY.mas_equalTo(0);
     }];
     
     [self.pointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-16); // -22
+        make.centerX.mas_equalTo(33.5);
         make.centerY.mas_equalTo(0);
     }];
 }
@@ -90,8 +83,7 @@
     if ([userModel.stageName isEqualToString:@"小学"]
         || [userModel.stageName isEqualToString:@"初中"]) {
         if ([self.name isEqualToString:@"英语"]) {
-            self.pointLabel.hidden = YES;
-            self.userInteractionEnabled = NO;
+            self.hidden = YES;
         }
     }
 }
@@ -111,15 +103,13 @@
     if (curSelectedIndex <= 0) {
         _curSelectedIndex = 0;
         [UIView animateWithDuration:0.3 animations:^{
-            self.chapterLabel.textColor = [UIColor colorWithHexString:@"805500"];
-            self.chapterLabel.layer.shadowColor = [UIColor colorWithHexString:@"ffff99"].CGColor;
-            self.pointLabel.textColor = [UIColor colorWithHexString:@"00e6e6"];
-            self.pointLabel.layer.shadowColor = [UIColor colorWithHexString:@"005959"].CGColor;
+            self.chapterLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+            self.pointLabel.textColor = [UIColor whiteColor];
             
             [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(4);
+                make.left.mas_equalTo(2);
                 make.centerY.mas_equalTo(0);
-                make.width.mas_equalTo(80); // none
+                make.size.mas_equalTo(CGSizeMake(63, 31));
             }];
             [self layoutIfNeeded];
         }];
@@ -128,15 +118,13 @@
     if (curSelectedIndex >= 1) {
         _curSelectedIndex = 1;
         [UIView animateWithDuration:0.3 animations:^{
-            self.chapterLabel.textColor = [UIColor colorWithHexString:@"00e6e6"];
-            self.chapterLabel.layer.shadowColor = [UIColor colorWithHexString:@"005959"].CGColor;
-            self.pointLabel.textColor = [UIColor colorWithHexString:@"805500"];
-            self.pointLabel.layer.shadowColor = [UIColor colorWithHexString:@"ffff99"].CGColor;
+            self.chapterLabel.textColor = [UIColor whiteColor];
+            self.pointLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
             
             [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.mas_equalTo(-4);
+                make.right.mas_equalTo(-2);
                 make.centerY.mas_equalTo(0);
-                make.width.mas_equalTo(80); // none
+                make.size.mas_equalTo(CGSizeMake(63, 31));
             }];
             [self layoutIfNeeded];
         }];

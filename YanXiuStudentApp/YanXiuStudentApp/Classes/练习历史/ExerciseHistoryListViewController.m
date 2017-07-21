@@ -8,8 +8,7 @@
 
 #import "ExerciseHistoryListViewController.h"
 #import "YXGetPracticeEditionRequest.h"
-#import "YXHistoryCell.h"
-#import "YXDashLineCell.h"
+#import "ExerciseHistoryListCell.h"
 #import "YXGetQuestionReportRequest.h"
 #import "YXQAReportViewController.h"
 #import "YXGetQuestionListRequest.h"
@@ -37,12 +36,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.subject.name;
+    self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[YXHistoryCell class] forCellReuseIdentifier:@"data"];
-    [self.tableView registerClass:[YXDashLineCell class] forCellReuseIdentifier:@"dash"];
-
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    
     [self setupObserver];
 }
 
@@ -60,46 +60,21 @@
 }
 
 #pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.dataArray.count == 0) {
-        return 0;
-    }
-    return self.dataArray.count * 2 - 1;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ExerciseHistoryListCell *cell = [[ExerciseHistoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    YXGetPracticeHistoryItem_Data *data = self.dataArray[indexPath.row];
+    cell.data = data;
+    return cell;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row % 2) {
-        YXDashLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dash"];
-        cell.realWidth = 7;
-        cell.dashWidth = 7;
-        cell.preferedGapToCellBounds = 50;
-        cell.bHasShadow = NO;
-        cell.realColor = [UIColor whiteColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    YXGetPracticeHistoryItem_Data *data = self.dataArray[indexPath.row];
+    if ([data isFinished]) {
+        [self requestReportDataWithPaperId:data.paperId];
     } else {
-        YXHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"data"];
-        [cell updateWithData:self.dataArray[indexPath.row/2]];
-        @weakify(self);
-        cell.clickBlock = ^{
-            @strongify(self); if (!self) return;
-            if (indexPath.row % 2) {
-                
-            } else {
-                YXGetPracticeHistoryItem_Data *data = self.dataArray[indexPath.row/2];
-                if ([data isFinished]) {
-                    [self requestReportDataWithPaperId:data.paperId];
-                } else {
-                    [self requestQuestionListWithPaperId:data.paperId];
-                }
-            }
-        };
-        return cell;
+        [self requestQuestionListWithPaperId:data.paperId];
     }
-    
-    return nil;
 }
 
 - (void)requestReportDataWithPaperId:(NSString *)paperId{
@@ -179,7 +154,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20.f;
+    return 10.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -196,14 +171,6 @@
     UIView *v = [[UIView alloc] init];
     v.backgroundColor = [UIColor clearColor];
     return v;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row % 2) {
-        return 2;
-    }
-    
-    return 92;
 }
 
 @end

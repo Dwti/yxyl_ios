@@ -31,6 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.subject.name;
+    self.naviTheme = NavigationBarTheme_White;
     [self yx_setupLeftBackBarButtonItem];
     [self setupUI];
     [self requestVolumes];
@@ -82,20 +83,16 @@
 
 - (void)setupTopView {
     UIView *topContainerView = [[UIView alloc] init];
-    topContainerView.backgroundColor = [UIColor colorWithHexString:@"008080"];
+    topContainerView.backgroundColor = [UIColor whiteColor];
     topContainerView.clipsToBounds = YES;
+    topContainerView.layer.shadowOffset = CGSizeMake(0, 1);
+    topContainerView.layer.shadowOpacity = 0.02;
+    topContainerView.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
     [self.view addSubview:topContainerView];
-    UIView *sepView = [[UIView alloc] init];
-    sepView.backgroundColor = [UIColor colorWithHexString:@"007373"];
-    [topContainerView addSubview:sepView];
-    [sepView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(2);
-    }];
     [topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(58);
+        make.height.mas_equalTo(55);
     }];
     self.topContainerView = topContainerView;
     
@@ -104,7 +101,7 @@
     chooseChapterPointControl.name = self.subject.name;
     [topContainerView addSubview:chooseChapterPointControl];
     [chooseChapterPointControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
+        make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(chooseChapterPointControl.frame.size);
     }];
@@ -122,7 +119,7 @@
     CGSize size = [chooseVolumnButton updateWithTitle:volume.name];
     [chooseVolumnButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
-        make.right.mas_equalTo(-10);
+        make.right.mas_equalTo(-15);
         make.size.mas_equalTo(size);
     }];
     self.chooseVolumeButton = chooseVolumnButton;
@@ -148,43 +145,45 @@
         make.left.right.bottom.mas_equalTo(0);
     }];
     self.knpVC.view.hidden = YES;
-
+    
     [self addChildViewController:self.chapterVC];
     [self addChildViewController:self.knpVC];
 }
 
 - (void)setupVolumeChooseView {
     self.chooseVolumeView = [[YXChooseVolumnView alloc] init];
+    GetEditionRequestItem_edition_volume *volume = self.volumeArray[0];
+    CGSize size = [self.chooseVolumeView.chooseVolumnButton updateWithTitle:volume.name];
+    [self.chooseVolumeView.chooseVolumnButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(65);
+        make.right.mas_equalTo(-15);
+        make.size.mas_equalTo(size);
+    }];
     @weakify(self);
     self.chooseVolumeView.chooseBlock = ^(NSInteger index) {
         @strongify(self); if (!self) return;
         GetEditionRequestItem_edition_volume *volume = self.volumeArray[index];
         CGSize size = [self.chooseVolumeButton updateWithTitle:volume.name];
-        self.chooseVolumeButton.bExpand = YES;
-        [self chooseVolumnAction:self.chooseVolumeButton];
+        [self.chooseVolumeView.chooseVolumnButton updateWithTitle:volume.name];
+        [self.chooseVolumeView removeFromSuperview];
         [self.chooseVolumeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
-            make.right.mas_equalTo(-10);
+            make.right.mas_equalTo(-15);
+            make.size.mas_equalTo(size);
+        }];
+        [self.chooseVolumeView.chooseVolumnButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(65);
+            make.right.mas_equalTo(-15);
             make.size.mas_equalTo(size);
         }];
         self.chapterVC.volumeID = volume.volumeID;
     };
     [self.chooseVolumeView updateWithDatas:self.volumeArray
-                              selectedIndex:0];
-    
-    [self.view addSubview:self.chooseVolumeView];
-    [self.view sendSubviewToBack:self.chooseVolumeView];
-    
-    [self.chooseVolumeView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(-20);
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(20);
-    }];
+                             selectedIndex:0];
 }
 
 #pragma mark - Actions
 - (void)chapterPointValueChanged:(YXChapterPointSegmentControl *)seg {
-    [self chooseVolumnAction:nil];
     if (seg.curSelectedIndex == 0) {
         self.chapterVC.view.hidden = NO;
         self.knpVC.view.hidden = YES;
@@ -197,27 +196,12 @@
 }
 
 - (void)chooseVolumnAction:(YXChooseVolumnButton *)sender {
-    sender.bExpand = !sender.bExpand;
-    [self.view bringSubviewToFront:self.topContainerView];
-    [self.view insertSubview:self.chooseVolumeView belowSubview:self.topContainerView];
-    if (sender.bExpand) {
-        [UIView animateWithDuration:0.3 animations:^{
-            [self.chooseVolumeView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(58);
-                make.bottom.left.right.mas_equalTo(0);
-            }];
-            [self.view layoutIfNeeded];
-        }];
-    } else {
-        [UIView animateWithDuration:0.3 animations:^{
-            [self.chooseVolumeView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(-20);
-                make.left.right.mas_equalTo(0);
-                make.height.mas_equalTo(20);
-            }];
-            [self.view layoutIfNeeded];
-        }];
-    }
+    [self.view.window addSubview:self.chooseVolumeView];
+    [self.view.window bringSubviewToFront:self.chooseVolumeView];
+    
+    [self.chooseVolumeView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
 }
 
 @end

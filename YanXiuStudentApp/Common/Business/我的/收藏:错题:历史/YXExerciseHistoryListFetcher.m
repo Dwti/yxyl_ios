@@ -28,6 +28,7 @@
     _request.stageId = [YXUserManager sharedManager].userModel.stageid;
     _request.subjectId = self.subject.subjectID;
     _request.beditionId = self.subject.edition.editionId;
+    _request.volume = self.volumeID;
     [_request startRequestWithRetClass:[YXGetPracticeHistoryItem class]
                       andCompleteBlock:^(id retItem, NSError *error) {
                           YXGetPracticeHistoryItem *ret = retItem;

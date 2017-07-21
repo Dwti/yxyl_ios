@@ -12,6 +12,7 @@
 #import "StageSelectionViewController.h"
 #import "MyProfileViewController.h"
 #import "YXMistakeSubjectViewController.h"
+#import "ExerciseHistorySubjectViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -160,7 +161,8 @@
             YXMistakeSubjectViewController *vc = [[YXMistakeSubjectViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }else {
-            
+            ExerciseHistorySubjectViewController *vc = [[ExerciseHistorySubjectViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {

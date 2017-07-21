@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 @end
 
 @implementation YXChooseVolumnView
@@ -28,32 +29,56 @@
 - (void)updateWithDatas:(NSArray *)dataArray selectedIndex:(NSInteger)index {
     self.dataArray = dataArray;
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:self.lastSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)_setupUI {
-    self.backgroundColor = [UIColor colorWithHexString:@"007373"];
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
+    self.clipsToBounds = YES;
+    
+    self.chooseVolumnButton = [[YXChooseVolumnButton alloc] init];
+    self.chooseVolumnButton.bExpand = YES;
+    [self addSubview:self.chooseVolumnButton];
+    [self.chooseVolumnButton addTarget:self action:@selector(chooseVolumnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"008080"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.layer.cornerRadius = 6;
     [self addSubview:self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 5, 0));
+        make.right.mas_equalTo(-15);
+        make.top.mas_equalTo(120);
+        make.size.mas_equalTo(CGSizeMake(135, 305));
+    }];
+    
+    UIImageView *triangleImageView = [[UIImageView alloc] initWithImage:[UIImage yx_createImageWithColor:[UIColor redColor]]];
+    [self addSubview:triangleImageView];
+    [triangleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.tableView.mas_top);
+        make.centerX.mas_equalTo(self.mas_right).offset(-37);
+        make.size.mas_equalTo(CGSizeMake(19, 8));
     }];
     
     [self.tableView registerClass:[YXExerciseChooseChapterKnp_ChooseVolumeCell class] forCellReuseIdentifier:@"data"];
-    [self.tableView registerClass:[YXDashLineCell class] forCellReuseIdentifier:@"dash"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.lastSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+}
+
+- (void)chooseVolumnAction:(YXChooseVolumnButton *)sender {
+    [self removeFromSuperview];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row % 2) {
-        return 2;
+        return 1;
     } else {
-        return 45;
+        return 50;
     }
 }
 
@@ -63,31 +88,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row % 2) {
-        YXDashLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dash"];
-        cell.realWidth = 4;
-        cell.dashWidth = 3;
-        cell.preferedGapToCellBounds = 0;
-        cell.bHasShadow = YES;
-        cell.realColor = [UIColor colorWithHexString:@"006b6b"];
-        cell.shadowColor = [UIColor colorWithHexString:@"009494"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 105, 1)];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"81d40d"];
+        [cell.contentView addSubview:lineView];
         return cell;
     } else {
         GetEditionRequestItem_edition_volume *volume = self.dataArray[indexPath.row/2];
         YXExerciseChooseChapterKnp_ChooseVolumeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"data"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = volume.name;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
-        cell.textLabel.textColor = [UIColor colorWithHexString:@"ffdb4d"];
-        cell.textLabel.layer.shadowColor = [UIColor colorWithHexString:@"005959"].CGColor;
-        cell.textLabel.layer.shadowOffset = CGSizeMake(0, 1);
-        cell.textLabel.layer.shadowOpacity = 1;
-        cell.textLabel.layer.shadowRadius = 0;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        cell.textLabel.textColor = [UIColor whiteColor];
         cell.backgroundColor = [UIColor clearColor];
-        UIView *bgView = [[UIView alloc] init];
-        bgView.backgroundColor = [UIColor colorWithHexString:@"007878"];
-        cell.selectedBackgroundView = bgView;
-        
+        cell.selected = self.lastSelectedIndexPath.row == 0;
         return cell;
     }
     
@@ -95,8 +111,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self tableView:tableView cellForRowAtIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if ([self.lastSelectedIndexPath isEqual:indexPath]) {
+        return;
+    }
+    [[tableView cellForRowAtIndexPath:self.lastSelectedIndexPath] setSelected:NO];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:YES];
+    self.lastSelectedIndexPath = indexPath;
     if (self.chooseBlock) {
         self.chooseBlock(indexPath.row/2);
     }

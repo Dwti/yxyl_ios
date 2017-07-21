@@ -10,4 +10,6 @@
 
 @interface ExerciseHistoryChapterViewController : ExerciseHistoryListViewController
 
+@property (nonatomic, strong) NSString *volumeID;
+
 @end

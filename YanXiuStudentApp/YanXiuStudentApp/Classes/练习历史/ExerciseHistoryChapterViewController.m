@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     YXExerciseHistoryListFetcher *fetcher = [[YXExerciseHistoryListFetcher alloc] init];
     fetcher.subject = self.subject;
+    fetcher.volumeID = self.volumeID;
     self.dataFetcher = fetcher;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -35,6 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)setVolumeID:(NSString *)volumeID {
+    _volumeID = volumeID;
+    YXExerciseHistoryListFetcher *fetcher = (YXExerciseHistoryListFetcher *)self.dataFetcher;
+    fetcher.volumeID = _volumeID;
+    [self firstPageFetch];
+}
 
 @end

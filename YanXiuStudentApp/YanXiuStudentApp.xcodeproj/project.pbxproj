@@ -335,6 +335,8 @@
 		30F669CE1D2A1028002B1C1D /* NSString+YXRecordContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F669CD1D2A1028002B1C1D /* NSString+YXRecordContent.m */; };
 		30FAF0761D1149CB00C3821E /* NSDictionary+Dictionarys.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FAF0751D1149CB00C3821E /* NSDictionary+Dictionarys.m */; };
 		433E64671EF257A300AA447B /* QAInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E64661EF257A300AA447B /* QAInputAccessoryView.m */; };
+		43B1016F1F21C6AF00A69E1A /* ExerciseHistoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B1016C1F21C6AF00A69E1A /* ExerciseHistoryListCell.m */; };
+		43B101701F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */; };
 		7C01540A1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540B1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C01540D1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m */; };
@@ -1871,6 +1873,10 @@
 		313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		433E64651EF257A300AA447B /* QAInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAInputAccessoryView.h; sourceTree = "<group>"; };
 		433E64661EF257A300AA447B /* QAInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAInputAccessoryView.m; sourceTree = "<group>"; };
+		43B1016B1F21C6AF00A69E1A /* ExerciseHistoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistoryListCell.h; sourceTree = "<group>"; };
+		43B1016C1F21C6AF00A69E1A /* ExerciseHistoryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseHistoryListCell.m; sourceTree = "<group>"; };
+		43B1016D1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistorySubjectCell.h; sourceTree = "<group>"; };
+		43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseHistorySubjectCell.m; sourceTree = "<group>"; };
 		479A925F547662E3DE8C6CE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		48385987A8376EDFB24EE3F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		761259F71BE854D40073EEA3 /* YXFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFeedbackViewController.h; sourceTree = "<group>"; };
@@ -3889,6 +3895,17 @@
 			path = View2.2;
 			sourceTree = "<group>";
 		};
+		43B1016A1F21C67100A69E1A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43B1016B1F21C6AF00A69E1A /* ExerciseHistoryListCell.h */,
+				43B1016C1F21C6AF00A69E1A /* ExerciseHistoryListCell.m */,
+				43B1016D1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.h */,
+				43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		761259F61BE854430073EEA3 /* 反馈 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4488,6 +4505,7 @@
 		7C5565C91DCB0F2800966875 /* 练习历史 */ = {
 			isa = PBXGroup;
 			children = (
+				43B1016A1F21C67100A69E1A /* View */,
 				7C5565CA1DCB151300966875 /* ExerciseHistorySubjectViewController.h */,
 				7C5565CB1DCB151300966875 /* ExerciseHistorySubjectViewController.m */,
 				7C5565CE1DCB1E8C00966875 /* ExerciseHistoryContentViewController.h */,
@@ -7796,6 +7814,7 @@
 				E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */,
 				7CDE196A1DD08D5C00469096 /* YXGeTuiManager.m in Sources */,
 				7CF6C8691C731FFB00AE88F8 /* YXPhotoManager.m in Sources */,
+				43B101701F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m in Sources */,
 				7C5A98051E8E2BEE005E56B6 /* MistakePageListFetcher.m in Sources */,
 				E93732CD1F0B7C44008C1248 /* SimpleAlertButton.m in Sources */,
 				7C1A5E951E13B18600832DED /* PhotoAssetUtils.m in Sources */,
@@ -7918,6 +7937,7 @@
 				300084311DCB08AF0070FA08 /* ScaleView.m in Sources */,
 				7C5A97F91E8E2376005E56B6 /* MistakeKnpListRequest.m in Sources */,
 				0FDD9BDB1C58B5EB00DBA379 /* YXPhoneInputView.m in Sources */,
+				43B1016F1F21C6AF00A69E1A /* ExerciseHistoryListCell.m in Sources */,
 				7C3D0B881DD1A6C8005ED76A /* HttpBaseRequest.m in Sources */,
 				7C2903C71EE686A3005F7F55 /* QAClozeBlankView.m in Sources */,
 				7C2729E21F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataClass.m in Sources */,
