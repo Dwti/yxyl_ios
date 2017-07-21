@@ -9,7 +9,6 @@
 #import "BaseViewController.h"
 #import "QAQuestion.h"
 
-extern NSString *const MistakeNoteSaveNotification;
 
 @interface EditNoteViewController : BaseViewController
 @property (nonatomic, strong) QAQuestion *item;

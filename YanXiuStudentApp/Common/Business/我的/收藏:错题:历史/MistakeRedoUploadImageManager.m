@@ -41,19 +41,24 @@
     if (isEmpty(self.question.noteImages)) {
         return self.completeBlock(nil);
     }
+    __block BOOL needUpload = NO;
     self.uploadImageRequest = [[YXUploadImageRequest alloc] init];
     [imgAnswerArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         QAImageAnswer *answer = obj;
-        MWPhoto *photo = (MWPhoto *)answer.data;
-        [photo loadUnderlyingImageAndNotify];
-        UIImage *image = [photo underlyingImage];
-        UIImage *compressedImage = [self compressedImageWithImage:image];
-        NSData *jpgData = UIImageJPEGRepresentation(compressedImage, 1);
-        NSString *fileName = [NSString stringWithFormat:@"%@.jpg",@(idx)];
-        NSString *key = [NSString stringWithFormat:@"%@",@(idx)];
-        [self.uploadImageRequest.request addData:jpgData withFileName:fileName andContentType:nil forKey:key];
+        if (isEmpty(answer.url)) {
+            UIImage *image = answer.data;
+            UIImage *compressedImage = [self compressedImageWithImage:image];
+            NSData *jpgData = UIImageJPEGRepresentation(compressedImage, 1);
+            NSString *fileName = [NSString stringWithFormat:@"%@.jpg",@(idx)];
+            NSString *key = [NSString stringWithFormat:@"%@",@(idx)];
+            [self.uploadImageRequest.request addData:jpgData withFileName:fileName andContentType:nil forKey:key];
+            needUpload = YES;
+        }
     }];
-    
+    if (!needUpload) {
+        BLOCK_EXEC(self.completeBlock,nil);
+        return;
+    }
     self.uploadImageRequest.request.timeOutSeconds = 6000;
     
     @weakify(self);

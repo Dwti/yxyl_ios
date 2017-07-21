@@ -106,7 +106,8 @@
                 [array addObject:info];
             }
         }];
-        if (array.count > 0) {
+//        if (array.count > 0)
+        {
             QAClassifyAnswerResultGroup *group = [[QAClassifyAnswerResultGroup alloc]init];
             group.name = myAnswer.name;
             group.optionInfoArray = array;

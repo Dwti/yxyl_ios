@@ -21,6 +21,7 @@
 #import "QAAnalysisKnowledgePointCell.h"
 #import "QAAnalysisAudioCommentCell.h"
 #import "QAAnalysisSubjectiveResultCell.h"
+#import "QANoteCell.h"
 
 @interface QASingleQuestionAnalysisBaseView() <
 YXQAAnalysisUnfoldDelegate
@@ -44,6 +45,9 @@ YXQAAnalysisUnfoldDelegate
     [self setupSingleQuestionAnalysisContent];
     self.analysisCellCount = self.cellHeightArray.count - oriCount - 1;
     
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
+    footerView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+    self.tableView.tableFooterView = footerView;
     [self.tableView registerClass:[MistakeNoteTableViewCell class] forCellReuseIdentifier:@"MistakeNoteTableViewCell"];
     [self.tableView registerClass:[QAAnaysisGapCell class] forCellReuseIdentifier:@"QAAnaysisGapCell"];
     [self.tableView registerClass:[QAAnalysisResultCell class] forCellReuseIdentifier:@"QAAnalysisResultCell"];
@@ -54,6 +58,7 @@ YXQAAnalysisUnfoldDelegate
     [self.tableView registerClass:[QAAnalysisKnowledgePointCell class] forCellReuseIdentifier:@"QAAnalysisKnowledgePointCell"];
     [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisAudioCommentCell"];
     [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisSubjectiveResultCell"];
+    [self.tableView registerClass:[QANoteCell class] forCellReuseIdentifier:@"QANoteCell"];
 
     [self setupAnalysisBGViewUI];
 }
@@ -119,7 +124,7 @@ YXQAAnalysisUnfoldDelegate
             return;
         }
         
-        CGFloat noteCellHeight = [MistakeNoteTableViewCell heightForNoteWithQuestion: self.data isEditable:NO];
+        CGFloat noteCellHeight = [QANoteCell heightForText:self.data.noteText images:self.data.noteImages];
         [self.cellHeightArray replaceObjectAtIndex:(self.cellHeightArray.count - 1) withObject:@(noteCellHeight)];
         
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:(self.cellHeightArray.count - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
@@ -148,7 +153,7 @@ YXQAAnalysisUnfoldDelegate
     if (analysisDataIndex < self.analysisDataArray.count) {
         
         YXQAAnalysisItem *data = self.analysisDataArray[analysisDataIndex];
-        
+        QAAnalysisBaseCell *analysisCell = nil;
         if (data.type == YXAnalysisCurrentStatus) {
             QAAnalysisResultCell *cell = [[QAAnalysisResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.delegate = self;
@@ -156,70 +161,63 @@ YXQAAnalysisUnfoldDelegate
             cell.htmlString = self.data.answerCompare;
             cell.isCorrect = self.data.answerState == YXAnswerStateCorrect ? YES : NO;
             [cell updateUI];
-            return cell;
+            analysisCell = cell;
         }
         else if (data.type == YXAnalysisDifficulty) {
             QAAnalysisDifficultyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisDifficultyCell" forIndexPath:indexPath];
             cell.item = data;
             cell.difficulty = self.data.difficulty;
-            return cell;
+            analysisCell = cell;
             
         } else if (data.type == YXAnalysisAnswer) {
             QAAnalysisAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisAnswerCell" forIndexPath:indexPath];
             cell.delegate = self;
             cell.item = data;
             cell.htmlString = [self.data answerPresentation];
-            return cell;
+            analysisCell = cell;
             
         } else if (data.type == YXAnalysisAnalysis) {
             QAAnalysisAnalysisCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisAnalysisCell" forIndexPath:indexPath];
             cell.delegate = self;
             cell.item = data;
             cell.htmlString = self.data.analysis;
-            return cell;
+            analysisCell = cell;
             
         } else if (data.type == YXAnalysisKnowledgePoint) {
             QAAnalysisKnowledgePointCell *cell = [[QAAnalysisKnowledgePointCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXKnpCell"];
             cell.item = data;
             cell.knowledgePointArray = self.data.knowledgePoints;
-            cell.isShowLine = NO;
-            return cell;
+            analysisCell = cell;
         } else if (data.type == YXAnalysisScore) {
             QAAnalysisScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisScoreCell" forIndexPath:indexPath];
             cell.item = data;
             cell.score = self.data.score;
             cell.isMarked = self.data.isMarked;
             [cell updateUI];
-            return cell;
+            analysisCell = cell;
         } else if (data.type == YXAnalysisResult) {
             QAAnalysisSubjectiveResultCell *cell = [[QAAnalysisSubjectiveResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.item = data;
             cell.isCorrect = self.data.score == 5 ? YES : NO;
             cell.isMarked = self.data.isMarked;
             [cell updateUI];
-            return cell;
+            analysisCell = cell;
         } else if (data.type == YXAnalysisAudioComment) {
             QAAnalysisAudioCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisAudioCommentCell" forIndexPath:indexPath];
             cell.item = data;
             cell.questionItem = self.data;
-            return cell;
+            analysisCell = cell;
             
         } else if (data.type == YXAnalysisNote) {
-            MistakeNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MistakeNoteTableViewCell" forIndexPath:indexPath];
-            cell.isEditable = NO;
+            QANoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QANoteCell"];
             cell.item = data;
-            cell.questionItem = self.data;
-            cell.delegate = self.addPhotoHandler;
-            [cell reloadViewWithArray:self.data.noteImages addEnable:NO];
-            WEAK_SELF
-            [cell setEditButtonTapped:^{
-                STRONG_SELF
-                [self.editNoteDelegate editNoteButtonTapped:self.data];
-            }];
-            return cell;
+            [cell updateWithText:self.data.noteText images:self.data.noteImages];
+            analysisCell = cell;
         }else {
             return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         }
+        analysisCell.isShowLine = analysisDataIndex!=self.analysisDataArray.count-1;
+        return analysisCell;
     }
     else {
         return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -340,7 +338,7 @@ YXQAAnalysisUnfoldDelegate
         YXQAAnalysisItem *item2 = [[YXQAAnalysisItem alloc]init];
         item2.type = YXAnalysisNote;
         [self.analysisDataArray addObject:item2];
-        [self.cellHeightArray addObject:@([MistakeNoteTableViewCell heightForNoteWithQuestion:self.data isEditable:NO])];
+        [self.cellHeightArray addObject:@([QANoteCell heightForText:self.data.noteText images:self.data.noteImages])];
     }
 }
 

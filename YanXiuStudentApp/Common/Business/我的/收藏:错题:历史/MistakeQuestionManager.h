@@ -15,6 +15,7 @@
 #import "SaveMistakeNoteRequest.h"
 
 extern NSString *const kDeleteMistakeSuccessNotification;
+extern NSString *const MistakeNoteSaveNotification;
 extern const NSInteger kRedoPageSize;
 
 typedef void(^SubjectMistakeBlock) (GetSubjectMistakeRequestItem *item, NSError *error);

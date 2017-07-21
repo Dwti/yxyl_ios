@@ -14,7 +14,6 @@
 #import "MistakeQuestionManager.h"
 #import "MistakeNoteTableViewCell.h"
 
-NSString *const MistakeNoteSaveNotification = @"MistakeNoteSaveSuccess";
 
 @interface EditNoteViewController () <
 YXQASubjectiveAddPhotoHandlerDelegate,
@@ -253,7 +252,7 @@ UITableViewDataSource
     
     [cell setPhotosChangedBlock:^(NSArray *images) {
        STRONG_SELF
-        self.editItem.noteImages = images;
+//        self.editItem.noteImages = images;
     }];
     
     return cell;

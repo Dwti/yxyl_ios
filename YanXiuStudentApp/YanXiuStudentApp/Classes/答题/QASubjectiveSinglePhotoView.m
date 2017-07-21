@@ -23,8 +23,7 @@
 }
 
 - (void)setupUI {
-    self.photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 70, 70)];
-    self.photoImageView.center = CGPointMake(self.width/2, self.height/2);
+    self.photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 8, self.width-8, self.width-8)];
     self.photoImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.photoImageView.layer.cornerRadius = 6;
     self.photoImageView.layer.borderWidth = 2;

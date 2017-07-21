@@ -1,46 +1,48 @@
 //
-//  QASubjectivePhotoCell.m
+//  QANoteImagesView.m
 //  YanXiuStudentApp
 //
-//  Created by niuzhaowang on 2017/6/12.
+//  Created by niuzhaowang on 2017/7/22.
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "QASubjectivePhotoCell.h"
+#import "QANoteImagesView.h"
 #import "QASubjectiveSinglePhotoView.h"
 #import "QASubjectiveAddPhotoView.h"
 #import "QASubjectivePhotoHandler.h"
 
-static const NSInteger kMaxPhotoCount = 3;
+static const NSInteger kMaxPhotoCount = 4;
 
-@interface QASubjectivePhotoCell()
+@interface QANoteImagesView()
 @property (nonatomic, strong) NSMutableArray<QAImageAnswer *> *photoArray;
 @property (nonatomic, assign) BOOL isEditable;
 @property (nonatomic, strong) NSMutableArray<QASubjectiveSinglePhotoView *> *photoViewArray;
 @property (nonatomic, strong) QASubjectivePhotoHandler *photoHandler;
+@property (nonatomic, assign) CGFloat photoViewWidth;
 @end
 
-@implementation QASubjectivePhotoCell
+@implementation QANoteImagesView
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
         self.photoViewArray = [NSMutableArray array];
         self.photoHandler = [[QASubjectivePhotoHandler alloc]init];
+        self.photoViewWidth = MIN((SCREEN_WIDTH-15*(kMaxPhotoCount+1))/kMaxPhotoCount, 75)+8;
         [self setupUI];
     }
     return self;
 }
 
 - (void)setupUI {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.contentView.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    
 }
 
-- (void)updateWithPhotos:(NSMutableArray *)photos editable:(BOOL)isEditable {
+- (void)updateWithPhotos:(NSMutableArray<QAImageAnswer *> *)photos editable:(BOOL)isEditable {
     self.photoArray = photos;
     self.isEditable = isEditable;
     
-    for (UIView *view in self.contentView.subviews) {
+    for (UIView *view in self.subviews) {
         [view removeFromSuperview];
     }
     
@@ -57,15 +59,15 @@ static const NSInteger kMaxPhotoCount = 3;
 
 - (void)setupAddPhotoView {
     UIButton *addPhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 50)];
-    addPhotoButton.center = CGPointMake(SCREEN_WIDTH/2, 50);
-    [addPhotoButton setTitle:@"开始作答" forState:UIControlStateNormal];
+    addPhotoButton.center = CGPointMake(SCREEN_WIDTH/2, 52.5);
+    [addPhotoButton setTitle:@"添加笔记" forState:UIControlStateNormal];
     [addPhotoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addPhotoButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
     addPhotoButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     addPhotoButton.layer.cornerRadius = 6;
     addPhotoButton.clipsToBounds = YES;
     [addPhotoButton addTarget:self action:@selector(addPhotoAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:addPhotoButton];
+    [self addSubview:addPhotoButton];
 }
 
 - (void)addPhotoAction {
@@ -73,15 +75,7 @@ static const NSInteger kMaxPhotoCount = 3;
 }
 
 - (void)setupEmptyView {
-    UILabel *emptyLabel = [[UILabel alloc]init];
-    emptyLabel.text = @"本题未作答";
-    emptyLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
-    emptyLabel.font = [UIFont boldSystemFontOfSize:17];
-    emptyLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:emptyLabel];
-    [emptyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(0);
-    }];
+    
 }
 
 - (void)setupPhotosView {
@@ -90,13 +84,12 @@ static const NSInteger kMaxPhotoCount = 3;
     [self.photoArray enumerateObjectsUsingBlock:^(QAImageAnswer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         QASubjectiveSinglePhotoView *photoView = [self photoViewForImageAnswer:obj];
         if (photoView) {
-            photoView.frame = CGRectMake(x, 15-8, 70+8, 70+8);
+            photoView.frame = CGRectMake(x, 15-8, self.photoViewWidth, self.photoViewWidth);
         }else {
-            photoView = [[QASubjectiveSinglePhotoView alloc]initWithFrame:CGRectMake(x, 15-8, 70+8, 70+8)];
+            photoView = [[QASubjectiveSinglePhotoView alloc]initWithFrame:CGRectMake(x, 15-8, self.photoViewWidth, self.photoViewWidth)];
         }
         photoView.canDelete = self.isEditable;
         photoView.imageAnswer = obj;
-        photoView.showImageBorder = !self.isEditable;
         WEAK_SELF
         [photoView setClickBlock:^{
             STRONG_SELF
@@ -106,22 +99,21 @@ static const NSInteger kMaxPhotoCount = 3;
             STRONG_SELF
             [self.photoArray removeObject:obj];
             [self updateWithPhotos:self.photoArray editable:self.isEditable];
-            BLOCK_EXEC(self.numberChangedBlock,self.photoArray.count+1,self.photoArray.count);
         }];
-        [self.contentView addSubview:photoView];
+        [self addSubview:photoView];
         [viewArray addObject:photoView];
-        x = x+70+15;
+        x = x+self.photoViewWidth+7;
     }];
     self.photoViewArray = viewArray;
     
     if (self.isEditable && self.photoArray.count<kMaxPhotoCount) {
-        QASubjectiveAddPhotoView *view = [[QASubjectiveAddPhotoView alloc]initWithFrame:CGRectMake(x, 15, 70, 70)];
+        QASubjectiveAddPhotoView *view = [[QASubjectiveAddPhotoView alloc]initWithFrame:CGRectMake(x, 15, self.photoViewWidth-8, self.photoViewWidth-8)];
         WEAK_SELF
         [view setAddAction:^{
             STRONG_SELF
             [self goAddPhoto];
         }];
-        [self.contentView addSubview:view];
+        [self addSubview:view];
     }
 }
 
@@ -143,7 +135,6 @@ static const NSInteger kMaxPhotoCount = 3;
         answer.data = image;
         [self.photoArray addObject:answer];
         [self updateWithPhotos:self.photoArray editable:self.isEditable];
-        BLOCK_EXEC(self.numberChangedBlock,self.photoArray.count-1,self.photoArray.count);
     }];
 }
 
@@ -152,7 +143,6 @@ static const NSInteger kMaxPhotoCount = 3;
     [self.photoHandler browsePhotos:self.photoArray oriIndex:index editable:self.isEditable deleteBlock:^{
         STRONG_SELF
         [self updateWithPhotos:self.photoArray editable:self.isEditable];
-        BLOCK_EXEC(self.numberChangedBlock,self.photoArray.count+1,self.photoArray.count);
     }];
 }
 

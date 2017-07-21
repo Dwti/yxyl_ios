@@ -15,6 +15,7 @@
 #import "GlobalUtils.h"
 
 NSString *const kDeleteMistakeSuccessNotification = @"kSubjectSaveEditionInfoSuccessNotification";
+NSString *const MistakeNoteSaveNotification = @"MistakeNoteSaveSuccess";
 const NSInteger kRedoPageSize = 10;
 
 @interface MistakeQuestionManager ()
@@ -109,19 +110,9 @@ const NSInteger kRedoPageSize = 10;
 }
 
 - (void)saveMistakeRedoNoteWithQuestion:(QAQuestion *)question completeBlock:(MistakeRedoNoteBlock)completeBlock {
-    if (![self isNetworkReachable]) {
-        NSError *error = [[NSError alloc] init];
-        error = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIConnectionFailureErrorType userInfo:@{NSLocalizedDescriptionKey:@"网络未连接，请检查后重试"}];
-        BLOCK_EXEC(completeBlock, nil, error);
-        return;
-    }
-    
     [[MistakeRedoUploadImageManager sharedInstance] stopUploadImage];
     [[MistakeRedoUploadImageManager sharedInstance] uploadImageInQuestion:question completeBlock:^(NSError *error) {
         if (error) {
-            if (![self isNetworkReachable]) {
-                error = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIConnectionFailureErrorType userInfo:@{NSLocalizedDescriptionKey:@"保存失败，请检查网络后重试"}];
-            }
             BLOCK_EXEC(completeBlock, nil, error);
             return;
         }
@@ -138,9 +129,6 @@ const NSInteger kRedoPageSize = 10;
             
         [self.saveMistakeNoteRequest startRequestWithRetClass:[MistakeRedoNoteItem class] andCompleteBlock:^(id retItem, NSError *error) {
             if (error) {
-                if (![self isNetworkReachable]) {
-                    error = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIConnectionFailureErrorType userInfo:@{NSLocalizedDescriptionKey:@"保存失败，请检查网络后重试"}];
-                }
                 BLOCK_EXEC(completeBlock, retItem, error);
                 return ;
             }

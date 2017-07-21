@@ -10,6 +10,7 @@
 #import "YXQAAnalysisItem.h"
 
 @interface QAAnalysisBaseCell : UITableViewCell
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, assign) BOOL isShowLine;
 @property (nonatomic, strong) YXQAAnalysisItem *item;

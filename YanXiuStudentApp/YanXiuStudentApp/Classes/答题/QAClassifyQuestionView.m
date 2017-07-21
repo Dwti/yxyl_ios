@@ -107,6 +107,7 @@
     [self.collectionView registerClass:[cell class] forCellWithReuseIdentifier:@"OptionCell"];
     
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.height-155, self.width, 110)];
+    scrollView.showsHorizontalScrollIndicator = NO;
     [self addSubview:scrollView];
     __block QAClassifyCategoryView *view_1;
     __block QAClassifyCategoryView *view_2;

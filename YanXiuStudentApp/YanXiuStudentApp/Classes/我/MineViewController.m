@@ -13,6 +13,8 @@
 #import "MyProfileViewController.h"
 #import "YXMistakeSubjectViewController.h"
 #import "ExerciseHistorySubjectViewController.h"
+#import "FeedbackViewController.h"
+#import "SettingsViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -174,9 +176,11 @@
         }
     }else {
         if (indexPath.row == 0) {
-            
+            FeedbackViewController *vc = [[FeedbackViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }else {
-            
+            SettingsViewController *vc = [[SettingsViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

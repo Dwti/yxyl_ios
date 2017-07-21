@@ -67,7 +67,9 @@
 }
 
 - (void)requestEndFetchMoreWithError:(NSError *)error {
-
+    if (!error) {
+        self.pageindex++;
+    }
 }
 
 @end

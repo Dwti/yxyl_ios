@@ -39,6 +39,6 @@
     for (QAKnowledgePoint *p in array) {
         [pointArray addObject:p.name];
     }
-    return [self.knowledgePointView heightWithDataArray:[NSArray arrayWithArray:pointArray]];
+    return [self.knowledgePointView heightWithDataArray:[NSArray arrayWithArray:pointArray]]+15+15;
 }
 @end

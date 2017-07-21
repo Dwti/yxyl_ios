@@ -30,7 +30,7 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.minimumInteritemSpacing = 18;
     flowLayout.minimumLineSpacing = 15;
-    flowLayout.sectionInset = UIEdgeInsetsMake(15, 0, 45, 0);
+    flowLayout.sectionInset = UIEdgeInsetsMake(15, 0, 15, 0);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;
@@ -69,6 +69,6 @@
     self.dataArray = dataArray;
     [self.collectionView layoutIfNeeded];
     [self.collectionView reloadData];
-    return self.collectionView.contentSize.height + 30;
+    return self.collectionView.contentSize.height;
 }
 @end

@@ -9,7 +9,6 @@
 #import "QAAnalysisBaseCell.h"
 
 @interface QAAnalysisBaseCell ()
-@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *lineView;
 @end
 

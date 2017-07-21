@@ -88,7 +88,7 @@
     }];
 
     self.emptyLabel = [[UILabel alloc]init];
-    self.emptyLabel.text = @"未作答";
+    self.emptyLabel.text = @"当前类别下内容为空";
     self.emptyLabel.font = [UIFont boldSystemFontOfSize:27];
     self.emptyLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
     self.emptyLabel.textAlignment = NSTextAlignmentCenter;
