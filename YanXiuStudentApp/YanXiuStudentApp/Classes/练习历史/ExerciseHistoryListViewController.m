@@ -10,9 +10,9 @@
 #import "YXGetPracticeEditionRequest.h"
 #import "ExerciseHistoryListCell.h"
 #import "YXGetQuestionReportRequest.h"
-#import "YXQAReportViewController.h"
+#import "QAReportViewController.h"
 #import "YXGetQuestionListRequest.h"
-#import "YXAnswerQuestionViewController.h"
+#import "QAAnswerQuestionViewController.h"
 #import "YXTipsView.h"
 
 @interface ExerciseHistoryListViewController ()
@@ -96,20 +96,7 @@
     }];
 }
 - (void)goToReportVCWithItem:(YXIntelligenceQuestionListItem *)item{
-    YXQAReportViewController *vc = [[YXQAReportViewController alloc] init];
-    YXQARequestParams *param = [[YXQARequestParams alloc] init];
-    YXIntelligenceQuestion *q = item.data.firstObject;
-    param.stageId = q.stageid;
-    param.subjectId = q.subjectid;
-    param.editionId = q.bedition;
-    param.volumeId = q.volume;
-    param.chapterId = q.chapterid;
-    param.sectionId = q.sectionid;
-    param.questNum = @"10";
-    param.cellId = q.cellid;
-    param.segment = self.segment;
-    vc.requestParams = param;
-    
+    QAReportViewController *vc = [[QAReportViewController alloc]init];
     YXIntelligenceQuestion *question = nil;
     if (item.data.count > 0) {
         question = item.data[0];
@@ -130,19 +117,7 @@
         [self yx_stopLoading];
         YXIntelligenceQuestionListItem *item = retItem;
         if (item.data.count > 0 && !error) {
-            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
-            YXQARequestParams *param = [[YXQARequestParams alloc] init];
-            YXIntelligenceQuestion *q = item.data.firstObject;
-            param.stageId = q.stageid;
-            param.subjectId = q.subjectid;
-            param.editionId = q.bedition;
-            param.volumeId = q.volume;
-            param.chapterId = q.chapterid;
-            param.sectionId = q.sectionid;
-            param.questNum = @"10";
-            param.cellId = q.cellid;
-            param.segment = self.segment;
-            vc.requestParams = param;
+            QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
             vc.model = [QAPaperModel modelFromRawData:item.data[0]];
             vc.pType = YXPTypeExerciseHistory;
             [self.navigationController pushViewController:vc animated:YES];

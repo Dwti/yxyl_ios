@@ -56,7 +56,7 @@
         make.size.mas_equalTo(CGSizeMake(135, 305));
     }];
     
-    UIImageView *triangleImageView = [[UIImageView alloc] initWithImage:[UIImage yx_createImageWithColor:[UIColor redColor]]];
+    UIImageView *triangleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"弹窗三角"]];
     [self addSubview:triangleImageView];
     [triangleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.tableView.mas_top);

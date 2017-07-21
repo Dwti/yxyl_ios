@@ -31,7 +31,6 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = self.subject.name;
     self.naviTheme = NavigationBarTheme_White;
-    [self yx_setupLeftBackBarButtonItem];
     [self setupUI];
     [self requestVolumes];
 }

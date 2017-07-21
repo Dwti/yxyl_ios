@@ -72,7 +72,7 @@
     }];
     
     UIImageView *timeIconImageView = [[UIImageView alloc] init];
-    timeIconImageView.image = [UIImage yx_createImageWithColor:[UIColor redColor]];
+    timeIconImageView.image = [UIImage imageNamed:@"时间图标"];
     [self.contentView addSubview:timeIconImageView];
     [timeIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);

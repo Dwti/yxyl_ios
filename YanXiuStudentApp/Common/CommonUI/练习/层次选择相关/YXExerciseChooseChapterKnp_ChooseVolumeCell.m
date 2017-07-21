@@ -18,7 +18,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage yx_createImageWithColor:[UIColor redColor]]];
+        self.accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"弹窗当前选择icon"]];
         [self.contentView addSubview:self.accessoryImageView];
     }
     return self;

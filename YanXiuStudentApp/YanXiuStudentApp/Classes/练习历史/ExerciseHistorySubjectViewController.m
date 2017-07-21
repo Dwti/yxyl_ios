@@ -29,7 +29,6 @@
     // Do any additional setup after loading the view.
     self.title = @"练习历史";
     self.naviTheme = NavigationBarTheme_White;
-    [self yx_setupLeftBackBarButtonItem];
     [self setupUI];
     [self requestHistorySubjects];
 }
