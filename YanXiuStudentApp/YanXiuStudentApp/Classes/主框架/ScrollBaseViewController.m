@@ -28,6 +28,7 @@
 
 - (void)setupBaseUI {
     self.scrollView = [[UIScrollView alloc]init];
+    self.scrollView.alwaysBounceVertical = YES;
     self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {

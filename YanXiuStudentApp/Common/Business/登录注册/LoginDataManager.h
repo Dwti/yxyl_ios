@@ -27,6 +27,8 @@
 #import "VerifyBindedMobileRequest.h"
 #import "YXProduceCodeByBindRequest.h"
 
+extern NSString *const kBindPhoneSuccessNotification;
+
 @interface LoginDataManager : NSObject
 
 // 请求登陆

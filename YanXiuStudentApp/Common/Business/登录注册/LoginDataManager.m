@@ -9,6 +9,8 @@
 #import "LoginDataManager.h"
 #import "YXRecordManager.h"
 
+NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification";
+
 @interface LoginDataManager ()
 
 @property (nonatomic, strong) YXLoginRequest *loginRequest;
@@ -241,7 +243,9 @@
             BLOCK_EXEC(completeBlock,retItem,error);
             return;
         }
+        [YXUserManager sharedManager].userModel.mobile = mobileNumber;
         BLOCK_EXEC(completeBlock,retItem,nil);
+        [[NSNotificationCenter defaultCenter]postNotificationName:kBindPhoneSuccessNotification object:nil];
     }];
 }
 

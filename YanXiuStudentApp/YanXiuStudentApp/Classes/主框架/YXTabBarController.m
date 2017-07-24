@@ -189,11 +189,13 @@
     [btn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateSelected];
 
-    UIImage *iconNormal = [UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 35, 35)];
+    UIImage *iconNormal = [UIImage imageNamed:[NSString stringWithFormat:@"%@icon正常态",title]];
+    UIImage *iconSelected = [UIImage imageNamed:[NSString stringWithFormat:@"%@icon选择态",title]];
     
     
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setImage:iconNormal forState:UIControlStateNormal];
+    [btn setImage:iconSelected forState:UIControlStateSelected];
 
     [btn sizeToFit];
     CGSize imageSize = btn.imageView.frame.size;
@@ -210,7 +212,7 @@
 
 - (void)refreshMineButton {
     NSURL *headUrl = [NSURL URLWithString:[YXUserManager sharedManager].userModel.head];
-    UIImage *defaultImage = [UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 35, 35)];
+    UIImage *defaultImage = [self.mineButton imageForState:UIControlStateNormal];
     WEAK_SELF
     [self.mineButton sd_setImageWithURL:headUrl forState:UIControlStateNormal placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         STRONG_SELF

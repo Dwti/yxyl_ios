@@ -355,7 +355,6 @@
 		7C03CA851EC15028003CA9C7 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C03CA831EC15028003CA9C7 /* ForgotPasswordViewController.m */; };
 		7C04C1C31E8A2AED0079F35C /* MistakeTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C21E8A2AED0079F35C /* MistakeTreeCell.m */; };
 		7C04C1C61E8A62050079F35C /* AccountIDInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C51E8A62050079F35C /* AccountIDInputView.m */; };
-		7C04C1C91E8BC8820079F35C /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1C81E8BC8820079F35C /* BindPhoneViewController.m */; };
 		7C04C1CF1E8BDFD80079F35C /* ModifyBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C04C1CE1E8BDFD80079F35C /* ModifyBindPhoneViewController.m */; };
 		7C05188C1CB4E0E000F4557D /* YXQASubmitSuccessView_Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C05188B1CB4E0E000F4557D /* YXQASubmitSuccessView_Phone.m */; };
 		7C05188F1CB4ED9300F4557D /* YXQAProgressView_Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C05188E1CB4ED9300F4557D /* YXQAProgressView_Phone.m */; };
@@ -532,6 +531,26 @@
 		7C3C14F91F23506B004DE584 /* MineActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C14F71F23506B004DE584 /* MineActionView.m */; };
 		7C3C14FC1F25900E004DE584 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C14FB1F25900E004DE584 /* SettingsViewController.m */; };
 		7C3C14FD1F25900E004DE584 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C14FB1F25900E004DE584 /* SettingsViewController.m */; };
+		7C3C15001F259FE5004DE584 /* ExtendTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C14FF1F259FE5004DE584 /* ExtendTextField.m */; };
+		7C3C15011F259FE5004DE584 /* ExtendTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C14FF1F259FE5004DE584 /* ExtendTextField.m */; };
+		7C3C15041F25A16D004DE584 /* MineInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15031F25A16D004DE584 /* MineInputView.m */; };
+		7C3C15051F25A16D004DE584 /* MineInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15031F25A16D004DE584 /* MineInputView.m */; };
+		7C3C15081F25A285004DE584 /* MinePhoneInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15071F25A285004DE584 /* MinePhoneInputView.m */; };
+		7C3C15091F25A285004DE584 /* MinePhoneInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15071F25A285004DE584 /* MinePhoneInputView.m */; };
+		7C3C150C1F25A60A004DE584 /* MineVerifyCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C150B1F25A60A004DE584 /* MineVerifyCodeInputView.m */; };
+		7C3C150D1F25A60A004DE584 /* MineVerifyCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C150B1F25A60A004DE584 /* MineVerifyCodeInputView.m */; };
+		7C3C15101F25A994004DE584 /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C150F1F25A994004DE584 /* BindPhoneViewController.m */; };
+		7C3C15111F25A994004DE584 /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C150F1F25A994004DE584 /* BindPhoneViewController.m */; };
+		7C3C15141F25E10A004DE584 /* VerifyPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15131F25E10A004DE584 /* VerifyPhoneViewController.m */; };
+		7C3C15151F25E10A004DE584 /* VerifyPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15131F25E10A004DE584 /* VerifyPhoneViewController.m */; };
+		7C3C15181F25E69F004DE584 /* MinePasswordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15171F25E69F004DE584 /* MinePasswordInputView.m */; };
+		7C3C15191F25E69F004DE584 /* MinePasswordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15171F25E69F004DE584 /* MinePasswordInputView.m */; };
+		7C3C151C1F25EBFD004DE584 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C151B1F25EBFD004DE584 /* ChangePasswordViewController.m */; };
+		7C3C151D1F25EBFD004DE584 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C151B1F25EBFD004DE584 /* ChangePasswordViewController.m */; };
+		7C3C15201F25F598004DE584 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C151F1F25F598004DE584 /* AboutViewController.m */; };
+		7C3C15211F25F598004DE584 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C151F1F25F598004DE584 /* AboutViewController.m */; };
+		7C3C15241F26D183004DE584 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15231F26D183004DE584 /* PrivacyPolicyViewController.m */; };
+		7C3C15251F26D183004DE584 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C15231F26D183004DE584 /* PrivacyPolicyViewController.m */; };
 		7C3CBF821DCAEC5C006AD382 /* YXBottomGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3CBF811DCAEC5C006AD382 /* YXBottomGradientView.m */; };
 		7C3CBF831DCAEC5C006AD382 /* YXBottomGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3CBF811DCAEC5C006AD382 /* YXBottomGradientView.m */; };
 		7C3D0B511DD1A1C4005ED76A /* YXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0B501DD1A1C4005ED76A /* YXNavigationController.m */; };
@@ -2150,6 +2169,26 @@
 		7C3C14F71F23506B004DE584 /* MineActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineActionView.m; sourceTree = "<group>"; };
 		7C3C14FA1F25900E004DE584 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		7C3C14FB1F25900E004DE584 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		7C3C14FE1F259FE5004DE584 /* ExtendTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendTextField.h; sourceTree = "<group>"; };
+		7C3C14FF1F259FE5004DE584 /* ExtendTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendTextField.m; sourceTree = "<group>"; };
+		7C3C15021F25A16D004DE584 /* MineInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineInputView.h; sourceTree = "<group>"; };
+		7C3C15031F25A16D004DE584 /* MineInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineInputView.m; sourceTree = "<group>"; };
+		7C3C15061F25A285004DE584 /* MinePhoneInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinePhoneInputView.h; sourceTree = "<group>"; };
+		7C3C15071F25A285004DE584 /* MinePhoneInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinePhoneInputView.m; sourceTree = "<group>"; };
+		7C3C150A1F25A60A004DE584 /* MineVerifyCodeInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineVerifyCodeInputView.h; sourceTree = "<group>"; };
+		7C3C150B1F25A60A004DE584 /* MineVerifyCodeInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineVerifyCodeInputView.m; sourceTree = "<group>"; };
+		7C3C150E1F25A994004DE584 /* BindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneViewController.h; sourceTree = "<group>"; };
+		7C3C150F1F25A994004DE584 /* BindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
+		7C3C15121F25E10A004DE584 /* VerifyPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyPhoneViewController.h; sourceTree = "<group>"; };
+		7C3C15131F25E10A004DE584 /* VerifyPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyPhoneViewController.m; sourceTree = "<group>"; };
+		7C3C15161F25E69F004DE584 /* MinePasswordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinePasswordInputView.h; sourceTree = "<group>"; };
+		7C3C15171F25E69F004DE584 /* MinePasswordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinePasswordInputView.m; sourceTree = "<group>"; };
+		7C3C151A1F25EBFD004DE584 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		7C3C151B1F25EBFD004DE584 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		7C3C151E1F25F598004DE584 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		7C3C151F1F25F598004DE584 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		7C3C15221F26D183004DE584 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		7C3C15231F26D183004DE584 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		7C3CBF801DCAEC5C006AD382 /* YXBottomGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBottomGradientView.h; sourceTree = "<group>"; };
 		7C3CBF811DCAEC5C006AD382 /* YXBottomGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBottomGradientView.m; sourceTree = "<group>"; };
 		7C3D0B4F1DD1A1C4005ED76A /* YXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNavigationController.h; sourceTree = "<group>"; };
@@ -3582,6 +3621,8 @@
 				7CE55E3F1DCC6AA700F36352 /* YXNoFloatingHeaderFooterTableView.m */,
 				E9E6C2FC1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.h */,
 				E9E6C2FD1F023D1F00F93E98 /* CollectionViewEqualSpaceFlowLayout.m */,
+				7C3C14FE1F259FE5004DE584 /* ExtendTextField.h */,
+				7C3C14FF1F259FE5004DE584 /* ExtendTextField.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -4120,6 +4161,14 @@
 				7CA5A98C1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m */,
 				7C3C14F61F23506B004DE584 /* MineActionView.h */,
 				7C3C14F71F23506B004DE584 /* MineActionView.m */,
+				7C3C15021F25A16D004DE584 /* MineInputView.h */,
+				7C3C15031F25A16D004DE584 /* MineInputView.m */,
+				7C3C15061F25A285004DE584 /* MinePhoneInputView.h */,
+				7C3C15071F25A285004DE584 /* MinePhoneInputView.m */,
+				7C3C150A1F25A60A004DE584 /* MineVerifyCodeInputView.h */,
+				7C3C150B1F25A60A004DE584 /* MineVerifyCodeInputView.m */,
+				7C3C15161F25E69F004DE584 /* MinePasswordInputView.h */,
+				7C3C15171F25E69F004DE584 /* MinePasswordInputView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4139,6 +4188,16 @@
 				7CB31F5B1F233F37006A093F /* FeedbackViewController.m */,
 				7C3C14FA1F25900E004DE584 /* SettingsViewController.h */,
 				7C3C14FB1F25900E004DE584 /* SettingsViewController.m */,
+				7C3C150E1F25A994004DE584 /* BindPhoneViewController.h */,
+				7C3C150F1F25A994004DE584 /* BindPhoneViewController.m */,
+				7C3C15121F25E10A004DE584 /* VerifyPhoneViewController.h */,
+				7C3C15131F25E10A004DE584 /* VerifyPhoneViewController.m */,
+				7C3C151A1F25EBFD004DE584 /* ChangePasswordViewController.h */,
+				7C3C151B1F25EBFD004DE584 /* ChangePasswordViewController.m */,
+				7C3C151E1F25F598004DE584 /* AboutViewController.h */,
+				7C3C151F1F25F598004DE584 /* AboutViewController.m */,
+				7C3C15221F26D183004DE584 /* PrivacyPolicyViewController.h */,
+				7C3C15231F26D183004DE584 /* PrivacyPolicyViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -7177,6 +7236,7 @@
 				300084361DCB098C0070FA08 /* EditPictureViewController.m in Sources */,
 				7C75A2721ECD4DDC001A3EB3 /* UIButton+WaveHighlight.m in Sources */,
 				F773C90A1C4627F400AAE684 /* YXMasterProgressView.m in Sources */,
+				7C3C15051F25A16D004DE584 /* MineInputView.m in Sources */,
 				0FB211C11C57463000594BEA /* YXVerifyCodeViewController_Pad.m in Sources */,
 				7C1C3D091E52BAE900B156A8 /* MistakeQuestionItemCell.m in Sources */,
 				7CF6C8361C71C41F00AE88F8 /* YXQAAddPhotoCell_Pad.m in Sources */,
@@ -7259,6 +7319,7 @@
 				0F235B381C5B6D7700CFCAE3 /* UIImagePickerController+YXNonRotating.m in Sources */,
 				7CEE06EE1DC3020C00AA898B /* TreeBaseViewController.m in Sources */,
 				F773C9421C4627F400AAE684 /* (null) in Sources */,
+				7C3C15011F259FE5004DE584 /* ExtendTextField.m in Sources */,
 				F773C9431C4627F400AAE684 /* (null) in Sources */,
 				F773C9441C4627F400AAE684 /* (null) in Sources */,
 				0FEA8F891C7AA797003077A2 /* YXGetPracticeHistoryByKnowRequest.m in Sources */,
@@ -7310,6 +7371,7 @@
 				7CFBF3AF1C5EFAAF00E745F3 /* YXQASheetView_Pad.m in Sources */,
 				7C3BB4CD1C5766A00084AF24 /* YXSideMenuNaviDateView_Pad.m in Sources */,
 				7CF6C8461C72FF3400AE88F8 /* YXQAAnalysisSubjectiveView_Pad.m in Sources */,
+				7C3C15151F25E10A004DE584 /* VerifyPhoneViewController.m in Sources */,
 				7C953B301C5A16F700A9A7AF /* YXQAAnalysisMultiChooseView_Pad.m in Sources */,
 				E92610BC1F0A19C80084EFA5 /* QAReportGroupHeaderView.m in Sources */,
 				7CFAADD41DACF22100F13532 /* QASubjectiveQuestionViewContainer.m in Sources */,
@@ -7358,6 +7420,7 @@
 				0FECC6401C5F2E0E00E8F48E /* YXClassAddViewController_Pad.m in Sources */,
 				7CF6C8391C71CBE500AE88F8 /* YXQASubjectiveView_Pad.m in Sources */,
 				0FB211B21C57268E00594BEA /* YXWeixinSSOManager.m in Sources */,
+				7C3C15191F25E69F004DE584 /* MinePasswordInputView.m in Sources */,
 				0FECC6731C5F321400E8F48E /* YXExitClassRequest.m in Sources */,
 				F773C9831C4627F400AAE684 /* YXQASheetView.m in Sources */,
 				7CA98EF41EC2E5F0000D49DE /* SchoolSearchAreaView.m in Sources */,
@@ -7389,6 +7452,7 @@
 				0FE6C9EF1C5A1020005FBD5B /* YXProvinceList.m in Sources */,
 				7C953B041C58EBF200A9A7AF /* YXQAAnalysisAnalysisCell_Pad.m in Sources */,
 				7C2991BA1E0232C200AE921C /* QACoreTextViewStringScanner.m in Sources */,
+				7C3C150D1F25A60A004DE584 /* MineVerifyCodeInputView.m in Sources */,
 				0F235B2E1C5B0DE100CFCAE3 /* YXCitySelectViewController_Pad.m in Sources */,
 				7C953AEC1C58B5A300A9A7AF /* YXQAChooseView_Pad.m in Sources */,
 				7C78418C1E2DF12000755BC0 /* QAMultiChooseQuestionRedoView.m in Sources */,
@@ -7515,6 +7579,7 @@
 				7CFAADB31DAC95D800F13532 /* QAComlexQuestionAnswerBaseView.m in Sources */,
 				7C1C3D051E52BA6000B156A8 /* MistakeQuestionSheetView.m in Sources */,
 				0F2B6EC11C7592D90055114E /* YXAreaSeperatorView.m in Sources */,
+				7C3C151D1F25EBFD004DE584 /* ChangePasswordViewController.m in Sources */,
 				7CA98EE81EC2BB6E000D49DE /* ClassNumberInputView.m in Sources */,
 				7C7BF81C1E0CCDF6007B017C /* YXUpdateUserInfoHelper.m in Sources */,
 				7CFD1EA91D51BF35002C2624 /* YXSubjectiveDetailViewController.m in Sources */,
@@ -7546,6 +7611,7 @@
 				7C7BF7D61E0A6270007B017C /* QASubjectiveFillPlaceholderView.m in Sources */,
 				F773CA111C4627F400AAE684 /* (null) in Sources */,
 				E92610C81F0A1A1D0084EFA5 /* QAAnalysisDifficultyCell.m in Sources */,
+				7C3C15211F25F598004DE584 /* AboutViewController.m in Sources */,
 				7CFAAD9F1DAC8A7300F13532 /* QASlideItemBaseView.m in Sources */,
 				F773CA101C4627F400AAE684 /* (null) in Sources */,
 				F773CA121C4627F400AAE684 /* TestPostRequest.m in Sources */,
@@ -7645,6 +7711,7 @@
 				E92610C71F0A1A1A0084EFA5 /* QAAnalysisScoreCell.m in Sources */,
 				7C953B3F1C5B117D00A9A7AF /* YXQAYueCell_Pad.m in Sources */,
 				0F2B6EC51C7592E30055114E /* YXSchoolSearchHeaderView.m in Sources */,
+				7C3C15091F25A285004DE584 /* MinePhoneInputView.m in Sources */,
 				7C7841C91E31FF3300755BC0 /* QARedoListenComplexView.m in Sources */,
 				F7A3B4B51C571E860037245A /* YXSideMenuViewController_Pad.m in Sources */,
 				0FB211AE1C57268E00594BEA /* YXOauthLoginRequest.m in Sources */,
@@ -7707,6 +7774,7 @@
 				0F2B6EC41C7592E10055114E /* YXSchoolSearchCell.m in Sources */,
 				7CA98EF01EC2E08F000D49DE /* SchoolSearchViewController.m in Sources */,
 				0FECC6461C5F2ED000E8F48E /* YXHomeworkViewController_Pad.m in Sources */,
+				7C3C15251F26D183004DE584 /* PrivacyPolicyViewController.m in Sources */,
 				F773CA8C1C4627F400AAE684 /* YXFeedbackRequest.m in Sources */,
 				7C953AFB1C58B68600A9A7AF /* YXQAFillBlankView_Pad.m in Sources */,
 				7CD58E521D5C35AF00492837 /* YXConnectClassifyDetailViewController.m in Sources */,
@@ -7716,6 +7784,7 @@
 				7CA30DE81DC33AB0008D4C38 /* TreeBaseCell.m in Sources */,
 				7C3D0B9D1DD1A8B2005ED76A /* FileLogger.m in Sources */,
 				7C1C3CFD1E51635000B156A8 /* QAUnknownQuestionView.m in Sources */,
+				7C3C15111F25A994004DE584 /* BindPhoneViewController.m in Sources */,
 				7C69F2391E6D3E3F0076984F /* MistakeRedoPageRequest.m in Sources */,
 				7C8358831DC1DAF1007BB067 /* GetKnpListRequest.m in Sources */,
 				7C9F6A801D6ACFDF0077C486 /* YXServerEnvHelper.m in Sources */,
@@ -7789,6 +7858,7 @@
 				7CFD1E7F1D5069FB002C2624 /* YXQuestionFactory.m in Sources */,
 				F7754EE61C4E43860002FE45 /* YXFeedbackViewController.m in Sources */,
 				7CED7BE01DC8362E00A2EB0D /* SearchClassViewController.m in Sources */,
+				7C3C15001F259FE5004DE584 /* ExtendTextField.m in Sources */,
 				F7754EE91C4E43860002FE45 /* YXQAReportViewController.m in Sources */,
 				7C81F4331E163F98009CA400 /* AlbumListView.m in Sources */,
 				F7754EEC1C4E43860002FE45 /* YXMockPageRequest.m in Sources */,
@@ -7975,6 +8045,7 @@
 				300084311DCB08AF0070FA08 /* ScaleView.m in Sources */,
 				7C5A97F91E8E2376005E56B6 /* MistakeKnpListRequest.m in Sources */,
 				0FDD9BDB1C58B5EB00DBA379 /* YXPhoneInputView.m in Sources */,
+				7C3C15101F25A994004DE584 /* BindPhoneViewController.m in Sources */,
 				43B1016F1F21C6AF00A69E1A /* ExerciseHistoryListCell.m in Sources */,
 				7C3D0B881DD1A6C8005ED76A /* HttpBaseRequest.m in Sources */,
 				7C2903C71EE686A3005F7F55 /* QAClozeBlankView.m in Sources */,
@@ -8004,6 +8075,7 @@
 				7CCF96AD1D546A8E002B2F9F /* YXQAReportCorrectRateCell.m in Sources */,
 				0FBD5AD71C4F3338003B7D6D /* NSObject+YXNetworkMethod.m in Sources */,
 				7CFD1EA01D519B01002C2624 /* YXYesNoDetailViewController.m in Sources */,
+				7C3C15201F25F598004DE584 /* AboutViewController.m in Sources */,
 				7C2991A31DFE407500AE921C /* EEAlertButton.m in Sources */,
 				7C78417A1E2DCBEF00755BC0 /* QAComlexQuestionRedoBaseView.m in Sources */,
 				0FB211B31C5726B100594BEA /* YXLoginRequest.m in Sources */,
@@ -8102,7 +8174,6 @@
 				7CA5A9891F1DDB54004F34D3 /* MyProfileViewController.m in Sources */,
 				7C3D0B591DD1A215005ED76A /* BaseViewController.m in Sources */,
 				0F0D6E561C6051130034FC6C /* MJRefreshBaseView.m in Sources */,
-				7C04C1C91E8BC8820079F35C /* BindPhoneViewController.m in Sources */,
 				7C3D0B711DD1A53A005ED76A /* InstantRecordEntity.m in Sources */,
 				E9E6C2E91F02005300F93E98 /* QAAnalysisAnalysisCell.m in Sources */,
 				0FECC6761C5F321400E8F48E /* YXJoinClassRequest.m in Sources */,
@@ -8177,6 +8248,7 @@
 				7C2903621ED58A28005F7F55 /* QAReadStemCell.m in Sources */,
 				F7754FCA1C4E43860002FE45 /* YXAnalysisCell.m in Sources */,
 				30894B101DC32B630045E762 /* QAClassifyClassesCell.m in Sources */,
+				7C3C150C1F25A60A004DE584 /* MineVerifyCodeInputView.m in Sources */,
 				7CFD1EA81D51BF35002C2624 /* YXSubjectiveDetailViewController.m in Sources */,
 				7C2903BD1EE65780005F7F55 /* QAClozeItemInfo.m in Sources */,
 				0FECC66A1C5F321400E8F48E /* YXHomeworkListRequest.m in Sources */,
@@ -8190,6 +8262,7 @@
 				7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */,
 				7C5CA2981EB2F21B001734F3 /* UIView+Loading.m in Sources */,
 				F7754FD71C4E43860002FE45 /* TestPostRequest.m in Sources */,
+				7C3C15141F25E10A004DE584 /* VerifyPhoneViewController.m in Sources */,
 				0FBD5B071C4F3344003B7D6D /* YXCommonButton.m in Sources */,
 				F7754FD91C4E43860002FE45 /* YXHomeworkToDoViewController.m in Sources */,
 				0FE6CA141C5A11D3005FBD5B /* YXDelMistakeRequest.m in Sources */,
@@ -8218,6 +8291,7 @@
 				F7754FF61C4E43860002FE45 /* YXApnsHomeworkViewController.m in Sources */,
 				F7754FF91C4E43860002FE45 /* YXJieXiFoldUnfoldViewController.m in Sources */,
 				7CFD1E8C1D5098E9002C2624 /* YXComplexQuestionDetailViewController.m in Sources */,
+				7C3C151C1F25EBFD004DE584 /* ChangePasswordViewController.m in Sources */,
 				7C2E8A6E1DBDBAE600C8EB7F /* QAClozeQuestionCell.m in Sources */,
 				7CBFF5511E88FA3D00C363BD /* MistakeKnpViewController.m in Sources */,
 				7C953B2C1C5A156D00A9A7AF /* YXQAAnalysisDataConfig.m in Sources */,
@@ -8249,6 +8323,7 @@
 				7C2729F71F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */,
 				7CA92FE81EC983FE00527D13 /* HomeworkMainViewController.m in Sources */,
 				E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */,
+				7C3C15181F25E69F004DE584 /* MinePasswordInputView.m in Sources */,
 				7C9092861E0A1B1F0048C44F /* JoinClassPromptView.m in Sources */,
 				F77550031C4E43860002FE45 /* YXGuideViewController.m in Sources */,
 				E9E6554B1EFA6EA400E56881 /* QAReportQuestionItemCell.m in Sources */,
@@ -8256,6 +8331,7 @@
 				7CF6C89C1C7456B300AE88F8 /* YXUploadImageRequest.m in Sources */,
 				7C027F3D1EB1F77E001682EA /* CloneCategory.m in Sources */,
 				0F68BDFD1C73298F00AB3382 /* YXRankRequest.m in Sources */,
+				7C3C15081F25A285004DE584 /* MinePhoneInputView.m in Sources */,
 				F775500A1C4E43860002FE45 /* YXAreaViewController.m in Sources */,
 				7C2B66F41DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
 				7CA92FE41EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */,
@@ -8288,6 +8364,7 @@
 				F775501A1C4E43860002FE45 /* YXQATimer.m in Sources */,
 				7C29034C1ED3E0EF005F7F55 /* QAQuestionStemCell.m in Sources */,
 				F775501E1C4E43860002FE45 /* YXModifyPasswordViewController.m in Sources */,
+				7C3C15241F26D183004DE584 /* PrivacyPolicyViewController.m in Sources */,
 				7CFAADE31DACF38400F13532 /* QAListenQuestionViewContainer.m in Sources */,
 				7C2729D61F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */,
 				7C3D0B631DD1A527005ED76A /* v1_2Model.xcdatamodeld in Sources */,
@@ -8406,6 +8483,7 @@
 				7C2729D81F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */,
 				7CB31F5C1F233F37006A093F /* FeedbackViewController.m in Sources */,
 				7C1A62A31E2F0920009BA65C /* QAFillQuestionRedoView.m in Sources */,
+				7C3C15041F25A16D004DE584 /* MineInputView.m in Sources */,
 				F77550641C4E43860002FE45 /* (null) in Sources */,
 				0FE6CA131C5A11CA005FBD5B /* YXInitRequest.m in Sources */,
 				7C027F461EB2CC70001682EA /* PagedListFetcherBase.m in Sources */,

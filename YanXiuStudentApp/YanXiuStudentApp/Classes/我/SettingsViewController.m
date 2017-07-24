@@ -9,6 +9,10 @@
 #import "SettingsViewController.h"
 #import "MineItemCell.h"
 #import "MineActionView.h"
+#import "BindPhoneViewController.h"
+#import "VerifyPhoneViewController.h"
+#import "ChangePasswordViewController.h"
+#import "AboutViewController.h"
 
 typedef NS_ENUM(NSUInteger, SettingItemType) {
     SettingItem_BindPhone,
@@ -35,6 +39,7 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
         self.itemArray = @[@(SettingItem_BindPhone),@(SettingItem_ChangePassword),@(SettingItem_About)];
     }
     [self setupUI];
+    [self setupObserver];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +77,15 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
     }];
 }
 
+- (void)setupObserver {
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kBindPhoneSuccessNotification object:nil]subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        [self.navigationController popToViewController:self animated:YES];
+        [self.tableView reloadData];
+    }];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.itemArray.count;
@@ -105,6 +119,22 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SettingItemType type = self.itemArray[indexPath.row].integerValue;
+    if (type == SettingItem_BindPhone) {
+        if (isEmpty([YXUserManager sharedManager].userModel.mobile)) {
+            BindPhoneViewController *vc = [[BindPhoneViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else {
+            VerifyPhoneViewController *vc = [[VerifyPhoneViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }        
+    }else if (type == SettingItem_ChangePassword) {
+        ChangePasswordViewController *vc = [[ChangePasswordViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        AboutViewController *vc = [[AboutViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

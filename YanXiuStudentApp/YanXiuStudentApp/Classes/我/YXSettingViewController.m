@@ -115,7 +115,7 @@
                 if (!isEmpty([YXUserManager sharedManager].userModel.mobile)) {
                     vc = [[ModifyBindPhoneViewController alloc] init];
                 } else {
-                    vc = [[BindPhoneViewController alloc] initWithType:BindMobileTypeBind];
+//                    vc = [[BindPhoneViewController alloc] initWithType:BindMobileTypeBind];
                 }
             }
         }
