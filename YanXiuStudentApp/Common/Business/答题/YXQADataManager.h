@@ -10,6 +10,7 @@
 #import "YXQAUploadImageManager.h"
 
 static NSString *const YXSubmitQuestionSuccessNotification = @"kYXSubmitQuestionSuccessNotification";
+static NSString *const YXSubmitQuestionPaperNotExistNotification = @"YXSubmitQuestionPaperNotExistNotification";
 static NSString *const YXFavorChangedNotification = @"kYXFavorChangedNotification";
 static NSString *const YXSavePaperSuccessNotification = @"YXSavePaperSuccessNotification";
 

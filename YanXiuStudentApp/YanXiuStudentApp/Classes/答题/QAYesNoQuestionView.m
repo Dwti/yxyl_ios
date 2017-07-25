@@ -70,6 +70,11 @@
         cell.isLast = YES;
     }
     NSInteger answerIndex = indexPath.row - 2;
+    if (answerIndex == 0) {
+        answerIndex = 1;
+    }else {
+        answerIndex = 0;
+    }
     if ([self.data.myAnswers[answerIndex] boolValue]) {
         cell.choosed = YES;
     }
@@ -81,6 +86,11 @@
         YXQAAnswerState fromState = [self.data answerState];
         
         NSInteger answerIndex = indexPath.row - 2;
+        if (answerIndex == 0) {
+            answerIndex = 1;
+        }else {
+            answerIndex = 0;
+        }
         BOOL choose = [self.data.myAnswers[answerIndex] boolValue];
         for (int i = 0; i < [self.data.myAnswers count]; i++) {
             self.data.myAnswers[i] = @(NO);

@@ -59,13 +59,15 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _brand = [YXConfigManager sharedInstance].deviceType;
         [self setCurrentNetType];
         
-        _osModel = [UIDevice currentDevice].model;
+        _osModel = @"ios";
+        _osVer = [UIDevice currentDevice].systemVersion;
         _appVersion = [YXConfigManager sharedInstance].clientVersion;
         _content = @"";
         _operType = @"app.upload.log";
-        _phone = [YXUserManager sharedManager].userModel.mobile;
+        _phone = [YXUserManager sharedManager].userModel.mobile? :@"";
         _remoteIp = @"";
         _mode = [YXConfigManager sharedInstance].mode;
+        _debugtoken = @"";
         self.urlHead = [YXConfigManager sharedInstance].initializeUrl;
     }
 
@@ -179,11 +181,11 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 - (void)showUpgradeForInit:(BOOL)isInit
 {
-    if (!self.item || self.item.body.count <= 0) {
+    if (!self.item || self.item.data.count <= 0) {
         return;
     }
     
-    self.body = self.item.body[0];
+    self.body = self.item.data[0];
     
     if ([self.body isTest]) { //测试环境
 #ifndef DEBUG
@@ -206,6 +208,9 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     [self.promptView setCancelAction:^{
         STRONG_SELF
         [self.alertView hide];
+        if ([self.body isForce]) {
+            exit(0);
+        }
     }];
     
     [self.promptView setUpdateAction:^{

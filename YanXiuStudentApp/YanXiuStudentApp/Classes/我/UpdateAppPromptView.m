@@ -99,7 +99,8 @@
         }
     }];
     
-    if (![self.body isForce]) {
+//    if (![self.body isForce])
+    {
         [self.containerView addSubview:self.cancelButton];
         [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentLabel.mas_bottom).offset(15);
@@ -117,16 +118,17 @@
             make.height.mas_equalTo(42);
             make.width.equalTo(self.cancelButton.mas_width);
         }];
-    } else {
-        [self.containerView addSubview:self.updateButton];
-        [self.updateButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentLabel.mas_bottom).offset(15);
-            make.bottom.equalTo(self.containerView.mas_bottom).offset(-20);
-            make.left.equalTo(self.containerView).offset(20);
-            make.right.equalTo(self.containerView).offset(-20);
-            make.height.mas_equalTo(42);
-        }];
     }
+//    else {
+//        [self.containerView addSubview:self.updateButton];
+//        [self.updateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.contentLabel.mas_bottom).offset(15);
+//            make.bottom.equalTo(self.containerView.mas_bottom).offset(-20);
+//            make.left.equalTo(self.containerView).offset(20);
+//            make.right.equalTo(self.containerView).offset(-20);
+//            make.height.mas_equalTo(42);
+//        }];
+//    }
 }
 
 - (void)setBody:(YXInitRequestItem_Body *)body {
@@ -136,6 +138,9 @@
     self.contentLabel.text = body.content;
     
     [self setupLayout];
+    if ([self.body isForce]) {
+        [self.cancelButton setTitle:@"退出" forState:UIControlStateNormal];
+    }
 }
 
 @end

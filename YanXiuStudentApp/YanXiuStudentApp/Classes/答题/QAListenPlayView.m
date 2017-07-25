@@ -286,7 +286,9 @@
 }
 
 - (void)stop {
-    [self.player pause];
+    self.player = nil;
+    self.playProgress = 0;
+    [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
     [self updateUI];
 }
 

@@ -82,6 +82,20 @@
         [self.navigationController popViewControllerAnimated:YES];
         BLOCK_EXEC(self.buttonActionBlock,item);
     }];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSubmitQuestionPaperNotExistNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        [self.uploadImageView removeFromSuperview];
+        [self.view nyx_stopLoading];
+        [self.view nyx_showToast:@"当前作业已被老师删除"];
+        __block UIViewController *vc = nil;
+        [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[QAAnswerQuestionViewController class]]) {
+                vc = self.navigationController.viewControllers[idx-1];
+                *stop = YES;
+            }
+        }];
+        [self.navigationController popToViewController:vc animated:YES];
+    }];
 }
 
 - (void)backAction {
