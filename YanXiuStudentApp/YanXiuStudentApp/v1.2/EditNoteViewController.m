@@ -7,183 +7,89 @@
 //
 
 #import "EditNoteViewController.h"
-#import "YXBarButtonItemCustomView.h"
-#import "UIViewController+YXNavigationItem.h"
-#import "YXPhotoBrowser.h"
-#import "YXPhotoListViewController.h"
 #import "MistakeQuestionManager.h"
-#import "MistakeNoteTableViewCell.h"
+#import "QANoteImagesView.h"
 
-
-@interface EditNoteViewController () <
-YXQASubjectiveAddPhotoHandlerDelegate,
-UITableViewDelegate,
-UITableViewDataSource
->
-@property (nonatomic, strong) YXQASubjectiveAddPhotoHandler *addPhotoHandler;
+@interface EditNoteViewController ()
+@property (nonatomic, strong) SAMTextView *textView;
+@property (nonatomic, strong) QANoteImagesView *imagesView;
 @property (nonatomic, strong) QAQuestion *editItem;
-@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation EditNoteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"笔记";
+    self.naviTheme = NavigationBarTheme_White;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    UIButton *naviRightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 35)];
+    [naviRightButton setTitle:@"保存" forState:UIControlStateNormal];
+    [naviRightButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
+    [naviRightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [naviRightButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateHighlighted];
+    naviRightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    naviRightButton.layer.cornerRadius = 6;
+    naviRightButton.layer.borderWidth = 2;
+    naviRightButton.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
+    naviRightButton.clipsToBounds = YES;
+    WEAK_SELF
+    [[naviRightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+        [self saveBarButtonTapped];
+    }];
+    [self nyx_setupRightWithCustomView:naviRightButton];
     [self setupUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-}
-
-
 #pragma mark - UI
 - (void)setupUI {
-    self.addPhotoHandler = [[YXQASubjectiveAddPhotoHandler alloc]initWithViewController:self];
-    self.addPhotoHandler.delegate = self;
-    
-    [self setupBG];
-    [self setupTitle];
-    [self setupLeft];
-    [self setupRight];
-    [self setupContentView];
-    [self setupMaskView];
-    [self setupRAC];
-}
-
-- (void)setupBG{
-    UIImageView *bgView = [[UIImageView alloc]init];
-    bgView.image = [UIImage imageNamed:@"桌面"];
-    bgView.userInteractionEnabled = YES;
-    [self.view addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    self.textView = [[SAMTextView alloc]init];
+    self.textView.text = self.editItem.noteText;
+    self.textView.font = [UIFont systemFontOfSize:17];
+    self.textView.textColor = [UIColor colorWithHexString:@"333333"];
+    NSString *placeholderStr = @"请输入笔记详情";
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:placeholderStr];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"cccccc"] range:NSMakeRange(0, placeholderStr.length)];
+    [attrStr addAttribute:NSFontAttributeName value:self.textView.font range:NSMakeRange(0, placeholderStr.length)];
+    self.textView.attributedPlaceholder = attrStr;
+    self.textView.textContainerInset = UIEdgeInsetsMake(25, 15, 25, 15);
+    [self.contentView addSubview:self.textView];
+    CGSize size = [self.textView sizeThatFits:CGSizeMake(SCREEN_WIDTH, 99999)];
+    CGFloat height = MAX(size.height, 200);
+    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(1);
+        make.height.mas_equalTo(height);
     }];
-    UIImage *bookImage = [UIImage imageNamed:@"book"];
-    bookImage = [bookImage stretchableImageWithLeftCapWidth:50 topCapHeight:50];
-    UIImageView *bookImageView = [[UIImageView alloc]initWithImage:bookImage];
-    bookImageView.userInteractionEnabled = YES;
-    [self.view addSubview:bookImageView];
-    [bookImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(66, 0, 3, 2));
-    }];
-}
-
-- (void)setupTitle{
-    UIImageView *bgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"重新做题"]];
-    [self.view addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(26);
-        make.centerX.mas_equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(146, 40));
-    }];
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor colorWithHexString:@"006666"];
-    label.text = @"笔记";
-    label.font = [UIFont boldSystemFontOfSize:17];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.layer.shadowColor = [UIColor colorWithHexString:@"33ffff"].CGColor;
-    label.layer.shadowRadius = 0;
-    label.layer.shadowOffset = CGSizeMake(0, 1);
-    label.layer.shadowOpacity = 1;
-    [bgView addSubview:label];
-    
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(2);
-        make.left.mas_equalTo(45);
-        make.right.mas_equalTo(-12);
-    }];
-}
-
-- (void)setupRight{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"保存"] forState:UIControlStateNormal];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(26);
-        make.size.mas_equalTo(CGSizeMake(56, 40));
-    }];
-    [button addTarget:self action:@selector(saveBarButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)setupLeft {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"取消icon"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"取消icon-按下"] forState:UIControlStateHighlighted];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10 - 28);
-        make.top.mas_equalTo(26 - 28);
-        make.size.mas_equalTo(CGSizeMake(28*3, 28*3));
-    }];
-    [button addTarget:self action:@selector(backBarButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)setupContentView {
-    self.tableView = [[UITableView alloc] init];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(66, 10, 30, 17));
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    line.layer.shadowOffset = CGSizeMake(0, 1);
+    line.layer.shadowRadius = 1;
+    line.layer.shadowOpacity = 0.02;
+    line.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.textView.mas_bottom);
+        make.height.mas_equalTo(1);
     }];
     
-    [self.tableView registerClass:[MistakeNoteTableViewCell class] forCellReuseIdentifier:@"MistakeNoteTableViewCell"];
-}
-
-- (void)setupMaskView{
-    UIImageView *maskView = [[UIImageView alloc]initWithImage:[UIImage stretchImageNamed:@"遮罩"]];
-    [self.view addSubview:maskView];
-    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(66, 10, 30, 17));
+    self.imagesView = [[QANoteImagesView alloc]init];
+    [self.imagesView updateWithPhotos:self.editItem.noteImages editable:YES];
+    self.imagesView.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    self.imagesView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.imagesView.layer.shadowRadius = 1;
+    self.imagesView.layer.shadowOpacity = 0.02;
+    self.imagesView.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
+    [self.contentView addSubview:self.imagesView];
+    [self.imagesView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(line.mas_bottom);
+        make.height.mas_equalTo(105);
+        make.bottom.mas_equalTo(-40);
     }];
-}
-
-- (void)setupRAC {
-    WEAK_SELF;
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(id x) {
-        STRONG_SELF;
-        [self keyboardWillShow:x];
-    }];
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillHideNotification object:nil] subscribeNext:^(id x) {
-        STRONG_SELF;
-        [self keyboardWillHide:x];
-    }];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    CGRect keyboardFrame;
-    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    
-    UIViewAnimationCurve curve = (UIViewAnimationCurve)((NSNumber *)[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey]).intValue;
-    NSTimeInterval duration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationOptions options = curve << 16;
-    [UIView animateWithDuration:duration delay:0 options:options animations:^{
-        [self resetViewWithKeyboardHeight:CGRectGetHeight(keyboardFrame)]; 
-    } completion:nil];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    UIViewAnimationCurve curve = (UIViewAnimationCurve)((NSNumber *)[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey]).intValue;
-    NSTimeInterval duration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationOptions options = curve << 16;
-    [UIView animateWithDuration:duration delay:0 options:options animations:^{
-        [self resetViewWithKeyboardHeight:0];
-    } completion:nil];
-}
-
-- (void)resetViewWithKeyboardHeight:(CGFloat)keyboardHeight {
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0);
+    [self.view sendSubviewToBack:self.imagesView];
 }
 
 #pragma mark - Setter
@@ -200,17 +106,18 @@ UITableViewDataSource
 #pragma mark - Actions
 - (void)saveBarButtonTapped {
     [self.view endEditing:YES];
-    
+    self.editItem.noteText = self.textView.text;
     if (isEmpty(self.editItem.noteText)) {
         self.editItem.noteText = @"";
     }
     
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
+    [self nyx_disableRightNavigationItem];
     [[MistakeQuestionManager sharedInstance] saveMistakeRedoNoteWithQuestion:self.editItem completeBlock:^(MistakeRedoNoteItem *item, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
-        
+        [self.view nyx_stopLoading];
+        [self nyx_enableRightNavigationItem];
         if (error) {
             [self yx_showToast:error.localizedDescription];
             return;
@@ -222,71 +129,4 @@ UITableViewDataSource
     }];
 }
 
-- (void)backBarButtonTapped {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - TableView DataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [MistakeNoteTableViewCell heightForNoteWithQuestion:self.editItem isEditable:YES];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    MistakeNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MistakeNoteTableViewCell" forIndexPath:indexPath];
-    
-    cell.isEditable = YES;
-    cell.questionItem = self.editItem;
-    cell.delegate = self.addPhotoHandler;
-    [cell reloadViewWithArray:self.editItem.noteImages addEnable:YES];
-    
-    WEAK_SELF
-    [cell setTextDidChange:^(NSString *text) {
-        STRONG_SELF
-        self.editItem.noteText = text;
-    }];
-    
-    [cell setPhotosChangedBlock:^(NSArray *images) {
-       STRONG_SELF
-//        self.editItem.noteImages = images;
-    }];
-    
-    return cell;
-}
-
-
-#pragma mark - YXQASubjectiveAddPhotoHandlerDelegate
-- (UIViewController *)photoListVCWithViewModel:(YXAlbumViewModel *)viewModel title:(NSString *)title{
-    UIViewController *viewController = [[YXPhotoListViewController alloc] initWithViewModel:viewModel];
-    
-    viewController.title = title;
-    UINavigationController *navi = [[YXNavigationController alloc]initWithRootViewController:viewController];
-    return navi;
-}
-
-- (MWPhotoBrowser *)photoBrowserWithTitle:(NSString *)title currentIndex:(NSInteger)index canDelete:(BOOL)canDelete{
-    YXPhotoBrowser * photoBrowser = [[YXPhotoBrowser alloc] initWithDelegate:self.addPhotoHandler];
-    photoBrowser.title = title;
-    photoBrowser.displayActionButton = NO;
-    photoBrowser.displayNavArrows = NO;
-    photoBrowser.displaySelectionButtons = NO;
-    photoBrowser.alwaysShowControls = YES;
-    photoBrowser.zoomPhotosToFill = YES;
-    photoBrowser.enableGrid = NO;
-    photoBrowser.startOnGrid = NO;
-    photoBrowser.enableSwipeToDismiss = NO;
-    
-    [photoBrowser setCurrentPhotoIndex:index];
-    [photoBrowser hiddenRightBarButtonItem:!canDelete];
-    @weakify(self);
-    photoBrowser.deleteHandle = ^(){
-        @strongify(self);
-        [self.addPhotoHandler showDeleteActionSheet];
-    };
-    return photoBrowser;
-}
 @end

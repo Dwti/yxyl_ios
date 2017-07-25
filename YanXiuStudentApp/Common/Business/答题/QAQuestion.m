@@ -117,7 +117,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     return nil;
 }
 
-- (NSArray *)noteImagesAnswerWithRawData:(NSArray *)imgArray {
+- (NSMutableArray *)noteImagesAnswerWithRawData:(NSArray *)imgArray {
     NSMutableArray *noteImagesArray = [NSMutableArray array];
     for (NSString *url in imgArray) {
         QAImageAnswer *answer = [[QAImageAnswer alloc]init];

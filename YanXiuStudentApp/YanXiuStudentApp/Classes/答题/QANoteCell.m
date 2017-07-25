@@ -46,7 +46,7 @@
 }
 
 - (void)editNoteAction {
-    
+    BLOCK_EXEC(self.editAction);
 }
 
 - (void)updateWithText:(NSString *)text images:(NSArray<QAImageAnswer *> *)images {

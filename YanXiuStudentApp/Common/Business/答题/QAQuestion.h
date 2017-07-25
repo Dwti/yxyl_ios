@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 @property (nonatomic, assign) BOOL redoCompleted;
 
 @property (nonatomic, strong) NSString *noteText;
-@property (nonatomic, strong) NSArray *noteImages; // QAImageAnswer Tyep
+@property (nonatomic, strong) NSMutableArray *noteImages; // QAImageAnswer Tyep
 
 - (NSArray *)correctAnswersWithRawData:(YXQuestion *)rawData; // 需子类实现
 - (NSMutableArray *)myAnswersWithRawData:(YXQuestion *)rawData; // 需子类实现

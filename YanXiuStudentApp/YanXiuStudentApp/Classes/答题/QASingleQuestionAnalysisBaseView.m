@@ -212,6 +212,11 @@ YXQAAnalysisUnfoldDelegate
             QANoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QANoteCell"];
             cell.item = data;
             [cell updateWithText:self.data.noteText images:self.data.noteImages];
+            WEAK_SELF
+            [cell setEditAction:^{
+                STRONG_SELF
+                SAFE_CALL_OneParam(self.editNoteDelegate, editNoteButtonTapped, self.data);
+            }];
             analysisCell = cell;
         }else {
             return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

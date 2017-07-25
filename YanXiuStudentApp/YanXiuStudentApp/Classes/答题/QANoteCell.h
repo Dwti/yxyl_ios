@@ -9,6 +9,7 @@
 #import "QAAnalysisBaseCell.h"
 
 @interface QANoteCell : QAAnalysisBaseCell
+@property (nonatomic, strong) void(^editAction)();
 - (void)updateWithText:(NSString *)text images:(NSArray<QAImageAnswer *> *)images;
 
 + (CGFloat)heightForText:(NSString *)text images:(NSArray<QAImageAnswer *> *)images;

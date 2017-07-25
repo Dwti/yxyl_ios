@@ -6,11 +6,8 @@
 //  Copyright © 2017 yanxiu.com. All rights reserved.
 //
 
-#import "BaseViewController.h"
-#import "QAQuestion.h"
+#import "ScrollBaseViewController.h"
 
-
-@interface EditNoteViewController : BaseViewController
+@interface EditNoteViewController : ScrollBaseViewController
 @property (nonatomic, strong) QAQuestion *item;
-@property (nonatomic, copy) void (^saveButtonTapped) (void);
 @end
