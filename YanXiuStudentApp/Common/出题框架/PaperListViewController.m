@@ -7,9 +7,6 @@
 //
 
 #import "PaperListViewController.h"
-#import "YXAnswerQuestionViewController.h"
-#import "YXJieXiViewController.h"
-#import "YXQAReportViewController.h"
 #import "MistakeRedoViewController.h"
 #import "QAAnalysisViewController.h"
 #import "QAAnswerQuestionViewController.h"

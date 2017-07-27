@@ -33,7 +33,6 @@
     [super viewDidLoad];
     
     self.title = self.subject.name;
-    [self yx_setupLeftBackBarButtonItem];
     [self setupUI];
     [self setupLayout];
     [self setupViewControllers];

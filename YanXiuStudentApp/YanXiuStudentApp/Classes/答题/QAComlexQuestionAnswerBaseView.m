@@ -7,7 +7,6 @@
 //
 
 #import "QAComlexQuestionAnswerBaseView.h"
-#import "YXYueCell2.h"
 
 @interface QAComlexQuestionAnswerBaseView()
 
@@ -227,7 +226,6 @@
     view.data = data;
     view.isPaperSubmitted = self.isPaperSubmitted;
     view.isSubQuestionView = YES;
-    view.photoDelegate = self.addPhotoHandler;
     view.delegate = self;
     view.answerStateChangeDelegate = self.answerStateChangeDelegate;
     return view;

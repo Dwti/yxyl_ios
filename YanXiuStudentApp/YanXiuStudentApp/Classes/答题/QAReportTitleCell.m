@@ -130,7 +130,9 @@
         self.correctCountLabel.text = [NSString stringWithFormat:@"答对%@题",@([self resultCorrectCountWithModel:model])];
         self.durationLabel.text = [self formatTimeWithDuration:model.paperAnswerDuration];
     }else {
-        [self.bgImageView removeAllSubviews];
+        for (UIView *v in self.bgImageView.subviews) {
+            [v removeFromSuperview];
+        }
         self.bgImageView.image = [UIImage imageNamed:@"等待老师批改"];
         [self.bgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);

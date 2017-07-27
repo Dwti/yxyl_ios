@@ -7,10 +7,7 @@
 //
 
 #import "QASingleQuestionAnalysisBaseView.h"
-#import "YXQAAnalysisUnfoldDelegate.h"
-#import "YXJieXiShowView.h"
 #import "QAQuestion.h"
-#import "MistakeNoteTableViewCell.h"
 #import "EditNoteViewController.h"
 #import "QAAnaysisGapCell.h"
 #import "QAAnalysisResultCell.h"
@@ -23,9 +20,7 @@
 #import "QAAnalysisSubjectiveResultCell.h"
 #import "QANoteCell.h"
 
-@interface QASingleQuestionAnalysisBaseView() <
-YXQAAnalysisUnfoldDelegate
->
+@interface QASingleQuestionAnalysisBaseView() 
 
 @property (nonatomic, strong) NSMutableArray *analysisDataArray;
 @property (nonatomic, assign) NSUInteger analysisCellCount;
@@ -48,7 +43,6 @@ YXQAAnalysisUnfoldDelegate
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
     footerView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     self.tableView.tableFooterView = footerView;
-    [self.tableView registerClass:[MistakeNoteTableViewCell class] forCellReuseIdentifier:@"MistakeNoteTableViewCell"];
     [self.tableView registerClass:[QAAnaysisGapCell class] forCellReuseIdentifier:@"QAAnaysisGapCell"];
     [self.tableView registerClass:[QAAnalysisResultCell class] forCellReuseIdentifier:@"QAAnalysisResultCell"];
     [self.tableView registerClass:[QAAnalysisScoreCell class] forCellReuseIdentifier:@"QAAnalysisScoreCell"];
@@ -226,24 +220,6 @@ YXQAAnalysisUnfoldDelegate
     }
     else {
         return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (!self.analysisDataHidden) {
-        return nil;
-    }else {
-        YXJieXiShowView *analysisShowView = [[YXJieXiShowView alloc]initWithFrame:CGRectMake(0, 0, 320, 54)];
-        analysisShowView.delegate = self;
-        return analysisShowView;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (!self.analysisDataHidden) {
-        return 0;
-    }else {
-        return [YXJieXiShowView height];
     }
 }
 

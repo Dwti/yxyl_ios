@@ -9,7 +9,6 @@ static const BOOL kTestEntrance = NO;
 
 #import "AppDelegate.h"
 #import "YXTestViewController.h"
-#import "UIResponder+FirstResponder.h"
 
 #import "YXRedManager.h"
 #import "YXRecordBase.h"
@@ -42,7 +41,8 @@ static const BOOL kTestEntrance = NO;
     [TalkingData setSignalReportEnabled:YES];
     [TalkingData sessionStarted:[YXConfigManager sharedInstance].TalkingDataAppID withChannelId:[YXConfigManager sharedInstance].channel];
     // 初始化请求，检测版本更新等
-    [[YXInitHelper sharedHelper] requestCompeletion:nil];
+#warning 先注释掉，等做好了再放开
+//    [[YXInitHelper sharedHelper] requestCompeletion:nil];
     // 内部统计
     [YXRecordManager startRegularReport];
     [self addLaunchAppStatisticWithType:YXRecordStartType];
@@ -54,7 +54,6 @@ static const BOOL kTestEntrance = NO;
     // 首次启动 数据统计
     [self firstTimeLaunchAppStatistic];
     
-    [self setupTricks];
     [self registerNotifications];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 
@@ -70,12 +69,6 @@ static const BOOL kTestEntrance = NO;
     }
     [self.window makeKeyAndVisible];
     return YES;
-}
-
-- (void)setupTricks {
-    [YXLoadingView aspect_hookSelector:@selector(startLoading) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> aspectInfo, BOOL animated) {
-        [[UIResponder currentFirstResponder] resignFirstResponder];
-    } error:NULL];
 }
 
 - (void)registerNotifications {
@@ -105,7 +98,7 @@ static const BOOL kTestEntrance = NO;
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXTokenInValidNotification object:nil]subscribeNext:^(id x) {
         STRONG_SELF
         [[YXUserManager sharedManager] logout];
-        [[UIApplication sharedApplication].keyWindow.rootViewController yx_showToast:@"帐号授权已失效，请重新登录"];
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view nyx_showToast:@"帐号授权已失效，请重新登录"];
     }];
 }
 

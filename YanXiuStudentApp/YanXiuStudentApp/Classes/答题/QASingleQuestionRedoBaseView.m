@@ -9,11 +9,8 @@
 #import "QASingleQuestionRedoBaseView.h"
 #import "QARedoSubmitView.h"
 #import "YXQAAnalysisItem.h"
-#import "YXDifficultyCell.h"
-#import "YXAnalysisCell.h"
-#import "YXLabelHtmlCell2.h"
 #import "GlobalUtils.h"
-#import "MistakeNoteTableViewCell.h"
+#import "QANoteCell.h"
 
 @interface QASingleQuestionRedoBaseView()
 @property (nonatomic, strong) QARedoSubmitView *submitView;
@@ -31,10 +28,7 @@
     [super setupUI];
     [self setupObserver];    
     [self setupSingleQuestionAnalysisContent];
-    [self.tableView registerClass:[YXDifficultyCell class] forCellReuseIdentifier:@"YXDifficultyCell"];
-    [self.tableView registerClass:[YXAnalysisCell class] forCellReuseIdentifier:@"YXAnalysisCell"];
-    [self.tableView registerClass:[YXLabelHtmlCell2 class] forCellReuseIdentifier:@"YXLabelHtmlCell2"];
-    [self.tableView registerClass:[MistakeNoteTableViewCell class] forCellReuseIdentifier:@"MistakeNoteTableViewCell"];
+    [self.tableView registerClass:[QANoteCell class] forCellReuseIdentifier:@"QANoteCell"];
 
     if (self.isSubQuestionView) {
         return;
@@ -71,16 +65,11 @@
         if (self.data.questionID != noti.object) {
             return;
         }
-        [self updateNoteCellHeihgt];
+        CGFloat noteCellHeight = [QANoteCell heightForText:self.data.noteText images:self.data.noteImages];
+        [self.cellHeightArray replaceObjectAtIndex:(self.cellHeightArray.count - 1) withObject:@(noteCellHeight)];
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:(self.cellHeightArray.count - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
-
-- (void)updateNoteCellHeihgt {
-    CGFloat noteCellHeight = [MistakeNoteTableViewCell heightForNoteWithQuestion: self.data isEditable:NO];
-    [self.cellHeightArray replaceObjectAtIndex:(self.cellHeightArray.count - 1) withObject:@(noteCellHeight)];
-}
-
 
 - (void)setupSingleQuestionAnalysisContent {
     NSAssert([self.analysisDataDelegate respondsToSelector:@selector(shouldShowAnalysisDataWithQAItemType:analysisType:)], @"未设置解析数据委托");
@@ -89,30 +78,30 @@
     YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
     item.type = YXAnalysisCurrentStatus;
     [self.analysisDataArray addObject:item];
-    [self.cellHeightArray addObject:@([YXLabelHtmlCell2 heightForString:[self.data answerStateDescription]])];
-    
-    if (!isEmpty(self.data.difficulty)) {
-        if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisDifficulty]) {
-            YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
-            item.type = YXAnalysisDifficulty;
-            [self.analysisDataArray addObject:item];
-            [self.cellHeightArray addObject:@([YXDifficultyCell height])];
-        }
-    }
-    
-    if (!isEmpty(self.data.analysis)) {
-        if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisAnalysis]) {
-            YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
-            item.type = YXAnalysisAnalysis;
-            [self.analysisDataArray addObject:item];
-            [self.cellHeightArray addObject:@([YXAnalysisCell heightForString:self.data.analysis])];
-        }
-    }
+//    [self.cellHeightArray addObject:@([YXLabelHtmlCell2 heightForString:[self.data answerStateDescription]])];
+//    
+//    if (!isEmpty(self.data.difficulty)) {
+//        if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisDifficulty]) {
+//            YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
+//            item.type = YXAnalysisDifficulty;
+//            [self.analysisDataArray addObject:item];
+//            [self.cellHeightArray addObject:@([YXDifficultyCell height])];
+//        }
+//    }
+//    
+//    if (!isEmpty(self.data.analysis)) {
+//        if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisAnalysis]) {
+//            YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
+//            item.type = YXAnalysisAnalysis;
+//            [self.analysisDataArray addObject:item];
+//            [self.cellHeightArray addObject:@([YXAnalysisCell heightForString:self.data.analysis])];
+//        }
+//    }
     
     YXQAAnalysisItem *item2 = [[YXQAAnalysisItem alloc]init];
     item2.type = YXAnalysisNote;
     [self.analysisDataArray addObject:item2];
-    [self.cellHeightArray addObject:@([MistakeNoteTableViewCell heightForNoteWithQuestion:self.data isEditable:NO])];
+    [self.cellHeightArray addObject:@([QANoteCell heightForText:self.data.noteText images:self.data.noteImages])];
 }
 
 #pragma mark - tableView datasource delegate
@@ -133,33 +122,33 @@
     YXQAAnalysisItem *data = self.analysisDataArray[analysisDataIndex];
     
     if (data.type == YXAnalysisDifficulty) {
-        YXDifficultyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXDifficultyCell" forIndexPath:indexPath];
-        cell.item = data;
-        cell.difficulty = self.data.difficulty;
-        return cell;
+//        YXDifficultyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXDifficultyCell" forIndexPath:indexPath];
+//        cell.item = data;
+//        cell.difficulty = self.data.difficulty;
+//        return cell;
+        return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     }else if (data.type == YXAnalysisAnalysis) {
-        YXAnalysisCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXAnalysisCell" forIndexPath:indexPath];
-        cell.delegate = self;
-        cell.item = data;
-        cell.htmlString = self.data.analysis;
-        return cell;
+//        YXAnalysisCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXAnalysisCell" forIndexPath:indexPath];
+//        cell.delegate = self;
+//        cell.item = data;
+//        cell.htmlString = self.data.analysis;
+//        return cell;
+        return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     }else if (data.type == YXAnalysisCurrentStatus) {
-        YXLabelHtmlCell2 *cell = [[YXLabelHtmlCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.delegate = self;
-        cell.item = data;
-        cell.htmlString = [self.data answerStateDescription];
-        return cell;
+//        YXLabelHtmlCell2 *cell = [[YXLabelHtmlCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//        cell.delegate = self;
+//        cell.item = data;
+//        cell.htmlString = [self.data answerStateDescription];
+//        return cell;
+        return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     } else if (data.type == YXAnalysisNote) {
-        MistakeNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MistakeNoteTableViewCell" forIndexPath:indexPath];
-        cell.isEditable = NO;
+        QANoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QANoteCell"];
         cell.item = data;
-        cell.questionItem = self.data;
-        cell.delegate = self.addPhotoHandler;
-        [cell reloadViewWithArray:self.data.noteImages addEnable:NO];
+        [cell updateWithText:self.data.noteText images:self.data.noteImages];
         WEAK_SELF
-        [cell setEditButtonTapped:^{
+        [cell setEditAction:^{
             STRONG_SELF
-            [self.editNoteDelegate editNoteButtonTapped:self.data];
+            SAFE_CALL_OneParam(self.editNoteDelegate, editNoteButtonTapped, self.data);
         }];
         return cell;
     } else {

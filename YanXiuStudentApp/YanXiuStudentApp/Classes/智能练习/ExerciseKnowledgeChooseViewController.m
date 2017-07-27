@@ -32,7 +32,6 @@
     // Do any additional setup after loading the view.
     self.title = self.subject.name;
     self.naviTheme = NavigationBarTheme_White;
-    [self yx_setupLeftBackBarButtonItem];
     [self setupUI];
     [self requestVolumes];
 }
@@ -65,11 +64,11 @@
 }
 
 - (void)requestVolumes {
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     WEAK_SELF
     [[ExerciseSubjectManager sharedInstance]requestVolumesWithSubjectID:self.subject.subjectID editionID:self.subject.edition.editionId completeBlock:^(NSArray *volumeArray, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
             self.errorView.hidden = NO;
             return;

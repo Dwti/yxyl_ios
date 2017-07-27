@@ -119,7 +119,7 @@
         [self.view nyx_stopLoading];
         [self nyx_enableRightNavigationItem];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         } else {
             self.item.noteText = self.editItem.noteText;

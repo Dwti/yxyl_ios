@@ -14,6 +14,7 @@
 #import "AreaSelectionViewController.h"
 #import "HeadImagePickerOptionView.h"
 #import "HeadImageHandler.h"
+#import "SimpleAlertView.h"
 
 @interface MyProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -126,7 +127,7 @@
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
     }];

@@ -8,9 +8,9 @@
 
 #import "HeadImageHandler.h"
 #import "HeadImageCameraOverlayView.h"
-#import "UIViewController+YXPresent.h"
 #import "HeadImageClipViewController.h"
 #import "QAPhotoSelectionViewController.h"
+#import "UIViewController+VisibleViewController.h"
 
 @interface HeadImageHandler()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;

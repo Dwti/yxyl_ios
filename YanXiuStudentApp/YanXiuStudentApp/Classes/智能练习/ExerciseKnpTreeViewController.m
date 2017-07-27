@@ -11,7 +11,7 @@
 #import "GetKnpListRequest.h"
 #import "ExerciseKnpTreeCell.h"
 #import "YXGenKnpointQBlockRequest.h"
-#import "YXAnswerQuestionViewController.h"
+
 @interface ExerciseKnpTreeViewController ()
 @property (nonatomic, strong) YXGenKnpointQBlockRequest *knpQuestionRequest;
 
@@ -89,21 +89,21 @@
     request.knpId2 = knpId2;
     request.knpId3 = knpId3;
     request.fromType = @"2";
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         YXIntelligenceQuestionListItem *item = retItem;
-        YXIntelligenceQuestion *question = nil;
+//        YXIntelligenceQuestion *question = nil;
         if (item.data.count > 0) {
-            question = item.data[0];
-            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
-            vc.requestParams = [self answerQuestionParamsFirstId:knpId1 secondId:knpId2 thridId:knpId3];
-            vc.model = [QAPaperModel modelFromRawData:question];
-            [self.navigationController pushViewController:vc animated:YES];
+//            question = item.data[0];
+//            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
+//            vc.requestParams = [self answerQuestionParamsFirstId:knpId1 secondId:knpId2 thridId:knpId3];
+//            vc.model = [QAPaperModel modelFromRawData:question];
+//            [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         }
     }];
     self.knpQuestionRequest = request;

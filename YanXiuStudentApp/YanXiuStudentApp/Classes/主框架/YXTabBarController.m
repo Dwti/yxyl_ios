@@ -7,14 +7,12 @@
 //
 
 #import "YXTabBarController.h"
-#import "YXHotNumberLabel.h"
 #import "YXRedManager.h"
 #import <UIButton+WebCache.h>
 
 @interface YXTabBarController ()<UITabBarControllerDelegate>
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, assign) BOOL setupComplete;
-@property (nonatomic, strong) NSArray *numberLabels;
 @property (nonatomic, strong) UIButton *mineButton;
 @end
 
@@ -23,76 +21,6 @@
 @dynamic practiseNumber;
 @dynamic assignmentNumber;
 @dynamic myNumber;
-
-#pragma mark- Get
-- (NSArray *)numberLabels
-{
-    if (!_numberLabels) {
-        NSMutableArray *numberLabels = [NSMutableArray new];
-        for (int i = 0; i < 3; i++) {
-            id label = [YXHotNumberLabel new];
-            [numberLabels addObject:label];
-        }
-        _numberLabels = numberLabels;
-    }
-    return _numberLabels;
-}
-
-- (NSString *)practiseNumber
-{
-    return [self.numberLabels[1] text];
-}
-
-- (NSString *)assignmentNumber
-{
-    return [self.numberLabels[0] text];
-}
-
-- (NSString *)myNumber
-{
-    return [self.numberLabels.lastObject text];
-}
-
-#pragma mark- Set
-- (void)setPractiseNumber:(NSString *)practiseNumber
-{
-    [self.numberLabels[1] setText:practiseNumber];
-}
-
-- (void)setAssignmentNumber:(NSString *)assignmentNumber
-{
-    [self.numberLabels[0] setText:assignmentNumber];
-}
-
-- (void)setMyNumber:(NSString *)myNumber
-{
-    [self.numberLabels.lastObject setText:myNumber];
-}
-
-#pragma mark- NSNotification
-- (void)redChanged:(id)sender
-{
-    self.assignmentNumber = [sender object];
-}
-
-#pragma mark-
-- (instancetype)init
-{
-    if (self = [super init]) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(redChanged:)
-//                                                     name:YXRedNotification
-//                                                   object:nil];
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                    name:YXRedNotification
-//                                                  object:nil];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -169,16 +97,6 @@
         b.selected = i == self.selectedIndex? YES:NO;
         
         [bgView addSubview:b];
-    }
-    for (int i = 0; i < 3; i++) {
-        UIButton *b = self.tabButtons[i];
-        
-        UILabel *label = self.numberLabels[i];
-        [bgView addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(b.mas_top).offset = 6;
-            make.right.mas_equalTo(b.mas_centerX).offset = 25;
-        }];
     }
 }
 

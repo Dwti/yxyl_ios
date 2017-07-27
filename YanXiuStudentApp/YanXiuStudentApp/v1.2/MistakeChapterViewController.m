@@ -10,7 +10,6 @@
 #import "ChapterTreeDataFetcher.h"
 #import "ExerciseChapterTreeCell.h"
 #import "YXGetSectionQBlockRequest.h"
-#import "YXAnswerQuestionViewController.h"
 #import "MistakeTreeCell.h"
 #import "MistakeChapterTreeDataFetcher.h"
 #import "MistakeChapterListRequest.h"
@@ -35,7 +34,7 @@
     
     [self addNotification];
     
-    self.emptyView.text = @"当前教材版本的章节目录下无题目";
+//    self.emptyView.text = @"当前教材版本的章节目录下无题目";
 }
 
 - (void)didReceiveMemoryWarning {

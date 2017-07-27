@@ -91,7 +91,7 @@
 }
 
 - (void)showToast:(NSString *)text {
-    [[UIApplication sharedApplication].keyWindow.rootViewController yx_showToast:text];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view nyx_showToast:text];
 }
 
 @end

@@ -10,7 +10,6 @@
 #import "YXCommonErrorView.h"
 #import "AppDelegate.h"
 
-#import "YXChooseEditionViewController.h"
 #import "ExerciseKnowledgeChooseViewController.h"
 
 #import "YXUpdateUserInfoRequest.h"
@@ -127,21 +126,21 @@
     }
     [self.rankRequest stopRequest];
     self.rankRequest = [[YXRankRequest alloc]init];
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     @weakify(self);
     [self.rankRequest startRequestWithRetClass:[YXRankRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self);
         for (UIBarButtonItem *item in self.navigationItem.rightBarButtonItems) {
             item.enabled = YES;
         }
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         YXRankRequestItem *item = (YXRankRequestItem *)retItem;
         if (item.data.count == 0) {
-            [self yx_showToast:@"暂无数据"];
+            [self.view nyx_showToast:@"暂无数据"];
             return;
         }
         YXRankModel *model = [YXRankModel rankModelFromRankRequestItem:item];
@@ -158,11 +157,11 @@
     self.item = [[ExerciseSubjectManager sharedInstance] currentSubjectItem];
     [self _reloadUI];
     
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     WEAK_SELF
     [[ExerciseSubjectManager sharedInstance] requestSubjectsWithCompleteBlock:^(GetSubjectRequestItem *retItem, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         for (UIBarButtonItem *item in self.navigationItem.rightBarButtonItems) {
             item.enabled = YES;
         }
@@ -172,7 +171,7 @@
                 self.errorView.hidden = NO;
             }
             if (self.isViewAppear) {
-                [self yx_showToast:error.localizedDescription];
+                [self.view nyx_showToast:error.localizedDescription];
             }
         } else {
             self.item = retItem;
@@ -315,12 +314,12 @@
 //        return;
 //    }
     @weakify(self);
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [[ExerciseSubjectManager sharedInstance]requestEditionsWithSubjectID:subject.subjectID completeBlock:^(GetEditionRequestItem *retItem, NSError *error) {
         @strongify(self); if (!self) return;
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         
@@ -377,12 +376,12 @@
 
 - (void)saveEdition:(GetEditionRequestItem_edition *)edition forSubject:(GetSubjectRequestItem_subject *)subject {
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [[ExerciseSubjectManager sharedInstance]saveEditionWithSubjectID:subject.subjectID editionID:edition.editionID completeBlock:^(GetSubjectRequestItem_subject *retItem, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         } else {
             [self goSubjectDetail:retItem];
         }

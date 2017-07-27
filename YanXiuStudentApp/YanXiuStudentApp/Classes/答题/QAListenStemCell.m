@@ -9,9 +9,6 @@
 #import "QAListenStemCell.h"
 #import "QACoreTextViewHandler.h"
 #import "LePlayer.h"
-#import "UIView+YXScale.h"
-#import "YXCommonLabel.h"
-#import "ListenComplexPromptView.h"
 
 static const CGFloat kHtmlViewTopMargin = 25.0f;
 static const NSUInteger kPlayViewTopMargin = 12.0f;

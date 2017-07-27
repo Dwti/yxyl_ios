@@ -10,12 +10,12 @@
 #import "YXMistakeContentViewController.h"
 #import "YXGetWrongQRequest.h"
 #import "YXDelMistakeRequest.h"
-#import "YXLoadingView.h"
 #import "YXQAAnalysisDataConfig.h"
 #import "QAMistakeAnalysisDataConfig.h"
 
-@interface YXMistakeContentChapterKnpViewController ()
+@interface YXMistakeContentChapterKnpViewController ()<QAAnalysisEditNoteDelegate>
 @property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, strong) QAMistakeAnalysisDataConfig *analysisDataDelegate;
 @end
 
 @implementation YXMistakeContentChapterKnpViewController
@@ -54,12 +54,12 @@
 - (void)requestForDeleteCurrentQuestion {
     QAQuestion *item = [self.model.questions objectAtIndex:self.slideView.currentIndex];
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [[MistakeQuestionManager sharedInstance] deleteMistakeQuestion:item completeBlock:^(NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         [self deleteQuestionsItem:self.slideView.currentIndex];
@@ -89,7 +89,7 @@
         STRONG_SELF
         self.isLoading = NO;
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         [self saveNewDatas:retItem];
@@ -156,6 +156,13 @@
     _fetcher.subjectID = [fetcher.subjectID copy];
     _fetcher.qids = [fetcher.qids copy];
     _fetcher.currentID = [fetcher.currentID copy];
+}
+
+#pragma - QAAnalysisEditNoteDelegate
+- (void)editNoteButtonTapped:(QAQuestion *)item {
+    EditNoteViewController *vc = [[EditNoteViewController alloc] init];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -8,7 +8,6 @@
 
 #import "MistakeQuestionSheetView.h"
 #import "MistakeQuestionItemCell.h"
-#import "YXQADashLineView.h"
 #import "MistakeQuestionHeaderView.h"
 
 @interface MistakeQuestionSheetView()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -57,14 +56,14 @@
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    YXQADashLineView *dash = [[YXQADashLineView alloc]init];
-    dash.color = [UIColor colorWithHexString:@"e6bb47"];
-    [self addSubview:dash];
-    [dash mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(1);
-        make.top.mas_equalTo(topView.mas_bottom);
-    }];
+//    YXQADashLineView *dash = [[YXQADashLineView alloc]init];
+//    dash.color = [UIColor colorWithHexString:@"e6bb47"];
+//    [self addSubview:dash];
+//    [dash mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.mas_equalTo(0);
+//        make.height.mas_equalTo(1);
+//        make.top.mas_equalTo(topView.mas_bottom);
+//    }];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 25;
@@ -84,7 +83,7 @@
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(dash.mas_bottom);
+//        make.top.mas_equalTo(dash.mas_bottom);
     }];
 }
 

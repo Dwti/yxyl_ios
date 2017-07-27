@@ -7,7 +7,6 @@
 //
 
 #import "QATitleView.h"
-#import "YXQADashLineView.h"
 
 @interface QATitleView()
 @property (nonatomic, strong) UILabel *typeLabel;

@@ -16,10 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self yx_setupLeftCancelBarButtonItem];
+    WEAK_SELF
+    [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
+        STRONG_SELF
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
-- (void)naviCloseAction {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

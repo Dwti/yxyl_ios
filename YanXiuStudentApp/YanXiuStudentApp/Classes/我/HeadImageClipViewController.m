@@ -42,7 +42,7 @@
     [self.view addSubview:self.scrollView];
     
     self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.scrollView.width, self.scrollView.height)];
-    self.adjustedImage = [self.oriImage nyx_aspectFillImageWithSize:self.imageView.size];
+    self.adjustedImage = [self.oriImage nyx_aspectFillImageWithSize:self.imageView.frame.size];
     self.imageView.image = self.adjustedImage;
     [self.scrollView addSubview:self.imageView];
     

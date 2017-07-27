@@ -60,13 +60,13 @@
 }
 
 - (void)题目 {
-    YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)解析 {
-    YXJieXiViewController *vc = [[YXJieXiViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    YXJieXiViewController *vc = [[YXJieXiViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)testYXAnswerQuestionViewController {
@@ -75,9 +75,7 @@
 }
 
 - (void)testYXHomeworkGroupViewController {
-    YXHomeworkGroupViewController *vc = [[YXHomeworkGroupViewController alloc] init];
-    vc.bHasUnfinished = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)testCells {

@@ -11,8 +11,6 @@
 #import "YXRankHeaderView.h"
 #import "UIImage+YXImage.h"
 #import "YXBottomGradientView.h"
-#import "UIColor+YXColor.h"
-#import "UIView+YXScale.h"
 
 @interface YXRankViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -41,7 +39,7 @@
     UIButton *button = [[UIButton alloc] init];
     [button setImage:[UIImage imageNamed:@"返回icon"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"返回icon-按下"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(yx_leftBackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    [button addTarget:self action:@selector(yx_leftBackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
@@ -65,12 +63,12 @@
     
     UILabel *footView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) - 46, 60)];
     footView.textAlignment = NSTextAlignmentCenter;
-    footView.textColor = [UIColor yx_colorWithHexString:@"c6ab7d"];
+    footView.textColor = [UIColor colorWithHexString:@"c6ab7d"];
     footView.text = @"每周一重置，勤奋的同学都有机会登上榜首：）";
     footView.font = [UIFont systemFontOfSize:12];
     self.tableView.tableFooterView = footView;
     
-    YXBottomGradientView *gradientView = [[YXBottomGradientView alloc] initWithFrame:CGRectZero color:[UIColor yx_colorWithHexString:@"543b18"]];
+    YXBottomGradientView *gradientView = [[YXBottomGradientView alloc] initWithFrame:CGRectZero color:[UIColor colorWithHexString:@"543b18"]];
     [tableViewBGView addSubview:gradientView];
     
     UIImageView *rankIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"排行榜icon"]];
@@ -81,12 +79,12 @@
         make.height.mas_equalTo(102);
         make.width.mas_equalTo(235);
     }];
-    [tableViewBGView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(rankIconView.mas_top).offset(78);
-        make.left.mas_equalTo(23 * [UIView scale]);
-        make.right.mas_equalTo(-23 * [UIView scale]);
-        make.bottom.mas_equalTo(-25);
-    }];
+//    [tableViewBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(rankIconView.mas_top).offset(78);
+//        make.left.mas_equalTo(23 * [UIView scale]);
+//        make.right.mas_equalTo(-23 * [UIView scale]);
+//        make.bottom.mas_equalTo(-25);
+//    }];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.mas_equalTo(7);
         make.right.mas_equalTo(-7);

@@ -200,7 +200,7 @@
 
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     self.addressLabel.hidden = NO;
 }
 
@@ -222,13 +222,13 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [self yx_stopLoading];
+    [self.view nyx_stopLoading];
     self.errorView.hidden = YES;
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [self yx_stopLoading];
+    [self.view nyx_stopLoading];
     self.errorView.hidden = NO;
 }
 

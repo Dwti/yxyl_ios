@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegateHelper_Phone.h"
-#import "YXLoginViewController.h"
 #import "YXGuideViewController.h"
 #import "YXTabBarController.h"
 #import "YXApnsHomeworkViewController.h"
@@ -54,14 +53,14 @@
     YXNavigationController *mineNavi = [[YXNavigationController alloc] initWithRootViewController:mineVC];
     
     tabBarController.viewControllers = @[groupNavi, homeNavi, mineNavi];
-    tabBarController.tabBar.tintColor = YXMainBlueColor;
+//    tabBarController.tabBar.tintColor = YXMainBlueColor;
     return tabBarController;
 }
 
 - (void)configTabbarItem:(UITabBarItem *)tabBarItem image:(NSString *)image selectedImage:(NSString *)selectedImage {
     tabBarItem.image = [UIImage imageNamed:image];
     tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: YXTextGrayColor} forState:UIControlStateNormal];
+//    [tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: YXTextGrayColor} forState:UIControlStateNormal];
     [tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor colorWithHexString:@"b28f47"]} forState:UIControlStateSelected];
 }
 
@@ -80,12 +79,10 @@
 
 #pragma mark -
 - (void)apnsGoHomeworkList:(YXApnsContentModel *)model {
-    YXHomeworkListFetcher *fetcher = [[YXHomeworkListFetcher alloc] init];
-    fetcher.gid = model.uid;
-    YXApnsHomeworkViewController *vc = [[YXApnsHomeworkViewController alloc] initWithFetcher:fetcher];
-    vc.groupInfoData = [[YXHomeworkListGroupsItem_Data alloc] init];
-    vc.groupInfoData.groupId = model.uid;
-    [vc.navigationItem setTitle:model.name];
+    YXHomeworkListGroupsItem_Data *data = [[YXHomeworkListGroupsItem_Data alloc]init];
+    data.groupId = model.uid;
+    data.name = model.name;
+    YXApnsHomeworkViewController *vc = [[YXApnsHomeworkViewController alloc] initWithData:data];
     YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
     [[self lastPresentedViewController] presentViewController:navi animated:YES completion:nil];
 }

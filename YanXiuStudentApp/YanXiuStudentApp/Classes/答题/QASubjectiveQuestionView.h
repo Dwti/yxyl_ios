@@ -7,5 +7,5 @@
 //
 
 #import "QASingleQuestionAnswerBaseView.h"
-@interface QASubjectiveQuestionView : QASingleQuestionAnswerBaseView<YXQASubjectiveAddPhotoDelegate>
+@interface QASubjectiveQuestionView : QASingleQuestionAnswerBaseView
 @end

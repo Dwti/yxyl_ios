@@ -7,7 +7,6 @@
 //
 
 #import "YXRankHeaderView.h"
-#import "UIColor+YXColor.h"
 
 @interface YXRankHeaderView()
 
@@ -31,7 +30,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor yx_colorWithHexString:@"543b18"];
+    view.backgroundColor = [UIColor colorWithHexString:@"543b18"];
     [self.contentView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);

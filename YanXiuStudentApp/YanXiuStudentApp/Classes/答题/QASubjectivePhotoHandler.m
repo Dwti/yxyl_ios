@@ -7,11 +7,11 @@
 //
 
 #import "QASubjectivePhotoHandler.h"
-#import "UIViewController+YXPresent.h"
 #import "QACameraOverlayView.h"
 #import "QAPhotoSelectionViewController.h"
 #import "QAPhotoClipViewController.h"
 #import "QAPhotoBrowseViewController.h"
+#import "UIViewController+VisibleViewController.h"
 
 @interface QASubjectivePhotoHandler()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;

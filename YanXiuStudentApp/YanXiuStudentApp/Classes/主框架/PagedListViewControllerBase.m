@@ -116,7 +116,7 @@
                 self->_total = 0;
                 [self showErroView];
             } else {
-                [self yx_showToast:error.localizedDescription];
+                [self.view nyx_showToast:error.localizedDescription];
             }
             [self checkHasMore];
             return;
@@ -185,7 +185,7 @@
             [self->_footer endRefreshing];
             if (error) {
                 self.dataFetcher.pageindex--;
-                [self yx_showToast:error.localizedDescription];
+                [self.view nyx_showToast:error.localizedDescription];
                 return;
             }
             

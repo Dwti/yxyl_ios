@@ -9,7 +9,6 @@
 #import "YXMistakeSubjectViewController.h"
 #import "MistakeSubjectCell.h"
 #import "YXSubjectImageHelper.h"
-#import "UIColor+YXColor.h"
 #import "YXCommonErrorView.h"
 #import "YXExerciseEmptyView.h"
 #import "MistakeAllViewController.h"

@@ -7,8 +7,6 @@
 //
 
 #import "QAFillQuestionAnalysisView.h"
-#import "YXQAQuestionCell2.h"
-#import "QAFillQuestionCell.h"
 #import "QAFillBlankCell.h"
 
 @interface QAFillQuestionAnalysisView ()

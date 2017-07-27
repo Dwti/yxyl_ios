@@ -94,11 +94,9 @@
     view.data = data;
     view.isPaperSubmitted = self.isPaperSubmitted;
     view.isSubQuestionView = YES;
-    view.photoDelegate = self.addPhotoHandler;
     view.analysisDataDelegate = self.analysisDataDelegate;
     view.delegate = self;
     view.editNoteDelegate = self.editNoteDelegate;
-    view.addPhotoHandler = self.addPhotoHandler;
     
     return view;
 }

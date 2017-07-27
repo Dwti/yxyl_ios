@@ -240,12 +240,12 @@ YXHtmlCellHeightDelegate
 #pragma mark- YXErrorTableViewCellDelegate
 - (void)deleteItem:(QAQuestion *)item {
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [[MistakeQuestionManager sharedInstance]deleteMistakeQuestion:item completeBlock:^(NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         }
         [self getMistakeRedoQuestionNumber];
     }];
@@ -256,13 +256,13 @@ YXHtmlCellHeightDelegate
 - (void)redoButtonTapped {
     if (self.isUpdatingRedoNumber || !self.numItem) {
         WEAK_SELF
-        [self yx_startLoading];
+        [self.view nyx_startLoading];
         [[MistakeQuestionManager sharedInstance] requestMistakeRedoNumWithSubjectId:self.subject.subjectID completeBlock:^(MistakeRedoNumItem *item, NSError *error) {
             STRONG_SELF
             self.isUpdatingRedoNumber = NO;
             if (error) {
-                [self yx_stopLoading];
-                [self yx_showToast:error.localizedDescription];
+                [self.view nyx_stopLoading];
+                [self.view nyx_showToast:error.localizedDescription];
                 return;
             }
             self.numItem = item;
@@ -278,9 +278,9 @@ YXHtmlCellHeightDelegate
     WEAK_SELF
     [[MistakeQuestionManager sharedInstance] requestMistakeRedoFirstWithSubjectID:self.subject.subjectID completeBlock:^(QAPaperModel *model, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         [self gotoRedoVCWithModel:model];

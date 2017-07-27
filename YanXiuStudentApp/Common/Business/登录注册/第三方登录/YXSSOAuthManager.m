@@ -66,7 +66,7 @@
         req.state = @"com.yanxiu.account.wxapi";
         [WXApi sendReq:req];
     } else {
-        [self.rootViewController yx_showToast:@"尚未安装微信客户端"];
+        [self.rootViewController.view nyx_showToast:@"尚未安装微信客户端"];
     }
 }
 
@@ -91,20 +91,20 @@
     self.oauthLoginRequest.platform = [params objectForKey:YXSSOAuthPltformKey];
     self.oauthLoginRequest.unionId = [params objectForKey:YXSSOAuthUnionKey];
     @weakify(self);
-    [self.rootViewController yx_startLoading];
+    [self.rootViewController.view nyx_startLoading];
     [self.oauthLoginRequest startRequestWithRetClass:[YXOauthLoginRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self);
-        [self.rootViewController yx_stopLoading];
+        [self.rootViewController.view nyx_stopLoading];
         YXOauthLoginRequestItem *item = retItem;
         if (item.data.count > 0 && !error) {
-            [self.rootViewController yx_showToast:@"登录成功"];
+            [self.rootViewController.view nyx_showToast:@"登录成功"];
             [self.rootViewController.view endEditing:YES];
             [self saveUserDataWithUserModel:item.data[0]];
         } else {
             if ([item.status.code integerValue] == 80) {
                 [self getUserInfoToRequest:params];
             } else {
-                [self.rootViewController yx_showToast:error.localizedDescription];
+                [self.rootViewController.view nyx_showToast:error.localizedDescription];
             }
         }
     }];
@@ -121,14 +121,14 @@
 - (void)getUserInfoToRequest:(NSDictionary *)params
 {
     if ([[params objectForKey:YXSSOAuthPltformKey] isEqualToString:YXSSOAuthPltformQQ]) {
-        [self.rootViewController yx_startLoading];
+        [self.rootViewController.view nyx_startLoading];
         [self.oauth getUserInfo];
     } else if ([[params objectForKey:YXSSOAuthPltformKey] isEqualToString:YXSSOAuthPltformWeixin]) {
         @weakify(self);
-        [self.rootViewController yx_startLoading];
+        [self.rootViewController.view nyx_startLoading];
         [[YXWeixinSSOManager sharedManager] requestUserInfoCompletion:^(NSDictionary *userInfo, NSError *error) {
             @strongify(self);
-            [self.rootViewController yx_stopLoading];
+            [self.rootViewController.view nyx_stopLoading];
             NSDictionary *dict = params;
             if (userInfo.count > 0 && !error) {
                 dict = userInfo;
@@ -148,16 +148,16 @@
 - (void)requestWeixinOpenIDWithCode:(NSString *)code
 {
     @weakify(self);
-    [self.rootViewController yx_startLoading];
+    [self.rootViewController.view nyx_startLoading];
     [[YXWeixinSSOManager sharedManager] requestOpenIdAndUnionIdWithCode:code completion:^(NSDictionary *dict, NSError *error) {
         @strongify(self);
-        [self.rootViewController yx_stopLoading];
+        [self.rootViewController.view nyx_stopLoading];
         if (dict && !error) {
             NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:dict];
             [result putValue:YXSSOAuthPltformWeixin forKey:YXSSOAuthPltformKey];
             [self oauthLoginRequest:result];
         } else {
-            [self.rootViewController yx_showToast:@"微信登录失败"];
+            [self.rootViewController.view nyx_showToast:@"微信登录失败"];
         }
     }];
 }
@@ -171,7 +171,7 @@
         if (respAuth.errCode == WXSuccess) {
             [self requestWeixinOpenIDWithCode:respAuth.code];
         } else {
-            [self.rootViewController yx_showToast:@"微信登录失败"];
+            [self.rootViewController.view nyx_showToast:@"微信登录失败"];
         }
     }
 }
@@ -185,17 +185,17 @@
 
 - (void)tencentDidNotLogin:(BOOL)cancelled
 {
-    [self.rootViewController yx_showToast:@"QQ登录失败"];
+    [self.rootViewController.view nyx_showToast:@"QQ登录失败"];
 }
 
 - (void)tencentDidNotNetWork
 {
-    [self.rootViewController yx_showToast:@"QQ登录失败"];
+    [self.rootViewController.view nyx_showToast:@"QQ登录失败"];
 }
 
 - (void)getUserInfoResponse:(APIResponse *)response
 {
-    [self.rootViewController yx_stopLoading];
+    [self.rootViewController.view nyx_stopLoading];
     NSDictionary *dict = @{YXSSOAuthOpenidKey:self.oauth.openId,
                            YXSSOAuthPltformKey:YXSSOAuthPltformQQ};
     if (response.jsonResponse.count > 0) {

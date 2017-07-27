@@ -60,31 +60,31 @@
     self.errorView.hidden = YES;
     
     
-    YXTipsView *emptyView = [[YXTipsView alloc] init];
-    [self.view addSubview:emptyView];
-    [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    emptyView.title = @"O(∩_∩)O";
-    emptyView.text = @"暂无题目";
-    [emptyView hide:NO];
-    self.emptyView = emptyView;
+//    YXTipsView *emptyView = [[YXTipsView alloc] init];
+//    [self.view addSubview:emptyView];
+//    [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(0);
+//    }];
+//    emptyView.title = @"O(∩_∩)O";
+//    emptyView.text = @"暂无题目";
+//    [emptyView hide:NO];
+//    self.emptyView = emptyView;
     
 }
 
 - (void)fetchTreeData {
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [self.dataFetcher fetchTreeDataWithCompleteBlock:^(NSArray *treeNodes, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         
         self.treeNodes = treeNodes;
         [self removeLevelFourBelow];
         [self.treeView reloadData];
         
         if (error.code == 3) {
-            [self.emptyView show:NO];
+//            [self.emptyView show:NO];
             return;
         }
         

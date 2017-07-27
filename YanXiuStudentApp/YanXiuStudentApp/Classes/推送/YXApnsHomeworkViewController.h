@@ -6,8 +6,8 @@
 //  Copyright © 2015 yanxiu.com. All rights reserved.
 //
 
-#import "YXHomeworkViewController.h"
+#import "HomeworkListViewController.h"
 
-@interface YXApnsHomeworkViewController : YXHomeworkViewController
+@interface YXApnsHomeworkViewController : HomeworkListViewController
 
 @end

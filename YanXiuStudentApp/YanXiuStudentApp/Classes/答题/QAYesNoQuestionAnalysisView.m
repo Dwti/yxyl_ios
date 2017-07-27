@@ -7,8 +7,6 @@
 //
 
 #import "QAYesNoQuestionAnalysisView.h"
-#import "YXQAQuestionCell2.h"
-#import "YXQAYesNoChooseCell.h"
 #import "QAQuestionStemCell.h"
 #import "QAYesNoOptionCell.h"
 

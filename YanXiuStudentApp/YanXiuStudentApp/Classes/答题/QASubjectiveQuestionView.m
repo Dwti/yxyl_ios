@@ -7,9 +7,7 @@
 //
 
 #import "QASubjectiveQuestionView.h"
-#import "YXAddPhotoTableViewCell.h"
 #import "QAQuestionUtil.h"
-#import "QASubjectiveQuestionCell.h"
 #import "QASubjectiveStemCell.h"
 #import "QASubjectivePhotoCell.h"
 

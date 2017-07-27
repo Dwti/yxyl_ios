@@ -14,13 +14,16 @@
 #import "MistakeRedoCatalogRequest.h"
 #import "MistakeQuestionManager.h"
 #import "GlobalUtils.h"
+#import "QAMistakeAnalysisDataConfig.h"
+#import "SimpleAlertView.h"
 
-@interface MistakeRedoViewController ()
-@property (nonatomic, strong) EEAlertView *alertView;
+@interface MistakeRedoViewController ()<QAAnalysisEditNoteDelegate>
+@property (nonatomic, strong) SimpleAlertView *alertView;
 @property (nonatomic, strong) MistakeRedoCatalogRequest *catalogRequest;
 @property (nonatomic, strong) MistakeRedoCatalogRequestItem *catalogItem;
 @property (nonatomic, assign) BOOL isRequesting;
 @property (nonatomic, assign) NSInteger requestingPage;
+@property (nonatomic, strong) QAMistakeAnalysisDataConfig *analysisDataDelegate;
 @end
 
 @implementation MistakeRedoViewController
@@ -78,7 +81,7 @@
 }
 
 - (void)setupMaskView{
-    UIImageView *maskView = [[UIImageView alloc]initWithImage:[UIImage stretchImageNamed:@"错题重做遮罩"]];
+    UIImageView *maskView = [[UIImageView alloc]initWithImage:[UIImage yx_resizableImageNamed:@"错题重做遮罩"]];
     [self.view addSubview:maskView];
     [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(66, 10, 32, 17));
@@ -110,12 +113,12 @@
     self.catalogRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
     self.catalogRequest.subjectId = self.subject.subjectID;
     WEAK_SELF
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [self.catalogRequest startRequestWithRetClass:[MistakeRedoCatalogRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         self.catalogItem = retItem;
@@ -137,7 +140,7 @@
         STRONG_SELF
         [self.alertView hide];
     }];
-    self.alertView = [[EEAlertView alloc]init];
+    self.alertView = [[SimpleAlertView alloc]init];
     self.alertView.contentView = sheetView;
     [self.alertView showWithLayout:^(AlertView *view) {
         [view.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -160,7 +163,7 @@
         [self reportRedoStatus];
         [self updateRedoNote];
     }];
-    self.alertView = [[EEAlertView alloc]init];
+    self.alertView = [[SimpleAlertView alloc]init];
     self.alertView.contentView = reportView;
     [self.alertView show];
 }
@@ -184,9 +187,9 @@
     WEAK_SELF
     [[MistakeQuestionManager sharedInstance] deleteMistakeRedoQuestion:lastQ subjectId:self.subject.subjectID deletedIDs:deletedIDs completeBlock:^(NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         }
         BLOCK_EXEC(self.updateNumberBlock,self.totalNumber-deletedIDs.count);
         [self.navigationController popViewControllerAnimated:YES];
@@ -221,19 +224,8 @@
     view.isPaperSubmitted = YES;
     view.title = self.model.paperTitle;
     view.isSubQuestionView = NO;
-    view.addPhotoHandler = self.addPhotoHandler;
-    view.photoDelegate = self.addPhotoHandler;
-    view.canDoExerciseFromKnp = self.canDoExerciseFromKnp;
-    view.pointClickDelegate = self;
-    view.reportErrorDelegate = self;
     view.analysisDataDelegate = self.analysisDataDelegate;
     view.editNoteDelegate = self;
-    if (index == self.firstLevel) {
-        if (self.secondLevel >= 0) {
-            view.nextLevelStartIndex = self.secondLevel;
-            self.secondLevel = -1;
-        }
-    }
     
     return view;
 }
@@ -264,7 +256,7 @@
         QAQuestion *currentQuestion = self.model.questions[self.slideView.currentIndex];
         if (error) {
             if (currentQuestion.templateType == YXQATemplateUnknown) {
-                [self yx_showToast:error.localizedDescription];
+                [self.view nyx_showToast:error.localizedDescription];
             }
             return;
         }
@@ -283,6 +275,13 @@
         return YES;
     }
     return NO;
+}
+
+#pragma - QAAnalysisEditNoteDelegate
+- (void)editNoteButtonTapped:(QAQuestion *)item {
+    EditNoteViewController *vc = [[EditNoteViewController alloc] init];
+    vc.item = item;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

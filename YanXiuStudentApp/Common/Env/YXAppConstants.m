@@ -7,13 +7,8 @@
 //
 
 #import "YXAppConstants.h"
-#import "UIColor+YXColor.h"
 
 @implementation YXAppConstants
 
-+ (UIColor *)colorWithHexString:(NSString *)string
-{
-    return [UIColor yx_colorWithHexString:string];
-}
 
 @end

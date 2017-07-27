@@ -7,8 +7,6 @@
 //
 
 #import "AudioItemView.h"
-#import "ListenComplexPromptView.h"
-#import "UIView+YXScale.h"
 
 
 @interface AudioItemView ()
@@ -91,18 +89,8 @@
     
     if (state == AudioPlayState_Playing) {
         if (!self.network) {
-            [self.viewController yx_showToast:@"网络无法连接"];
+            [self.window nyx_showToast:@"网络无法连接"];
             return;
-        }
-        
-        if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
-            static bool first = YES;
-            if (first) {
-                [self.player pause];
-                [self showAlertView];
-                first = NO;
-                return;
-            }
         }
         
         NSURL *url= [NSURL URLWithString:self.audioComment.url];
@@ -156,7 +144,7 @@
         Reachability *reach = [notification object];
         NetworkStatus status = [reach currentReachabilityStatus];
         if (status == NotReachable) {
-            [self.viewController yx_showToast:@"网络无法连接"];
+            [self.window nyx_showToast:@"网络无法连接"];
             self.network = NO;
         }else {
             self.network = YES;
@@ -178,24 +166,6 @@
     
     CGFloat buttonWidth = self.audioComment.duration.floatValue / (3.0f * 60 ) * (maxWidth - minWidth) + minWidth;
     return buttonWidth;
-}
-- (void)showAlertView {
-    EEAlertView *alertView = [[EEAlertView alloc]init];
-    
-    ListenComplexPromptView *promptView = [[ListenComplexPromptView alloc] init];
-    
-    [promptView setOkAction:^{
-        [alertView hide];
-    }];
-    
-    alertView.contentView = promptView;
-    [alertView showInView:self.viewController.view withLayout:^(AlertView *view) {
-        [view.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(300 * [UIView scale]);
-            make.center.mas_equalTo(0);
-        }];
-        [view layoutIfNeeded];
-    }];
 }
 
 - (void)addRACObserverForTimePlayed {

@@ -24,7 +24,6 @@
         make.edges.mas_equalTo(0);
     }];    
     
-    [self yx_setupLeftBackBarButtonItem];
     self.redoButton.hidden = YES;
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);

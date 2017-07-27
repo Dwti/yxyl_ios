@@ -13,7 +13,6 @@
 #import "QAReportViewController.h"
 #import "YXGetQuestionListRequest.h"
 #import "QAAnswerQuestionViewController.h"
-#import "YXTipsView.h"
 
 @interface ExerciseHistoryListViewController ()
 @property (nonatomic, strong) YXGetQuestionListRequest *questionListRequest;
@@ -25,13 +24,13 @@
 - (void)viewDidLoad {
     self.errorView = [[YXCommonErrorView alloc] init];
     
-    YXTipsView *emptyView = [[YXTipsView alloc] init];
-    emptyView.title = @"%>_<%";
-    emptyView.text = @"这里还没有题哦";
-    NSString *typeString = (self.segment == YXExerciseListSegmentChapter ? @"考点":@"章节");
-    emptyView.detailText = [NSString stringWithFormat:@"切换到【%@】看看吧", typeString];
-    [emptyView show:NO];
-    self.emptyView = emptyView;
+//    YXTipsView *emptyView = [[YXTipsView alloc] init];
+//    emptyView.title = @"%>_<%";
+//    emptyView.text = @"这里还没有题哦";
+//    NSString *typeString = (self.segment == YXExerciseListSegmentChapter ? @"考点":@"章节");
+//    emptyView.detailText = [NSString stringWithFormat:@"切换到【%@】看看吧", typeString];
+//    [emptyView show:NO];
+//    self.emptyView = emptyView;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -84,12 +83,12 @@
     self.reportRequest.flag = @"1";
     
     @weakify(self)
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [self.reportRequest startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self)
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         }else{
             [self goToReportVCWithItem:retItem];
         }
@@ -111,10 +110,10 @@
     self.questionListRequest = [[YXGetQuestionListRequest alloc] init];
     self.questionListRequest.paperId = paperId;
     @weakify(self);
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [self.questionListRequest startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self);
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         YXIntelligenceQuestionListItem *item = retItem;
         if (item.data.count > 0 && !error) {
             QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
@@ -122,7 +121,7 @@
             vc.pType = YXPTypeExerciseHistory;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         }
     }];
 }

@@ -35,7 +35,7 @@ static const CGFloat kBorderWidth = 22.f+23.f;
 
 - (void)setupUI {
     self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(25, 25, self.view.width-50, self.view.height-25-19-45)];
-    self.adjustedImage = [self.oriImage nyx_aspectFillImageWithSize:self.imageView.size];
+    self.adjustedImage = [self.oriImage nyx_aspectFillImageWithSize:self.imageView.frame.size];
     self.imageView.image = self.adjustedImage;
     [self.view addSubview:self.imageView];
     

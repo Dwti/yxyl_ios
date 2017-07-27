@@ -117,7 +117,6 @@
     [self.verifyCodeView startTimer];
     [LoginDataManager getVerifyCodeByBindWithMobileNumber:self.accountView.text verifyType:@"1" completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
         STRONG_SELF
-        [self yx_stopLoading];
         [self.view nyx_stopLoading];
         if (error) {
             [self.verifyCodeView stopTimer];

@@ -10,7 +10,6 @@
 #import "ChapterTreeDataFetcher.h"
 #import "ExerciseChapterTreeCell.h"
 #import "YXGetSectionQBlockRequest.h"
-#import "YXAnswerQuestionViewController.h"
 
 @interface ExerciseChapterTreeViewController ()
 @property (nonatomic, strong) YXGetSectionQBlockRequest *chapterRequest;
@@ -105,21 +104,21 @@
     request.sectionId = chapter2;
     request.cellId = chapter3;
     request.questNum = @"10";
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         STRONG_SELF
         YXIntelligenceQuestionListItem *item = retItem;
         YXIntelligenceQuestion *question = nil;
         if (item.data.count > 0) {
             question = item.data[0];
-            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
-            vc.requestParams = [self answerQuestionParamsWithFirst:chapter1 Second:chapter2 Thrid:chapter3];
-            vc.model = [QAPaperModel modelFromRawData:question];
-            [self.navigationController pushViewController:vc animated:YES];
+//            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
+//            vc.requestParams = [self answerQuestionParamsWithFirst:chapter1 Second:chapter2 Thrid:chapter3];
+//            vc.model = [QAPaperModel modelFromRawData:question];
+//            [self.navigationController pushViewController:vc animated:YES];
         }else {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
         }
 
     }];

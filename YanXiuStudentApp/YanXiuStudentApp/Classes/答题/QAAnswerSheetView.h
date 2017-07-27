@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXQASheetViewDelegate.h"
 
 typedef void(^SubmitActionBlock)(void);
 

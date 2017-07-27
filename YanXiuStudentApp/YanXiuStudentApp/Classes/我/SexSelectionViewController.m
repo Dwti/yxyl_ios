@@ -75,7 +75,7 @@
         [self nyx_enableRightNavigationItem];
         [self.view nyx_stopLoading];
         if (error) {
-            [self yx_showToast:error.localizedDescription];
+            [self.view nyx_showToast:error.localizedDescription];
             return;
         }
         [self backAction];

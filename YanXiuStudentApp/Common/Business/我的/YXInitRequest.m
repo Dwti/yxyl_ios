@@ -7,8 +7,6 @@
 //
 
 #import "YXInitRequest.h"
-#import "YXCommonLabel.h"
-#import "UIView+YXScale.h"
 #import "NSString+YXString.h"
 #import "UpdateAppPromptView.h"
 
@@ -106,7 +104,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 @end
 
 @interface YXInitHelper()
-@property (nonatomic, strong) EEAlertView *alertView;
+@property (nonatomic, strong) AlertView *alertView;
 @property (nonatomic, strong) UpdateAppPromptView *promptView;
 @property (nonatomic, strong) YXInitRequestItem_Body *body;
 @end
@@ -199,7 +197,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         return;
     }
     
-    self.alertView = [[EEAlertView alloc] init];
+    self.alertView = [[AlertView alloc] init];
     
     self.promptView = [[UpdateAppPromptView alloc] init];
     self.promptView.body = self.body;

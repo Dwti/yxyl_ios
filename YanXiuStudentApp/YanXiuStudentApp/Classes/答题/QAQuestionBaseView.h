@@ -8,9 +8,7 @@
 
 #import "QASlideItemBaseView.h"
 #import "YXQAAnalysisKnpClickDelegate.h"
-#import "YXQAAnalysisReportErrorDelegate.h"
 #import "YXQAAnalysisDataDelegate.h"
-#import "YXQASubjectiveAddPhotoHandler.h"
 #import "YXAutoGoNextDelegate.h"
 #import "QATitleView.h"
 #import "QAAnalysisEditNoteDelegate.h"
@@ -29,16 +27,13 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isPaperSubmitted;
 @property (nonatomic, assign) NSInteger nextLevelStartIndex;
-@property (nonatomic, strong) YXQASubjectiveAddPhotoHandler *addPhotoHandler;
 @property (nonatomic, weak) id<YXAutoGoNextDelegate> delegate;
-@property (nonatomic, weak) id<YXQASubjectiveAddPhotoDelegate> photoDelegate;
 @property (nonatomic, weak) id<QAQuestionViewSlideDelegate> slideDelegate;
 @property (nonatomic, weak) id<QAAnswerStateChangeDelegate> answerStateChangeDelegate;
 
 @property (nonatomic, assign) BOOL analysisDataHidden;
 @property (nonatomic, assign) BOOL canDoExerciseFromKnp;
 @property (nonatomic, weak) id<YXQAAnalysisKnpClickDelegate> pointClickDelegate;
-@property (nonatomic, weak) id<YXQAAnalysisReportErrorDelegate> reportErrorDelegate;
 @property (nonatomic, weak) id<YXQAAnalysisDataDelegate> analysisDataDelegate;
 @property (nonatomic, weak) id<QAAnalysisEditNoteDelegate> editNoteDelegate;
 // UI

@@ -20,15 +20,12 @@
     view.data = data;
     view.isPaperSubmitted = self.isPaperSubmitted;
     view.isSubQuestionView = YES;
-    view.photoDelegate = self.addPhotoHandler;
     view.delegate = self;
     view.analysisDataDelegate = self.analysisDataDelegate;
     view.canDoExerciseFromKnp = self.canDoExerciseFromKnp;
     view.pointClickDelegate = self.pointClickDelegate;
-    view.reportErrorDelegate = self.reportErrorDelegate;
     view.analysisDataHidden = self.analysisDataHidden;
     view.editNoteDelegate = self.editNoteDelegate;
-    view.addPhotoHandler = self.addPhotoHandler;
     
     return view;
 }

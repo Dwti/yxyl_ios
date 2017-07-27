@@ -10,9 +10,6 @@
 #import "YXGradientView.h"
 #import "UIImage+YXImage.h"
 #import "LePlayer.h"
-#import "UIView+YXScale.h"
-#import "YXCommonLabel.h"
-#import "ListenComplexPromptView.h"
 
 @interface QAListenPlayView()
 @property (nonatomic, strong) LePlayer *player;
@@ -90,18 +87,8 @@
         STRONG_SELF
         if (self.player ==  nil) {
             if (self.network == NO) {
-                [self.viewController yx_showToast:@"网络无法连接"];
+                [self.window nyx_showToast:@"网络无法连接"];
                 return;
-            }
-            
-            if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
-                static bool first = YES;
-                if (first) {
-                    [self.player pause];
-                    [self showAlertView];
-                    first = NO;
-                    return;
-                }
             }
             
             NSURL *url= [NSURL URLWithString:self.item.audioUrl];
@@ -171,25 +158,6 @@
         }
         self.playProgress = progress;
         [self updateUI];
-    }];
-}
-
-- (void)showAlertView {
-    EEAlertView *alertView = [[EEAlertView alloc]init];
-    
-    ListenComplexPromptView *promptView = [[ListenComplexPromptView alloc] init];
-    
-    [promptView setOkAction:^{
-        [alertView hide];
-    }];
-    
-    alertView.contentView = promptView;
-    [alertView showInView:self.viewController.view withLayout:^(AlertView *view) {
-        [view.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(300 * [UIView scale]);
-            make.center.mas_equalTo(0);
-        }];
-        [view layoutIfNeeded];
     }];
 }
 
@@ -277,7 +245,7 @@
         Reachability *reach = [notification object];
         NetworkStatus status = [reach currentReachabilityStatus];
         if (status == NotReachable) {
-            [self.viewController yx_showToast:@"网络无法连接"];
+            [self.window nyx_showToast:@"网络无法连接"];
             self.network = NO;
         }else {
             self.network = YES;

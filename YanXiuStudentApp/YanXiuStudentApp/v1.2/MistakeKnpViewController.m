@@ -11,7 +11,6 @@
 #import "GetKnpListRequest.h"
 #import "ExerciseKnpTreeCell.h"
 #import "YXGenKnpointQBlockRequest.h"
-#import "YXAnswerQuestionViewController.h"
 #import "MistakeTreeCell.h"
 #import "MistakeKnpTreeDataFetcher.h"
 #import "MistakeKnpListRequest.h"
@@ -36,7 +35,7 @@
     
     [self addNotification];
     
-    self.emptyView.text = @"暂无题目";
+//    self.emptyView.text = @"暂无题目";
 }
 
 - (void)didReceiveMemoryWarning {

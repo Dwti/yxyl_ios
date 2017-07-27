@@ -8,7 +8,6 @@
 
 #import "QASingleQuestionAnalysisBaseView.h"
 #import "YXQAAnalysisKnpClickDelegate.h"
-#import "YXQAAnalysisReportErrorDelegate.h"
 #import "YXQAAnalysisDataDelegate.h"
 
 @interface QAClassifyQuestionAnalysisView : QASingleQuestionAnalysisBaseView

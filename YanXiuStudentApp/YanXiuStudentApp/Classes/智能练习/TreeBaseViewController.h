@@ -8,12 +8,11 @@
 
 #import "BaseViewController.h"
 #import "TreeDataFetcher.h"
-#import "YXTipsView.h"
 #import <RATreeView/RATreeView.h>
 
 @interface TreeBaseViewController : BaseViewController<RATreeViewDataSource, RATreeViewDelegate>
 @property (nonatomic, strong) RATreeView *treeView;
 @property (nonatomic, strong) TreeDataFetcher *dataFetcher;
-@property (nonatomic, strong) YXTipsView *emptyView;
+@property (nonatomic, strong) UIView *emptyView;
 - (void)fetchTreeData;
 @end

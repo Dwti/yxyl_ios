@@ -7,7 +7,6 @@
 //
 
 #import "YXGuideViewController.h"
-#import "YXLoginViewController.h"
 #import "LoginViewController.h"
 
 static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";

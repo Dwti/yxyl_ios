@@ -9,18 +9,18 @@
 #import "ExerciseKnpTreeCell.h"
 #import "YXMasterProgressView.h"
 #import "YXDashLineCell.h"
-#import "YXCommonLabel.h"
+
 typedef void(^ExpandBlock) (ExerciseKnpTreeCell *cell);
 typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
 @interface ExerciseKnpTreeCell()
 @property (nonatomic, strong) UIButton *expandButton;
 @property (nonatomic, strong) UIButton *contentBgButton;
-@property (nonatomic, strong) YXCommonLabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *accessoryImageView;
 @property (nonatomic, strong) UIView *progressContainerView;
-@property (nonatomic, strong) YXCommonLabel *masterTitleLabel;
+@property (nonatomic, strong) UILabel *masterTitleLabel;
 @property (nonatomic, strong) YXMasterProgressView *masterProgressView;
-@property (nonatomic, strong) YXCommonLabel *masterProgressLabel;
+@property (nonatomic, strong) UILabel *masterProgressLabel;
 
 @property (nonatomic, copy) ExpandBlock expandBlock;
 @property (nonatomic, copy) ClickBlock clickBlock;
@@ -50,7 +50,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
     [self.contentBgButton addTarget:self action:@selector(contentBgButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.contentBgButton];
     
-    self.titleLabel = [[YXCommonLabel alloc]init];
+    self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.numberOfLines = 1;
     [self.contentView addSubview:self.titleLabel];
     
@@ -85,10 +85,10 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
     }];
     self.masterProgressView = [[YXMasterProgressView alloc] init];
     [self.progressContainerView addSubview:self.masterProgressView];
-    self.masterTitleLabel = [[YXCommonLabel alloc] init];
+    self.masterTitleLabel = [[UILabel alloc] init];
     self.masterTitleLabel.font = [UIFont systemFontOfSize:11];
     [self.progressContainerView addSubview:self.masterTitleLabel];
-    self.masterProgressLabel = [[YXCommonLabel alloc] init];
+    self.masterProgressLabel = [[UILabel alloc] init];
     [self.progressContainerView addSubview:self.masterProgressLabel];
     
     [self.masterProgressView mas_makeConstraints:^(MASConstraintMaker *make) {

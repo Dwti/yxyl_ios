@@ -8,7 +8,6 @@
 
 #import "ExerciseHistorySubjectViewController.h"
 #import "ExerciseHistorySubjectCell.h"
-#import "UIView+YXScale.h"
 #import "YXGetPracticeEditionRequest.h"
 #import "YXCommonErrorView.h"
 #import "YXExerciseEmptyView.h"
@@ -79,10 +78,10 @@
     self.request = [[YXGetPracticeEditionRequest alloc] init];
     self.request.stageId = [YXUserManager sharedManager].userModel.stageid;
     @weakify(self);
-    [self yx_startLoading];
+    [self.view nyx_startLoading];
     [self.request startRequestWithRetClass:[GetPracticeEditionRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self);
-        [self yx_stopLoading];
+        [self.view nyx_stopLoading];
         self.errorView.hidden = YES;
         self.emptyView.hidden = YES;
         GetPracticeEditionRequestItem *item = retItem;

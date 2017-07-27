@@ -54,7 +54,7 @@
     [self.contentView addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(11);
-        make.centerY.mas_equalTo(self.whiteBackView.centerY);
+        make.centerY.mas_equalTo(self.whiteBackView.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(28, 28));
     }];
     

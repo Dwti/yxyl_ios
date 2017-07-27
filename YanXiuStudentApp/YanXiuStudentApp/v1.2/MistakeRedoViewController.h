@@ -6,10 +6,9 @@
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "YXJieXiViewController.h"
+#import "QABaseViewController.h"
 
-
-@interface MistakeRedoViewController : YXJieXiViewController
+@interface MistakeRedoViewController : QABaseViewController
 @property (nonatomic, assign) NSInteger totalNumber;
 @property (nonatomic, strong) GetSubjectMistakeRequestItem_subjectMistake *subject;
 @property (nonatomic, strong) void(^updateNumberBlock) (NSInteger num);

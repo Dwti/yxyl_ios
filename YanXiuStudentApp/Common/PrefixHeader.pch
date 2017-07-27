@@ -17,6 +17,19 @@
 
 #define kPhoneWidthRatio SCREEN_WIDTH/375
 
+// 字体
+#define YXFontZhengHei      @"FZZZHONGJW--GB1-0"
+#define YXFontArial         @"ArialRoundedMTBold"
+#define YXFontMetro_Bold        @"Metro-Bold"
+#define YXFontMetro_Medium        @"Metro-Medium"
+
+#define YXFontMetro_Regular     @"Metro"
+#define YXFontMetro_Light       @"Metro-Light"
+#define YXFontMetro_DemiBold       @"Metro-DemiBold"
+
+#define YXFontArialNarrow     @"ArialNarrow"
+#define YXFontArialNarrow_Bold       @"ArialNarrow-Bold"
+
 extern int ddLogLevel;
 #import "TalkingData.h"
 #import <CocoaLumberjack.h>
@@ -41,24 +54,20 @@ extern int ddLogLevel;
 #import "POP.h"
 #import "UIView+CBFrameHelpers.h"
 
-#import "UIImage+YXStretch.h"
 #import "GlobalUtils.h"
 #import "UIImage+Color.h"
 #import "UIButton+HighlightColor.h"
-#import "UIView+Views.h"
 #import "UIImage+YXImage.h"
 #import "UIImage+GIF.h"
 #import "NSObject+BackgroundTask.h"
 
-#import "EEAlertView.h"
+#import "SimpleAlertView.h"
 #import "BaseViewController.h"
 #import "YXAppConstants.h"
 #import "NSString+YXString.h"
-#import "UIViewController+YXNavigationItem.h"
 #import "YXNavigationController.h"
 #import "YXUserManager.h"
 #import "YXConfigManager.h"
-#import "UIViewController+YXLoading.h"
 #import "UIView+YXShadowColor.h"
 #import "NSDictionary+Dictionarys.h"
 #import "NSMutableDictionary+YXDictionarys.h"
@@ -106,7 +115,6 @@ extern int ddLogLevel;
 
 #pragma mark - 2.0
 #import "YXTabBarController.h"
-#import "YXLoadingView.h"
 #import "YXQACoreTextHelper.h"
 #import "NSObject+YXNetworkMethod.h"
 

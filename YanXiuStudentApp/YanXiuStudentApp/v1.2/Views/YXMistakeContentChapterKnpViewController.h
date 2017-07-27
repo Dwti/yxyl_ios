@@ -6,13 +6,13 @@
 //  Copyright © 2017 yanxiu.com. All rights reserved.
 //
 
-#import "YXJieXiFoldUnfoldViewController.h"
+#import "QABaseViewController.h"
 #import "GetSubjectMistakeRequest.h"
 #import "MistakePageListFetcher.h"
 @class YXErrorsRequest;
 @class YXIntelligenceQuestionListItem;
 
-@interface YXMistakeContentChapterKnpViewController : YXJieXiFoldUnfoldViewController
+@interface YXMistakeContentChapterKnpViewController : QABaseViewController
 @property (nonatomic, strong) YXQARequestParams *exeRequestParams;
 @property (nonatomic, assign) NSInteger total;
 @property (nonatomic, assign) NSInteger index;

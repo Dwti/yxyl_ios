@@ -8,7 +8,6 @@
 
 #import "YXMistakeContentViewController.h"
 #import "YXDelMistakeRequest.h"
-#import "YXLoadingView.h"
 #import "YXQAAnalysisDataConfig.h"
 #import "QAMistakeAnalysisDataConfig.h"
 

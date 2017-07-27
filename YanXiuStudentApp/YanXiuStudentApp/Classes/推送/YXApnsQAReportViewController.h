@@ -6,8 +6,8 @@
 //  Copyright © 2015 yanxiu.com. All rights reserved.
 //
 
-#import "YXQAReportViewController.h"
+#import "QAReportViewController.h"
 
-@interface YXApnsQAReportViewController : YXQAReportViewController
+@interface YXApnsQAReportViewController : QAReportViewController
 
 @end
