@@ -15,5 +15,6 @@
 @property (nonatomic, strong) GetKnpListRequestItem_knp *knp;
 - (void)setTreeExpandBlock:(void(^)(ExerciseKnpTreeCell *cell))block;
 - (void)setTreeClickBlock:(void(^)(ExerciseKnpTreeCell *cell))block;
+@property (nonatomic, assign) BOOL isFirst;
 
 @end

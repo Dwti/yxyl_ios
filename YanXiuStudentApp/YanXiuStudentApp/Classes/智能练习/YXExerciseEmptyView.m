@@ -10,15 +10,15 @@
 
 @interface YXExerciseEmptyView ()
 
-//@property (nonatomic, strong) YXTipsView *emptyView;
+@property (nonatomic, strong) UIView *emptyView;
 
 @end
 
 @implementation YXExerciseEmptyView
 
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
 //        _emptyView = [[YXTipsView alloc] init];
 //        _emptyView.title = @"%>_<%";
 //        _emptyView.text = @"暂无数据";
@@ -27,15 +27,15 @@
 //        [_emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.edges.mas_equalTo(0);
 //        }];
-//    }
-//    return self;
-//}
-//
+    }
+    return self;
+}
+
 - (void)setEmptyText:(NSString *)text
 {
-//    if ([text yx_isValidString]) {
+    if ([text yx_isValidString]) {
 //        self.emptyView.text = text;
-//    }
+    }
 }
 
 @end

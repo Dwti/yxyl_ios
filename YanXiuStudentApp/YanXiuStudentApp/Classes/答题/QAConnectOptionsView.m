@@ -48,6 +48,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     [self.tableView registerClass:[QAConnectContentCell class] forCellReuseIdentifier:@"QAConnectContentCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self addSubview:self.tableView];

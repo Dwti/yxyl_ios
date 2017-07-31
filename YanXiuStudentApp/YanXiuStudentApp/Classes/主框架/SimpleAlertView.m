@@ -102,6 +102,7 @@ CGFloat const kQADefaultContentViewWith = 327;
     
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.numberOfLines = 0;
     titleLabel.font = [UIFont boldSystemFontOfSize:21];
     titleLabel.textColor = [UIColor colorWithHexString:@"336600"];
     titleLabel.text = self.title;

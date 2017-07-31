@@ -145,6 +145,9 @@
             
             QAReportViewController *vc = [[QAReportViewController alloc]init];
             vc.model = reportModel;
+            vc.pType = self.pType;
+            vc.canDoExerciseAgain = self.pType == YXPTypeIntelligenceExercise? YES:NO;
+            vc.requestParams = self.requestParams;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];

@@ -17,6 +17,7 @@ typedef void(^ClickBlock) (ExerciseChapterTreeCell *cell);
 
 @interface ExerciseChapterTreeCell : TreeBaseCell
 @property (nonatomic, strong) GetChapterListRequestItem_chapter *chapter;
+@property (nonatomic, assign) BOOL isFirst;
 
 - (void)setTreeExpandBlock:(ExpandBlock)block;
 - (void)setTreeClickBlock:(ClickBlock)block;

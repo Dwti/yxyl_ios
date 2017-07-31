@@ -10,4 +10,9 @@
 
 @interface QAReportViewController : BaseViewController
 @property (nonatomic, strong) QAPaperModel *model;
+@property (nonatomic, assign) YXPType pType;
+@property (nonatomic, assign) BOOL canDoExerciseAgain;
+@property (nonatomic, strong) YXQARequestParams *requestParams;
+
+
 @end

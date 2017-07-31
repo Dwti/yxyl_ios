@@ -332,8 +332,6 @@
 		7C2B66EA1DBF43B4007DD16B /* ExerciseSubjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B66E81DBF43B4007DD16B /* ExerciseSubjectManager.m */; };
 		7C2B66ED1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B66EC1DBF5DA6007DD16B /* SaveEditionRequest.m */; };
 		7C2B66EE1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B66EC1DBF5DA6007DD16B /* SaveEditionRequest.m */; };
-		7C2B66F41DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B66F31DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m */; };
-		7C2B66F51DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B66F31DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m */; };
 		7C2E8A5C1DBDAC5C00C8EB7F /* QAReadComplexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E8A5B1DBDAC5C00C8EB7F /* QAReadComplexView.m */; };
 		7C2E8A621DBDB45A00C8EB7F /* QAClozeComplexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E8A611DBDB45A00C8EB7F /* QAClozeComplexView.m */; };
 		7C2E8A651DBDB92D00C8EB7F /* QAListenComplexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E8A641DBDB92D00C8EB7F /* QAListenComplexView.m */; };
@@ -642,12 +640,6 @@
 		7C9EDC521DCDBAFD0001C048 /* RegisterByUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EDC511DCDBAFD0001C048 /* RegisterByUserInfoRequest.m */; };
 		7C9F6A7F1D6ACFDF0077C486 /* YXServerEnvHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F6A7E1D6ACFDF0077C486 /* YXServerEnvHelper.m */; };
 		7C9F6A801D6ACFDF0077C486 /* YXServerEnvHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F6A7E1D6ACFDF0077C486 /* YXServerEnvHelper.m */; };
-		7CA30DE11DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DDE1DC337E8008D4C38 /* ExerciseChapterTreeCell.m */; };
-		7CA30DE21DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DDE1DC337E8008D4C38 /* ExerciseChapterTreeCell.m */; };
-		7CA30DE31DC337E8008D4C38 /* ExerciseKnpTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DE01DC337E8008D4C38 /* ExerciseKnpTreeCell.m */; };
-		7CA30DE41DC337E8008D4C38 /* ExerciseKnpTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DE01DC337E8008D4C38 /* ExerciseKnpTreeCell.m */; };
-		7CA30DE71DC33AB0008D4C38 /* TreeBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DE61DC33AB0008D4C38 /* TreeBaseCell.m */; };
-		7CA30DE81DC33AB0008D4C38 /* TreeBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA30DE61DC33AB0008D4C38 /* TreeBaseCell.m */; };
 		7CA47B1B1D3F76DA00DDE44E /* LePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA47B171D3F76DA00DDE44E /* LePlayer.m */; };
 		7CA47B1C1D3F76DA00DDE44E /* LePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA47B191D3F76DA00DDE44E /* LePlayerView.m */; };
 		7CA5A97D1F1CA7D9004F34D3 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5A97C1F1CA7D9004F34D3 /* MineViewController.m */; };
@@ -723,14 +715,6 @@
 		7CBFF5601E8910BC00C363BD /* MistakeAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBFF55F1E8910BC00C363BD /* MistakeAllViewController.m */; };
 		7CC32D761F29D98400424C13 /* YXRankCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D751F29D98400424C13 /* YXRankCellContainerView.m */; };
 		7CC32D771F29D98400424C13 /* YXRankCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D751F29D98400424C13 /* YXRankCellContainerView.m */; };
-		7CC32D7A1F29D9DA00424C13 /* YXExerciseEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D791F29D9DA00424C13 /* YXExerciseEmptyView.m */; };
-		7CC32D7B1F29D9DA00424C13 /* YXExerciseEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D791F29D9DA00424C13 /* YXExerciseEmptyView.m */; };
-		7CC32D841F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D7D1F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */; };
-		7CC32D851F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D7D1F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */; };
-		7CC32D881F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D811F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m */; };
-		7CC32D891F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D811F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m */; };
-		7CC32D8A1F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D831F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m */; };
-		7CC32D8B1F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D831F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m */; };
 		7CC32D971F29DE6800424C13 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CC32D8D1F29DE6800424C13 /* MJRefresh.bundle */; };
 		7CC32D981F29DE6800424C13 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CC32D8D1F29DE6800424C13 /* MJRefresh.bundle */; };
 		7CC32D991F29DE6800424C13 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC32D901F29DE6800424C13 /* MJRefreshBaseView.m */; };
@@ -794,12 +778,6 @@
 		7CEE06E61DC2FC3900AA898B /* ChapterTreeDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06E41DC2FC3900AA898B /* ChapterTreeDataFetcher.m */; };
 		7CEE06E91DC2FDF400AA898B /* KnpTreeDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06E81DC2FDF400AA898B /* KnpTreeDataFetcher.m */; };
 		7CEE06EA1DC2FDF400AA898B /* KnpTreeDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06E81DC2FDF400AA898B /* KnpTreeDataFetcher.m */; };
-		7CEE06ED1DC3020C00AA898B /* TreeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06EC1DC3020C00AA898B /* TreeBaseViewController.m */; };
-		7CEE06EE1DC3020C00AA898B /* TreeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06EC1DC3020C00AA898B /* TreeBaseViewController.m */; };
-		7CEE06F11DC3028700AA898B /* ExerciseChapterTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06F01DC3028700AA898B /* ExerciseChapterTreeViewController.m */; };
-		7CEE06F21DC3028700AA898B /* ExerciseChapterTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06F01DC3028700AA898B /* ExerciseChapterTreeViewController.m */; };
-		7CEE06F51DC302A600AA898B /* ExerciseKnpTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06F41DC302A600AA898B /* ExerciseKnpTreeViewController.m */; };
-		7CEE06F61DC302A600AA898B /* ExerciseKnpTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE06F41DC302A600AA898B /* ExerciseKnpTreeViewController.m */; };
 		7CF6281F1C9FD95900511366 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7CF6C8361C71C41F00AE88F8 /* YXQAAddPhotoCell_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6C8351C71C41F00AE88F8 /* YXQAAddPhotoCell_Pad.m */; };
 		7CF6C8391C71CBE500AE88F8 /* YXQASubjectiveView_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6C8381C71CBE500AE88F8 /* YXQASubjectiveView_Pad.m */; };
@@ -956,6 +934,8 @@
 		E94E98D81EE8EC2200E94F5C /* QAListenPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */; };
 		E95DE7541E10E9B300B25435 /* LoginUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E95DE7531E10E9B300B25435 /* LoginUtils.m */; };
 		E96FE8401E09399000837DDA /* ClassHomeworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */; };
+		E98169C11F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98169C01F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m */; };
+		E98169C21F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98169C01F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m */; };
 		E98516081EF121AD0092C91F /* QAAnswerSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */; };
 		E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E985160A1EF121E40092C91F /* QAAnswerSheetView.m */; };
 		E996C21F1EF76C5D00D2C460 /* QAImageUploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E996C21E1EF76C5D00D2C460 /* QAImageUploadProgressView.m */; };
@@ -969,6 +949,25 @@
 		E9A471781F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A471771F1E0FD00010F1EA /* QAConnectAnalysisGroupView.m */; };
 		E9A4717B1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A4717A1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m */; };
 		E9A4717E1F1E101D0010F1EA /* QAConnectAnalysisLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A4717D1F1E101D0010F1EA /* QAConnectAnalysisLineView.m */; };
+		E9AE4A371F2B58AC00FED26C /* UIButton+ExpandHitArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A361F2B58AC00FED26C /* UIButton+ExpandHitArea.m */; };
+		E9AE4A3A1F2B595800FED26C /* ChooseEditionTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A391F2B595800FED26C /* ChooseEditionTopView.m */; };
+		E9AE4A3F1F2B59E200FED26C /* ChooseEditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A3C1F2B59E200FED26C /* ChooseEditionViewController.m */; };
+		E9AE4A401F2B59E200FED26C /* TextBookVersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A3E1F2B59E200FED26C /* TextBookVersionViewController.m */; };
+		E9AE4A581F2B5D1E00FED26C /* ExerciseChapterTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A451F2B5D1E00FED26C /* ExerciseChapterTreeCell.m */; };
+		E9AE4A591F2B5D1E00FED26C /* ExerciseKnpTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A471F2B5D1E00FED26C /* ExerciseKnpTreeCell.m */; };
+		E9AE4A5A1F2B5D1E00FED26C /* ExerciseMainSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A491F2B5D1E00FED26C /* ExerciseMainSubjectCell.m */; };
+		E9AE4A5B1F2B5D1E00FED26C /* TextbookVersionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A4B1F2B5D1E00FED26C /* TextbookVersionCell.m */; };
+		E9AE4A5C1F2B5D1E00FED26C /* TextbookVersionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A4D1F2B5D1E00FED26C /* TextbookVersionView.m */; };
+		E9AE4A5D1F2B5D1E00FED26C /* TreeBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A4F1F2B5D1E00FED26C /* TreeBaseCell.m */; };
+		E9AE4A5E1F2B5D1E00FED26C /* YXChapterPointSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A511F2B5D1E00FED26C /* YXChapterPointSegmentControl.m */; };
+		E9AE4A5F1F2B5D1E00FED26C /* YXChooseVolumnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A531F2B5D1E00FED26C /* YXChooseVolumnButton.m */; };
+		E9AE4A601F2B5D1E00FED26C /* YXChooseVolumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A551F2B5D1E00FED26C /* YXChooseVolumnView.m */; };
+		E9AE4A611F2B5D1E00FED26C /* YXExerciseEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A571F2B5D1E00FED26C /* YXExerciseEmptyView.m */; };
+		E9AE4A6C1F2B5D4600FED26C /* ExerciseChapterTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A631F2B5D4600FED26C /* ExerciseChapterTreeViewController.m */; };
+		E9AE4A6D1F2B5D4600FED26C /* ExerciseKnpTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A651F2B5D4600FED26C /* ExerciseKnpTreeViewController.m */; };
+		E9AE4A6F1F2B5D4600FED26C /* ExerciseMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A691F2B5D4600FED26C /* ExerciseMainViewController.m */; };
+		E9AE4A701F2B5D4600FED26C /* TreeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A6B1F2B5D4600FED26C /* TreeBaseViewController.m */; };
+		E9AE4A731F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE4A721F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */; };
 		E9B425A61EF226BC00F99485 /* QAAnswerSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */; };
 		E9C684991DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C684981DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m */; };
 		E9C6849C1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C6849B1DBDAC2D00717D82 /* QAFillQuestionAnalysisView.m */; };
@@ -1023,7 +1022,6 @@
 		F751360F1C72F9CB003B280C /* YXExerciseHistoryChooseChapterKnpViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F751360E1C72F9CB003B280C /* YXExerciseHistoryChooseChapterKnpViewController_Pad.m */; };
 		F7593F8C1EADA8A00006268D /* YXMistakeContentChapterKnpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7593F8B1EADA8A00006268D /* YXMistakeContentChapterKnpViewController.m */; };
 		F75BA69F1E9C90EA00A4A7F1 /* YXMistakeListWithoutRedoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75BA69E1E9C90EA00A4A7F1 /* YXMistakeListWithoutRedoViewController.m */; };
-		F773C90A1C4627F400AAE684 /* YXMasterProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EE19BA1C16A8160034877F /* YXMasterProgressView.m */; };
 		F773C9131C4627F400AAE684 /* YXBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5111BFAE23400DCA4FE /* YXBaseWebViewController.m */; };
 		F773C92B1C4627F400AAE684 /* YXMockPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C5F31B4E0CF7000CBD0F /* YXMockPageRequest.m */; };
 		F773C9301C4627F400AAE684 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5251BFAF6EB00DCA4FE /* NJKWebViewProgressView.m */; };
@@ -1033,22 +1031,18 @@
 		F773C9521C4627F400AAE684 /* YXTestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C60A1B4E228B000CBD0F /* YXTestTableView.m */; };
 		F773C96B1C4627F400AAE684 /* TestsRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AB546B1B43EE6000D8FCF2 /* TestsRootViewController.m */; };
 		F773C9A61C4627F400AAE684 /* YXHtmlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0FFA1B536B3800F46035 /* YXHtmlCell.m */; };
-		F773C9AE1C4627F400AAE684 /* YXChapterPointSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AECF251C1577D300D4927A /* YXChapterPointSegmentControl.m */; };
 		F773C9BA1C4627F400AAE684 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5231BFAF6EB00DCA4FE /* NJKWebViewProgress.m */; };
-		F773C9C81C4627F400AAE684 /* YXDashLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F968CE1C113C52008036B6 /* YXDashLineCell.m */; };
 		F773C9D91C4627F400AAE684 /* YXTestCoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0FF61B53568F00F46035 /* YXTestCoreTextViewController.m */; };
 		F773CA011C4627F400AAE684 /* YXCaileiViewController01.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F968C51C10402B008036B6 /* YXCaileiViewController01.m */; };
 		F773CA101C4627F400AAE684 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F773CA111C4627F400AAE684 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F773CA121C4627F400AAE684 /* TestPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F525651B45368800AE492E /* TestPostRequest.m */; };
-		F773CA171C4627F400AAE684 /* YXChooseVolumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AECF221C15686500D4927A /* YXChooseVolumnView.m */; };
 		F773CA201C4627F400AAE684 /* TestGetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F5255F1B4519A800AE492E /* TestGetRequest.m */; };
 		F773CA2A1C4627F400AAE684 /* TestUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F525591B4511EF00AE492E /* TestUploadRequest.m */; };
 		F773CA301C4627F400AAE684 /* YXApnsHomeworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F780882C1BB92BDE0025D1F6 /* YXApnsHomeworkViewController.m */; };
 		F773CA661C4627F400AAE684 /* YXTestBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F748D9C21B44D7290028A24A /* YXTestBaseViewController.m */; };
 		F773CA671C4627F400AAE684 /* YXTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F748D9BC1B44CF6E0028A24A /* YXTestViewController.m */; };
 		F773CA6C1C4627F400AAE684 /* YXFillBlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77624721B53B6F8008D02CA /* YXFillBlankViewController.m */; };
-		F773CA851C4627F400AAE684 /* YXChooseVolumnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AECF1F1C155B9B00D4927A /* YXChooseVolumnButton.m */; };
 		F773CA8C1C4627F400AAE684 /* YXFeedbackRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A40C51BF072F8007DE38A /* YXFeedbackRequest.m */; };
 		F773CA9F1C4627F400AAE684 /* YXApnsQAReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F78088291BB919070025D1F6 /* YXApnsQAReportViewController.m */; };
 		F773CAA81C4627F400AAE684 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F770041B1BAFDBD8000584C3 /* CFNetwork.framework */; };
@@ -1073,7 +1067,6 @@
 		F773CAC91C4627F400AAE684 /* t@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F748D9C41B44D7860028A24A /* t@2x.png */; };
 		F773CACA1C4627F400AAE684 /* province_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0F7FEF701B4E6B2600E86E51 /* province_data.xml */; };
 		F773CB101C4631BA00AAE684 /* AppDelegate_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = F773CB0F1C4631BA00AAE684 /* AppDelegate_Pad.m */; };
-		F7754ECC1C4E43860002FE45 /* YXMasterProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EE19BA1C16A8160034877F /* YXMasterProgressView.m */; };
 		F7754ED51C4E43860002FE45 /* YXBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5111BFAE23400DCA4FE /* YXBaseWebViewController.m */; };
 		F7754EEC1C4E43860002FE45 /* YXMockPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C5F31B4E0CF7000CBD0F /* YXMockPageRequest.m */; };
 		F7754EF11C4E43860002FE45 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5251BFAF6EB00DCA4FE /* NJKWebViewProgressView.m */; };
@@ -1087,15 +1080,11 @@
 		F7754F4B1C4E43860002FE45 /* YXMistakeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F772E9231B662E0900DDEEBD /* YXMistakeContentViewController.m */; };
 		F7754F691C4E43860002FE45 /* YXHtmlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0FFA1B536B3800F46035 /* YXHtmlCell.m */; };
 		F7754F701C4E43860002FE45 /* YXQADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C38E7241C4E2C9B00EC18D0 /* YXQADataManager.m */; };
-		F7754F721C4E43860002FE45 /* YXChapterPointSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AECF251C1577D300D4927A /* YXChapterPointSegmentControl.m */; };
 		F7754F7E1C4E43860002FE45 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671C5231BFAF6EB00DCA4FE /* NJKWebViewProgress.m */; };
-		F7754F8C1C4E43860002FE45 /* YXDashLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F968CE1C113C52008036B6 /* YXDashLineCell.m */; };
-		F7754F981C4E43860002FE45 /* YXSmartExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9298D1B4B9CAB00B4284D /* YXSmartExerciseViewController.m */; };
 		F7754F9F1C4E43860002FE45 /* YXTestCoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0FF61B53568F00F46035 /* YXTestCoreTextViewController.m */; };
 		F7754FBD1C4E43860002FE45 /* YXRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C97392F1BB13C9400F1CF91 /* YXRankCell.m */; };
 		F7754FC61C4E43860002FE45 /* YXCaileiViewController01.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F968C51C10402B008036B6 /* YXCaileiViewController01.m */; };
 		F7754FD71C4E43860002FE45 /* TestPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F525651B45368800AE492E /* TestPostRequest.m */; };
-		F7754FDC1C4E43860002FE45 /* YXChooseVolumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AECF221C15686500D4927A /* YXChooseVolumnView.m */; };
 		F7754FE51C4E43860002FE45 /* TestGetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F5255F1B4519A800AE492E /* TestGetRequest.m */; };
 		F7754FEE1C4E43860002FE45 /* YXQAAnalysisItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C38E7181C4E2C3C00EC18D0 /* YXQAAnalysisItem.m */; };
 		F7754FF01C4E43860002FE45 /* TestUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F525591B4511EF00AE492E /* TestUploadRequest.m */; };
@@ -1106,7 +1095,6 @@
 		F775502F1C4E43860002FE45 /* YXTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F748D9BC1B44CF6E0028A24A /* YXTestViewController.m */; };
 		F77550341C4E43860002FE45 /* YXFillBlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77624721B53B6F8008D02CA /* YXFillBlankViewController.m */; };
 		F775503A1C4E43860002FE45 /* YXMistakeSubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7FEF471B4E1D2900E86E51 /* YXMistakeSubjectViewController.m */; };
-		F775504F1C4E43860002FE45 /* YXChooseVolumnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7AECF1F1C155B9B00D4927A /* YXChooseVolumnButton.m */; };
 		F77550561C4E43860002FE45 /* YXFeedbackRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 766A40C51BF072F8007DE38A /* YXFeedbackRequest.m */; };
 		F77550641C4E43860002FE45 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F77550681C4E43860002FE45 /* YXApnsQAReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F78088291BB919070025D1F6 /* YXApnsQAReportViewController.m */; };
@@ -1567,8 +1555,6 @@
 		7C2B66E81DBF43B4007DD16B /* ExerciseSubjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseSubjectManager.m; sourceTree = "<group>"; };
 		7C2B66EB1DBF5DA6007DD16B /* SaveEditionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveEditionRequest.h; sourceTree = "<group>"; };
 		7C2B66EC1DBF5DA6007DD16B /* SaveEditionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveEditionRequest.m; sourceTree = "<group>"; };
-		7C2B66F21DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnowledgeChooseViewController.h; sourceTree = "<group>"; };
-		7C2B66F31DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseKnowledgeChooseViewController.m; sourceTree = "<group>"; };
 		7C2E8A5A1DBDAC5C00C8EB7F /* QAReadComplexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAReadComplexView.h; sourceTree = "<group>"; };
 		7C2E8A5B1DBDAC5C00C8EB7F /* QAReadComplexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAReadComplexView.m; sourceTree = "<group>"; };
 		7C2E8A601DBDB45A00C8EB7F /* QAClozeComplexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAClozeComplexView.h; sourceTree = "<group>"; };
@@ -1947,12 +1933,6 @@
 		7C9EDC511DCDBAFD0001C048 /* RegisterByUserInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterByUserInfoRequest.m; sourceTree = "<group>"; };
 		7C9F6A7D1D6ACFDF0077C486 /* YXServerEnvHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXServerEnvHelper.h; sourceTree = "<group>"; };
 		7C9F6A7E1D6ACFDF0077C486 /* YXServerEnvHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXServerEnvHelper.m; sourceTree = "<group>"; };
-		7CA30DDD1DC337E8008D4C38 /* ExerciseChapterTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseChapterTreeCell.h; sourceTree = "<group>"; };
-		7CA30DDE1DC337E8008D4C38 /* ExerciseChapterTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseChapterTreeCell.m; sourceTree = "<group>"; };
-		7CA30DDF1DC337E8008D4C38 /* ExerciseKnpTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnpTreeCell.h; sourceTree = "<group>"; };
-		7CA30DE01DC337E8008D4C38 /* ExerciseKnpTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseKnpTreeCell.m; sourceTree = "<group>"; };
-		7CA30DE51DC33AB0008D4C38 /* TreeBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeBaseCell.h; sourceTree = "<group>"; };
-		7CA30DE61DC33AB0008D4C38 /* TreeBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeBaseCell.m; sourceTree = "<group>"; };
 		7CA47B161D3F76DA00DDE44E /* LePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LePlayer.h; sourceTree = "<group>"; };
 		7CA47B171D3F76DA00DDE44E /* LePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LePlayer.m; sourceTree = "<group>"; };
 		7CA47B181D3F76DA00DDE44E /* LePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LePlayerView.h; sourceTree = "<group>"; };
@@ -2036,14 +2016,6 @@
 		7CBFF55F1E8910BC00C363BD /* MistakeAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MistakeAllViewController.m; sourceTree = "<group>"; };
 		7CC32D741F29D98400424C13 /* YXRankCellContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXRankCellContainerView.h; sourceTree = "<group>"; };
 		7CC32D751F29D98400424C13 /* YXRankCellContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRankCellContainerView.m; sourceTree = "<group>"; };
-		7CC32D781F29D9DA00424C13 /* YXExerciseEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseEmptyView.h; sourceTree = "<group>"; };
-		7CC32D791F29D9DA00424C13 /* YXExerciseEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseEmptyView.m; sourceTree = "<group>"; };
-		7CC32D7C1F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseChapterKnp_ChooseVolumeCell.h; sourceTree = "<group>"; };
-		7CC32D7D1F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseChapterKnp_ChooseVolumeCell.m; sourceTree = "<group>"; };
-		7CC32D801F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseEdition_SubjectEditionListedView.h; sourceTree = "<group>"; };
-		7CC32D811F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseEdition_SubjectEditionListedView.m; sourceTree = "<group>"; };
-		7CC32D821F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseEdition_SubjectView.h; sourceTree = "<group>"; };
-		7CC32D831F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseEdition_SubjectView.m; sourceTree = "<group>"; };
 		7CC32D8D1F29DE6800424C13 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		7CC32D8E1F29DE6800424C13 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		7CC32D8F1F29DE6800424C13 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -2104,12 +2076,6 @@
 		7CEE06E41DC2FC3900AA898B /* ChapterTreeDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChapterTreeDataFetcher.m; sourceTree = "<group>"; };
 		7CEE06E71DC2FDF400AA898B /* KnpTreeDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnpTreeDataFetcher.h; sourceTree = "<group>"; };
 		7CEE06E81DC2FDF400AA898B /* KnpTreeDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnpTreeDataFetcher.m; sourceTree = "<group>"; };
-		7CEE06EB1DC3020C00AA898B /* TreeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeBaseViewController.h; sourceTree = "<group>"; };
-		7CEE06EC1DC3020C00AA898B /* TreeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeBaseViewController.m; sourceTree = "<group>"; };
-		7CEE06EF1DC3028700AA898B /* ExerciseChapterTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseChapterTreeViewController.h; sourceTree = "<group>"; };
-		7CEE06F01DC3028700AA898B /* ExerciseChapterTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseChapterTreeViewController.m; sourceTree = "<group>"; };
-		7CEE06F31DC302A600AA898B /* ExerciseKnpTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnpTreeViewController.h; sourceTree = "<group>"; };
-		7CEE06F41DC302A600AA898B /* ExerciseKnpTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseKnpTreeViewController.m; sourceTree = "<group>"; };
 		7CF6C8341C71C41F00AE88F8 /* YXQAAddPhotoCell_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQAAddPhotoCell_Pad.h; sourceTree = "<group>"; };
 		7CF6C8351C71C41F00AE88F8 /* YXQAAddPhotoCell_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQAAddPhotoCell_Pad.m; sourceTree = "<group>"; };
 		7CF6C8371C71CBE500AE88F8 /* YXQASubjectiveView_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQASubjectiveView_Pad.h; sourceTree = "<group>"; };
@@ -2262,6 +2228,8 @@
 		E95DE7531E10E9B300B25435 /* LoginUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUtils.m; sourceTree = "<group>"; };
 		E96FE83E1E09399000837DDA /* ClassHomeworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHomeworkUtils.h; sourceTree = "<group>"; };
 		E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHomeworkUtils.m; sourceTree = "<group>"; };
+		E98169BF1F2F09DE00BD7575 /* ExerciseKnowledgeChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnowledgeChooseViewController.h; sourceTree = "<group>"; };
+		E98169C01F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseKnowledgeChooseViewController.m; sourceTree = "<group>"; };
 		E98516061EF121AD0092C91F /* QAAnswerSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetViewController.h; sourceTree = "<group>"; };
 		E98516071EF121AD0092C91F /* QAAnswerSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetViewController.m; sourceTree = "<group>"; };
 		E98516091EF121E40092C91F /* QAAnswerSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetView.h; sourceTree = "<group>"; };
@@ -2288,6 +2256,44 @@
 		E9A4717A1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectAnalysisContentCell.m; sourceTree = "<group>"; };
 		E9A4717C1F1E101D0010F1EA /* QAConnectAnalysisLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAConnectAnalysisLineView.h; sourceTree = "<group>"; };
 		E9A4717D1F1E101D0010F1EA /* QAConnectAnalysisLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAConnectAnalysisLineView.m; sourceTree = "<group>"; };
+		E9AE4A351F2B58AC00FED26C /* UIButton+ExpandHitArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ExpandHitArea.h"; sourceTree = "<group>"; };
+		E9AE4A361F2B58AC00FED26C /* UIButton+ExpandHitArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ExpandHitArea.m"; sourceTree = "<group>"; };
+		E9AE4A381F2B595800FED26C /* ChooseEditionTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseEditionTopView.h; sourceTree = "<group>"; };
+		E9AE4A391F2B595800FED26C /* ChooseEditionTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseEditionTopView.m; sourceTree = "<group>"; };
+		E9AE4A3B1F2B59E200FED26C /* ChooseEditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseEditionViewController.h; sourceTree = "<group>"; };
+		E9AE4A3C1F2B59E200FED26C /* ChooseEditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseEditionViewController.m; sourceTree = "<group>"; };
+		E9AE4A3D1F2B59E200FED26C /* TextBookVersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBookVersionViewController.h; sourceTree = "<group>"; };
+		E9AE4A3E1F2B59E200FED26C /* TextBookVersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBookVersionViewController.m; sourceTree = "<group>"; };
+		E9AE4A441F2B5D1E00FED26C /* ExerciseChapterTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseChapterTreeCell.h; sourceTree = "<group>"; };
+		E9AE4A451F2B5D1E00FED26C /* ExerciseChapterTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseChapterTreeCell.m; sourceTree = "<group>"; };
+		E9AE4A461F2B5D1E00FED26C /* ExerciseKnpTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnpTreeCell.h; sourceTree = "<group>"; };
+		E9AE4A471F2B5D1E00FED26C /* ExerciseKnpTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseKnpTreeCell.m; sourceTree = "<group>"; };
+		E9AE4A481F2B5D1E00FED26C /* ExerciseMainSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMainSubjectCell.h; sourceTree = "<group>"; };
+		E9AE4A491F2B5D1E00FED26C /* ExerciseMainSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMainSubjectCell.m; sourceTree = "<group>"; };
+		E9AE4A4A1F2B5D1E00FED26C /* TextbookVersionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextbookVersionCell.h; sourceTree = "<group>"; };
+		E9AE4A4B1F2B5D1E00FED26C /* TextbookVersionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextbookVersionCell.m; sourceTree = "<group>"; };
+		E9AE4A4C1F2B5D1E00FED26C /* TextbookVersionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextbookVersionView.h; sourceTree = "<group>"; };
+		E9AE4A4D1F2B5D1E00FED26C /* TextbookVersionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextbookVersionView.m; sourceTree = "<group>"; };
+		E9AE4A4E1F2B5D1E00FED26C /* TreeBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeBaseCell.h; sourceTree = "<group>"; };
+		E9AE4A4F1F2B5D1E00FED26C /* TreeBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeBaseCell.m; sourceTree = "<group>"; };
+		E9AE4A501F2B5D1E00FED26C /* YXChapterPointSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChapterPointSegmentControl.h; sourceTree = "<group>"; };
+		E9AE4A511F2B5D1E00FED26C /* YXChapterPointSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChapterPointSegmentControl.m; sourceTree = "<group>"; };
+		E9AE4A521F2B5D1E00FED26C /* YXChooseVolumnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChooseVolumnButton.h; sourceTree = "<group>"; };
+		E9AE4A531F2B5D1E00FED26C /* YXChooseVolumnButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChooseVolumnButton.m; sourceTree = "<group>"; };
+		E9AE4A541F2B5D1E00FED26C /* YXChooseVolumnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChooseVolumnView.h; sourceTree = "<group>"; };
+		E9AE4A551F2B5D1E00FED26C /* YXChooseVolumnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChooseVolumnView.m; sourceTree = "<group>"; };
+		E9AE4A561F2B5D1E00FED26C /* YXExerciseEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseEmptyView.h; sourceTree = "<group>"; };
+		E9AE4A571F2B5D1E00FED26C /* YXExerciseEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseEmptyView.m; sourceTree = "<group>"; };
+		E9AE4A621F2B5D4600FED26C /* ExerciseChapterTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseChapterTreeViewController.h; sourceTree = "<group>"; };
+		E9AE4A631F2B5D4600FED26C /* ExerciseChapterTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseChapterTreeViewController.m; sourceTree = "<group>"; };
+		E9AE4A641F2B5D4600FED26C /* ExerciseKnpTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnpTreeViewController.h; sourceTree = "<group>"; };
+		E9AE4A651F2B5D4600FED26C /* ExerciseKnpTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseKnpTreeViewController.m; sourceTree = "<group>"; };
+		E9AE4A681F2B5D4600FED26C /* ExerciseMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMainViewController.h; sourceTree = "<group>"; };
+		E9AE4A691F2B5D4600FED26C /* ExerciseMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMainViewController.m; sourceTree = "<group>"; };
+		E9AE4A6A1F2B5D4600FED26C /* TreeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeBaseViewController.h; sourceTree = "<group>"; };
+		E9AE4A6B1F2B5D4600FED26C /* TreeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeBaseViewController.m; sourceTree = "<group>"; };
+		E9AE4A711F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseChooseChapterKnp_ChooseVolumeCell.h; sourceTree = "<group>"; };
+		E9AE4A721F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseChapterKnp_ChooseVolumeCell.m; sourceTree = "<group>"; };
 		E9B425A41EF226BC00F99485 /* QAAnswerSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerSheetCell.h; sourceTree = "<group>"; };
 		E9B425A51EF226BC00F99485 /* QAAnswerSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerSheetCell.m; sourceTree = "<group>"; };
 		E9C684971DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAYesNoQuestionAnalysisView.h; sourceTree = "<group>"; };
@@ -2458,12 +2464,6 @@
 		F7A3B5261C57602F0037245A /* YXExerciseChooseEditionViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseChooseEditionViewController_Pad.m; sourceTree = "<group>"; };
 		F7AB546A1B43EE6000D8FCF2 /* TestsRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsRootViewController.h; sourceTree = "<group>"; };
 		F7AB546B1B43EE6000D8FCF2 /* TestsRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsRootViewController.m; sourceTree = "<group>"; };
-		F7AECF1E1C155B9B00D4927A /* YXChooseVolumnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChooseVolumnButton.h; sourceTree = "<group>"; };
-		F7AECF1F1C155B9B00D4927A /* YXChooseVolumnButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChooseVolumnButton.m; sourceTree = "<group>"; };
-		F7AECF211C15686500D4927A /* YXChooseVolumnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChooseVolumnView.h; sourceTree = "<group>"; };
-		F7AECF221C15686500D4927A /* YXChooseVolumnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChooseVolumnView.m; sourceTree = "<group>"; };
-		F7AECF241C1577D300D4927A /* YXChapterPointSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChapterPointSegmentControl.h; sourceTree = "<group>"; };
-		F7AECF251C1577D300D4927A /* YXChapterPointSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChapterPointSegmentControl.m; sourceTree = "<group>"; };
 		F7BD96CA1B56799300ECA902 /* long.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = long.html; sourceTree = "<group>"; };
 		F7C2D18C1B578B0800AFAC3E /* YXAutoGoNextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAutoGoNextDelegate.h; sourceTree = "<group>"; };
 		F7CB0FEF1B53558C00F46035 /* 0.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 0.html; sourceTree = "<group>"; };
@@ -2473,12 +2473,8 @@
 		F7CB0FF61B53568F00F46035 /* YXTestCoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTestCoreTextViewController.m; sourceTree = "<group>"; };
 		F7CB0FF91B536B3800F46035 /* YXHtmlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHtmlCell.h; sourceTree = "<group>"; };
 		F7CB0FFA1B536B3800F46035 /* YXHtmlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHtmlCell.m; sourceTree = "<group>"; };
-		F7E9298C1B4B9CAB00B4284D /* YXSmartExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSmartExerciseViewController.h; sourceTree = "<group>"; };
-		F7E9298D1B4B9CAB00B4284D /* YXSmartExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSmartExerciseViewController.m; sourceTree = "<group>"; };
 		F7EB06D31B54F30F00B4AEE5 /* YXHtmlCellHeightDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHtmlCellHeightDelegate.h; sourceTree = "<group>"; };
 		F7EB06DB1B55115A00B4AEE5 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
-		F7EE19B91C16A8160034877F /* YXMasterProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMasterProgressView.h; sourceTree = "<group>"; };
-		F7EE19BA1C16A8160034877F /* YXMasterProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMasterProgressView.m; sourceTree = "<group>"; };
 		F7F525581B4511EF00AE492E /* TestUploadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUploadRequest.h; sourceTree = "<group>"; };
 		F7F525591B4511EF00AE492E /* TestUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUploadRequest.m; sourceTree = "<group>"; };
 		F7F5255E1B4519A800AE492E /* TestGetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGetRequest.h; sourceTree = "<group>"; };
@@ -2490,8 +2486,6 @@
 		F7F968BF1C103823008036B6 /* FZZZHONGJW GB 1 0(方正正中黑简体).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZZZHONGJW GB 1 0(方正正中黑简体).ttf"; sourceTree = "<group>"; };
 		F7F968C41C10402B008036B6 /* YXCaileiViewController01.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCaileiViewController01.h; sourceTree = "<group>"; };
 		F7F968C51C10402B008036B6 /* YXCaileiViewController01.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCaileiViewController01.m; sourceTree = "<group>"; };
-		F7F968CD1C113C52008036B6 /* YXDashLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDashLineCell.h; sourceTree = "<group>"; };
-		F7F968CE1C113C52008036B6 /* YXDashLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDashLineCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2804,6 +2798,8 @@
 		0FBD5ABF1C4F3338003B7D6D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				E9AE4A351F2B58AC00FED26C /* UIButton+ExpandHitArea.h */,
+				E9AE4A361F2B58AC00FED26C /* UIButton+ExpandHitArea.m */,
 				7C75A26F1ECD4DDC001A3EB3 /* UIButton+WaveHighlight.h */,
 				7C75A2701ECD4DDC001A3EB3 /* UIButton+WaveHighlight.m */,
 				7C027F3B1EB1F77E001682EA /* CloneCategory.h */,
@@ -3218,6 +3214,8 @@
 				7C3C15171F25E69F004DE584 /* MinePasswordInputView.m */,
 				7C9092811E0946090048C44F /* UpdateAppPromptView.h */,
 				7C9092821E0946090048C44F /* UpdateAppPromptView.m */,
+				E9AE4A381F2B595800FED26C /* ChooseEditionTopView.h */,
+				E9AE4A391F2B595800FED26C /* ChooseEditionTopView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3247,6 +3245,10 @@
 				7C3C151F1F25F598004DE584 /* AboutViewController.m */,
 				7C3C15221F26D183004DE584 /* PrivacyPolicyViewController.h */,
 				7C3C15231F26D183004DE584 /* PrivacyPolicyViewController.m */,
+				E9AE4A3B1F2B59E200FED26C /* ChooseEditionViewController.h */,
+				E9AE4A3C1F2B59E200FED26C /* ChooseEditionViewController.m */,
+				E9AE4A3D1F2B59E200FED26C /* TextBookVersionViewController.h */,
+				E9AE4A3E1F2B59E200FED26C /* TextBookVersionViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -5297,30 +5299,28 @@
 		F7E9297A1B4B6D7E00B4284D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7CC32D7C1F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.h */,
-				7CC32D7D1F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */,
-				7CC32D801F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.h */,
-				7CC32D811F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m */,
-				7CC32D821F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.h */,
-				7CC32D831F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m */,
-				7CC32D781F29D9DA00424C13 /* YXExerciseEmptyView.h */,
-				7CC32D791F29D9DA00424C13 /* YXExerciseEmptyView.m */,
-				F7F968CD1C113C52008036B6 /* YXDashLineCell.h */,
-				F7F968CE1C113C52008036B6 /* YXDashLineCell.m */,
-				F7AECF1E1C155B9B00D4927A /* YXChooseVolumnButton.h */,
-				F7AECF1F1C155B9B00D4927A /* YXChooseVolumnButton.m */,
-				F7AECF211C15686500D4927A /* YXChooseVolumnView.h */,
-				F7AECF221C15686500D4927A /* YXChooseVolumnView.m */,
-				F7AECF241C1577D300D4927A /* YXChapterPointSegmentControl.h */,
-				F7AECF251C1577D300D4927A /* YXChapterPointSegmentControl.m */,
-				F7EE19B91C16A8160034877F /* YXMasterProgressView.h */,
-				F7EE19BA1C16A8160034877F /* YXMasterProgressView.m */,
-				7CA30DE51DC33AB0008D4C38 /* TreeBaseCell.h */,
-				7CA30DE61DC33AB0008D4C38 /* TreeBaseCell.m */,
-				7CA30DDD1DC337E8008D4C38 /* ExerciseChapterTreeCell.h */,
-				7CA30DDE1DC337E8008D4C38 /* ExerciseChapterTreeCell.m */,
-				7CA30DDF1DC337E8008D4C38 /* ExerciseKnpTreeCell.h */,
-				7CA30DE01DC337E8008D4C38 /* ExerciseKnpTreeCell.m */,
+				E9AE4A4E1F2B5D1E00FED26C /* TreeBaseCell.h */,
+				E9AE4A4F1F2B5D1E00FED26C /* TreeBaseCell.m */,
+				E9AE4A441F2B5D1E00FED26C /* ExerciseChapterTreeCell.h */,
+				E9AE4A451F2B5D1E00FED26C /* ExerciseChapterTreeCell.m */,
+				E9AE4A461F2B5D1E00FED26C /* ExerciseKnpTreeCell.h */,
+				E9AE4A471F2B5D1E00FED26C /* ExerciseKnpTreeCell.m */,
+				E9AE4A481F2B5D1E00FED26C /* ExerciseMainSubjectCell.h */,
+				E9AE4A491F2B5D1E00FED26C /* ExerciseMainSubjectCell.m */,
+				E9AE4A4A1F2B5D1E00FED26C /* TextbookVersionCell.h */,
+				E9AE4A4B1F2B5D1E00FED26C /* TextbookVersionCell.m */,
+				E9AE4A4C1F2B5D1E00FED26C /* TextbookVersionView.h */,
+				E9AE4A4D1F2B5D1E00FED26C /* TextbookVersionView.m */,
+				E9AE4A501F2B5D1E00FED26C /* YXChapterPointSegmentControl.h */,
+				E9AE4A511F2B5D1E00FED26C /* YXChapterPointSegmentControl.m */,
+				E9AE4A521F2B5D1E00FED26C /* YXChooseVolumnButton.h */,
+				E9AE4A531F2B5D1E00FED26C /* YXChooseVolumnButton.m */,
+				E9AE4A541F2B5D1E00FED26C /* YXChooseVolumnView.h */,
+				E9AE4A551F2B5D1E00FED26C /* YXChooseVolumnView.m */,
+				E9AE4A561F2B5D1E00FED26C /* YXExerciseEmptyView.h */,
+				E9AE4A571F2B5D1E00FED26C /* YXExerciseEmptyView.m */,
+				E9AE4A711F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.h */,
+				E9AE4A721F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5328,16 +5328,16 @@
 		F7E9298B1B4B9C5000B4284D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F7E9298C1B4B9CAB00B4284D /* YXSmartExerciseViewController.h */,
-				F7E9298D1B4B9CAB00B4284D /* YXSmartExerciseViewController.m */,
-				7C2B66F21DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.h */,
-				7C2B66F31DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m */,
-				7CEE06EB1DC3020C00AA898B /* TreeBaseViewController.h */,
-				7CEE06EC1DC3020C00AA898B /* TreeBaseViewController.m */,
-				7CEE06EF1DC3028700AA898B /* ExerciseChapterTreeViewController.h */,
-				7CEE06F01DC3028700AA898B /* ExerciseChapterTreeViewController.m */,
-				7CEE06F31DC302A600AA898B /* ExerciseKnpTreeViewController.h */,
-				7CEE06F41DC302A600AA898B /* ExerciseKnpTreeViewController.m */,
+				E9AE4A681F2B5D4600FED26C /* ExerciseMainViewController.h */,
+				E9AE4A691F2B5D4600FED26C /* ExerciseMainViewController.m */,
+				E98169BF1F2F09DE00BD7575 /* ExerciseKnowledgeChooseViewController.h */,
+				E98169C01F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m */,
+				E9AE4A6A1F2B5D4600FED26C /* TreeBaseViewController.h */,
+				E9AE4A6B1F2B5D4600FED26C /* TreeBaseViewController.m */,
+				E9AE4A621F2B5D4600FED26C /* ExerciseChapterTreeViewController.h */,
+				E9AE4A631F2B5D4600FED26C /* ExerciseChapterTreeViewController.m */,
+				E9AE4A641F2B5D4600FED26C /* ExerciseKnpTreeViewController.h */,
+				E9AE4A651F2B5D4600FED26C /* ExerciseKnpTreeViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -5767,7 +5767,6 @@
 				7C3D0B5A1DD1A215005ED76A /* BaseViewController.m in Sources */,
 				7CA5A97E1F1CA7D9004F34D3 /* MineViewController.m in Sources */,
 				7CA5A99E1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m in Sources */,
-				7CEE06F21DC3028700AA898B /* ExerciseChapterTreeViewController.m in Sources */,
 				F7A3B4A81C571E860037245A /* NextViewController.m in Sources */,
 				7C2729ED1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */,
 				300E74841D0521FC00C504A8 /* YXStatisticFileRequest.m in Sources */,
@@ -5800,7 +5799,6 @@
 				0FE6CA121C5A11C3005FBD5B /* YXInitRequest.m in Sources */,
 				7CC32D9A1F29DE6800424C13 /* MJRefreshBaseView.m in Sources */,
 				7C75A2721ECD4DDC001A3EB3 /* UIButton+WaveHighlight.m in Sources */,
-				F773C90A1C4627F400AAE684 /* YXMasterProgressView.m in Sources */,
 				7C3C15051F25A16D004DE584 /* MineInputView.m in Sources */,
 				0FB211C11C57463000594BEA /* YXVerifyCodeViewController_Pad.m in Sources */,
 				7C1C3D091E52BAE900B156A8 /* MistakeQuestionItemCell.m in Sources */,
@@ -5864,10 +5862,8 @@
 				7C2903511ED3F1B2005F7F55 /* QAChooseOptionCell.m in Sources */,
 				7CFD1EA51D51A27D002C2624 /* YXFillBlankDetailViewController.m in Sources */,
 				0F235B381C5B6D7700CFCAE3 /* UIImagePickerController+YXNonRotating.m in Sources */,
-				7CEE06EE1DC3020C00AA898B /* TreeBaseViewController.m in Sources */,
 				F773C9421C4627F400AAE684 /* (null) in Sources */,
 				7C3C15011F259FE5004DE584 /* ExtendTextField.m in Sources */,
-				7CC32D851F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */,
 				F773C9431C4627F400AAE684 /* (null) in Sources */,
 				F773C9441C4627F400AAE684 /* (null) in Sources */,
 				0FEA8F891C7AA797003077A2 /* YXGetPracticeHistoryByKnowRequest.m in Sources */,
@@ -5893,7 +5889,6 @@
 				7C89DD071DA8927200194120 /* QAImageAnswerQuestion.m in Sources */,
 				7C3D0B5F1DD1A2A7005ED76A /* YXCrypt.m in Sources */,
 				7CFD1E951D50A942002C2624 /* YXChooseDetailViewController.m in Sources */,
-				7CEE06F61DC302A600AA898B /* ExerciseKnpTreeViewController.m in Sources */,
 				7CD58E561D5DB43800492837 /* YXImportPaperViewController.m in Sources */,
 				7C953AE31C5896F900A9A7AF /* YXQAChooseAnswerCell_Pad.m in Sources */,
 				7C3D0B521DD1A1C4005ED76A /* YXNavigationController.m in Sources */,
@@ -5920,7 +5915,6 @@
 				7C2904351EEFC169005F7F55 /* QAPhotoSelectionCell.m in Sources */,
 				7CEE06E21DC2F96900AA898B /* TreeDataFetcher.m in Sources */,
 				7CFAADB71DAC95FC00F13532 /* QASingleQuestionAnalysisBaseView.m in Sources */,
-				7C2B66F51DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
 				0FB211C51C575F7100594BEA /* YXLoginBaseViewController_Pad.m in Sources */,
 				7C2729E51F1727AD00C85182 /* PaperAnsweredNumEntity+CoreDataProperties.m in Sources */,
 				7C88855A1EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */,
@@ -5932,9 +5926,7 @@
 				7C38E7A61C4F7A8B00EC18D0 /* UIImage+YXResize.m in Sources */,
 				F7A3B4A91C571E860037245A /* SecondViewController.m in Sources */,
 				7C553C851CBCA08E00A257F1 /* YXQASubmitSuccessView_Pad.m in Sources */,
-				7CC32D891F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m in Sources */,
 				7C2903551ED42D9E005F7F55 /* QAQuestionSwitchView.m in Sources */,
-				7CC32D8B1F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m in Sources */,
 				F75135F91C71B528003B280C /* YXMyFavorChooseChapterKnpViewController_Pad.m in Sources */,
 				0FE6C9ED1C5A1020005FBD5B /* YXMineManager.m in Sources */,
 				3011C5511CD9DF3E00B3AE21 /* YXAddClassHelpViewController_Pad.m in Sources */,
@@ -6004,9 +5996,9 @@
 				7C953B2D1C5A156D00A9A7AF /* YXQAAnalysisDataConfig.m in Sources */,
 				7C89DD0F1DA8927200194120 /* QAQuestion.m in Sources */,
 				7CCBE4771F0CC6BE00AA78BC /* QAClassifyImageOptionCell.m in Sources */,
-				F773C9AE1C4627F400AAE684 /* YXChapterPointSegmentControl.m in Sources */,
 				7C3D0B781DD1A53A005ED76A /* LogRecordEntity+CoreDataProperties.m in Sources */,
 				7C38E72C1C4E2C9B00EC18D0 /* YXQAUploadImageManager.m in Sources */,
+				E98169C21F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m in Sources */,
 				7C3438BB1EF22701003BA6B8 /* QAPhotoClipBottomView.m in Sources */,
 				E92610CE1F0A1A300084EFA5 /* QAAnalysisAudioCommentCell.m in Sources */,
 				7C2903C81EE686A3005F7F55 /* QAClozeBlankView.m in Sources */,
@@ -6030,7 +6022,6 @@
 				7C3BB4CA1C575FAD0084AF24 /* YXSideMenuCopyrightView_Pad.m in Sources */,
 				7CFD1E851D50762E002C2624 /* YXPaperMainViewController.m in Sources */,
 				E92610C21F0A19ED0084EFA5 /* QAReportErrorViewController.m in Sources */,
-				F773C9C81C4627F400AAE684 /* YXDashLineCell.m in Sources */,
 				7C7A1A1C1EC1841C00685B38 /* RegisterViewController.m in Sources */,
 				7C69F23D1E6D3ED10076984F /* MistakeRedoCatalogRequest.m in Sources */,
 				7CA5A9961F1DF6BF004F34D3 /* SexSelectionViewController.m in Sources */,
@@ -6103,7 +6094,6 @@
 				7C7BF7CE1E0A1D5F007B017C /* ClassHomeworkDataManager.m in Sources */,
 				0FE6CA111C5A11C3005FBD5B /* YXGetSectionMistakeRequest.m in Sources */,
 				7C3C14FD1F25900E004DE584 /* SettingsViewController.m in Sources */,
-				7CC32D7B1F29D9DA00424C13 /* YXExerciseEmptyView.m in Sources */,
 				F773CA011C4627F400AAE684 /* YXCaileiViewController01.m in Sources */,
 				F773CB101C4631BA00AAE684 /* AppDelegate_Pad.m in Sources */,
 				7CC32D9E1F29DE6800424C13 /* MJRefreshFooterView.m in Sources */,
@@ -6128,7 +6118,6 @@
 				7C38E7A41C4F7A8B00EC18D0 /* UIView+YXShadowColor.m in Sources */,
 				0F68BDFA1C73298500AB3382 /* YXRankModel.m in Sources */,
 				0FDD9BF71C58D76400DBA379 /* YXSubjectEditionChooseViewController_Pad.m in Sources */,
-				F773CA171C4627F400AAE684 /* YXChooseVolumnView.m in Sources */,
 				F773CA201C4627F400AAE684 /* TestGetRequest.m in Sources */,
 				0FE6C9D31C59FB7E005FBD5B /* YXEditionListChooseViewController_Pad.m in Sources */,
 				E92610CB1F0A1A270084EFA5 /* QAKnowledgePointView.m in Sources */,
@@ -6154,7 +6143,6 @@
 				0F235B1C1C5B078C00CFCAE3 /* YXModifyNameViewController_Pad.m in Sources */,
 				F773CA301C4627F400AAE684 /* YXApnsHomeworkViewController.m in Sources */,
 				7CA5A9861F1CB0F1004F34D3 /* MineTableHeaderView.m in Sources */,
-				7CA30DE21DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */,
 				3063D8261D129FF100C574CC /* YXProblemItem.m in Sources */,
 				7CC32DA01F29DE6800424C13 /* MJRefreshHeaderView.m in Sources */,
 				7CA92FE51EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */,
@@ -6211,7 +6199,6 @@
 				7C88856D1EFB665A0073EF1F /* QASubjectiveStemCell.m in Sources */,
 				7C3D0B761DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
 				7CFD1E991D51898F002C2624 /* YXSingleChooseDetailViewController.m in Sources */,
-				7CA30DE41DC337E8008D4C38 /* ExerciseKnpTreeCell.m in Sources */,
 				7CA5A9821F1CA85F004F34D3 /* MineItemCell.m in Sources */,
 				7C1C3D111E5425D900B156A8 /* MistakeRedoReportView.m in Sources */,
 				E92610CF1F0A1A320084EFA5 /* QAReportErrorOptionView.m in Sources */,
@@ -6231,7 +6218,6 @@
 				7C9BB21A1EC179F900A75E86 /* ResetPasswordViewController.m in Sources */,
 				0FB211A71C57268E00594BEA /* YXLoginRequest.m in Sources */,
 				7C3D0BAC1DD1A8ED005ED76A /* UIImage+FixOrientation.m in Sources */,
-				F773CA851C4627F400AAE684 /* YXChooseVolumnButton.m in Sources */,
 				7CFAADD81DACF23400F13532 /* QAConnectQuestionViewContainer.m in Sources */,
 				7CCBE4831F13295500AA78BC /* QAClassifyCategoryView.m in Sources */,
 				7C4554351DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m in Sources */,
@@ -6259,7 +6245,6 @@
 				7CD58E521D5C35AF00492837 /* YXConnectClassifyDetailViewController.m in Sources */,
 				307A45931D4B2A5200EE1455 /* YXErrorsPagedListFetcher.m in Sources */,
 				F75135FC1C71B9E0003B280C /* YXMyFavorQAViewController_Pad.m in Sources */,
-				7CA30DE81DC33AB0008D4C38 /* TreeBaseCell.m in Sources */,
 				7C3D0B9D1DD1A8B2005ED76A /* FileLogger.m in Sources */,
 				7C1C3CFD1E51635000B156A8 /* QAUnknownQuestionView.m in Sources */,
 				7C3C15111F25A994004DE584 /* BindPhoneViewController.m in Sources */,
@@ -6290,7 +6275,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7754ECC1C4E43860002FE45 /* YXMasterProgressView.m in Sources */,
 				7C2903B91EE6568B005F7F55 /* QAClozeStemCell.m in Sources */,
 				7C38E7A31C4F7A8B00EC18D0 /* UIView+YXShadowColor.m in Sources */,
 				E93C76131E0CFA1E00F286CF /* RegisterByJoinClassModel.m in Sources */,
@@ -6304,7 +6288,7 @@
 				7CEE06E11DC2F96900AA898B /* TreeDataFetcher.m in Sources */,
 				7CFAAD9E1DAC8A7300F13532 /* QASlideItemBaseView.m in Sources */,
 				7C89DD081DA8927200194120 /* QANumberAnswerQuestion.m in Sources */,
-				7CA30DE71DC33AB0008D4C38 /* TreeBaseCell.m in Sources */,
+				E9AE4A371F2B58AC00FED26C /* UIButton+ExpandHitArea.m in Sources */,
 				7CA98EE51EC2BB6E000D49DE /* ClassInfoItemView.m in Sources */,
 				E927988F1EE684AD00839CF3 /* QAListenStemCell.m in Sources */,
 				7CDE19951DD093D700469096 /* YXApnsContentModel.m in Sources */,
@@ -6332,15 +6316,16 @@
 				7CFAADDB1DACF24A00F13532 /* QAClassifyQuestionViewContainer.m in Sources */,
 				3017A6A41D4B295400B776E6 /* YXErrorsRequest.m in Sources */,
 				7C2729EC1F18B3EF00C85182 /* QAClassifyAnswerGroupHeaderView.m in Sources */,
-				7CEE06ED1DC3020C00AA898B /* TreeBaseViewController.m in Sources */,
 				E92610AB1F04E4240084EFA5 /* QAReportErrorViewController.m in Sources */,
 				7C1A62AA1E2F22C3009BA65C /* QAClassifyRedoView.m in Sources */,
 				E93732C91F0B7C00008C1248 /* SimpleAlertView.m in Sources */,
 				305318D91D019765004BE7E1 /* YXRecordManager.m in Sources */,
 				7C89DD181DA8927200194120 /* QAStringAnswerQuestion.m in Sources */,
+				E9AE4A6F1F2B5D4600FED26C /* ExerciseMainViewController.m in Sources */,
 				7C2991B91E0232C200AE921C /* QACoreTextViewStringScanner.m in Sources */,
 				7C2903501ED3F1B2005F7F55 /* QAChooseOptionCell.m in Sources */,
 				7CA5A98D1F1DDBAD004F34D3 /* MyProfileTableHeaderView.m in Sources */,
+				E9AE4A3A1F2B595800FED26C /* ChooseEditionTopView.m in Sources */,
 				7C69F2381E6D3E3F0076984F /* MistakeRedoPageRequest.m in Sources */,
 				7CA92FEC1EC99F6D00527D13 /* HomeworkClassApplicationVerifingView.m in Sources */,
 				E93C760D1E0CBE3F00F286CF /* ThirdRegisterModel.m in Sources */,
@@ -6352,18 +6337,19 @@
 				7C45543C1DCAE868001B0F26 /* YXExerciseListParams.m in Sources */,
 				F7754F051C4E43860002FE45 /* (null) in Sources */,
 				0FE6C9F91C5A1034005FBD5B /* YXUpdateUserInfoRequest.m in Sources */,
-				7CA30DE31DC337E8008D4C38 /* ExerciseKnpTreeCell.m in Sources */,
 				7CCBE47A1F0DD3CD00AA78BC /* TestClassifyViewController.m in Sources */,
 				0FFA776A1C75B92600F9E8F9 /* YXHomeworkListFetcher.m in Sources */,
 				0FBD5AD81C4F3338003B7D6D /* NSString+YXString.m in Sources */,
 				7C3D0BAF1DD1A94F005ED76A /* YXAppConstants.m in Sources */,
 				E9973C651DB86B14004966AD /* QAFillQuestionView.m in Sources */,
 				F7754F131C4E43860002FE45 /* YXTestTableView.m in Sources */,
+				E9AE4A581F2B5D1E00FED26C /* ExerciseChapterTreeCell.m in Sources */,
 				E985160B1EF121E40092C91F /* QAAnswerSheetView.m in Sources */,
 				7CDE196A1DD08D5C00469096 /* YXGeTuiManager.m in Sources */,
 				7CF6C8691C731FFB00AE88F8 /* YXPhotoManager.m in Sources */,
 				7C3C14FC1F25900E004DE584 /* SettingsViewController.m in Sources */,
 				43B101701F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m in Sources */,
+				E9AE4A5A1F2B5D1E00FED26C /* ExerciseMainSubjectCell.m in Sources */,
 				7C5A98051E8E2BEE005E56B6 /* MistakePageListFetcher.m in Sources */,
 				E93732CD1F0B7C44008C1248 /* SimpleAlertButton.m in Sources */,
 				7C1A5E951E13B18600832DED /* PhotoAssetUtils.m in Sources */,
@@ -6375,11 +6361,14 @@
 				7C8885591EF8B2C30073EF1F /* QAPhotoBrowseViewController.m in Sources */,
 				7C89DD161DA8927200194120 /* QAQuestionUtil.m in Sources */,
 				7C75A27B1ED2B54A001A3EB3 /* QAAnswerQuestionViewController.m in Sources */,
+				E9AE4A601F2B5D1E00FED26C /* YXChooseVolumnView.m in Sources */,
 				7C7A1A261EC1940100685B38 /* AddClassViewController.m in Sources */,
 				7C2903CD1EE9248A005F7F55 /* QAComplexHeaderFactory.m in Sources */,
 				E9E655411EFA001F00E56881 /* QAQuestionNumberButton.m in Sources */,
+				E9AE4A3F1F2B59E200FED26C /* ChooseEditionViewController.m in Sources */,
 				7C7A1A2A1EC1A14200685B38 /* ClassInfoViewController.m in Sources */,
 				7CFD1E841D50762E002C2624 /* YXPaperMainViewController.m in Sources */,
+				E9AE4A5B1F2B5D1E00FED26C /* TextbookVersionCell.m in Sources */,
 				7CA5A9A91F22E921004F34D3 /* QANoteImagesView.m in Sources */,
 				7CF6C8671C731FFB00AE88F8 /* YXAlbumViewModel.m in Sources */,
 				7C69F2401E6D3EF00076984F /* MistakeRedoFinishRequest.m in Sources */,
@@ -6414,6 +6403,7 @@
 				7C38E7991C4F7A4400EC18D0 /* YXSmartDashLineView.m in Sources */,
 				7CA98EE71EC2BB6E000D49DE /* ClassNumberInputView.m in Sources */,
 				0F68BDFC1C73298C00AB3382 /* YXRankModel.m in Sources */,
+				E9AE4A731F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */,
 				30EBB3D51D11233900F1C9EC /* YXProblemItem.m in Sources */,
 				7C9EDC491DCD72400001C048 /* RegisterAccountRequest.m in Sources */,
 				30A1D3FB1D13AD2D006D8809 /* NSMutableDictionary+YXDictionarys.m in Sources */,
@@ -6425,11 +6415,11 @@
 				E96FE8401E09399000837DDA /* ClassHomeworkUtils.m in Sources */,
 				7C3D0B9C1DD1A8B2005ED76A /* FileLogger.m in Sources */,
 				30FAF0761D1149CB00C3821E /* NSDictionary+Dictionarys.m in Sources */,
-				7CEE06F11DC3028700AA898B /* ExerciseChapterTreeViewController.m in Sources */,
 				7C2903B51EE12DB8005F7F55 /* QABlankItemInfo.m in Sources */,
 				7C3ECAD71EC02C50005C2B9C /* AccountInputView.m in Sources */,
 				E9B425A61EF226BC00F99485 /* QAAnswerSheetCell.m in Sources */,
 				7C3D0B751DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
+				E9AE4A401F2B59E200FED26C /* TextBookVersionViewController.m in Sources */,
 				0FB211BC1C5726CD00594BEA /* YXSSOAuthManager.m in Sources */,
 				7CAE1E511DAF6863003C2F6A /* QATitleView.m in Sources */,
 				E9E6C2EC1F0205F800F93E98 /* QAAnalysisAnswerCell.m in Sources */,
@@ -6444,6 +6434,7 @@
 				F7754F4B1C4E43860002FE45 /* YXMistakeContentViewController.m in Sources */,
 				0FECC6621C5F321400E8F48E /* YXSubjectImageHelper.m in Sources */,
 				E9E655511EFB5AB200E56881 /* QAReportTitleCell.m in Sources */,
+				E9AE4A5F1F2B5D1E00FED26C /* YXChooseVolumnButton.m in Sources */,
 				7C9BB2191EC179F900A75E86 /* ResetPasswordViewController.m in Sources */,
 				7CA5A9911F1DE589004F34D3 /* EditNameViewController.m in Sources */,
 				7C2729FB1F1C864F00C85182 /* TestImagePickerViewController.m in Sources */,
@@ -6470,6 +6461,7 @@
 				7C49B19B1DC058CC00E39555 /* QAAnalysisClozeComplexView.m in Sources */,
 				7CEE06E91DC2FDF400AA898B /* KnpTreeDataFetcher.m in Sources */,
 				7CA47B1B1D3F76DA00DDE44E /* LePlayer.m in Sources */,
+				E98169C11F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m in Sources */,
 				7C5F22451E67C769004470FC /* PaperListViewController.m in Sources */,
 				7CBFF55D1E890DE700C363BD /* MistakeListViewController.m in Sources */,
 				7C8885741EFB940D0073EF1F /* QAAnalysisViewController.m in Sources */,
@@ -6485,7 +6477,6 @@
 				7C78417A1E2DCBEF00755BC0 /* QAComlexQuestionRedoBaseView.m in Sources */,
 				0FB211B31C5726B100594BEA /* YXLoginRequest.m in Sources */,
 				30CB92C91CBE182500B72D87 /* YXRedNumberRequest.m in Sources */,
-				7CC32D841F29DA0D00424C13 /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */,
 				7C2251BF1E1CE018004785D5 /* UIImage+GIF.m in Sources */,
 				7CBFF5601E8910BC00C363BD /* MistakeAllViewController.m in Sources */,
 				7C89DD1A1DA8927200194120 /* QATwoNumberAnswerQuestion.m in Sources */,
@@ -6508,7 +6499,6 @@
 				0FB211B61C5726BA00594BEA /* YXResetPasswordRequest.m in Sources */,
 				7C3CBF821DCAEC5C006AD382 /* YXBottomGradientView.m in Sources */,
 				7CD58E511D5C35AF00492837 /* YXConnectClassifyDetailViewController.m in Sources */,
-				F7754F721C4E43860002FE45 /* YXChapterPointSegmentControl.m in Sources */,
 				E9E6C2F51F0214C000F93E98 /* QAKnowledgePointView.m in Sources */,
 				7CFBF3CD1C5F6F7300E745F3 /* YXShareManager.m in Sources */,
 				7CDE19731DD0906A00469096 /* AppDelegate.m in Sources */,
@@ -6528,6 +6518,7 @@
 				7C2903B11EE104E3005F7F55 /* QAFillBlankCell.m in Sources */,
 				0FECC6641C5F321400E8F48E /* YXHomework.m in Sources */,
 				E9C684991DBDAC1900717D82 /* QAYesNoQuestionAnalysisView.m in Sources */,
+				E9AE4A701F2B5D4600FED26C /* TreeBaseViewController.m in Sources */,
 				7CF6C8941C7456B300AE88F8 /* YXIntelligenceQuestion.m in Sources */,
 				7C83587E1DC1D7CD007BB067 /* GetChapterListRequest.m in Sources */,
 				30F669CE1D2A1028002B1C1D /* NSString+YXRecordContent.m in Sources */,
@@ -6539,9 +6530,9 @@
 				7CF6C8651C731FFB00AE88F8 /* PhotoAssetManager.m in Sources */,
 				E9E6C2FB1F022B6D00F93E98 /* QAKnowledgePointCell.m in Sources */,
 				7CFD1E881D508CE6002C2624 /* YXPaperManager.m in Sources */,
+				E9AE4A5E1F2B5D1E00FED26C /* YXChapterPointSegmentControl.m in Sources */,
 				7C7841831E2DEF6500755BC0 /* QAChooseQuestionRedoView.m in Sources */,
 				E9F4C6841F1774D300696FD0 /* QAConnectSelectedCell.m in Sources */,
-				F7754F8C1C4E43860002FE45 /* YXDashLineCell.m in Sources */,
 				7C3ECAD31EC02405005C2B9C /* LoginActionView.m in Sources */,
 				7C3D0BAB1DD1A8ED005ED76A /* UIImage+FixOrientation.m in Sources */,
 				7C18016F1E5196E300BCF61A /* EditNoteViewController.m in Sources */,
@@ -6549,10 +6540,8 @@
 				7C9092831E0946090048C44F /* UpdateAppPromptView.m in Sources */,
 				0FBD5B6C1C4F3550003B7D6D /* YXUploadRequest.m in Sources */,
 				7CC32D991F29DE6800424C13 /* MJRefreshBaseView.m in Sources */,
-				F7754F981C4E43860002FE45 /* YXSmartExerciseViewController.m in Sources */,
 				3017A6A31D4B295400B776E6 /* YXErrorsPagedListFetcher.m in Sources */,
 				F7754F9F1C4E43860002FE45 /* YXTestCoreTextViewController.m in Sources */,
-				7CA30DE11DC337E8008D4C38 /* ExerciseChapterTreeCell.m in Sources */,
 				7CA5A9891F1DDB54004F34D3 /* MyProfileViewController.m in Sources */,
 				7C3D0B591DD1A215005ED76A /* BaseViewController.m in Sources */,
 				7C3D0B711DD1A53A005ED76A /* InstantRecordEntity.m in Sources */,
@@ -6596,11 +6585,11 @@
 				E913B0F21EF9220100DA5A35 /* QAReportViewController.m in Sources */,
 				7CFBF3B91C5F3FF200E745F3 /* YXQAPaperStaticticData.m in Sources */,
 				7CFAADEB1DACF6C900F13532 /* QAQuestionViewContainerFactory.m in Sources */,
-				7CC32D881F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectEditionListedView.m in Sources */,
 				0FECC6721C5F321400E8F48E /* YXExitClassRequest.m in Sources */,
 				7C2903541ED42D9E005F7F55 /* QAQuestionSwitchView.m in Sources */,
 				F7754FC61C4E43860002FE45 /* YXCaileiViewController01.m in Sources */,
 				7CFD1E981D51898F002C2624 /* YXSingleChooseDetailViewController.m in Sources */,
+				E9AE4A6C1F2B5D4600FED26C /* ExerciseChapterTreeViewController.m in Sources */,
 				7C1A62BD1E31E09D009BA65C /* AudioItemView.m in Sources */,
 				0FECC6701C5F321400E8F48E /* YXCancelReplyClassRequest.m in Sources */,
 				E927988C1EE6660A00839CF3 /* QAYesNoOptionCell.m in Sources */,
@@ -6625,7 +6614,6 @@
 				0FB211BE1C5726D300594BEA /* YXWeixinSSOManager.m in Sources */,
 				7C1628DE1E94D8BA00CDA456 /* MistakeMockDataManager.m in Sources */,
 				7C5CBEDA1E6D373B00653394 /* MistakeRedoNumRequest.m in Sources */,
-				F7754FDC1C4E43860002FE45 /* YXChooseVolumnView.m in Sources */,
 				0FECC6661C5F321400E8F48E /* YXHomeworkGroupMock.m in Sources */,
 				F7754FE51C4E43860002FE45 /* TestGetRequest.m in Sources */,
 				7CFD1E941D50A942002C2624 /* YXChooseDetailViewController.m in Sources */,
@@ -6663,6 +6651,7 @@
 				7C88856C1EFB665A0073EF1F /* QASubjectiveStemCell.m in Sources */,
 				7C2729F71F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */,
 				7CA92FE81EC983FE00527D13 /* HomeworkMainViewController.m in Sources */,
+				E9AE4A6D1F2B5D4600FED26C /* ExerciseKnpTreeViewController.m in Sources */,
 				E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */,
 				7C3C15181F25E69F004DE584 /* MinePasswordInputView.m in Sources */,
 				F77550031C4E43860002FE45 /* YXGuideViewController.m in Sources */,
@@ -6672,7 +6661,7 @@
 				7C027F3D1EB1F77E001682EA /* CloneCategory.m in Sources */,
 				0F68BDFD1C73298F00AB3382 /* YXRankRequest.m in Sources */,
 				7C3C15081F25A285004DE584 /* MinePhoneInputView.m in Sources */,
-				7C2B66F41DC067E6007DD16B /* ExerciseKnowledgeChooseViewController.m in Sources */,
+				E9AE4A591F2B5D1E00FED26C /* ExerciseKnpTreeCell.m in Sources */,
 				7CA92FE41EC9653600527D13 /* HomeworkAddClassHelpViewController.m in Sources */,
 				E9973C7D1DB86DB1004966AD /* QAMultiChooseQuestionView.m in Sources */,
 				7CA930011ECACDF400527D13 /* HomeworkListCell.m in Sources */,
@@ -6680,6 +6669,7 @@
 				E9F4C68A1F187BF100696FD0 /* QAConnectItemView.m in Sources */,
 				0FB211BD1C5726D000594BEA /* YXThirdRegisterRequest.m in Sources */,
 				7C78417E1E2DCF8B00755BC0 /* QARedoSubmitView.m in Sources */,
+				E9AE4A611F2B5D1E00FED26C /* YXExerciseEmptyView.m in Sources */,
 				7C3D0B791DD1A53A005ED76A /* RegularRecordEntity.m in Sources */,
 				E93C76061E0BD5D100F286CF /* LoginDataManager.m in Sources */,
 				7C3D0B551DD1A1E1005ED76A /* YXTabBarController.m in Sources */,
@@ -6695,10 +6685,8 @@
 				7C29034C1ED3E0EF005F7F55 /* QAQuestionStemCell.m in Sources */,
 				7C3C15241F26D183004DE584 /* PrivacyPolicyViewController.m in Sources */,
 				7CFAADE31DACF38400F13532 /* QAListenQuestionViewContainer.m in Sources */,
-				7CC32D8A1F29DA0D00424C13 /* YXExerciseChooseEdition_SubjectView.m in Sources */,
 				7C2729D61F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataClass.m in Sources */,
 				7C3D0B631DD1A527005ED76A /* v1_2Model.xcdatamodeld in Sources */,
-				7CC32D7A1F29D9DA00424C13 /* YXExerciseEmptyView.m in Sources */,
 				7C2B66E91DBF43B4007DD16B /* ExerciseSubjectManager.m in Sources */,
 				7CCBE4761F0CC6BE00AA78BC /* QAClassifyImageOptionCell.m in Sources */,
 				0FFA77751C77013D00F9E8F9 /* YXExerciseHistoryListFetcher.m in Sources */,
@@ -6745,15 +6733,14 @@
 				E9E6C2D11EFD074B00F93E98 /* QAAnaysisGapCell.m in Sources */,
 				7CFD1EA41D51A27D002C2624 /* YXFillBlankDetailViewController.m in Sources */,
 				E915A2DB1DB8A1690088758A /* QAChooseQuestionAnalysisView.m in Sources */,
-				7CEE06F51DC302A600AA898B /* ExerciseKnpTreeViewController.m in Sources */,
 				E9A4717B1F1E0FF50010F1EA /* QAConnectAnalysisContentCell.m in Sources */,
 				7C5565D41DCB225C00966875 /* ExerciseHistoryChapterViewController.m in Sources */,
 				7CFAADD71DACF23400F13532 /* QAConnectQuestionViewContainer.m in Sources */,
 				F78C26101EA44C6E00C2E3DB /* YXProduceCodeByBindRequest.m in Sources */,
 				7CA5A9851F1CB0F1004F34D3 /* MineTableHeaderView.m in Sources */,
-				F775504F1C4E43860002FE45 /* YXChooseVolumnButton.m in Sources */,
 				7CFAADBF1DACF00800F13532 /* QAQuestionViewContainer.m in Sources */,
 				E9A4717E1F1E101D0010F1EA /* QAConnectAnalysisLineView.m in Sources */,
+				E9AE4A5D1F2B5D1E00FED26C /* TreeBaseCell.m in Sources */,
 				7C29042C1EEE9D4A005F7F55 /* QASubjectivePhotoHandler.m in Sources */,
 				7C5A98021E8E2A97005E56B6 /* MistakeListByQIDsRequest.m in Sources */,
 				7CFAADBA1DAC962100F13532 /* QAComlexQuestionAnalysisBaseView.m in Sources */,
@@ -6776,6 +6763,7 @@
 				0FB211B91C5726C300594BEA /* YXVerifySMSCodeRequest.m in Sources */,
 				7C78418B1E2DF12000755BC0 /* QAMultiChooseQuestionRedoView.m in Sources */,
 				7C8885701EFB6C2F0073EF1F /* QASubjectiveStemBlankView.m in Sources */,
+				E9AE4A5C1F2B5D1E00FED26C /* TextbookVersionView.m in Sources */,
 				7C2729FF1F1C8A6C00C85182 /* HeadImageClipViewController.m in Sources */,
 				7C3C14F81F23506B004DE584 /* MineActionView.m in Sources */,
 				7C2729D81F137ECF00C85182 /* PaperAnswerDurationEntity+CoreDataProperties.m in Sources */,

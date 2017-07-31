@@ -12,6 +12,7 @@
 #import "YXApnsHomeworkViewController.h"
 #import "YXHomeworkListFetcher.h"
 #import "LoginViewController.h"
+#import "ExerciseMainViewController.h"
 
 @implementation AppDelegateHelper_Phone
 
@@ -37,8 +38,7 @@
 
 - (UIViewController *)mainViewController {
     YXTabBarController *tabBarController = [[YXTabBarController alloc] init];
-    UIViewController *homeVC = [[NSClassFromString(@"YXSmartExerciseViewController") alloc] init];
-    homeVC.title = @"练习";
+    UIViewController *homeVC = [[NSClassFromString(@"ExerciseMainViewController") alloc] init];    homeVC.title = @"练习";
     [self configTabbarItem:homeVC.tabBarItem image:@"底部导航栏-智能学习-线框" selectedImage:@"底部导航栏-智能学习-填充"];
     YXNavigationController *homeNavi = [[YXNavigationController alloc] initWithRootViewController:homeVC];
     
@@ -53,14 +53,14 @@
     YXNavigationController *mineNavi = [[YXNavigationController alloc] initWithRootViewController:mineVC];
     
     tabBarController.viewControllers = @[groupNavi, homeNavi, mineNavi];
-//    tabBarController.tabBar.tintColor = YXMainBlueColor;
+    //    tabBarController.tabBar.tintColor = YXMainBlueColor;
     return tabBarController;
 }
 
 - (void)configTabbarItem:(UITabBarItem *)tabBarItem image:(NSString *)image selectedImage:(NSString *)selectedImage {
     tabBarItem.image = [UIImage imageNamed:image];
     tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    [tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: YXTextGrayColor} forState:UIControlStateNormal];
+    //    [tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: YXTextGrayColor} forState:UIControlStateNormal];
     [tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor colorWithHexString:@"b28f47"]} forState:UIControlStateSelected];
 }
 
@@ -108,7 +108,7 @@
 
 #pragma mark -
 - (void)handleStageChange {
-//    [self switchToTabIndex:0];
+    //    [self switchToTabIndex:0];
 }
 
 @end

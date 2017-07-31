@@ -11,6 +11,7 @@
 #import "GetKnpListRequest.h"
 #import "ExerciseKnpTreeCell.h"
 #import "YXGenKnpointQBlockRequest.h"
+#import "QAAnswerQuestionViewController.h"
 
 @interface ExerciseKnpTreeViewController ()
 @property (nonatomic, strong) YXGenKnpointQBlockRequest *knpQuestionRequest;
@@ -40,9 +41,14 @@
     BOOL isExpand = [treeView isCellForItemExpanded:item];
     GetKnpListRequestItem_knp *knp = item;
     ExerciseKnpTreeCell *cell = [treeView dequeueReusableCellWithIdentifier:@"ExerciseKnpTreeCell"];
-    cell.knp = knp;
     cell.level = level;
+    cell.knp = knp;
     cell.isExpand = isExpand;
+    if ([self.treeNodes.firstObject isEqual:item]) {
+        cell.isFirst = YES;
+    }else {
+        cell.isFirst = NO;
+    }
     WEAK_SELF
     [cell setTreeExpandBlock:^(ExerciseKnpTreeCell *cell) {
         STRONG_SELF
@@ -95,13 +101,13 @@
         STRONG_SELF
         [self.view nyx_stopLoading];
         YXIntelligenceQuestionListItem *item = retItem;
-//        YXIntelligenceQuestion *question = nil;
+        YXIntelligenceQuestion *question = nil;
         if (item.data.count > 0) {
-//            question = item.data[0];
-//            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
-//            vc.requestParams = [self answerQuestionParamsFirstId:knpId1 secondId:knpId2 thridId:knpId3];
-//            vc.model = [QAPaperModel modelFromRawData:question];
-//            [self.navigationController pushViewController:vc animated:YES];
+            question = item.data[0];
+            QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
+            vc.requestParams = [self answerQuestionParamsFirstId:knpId1 secondId:knpId2 thridId:knpId3];
+            vc.model = [QAPaperModel modelFromRawData:question];
+            [self.navigationController pushViewController:vc animated:YES];
         } else {
             [self.view nyx_showToast:error.localizedDescription];
         }

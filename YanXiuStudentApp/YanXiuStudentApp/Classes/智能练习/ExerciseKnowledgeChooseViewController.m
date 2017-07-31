@@ -2,8 +2,8 @@
 //  ExerciseKnowledgeChooseViewController.m
 //  YanXiuStudentApp
 //
-//  Created by niuzhaowang on 2016/10/26.
-//  Copyright © 2016年 yanxiu.com. All rights reserved.
+//  Created by ZLL on 2017/7/31.
+//  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
 #import "ExerciseKnowledgeChooseViewController.h"
@@ -13,6 +13,7 @@
 #import "YXChooseVolumnView.h"
 #import "ExerciseChapterTreeViewController.h"
 #import "ExerciseKnpTreeViewController.h"
+#import "ChooseEditionViewController.h"
 
 @interface ExerciseKnowledgeChooseViewController ()
 @property (nonatomic, strong) UIView *topContainerView;
@@ -41,26 +42,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)backAction {
+    NSMutableArray *vcArray = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    for (UIViewController *vc in vcArray) {
+        if ([vc isKindOfClass:[ChooseEditionViewController class]]) {
+            [vcArray removeObject:vc];
+            break;
+        }
+    }
+    self.navigationController.viewControllers = vcArray;
+    [super backAction];
+}
 - (void)setupUI{
-    UIImageView *bgView = [[UIImageView alloc] init];
-    bgView.image = [UIImage imageNamed:@"练习-背景-拷贝"];
-    bgView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     
     self.errorView = [[YXCommonErrorView alloc] init];
-    @weakify(self);
+    WEAK_SELF
     [self.errorView setRetryBlock:^{
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         [self requestVolumes];
     }];
-    [self.view addSubview:self.errorView];
-    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    self.errorView.hidden = YES;
 }
 
 - (void)requestVolumes {
@@ -70,9 +71,13 @@
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
-            self.errorView.hidden = NO;
+            [self.view addSubview:self.errorView];
+            [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             return;
         }
+        [self.errorView removeFromSuperview];
         self.volumeArray = volumeArray;
         [self setupTopView];
         [self setupBottomView];
@@ -158,9 +163,9 @@
         make.right.mas_equalTo(-15);
         make.size.mas_equalTo(size);
     }];
-    @weakify(self);
+    WEAK_SELF
     self.chooseVolumeView.chooseBlock = ^(NSInteger index) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         GetEditionRequestItem_edition_volume *volume = self.volumeArray[index];
         CGSize size = [self.chooseVolumeButton updateWithTitle:volume.name];
         [self.chooseVolumeView.chooseVolumnButton updateWithTitle:volume.name];

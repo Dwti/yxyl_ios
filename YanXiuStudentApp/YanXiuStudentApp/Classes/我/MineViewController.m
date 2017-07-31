@@ -15,6 +15,7 @@
 #import "ExerciseHistorySubjectViewController.h"
 #import "FeedbackViewController.h"
 #import "SettingsViewController.h"
+#import "TextBookVersionViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -172,7 +173,8 @@
             vc.currentIndex = [YXMineManager indexWithStageId:[YXUserManager sharedManager].userModel.stageid];
             [self.navigationController pushViewController:vc animated:YES];
         }else {
-            
+            TextBookVersionViewController *vc = [[TextBookVersionViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }else {
         if (indexPath.row == 0) {

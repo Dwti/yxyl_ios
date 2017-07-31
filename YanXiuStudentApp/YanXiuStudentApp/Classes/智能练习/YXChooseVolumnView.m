@@ -7,7 +7,6 @@
 //
 
 #import "YXChooseVolumnView.h"
-#import "YXDashLineCell.h"
 #import "YXExerciseChooseChapterKnp_ChooseVolumeCell.h"
 
 @interface YXChooseVolumnView () <UITableViewDataSource, UITableViewDelegate>

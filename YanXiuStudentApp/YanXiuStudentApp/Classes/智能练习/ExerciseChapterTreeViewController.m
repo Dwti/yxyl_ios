@@ -10,6 +10,7 @@
 #import "ChapterTreeDataFetcher.h"
 #import "ExerciseChapterTreeCell.h"
 #import "YXGetSectionQBlockRequest.h"
+#import "QAAnswerQuestionViewController.h"
 
 @interface ExerciseChapterTreeViewController ()
 @property (nonatomic, strong) YXGetSectionQBlockRequest *chapterRequest;
@@ -53,9 +54,14 @@
     GetChapterListRequestItem_chapter *chapter = item;
 
     ExerciseChapterTreeCell *cell = [treeView dequeueReusableCellWithIdentifier:@"ExerciseChapterTreeCell"];
-    cell.chapter = chapter;
     cell.level = level;
+    cell.chapter = chapter;
     cell.isExpand = isExpand;
+    if ([self.treeNodes.firstObject isEqual:item]) {
+        cell.isFirst = YES;
+    }else {
+        cell.isFirst = NO;
+    }
     WEAK_SELF
     [cell setTreeExpandBlock:^(ExerciseChapterTreeCell *cell) {
         STRONG_SELF
@@ -113,10 +119,10 @@
         YXIntelligenceQuestion *question = nil;
         if (item.data.count > 0) {
             question = item.data[0];
-//            YXAnswerQuestionViewController *vc = [[YXAnswerQuestionViewController alloc] init];
-//            vc.requestParams = [self answerQuestionParamsWithFirst:chapter1 Second:chapter2 Thrid:chapter3];
-//            vc.model = [QAPaperModel modelFromRawData:question];
-//            [self.navigationController pushViewController:vc animated:YES];
+            QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
+            vc.requestParams = [self answerQuestionParamsWithFirst:chapter1 Second:chapter2 Thrid:chapter3];
+            vc.model = [QAPaperModel modelFromRawData:question];
+            [self.navigationController pushViewController:vc animated:YES];
         }else {
             [self.view nyx_showToast:error.localizedDescription];
         }

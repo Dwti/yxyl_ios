@@ -7,7 +7,7 @@
 //
 
 #import "YXCaileiViewController01.h"
-#import "YXExerciseChooseEdition_SubjectView.h"
+//#import "YXExerciseChooseEdition_SubjectView.h"
 
 @interface YXCaileiViewController01 ()
 
@@ -18,9 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    YXExerciseChooseEdition_SubjectView *v = [[YXExerciseChooseEdition_SubjectView alloc] init];
-    v.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
-    [self.view addSubview:v];
+//    YXExerciseChooseEdition_SubjectView *v = [[YXExerciseChooseEdition_SubjectView alloc] init];
+//    v.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
+//    [self.view addSubview:v];
 }
 
 @end

@@ -11,6 +11,8 @@
 #import "QAProgressView.h"
 #import "QAAnswerStateChangeDelegate.h"
 #import "QAAnswerSheetViewController.h"
+#import "SimpleAlertView.h"
+#import "QAImageUploadProgressView.h"
 
 @interface QAAnswerQuestionViewController ()<QAAnswerStateChangeDelegate>
 @property (nonatomic, strong) GCDTimer *timer;
@@ -18,6 +20,8 @@
 @property (nonatomic, strong) QAProgressView *progressView;
 @property (nonatomic, assign) NSInteger totalQuestionCount;
 @property (nonatomic, assign) NSInteger answeredQuestionCount;
+@property (nonatomic, strong) NSDate *beginDate;
+
 @end
 
 @implementation QAAnswerQuestionViewController
@@ -41,12 +45,98 @@
     [self refreshProgress];
     [self setupTimer];
     [self setupObserver];
+    self.beginDate = [NSDate date];
 }
 
 - (void)backAction {
-    [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
-    [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
-    [super backAction];
+    
+    if (self.pType == YXPTypeGroupHomework) {
+        [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
+        [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
+        [super backAction];
+        return;
+    }
+    
+    BOOL unAnswered = TRUE;
+    for (QAQuestion *item in [self.model allQuestions]) {
+        if (item.answerState != YXAnswerStateNotAnswer) {
+            unAnswered = FALSE;
+            break;
+        }
+    }
+    if (self.model.paperStatusID) {
+        unAnswered = FALSE;
+    }
+    if (unAnswered) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj clearAnswer];
+    }];
+    WEAK_SELF
+    SimpleAlertView *alert = [[SimpleAlertView alloc] init];
+    alert.describe = @"退出答题后，你可以在练习历史中找到作答记录并继续答题";
+    alert.image = [UIImage imageNamed:@"提交成功图标"];
+    [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
+        STRONG_SELF
+        self.slideView.isActive = YES;
+    }];
+    [alert addButtonWithTitle:@"继续退出" style:SimpleAlertActionStyle_Default action:^{
+        STRONG_SELF
+        [self saveAndQuit];
+    }];
+    [alert showInView:self.navigationController.view];
+}
+
+- (void)saveAndQuit {
+    if (![self isNetworkReachable]) {
+        WEAK_SELF
+        SimpleAlertView *alert = [[SimpleAlertView alloc] init];
+        alert.describe = @"当前网络异常，退出答题进度将无法保存";
+        alert.image = [UIImage imageNamed:@"提交成功图标"];
+        [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
+            STRONG_SELF
+            self.slideView.isActive = YES;
+        }];
+        [alert addButtonWithTitle:@"继续退出" style:SimpleAlertActionStyle_Default action:^{
+            STRONG_SELF
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [alert showInView:self.navigationController.view];
+        return;
+    }
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [[YXQADataManager sharedInstance]savePaperToHistoryWithModel:self.model beginDate:self.beginDate completeBlock:^(NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self handleSaveFailure:error];
+            return;
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+- (void)handleSaveFailure:(NSError *)error {
+    if ([self isNetworkReachable]) {
+        [self.view nyx_showToast:error.localizedDescription];
+        return;
+    }
+    WEAK_SELF
+    SimpleAlertView *alert = [[SimpleAlertView alloc] init];
+    alert.title = @"保存失败，请检查网络后重试";
+    alert.image = [UIImage imageNamed:@"提交成功图标"];
+    [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
+        STRONG_SELF
+    }];
+    [alert addButtonWithTitle:@"再试一次" style:SimpleAlertActionStyle_Default action:^{
+        STRONG_SELF
+        [self saveAndQuit];
+    }];
+    [alert showInView:self.navigationController.view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +220,7 @@
     QAAnswerSheetViewController *vc = [[QAAnswerSheetViewController alloc]init];
     vc.model = self.model;
     vc.pType = self.pType;
+    vc.requestParams = self.requestParams;
     vc.answeredQuestionCount = self.answeredQuestionCount;
     vc.totalQuestionCount = self.totalQuestionCount;
     WEAK_SELF

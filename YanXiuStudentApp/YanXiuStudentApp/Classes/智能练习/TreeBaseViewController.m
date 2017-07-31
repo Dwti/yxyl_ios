@@ -13,7 +13,7 @@
 
 @interface TreeBaseViewController ()
 @property (nonatomic, strong) YXCommonErrorView *errorView;
-@property (nonatomic, strong) NSArray *treeNodes;
+
 @end
 
 @implementation TreeBaseViewController
@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor clearColor];
     [self setupUI];
     [self fetchTreeData];
@@ -38,27 +39,23 @@
     self.treeView.showsVerticalScrollIndicator = NO;
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     self.treeView.estimatedRowHeight = 50;
+    self.treeView.rowsExpandingAnimation = RATreeViewRowAnimationFade;
+    self.treeView.rowsCollapsingAnimation = RATreeViewRowAnimationFade;
     self.treeView.rowHeight = UITableViewAutomaticDimension;
     [self.view addSubview:self.treeView];
     [self.treeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.treeView.frame.size.width, 23)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.treeView.frame.size.width, 10)];
     headerView.backgroundColor = [UIColor clearColor];
     self.treeView.treeHeaderView = headerView;
     
     self.errorView = [[YXCommonErrorView alloc] init];
-    @weakify(self);
+    WEAK_SELF
     [self.errorView setRetryBlock:^{
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         [self fetchTreeData];
     }];
-    [self.view addSubview:self.errorView];
-    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    self.errorView.hidden = YES;
-    
     
 //    YXTipsView *emptyView = [[YXTipsView alloc] init];
 //    [self.view addSubview:emptyView];
@@ -80,7 +77,6 @@
         [self.view nyx_stopLoading];
         
         self.treeNodes = treeNodes;
-        [self removeLevelFourBelow];
         [self.treeView reloadData];
         
         if (error.code == 3) {
@@ -89,9 +85,13 @@
         }
         
         if (error) {
-            self.errorView.hidden = NO;
+            [self.view addSubview:self.errorView];
+            [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             return;
         }
+        [self.errorView removeFromSuperview];
     }];
 }
 
@@ -129,19 +129,5 @@
     return NO;
 }
 
-- (void)removeNode:(id<TreeNodeProtocol>)node forLevel:(int)level {
-    if (level == 0) {
-        node.subNodes = nil;
-    }
-    
-    for (id<TreeNodeProtocol> subnode in node.subNodes) {
-        [self removeNode:subnode forLevel:level-1];
-    }
-}
 
-- (void)removeLevelFourBelow {
-    for (id<TreeNodeProtocol> node in self.treeNodes) {
-        [self removeNode:node forLevel:3];
-    }
-}
 @end

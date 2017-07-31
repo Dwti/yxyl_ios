@@ -16,6 +16,8 @@
 #import "QAAnswerSheetViewController.h"
 #import "QAAnswerQuestionViewController.h"
 #import "QAAnalysisViewController.h"
+#import "YXGetSectionQBlockRequest.h"
+#import "YXGenKnpointQBlockRequest.h"
 
 static const CGFloat kItemWidth = 60;
 static const CGFloat kMinMargin = 15;
@@ -28,6 +30,8 @@ static const CGFloat kNavViewHeight = 55.0f;
 @property (nonatomic, assign) CGFloat margin;
 @property (nonatomic, assign) CGFloat titleHeight;
 
+@property (nonatomic, strong) YXGetSectionQBlockRequest *chapterRequest;
+@property (nonatomic, strong) YXGenKnpointQBlockRequest *knpRequest;
 @end
 
 @implementation QAReportViewController
@@ -62,7 +66,7 @@ static const CGFloat kNavViewHeight = 55.0f;
         }
     }
     self.navigationController.viewControllers = vcArray;
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -98,6 +102,11 @@ static const CGFloat kNavViewHeight = 55.0f;
         make.edges.mas_equalTo(0);
     }];
     
+    if (self.canDoExerciseAgain) {
+        self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 75, 0);
+        [self setupDoExerciseAgainButton];
+    }
+    
     self.navView = [[QAReportNavView alloc]init];
     self.navView.title = self.model.paperTitle;
     WEAK_SELF
@@ -109,6 +118,94 @@ static const CGFloat kNavViewHeight = 55.0f;
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
         make.height.mas_equalTo(kNavViewHeight *kPhoneWidthRatio);
+    }];
+}
+
+- (void)setupDoExerciseAgainButton {
+    UIButton *exerciseAgainButton = [[UIButton alloc]init];
+    exerciseAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    exerciseAgainButton.layer.cornerRadius = 6.0f;
+    exerciseAgainButton.clipsToBounds = YES;
+    [exerciseAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [exerciseAgainButton setTitle:@"再练一组" forState:UIControlStateNormal];
+    [exerciseAgainButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
+    [exerciseAgainButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateHighlighted];
+    [exerciseAgainButton addTarget:self action:@selector(goDoAgainAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:exerciseAgainButton];
+    [exerciseAgainButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(250 *kPhoneWidthRatio);
+        make.bottom.mas_equalTo(-25);
+    }];
+}
+
+#pragma mark - button actions
+- (void)goDoAgainAction
+{
+    if (self.requestParams.segment == YXExerciseListSegmentChapter) {
+        [self goChapterRequest];
+    }else {
+        [self goKnpRequest];
+    }
+}
+
+- (void)goChapterRequest {
+    [self.chapterRequest stopRequest];
+    self.chapterRequest = [[YXGetSectionQBlockRequest alloc] init];
+    self.chapterRequest.stageId = self.requestParams.stageId;
+    self.chapterRequest.subjectId = self.requestParams.subjectId;
+    self.chapterRequest.editionId = self.requestParams.editionId;
+    self.chapterRequest.volumeId = self.requestParams.volumeId;
+    self.chapterRequest.chapterId = self.requestParams.chapterId;
+    self.chapterRequest.sectionId = self.requestParams.sectionId;
+    self.chapterRequest.questNum = self.requestParams.questNum;
+    self.chapterRequest.cellId = self.requestParams.cellId;
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [self.chapterRequest startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self handleRequestData:retItem];
+    }];
+}
+
+- (void)handleRequestData:(YXIntelligenceQuestionListItem *)item {
+    YXIntelligenceQuestion *question = nil;
+    if (item.data.count > 0) {
+        question = item.data[0];
+        QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
+        vc.requestParams = self.requestParams;
+        vc.model = [QAPaperModel modelFromRawData:question];
+        vc.pType = self.pType;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (void)goKnpRequest {
+    [self.knpRequest stopRequest];
+    self.knpRequest = [[YXGenKnpointQBlockRequest alloc] init];
+    self.knpRequest.stageId = self.requestParams.stageId;
+    self.knpRequest.subjectId = self.requestParams.subjectId;
+    self.knpRequest.questNum = self.requestParams.questNum;
+    self.knpRequest.knpId1 = self.requestParams.chapterId;
+    self.knpRequest.knpId2 = self.requestParams.sectionId;
+    self.knpRequest.knpId3 = self.requestParams.cellId;
+    self.knpRequest.fromType = self.requestParams.fromType;
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [self.knpRequest startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self handleRequestData:retItem];
     }];
 }
 
@@ -142,13 +239,13 @@ static const CGFloat kNavViewHeight = 55.0f;
             STRONG_SELF
             DDLogDebug(@"%@题目",item.stem);
             QAAnalysisViewController *vc = [[QAAnalysisViewController alloc]init];
-//            vc.requestParams = self.requestParams;
+            //            vc.requestParams = self.requestParams;
             vc.model = self.model;
             vc.firstLevel = item.position.firstLevelIndex;
             vc.secondLevel = item.position.secondLevelIndex;
-//            vc.pType = self.pType;
-//            vc.canDoExerciseFromKnp = self.canDoExerciseAgain;
-//            vc.analysisDataDelegate = self.analysisDataConfig;
+            //            vc.pType = self.pType;
+            //            vc.canDoExerciseFromKnp = self.canDoExerciseAgain;
+            //            vc.analysisDataDelegate = self.analysisDataConfig;
             [self.navigationController pushViewController:vc animated:YES];
         }];
         return cell;
@@ -190,7 +287,7 @@ static const CGFloat kNavViewHeight = 55.0f;
             return CGSizeMake(collectionView.frame.size.width, self.titleHeight);
         }else {
             self.titleHeight = 270 *kPhoneWidthRatio;
-           return CGSizeMake(collectionView.frame.size.width, self.titleHeight);
+            return CGSizeMake(collectionView.frame.size.width, self.titleHeight);
         }
     }else if (indexPath.section == 1){
         return CGSizeMake(collectionView.frame.size.width, 45.0f * kPhoneWidthRatio);

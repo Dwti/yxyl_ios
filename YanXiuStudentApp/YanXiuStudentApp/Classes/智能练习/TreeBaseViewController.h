@@ -14,5 +14,6 @@
 @property (nonatomic, strong) RATreeView *treeView;
 @property (nonatomic, strong) TreeDataFetcher *dataFetcher;
 @property (nonatomic, strong) UIView *emptyView;
+@property (nonatomic, strong) NSArray *treeNodes;
 - (void)fetchTreeData;
 @end

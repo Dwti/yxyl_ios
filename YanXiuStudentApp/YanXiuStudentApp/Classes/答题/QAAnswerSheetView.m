@@ -46,10 +46,11 @@ static const CGFloat kMinMargin = 15;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 75, 0);
     [self.collectionView registerClass:[QAAnswerSheetCell class] forCellWithReuseIdentifier:@"QAAnswerSheetCell"];
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 75, 0));
+        make.edges.mas_equalTo(0);
     }];
     
     UIButton *submitButton = [[UIButton alloc]init];
@@ -63,7 +64,6 @@ static const CGFloat kMinMargin = 15;
     [submitButton addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:submitButton];
     [submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectionView.mas_bottom);
         make.centerX.mas_equalTo(0);
         make.height.mas_equalTo(50);
         make.width.mas_equalTo(250 *kPhoneWidthRatio);

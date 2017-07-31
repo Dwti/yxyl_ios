@@ -7,20 +7,21 @@
 //
 
 #import "ExerciseKnpTreeCell.h"
-#import "YXMasterProgressView.h"
-#import "YXDashLineCell.h"
+#import "UIButton+ExpandHitArea.h"
 
 typedef void(^ExpandBlock) (ExerciseKnpTreeCell *cell);
 typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
+
 @interface ExerciseKnpTreeCell()
+@property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic, strong) UIButton *expandButton;
+@property (nonatomic, strong) UIView *firstLineView;
+@property (nonatomic, strong) UIView *secondLineView;
+@property (nonatomic, strong) UIView *thirdLineView;
+@property (nonatomic, strong) UIView *fourthLineView;
 @property (nonatomic, strong) UIButton *contentBgButton;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *accessoryImageView;
-@property (nonatomic, strong) UIView *progressContainerView;
-@property (nonatomic, strong) UILabel *masterTitleLabel;
-@property (nonatomic, strong) YXMasterProgressView *masterProgressView;
-@property (nonatomic, strong) UILabel *masterProgressLabel;
 
 @property (nonatomic, copy) ExpandBlock expandBlock;
 @property (nonatomic, copy) ClickBlock clickBlock;
@@ -35,190 +36,67 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 #pragma mark - setupUI
 - (void)setupUI {
     [super setupUI];
+    
+    self.shadowView = [[UIView alloc]init];
+    self.shadowView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    self.shadowView.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;;
+    self.shadowView.layer.shadowOffset = CGSizeMake(0,2.5);
+    self.shadowView.layer.shadowOpacity = 0.02;
+    self.shadowView.layer.shadowRadius = 2.5;
+    [self.contentView addSubview:self.shadowView];
+    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    
     self.expandButton = [[UIButton alloc]init];
+    [self.expandButton setHitTestEdgeInsets:UIEdgeInsetsMake(50, 50, 50, 50)];
     [self.expandButton addTarget:self action:@selector(expandButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.expandButton];
     
+    self.firstLineView = [[UIView alloc]init];
+    self.firstLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    [self.contentView addSubview:self.firstLineView];
+    
     self.contentBgButton = [[UIButton alloc]init];
-    [self.contentBgButton addTarget:self action:@selector(contentBgButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentBgButton addTarget:self action:@selector(contentBgButtonTouchUpInsideAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentBgButton addTarget:self action:@selector(contentBgButtonTouchDownAction) forControlEvents:UIControlEventTouchDown];
+    [self.contentBgButton addTarget:self action:@selector(contentBgButtonTouchDragOutsideAction) forControlEvents:UIControlEventTouchDragOutside];
+    [self.contentBgButton addTarget:self action:@selector(contentBgButtonTouchDragInsideAction) forControlEvents:UIControlEventTouchDragInside];
+    [self.contentBgButton addTarget:self action:@selector(contentBgButtonTouchCancelAction) forControlEvents:UIControlEventTouchCancel];
+    
     [self.contentView addSubview:self.contentBgButton];
     
     self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.numberOfLines = 1;
-    [self.contentView addSubview:self.titleLabel];
-    
-    self.progressContainerView = [[UIView alloc] init];
-    self.progressContainerView.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:self.progressContainerView];
-    [self.progressContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentBgButton.mas_left);
-        make.right.mas_equalTo(self.contentBgButton.mas_right);
-        make.height.mas_equalTo(32).priorityHigh();
-        make.bottom.mas_equalTo(-14);
-    }];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"333333"];
+    [self.contentBgButton addSubview:self.titleLabel];
     
     self.accessoryImageView = [[UIImageView alloc] init];
     self.accessoryImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.accessoryImageView.image = [UIImage imageNamed:@"蓝色右箭头"];
-    [self.contentView addSubview:self.accessoryImageView];
+    self.accessoryImageView.image = [UIImage imageNamed:@"章节列表进入按钮正常态"];
+    self.accessoryImageView.highlightedImage = [UIImage imageNamed:@"章节列表进入按钮点击态"];
+    [self.contentBgButton addSubview:self.accessoryImageView];
     
-    YXDashLineCell *cell = [[YXDashLineCell alloc] init];
-    cell.realWidth = 4;
-    cell.dashWidth = 3;
-    cell.preferedGapToCellBounds = 0;
-    cell.bHasShadow = YES;
-    cell.realColor = [UIColor colorWithHexString:@"e4b62e"];
-    cell.shadowColor = [UIColor colorWithHexString:@"ffeb66"];
-    [self.progressContainerView addSubview:cell];
-    [cell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(0);
-        make.left.mas_equalTo(4.5);
-        make.right.mas_equalTo(-4.5);
-        make.height.mas_equalTo(2);
-    }];
-    self.masterProgressView = [[YXMasterProgressView alloc] init];
-    [self.progressContainerView addSubview:self.masterProgressView];
-    self.masterTitleLabel = [[UILabel alloc] init];
-    self.masterTitleLabel.font = [UIFont systemFontOfSize:11];
-    [self.progressContainerView addSubview:self.masterTitleLabel];
-    self.masterProgressLabel = [[UILabel alloc] init];
-    [self.progressContainerView addSubview:self.masterProgressLabel];
+    self.secondLineView = [[UIView alloc]init];
+    self.secondLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     
-    [self.masterProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.masterTitleLabel.mas_right);
-        make.centerY.mas_equalTo(0);
-        make.right.mas_equalTo(-70);
-    }];
-    [self.masterTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.progressContainerView.mas_left).offset(18.0f);
-        make.centerY.equalTo(self.progressContainerView.mas_centerY);
-    }];
-    [self.masterProgressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.progressContainerView.mas_centerY);
-        make.right.equalTo(self.progressContainerView.mas_right).offset(-15);
-        make.left.mas_greaterThanOrEqualTo(self.masterProgressView.mas_right).offset(4);
-    }];
+    self.thirdLineView = [[UIView alloc]init];
+    self.thirdLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    
+    self.fourthLineView = [[UIView alloc]init];
+    self.fourthLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     
     self.level = 0;
     self.isExpand = NO;
 }
-
-- (void)setupUIForFirstLevel {
-    [self.expandButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.centerY.mas_equalTo(-5);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
-    }];
-    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.expandButton.mas_right).mas_offset(10);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-5);
-    }];
-    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentBgButton.mas_left).mas_offset(24);
-        make.top.mas_equalTo(14 + 4);
-        make.bottom.mas_equalTo(self.progressContainerView.mas_top).offset(-10 - 4);
-    }];
-    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.titleLabel.mas_centerY);
-        make.right.mas_equalTo(-20);
-        make.size.mas_equalTo(CGSizeMake(23, 23));
-    }];
-    [self.contentBgButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"一级目录背景"] forState:UIControlStateNormal];
-    [self.contentBgButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"一级目录背景按下"] forState:UIControlStateHighlighted];
-    
-    self.masterTitleLabel.text = @"考点完全掌握：";
-    NSString *totalString = [NSString stringWithFormat:@"/%@", self.knp.data.totalNum];
-    self.masterProgressLabel.attributedText = [self knpFirst:self.knp.data.masterNum Second:totalString];
-    CGFloat progress = 0;
-    if (isEmpty(self.knp.data.totalNum) || isEmpty(self.knp.data.masterNum)) {
-    } else {
-        progress = [self.knp.data.masterNum floatValue] / [self.knp.data.totalNum floatValue];
-    }
-    self.masterProgressView.progress = progress;
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-}
-
-- (void)setupUIForSecondLevel {
-    [self.expandButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(35);
-        make.centerY.mas_equalTo(-5);
-        make.size.mas_equalTo(CGSizeMake(33, 33));
-    }];
-    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.expandButton.mas_right).mas_offset(10);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-5);
-    }];
-    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentBgButton.mas_left).mas_offset(20);
-        make.top.mas_equalTo(12 + 3);
-        make.bottom.mas_equalTo(self.progressContainerView.mas_top).offset(-7 - 3);
-    }];
-    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.titleLabel.mas_centerY);
-        make.right.mas_equalTo(-20);
-        make.size.mas_equalTo(CGSizeMake(23, 23));
-    }];
-    [self.contentBgButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"二级目录背景"] forState:UIControlStateNormal];
-    [self.contentBgButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"二级目录背景按下"] forState:UIControlStateHighlighted];
-    
-    self.masterTitleLabel.text = @"考点完全掌握：";
-    NSString *totalString = [NSString stringWithFormat:@"/%@", self.knp.data.totalNum];
-    self.masterProgressLabel.attributedText = [self knpFirst:self.knp.data.masterNum Second:totalString];
-    CGFloat progress = 0;
-    if (isEmpty(self.knp.data.totalNum) || isEmpty(self.knp.data.masterNum)) {
-    } else {
-        progress = [self.knp.data.masterNum floatValue] / [self.knp.data.totalNum floatValue];
-    }
-    self.masterProgressView.progress = progress;
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-}
-
-- (void)setupUIForThirdLevel {
-    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(100);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-5);
-    }];
-    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.titleLabel.mas_centerY);
-        make.right.mas_equalTo(-25);
-        make.size.mas_equalTo(CGSizeMake(21, 21));
-    }];
-    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentBgButton.mas_left).mas_offset(24);
-        make.right.mas_equalTo(-10-25-21-10);
-        make.top.mas_equalTo(11 + 3);
-        make.bottom.mas_equalTo(self.progressContainerView.mas_top).offset(-7 - 3);
-    }];
-    
-    [self.contentBgButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"三级目录背景"] forState:UIControlStateNormal];
-    [self.contentBgButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"三级目录背景按下"] forState:UIControlStateHighlighted];
-    
-    self.masterTitleLabel.text = @"考点掌握度：";
-    int percent = (int)([self percentFromString:self.knp.data.masterLevel] * 100);
-    self.masterProgressLabel.attributedText = [self knpFirst:[NSString stringWithFormat:@"%@", @(percent)] Second:@"%"];
-    CGFloat progress = 0;
-    if (isEmpty(self.knp.data.masterLevel)) {
-    } else {
-        progress = [self percentFromString:self.knp.data.masterLevel];
-    }
-    self.masterProgressView.progress = progress;
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-}
-
-#pragma mark - set
 
 - (void)setLevel:(NSInteger)level {
     [super setLevel:level];
@@ -226,36 +104,299 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         [self setupUIForFirstLevel];
     }else if (level == 1) {
         [self setupUIForSecondLevel];
-    }else {
+    }else if (level == 2){
         [self setupUIForThirdLevel];
+    }else {
+        [self setupUIForFourthLevel];
     }
-    if ([self clickableWithLevel:self.level]) {
-        self.accessoryImageView.hidden = NO;
-    } else {
-        self.accessoryImageView.hidden = YES;
+}
+
+- (void)setupUIForFirstLevel {
+    [self.secondLineView removeFromSuperview];
+    [self.thirdLineView removeFromSuperview];
+    [self.fourthLineView removeFromSuperview];
+    
+    self.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
+    
+    [self.expandButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView.mas_left).offset(25);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+    [self.firstLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(50);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.firstLineView.mas_right);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-12);
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+    }];
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-42);
+        make.top.mas_equalTo(15);
+        make.bottom.mas_equalTo(-15);
+    }];
+    
+    if (self.isExpand) {
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮点击态"] forState:UIControlStateHighlighted];
+    }else {
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮点击态"] forState:UIControlStateHighlighted];
     }
+}
+
+- (void)setupUIForSecondLevel {
+    [self.secondLineView removeFromSuperview];
+    [self.thirdLineView removeFromSuperview];
+    [self.fourthLineView removeFromSuperview];
+    self.backgroundColor = [UIColor colorWithHexString:@"fcfcfc"];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:15.f];
+    
+    [self.firstLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(50);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.expandButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView.mas_left).offset(25 + 50);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+    
+    [self.contentView addSubview:self.secondLineView];
+    [self.secondLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.expandButton.mas_centerX).offset(25);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.secondLineView.mas_right);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-12);
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+    }];
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-42);
+        make.top.mas_equalTo(15);
+        make.bottom.mas_equalTo(-15);
+    }];
+    if (self.isExpand) {
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮点击态"] forState:UIControlStateHighlighted];
+    }else {
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮点击态"] forState:UIControlStateHighlighted];
+    }
+}
+
+- (void)setupUIForThirdLevel {
+    [self.secondLineView removeFromSuperview];
+    [self.thirdLineView removeFromSuperview];
+    [self.fourthLineView removeFromSuperview];
+    
+    self.backgroundColor = [UIColor colorWithHexString:@"f9f9f9"];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:14.f];
+    
+    [self.firstLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(50);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentView addSubview:self.secondLineView];
+    [self.secondLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(100);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.expandButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView.mas_left).offset(25 + 100);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+    
+    [self.contentView addSubview:self.thirdLineView];
+    [self.thirdLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.expandButton.mas_centerX).offset(25);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.thirdLineView.mas_right);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-12);
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+    }];
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-42);
+        make.top.mas_equalTo(15);
+        make.bottom.mas_equalTo(-15);
+    }];
+    
+    if (self.isExpand) {
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮点击态"] forState:UIControlStateHighlighted];
+    }else {
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮点击态"] forState:UIControlStateHighlighted];
+    }
+}
+
+- (void)setupUIForFourthLevel {
+    [self.secondLineView removeFromSuperview];
+    [self.thirdLineView removeFromSuperview];
+    [self.fourthLineView removeFromSuperview];
+    
+    self.backgroundColor = [UIColor colorWithHexString:@"f9f9f9"];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:13.f];
+    
+    [self.firstLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(50);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentView addSubview:self.secondLineView];
+    [self.secondLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(100);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentView addSubview:self.thirdLineView];
+    [self.thirdLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(150);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.expandButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView.mas_left).offset(25 + 150);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+    
+    [self.contentView addSubview:self.fourthLineView];
+    [self.fourthLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.expandButton.mas_centerX).offset(25);
+        make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+    }];
+    
+    [self.contentBgButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.fourthLineView.mas_right);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.accessoryImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-12);
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+    }];
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-42);
+        make.top.mas_equalTo(15);
+        make.bottom.mas_equalTo(-15);
+    }];
 }
 
 - (void)setIsExpand:(BOOL)isExpand {
     [super setIsExpand:isExpand];
     if (self.isExpand) {
-        if (self.level == 0) {
-            [self.expandButton setBackgroundImage:[UIImage imageNamed:@"一级黄色-号"] forState:UIControlStateNormal];
-            [self.expandButton setBackgroundImage:[UIImage imageNamed:@"一级黄色-号-按下"] forState:UIControlStateHighlighted];
-        }else if (self.level == 1) {
-            [self.expandButton setBackgroundImage:[UIImage imageNamed:@"二级黄色-号"] forState:UIControlStateNormal];
-            [self.expandButton setBackgroundImage:[UIImage imageNamed:@"二级黄色-号-按下"] forState:UIControlStateHighlighted];
-        }
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮点击态"] forState:UIControlStateHighlighted];
     }else {
-        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"一级蓝色+号"] forState:UIControlStateNormal];
-        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"一级蓝色+号-按下"] forState:UIControlStateHighlighted];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮正常态"] forState:UIControlStateNormal];
+        [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表展开按钮点击态"] forState:UIControlStateHighlighted];
     }
 }
 
 - (void)setKnp:(GetKnpListRequestItem_knp *)knp {
     _knp = knp;
-    self.titleLabel.text = knp.name;
     self.expandButton.hidden = (knp.children.count == 0);
+    if (self.level == 0) {
+        [self setupTitleLabelLineSpacingWithLevel:0 textString:knp.name textWidth:SCREEN_WIDTH - 50 - 15 - 42];
+        return;
+    }
+    if (self.level == 1) {
+        [self setupTitleLabelLineSpacingWithLevel:1 textString:knp.name textWidth:SCREEN_WIDTH - 100 - 15 -42];
+        return;
+    }
+    if (self.level == 2) {
+        [self setupTitleLabelLineSpacingWithLevel:1 textString:knp.name textWidth:SCREEN_WIDTH - 150 - 15 -42];
+        return;
+    }
+    if (self.level == 3) {
+        [self setupTitleLabelLineSpacingWithLevel:1 textString:knp.name textWidth:SCREEN_WIDTH - 200 - 15 -42];
+        return;
+    }
+}
+
+- (void)setupTitleLabelLineSpacingWithLevel:(NSInteger)level textString:(NSString *)textString textWidth:(CGFloat)textWidth{
+    CGSize titleSize = [textString boundingRectWithSize:CGSizeMake(textWidth , MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.titleLabel.font} context:nil].size;
+    CGFloat labelHeight = titleSize.height;
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:textString];
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    if (labelHeight > self.titleLabel.font.lineHeight) {
+        if (level == 0) {
+            [paragraphStyle setLineSpacing:5.f];
+        }else if (level == 1) {
+            [paragraphStyle setLineSpacing:4.f];
+        }else if (level == 2) {
+            [paragraphStyle setLineSpacing:3.f];
+        }else {
+            [paragraphStyle setLineSpacing:2.f];
+        }
+    }else {
+        [paragraphStyle setLineSpacing:0.f];
+    }
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [textString length])];
+    self.titleLabel.attributedText = attributedString;
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-42);
+        make.top.mas_equalTo(15);
+        make.bottom.mas_equalTo(-15);
+    }];
+}
+
+- (void)setIsFirst:(BOOL)isFirst {
+    _isFirst = isFirst;
+    if (isFirst) {
+        self.shadowView.hidden = YES;
+    }else {
+        self.shadowView.hidden = NO;
+    }
 }
 
 - (void)setTreeExpandBlock:(ExpandBlock)block {
@@ -265,48 +406,36 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
 - (void)setTreeClickBlock:(ClickBlock)block {
     self.clickBlock = block;
 }
+
 #pragma mark - Actions
 - (void)expandButtonAction {
     BLOCK_EXEC(self.expandBlock,self);
 }
 
-- (void)contentBgButtonAction {
-    if (![self clickableWithLevel:self.level]) {
-        BLOCK_EXEC(self.expandBlock,self);
-    }
-    else{
-        BLOCK_EXEC(self.clickBlock, self);
-    }
+- (void)contentBgButtonTouchUpInsideAction {
+    BLOCK_EXEC(self.clickBlock, self);
+    self.accessoryImageView.highlighted = NO;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"333333"];
 }
 
-#pragma mark - format data
-- (NSMutableAttributedString *)knpFirst:(NSString *)a Second:(NSString *)b {
-    if (isEmpty(a) || isEmpty(b)) {
-        return nil;
-    }
-    
-    NSString *str = [a stringByAppendingString:b];
-    NSRange rangeA = NSMakeRange(0, a.length);
-    NSRange rangeB = NSMakeRange(a.length, b.length);
-    
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:str];
-    [attributedText setAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:14]} range:rangeA];
-    [attributedText setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:11]} range:rangeB];
-    
-    return attributedText;
+- (void)contentBgButtonTouchDownAction {
+    self.accessoryImageView.highlighted = YES;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
 }
-- (CGFloat)percentFromString:(NSString *)percentString {
-    percentString = [percentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    CGFloat percent = [[percentString substringToIndex:[percentString length] - 1] floatValue];
-    
-    return percent / 100;
+
+- (void)contentBgButtonTouchDragOutsideAction {
+    self.accessoryImageView.highlighted = NO;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"333333"];
 }
-- (BOOL)clickableWithLevel:(NSInteger)level {
-    if (self.knp.children.count > 0
-        && (self.knp.data != nil)) {
-        return NO;
-    }
-    return YES;
+
+- (void)contentBgButtonTouchDragInsideAction {
+    self.accessoryImageView.highlighted = YES;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+}
+
+- (void)contentBgButtonTouchCancelAction {
+    self.accessoryImageView.highlighted = NO;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"333333"];
 }
 
 @end

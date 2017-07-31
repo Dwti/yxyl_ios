@@ -26,6 +26,9 @@
 
 + (NSUInteger)indexWithSexId:(NSString *)sexId
 {
+    if (![[self sexIds] containsObject:sexId]) {
+        return 2;
+    }
     NSUInteger index = [[self sexIds] indexOfObject:sexId];
     return index;
 }
