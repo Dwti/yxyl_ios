@@ -43,6 +43,7 @@
 - (BOOL)isPaperSubmitted;
 // Utils
 - (NSArray *)allQuestions;
+- (NSArray *)allLogicQuestions;
 - (CGFloat)correctRate;
 - (NSArray *)questionGroups; // element type is QAQuestionGroup
 //错题重做

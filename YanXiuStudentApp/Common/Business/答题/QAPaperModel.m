@@ -198,6 +198,18 @@
     return qArray;
 }
 
+- (NSArray *)allLogicQuestions {
+    NSMutableArray *qArray = [NSMutableArray array];
+    for (QAQuestion *q in self.questions) {
+        if ([q isSingleQuestion]) {
+            [qArray addObject:q];
+        }else {
+            [qArray addObjectsFromArray:q.childQuestions];
+        }
+    }
+    return qArray;
+}
+
 - (CGFloat)correctRate{
     CGFloat userScore = 0.f;
     CGFloat totalScore = 0.f;

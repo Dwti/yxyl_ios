@@ -142,9 +142,8 @@
 }
 
 - (NSInteger)resultCorrectCountWithModel:(QAPaperModel *)model {
-    NSArray *questions = [model allQuestions];
     NSMutableArray *correctQuestionArray = [NSMutableArray array];
-    for (QAQuestion *question in questions) {
+    for (QAQuestion *question in [model allLogicQuestions]) {
         YXQAAnswerState state = [question answerState];
         if (state == YXAnswerStateCorrect) {
             [correctQuestionArray addObject:question];
