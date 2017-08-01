@@ -54,8 +54,12 @@
 - (void)setupUI {
     self.headerView = [[MineTableHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 153)];
     self.headerView.name = [YXUserManager sharedManager].userModel.realname;
-    self.headerView.account = [YXUserManager sharedManager].userModel.mobile;
     self.headerView.headUrl = [YXUserManager sharedManager].userModel.head;
+    if (isEmpty([YXUserManager sharedManager].userModel.passport.loginName)) {
+        self.headerView.account = [YXUserManager sharedManager].userModel.passport.mobile;
+    }else {
+        self.headerView.account = [YXUserManager sharedManager].userModel.passport.loginName;
+    }
     WEAK_SELF
     [self.headerView setEnterBlock:^{
         STRONG_SELF
