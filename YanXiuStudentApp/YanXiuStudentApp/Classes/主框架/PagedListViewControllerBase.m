@@ -49,6 +49,9 @@
         make.edges.equalTo(@0);
     }];
     
+    if (!self.emptyView) {
+        self.emptyView = [[EmptyView alloc]init];
+    }
     self.emptyView.hidden = YES;
     [self.view addSubview:self.emptyView];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {

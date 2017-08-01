@@ -57,16 +57,8 @@
         [self fetchTreeData];
     }];
     
-//    YXTipsView *emptyView = [[YXTipsView alloc] init];
-//    [self.view addSubview:emptyView];
-//    [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(0);
-//    }];
-//    emptyView.title = @"O(∩_∩)O";
-//    emptyView.text = @"暂无题目";
-//    [emptyView hide:NO];
-//    self.emptyView = emptyView;
-    
+    self.emptyView = [[EmptyView alloc]init];
+    self.emptyView.title = @"暂无题目";
 }
 
 - (void)fetchTreeData {
@@ -80,7 +72,10 @@
         [self.treeView reloadData];
         
         if (error.code == 3) {
-//            [self.emptyView show:NO];
+            [self.view addSubview:self.emptyView];
+            [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             return;
         }
         
@@ -91,6 +86,8 @@
             }];
             return;
         }
+        
+        [self.emptyView removeFromSuperview];
         [self.errorView removeFromSuperview];
     }];
 }

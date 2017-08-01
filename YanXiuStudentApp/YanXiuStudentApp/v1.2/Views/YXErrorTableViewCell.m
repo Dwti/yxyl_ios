@@ -126,9 +126,9 @@ static const CGFloat kMaxContentHeight = 200;
 }
 
 + (CGFloat)heightForString:(NSString *)string{
-    if (isEmpty(string)) {
-        return 0.f;
-    }
+//    if (isEmpty(string)) {
+//        return 10.f;
+//    }
     NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForLevel1];
     CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:MAXWIDTH];
     CGFloat height = [self totalHeightWithContentHeight:stringHeight];

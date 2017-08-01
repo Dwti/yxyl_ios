@@ -1,6 +1,7 @@
 #import "AppDelegateHelper_Phone.h"
 #import "AlertView.h"
 #import "BaseViewController.h"
+#import "EmptyView.h"
 #import "PagedListFetcherBase.h"
 #import "PagedListViewControllerBase.h"
 #import "PageListRequestDelegate.h"

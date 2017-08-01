@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSString *chapterId; //章id
 @property (nonatomic, strong) NSString *sectionId; //节id
 @property (nonatomic, strong) NSString *cellId;    //小节id
+@property (nonatomic, strong) NSString *pointId;    //知识点id(知识点第四级)
 @property (nonatomic, strong) NSString *questNum;  //题目数量
 
 @property (nonatomic, strong) NSString *fromType;  //出题出处（0：知识点列表出题，1：从解析处出题, 2:考点掌握出题）

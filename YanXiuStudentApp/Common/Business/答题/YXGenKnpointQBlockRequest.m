@@ -13,7 +13,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"app/q/genKnpointQBlock.do"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"app/q/genKnpointQBlockNew.do"];
     }
     return self;
 }

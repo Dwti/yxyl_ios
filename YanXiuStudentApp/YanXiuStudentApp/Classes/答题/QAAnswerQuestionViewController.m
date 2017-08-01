@@ -13,6 +13,8 @@
 #import "QAAnswerSheetViewController.h"
 #import "SimpleAlertView.h"
 #import "QAImageUploadProgressView.h"
+#import "QAAnalysisViewController.h"
+#import "QAReportViewController.h"
 
 @interface QAAnswerQuestionViewController ()<QAAnswerStateChangeDelegate>
 @property (nonatomic, strong) GCDTimer *timer;
@@ -48,6 +50,16 @@
     self.beginDate = [NSDate date];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSMutableArray *vcArray = [NSMutableArray array];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if (![vc isKindOfClass:[QAReportViewController class]]&&![vc isKindOfClass:[QAAnalysisViewController class]]) {
+            [vcArray addObject:vc];
+        }
+    }
+    self.navigationController.viewControllers = vcArray;
+}
 - (void)backAction {
     
     if (self.pType == YXPTypeGroupHomework) {

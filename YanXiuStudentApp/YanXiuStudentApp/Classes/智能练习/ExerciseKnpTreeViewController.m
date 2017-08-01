@@ -26,7 +26,7 @@
     self.dataFetcher = fetcher;
     [super viewDidLoad];
     [self.treeView registerClass:[ExerciseKnpTreeCell class] forCellReuseIdentifier:@"ExerciseKnpTreeCell"];
-
+    
     // Do any additional setup after loading the view.
 }
 
@@ -64,6 +64,7 @@
         GetKnpListRequestItem_knp *knpFirst = nil;
         GetKnpListRequestItem_knp *knpSecond = nil;
         GetKnpListRequestItem_knp *knpThird = nil;
+        GetKnpListRequestItem_knp *knpFourth = nil;
         if (level == 0) {
             knpFirst = cell.knp;
         } else if (level == 1) {
@@ -73,17 +74,24 @@
             knpThird = cell.knp;
             knpSecond = [self.treeView parentForItem:knpThird];
             knpFirst = [self.treeView parentForItem:knpSecond];
+        }else if (level == 3) {
+            knpFourth = cell.knp;
+            knpThird = [self.treeView parentForItem:knpFourth];
+            knpSecond = [self.treeView parentForItem:knpThird];
+            knpFirst = [self.treeView parentForItem:knpSecond];
         }
         [self requestQuestionFirstId:knpFirst.knpID?:@"0"
                             secondId:knpSecond.knpID?:@"0"
-                             thridId:knpThird.knpID?:@"0"];
+                             thridId:knpThird.knpID?:@"0"
+                            fourthId:knpFourth.knpID?:@"0"];
     }];
     
     return cell;
 }
 - (void)requestQuestionFirstId:(NSString *)knpId1
                       secondId:(NSString *)knpId2
-                       thridId:(NSString *)knpId3 {
+                       thridId:(NSString *)knpId3
+                      fourthId:(NSString *)knpId4 {
     if (self.knpQuestionRequest) {
         [self.knpQuestionRequest stopRequest];
     }
@@ -94,6 +102,7 @@
     request.knpId1 = knpId1;
     request.knpId2 = knpId2;
     request.knpId3 = knpId3;
+    request.knpId4 = knpId4;
     request.fromType = @"2";
     [self.view nyx_startLoading];
     WEAK_SELF
@@ -105,7 +114,7 @@
         if (item.data.count > 0) {
             question = item.data[0];
             QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
-            vc.requestParams = [self answerQuestionParamsFirstId:knpId1 secondId:knpId2 thridId:knpId3];
+            vc.requestParams = [self answerQuestionParamsFirstId:knpId1 secondId:knpId2 thridId:knpId3 fourthId:knpId4];
             vc.model = [QAPaperModel modelFromRawData:question];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
@@ -117,7 +126,8 @@
 #pragma mark - format data
 - (YXQARequestParams *)answerQuestionParamsFirstId:(NSString *)knpId1
                                           secondId:(NSString *)knpId2
-                                           thridId:(NSString *)knpId3 {
+                                           thridId:(NSString *)knpId3
+                                          fourthId:(NSString *)knpId4 {
     YXQARequestParams *params = [[YXQARequestParams alloc] init];
     params.stageId = [YXUserManager sharedManager].userModel.stageid;
     params.subjectId = self.subjectID;
@@ -128,6 +138,7 @@
     params.chapterId = knpId1;
     params.sectionId = knpId2;
     params.cellId = knpId3;
+    params.pointId = knpId4;
     params.questNum = @"10";
     return params;
 }

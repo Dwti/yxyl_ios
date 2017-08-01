@@ -38,7 +38,7 @@
 @implementation GetKnpListRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"app/anaofstd/listKnpStat.do"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"app/anaofstd/listKnpStatNew.do"];
     }
     return self;
 }

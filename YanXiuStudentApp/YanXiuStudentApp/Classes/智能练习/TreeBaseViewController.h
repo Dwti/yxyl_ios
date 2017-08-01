@@ -9,11 +9,12 @@
 #import "BaseViewController.h"
 #import "TreeDataFetcher.h"
 #import <RATreeView/RATreeView.h>
+#import "EmptyView.h"
 
 @interface TreeBaseViewController : BaseViewController<RATreeViewDataSource, RATreeViewDelegate>
 @property (nonatomic, strong) RATreeView *treeView;
 @property (nonatomic, strong) TreeDataFetcher *dataFetcher;
-@property (nonatomic, strong) UIView *emptyView;
+@property (nonatomic, strong) EmptyView *emptyView;
 @property (nonatomic, strong) NSArray *treeNodes;
 - (void)fetchTreeData;
 @end

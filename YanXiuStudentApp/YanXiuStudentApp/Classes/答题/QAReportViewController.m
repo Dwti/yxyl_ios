@@ -195,6 +195,7 @@ static const CGFloat kNavViewHeight = 55.0f;
     self.knpRequest.knpId1 = self.requestParams.chapterId;
     self.knpRequest.knpId2 = self.requestParams.sectionId;
     self.knpRequest.knpId3 = self.requestParams.cellId;
+    self.knpRequest.knpId4 = self.requestParams.pointId;
     self.knpRequest.fromType = self.requestParams.fromType;
     WEAK_SELF
     [self.view nyx_startLoading];

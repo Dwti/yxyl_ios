@@ -10,7 +10,7 @@
 #import "MistakeSubjectCell.h"
 #import "YXSubjectImageHelper.h"
 #import "YXCommonErrorView.h"
-#import "YXExerciseEmptyView.h"
+#import "EmptyView.h"
 #import "MistakeAllViewController.h"
 #import "YXErrorsPagedListFetcher.h"
 #import "MistakeListViewController.h"
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) GetSubjectMistakeRequestItem *requestItem;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
-@property (nonatomic, strong) YXExerciseEmptyView *emptyView;
+@property (nonatomic, strong) EmptyView *emptyView;
 
 @end
 
@@ -68,7 +68,7 @@
     }];
     [self.view addSubview:self.errorView];
     
-    self.emptyView = [[YXExerciseEmptyView alloc] init];
+    self.emptyView = [[EmptyView alloc] init];
     self.emptyView.hidden = YES;
     [self.view addSubview:_emptyView];
 }
@@ -98,7 +98,7 @@
         }else{
             if (item.subjectMistakes.count == 0) {
                 if (item.status.desc) {
-                    [self.emptyView setEmptyText:item.status.desc];
+                    self.emptyView.title = item.status.desc;
                 }
                 self.emptyView.hidden = NO;
                 self.tableView.hidden = YES;

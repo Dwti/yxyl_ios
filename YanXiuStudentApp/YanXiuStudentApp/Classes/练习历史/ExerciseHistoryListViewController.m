@@ -24,13 +24,13 @@
 - (void)viewDidLoad {
     self.errorView = [[YXCommonErrorView alloc] init];
     
-//    YXTipsView *emptyView = [[YXTipsView alloc] init];
-//    emptyView.title = @"%>_<%";
+    EmptyView *emptyView = [[EmptyView alloc] init];
+    emptyView.title = @"%>_<% 这里还没有题哦";
 //    emptyView.text = @"这里还没有题哦";
 //    NSString *typeString = (self.segment == YXExerciseListSegmentChapter ? @"考点":@"章节");
 //    emptyView.detailText = [NSString stringWithFormat:@"切换到【%@】看看吧", typeString];
 //    [emptyView show:NO];
-//    self.emptyView = emptyView;
+    self.emptyView = emptyView;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.

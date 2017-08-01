@@ -10,7 +10,7 @@
 #import "ExerciseHistorySubjectCell.h"
 #import "YXGetPracticeEditionRequest.h"
 #import "YXCommonErrorView.h"
-#import "YXExerciseEmptyView.h"
+#import "EmptyView.h"
 #import "ExerciseHistoryContentViewController.h"
 
 @interface ExerciseHistorySubjectViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) YXGetPracticeEditionRequest *request;
 @property (nonatomic, strong) GetPracticeEditionRequestItem *item;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
-@property (nonatomic, strong) YXExerciseEmptyView *emptyView;
+@property (nonatomic, strong) EmptyView *emptyView;
 @end
 
 @implementation ExerciseHistorySubjectViewController
@@ -52,23 +52,13 @@
     }];
     
     self.errorView = [[YXCommonErrorView alloc] init];
-    [self.view addSubview:self.errorView];
-    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    self.errorView.hidden = YES;
-    @weakify(self);
+    WEAK_SELF
     [self.errorView setRetryBlock:^{
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         [self requestHistorySubjects];
     }];
     
-    self.emptyView = [[YXExerciseEmptyView alloc] init];
-    self.emptyView.hidden = YES;
-    [self.view addSubview:self.emptyView];
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+    self.emptyView = [[EmptyView alloc] init];
 }
 
 - (void)requestHistorySubjects {
@@ -82,21 +72,27 @@
     [self.request startRequestWithRetClass:[GetPracticeEditionRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         @strongify(self);
         [self.view nyx_stopLoading];
-        self.errorView.hidden = YES;
-        self.emptyView.hidden = YES;
         GetPracticeEditionRequestItem *item = retItem;
         if (item && item.subjects.count == 0) {
+            [self.view addSubview:self.emptyView];
+            [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             if (item.status.desc) {
-                [self.emptyView setEmptyText:item.status.desc];
+                self.emptyView.title = item.status.desc;
             }
-            self.emptyView.hidden = NO;
             return;
         }
         if (error) {
-            self.errorView.hidden = NO;
+            [self.view addSubview:self.errorView];
+            [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             return;
         }
         
+        [self.emptyView removeFromSuperview];
+        [self.errorView removeFromSuperview];
         self.item = item;
         [self.tableView reloadData];
     }];
