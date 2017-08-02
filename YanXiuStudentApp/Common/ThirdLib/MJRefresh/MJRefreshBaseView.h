@@ -78,6 +78,8 @@ typedef void (^RefreshStateChangeBlock)(MJRefreshBaseView *refreshView, MJRefres
 @property (nonatomic, weak, readonly) UILabel *lastUpdateTimeLabel;
 @property (nonatomic, weak, readonly) UILabel *statusLabel;
 @property (nonatomic, weak, readonly) UIImageView *arrowImage;
+// 自定义的
+@property (nonatomic, strong) UIImageView *imageView;
 
 // Block回调
 @property (nonatomic, copy) BeginRefreshingBlock beginRefreshingBlock;
@@ -101,7 +103,6 @@ typedef void (^RefreshStateChangeBlock)(MJRefreshBaseView *refreshView, MJRefres
  交给子类去实现 和 调用
  */
 - (void)setState:(MJRefreshState)state;
-- (int)totalDataCountInScrollView;
 - (void)observeValueForKeyPath2:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
 
 // 设置加载图片

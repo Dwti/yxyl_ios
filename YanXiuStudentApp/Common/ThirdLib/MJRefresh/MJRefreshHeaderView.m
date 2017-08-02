@@ -8,10 +8,13 @@
 
 #import "MJRefreshConst.h"
 #import "MJRefreshHeaderView.h"
+#import "EERefreshHeaderView.h"
 
 @interface MJRefreshHeaderView()
 // 最后的更新时间
 @property (nonatomic, strong) NSDate *lastUpdateTime;
+@property (nonatomic, weak) EERefreshHeaderView *eeHeaderView;
+@property (nonatomic, assign) BOOL needEndRefreshingWhenBubbleFinished;
 @end
 
 @implementation MJRefreshHeaderView
@@ -19,6 +22,16 @@
 + (instancetype)header
 {
     return [[MJRefreshHeaderView alloc] init];
+}
+
+#pragma mark 结束刷新
+- (void)endRefreshing
+{
+    if (self.eeHeaderView.animationFinished) {
+        [super endRefreshing];
+    }else {
+        self.needEndRefreshingWhenBubbleFinished = YES;
+    }
 }
 
 #pragma mark - UIScrollView相关
@@ -32,7 +45,34 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     // 2.加载时间
     self.lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:MJRefreshHeaderTimeKey];
+    
+    EERefreshHeaderView *headerView = [[EERefreshHeaderView alloc]initWithMJHeaderView:self];
+    WEAK_SELF
+    [headerView setEndBubbleBlock:^{
+        STRONG_SELF
+        if (self.needEndRefreshingWhenBubbleFinished) {
+            [super endRefreshing];
+            self.needEndRefreshingWhenBubbleFinished = NO;
+        }
+    }];
+    [scrollView addSubview:headerView];
+    self.eeHeaderView = headerView;
+//    [scrollView.panGestureRecognizer addTarget:self action:@selector(panAction:)];
 }
+//- (void)panAction:(UIPanGestureRecognizer *)gesture {
+//    if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
+//        if (_state == MJRefreshStatePulling) {
+//            self.eeHeaderView.refreshing = YES;
+//        }
+//        if (_scrollView.layer.presentationLayer.bounds.origin.y!=_scrollView.bounds.origin.y) {
+//            NSLog(@"");
+//        }
+//        if (ABS(_scrollView.layer.presentationLayer.bounds.origin.y)>=MJRefreshViewHeight+[self.eeHeaderView bottomHeight]) {
+//            self.eeHeaderView.refreshing = YES;
+//        }
+//    }
+//    
+//}
 
 #pragma mark - 状态相关
 #pragma mark 设置最后的更新时间
@@ -72,6 +112,75 @@
     
     // 3.显示日期
     _lastUpdateTimeLabel.text = [NSString stringWithFormat:@"最后更新：%@", time];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self.eeHeaderView updateWithOffset:_scrollView.contentOffset.y];
+    
+    if (![MJRefreshContentOffset isEqualToString:keyPath]) return;
+    
+    if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden
+        || _state == MJRefreshStateRefreshing) return;
+    
+    // scrollView所滚动的Y值 * 控件的类型（头部控件是-1，尾部控件是1）
+    CGFloat offsetY = _scrollView.contentOffset.y * self.viewType;
+    CGFloat validY = self.validY;
+    if (offsetY <= validY) return;
+    
+    if (_scrollView.isDragging) {
+        CGFloat validOffsetY = validY + MJRefreshViewHeight + [self.eeHeaderView bottomHeight];
+//        CGFloat r = offsetY / validOffsetY;
+//        self.imageView.transform = CGAffineTransformMakeRotation(2*M_PI*r);
+//        if (_state == MJRefreshStateNormal) {
+//            CGFloat f = (MIN(offsetY, validOffsetY) / validOffsetY);
+//            self.imageView.transform = CGAffineTransformMakeScale(f, f);
+//            self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, 2*M_PI*r);
+//            self.imageView.alpha = f;
+//            [self bringSubviewToFront:self.imageView];
+//        }
+        
+        
+        if (_state == MJRefreshStatePulling && offsetY <= validOffsetY) {
+            // 转为普通状态
+            [self setState:MJRefreshStateNormal];
+            // 通知代理
+            if ([self.delegate respondsToSelector:@selector(refreshView:stateChange:)]) {
+                [self.delegate refreshView:self stateChange:MJRefreshStateNormal];
+            }
+            
+            // 回调
+            if (self.refreshStateChangeBlock) {
+                self.refreshStateChangeBlock(self, MJRefreshStateNormal);
+            }
+        } else if (_state == MJRefreshStateNormal && offsetY > validOffsetY) {
+            // 转为即将刷新状态
+            [self setState:MJRefreshStatePulling];
+            // 通知代理
+            if ([self.delegate respondsToSelector:@selector(refreshView:stateChange:)]) {
+                [self.delegate refreshView:self stateChange:MJRefreshStatePulling];
+            }
+            
+            // 回调
+            if (self.refreshStateChangeBlock) {
+                self.refreshStateChangeBlock(self, MJRefreshStatePulling);
+            }
+        }
+    } else { // 即将刷新 && 手松开
+        if (_state == MJRefreshStatePulling) {
+            // 开始刷新
+            [self setState:MJRefreshStateRefreshing];
+            // 通知代理
+            if ([self.delegate respondsToSelector:@selector(refreshView:stateChange:)]) {
+                [self.delegate refreshView:self stateChange:MJRefreshStateRefreshing];
+            }
+            
+            // 回调
+            if (self.refreshStateChangeBlock) {
+                self.refreshStateChangeBlock(self, MJRefreshStateRefreshing);
+            }
+        }
+    }
 }
 
 #pragma mark 设置状态
@@ -119,6 +228,8 @@
                 // 保存刷新时间
                 self.lastUpdateTime = [NSDate date];
             }
+            self.eeHeaderView.refreshing = NO;
+            [self.eeHeaderView updateWithOffset:_scrollView.contentOffset.y];
 			break;
         }
             
@@ -127,16 +238,17 @@
             // 设置文字
             _statusLabel.text = MJRefreshHeaderRefreshing;
             // 执行动画
-            [UIView animateWithDuration:MJRefreshAnimationDuration delay:0.1 options:0
-                             animations:^{
-                                 _arrowImage.transform = CGAffineTransformIdentity;
-                                 // 1.增加65的滚动区域
-                                 UIEdgeInsets inset = _scrollView.contentInset;
-                                 inset.top = _scrollViewInitInset.top + MJRefreshViewHeight;
-                                 _scrollView.contentInset = inset;
-                                 // 2.设置滚动位置
-                                 _scrollView.contentOffset = CGPointMake(0, - inset.top);
-                             } completion:nil];
+            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+                _arrowImage.transform = CGAffineTransformIdentity;
+                // 1.增加65的滚动区域
+                UIEdgeInsets inset = _scrollView.contentInset;
+                inset.top = _scrollViewInitInset.top + MJRefreshViewHeight;
+                _scrollView.contentInset = inset;
+                // 2.设置滚动位置
+                _scrollView.contentOffset = CGPointMake(0, - inset.top);
+            }];
+            self.eeHeaderView.refreshing = YES;
+            [self.eeHeaderView updateWithOffset:_scrollView.contentOffset.y];
 			break;
         }
             

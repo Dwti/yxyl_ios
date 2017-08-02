@@ -14,7 +14,6 @@
     BOOL _hasInitInset;
 }
 
-@property (nonatomic, strong) UIImageView *imageView;
 
 /**
  交给子类去实现
@@ -70,11 +69,14 @@
 {
     if (!_imageView) {
         _imageView.backgroundColor = [UIColor redColor];
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, MJRefreshViewHeight - 10)];
-        _imageView.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5 + 5);
-        _imageView.image = [UIImage imageNamed:@"loading前景"];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 55, 55)];
+        _imageView.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
+        _imageView.image = [UIImage imageNamed:@"下拉刷新白色背景"];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        UIImageView *circleImageView = [[UIImageView alloc]initWithFrame:_imageView.bounds];
+        circleImageView.image = [UIImage imageNamed:@"下拉刷新旋转"];
+        [_imageView addSubview:circleImageView];
         [self addSubview:_imageView];
     }
     return _imageView;
@@ -127,7 +129,6 @@
 #pragma mark 设置frame
 - (void)setFrame:(CGRect)frame
 {
-    frame.size.height = MJRefreshViewHeight;
     [super setFrame:frame];
     
     CGFloat w = frame.size.width;
@@ -402,22 +403,4 @@
     [self endRefreshing];
 }
 
-- (int)totalDataCountInScrollView
-{
-    int totalCount = 0;
-    if ([self.scrollView isKindOfClass:[UITableView class]]) {
-        UITableView *tableView = (UITableView *)self.scrollView;
-        
-        for (int section = 0; section<tableView.numberOfSections; section++) {
-            totalCount += [tableView numberOfRowsInSection:section];
-        }
-    } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-        UICollectionView *collectionView = (UICollectionView *)self.scrollView;
-        
-        for (int section = 0; section<collectionView.numberOfSections; section++) {
-            totalCount += [collectionView numberOfItemsInSection:section];
-        }
-    }
-    return totalCount;
-}
 @end

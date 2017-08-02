@@ -9,6 +9,5 @@
 #import "MJRefreshBaseView.h"
 
 @interface MJRefreshFooterView : MJRefreshBaseView
-@property (nonatomic,assign) BOOL boolState;
 + (instancetype)footer;
 @end

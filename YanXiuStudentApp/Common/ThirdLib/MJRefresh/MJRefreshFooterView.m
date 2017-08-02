@@ -84,100 +84,63 @@
     CGFloat scrollHeight = _scrollView.frame.size.height - _scrollViewInitInset.top - _scrollViewInitInset.bottom;
     CGFloat y = MAX(contentHeight, scrollHeight);
     // 设置边框
-    self.frame = CGRectMake(0, y, _scrollView.frame.size.width, MJRefreshViewHeight);
+    self.frame = CGRectMake(0, y, _scrollView.frame.size.width, MJRefreshFooterViewHeight);
 }
 
 #pragma mark - 状态相关
 #pragma mark 设置状态
 - (void)setState:(MJRefreshState)state
 {
-    if (_boolState) {
-        if (_state == state) return;
-        [super setState:state];
-        _statusLabel.text = @"没有更多评论了";
-        _activityView.hidden = YES;
-        _arrowImage.hidden = YES;
-        [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
-            _arrowImage.transform = CGAffineTransformIdentity;
-            UIEdgeInsets inset = _scrollView.contentInset;
-            inset.bottom = _scrollViewInitInset.bottom;
-            _scrollView.contentInset = inset;
-        }];
-    }
-    else
+    if (_state == state) return;
+    [super setState:state];
+    
+    switch (state)
     {
-        if (_state == state) return;
-        MJRefreshState oldState = _state;
-        
-        [super setState:state];
-        
-        switch (state)
+        case MJRefreshStatePulling:
         {
-            case MJRefreshStatePulling:
-            {
-                _statusLabel.text = MJRefreshFooterReleaseToRefresh;
-                _arrowImage.hidden = YES;
-                [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
-                    _arrowImage.transform = CGAffineTransformIdentity;
-                    UIEdgeInsets inset = _scrollView.contentInset;
-                    inset.bottom = _scrollViewInitInset.bottom;
-                    _scrollView.contentInset = inset;
-                }];
-                break;
-            }
-                
-            case MJRefreshStateNormal:
-            {
-                _statusLabel.text = MJRefreshFooterPullToRefresh;
-                
-                // 刚刷新完毕
-                CGFloat animDuration = MJRefreshAnimationDuration;
-                CGFloat deltaH = [self contentBreakView];
-                CGPoint tempOffset = CGPointZero;
-                
-                int currentCount = [self totalDataCountInScrollView];
-                if (MJRefreshStateRefreshing == oldState && deltaH > 0 && currentCount != _lastRefreshCount) {
-                    tempOffset = _scrollView.contentOffset;
-                    animDuration = 0;
-                }
-                _arrowImage.hidden = YES;
-                [UIView animateWithDuration:animDuration animations:^{
-                    _arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
-                    UIEdgeInsets inset = _scrollView.contentInset;
-                    inset.bottom = _scrollViewInitInset.bottom;
-                    _scrollView.contentInset = inset;
-                }];
-                
-                if (animDuration == 0) {
-                    _scrollView.contentOffset = tempOffset;
-                }
-                break;
-            }
-                
-            case MJRefreshStateRefreshing:
-            {
-                // 记录刷新前的数量
-                _lastRefreshCount = [self totalDataCountInScrollView];
-                
-                _statusLabel.text = MJRefreshFooterRefreshing;
-                _arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
-                [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
-                    UIEdgeInsets inset = _scrollView.contentInset;
-                    CGFloat bottom = MJRefreshViewHeight + _scrollViewInitInset.bottom;
-                    CGFloat deltaH = [self contentBreakView];
-                    if (deltaH < 0) { // 如果内容高度小于view的高度
-                        bottom -= deltaH;
-                    }
-                    inset.bottom = bottom;
-                    _scrollView.contentInset = inset;
-                }];
-                break;
-            }
-                
-            default:
-                break;
+            _statusLabel.text = MJRefreshFooterReleaseToRefresh;
+            _arrowImage.hidden = YES;
+            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+                _arrowImage.transform = CGAffineTransformIdentity;
+                UIEdgeInsets inset = _scrollView.contentInset;
+                inset.bottom = _scrollViewInitInset.bottom;
+                _scrollView.contentInset = inset;
+            }];
+            break;
         }
-
+            
+        case MJRefreshStateNormal:
+        {
+            _statusLabel.text = MJRefreshFooterPullToRefresh;
+            _arrowImage.hidden = YES;
+            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+                _arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
+                UIEdgeInsets inset = _scrollView.contentInset;
+                inset.bottom = _scrollViewInitInset.bottom;
+                _scrollView.contentInset = inset;
+            }];
+            break;
+        }
+            
+        case MJRefreshStateRefreshing:
+        {
+            _statusLabel.text = MJRefreshFooterRefreshing;
+            _arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
+            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+                UIEdgeInsets inset = _scrollView.contentInset;
+                CGFloat bottom = MJRefreshFooterViewHeight + _scrollViewInitInset.bottom;
+                CGFloat deltaH = [self contentBreakView];
+                if (deltaH < 0) { // 如果内容高度小于view的高度
+                    bottom -= deltaH;
+                }
+                inset.bottom = bottom;
+                _scrollView.contentInset = inset;
+            }];
+            break;
+        }
+            
+        default:
+            break;
     }
 }
 

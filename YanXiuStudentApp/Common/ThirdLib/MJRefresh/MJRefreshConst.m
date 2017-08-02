@@ -6,7 +6,9 @@
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
 
-const CGFloat MJRefreshViewHeight = 64.0;
+//const CGFloat MJRefreshViewHeight = 64.0;
+const CGFloat MJRefreshViewHeight = 130.0;
+const CGFloat MJRefreshFooterViewHeight = 80.0;
 const CGFloat MJRefreshAnimationDuration = 0.25;
 
 NSString *const MJRefreshBundleName = @"MJRefresh.bundle";
