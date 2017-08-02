@@ -145,7 +145,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
     
     if (self.isExpand) {
@@ -198,7 +198,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
     if (self.isExpand) {
         [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮正常态"] forState:UIControlStateNormal];
@@ -258,7 +258,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
     
     if (self.isExpand) {
@@ -326,7 +326,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
 }
 
@@ -386,7 +386,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
 }
 

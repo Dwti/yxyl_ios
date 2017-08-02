@@ -66,6 +66,7 @@
             self.errorView.hidden = NO;
             return;
         }
+        self.errorView.hidden = YES;
         self.volumeArray = volumeArray;
         [self setupTopView];
         [self setupBottomView];

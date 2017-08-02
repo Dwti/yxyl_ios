@@ -112,6 +112,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if ([self.lastSelectedIndexPath isEqual:indexPath]) {
+         [self removeFromSuperview];
         return;
     }
     [[tableView cellForRowAtIndexPath:self.lastSelectedIndexPath] setSelected:NO];

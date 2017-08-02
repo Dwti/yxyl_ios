@@ -142,7 +142,7 @@
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
     
     if (self.isExpand) {
@@ -196,7 +196,7 @@
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
     if (self.isExpand) {
         [self.expandButton setBackgroundImage:[UIImage imageNamed:@"章节列表收起按钮正常态"] forState:UIControlStateNormal];
@@ -256,7 +256,7 @@
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
     
     if (self.isExpand) {
@@ -324,7 +324,7 @@
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
 }
 
@@ -385,7 +385,7 @@
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-42);
         make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-14);
     }];
 }
 

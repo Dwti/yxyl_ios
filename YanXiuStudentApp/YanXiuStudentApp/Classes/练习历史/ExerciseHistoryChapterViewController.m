@@ -40,6 +40,7 @@
     _volumeID = volumeID;
     YXExerciseHistoryListFetcher *fetcher = (YXExerciseHistoryListFetcher *)self.dataFetcher;
     fetcher.volumeID = _volumeID;
+    [self.view nyx_startLoading];
     [self firstPageFetch];
 }
 

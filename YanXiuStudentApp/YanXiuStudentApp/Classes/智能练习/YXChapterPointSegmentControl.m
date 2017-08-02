@@ -79,12 +79,9 @@
 - (void)setName:(NSString *)name
 {
     _name = [name copy];
-    YXUserModel *userModel = [YXUserManager sharedManager].userModel;
-    if ([userModel.stageName isEqualToString:@"小学"]
-        || [userModel.stageName isEqualToString:@"初中"]) {
-        if ([self.name isEqualToString:@"英语"]) {
-            self.hidden = YES;
-        }
+    //8.2PM修改 除了数理化生,其他科目都不显示知识点
+    if (![self.name isEqualToString:@"数学"] && ![self.name isEqualToString:@"物理"] && ![self.name isEqualToString:@"化学"] && ![self.name isEqualToString:@"生物"]) {
+        self.hidden = YES;
     }
 }
 
