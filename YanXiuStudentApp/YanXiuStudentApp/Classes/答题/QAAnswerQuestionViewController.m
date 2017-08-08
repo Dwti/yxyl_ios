@@ -15,6 +15,7 @@
 #import "QAImageUploadProgressView.h"
 #import "QAAnalysisViewController.h"
 #import "QAReportViewController.h"
+#import "YXRecordManager.h"
 
 @interface QAAnswerQuestionViewController ()<QAAnswerStateChangeDelegate>
 @property (nonatomic, strong) GCDTimer *timer;
@@ -48,6 +49,8 @@
     [self setupTimer];
     [self setupObserver];
     self.beginDate = [NSDate date];
+    
+    [YXRecordManager addRecordWithType:YXRecordPractiseType];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

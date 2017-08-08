@@ -8,6 +8,8 @@
 
 #import "YXHomeworkListFetcher.h"
 #import "YXHomeworkListRequest.h"
+#import "YXRecordManager.h"
+#import "YXProblemItem.h"
 
 @interface YXHomeworkListFetcher ()
 
@@ -34,6 +36,18 @@
                                   aCompleteBlock([ret.page.totalCou intValue], ret.data, nil);
                                   if (ret.data.count == 0) {
                                       BLOCK_EXEC(self.emptyBlock);
+                                      return;
+                                  }
+                                  for (YXHomework *homework in ret.data) {
+                                      NSInteger status = [homework.paperStatus.status integerValue];
+                                      if (status == 0) {
+                                          YXProblemItem *problem = [YXProblemItem new];
+                                          problem.quesNum = homework.quesnum;
+                                          problem.subjectID = homework.subjectid;
+                                          problem.gradeID = homework.gradeid;
+                                          problem.type = YXRecordReciveWorkType;
+                                          [YXRecordManager addRecord:problem];
+                                      }
                                   }
                               }];
 }

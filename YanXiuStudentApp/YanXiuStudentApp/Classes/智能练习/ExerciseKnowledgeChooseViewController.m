@@ -79,8 +79,8 @@
         }
         [self.errorView removeFromSuperview];
         self.volumeArray = volumeArray;
-        [self setupTopView];
         [self setupBottomView];
+        [self setupTopView];
         [self setupVolumeChooseView];
     }];
 }
@@ -88,7 +88,6 @@
 - (void)setupTopView {
     UIView *topContainerView = [[UIView alloc] init];
     topContainerView.backgroundColor = [UIColor whiteColor];
-    topContainerView.clipsToBounds = YES;
     topContainerView.layer.shadowOffset = CGSizeMake(0, 1);
     topContainerView.layer.shadowOpacity = 0.02;
     topContainerView.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
@@ -137,7 +136,7 @@
     self.chapterVC.volumeID = volume.volumeID;
     [self.view addSubview:self.chapterVC.view];
     [self.chapterVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.topContainerView.mas_bottom);
+        make.top.mas_equalTo(55);
         make.left.right.bottom.mas_equalTo(0);
     }];
     
@@ -145,7 +144,7 @@
     self.knpVC.subjectID = self.subject.subjectID;
     [self.view addSubview:self.knpVC.view];
     [self.knpVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.topContainerView.mas_bottom);
+        make.top.mas_equalTo(55);
         make.left.right.bottom.mas_equalTo(0);
     }];
     self.knpVC.view.hidden = YES;

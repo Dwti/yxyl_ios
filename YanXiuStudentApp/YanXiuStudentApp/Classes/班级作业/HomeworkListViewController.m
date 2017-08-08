@@ -82,7 +82,7 @@
 
 #pragma mark - tableview datasource & delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    HomeworkListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListCell"];
+    //    HomeworkListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListCell"];
     HomeworkListCell *cell = [[HomeworkListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.data = self.dataArray[indexPath.row];
     return cell;
@@ -115,8 +115,8 @@
                 STRONG_SELF
                 QAAnalysisViewController *vc = [[QAAnalysisViewController alloc] init];
                 vc.model = [QAPaperModel modelFromRawData:item.data[0]];
-//                vc.pType = YXPTypeGroupHomework;
-//                vc.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];
+                //                vc.pType = YXPTypeGroupHomework;
+                //                vc.analysisDataDelegate = [[YXQAAnalysisDataConfig alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
             }];
         }
@@ -166,7 +166,7 @@
             YXIntelligenceQuestion *question = item.data[0];
             QAReportViewController *vc = [[QAReportViewController alloc] init];
             vc.model = [QAPaperModel modelFromRawData:question];
-//            vc.pType = YXPTypeGroupHomework;
+            //            vc.pType = YXPTypeGroupHomework;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];
