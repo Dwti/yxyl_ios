@@ -176,7 +176,7 @@ static const CGFloat kMaxBottomHeight = 45.f;
     } completion:^(BOOL finished) {
         
     }];
-    [self performSelector:@selector(showBubble) withObject:nil afterDelay:0.4];
+    [self performSelector:@selector(showBubble) withObject:nil afterDelay:0.1];
 }
 
 - (void)showBubble {
