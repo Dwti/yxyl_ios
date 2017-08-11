@@ -8,16 +8,20 @@
 
 #import "QAConnectSelectedCell.h"
 #import "QAConnectOptionInfo.h"
+#import "UIButton+ExpandHitArea.h"
 
 static const CGFloat kMinHeight = 45.f;
 static const CGFloat kFixHeight = 45.f;
 
 
 @interface QAConnectSelectedCell()<YXHtmlCellHeightDelegate>
+@property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UIView *leftLineView;
 @property (nonatomic, strong) UIButton *deleteButton;
 @property (nonatomic, strong) UIView *rightLineView;
+@property (nonatomic, strong) QAConnectItemView *leftView;
+@property (nonatomic, strong) QAConnectItemView *rightView;
 
 @property (nonatomic, assign) CGFloat currentHeight;
 @property (nonatomic, copy) DeleteOptionActionBlock deleteActionBlock;
@@ -51,24 +55,33 @@ static const CGFloat kFixHeight = 45.f;
     self.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.containerView = [[UIView alloc]init];
-    self.containerView.backgroundColor = [UIColor colorWithHexString:@"69ad0a"];
-    self.containerView.layer.cornerRadius = 6.f;
-    self.containerView.clipsToBounds = YES;
-    [self.contentView addSubview:self.containerView];
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.shadowView = [[UIView alloc]init];
+    self.shadowView.backgroundColor = [UIColor colorWithHexString:@"69ad0a"];
+    self.shadowView.layer.cornerRadius = 6.f;
+    self.shadowView.clipsToBounds = YES;
+    [self.contentView addSubview:self.shadowView];
+    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-15.f);
     }];
     
+    self.containerView = [[UIView alloc]init];
+    [self.shadowView addSubview:self.containerView];
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(15, 15, 15, 15));
+    }];
+    
     self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.containerView addSubview:self.deleteButton];
+    [self.contentView addSubview:self.deleteButton];
+    [self.deleteButton setHitTestEdgeInsets:UIEdgeInsetsMake(50, 50, 50, 50)];
     [self.deleteButton setImage:[UIImage imageNamed:@"连线题连接内容删掉按钮"] forState:UIControlStateNormal];
     [self.deleteButton setImage:[UIImage imageNamed:@"连线连接内容删掉按钮点击态"] forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(0);
+        make.centerX.mas_equalTo(0);
+        make.centerY.mas_equalTo(-7.f);
         make.size.mas_equalTo(CGSizeMake(32, 32));
     }];
     
@@ -76,8 +89,8 @@ static const CGFloat kFixHeight = 45.f;
     self.leftLineView.backgroundColor = [UIColor whiteColor];
     [self.containerView addSubview:self.leftLineView];
     [self.leftLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.deleteButton.mas_left);
-        make.centerY.equalTo(self.deleteButton);
+        make.right.equalTo(self.shadowView.mas_centerX).offset(-16.f);
+        make.centerY.mas_equalTo(0);
         make.width.mas_equalTo(17.f);
         make.height.mas_equalTo(2.f);
     }];
@@ -86,8 +99,8 @@ static const CGFloat kFixHeight = 45.f;
     self.rightLineView.backgroundColor = [UIColor whiteColor];
     [self.containerView addSubview:self.rightLineView];
     [self.rightLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.deleteButton.mas_right);
-        make.centerY.equalTo(self.deleteButton);
+        make.left.equalTo(self.shadowView.mas_centerX).offset(16.f);
+        make.centerY.mas_equalTo(0);
         make.width.mas_equalTo(17.f);
         make.height.mas_equalTo(2.f);
     }];
@@ -105,7 +118,7 @@ static const CGFloat kFixHeight = 45.f;
 
 - (void)deleteAction:(UIButton *)sender {
     self.currentHeight = 0;
-    BLOCK_EXEC(self.deleteActionBlock,self.twinOption);
+    BLOCK_EXEC(self.deleteActionBlock,self.twinOption,self);
 }
 
 + (CGFloat)itemHeightWithHeight:(CGFloat)height{
@@ -135,12 +148,12 @@ static const CGFloat kFixHeight = 45.f;
     self.leftView.content = left;
     self.rightView.content = right;
     [self.leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
+        make.left.mas_equalTo(0);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake([QAConnectSelectedCell itemWidth], ll));
     }];
     [self.rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-15);
+        make.right.mas_equalTo(-0);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake([QAConnectSelectedCell itemWidth], rr));
     }];
@@ -172,13 +185,13 @@ static const CGFloat kFixHeight = 45.f;
     CGFloat h = [QAConnectSelectedCell itemHeightWithHeight:height];
     if ((UIView *)cell == self.leftView) {
         [self.leftView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(15);
+            make.left.mas_equalTo(0);
             make.centerY.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake([QAConnectSelectedCell itemWidth], h));
         }];
     }else if ((UIView *)cell == self.rightView){
         [self.rightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-15);
+            make.right.mas_equalTo(-0);
             make.centerY.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake([QAConnectSelectedCell itemWidth], h));
         }];

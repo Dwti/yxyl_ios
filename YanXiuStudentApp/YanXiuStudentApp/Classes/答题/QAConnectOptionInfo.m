@@ -13,5 +13,13 @@
 
 
 @implementation QAConnectOptionInfo
-
++ (UIImage *)imageFromView:(UIView *)view {
+    
+    UIGraphicsBeginImageContext(view.frame.size);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 @end

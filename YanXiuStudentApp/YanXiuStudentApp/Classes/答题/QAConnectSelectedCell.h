@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "QAConnectItemView.h"
 @class QAConnectTwinOptionInfo;
+@class QAConnectSelectedCell;
 
 typedef void(^CellHeightChangeBlock)(CGFloat height);
-typedef void(^DeleteOptionActionBlock)(QAConnectTwinOptionInfo *twinOption);
+typedef void(^DeleteOptionActionBlock)(QAConnectTwinOptionInfo *twinOption ,QAConnectSelectedCell *selectedCell);
 
 @interface QAConnectSelectedCell : UITableViewCell
-@property (nonatomic, strong) QAConnectItemView *leftView;
-@property (nonatomic, strong) QAConnectItemView *rightView;
+@property (nonatomic, strong, readonly) UIView *containerView;
+
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 
 - (void)setCellHeightChangeBlock:(CellHeightChangeBlock)block;

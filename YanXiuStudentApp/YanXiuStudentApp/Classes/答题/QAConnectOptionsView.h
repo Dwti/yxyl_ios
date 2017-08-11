@@ -13,6 +13,8 @@ typedef void(^SelectedOptionCellActionBlock)(QAConnectOptionInfo *optionInfo);
 
 
 @interface QAConnectOptionsView : UIView
+@property (nonatomic, strong, readonly) UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray<QAConnectOptionInfo *> *optionInfoArray;
 
 - (void)setSelectedOptionCellActionBlock:(SelectedOptionCellActionBlock)block;

@@ -22,4 +22,8 @@
 @property (nonatomic, assign) BOOL selected;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) BOOL isCorrect; // used for analysis
+@property (nonatomic, strong) UIImage *snapshotImage;//used for animation
+@property (nonatomic, assign) CGRect frame;//used for animation
+
++ (UIImage *)imageFromView:(UIView *)view;
 @end

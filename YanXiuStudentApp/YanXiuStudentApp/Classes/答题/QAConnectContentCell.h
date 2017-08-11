@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class QAConnectOptionInfo;
 
 typedef void(^HeightChangeBlock)(CGFloat height);
 
 @interface QAConnectContentCell : UITableViewCell
-@property (nonatomic, strong) NSString *optionString;
+@property (nonatomic, strong) QAConnectOptionInfo *optionInfo;
+
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 
 - (void)setHeightChangeBlock:(HeightChangeBlock)block;

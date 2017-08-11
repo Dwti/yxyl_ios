@@ -14,8 +14,6 @@
 @interface QAConnectSelectedView ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIImageView *circleImageView;
-@property (nonatomic, strong) UIImageView *graycircleView;
-@property (nonatomic, strong) UIButton *foldButton;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *emptyLabel;
 @property (nonatomic, strong) UIButton *deleteAllButton;
@@ -25,6 +23,8 @@
 @property (nonatomic, copy) FoldActionBlock foldBlock;
 @property (nonatomic, copy) DeleteActionBlock deleteBlock;
 @property (nonatomic, copy) DeleteAllActionBlock deleteAllBlock;
+@property(nonatomic, copy) DragDownBlock downBlock;
+@property(nonatomic, copy) DragDownBlock upBlock;
 
 @end
 
@@ -43,12 +43,9 @@
 }
 
 - (void)setupUI {
-    self.graycircleView = [[UIImageView alloc]init];
-    self.graycircleView.image = [UIImage imageNamed:@"灰底"];
-   
     self.circleImageView = [[UIImageView alloc]init];
     self.circleImageView.image = [UIImage imageNamed:@"绿"];
-
+    
     self.bgView = [[UIView alloc]init];
     self.bgView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     self.bgView.layer.cornerRadius = 10;
@@ -91,10 +88,37 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.layer.cornerRadius = 6.f;
     self.tableView.clipsToBounds = YES;
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
+    [self addGestureRecognizer:pan];
+}
+
+- (void)foldAction {
+    BLOCK_EXEC(self.foldBlock);
+}
+
+- (void)panAction:(UIPanGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        BLOCK_EXEC(self.foldBlock);
+        return;
+    }
+    CGPoint translation = [gesture translationInView:gesture.view];
+    if (translation.y > 0) {
+        if (self.isFold) {
+            return;
+        }
+        BLOCK_EXEC(self.downBlock,translation.y);
+    }
+    if (translation.y < 0){
+        if (!self.isFold) {
+            return;
+        }
+        BLOCK_EXEC(self.upBlock,translation.y);
+    }
+    [gesture setTranslation:CGPointZero inView:gesture.view];
 }
 
 - (void)setupLayout {
-    [self addSubview:self.graycircleView];
     [self addSubview:self.circleImageView];
     [self addSubview:self.bgView];
     [self addSubview:self.foldButton];
@@ -102,16 +126,11 @@
     [self.bgView addSubview:self.deleteAllButton];
     [self addSubview:self.emptyLabel];
     [self addSubview:self.tableView];
-
+    
     [self.circleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.centerX.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(85, 41));
-    }];
-    [self.graycircleView  mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.circleImageView.mas_bottom);
-        make.centerX.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(85, 46));
     }];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -143,18 +162,12 @@
     }];
 }
 
-- (void)foldAction {
-    BLOCK_EXEC(self.foldBlock);
-}
-
 - (void)setIsFold:(BOOL)isFold {
     _isFold = isFold;
     if (isFold) {
-        self.graycircleView.hidden = NO;
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"连线题篮子正常态"] forState:UIControlStateNormal];
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"连线题篮子正常态"] forState:UIControlStateHighlighted];
     }else {
-        self.graycircleView.hidden = YES;
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"页面弹窗的收起按钮正常态"] forState:UIControlStateNormal];
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"页面弹窗的收起按钮点击态"] forState:UIControlStateHighlighted];
     }
@@ -173,7 +186,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    QAConnectSelectedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAConnectSelectedCell"];
+    //    QAConnectSelectedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAConnectSelectedCell"];
     QAConnectSelectedCell *cell = [[QAConnectSelectedCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     QAConnectTwinOptionInfo *info = self.optionInfoArray[indexPath.row];
     [cell updateWithTwinOption:info];
@@ -189,11 +202,40 @@
             [self.tableView endUpdates];
         }
     }];
-    [cell setDeleteOptionActionBlock:^(QAConnectTwinOptionInfo *twinOption) {
+    [cell setDeleteOptionActionBlock:^(QAConnectTwinOptionInfo *twinOption, QAConnectSelectedCell *selectedCell) {
         STRONG_SELF
         twinOption.leftOptionInfo.selected = NO;
         twinOption.rightOptionInfo.selected = NO;
-        BLOCK_EXEC(self.deleteBlock,twinOption);
+        
+        UIImage *image = [QAConnectOptionInfo imageFromView:selectedCell.containerView];
+        CGRect frame = selectedCell.frame;
+        UIImageView *leftImageView = [[UIImageView alloc]init];
+        leftImageView.layer.anchorPoint = CGPointMake(1, 0.5);
+        leftImageView.frame = CGRectMake(15, frame.origin.y + 15, image.size.width/2, image.size.height);
+        leftImageView.image = image;
+        leftImageView.contentMode = UIViewContentModeLeft;
+        leftImageView.clipsToBounds = YES;
+        [self.tableView insertSubview:leftImageView aboveSubview:selectedCell];
+        
+        UIImageView *rightImageView = [[UIImageView alloc]init];
+        rightImageView.layer.anchorPoint = CGPointMake(0,0.5);
+        rightImageView.frame = CGRectMake(image.size.width/2 + 15, frame.origin.y + 15, image.size.width/2, image.size.height);
+        rightImageView.image = image;
+        rightImageView.contentMode = UIViewContentModeRight;
+        rightImageView.clipsToBounds = YES;
+        [self.tableView insertSubview:rightImageView aboveSubview:selectedCell];
+        
+        selectedCell.containerView.hidden = YES;
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            leftImageView.transform = CGAffineTransformMakeRotation(-M_PI_2*0.7);
+            rightImageView.transform = CGAffineTransformMakeRotation(M_PI_2*0.7);
+            leftImageView.alpha = 0;
+            rightImageView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [leftImageView removeFromSuperview];
+            [rightImageView removeFromSuperview];
+            BLOCK_EXEC(self.deleteBlock,twinOption);
+        }];
         
     }];
     return cell;
@@ -219,5 +261,13 @@
 
 -(void)setDeleteAllActionBlock:(DeleteAllActionBlock)block {
     self.deleteAllBlock = block;
+}
+
+- (void)setDragDownBlock:(DragDownBlock)block {
+    self.downBlock = block;
+}
+
+- (void)setDragUpBlock:(DragUpBlock)block {
+    self.upBlock = block;
 }
 @end

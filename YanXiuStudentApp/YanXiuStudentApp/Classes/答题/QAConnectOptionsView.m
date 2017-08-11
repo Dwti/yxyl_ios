@@ -63,9 +63,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    QAConnectContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAConnectContentCell"];
+    //    QAConnectContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAConnectContentCell"];
     QAConnectContentCell *cell = [[QAConnectContentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.optionString = self.optionInfoArray[indexPath.row].option;
+    cell.optionInfo = self.optionInfoArray[indexPath.row];
     WEAK_SELF
     [cell setHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
@@ -95,6 +95,10 @@
         }
     }
     self.oldIndexPath = indexPath;
+    
+    self.optionInfoArray[indexPath.row].snapshotImage = [QAConnectOptionInfo imageFromView:[tableView cellForRowAtIndexPath:indexPath]];
+    self.optionInfoArray[indexPath.row].frame = [self.tableView cellForRowAtIndexPath:indexPath].frame;
+    
     BLOCK_EXEC(self.selectedActionBlock,self.optionInfoArray[indexPath.row]);
 }
 

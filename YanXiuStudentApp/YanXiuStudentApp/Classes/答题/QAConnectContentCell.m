@@ -8,6 +8,7 @@
 
 #import "QAConnectContentCell.h"
 #import "QAConnectItemView.h"
+#import "QAConnectOptionInfo.h"
 
 static const CGFloat kFixHeight = 20.f;
 
@@ -58,16 +59,13 @@ static const CGFloat kFixHeight = 20.f;
     }];
 }
 
-- (void)setOptionString:(NSString *)optionString {
-    if ([_optionString isEqualToString:optionString]) {
-        return;
-    }
-    _optionString = optionString;
-    self.itemView.content = optionString;
+- (void)setOptionInfo:(QAConnectOptionInfo *)optionInfo {
+    _optionInfo = optionInfo;
+    self.itemView.content = optionInfo.option;
 }
 
 - (CGSize)defaultSize {
-    return CGSizeMake([self maxContentWidth], [self heightForString:self.optionString]);
+    return CGSizeMake([self maxContentWidth], [self heightForString:self.optionInfo.option]);
 }
 
 - (CGFloat)maxContentWidth {

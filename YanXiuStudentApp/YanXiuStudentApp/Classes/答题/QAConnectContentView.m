@@ -8,6 +8,7 @@
 
 #import "QAConnectContentView.h"
 #import "QAConnectOptionsView.h"
+#import "QAConnectContentCell.h"
 
 static const CGFloat kGapWidth = 15.f;
 
@@ -71,9 +72,22 @@ static const CGFloat kGapWidth = 15.f;
 - (void)resetSelectedOPtions {
     if (!isEmpty(self.leftSelectedOptionInfo) && !isEmpty(self.rightSelectedOptionInfo)) {
         if ([self.leftOPtionArray containsObject:self.leftSelectedOptionInfo] && [self.rightOptionArray containsObject:self.rightSelectedOptionInfo]) {
-            BLOCK_EXEC(self.selectedActionBlock,self.leftSelectedOptionInfo,self.rightSelectedOptionInfo);
-            self.leftSelectedOptionInfo = nil;
-            self.rightSelectedOptionInfo = nil;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                for (QAConnectContentCell *cell in self.leftView.tableView.visibleCells) {
+                    if (cell.selected) {
+                        cell.hidden = YES;
+                    }
+                }
+                for (QAConnectContentCell *cell in self.rightView.tableView.visibleCells) {
+                    if (cell.selected) {
+                        cell.hidden = YES;
+                    }
+                }
+                BLOCK_EXEC(self.selectedActionBlock,self.leftSelectedOptionInfo,self.rightSelectedOptionInfo);
+                self.leftSelectedOptionInfo = nil;
+                self.rightSelectedOptionInfo = nil;
+            });
         }
     }
 }
@@ -81,4 +95,5 @@ static const CGFloat kGapWidth = 15.f;
 -(void)setSelectedTwinOptionActionBlock:(SelectedTwinOptionActionBlock)block {
     self.selectedActionBlock = block;
 }
+
 @end
