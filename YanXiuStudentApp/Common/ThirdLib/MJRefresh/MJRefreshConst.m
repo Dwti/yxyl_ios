@@ -7,7 +7,7 @@
 //
 
 //const CGFloat MJRefreshViewHeight = 64.0;
-const CGFloat MJRefreshViewHeight = 130.0;
+//const CGFloat MJRefreshViewHeight = 90.0;
 const CGFloat MJRefreshFooterViewHeight = 80.0;
 const CGFloat MJRefreshAnimationDuration = 0.25;
 

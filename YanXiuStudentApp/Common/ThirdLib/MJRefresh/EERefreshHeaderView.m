@@ -8,7 +8,7 @@
 
 #import "EERefreshHeaderView.h"
 
-static const CGFloat kMaxBottomHeight = 45.f;
+#define kMaxBottomHeight (SCREEN_HEIGHT>650? 45.f:30.f)
 
 @interface EERefreshHeaderView()
 @property (nonatomic, strong) MJRefreshHeaderView *mjHeaderView;
@@ -51,7 +51,11 @@ static const CGFloat kMaxBottomHeight = 45.f;
         self.bubbleImageView.animationRepeatCount = 1;
         self.bubbleImageView.animationDuration = self.pullBubbleImage.duration;
         self.bubbleImageView.animationImages = self.pullBubbleImage.images;
-        self.bubbleImageView.center = CGPointMake(headerView.width/2, headerView.height/2);
+        if (SCREEN_HEIGHT>650) {
+            self.bubbleImageView.center = CGPointMake(headerView.width/2, headerView.height/2);
+        }else {
+            self.bubbleImageView.center = CGPointMake(headerView.width/2, headerView.height/2-15);
+        }
         self.bubbleImageView.hidden = YES;
         [self.mjHeaderView addSubview:self.bubbleImageView];
         self.animationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
@@ -166,6 +170,7 @@ static const CGFloat kMaxBottomHeight = 45.f;
         self.animationView.center = CGPointMake(self.width/2, self.mjHeaderView.height);
     } completion:^(BOOL finished) {
         [self.displayLink invalidate];
+        [self updateShapeLayerWithControlPoint:CGPointMake(self.width/2, 0)];
     }];
     
     self.pencilImageView.image = nil;

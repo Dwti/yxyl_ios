@@ -112,6 +112,7 @@
     __block QAClassifyCategoryView *view_1;
     __block QAClassifyCategoryView *view_2;
     __block CGFloat x = 20.f;
+    __block BOOL hasHalfView = NO;
     self.categoryViewArray = [NSMutableArray array];
     [self.data.correctAnswers enumerateObjectsUsingBlock:^(QANumberGroupAnswer *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat width = [QAClassifyCategoryView widthForCategory:obj.name];
@@ -129,6 +130,9 @@
         }];
         [scrollView addSubview:view];
         [self.categoryViewArray addObject:view];
+        if (x<scrollView.width && x+width>scrollView.width) {
+            hasHalfView = YES;
+        }
         x += width+20;
         if (idx==0) {
             view_1 = view;
@@ -143,6 +147,9 @@
         scrollView.contentSize = CGSizeMake(scrollView.width, scrollView.height);
     }else {
         scrollView.contentSize = CGSizeMake(x, 110);
+    }
+    if (!hasHalfView && scrollView.contentSize.width>scrollView.width) {
+        scrollView.contentOffset = CGPointMake(MIN(40, scrollView.contentSize.width-scrollView.width), 0);
     }
 }
 

@@ -15,7 +15,8 @@
 // 文字颜色
 #define MJRefreshLabelTextColor [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0]
 
-extern const CGFloat MJRefreshViewHeight;
+#define MJRefreshViewHeight (SCREEN_HEIGHT>650? 130.f:90.f)
+//extern const CGFloat MJRefreshViewHeight;
 extern const CGFloat MJRefreshFooterViewHeight;
 extern const CGFloat MJRefreshAnimationDuration;
 

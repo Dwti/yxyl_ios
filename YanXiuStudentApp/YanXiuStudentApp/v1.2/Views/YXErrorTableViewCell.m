@@ -53,14 +53,14 @@ static const CGFloat kMaxContentHeight = 200;
         make.centerY.mas_equalTo(0);
     }];
     self.deleteButton = [[UIButton alloc]init];
-    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"我的错题删除当前错题icon正常态"] forState:UIControlStateNormal];
-    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"我的错题删除当前错题icon点击态"] forState:UIControlStateHighlighted];
+    [self.deleteButton setImage:[UIImage imageNamed:@"我的错题删除当前错题icon正常态"] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[UIImage imageNamed:@"我的错题删除当前错题icon点击态"] forState:UIControlStateHighlighted];
     [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:self.deleteButton];
     [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10);
+        make.right.mas_equalTo(0);
         make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(22, 22));
+        make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
     
     UIView *seperatorLineView = [[UIView alloc]init];

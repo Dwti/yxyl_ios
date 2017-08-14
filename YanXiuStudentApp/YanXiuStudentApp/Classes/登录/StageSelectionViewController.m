@@ -65,6 +65,11 @@
         BLOCK_EXEC(self.completeBlock,[YXMineManager stageNames][self.currentIndex],[YXMineManager stageIds][self.currentIndex]);
         [self.navigationController popViewControllerAnimated:YES];
     }else {
+        NSString *stageID = [YXMineManager stageIds][self.currentIndex];
+        if ([stageID isEqualToString:[YXUserManager sharedManager].userModel.stageid]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
         WEAK_SELF
         SimpleAlertView *alert = [[SimpleAlertView alloc] init];
         alert.title = @"你确定要更改吗？";
@@ -84,10 +89,6 @@
 - (void)changeStage {
     NSString *stageName = [YXMineManager stageNames][self.currentIndex];
     NSString *stageID = [YXMineManager stageIds][self.currentIndex];
-    if ([stageID isEqualToString:[YXUserManager sharedManager].userModel.stageid]) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
     NSDictionary *param = @{@"stageid": stageID,
                             @"stageName": stageName};
     WEAK_SELF

@@ -29,7 +29,9 @@
     [MBProgressHUD hideAllHUDsForView:self animated:NO];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = text;
+//    hud.labelText = text;
+    hud.detailsLabelText = text;
+    hud.detailsLabelFont = hud.labelFont;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:1];
 }

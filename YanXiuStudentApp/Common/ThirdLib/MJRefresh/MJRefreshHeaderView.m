@@ -55,7 +55,8 @@
             self.needEndRefreshingWhenBubbleFinished = NO;
         }
     }];
-    [scrollView addSubview:headerView];
+//    [scrollView addSubview:headerView];
+    [scrollView insertSubview:headerView atIndex:0];
     self.eeHeaderView = headerView;
 //    [scrollView.panGestureRecognizer addTarget:self action:@selector(panAction:)];
 }
