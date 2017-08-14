@@ -1,6 +1,6 @@
 {
-    "server":"http://mobile.hwk.yanxiu.com/",
-    "loginServer":"http://mobile.hwk.yanxiu.com/",
+    "server":"http://test.hwk.yanxiu.com/",
+    "loginServer":"http://test.hwk.yanxiu.com/",
     "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
     "initializeUrl":"http://test.hwk.yanxiu.com/app/log/uploadDeviceLog/release.do",
     "mode":"test",

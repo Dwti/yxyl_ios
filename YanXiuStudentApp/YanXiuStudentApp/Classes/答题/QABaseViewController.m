@@ -7,12 +7,22 @@
 //
 
 #import "QABaseViewController.h"
+#import "UIViewController+VisibleViewController.h"
 
 @interface QABaseViewController ()
 
 @end
 
 @implementation QABaseViewController
+
++ (UIView *)currentSwitchBarSnapshotView {
+    UIViewController *vc = [[UIApplication sharedApplication].keyWindow.rootViewController nyx_visibleViewController];
+    if ([vc isKindOfClass:[QABaseViewController class]]) {
+        QABaseViewController *qaVC = (QABaseViewController *)vc;
+        return [qaVC.switchView snapshotViewAfterScreenUpdates:NO];
+    }
+    return nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

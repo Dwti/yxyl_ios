@@ -14,4 +14,5 @@
 @property (nonatomic, strong) NSMutableArray<QAClassifyOptionInfo *> *optionInfoArray;
 @property (nonatomic, strong) void(^foldBlock) ();
 @property (nonatomic, strong) void(^deleteBlock) (QAClassifyOptionInfo *info);
+@property (nonatomic, strong) void(^dragDownBlock) (CGFloat offset);
 @end

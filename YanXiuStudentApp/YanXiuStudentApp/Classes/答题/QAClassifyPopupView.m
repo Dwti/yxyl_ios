@@ -56,6 +56,9 @@
         make.centerX.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(45, 45));
     }];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
+    [self.foldButton addGestureRecognizer:pan];
+    
     self.categoryLabel = [[UILabel alloc]init];
     self.categoryLabel.font = [UIFont boldSystemFontOfSize:19];
     self.categoryLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
@@ -100,6 +103,18 @@
 
 - (void)foldAction {
     BLOCK_EXEC(self.foldBlock);
+}
+
+- (void)panAction:(UIPanGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
+        BLOCK_EXEC(self.foldBlock);
+        return;
+    }
+    CGPoint translation = [gesture translationInView:gesture.view];
+    if (translation.y > 0) {
+        BLOCK_EXEC(self.dragDownBlock,translation.y);
+    }
+    [gesture setTranslation:CGPointZero inView:gesture.view];
 }
 
 - (void)setOptionInfoArray:(NSMutableArray<QAClassifyOptionInfo *> *)optionInfoArray {

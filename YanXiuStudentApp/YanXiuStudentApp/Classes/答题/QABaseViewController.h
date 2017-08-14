@@ -16,4 +16,7 @@
 
 - (void)setupUI;
 - (void)completeButtonAction;
+
+// 获取当前switch view的副本，为了给某些题型做一些动画而不影响当前的switch view
++ (UIView *)currentSwitchBarSnapshotView;
 @end

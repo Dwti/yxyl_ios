@@ -22,7 +22,6 @@ static const BOOL kTestEntrance = NO;
 #import "LaunchAppItem.h"
 #import "UIDevice+HardwareName.h"
 
-
 @interface AppDelegate ()<YXApnsDelegate>
 @property (nonatomic, strong) AppDelegateHelper *appDelegateHelper;
 @end

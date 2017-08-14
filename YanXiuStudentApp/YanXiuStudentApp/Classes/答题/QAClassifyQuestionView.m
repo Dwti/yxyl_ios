@@ -179,6 +179,67 @@
 }
 
 - (void)putSelectedOptionsToCategoryIndex:(NSInteger)index {
+    WEAK_SELF
+    [self showClassifyAnimationWithCategoryIndex:index completeBlock:^{
+        STRONG_SELF
+        [self updateDataForCategoryIndex:index];
+    }];
+}
+
+- (void)showClassifyAnimationWithCategoryIndex:(NSInteger)index completeBlock:(void(^)())completeBlock {
+    for (QAClassifyOptionCell *cell in self.collectionView.visibleCells) {
+        if (cell.selected) {
+            cell.hidden = YES;
+        }
+    }
+    CGPoint p = [self.collectionView convertPoint:self.collectionView.contentOffset toView:self.window];
+    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, p.y, self.window.bounds.size.width, self.window.bounds.size.height-p.y)];
+    containerView.clipsToBounds = YES;
+    [self.window addSubview:containerView];
+    NSMutableArray *snapshotViewArray = [NSMutableArray array];
+    for (QAClassifyOptionInfo *info in self.optionInfoArray) {
+        if (!info.selected) {
+            continue;
+        }
+        CGRect oriFrame = info.frame;
+        if (CGRectGetMaxY(oriFrame)<self.collectionView.contentOffset.y) {
+            oriFrame.origin.y += self.collectionView.contentOffset.y-CGRectGetMaxY(oriFrame);
+        }else if (oriFrame.origin.y > self.collectionView.contentOffset.y+self.collectionView.frame.size.height) {
+            oriFrame.origin.y = self.collectionView.contentOffset.y+self.collectionView.frame.size.height;
+        }
+        oriFrame = [self.collectionView convertRect:oriFrame toView:containerView];
+        info.snapshotView.frame = oriFrame;
+        [containerView addSubview:info.snapshotView];
+        [snapshotViewArray addObject:info.snapshotView];
+    }
+    QAClassifyCategoryView *basketView = self.categoryViewArray[index];
+    CGPoint basketCenter = [basketView convertPoint:CGPointMake(CGRectGetWidth(basketView.bounds)/2, CGRectGetHeight(basketView.bounds)/2) toView:containerView];
+    [self openBasketWithCategoryView:basketView];
+    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        for (UIView *view in snapshotViewArray) {
+            view.frame = CGRectMake(basketCenter.x-20, basketCenter.y-20, 40, 40);
+            view.alpha = 0.2f;
+        }
+    } completion:^(BOOL finished) {
+        [containerView removeFromSuperview];
+        [self closeBasketWithCategoryView:basketView];
+        BLOCK_EXEC(completeBlock);
+    }];
+}
+
+- (void)openBasketWithCategoryView:(QAClassifyCategoryView *)view {
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        view.countLabel.transform = CGAffineTransformMakeScale(1.2, 1.2);
+    } completion:nil];
+}
+
+- (void)closeBasketWithCategoryView:(QAClassifyCategoryView *)view {
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        view.countLabel.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
+- (void)updateDataForCategoryIndex:(NSInteger)index {
     YXQAAnswerState fromState = [self.data answerState];
     
     QANumberGroupAnswer *groupAnswer = self.data.myAnswers[index];
@@ -233,6 +294,12 @@
     [self.popupView setDeleteBlock:^(QAClassifyOptionInfo *info){
         STRONG_SELF
         [self removeOption:info fromCategoryIndex:index];
+    }];
+    [self.popupView setDragDownBlock:^(CGFloat offset){
+        STRONG_SELF
+        self.popupView.y = MIN(self.popupView.y+offset, SCREEN_HEIGHT-50);
+        CGFloat rate = (self.popupView.y-15)/(SCREEN_HEIGHT-15);
+        self.alertView.maskColor = [[UIColor blackColor]colorWithAlphaComponent:0.6*(1.f-rate)];
     }];
     self.alertView.contentView = self.popupView;
     [self.alertView showInView:self.window withLayout:^(AlertView *view) {
@@ -297,6 +364,7 @@
     }];
     cell.optionString = self.optionInfoArray[indexPath.row].option;
     cell.selected = self.optionInfoArray[indexPath.row].selected;
+    cell.hidden = NO;
     return cell;
 }
 
@@ -307,6 +375,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.optionInfoArray[indexPath.row].selected = YES;
+    if (!self.optionInfoArray[indexPath.row].snapshotView) {
+        self.optionInfoArray[indexPath.row].snapshotView = [[collectionView cellForItemAtIndexPath:indexPath] snapshotViewAfterScreenUpdates:NO];
+        self.optionInfoArray[indexPath.row].frame = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath].frame;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {

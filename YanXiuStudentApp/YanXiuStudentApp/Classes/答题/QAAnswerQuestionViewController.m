@@ -63,6 +63,7 @@
     }
     self.navigationController.viewControllers = vcArray;
 }
+
 - (void)backAction {
     
     if (self.pType == YXPTypeGroupHomework) {

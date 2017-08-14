@@ -14,5 +14,7 @@
 
 @property (nonatomic, strong) void(^clickBlock) ();
 
+@property (nonatomic, strong, readonly) UILabel *countLabel;// 拿到外面来仅用于做动画
+
 + (CGFloat)widthForCategory:(NSString *)categoryName;
 @end
