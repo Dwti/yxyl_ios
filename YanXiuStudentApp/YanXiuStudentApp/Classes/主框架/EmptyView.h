@@ -11,5 +11,4 @@
 @interface EmptyView : UIView
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImage *image;
-
 @end

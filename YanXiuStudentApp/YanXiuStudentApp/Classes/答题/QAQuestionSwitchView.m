@@ -33,7 +33,8 @@
     self.preButton = [[UIButton alloc]init];
     [self.preButton setTitle:@"上一题" forState:UIControlStateNormal];
     [self.preButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
-    [self.preButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 15, 15)] forState:UIControlStateNormal];
+    [self.preButton setImage:[UIImage imageNamed:@"上一题箭头正常态"] forState:UIControlStateNormal];
+    [self.preButton setImage:[UIImage imageNamed:@"上一题箭头点击态"] forState:UIControlStateHighlighted];
     self.preButton.titleLabel.font = [UIFont systemFontOfSize:13];
     [self.preButton addTarget:self action:@selector(preAction) forControlEvents:UIControlEventTouchUpInside];
     self.preButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 5);
@@ -49,7 +50,8 @@
     self.nextButton = [[UIButton alloc]init];
     [self.nextButton setTitle:@"下一题" forState:UIControlStateNormal];
     [self.nextButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
-    [self.nextButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 15, 15)] forState:UIControlStateNormal];
+    [self.nextButton setImage:[UIImage imageNamed:@"下一题箭头正常态"] forState:UIControlStateNormal];
+    [self.nextButton setImage:[UIImage imageNamed:@"下一题箭头点击态"] forState:UIControlStateHighlighted];
     self.nextButton.titleLabel.font = [UIFont systemFontOfSize:13];
     [self.nextButton addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
     [self.nextButton.titleLabel sizeToFit];

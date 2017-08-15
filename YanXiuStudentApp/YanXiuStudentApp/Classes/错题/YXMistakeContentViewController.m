@@ -30,7 +30,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"题目解析";
     WEAK_SELF
-    [self nyx_setupRightWithImage:[UIImage imageNamed:@"题目解析中删除错题icon"] action:^{
+    [self nyx_setupRightWithImageName:@"题目解析中删除错题icon正常态" highlightImageName:@"题目解析中删除错题icon点击态" action:^{
         STRONG_SELF
         [self requestForDeleteCurrentQuestion];
     }];

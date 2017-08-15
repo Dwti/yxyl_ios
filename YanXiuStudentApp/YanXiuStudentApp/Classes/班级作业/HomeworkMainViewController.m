@@ -37,7 +37,7 @@
             [self.view nyx_startLoading];
             [self firstPageFetch];
         }];
-        self.emptyView = emptyView;
+        self.emptyView = (EmptyView *)emptyView;
         YXClassHomeworkFetcher *fetcher = [[YXClassHomeworkFetcher alloc] init];
         fetcher.classJoinBlock = ^(YXHomeworkListGroupsItem *item, HomeworkFetchState state) {
             STRONG_SELF
@@ -85,7 +85,7 @@
     self.naviTheme = NavigationBarTheme_White;
     self.navigationItem.title = item.property.className;
     WEAK_SELF
-    [self nyx_setupRightWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 38, 38)] action:^{
+    [self nyx_setupRightWithImageName:@"班级图标正常态" highlightImageName:@"班级图标点击态" action:^{
         STRONG_SELF
         [self gotoClassDetailWithClassId:item.property.classId];
     }];
@@ -105,7 +105,7 @@
     self.naviTheme = NavigationBarTheme_White;
     self.navigationItem.title = item.property.className;
     WEAK_SELF
-    [self nyx_setupRightWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 38, 38)] action:^{
+    [self nyx_setupRightWithImageName:@"班级图标正常态" highlightImageName:@"班级图标点击态" action:^{
         STRONG_SELF
         [self gotoClassDetailWithClassId:item.property.classId];
     }];

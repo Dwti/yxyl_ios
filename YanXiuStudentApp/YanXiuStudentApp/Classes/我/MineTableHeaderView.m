@@ -115,7 +115,7 @@
 
 - (void)setHeadUrl:(NSString *)headUrl {
     _headUrl = headUrl;
-    UIImage *placeholderImage = self.imageView.image? self.imageView.image:[UIImage imageNamed:@"个人头像默认头像"];
+    UIImage *placeholderImage = self.imageView.image? self.imageView.image:[UIImage imageNamed:@"我的页面默认头像"];
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:headUrl] placeholderImage:placeholderImage];
 }
 

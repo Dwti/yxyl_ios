@@ -32,7 +32,8 @@
     [self addSubview:self.photoImageView];
     
     self.deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(self.width-18, 0, 18, 18)];
-    [self.deleteButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"小图片删除按钮正常态"] forState:UIControlStateNormal];
+    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"小图片删除按钮点击态"] forState:UIControlStateHighlighted];
     [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.deleteButton];
     self.deleteButton.hidden = YES;

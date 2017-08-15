@@ -10,7 +10,18 @@
 
 @implementation UIViewController (NavigationItem)
 - (void)nyx_setupLeftWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action{
-    [self nyx_setupLeftWithImage:[UIImage imageNamed:imageName] action:action];
+    UIImage *normalImage = [UIImage imageNamed:imageName];
+    UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width, normalImage.size.height)];
+    [self nyx_adjustFrameForView:backButton];
+    [backButton setImage:normalImage forState:UIControlStateNormal];
+    [backButton setImage:highlightImage forState:UIControlStateHighlighted];
+    [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        BLOCK_EXEC(action);
+    }];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:backButton]];
+    self.navigationItem.leftBarButtonItems = @[[self nyx_leftNegativeBarButtonItem],leftItem];
 }
 
 - (void)nyx_setupLeftWithImage:(UIImage *)image action:(ActionBlock)action {
@@ -38,7 +49,18 @@
 }
 
 - (void)nyx_setupRightWithImageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(ActionBlock)action{
-    [self nyx_setupRightWithImage:[UIImage imageNamed:imageName] action:action];
+    UIImage *normalImage = [UIImage imageNamed:imageName];
+    UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width, normalImage.size.height)];
+    [self nyx_adjustFrameForView:rightButton];
+    [rightButton setImage:normalImage forState:UIControlStateNormal];
+    [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
+    [[rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        BLOCK_EXEC(action);
+    }];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:[self nyx_viewForItemView:rightButton]];
+    self.navigationItem.rightBarButtonItems = @[[self nyx_rightNegativeBarButtonItem],rightItem];
 }
 
 - (void)nyx_setupRightWithImage:(UIImage *)image action:(ActionBlock)action{

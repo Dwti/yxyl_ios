@@ -29,7 +29,9 @@
     self.layer.borderColor = [UIColor colorWithHexString:@"cccccc"].CGColor;
     
     self.searchButton = [[UIButton alloc]init];
-    [self.searchButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 23, 23)] forState:UIControlStateNormal];
+    [self.searchButton setImage:[UIImage imageNamed:@"搜索icon可点击态"] forState:UIControlStateNormal];
+    [self.searchButton setImage:[UIImage imageNamed:@"搜索icon点击态"] forState:UIControlStateHighlighted];
+    [self.searchButton setImage:[UIImage imageNamed:@"搜索icon不能点击"] forState:UIControlStateDisabled];
     [self.searchButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.searchButton];
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,6 +72,7 @@
     [[self.textField rac_textSignal]subscribeNext:^(id x) {
         STRONG_SELF
         BLOCK_EXEC(self.searchBlock,x)
+        self.searchButton.enabled = !isEmpty(x);
     }];
 }
 

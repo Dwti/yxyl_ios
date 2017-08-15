@@ -47,7 +47,7 @@
         make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     self.tagImageView = [[UIImageView alloc]init];
-    self.tagImageView.backgroundColor = [UIColor redColor];
+    self.tagImageView.image = [UIImage imageNamed:@"相机胶卷所选胶卷状态标识"];
     self.tagImageView.layer.cornerRadius = 10;
     self.tagImageView.clipsToBounds = YES;
     [self.contentView addSubview:self.tagImageView];

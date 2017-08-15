@@ -28,7 +28,6 @@
         WEAK_SELF
         [fetcher setEmptyBlock:^{
             STRONG_SELF
-            [self.view nyx_showToast:@"还没有作业哦"];
             BLOCK_EXEC(self.emptyBlock);
         }];
         self.dataFetcher = fetcher;
@@ -42,6 +41,8 @@
     self.navigationItem.title = self.data.name;
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     self.naviTheme = NavigationBarTheme_White;
+    self.emptyView.title = @"还没有作业哦";
+    self.emptyView.image = [UIImage imageNamed:@"没有作业插图"];
     [self setupUI];
     [self setupObserver];
 }

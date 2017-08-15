@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"关于";
     [self setupUI];
 }
 
@@ -30,7 +29,7 @@
 - (void)setupUI {
     UIImageView *topImageView = [[UIImageView alloc]init];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
-    topImageView.backgroundColor = [UIColor redColor];
+    topImageView.image = [UIImage imageNamed:@"关于头图"];
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);

@@ -216,6 +216,9 @@
             return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         }
         analysisCell.isShowLine = analysisDataIndex!=self.analysisDataArray.count-1;
+        if (indexPath.row == self.cellHeightArray.count-1) {
+            self.tableView.tableFooterView.backgroundColor = analysisCell.contentView.backgroundColor;
+        }
         return analysisCell;
     }
     else {

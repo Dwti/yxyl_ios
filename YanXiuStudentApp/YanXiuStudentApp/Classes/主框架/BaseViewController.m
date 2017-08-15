@@ -18,16 +18,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    NSArray *vcArray = self.navigationController.viewControllers;
-    if (!isEmpty(vcArray)) {
-        if (vcArray[0] != self) {
-            WEAK_SELF
-            [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
-                STRONG_SELF
-                [self backAction];
-            }];
-        }
-    }
+    self.naviTheme = NavigationBarTheme_Green;
 }
 
 - (void)backAction {
@@ -85,5 +76,24 @@
         YXNavigationController *navi = (YXNavigationController *)self.navigationController;
         navi.theme = self.naviTheme;
     }
+    
+    NSArray *vcArray = self.navigationController.viewControllers;
+    if (!isEmpty(vcArray)) {
+        if (vcArray[0] != self) {
+            WEAK_SELF
+            if (naviTheme == NavigationBarTheme_Green) {
+                [self nyx_setupLeftWithImageName:@"返回上一页icon白色正常态" highlightImageName:@"返回上一页icon白色正常态" action:^{
+                    STRONG_SELF
+                    [self backAction];
+                }];
+            }else if (naviTheme == NavigationBarTheme_White) {
+                [self nyx_setupLeftWithImageName:@"返回上一页icon绿色正常态" highlightImageName:@"返回上一页icon绿色点击态" action:^{
+                    STRONG_SELF
+                    [self backAction];
+                }];
+            }
+        }
+    }
+    
 }
 @end

@@ -30,7 +30,7 @@
 
 - (void)setupUI {
     UIImageView *circleImageView = [[UIImageView alloc]init];
-    circleImageView.image = [UIImage imageNamed:@"绿"];
+    circleImageView.image = [UIImage imageNamed:@"篮子绿底"];
     [self addSubview:circleImageView];
     [circleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);

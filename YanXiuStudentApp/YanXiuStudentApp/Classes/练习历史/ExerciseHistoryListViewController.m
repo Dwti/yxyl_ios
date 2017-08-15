@@ -22,21 +22,15 @@
 @implementation ExerciseHistoryListViewController
 
 - (void)viewDidLoad {
-    self.errorView = [[YXCommonErrorView alloc] init];
-    
-    EmptyView *emptyView = [[EmptyView alloc] init];
-    emptyView.title = @"%>_<% 这里还没有题哦";
-//    emptyView.text = @"这里还没有题哦";
-//    NSString *typeString = (self.segment == YXExerciseListSegmentChapter ? @"考点":@"章节");
-//    emptyView.detailText = [NSString stringWithFormat:@"切换到【%@】看看吧", typeString];
-//    [emptyView show:NO];
-    self.emptyView = emptyView;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.subject.name;
     self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor clearColor];
+    self.emptyView.title = @"这里还没有练习历史哦";
+    self.emptyView.image = [UIImage imageNamed:@"没有练习历史插图"];
+    
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;

@@ -25,7 +25,8 @@
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"69ad0a"];
     self.showHideButton = [[UIButton alloc]init];
-    [self.showHideButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"隐藏数字密码icon正常态"] forState:UIControlStateNormal];
+    [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"隐藏数字密码icon点击态"] forState:UIControlStateHighlighted];
     [self.showHideButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.showHideButton];
     [self.showHideButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,6 +55,13 @@
 
 - (void)btnAction {
     self.inputView.textField.secureTextEntry = !self.inputView.textField.secureTextEntry;
+    if (self.inputView.textField.secureTextEntry) {
+        [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"隐藏数字密码icon正常态"] forState:UIControlStateNormal];
+        [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"隐藏数字密码icon点击态"] forState:UIControlStateHighlighted];
+    }else {
+        [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"数字密码icon显示正常态"] forState:UIControlStateNormal];
+        [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"数字密码icon显示点击态"] forState:UIControlStateHighlighted];
+    }
 }
 
 - (NSString *)text {

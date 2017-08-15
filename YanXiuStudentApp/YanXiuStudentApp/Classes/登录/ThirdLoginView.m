@@ -52,12 +52,14 @@
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
     UIButton *qqButton = [[UIButton alloc]init];
-    [qqButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [qqButton setBackgroundImage:[UIImage imageNamed:@"QQ登录icon正常态"] forState:UIControlStateNormal];
+    [qqButton setBackgroundImage:[UIImage imageNamed:@"QQ登录icon点击态"] forState:UIControlStateHighlighted];
     [qqButton addTarget:self action:@selector(qqAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:qqButton];
     if ([YXSSOAuthManager isWXAppSupport]) {
         UIButton *weixinButton = [[UIButton alloc]init];
-        [weixinButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+        [weixinButton setBackgroundImage:[UIImage imageNamed:@"微信登录icon正常态"] forState:UIControlStateNormal];
+        [weixinButton setBackgroundImage:[UIImage imageNamed:@"微信登录icon点击态"] forState:UIControlStateHighlighted];
         [weixinButton addTarget:self action:@selector(weixinAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:weixinButton];
         [qqButton mas_makeConstraints:^(MASConstraintMaker *make) {

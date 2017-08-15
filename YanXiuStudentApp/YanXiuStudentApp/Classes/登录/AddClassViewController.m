@@ -36,7 +36,7 @@
 
 - (void)setupUI {
     UIImageView *topImageView = [[UIImageView alloc]init];
-    topImageView.backgroundColor = [UIColor redColor];
+    topImageView.image = [UIImage imageNamed:@"加入班级头图"];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,7 +88,8 @@
     [skipButton setTitle:@"没有班级可加，跳过此步" forState:UIControlStateNormal];
     [skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [skipButton setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateHighlighted];
-    [skipButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 15, 15)] forState:UIControlStateNormal];
+    [skipButton setImage:[UIImage imageNamed:@"跳过此步按钮正常态"] forState:UIControlStateNormal];
+    [skipButton setImage:[UIImage imageNamed:@"跳过此步按钮点击态"] forState:UIControlStateHighlighted];
     [skipButton addTarget:self action:@selector(skipAction) forControlEvents:UIControlEventTouchUpInside];
     [skipButton.titleLabel sizeToFit];
     skipButton.titleEdgeInsets = UIEdgeInsetsMake(0, -18, 0, 18);

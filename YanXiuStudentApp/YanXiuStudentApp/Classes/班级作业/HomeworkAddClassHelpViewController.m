@@ -30,7 +30,7 @@
 
 - (void)setupUI {
     UIImageView *imageView1 = [[UIImageView alloc]init];
-    imageView1.image = [UIImage imageWithColor:[UIColor redColor]];
+    imageView1.image = [UIImage imageNamed:@"什么是易学易练图标"];
     [self.contentView addSubview:imageView1];
     [imageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(14);
@@ -62,7 +62,7 @@
     }];
     
     UIImageView *imageView2 = [[UIImageView alloc]init];
-    imageView2.image = [UIImage imageWithColor:[UIColor redColor]];
+    imageView2.image = [UIImage imageNamed:@"怎么样加入班级图标"];
     [self.contentView addSubview:imageView2];
     [imageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(imageView1.mas_left);

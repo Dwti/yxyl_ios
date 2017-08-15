@@ -46,6 +46,8 @@ YXHtmlCellHeightDelegate
     self.title = self.subject.name;
     self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    self.emptyView.title = @"真棒！还没有错题哦";
+    self.emptyView.image = [UIImage imageNamed:@"无错题插图"];
     [self setupUI];
     [self addNotification];
 }

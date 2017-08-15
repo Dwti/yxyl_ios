@@ -33,7 +33,8 @@
     albumButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     albumButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
     albumButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
-    [albumButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [albumButton setBackgroundImage:[UIImage imageNamed:@"拍照中进入相册icon正常态"] forState:UIControlStateNormal];
+    [albumButton setBackgroundImage:[UIImage imageNamed:@"拍照中进入相册icon点击态"] forState:UIControlStateHighlighted];
     [albumButton addTarget:self action:@selector(albumAction) forControlEvents:UIControlEventTouchUpInside];
     [containerView addSubview:albumButton];
     [albumButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,7 +67,8 @@
         make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
     UIButton *exitButton = [[UIButton alloc]init];
-    [exitButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [exitButton setBackgroundImage:[UIImage imageNamed:@"关闭拍照页面icon正常态"] forState:UIControlStateNormal];
+    [exitButton setBackgroundImage:[UIImage imageNamed:@"关闭拍照页面icon点击态"] forState:UIControlStateHighlighted];
     [exitButton addTarget:self action:@selector(exitAction) forControlEvents:UIControlEventTouchUpInside];
     [containerView addSubview:exitButton];
     [exitButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,6 +107,7 @@
         image = [resultImage nyx_aspectFillImageWithSize:size];
     } completeBlock:^{
         [self.albumButton setBackgroundImage:image forState:UIControlStateNormal];
+        [self.albumButton setBackgroundImage:nil forState:UIControlStateHighlighted];
     }];
 }
 

@@ -18,6 +18,7 @@
 
 - (void)setupUI{
     [super setupUI];
+    self.contentView.backgroundColor = [UIColor colorWithHexString:@"81d40d"];
     UIButton *editNoteButton = [[UIButton alloc]init];
     [editNoteButton setImage:[UIImage imageNamed:@"编辑笔记icon正常态"] forState:UIControlStateNormal];
     [editNoteButton setImage:[UIImage imageNamed:@"编辑笔记icon点击态"] forState:UIControlStateHighlighted];

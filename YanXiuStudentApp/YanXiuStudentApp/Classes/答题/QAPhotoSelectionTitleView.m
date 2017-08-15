@@ -23,7 +23,8 @@
 
 - (void)setupUI {
     self.button = [[UIButton alloc]initWithFrame:self.bounds];
-    [self.button setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 15, 15)] forState:UIControlStateNormal];
+    [self.button setImage:[UIImage imageNamed:@"相机将卷展开按钮正常态"] forState:UIControlStateNormal];
+    [self.button setImage:[UIImage imageNamed:@"相机将卷展开按钮点击态"] forState:UIControlStateHighlighted];
     [self.button setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
     self.button.titleLabel.font = [UIFont boldSystemFontOfSize:19];
     [self.button addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];

@@ -83,15 +83,16 @@
         make.height.mas_equalTo(70);
     }];
     
-    UIImageView *imageView = [UIImageView new];
-    imageView.image = [UIImage imageWithColor:[UIColor blueColor]];
-    imageView.userInteractionEnabled = YES;
-    imageView.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
-    imageView.layer.shadowOffset = CGSizeMake(0, -2.5);
-    imageView.layer.shadowRadius = 2.5;
-    imageView.layer.shadowOpacity = 0.02;
-    [self.middleContainerView addSubview:imageView];
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIButton *b = [[UIButton alloc]init];
+    [b setImage:[UIImage imageNamed:@"题干区域编辑按钮正常态"] forState:UIControlStateNormal];
+    [b setImage:[UIImage imageNamed:@"题干区域编辑按钮点击态"] forState:UIControlStateHighlighted];
+    b.userInteractionEnabled = YES;
+    b.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
+    b.layer.shadowOffset = CGSizeMake(0, -2.5);
+    b.layer.shadowRadius = 2.5;
+    b.layer.shadowOpacity = 0.02;
+    [self.middleContainerView addSubview:b];
+    [b mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
         make.top.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(69, 20));
@@ -102,7 +103,7 @@
     [self.middleContainerView addSubview:sepLineView];
     [sepLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(imageView.mas_bottom);
+        make.top.mas_equalTo(b.mas_bottom);
         make.height.mas_equalTo(10);
     }];
     
@@ -136,7 +137,7 @@
         make.centerY.mas_equalTo(qLabel.mas_centerY);
     }];
     
-    [self addPanGestureRecognizerFor:imageView];
+    [self addPanGestureRecognizerFor:b];
 }
 
 - (void)setupQAView {
@@ -158,11 +159,11 @@
     }];
 }
 
-- (void)addPanGestureRecognizerFor:(UIImageView *)imgView {
+- (void)addPanGestureRecognizerFor:(UIButton *)button {
     UIPanGestureRecognizer *panGestureRecognizer = [UIPanGestureRecognizer new];
     panGestureRecognizer.minimumNumberOfTouches = 1;
     panGestureRecognizer.maximumNumberOfTouches = 1;
-    [imgView addGestureRecognizer:panGestureRecognizer];
+    [button addGestureRecognizer:panGestureRecognizer];
 
     WEAK_SELF
     [[panGestureRecognizer rac_gestureSignal] subscribeNext:^(UIPanGestureRecognizer *paramSender) {

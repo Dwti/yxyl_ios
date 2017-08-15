@@ -27,7 +27,7 @@
 @property (nonatomic, assign) BOOL bNeedFooter;
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
-@property (nonatomic, strong) UIView *emptyView;
+@property (nonatomic, strong) EmptyView *emptyView;
 @property (nonatomic, assign) long total;
 @property (nonatomic, weak) id<PageListRequestDelegate> requestDelegate;
 @property (nonatomic, assign) int emptyViewTopInset;

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *itemLabel;
 @property (nonatomic, strong) UILabel *itemDetailLabel;
 @property (nonatomic, strong) UIView *bottomLineView;
+@property (nonatomic, strong) UIImageView *enterImageView;
 @end
 
 @implementation MineItemCell
@@ -31,9 +32,11 @@
     if (highlighted) {
         self.contentView.backgroundColor = [UIColor colorWithHexString:@"dbdbdb"];
         self.bottomLineView.backgroundColor = [UIColor colorWithHexString:@"dbdbdb"];
+        self.enterImageView.image = [UIImage imageNamed:@"展开内容按钮点击态"];
     }else {
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+        self.enterImageView.image = [UIImage imageNamed:@"展开内容按钮正常态"];
     }
 }
 
@@ -66,8 +69,9 @@
         make.centerY.mas_equalTo(0);
     }];
     UIImageView *enterImageView = [[UIImageView alloc]init];
-    enterImageView.image = [UIImage imageNamed:@"展开内容按钮"];
+    enterImageView.image = [UIImage imageNamed:@"展开内容按钮正常态"];
     [self.contentView addSubview:enterImageView];
+    self.enterImageView = enterImageView;
     [enterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-12);
         make.centerY.mas_equalTo(0);

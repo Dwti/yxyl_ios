@@ -35,7 +35,8 @@
     }];
     
     self.deleteButton = [[UIButton alloc]init];
-    [self.deleteButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 38, 38)] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[UIImage imageNamed:@"删除图片按钮正常态"] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[UIImage imageNamed:@"删除图片按钮点击态"] forState:UIControlStateHighlighted];
     [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.deleteButton];
     [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {

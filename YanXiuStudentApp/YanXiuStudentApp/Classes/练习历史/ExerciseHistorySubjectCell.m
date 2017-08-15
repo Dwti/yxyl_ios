@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *whiteBackView;
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIImageView *accessoryImageView;
 
 @end
 
@@ -34,6 +35,15 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.accessoryImageView.image = [UIImage imageNamed:@"展开内容按钮点击态"];
+    }else {
+        self.accessoryImageView.image = [UIImage imageNamed:@"展开内容按钮正常态"];
+    }
 }
 
 #pragma mark - setupUI
@@ -68,7 +78,7 @@
     }];
     
     UIImageView *accessoryImageView = [[UIImageView alloc] init];
-    accessoryImageView.image = [UIImage imageNamed:@"展开内容按钮"];
+    accessoryImageView.image = [UIImage imageNamed:@"展开内容按钮正常态"];
     [self.contentView addSubview:accessoryImageView];
     [accessoryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-12);

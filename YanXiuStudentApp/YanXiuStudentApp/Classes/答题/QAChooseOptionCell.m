@@ -131,15 +131,15 @@
     _choosed = choosed;
     if (self.isMulti) {
         if (choosed) {
-            self.selectionImageView.image = [UIImage imageNamed:@"多选选择框-已选择"];
+            self.selectionImageView.image = [UIImage imageNamed:@"多选框已选择"];
         }else {
-            self.selectionImageView.image = [UIImage imageNamed:@"多选选择框"];
+            self.selectionImageView.image = [UIImage imageNamed:@"多选框未选择"];
         }
     }else {
         if (choosed) {
-            self.selectionImageView.image = [UIImage imageNamed:@"单选选择框已选择"];
+            self.selectionImageView.image = [UIImage imageNamed:@"单选框已选择"];
         }else {
-            self.selectionImageView.image = [UIImage imageNamed:@"单选选择框"];
+            self.selectionImageView.image = [UIImage imageNamed:@"选择框"];
         }
     }
 }
@@ -164,9 +164,9 @@
         self.orderBgImageView.image = [UIImage imageNamed:@"答错题目-正常态"];
         if (self.choosed) {
             if (self.isMulti) {
-                self.selectionImageView.backgroundColor = [UIColor redColor];
+                self.selectionImageView.image = [UIImage imageNamed:@"多选题已选择错误"];
             }else {
-                self.selectionImageView.backgroundColor = [UIColor redColor];
+                self.selectionImageView.image = [UIImage imageNamed:@"单选题已选择错误"];
             }
         }
     }else {

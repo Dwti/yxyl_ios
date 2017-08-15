@@ -48,8 +48,8 @@ static const CGFloat kDefaultHeight = 80.f+10.f;
     }];
     
     self.deleteButton = [[UIButton alloc]init];
-    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"归类题选择后删除按钮正常态"] forState:UIControlStateNormal];
-    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"归类题选择后删除按钮点击态"] forState:UIControlStateHighlighted];
+    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"归类题删除按钮正常态"] forState:UIControlStateNormal];
+    [self.deleteButton setBackgroundImage:[UIImage imageNamed:@"归类题删除按钮点击态"] forState:UIControlStateHighlighted];
     [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.deleteButton];
     [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {

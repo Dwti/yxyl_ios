@@ -28,6 +28,8 @@
     // Do any additional setup after loading the view.
     self.title = @"练习历史";
     self.naviTheme = NavigationBarTheme_White;
+    self.emptyView.title = @"还没有练习历史哦";
+    self.emptyView.image = [UIImage imageNamed:@"没有练习历史插图"];
     [self setupUI];
     [self requestHistorySubjects];
 }

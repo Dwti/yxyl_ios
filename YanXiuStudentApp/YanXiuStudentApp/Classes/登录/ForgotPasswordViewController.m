@@ -26,6 +26,12 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"忘记密码?";
     [self setupUI];
+    WEAK_SELF
+    [self nyx_setupLeftWithImageName:@"关闭当前页面icon正常态" highlightImageName:@"关闭当前页面icon点击态" action:^{
+        STRONG_SELF
+        [self backAction];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +41,7 @@
 
 - (void)setupUI {
     UIImageView *topImageView = [[UIImageView alloc]init];
-    topImageView.backgroundColor = [UIColor redColor];
+    topImageView.image = [UIImage imageNamed:@"忘记密码头图"];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {

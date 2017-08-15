@@ -25,7 +25,8 @@
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"69ad0a"];
     self.clearButton = [[UIButton alloc]init];
-    [self.clearButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [self.clearButton setBackgroundImage:[UIImage imageNamed:@"删除当前编辑文字icon正常态"] forState:UIControlStateNormal];
+    [self.clearButton setBackgroundImage:[UIImage imageNamed:@"删除当前编辑文字icon点击态"] forState:UIControlStateNormal];
     [self.clearButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.clearButton];
     [self.clearButton mas_makeConstraints:^(MASConstraintMaker *make) {

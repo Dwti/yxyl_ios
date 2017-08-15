@@ -101,7 +101,8 @@
     [skipButton setTitle:@"怎样加入班级?" forState:UIControlStateNormal];
     [skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [skipButton setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateHighlighted];
-    [skipButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 15, 15)] forState:UIControlStateNormal];
+    [skipButton setImage:[UIImage imageNamed:@"加入班级箭头正常态"] forState:UIControlStateNormal];
+    [skipButton setImage:[UIImage imageNamed:@"加入班级箭头点击态"] forState:UIControlStateHighlighted];
     [skipButton addTarget:self action:@selector(skipAction) forControlEvents:UIControlEventTouchUpInside];
     [skipButton.titleLabel sizeToFit];
     skipButton.titleEdgeInsets = UIEdgeInsetsMake(0, -18, 0, 18);

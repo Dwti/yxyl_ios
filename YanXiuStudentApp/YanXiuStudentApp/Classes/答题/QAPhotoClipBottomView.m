@@ -30,7 +30,8 @@
     self.layer.shadowOpacity = 0.02;
     self.layer.shadowColor = [UIColor colorWithHexString:@"002c0f"].CGColor;
     self.exitButton = [[UIButton alloc]init];
-    [self.exitButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [self.exitButton setBackgroundImage:[UIImage imageNamed:@"裁剪页返回拍照页按钮正常态"] forState:UIControlStateNormal];
+    [self.exitButton setBackgroundImage:[UIImage imageNamed:@"裁剪页返回拍照页按钮点击态"] forState:UIControlStateHighlighted];
     [self.exitButton addTarget:self action:@selector(exitAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.exitButton];
     [self.exitButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,7 +40,8 @@
         make.centerY.mas_equalTo(0);
     }];
     self.confirmButton = [[UIButton alloc]init];
-    [self.confirmButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [self.confirmButton setBackgroundImage:[UIImage imageNamed:@"保存裁剪照片按钮正常态"] forState:UIControlStateNormal];
+    [self.confirmButton setBackgroundImage:[UIImage imageNamed:@"保存裁剪照片按钮点击态"] forState:UIControlStateHighlighted];
     [self.confirmButton addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.confirmButton];
     [self.confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {

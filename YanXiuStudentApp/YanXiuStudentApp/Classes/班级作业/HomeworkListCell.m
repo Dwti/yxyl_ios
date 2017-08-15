@@ -57,7 +57,6 @@
     self.containerView = containerView;
     
     self.stateImageView = [[UIImageView alloc]init];
-    self.stateImageView.image = [UIImage imageWithColor:[UIColor redColor]];
     [containerView addSubview:self.stateImageView];
     [self.stateImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(13);
@@ -142,11 +141,14 @@
         }else{
             self.descLabel.text = [NSString stringWithFormat:@"剩余时间 %@",data.remaindertimeStr];
         }
+        self.stateImageView.image = [UIImage imageNamed:@"还可以做题图标"];
     }else if (data.paperStatus.status.intValue == 1){ //未完成
         [self hideComment];
         self.stateLabel.text = @"逾期未交";
         self.descLabel.text = @"";
+        self.stateImageView.image = [UIImage imageNamed:@"未完成逾期未交图标"];
     }else if (data.paperStatus.status.intValue == 2){ //已完成
+        self.stateImageView.image = [UIImage imageNamed:@"已完成，等待老师批改图标"];
         if (data.subquesnum.integerValue == 0 || [data.paperStatus.teachercomments isEqualToString:@""] ) {
             [self hideComment];
             self.stateLabel.text = @"已批改";

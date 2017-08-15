@@ -24,7 +24,7 @@
     self.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
     self.clipsToBounds = YES;
     UIButton *button = [[UIButton alloc]initWithFrame:self.bounds];
-    [button setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 40, 40)] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"添加图片上传icon"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
 }

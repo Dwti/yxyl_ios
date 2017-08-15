@@ -54,7 +54,7 @@
 
 - (void)setupUI {
     UIImageView *topImageView = [[UIImageView alloc]init];
-    topImageView.backgroundColor = [UIColor redColor];
+    topImageView.image = [UIImage imageNamed:@"登录注册页头图"];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {

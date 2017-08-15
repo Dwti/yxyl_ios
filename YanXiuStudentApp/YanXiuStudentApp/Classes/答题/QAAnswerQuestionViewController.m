@@ -39,7 +39,7 @@
     self.clockView = [[QAClockView alloc]initWithFrame:CGRectMake(0, 0, 150, 20)];
     self.navigationItem.titleView = self.clockView;
     WEAK_SELF
-    [self nyx_setupRightWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 38, 38)] action:^{
+    [self nyx_setupRightWithImageName:@"答题模块的答题卡图标正常态" highlightImageName:@"答题模块的答题卡图标点击态" action:^{
         STRONG_SELF
         [self showAnswerSheet];
     }];

@@ -36,7 +36,7 @@
 
 - (void)setupUI {
     UIImageView *topImageView = [[UIImageView alloc]init];
-    topImageView.backgroundColor = [UIColor redColor];
+    topImageView.image = [UIImage imageNamed:@"加入班级提交资料头图"];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -117,11 +117,11 @@
     
     self.nameView = [[ClassInfoItemView alloc]init];
     self.nameView.name = @"你的姓名";
-    self.nameView.canEdit = YES;
     self.nameView.inputView.textField.text = [YXUserManager sharedManager].userModel.realname;
     self.nameView.inputView.placeHolder = @"请输入你的真实姓名";
     self.nameView.layer.cornerRadius = 5;
     self.nameView.clipsToBounds = YES;
+    self.nameView.canEdit = YES;
     WEAK_SELF
     [self.nameView setTextChangeBlock:^{
         STRONG_SELF
