@@ -9,6 +9,7 @@
 #import "YXTabBarController.h"
 #import "YXRedManager.h"
 #import <UIButton+WebCache.h>
+#import "AudioManager.h"
 
 @interface YXTabBarController ()<UITabBarControllerDelegate>
 @property (nonatomic, strong) UIView *bgView;
@@ -71,6 +72,10 @@
             b.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:nil];
     }];
+    
+    //播放音效
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"tab 栏" ofType:@"wav"];
+    [[AudioManager sharedInstance]playSoundWithUrl:[NSURL fileURLWithPath:filePath]];
 }
 
 #pragma mark - Hard Code 底部三个Button

@@ -601,8 +601,6 @@
 		7C953AD61C586F4800A9A7AF /* YXQACoreTextHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953AD41C586F4800A9A7AF /* YXQACoreTextHelper.m */; };
 		7C953AD91C5875FB00A9A7AF /* YXQATitleCell_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953AD81C5875FB00A9A7AF /* YXQATitleCell_Pad.m */; };
 		7C953ADC1C587B2700A9A7AF /* YXQAQuestionCell_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953ADB1C587B2700A9A7AF /* YXQAQuestionCell_Pad.m */; };
-		7C953ADF1C588F6B00A9A7AF /* YXQAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953ADE1C588F6B00A9A7AF /* YXQAUtils.m */; };
-		7C953AE01C588F6B00A9A7AF /* YXQAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953ADE1C588F6B00A9A7AF /* YXQAUtils.m */; };
 		7C953AE31C5896F900A9A7AF /* YXQAChooseAnswerCell_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953AE21C5896F900A9A7AF /* YXQAChooseAnswerCell_Pad.m */; };
 		7C953AE61C58A22400A9A7AF /* YXQAFillBlankCell_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953AE51C58A22400A9A7AF /* YXQAFillBlankCell_Pad.m */; };
 		7C953AE91C58A82C00A9A7AF /* YXQAYesNoChooseCell_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C953AE81C58A82C00A9A7AF /* YXQAYesNoChooseCell_Pad.m */; };
@@ -856,6 +854,12 @@
 		7CFB73C11F3164310004B502 /* pull_fly.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB73B01F3164310004B502 /* pull_fly.gif */; };
 		7CFB73C21F3164310004B502 /* pull_normal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB73B11F3164310004B502 /* pull_normal.gif */; };
 		7CFB73C31F3164310004B502 /* pull_normal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB73B11F3164310004B502 /* pull_normal.gif */; };
+		7CFB748F1F441B790004B502 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB748E1F441B790004B502 /* AudioManager.m */; };
+		7CFB74901F441B790004B502 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB748E1F441B790004B502 /* AudioManager.m */; };
+		7CFB74931F441F310004B502 /* 答题结束上传成功.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB74921F441F310004B502 /* 答题结束上传成功.mp3 */; };
+		7CFB74941F441F310004B502 /* 答题结束上传成功.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB74921F441F310004B502 /* 答题结束上传成功.mp3 */; };
+		7CFB74961F441F370004B502 /* tab 栏.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB74951F441F370004B502 /* tab 栏.wav */; };
+		7CFB74971F441F370004B502 /* tab 栏.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB74951F441F370004B502 /* tab 栏.wav */; };
 		7CFBF3AF1C5EFAAF00E745F3 /* YXQASheetView_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBF3AE1C5EFAAF00E745F3 /* YXQASheetView_Pad.m */; };
 		7CFBF3B91C5F3FF200E745F3 /* YXQAPaperStaticticData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBF3B81C5F3FF200E745F3 /* YXQAPaperStaticticData.m */; };
 		7CFBF3BA1C5F3FF200E745F3 /* YXQAPaperStaticticData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBF3B81C5F3FF200E745F3 /* YXQAPaperStaticticData.m */; };
@@ -1862,8 +1866,6 @@
 		7C953AD81C5875FB00A9A7AF /* YXQATitleCell_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQATitleCell_Pad.m; sourceTree = "<group>"; };
 		7C953ADA1C587B2700A9A7AF /* YXQAQuestionCell_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQAQuestionCell_Pad.h; sourceTree = "<group>"; };
 		7C953ADB1C587B2700A9A7AF /* YXQAQuestionCell_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQAQuestionCell_Pad.m; sourceTree = "<group>"; };
-		7C953ADD1C588F6B00A9A7AF /* YXQAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQAUtils.h; sourceTree = "<group>"; };
-		7C953ADE1C588F6B00A9A7AF /* YXQAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQAUtils.m; sourceTree = "<group>"; };
 		7C953AE11C5896F900A9A7AF /* YXQAChooseAnswerCell_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQAChooseAnswerCell_Pad.h; sourceTree = "<group>"; };
 		7C953AE21C5896F900A9A7AF /* YXQAChooseAnswerCell_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQAChooseAnswerCell_Pad.m; sourceTree = "<group>"; };
 		7C953AE41C58A22400A9A7AF /* YXQAFillBlankCell_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQAFillBlankCell_Pad.h; sourceTree = "<group>"; };
@@ -2161,6 +2163,10 @@
 		7CFB73AF1F3164310004B502 /* pull_bubble.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pull_bubble.gif; sourceTree = "<group>"; };
 		7CFB73B01F3164310004B502 /* pull_fly.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pull_fly.gif; sourceTree = "<group>"; };
 		7CFB73B11F3164310004B502 /* pull_normal.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pull_normal.gif; sourceTree = "<group>"; };
+		7CFB748D1F441B790004B502 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		7CFB748E1F441B790004B502 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
+		7CFB74921F441F310004B502 /* 答题结束上传成功.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "答题结束上传成功.mp3"; sourceTree = "<group>"; };
+		7CFB74951F441F370004B502 /* tab 栏.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tab 栏.wav"; sourceTree = "<group>"; };
 		7CFBF3AD1C5EFAAF00E745F3 /* YXQASheetView_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQASheetView_Pad.h; sourceTree = "<group>"; };
 		7CFBF3AE1C5EFAAF00E745F3 /* YXQASheetView_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQASheetView_Pad.m; sourceTree = "<group>"; };
 		7CFBF3B71C5F3FF200E745F3 /* YXQAPaperStaticticData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQAPaperStaticticData.h; sourceTree = "<group>"; };
@@ -2664,6 +2670,7 @@
 		0F7FEF6F1B4E6B2600E86E51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7CFB74911F441F140004B502 /* audio */,
 				7CDE19851DD0915700469096 /* gif */,
 				7CDE19821DD0915200469096 /* PhoneImage.xcassets */,
 				7C2903BF1EE67B2A005F7F55 /* Arial Narrow Bold.ttf */,
@@ -3363,8 +3370,8 @@
 			children = (
 				7C027F371EB1F76A001682EA /* GCDTimer.h */,
 				7C027F381EB1F76A001682EA /* GCDTimer.m */,
-				7C953ADD1C588F6B00A9A7AF /* YXQAUtils.h */,
-				7C953ADE1C588F6B00A9A7AF /* YXQAUtils.m */,
+				7CFB748D1F441B790004B502 /* AudioManager.h */,
+				7CFB748E1F441B790004B502 /* AudioManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4309,6 +4316,15 @@
 				7CFB73B11F3164310004B502 /* pull_normal.gif */,
 			);
 			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		7CFB74911F441F140004B502 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				7CFB74951F441F370004B502 /* tab 栏.wav */,
+				7CFB74921F441F310004B502 /* 答题结束上传成功.mp3 */,
+			);
+			name = audio;
 			sourceTree = "<group>";
 		};
 		7CFBF3AC1C5EFA7100E745F3 /* 答题卡 */ = {
@@ -5546,6 +5562,7 @@
 				0FEA8F9F1C7AF124003077A2 /* 引导1~ipad.png in Resources */,
 				7C2903C41EE67B2A005F7F55 /* Arial Narrow.ttf in Resources */,
 				F773CABB1C4627F400AAE684 /* 1.html in Resources */,
+				7CFB74971F441F370004B502 /* tab 栏.wav in Resources */,
 				F708EA6D1C50AD0B00580ECC /* yxConfig.plist in Resources */,
 				7C29035B1ED5167B005F7F55 /* METRO-LIGHT PLAYTYPE.OTF in Resources */,
 				7C2903C21EE67B2A005F7F55 /* Arial Narrow Bold.ttf in Resources */,
@@ -5565,6 +5582,7 @@
 				F773CAC51C4627F400AAE684 /* 0.html in Resources */,
 				7C7BF7C41E078139007B017C /* env_config.json in Resources */,
 				7CDE197D1DD0914800469096 /* 出题动画.gif in Resources */,
+				7CFB74941F441F310004B502 /* 答题结束上传成功.mp3 in Resources */,
 				F773CAC61C4627F400AAE684 /* test.html in Resources */,
 				F773CAC81C4627F400AAE684 /* 2.html in Resources */,
 				7C8885611EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */,
@@ -5585,6 +5603,7 @@
 				7CDE19831DD0915200469096 /* PhoneImage.xcassets in Resources */,
 				F77550801C4E43860002FE45 /* exerciseList in Resources */,
 				7C1628DF1E94DCA500CDA456 /* MistakeMockData.geojson in Resources */,
+				7CFB74961F441F370004B502 /* tab 栏.wav in Resources */,
 				7C20D34D1E5D7FFA0045AF77 /* input.json in Resources */,
 				309796CC1D211BF100B64380 /* test.json in Resources */,
 				7CDE197C1DD0914800469096 /* 出题动画.gif in Resources */,
@@ -5594,6 +5613,7 @@
 				F77550821C4E43860002FE45 /* 3.html in Resources */,
 				F77550851C4E43860002FE45 /* 1.html in Resources */,
 				F77550861C4E43860002FE45 /* Arial Rounded Bold.ttf in Resources */,
+				7CFB74931F441F310004B502 /* 答题结束上传成功.mp3 in Resources */,
 				3084D4ED1DDD50C20011E58E /* 124.jpg in Resources */,
 				7C2903C11EE67B2A005F7F55 /* Arial Narrow Bold.ttf in Resources */,
 				7C29035A1ED5167B005F7F55 /* METRO-LIGHT PLAYTYPE.OTF in Resources */,
@@ -5895,7 +5915,6 @@
 				7C953B3C1C5B0C2E00A9A7AF /* YXQAWenHeaderView_Pad.m in Sources */,
 				7C3D0B8B1DD1A6C8005ED76A /* PostRequest.m in Sources */,
 				E98169C61F30313800BD7575 /* EmptyView.m in Sources */,
-				7C953AE01C588F6B00A9A7AF /* YXQAUtils.m in Sources */,
 				7C01540F1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */,
 				7C38E72E1C4E2C9B00EC18D0 /* YXQATimer.m in Sources */,
 				E9F4C6901F1C553200696FD0 /* QAConnectSelectedCell.m in Sources */,
@@ -6151,6 +6170,7 @@
 				7C55F8351D54AA61006CAA11 /* QAClassifyQuestionAnalysisView.m in Sources */,
 				E92610C61F0A1A170084EFA5 /* QAAnalysisResultCell.m in Sources */,
 				7C3D0BA81DD1A8ED005ED76A /* UIButton+HighlightColor.m in Sources */,
+				7CFB74901F441B790004B502 /* AudioManager.m in Sources */,
 				30F4561F1CBE328200FF2CD9 /* YXRedNumberRequest.m in Sources */,
 				F773CA2A1C4627F400AAE684 /* TestUploadRequest.m in Sources */,
 				7CFAADEC1DACF6C900F13532 /* QAQuestionViewContainerFactory.m in Sources */,
@@ -6475,6 +6495,7 @@
 				E9F992D11F13873800586DEE /* QAConnectContentCell.m in Sources */,
 				0FFA77621C75B2A300F9E8F9 /* YXHomeworkToDoFetcher.m in Sources */,
 				7CC32DA31F29E20800424C13 /* UIViewController+VisibleViewController.m in Sources */,
+				7CFB748F1F441B790004B502 /* AudioManager.m in Sources */,
 				7C8885661EFA10210073EF1F /* QuestionAnswerEntity+CoreDataClass.m in Sources */,
 				7C49B19B1DC058CC00E39555 /* QAAnalysisClozeComplexView.m in Sources */,
 				7CEE06E91DC2FDF400AA898B /* KnpTreeDataFetcher.m in Sources */,
@@ -6529,7 +6550,6 @@
 				7C89DD061DA8927200194120 /* QAImageAnswerQuestion.m in Sources */,
 				7C3D0B511DD1A1C4005ED76A /* YXNavigationController.m in Sources */,
 				7C2903441ED2D6A4005F7F55 /* QAClockView.m in Sources */,
-				7C953ADF1C588F6B00A9A7AF /* YXQAUtils.m in Sources */,
 				F7754F7E1C4E43860002FE45 /* NJKWebViewProgress.m in Sources */,
 				7C7841871E2DF10900755BC0 /* QASingleChooseQuestionRedoView.m in Sources */,
 				7C2903B11EE104E3005F7F55 /* QAFillBlankCell.m in Sources */,

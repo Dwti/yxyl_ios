@@ -80,6 +80,10 @@
     }];
     UIImageView *greenImageView = [[UIImageView alloc]init];
     greenImageView.image = [UIImage imageNamed:@"新版本更新弹窗"];
+    greenImageView.layer.shadowColor = [[UIColor blackColor]colorWithAlphaComponent:0.18].CGColor;
+    greenImageView.layer.shadowOffset = CGSizeMake(0, 1.5);
+    greenImageView.layer.shadowRadius = 7;
+    greenImageView.layer.shadowOpacity = 1;
     [self insertSubview:greenImageView atIndex:0];
     [greenImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);

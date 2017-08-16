@@ -15,6 +15,7 @@
 #import "SimpleAlertView.h"
 #import "QAReportViewController.h"
 #import "QAAnswerQuestionViewController.h"
+#import "AudioManager.h"
 
 @interface QAAnswerSheetViewController ()
 @property (nonatomic, strong) QAAnswerSheetView *sheetView;
@@ -130,6 +131,10 @@
             }
             item.questionID = questions;
             [YXRecordManager addRecord:item];
+            
+            //播放音效
+            NSString *filePath = [[NSBundle mainBundle]pathForResource:@"答题结束上传成功" ofType:@"mp3"];
+            [[AudioManager sharedInstance]playSoundWithUrl:[NSURL fileURLWithPath:filePath]];
             
             // 提交成功后清除本地保存的答案
             [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
