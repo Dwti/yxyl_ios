@@ -85,18 +85,6 @@
     return [NSArray arrayWithArray:answerArray];
 }
 
-#pragma mark - 错题列表题干
-- (NSString *)stemForMistake {
-    NSMutableArray *array = [NSMutableArray array];
-    [array addObject:self.stem];
-    [self.options enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        char c = 'A' + idx;
-        NSString *cString = [NSString stringWithFormat:@"%c", c];
-        [array addObject:[NSString stringWithFormat:@"%@. %@",cString,obj]];
-    }];
-    return [array componentsJoinedByString:@"<br>"];
-}
-
 #pragma mark - 答案本地保存
 - (void)saveAnswer {
     if (![self questionKey]) {

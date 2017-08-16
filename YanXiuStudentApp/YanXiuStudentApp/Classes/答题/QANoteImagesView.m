@@ -88,6 +88,7 @@ static const NSInteger kMaxPhotoCount = 4;
         }else {
             photoView = [[QASubjectiveSinglePhotoView alloc]initWithFrame:CGRectMake(x, 15-8, self.photoViewWidth, self.photoViewWidth)];
         }
+        photoView.showImageBorder = NO;
         photoView.canDelete = self.isEditable;
         photoView.imageAnswer = obj;
         WEAK_SELF
