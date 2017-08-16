@@ -46,15 +46,17 @@ static const NSInteger kMaxPhotoCount = 4;
         [view removeFromSuperview];
     }
     
-    if (photos.count == 0) {
-        if (self.isEditable) {
-            [self setupAddPhotoView];
-        }else {
-            [self setupEmptyView];
-        }
-    }else {
-        [self setupPhotosView];
-    }
+    [self setupPhotosView];
+    
+//    if (photos.count == 0) {
+//        if (self.isEditable) {
+//            [self setupAddPhotoView];
+//        }else {
+//            [self setupEmptyView];
+//        }
+//    }else {
+//        [self setupPhotosView];
+//    }
 }
 
 - (void)setupAddPhotoView {

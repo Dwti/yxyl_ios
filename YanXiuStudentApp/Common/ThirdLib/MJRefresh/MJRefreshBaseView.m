@@ -327,14 +327,15 @@
             
         case MJRefreshStateRefreshing: {
             // 开始转圈圈
-            [CATransaction begin];
-            [CATransaction setAnimationDuration:1.f];
-            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-            CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-            anim.values = @[@0, @M_PI_2, @M_PI, @(3 *M_PI_2), @(2*M_PI)];
-            anim.repeatCount = MAXFLOAT;
-            [_imageView.layer addAnimation:anim forKey:anim.keyPath];
-            [CATransaction commit];
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+            animation.fromValue = @(0);
+            animation.toValue = @(M_PI*2);
+            animation.duration = 1.f;
+            animation.repeatCount = MAXFLOAT;
+            animation.autoreverses = NO;
+            animation.fillMode = kCAFillModeForwards;
+            animation.removedOnCompletion = NO;
+            [_imageView.layer addAnimation:animation forKey:@"rotate"];
             
             //[_activityView startAnimating];
             // 隐藏箭头
