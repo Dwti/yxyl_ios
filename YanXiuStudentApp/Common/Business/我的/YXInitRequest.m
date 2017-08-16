@@ -220,8 +220,8 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     self.alertView.contentView = self.promptView;
     [self.alertView showWithLayout:^(AlertView *view) {
         [view.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(306);
-            make.center.mas_equalTo(0);
+            make.top.mas_equalTo(85*kPhoneHeightRatio);
+            make.centerX.mas_equalTo(0);
         }];
         [view layoutIfNeeded];
     }];

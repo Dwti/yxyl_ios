@@ -22,6 +22,7 @@ static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,30 +30,54 @@ static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
+- (void)setupUI {
+    UIImageView *topImageView = [[UIImageView alloc]init];
+    topImageView.image = [UIImage imageNamed:@"引导页的插画"];
+    topImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:topImageView];
+    [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(420*kPhoneHeightRatio);
+    }];
+    UILabel *titleLabel = [[UILabel alloc]init];
+    titleLabel.text = @"全新界面";
+    titleLabel.textColor = [UIColor colorWithHexString:@"336600"];
+    titleLabel.font = [UIFont boldSystemFontOfSize:37];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(topImageView.mas_bottom).mas_offset(16*kPhoneHeightRatio);
+        make.centerX.mas_equalTo(0);
+    }];
+    UILabel *subtitleLabel = [[UILabel alloc]init];
+    subtitleLabel.text = @"轻松做题，让学习拥有美好的体验";
+    subtitleLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
+    subtitleLabel.font = [UIFont boldSystemFontOfSize:15];
+    subtitleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:subtitleLabel];
+    [subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(titleLabel.mas_bottom).mas_offset(16*kPhoneHeightRatio);
+        make.centerX.mas_equalTo(0);
+    }];
+    UIButton *enterButton = [[UIButton alloc]init];
+    [enterButton setTitle:@"立即体验" forState:UIControlStateNormal];
+    [enterButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
+    enterButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [enterButton setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    enterButton.layer.cornerRadius = 6;
+    enterButton.clipsToBounds = YES;
+    [enterButton addTarget:self action:@selector(enterAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:enterButton];
+    [enterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(-40*kPhoneHeightRatio);
+        make.centerX.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(165*kPhoneHeightRatio, 50*kPhoneHeightRatio));
+    }];
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    _scrollView.pagingEnabled = YES;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.bounces = NO;
-    _scrollView.delegate = self;
-    _scrollView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_scrollView];
-    
-    CGFloat height = CGRectGetHeight(self.view.bounds);
-    CGFloat width = CGRectGetWidth(self.view.bounds);
-    NSArray *images = @[@"引导1.png", @"引导2.png", @"引导3.png"];
-    for (NSInteger index = 0; index < images.count; index++) {
-        UIImage *image = [UIImage imageNamed:images[index]];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        imageView.frame = CGRectMake(index * width, 0, width, height);
-        [_scrollView addSubview:imageView];
-    }
-    _scrollView.contentSize = CGSizeMake(CGRectGetWidth(_scrollView.bounds) * images.count, 0);
+}
+
+- (void)enterAction {
+    [self pushLoginViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,16 +109,6 @@ static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";
 {
     LoginViewController *login = [[LoginViewController alloc] init];
     [self.navigationController pushViewController:login animated:YES];
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    CGFloat offsetFactor = (scrollView.contentSize.width - scrollView.contentOffset.x)/CGRectGetWidth(scrollView.bounds);
-    if (offsetFactor <= 1) {
-        [self pushLoginViewController];
-    }
 }
 
 @end

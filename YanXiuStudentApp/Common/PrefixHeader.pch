@@ -16,6 +16,7 @@
 #define SCREEN_HEIGHT         ([UIScreen mainScreen].bounds.size.height)
 
 #define kPhoneWidthRatio SCREEN_WIDTH/375
+#define kPhoneHeightRatio SCREEN_HEIGHT/667
 
 // 字体
 #define YXFontZhengHei      @"FZZZHONGJW--GB1-0"

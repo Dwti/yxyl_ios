@@ -123,7 +123,6 @@
 		0FEA8F9F1C7AF124003077A2 /* 引导1~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA8F991C7AEF36003077A2 /* 引导1~ipad.png */; };
 		0FEA8FA01C7AF127003077A2 /* 引导2~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA8F9A1C7AEF36003077A2 /* 引导2~ipad.png */; };
 		0FEA8FA11C7AF12C003077A2 /* 引导3~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA8F9B1C7AEF36003077A2 /* 引导3~ipad.png */; };
-		0FEA8FA21C7AF190003077A2 /* 引导1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD732621C06E2AC009755F5 /* 引导1.png */; };
 		0FECC6311C5F2C7600E8F48E /* YXHomeworkGroupViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FECC62F1C5F2C7000E8F48E /* YXHomeworkGroupViewController_Pad.m */; };
 		0FECC6381C5F2D6E00E8F48E /* YXClassInfoViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FECC6361C5F2D6700E8F48E /* YXClassInfoViewController_Pad.m */; };
 		0FECC63D1C5F2DF200E8F48E /* YXClassSearchViewController_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FECC63B1C5F2DED00E8F48E /* YXClassSearchViewController_Pad.m */; };
@@ -1124,8 +1123,6 @@
 		F77550861C4E43860002FE45 /* Arial Rounded Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7F968BD1C103823008036B6 /* Arial Rounded Bold.ttf */; };
 		F77550871C4E43860002FE45 /* long.html in Resources */ = {isa = PBXBuildFile; fileRef = F7BD96CA1B56799300ECA902 /* long.html */; };
 		F77550881C4E43860002FE45 /* METRO-BOLD PLAYTYPE.otf in Resources */ = {isa = PBXBuildFile; fileRef = F7F968BE1C103823008036B6 /* METRO-BOLD PLAYTYPE.otf */; };
-		F775508A1C4E43860002FE45 /* 引导2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD732631C06E2AC009755F5 /* 引导2.png */; };
-		F775508B1C4E43860002FE45 /* 引导3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6FF3041C439E7F008C2398 /* 引导3.png */; };
 		F775508D1C4E43860002FE45 /* FZZZHONGJW GB 1 0(方正正中黑简体).ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7F968BF1C103823008036B6 /* FZZZHONGJW GB 1 0(方正正中黑简体).ttf */; };
 		F775508E1C4E43860002FE45 /* 0.html in Resources */ = {isa = PBXBuildFile; fileRef = F7CB0FEF1B53558C00F46035 /* 0.html */; };
 		F77550901C4E43860002FE45 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 0F5D09DA1BB2472100B6C038 /* test.html */; };
@@ -1209,7 +1206,6 @@
 		0F68BDF91C73298500AB3382 /* YXRankRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRankRequest.m; sourceTree = "<group>"; };
 		0F68BDFE1C732BA600AB3382 /* YXRankHeaderView_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXRankHeaderView_Pad.h; sourceTree = "<group>"; };
 		0F68BDFF1C732BA600AB3382 /* YXRankHeaderView_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRankHeaderView_Pad.m; sourceTree = "<group>"; };
-		0F6FF3041C439E7F008C2398 /* 引导3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导3.png"; sourceTree = "<group>"; };
 		0F7FEF461B4E1D2900E86E51 /* YXMistakeSubjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXMistakeSubjectViewController.h; path = "../Classes/我/YXMistakeSubjectViewController.h"; sourceTree = "<group>"; };
 		0F7FEF471B4E1D2900E86E51 /* YXMistakeSubjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXMistakeSubjectViewController.m; path = "../Classes/我/YXMistakeSubjectViewController.m"; sourceTree = "<group>"; };
 		0F7FEF701B4E6B2600E86E51 /* province_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = province_data.xml; sourceTree = "<group>"; };
@@ -1273,8 +1269,6 @@
 		0FBD5B641C4F3550003B7D6D /* YXUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadRequest.m; sourceTree = "<group>"; };
 		0FCF22931C58678C00CE363D /* YXGuideViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGuideViewController_Pad.h; sourceTree = "<group>"; };
 		0FCF22941C58678C00CE363D /* YXGuideViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGuideViewController_Pad.m; sourceTree = "<group>"; };
-		0FD732621C06E2AC009755F5 /* 引导1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导1.png"; sourceTree = "<group>"; };
-		0FD732631C06E2AC009755F5 /* 引导2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导2.png"; sourceTree = "<group>"; };
 		0FDD9BE51C58D1EF00DBA379 /* YXSettingViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSettingViewController_Pad.h; sourceTree = "<group>"; };
 		0FDD9BE61C58D1EF00DBA379 /* YXSettingViewController_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSettingViewController_Pad.m; sourceTree = "<group>"; };
 		0FDD9BE91C58D2B800DBA379 /* YXModifyPasswordViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXModifyPasswordViewController_Pad.h; sourceTree = "<group>"; };
@@ -2610,9 +2604,6 @@
 		0F5B99341B6DBE10005EAC78 /* 引导 */ = {
 			isa = PBXGroup;
 			children = (
-				0FD732621C06E2AC009755F5 /* 引导1.png */,
-				0FD732631C06E2AC009755F5 /* 引导2.png */,
-				0F6FF3041C439E7F008C2398 /* 引导3.png */,
 				0F5B99351B6DBE10005EAC78 /* YXGuideViewController.h */,
 				0F5B99361B6DBE10005EAC78 /* YXGuideViewController.m */,
 			);
@@ -5611,9 +5602,6 @@
 				7CFB73BE1F3164310004B502 /* pull_bubble.gif in Resources */,
 				0FBD5ABA1C4F31E9003B7D6D /* read_me.txt in Resources */,
 				F77550881C4E43860002FE45 /* METRO-BOLD PLAYTYPE.otf in Resources */,
-				0FEA8FA21C7AF190003077A2 /* 引导1.png in Resources */,
-				F775508A1C4E43860002FE45 /* 引导2.png in Resources */,
-				F775508B1C4E43860002FE45 /* 引导3.png in Resources */,
 				7C8885601EF8CC5E0073EF1F /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */,
 				F775508D1C4E43860002FE45 /* FZZZHONGJW GB 1 0(方正正中黑简体).ttf in Resources */,
 				7CDE198D1DD0924F00469096 /* yxConfig.plist in Resources */,
