@@ -149,7 +149,7 @@
         self.stateImageView.image = [UIImage imageNamed:@"未完成逾期未交图标"];
     }else if (data.paperStatus.status.intValue == 2){ //已完成
         self.stateImageView.image = [UIImage imageNamed:@"已完成，等待老师批改图标"];
-        if (data.subquesnum.integerValue == 0 || [data.paperStatus.teachercomments isEqualToString:@""] ) {
+        if (data.paperStatus.checkStatus.integerValue == 1 && isEmpty(data.paperStatus.teachercomments) ) {
             [self hideComment];
             self.stateLabel.text = @"已批改";
             CGFloat scoreRate = data.paperStatus.scoreRate.floatValue;

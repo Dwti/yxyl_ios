@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString<Optional> *teachercomments;
 @property (nonatomic, copy) NSString<Optional> *teacherName;
 @property (nonatomic, copy) NSString<Optional> *scoreRate;//正确率
+@property (nonatomic, copy) NSString<Optional> *checkStatus;//是否批改：0，未批改；1，已批改
 @end
 
 @interface YXHomework_Group : JSONModel
