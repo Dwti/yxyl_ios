@@ -140,7 +140,9 @@
     [self.mineButton sd_setImageWithURL:headUrl forState:UIControlStateNormal placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         STRONG_SELF
         if (image) {
-            [self.mineButton setImage:[self scaledHeadImage:image] forState:UIControlStateNormal];
+            UIImage *scaledImage = [self scaledHeadImage:image];
+            [self.mineButton setImage:scaledImage forState:UIControlStateNormal];
+            [self.mineButton setImage:scaledImage forState:UIControlStateSelected];
         }
     }];
 }

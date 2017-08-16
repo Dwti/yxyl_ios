@@ -72,7 +72,7 @@
 
 - (void)setNaviTheme:(NavigationBarTheme)naviTheme {
     _naviTheme = naviTheme;
-    if (self.navigationController) {
+    if ([self.navigationController isKindOfClass:[YXNavigationController class]]) {
         YXNavigationController *navi = (YXNavigationController *)self.navigationController;
         navi.theme = self.naviTheme;
     }

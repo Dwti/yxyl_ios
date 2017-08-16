@@ -97,7 +97,7 @@
     _item = item;
     
     self.editItem = [[QAQuestion alloc] init];
-    self.editItem.noteImages = item.noteImages;
+    self.editItem.noteImages = [NSMutableArray arrayWithArray:item.noteImages];
     self.editItem.noteText = item.noteText;
     self.editItem.wrongQuestionID = item.wrongQuestionID;
     self.editItem.questionID = item.questionID;

@@ -72,7 +72,11 @@
         [super backAction];
         return;
     }
-    
+    if (self.pType == YXPTypeExerciseHistory) {
+        [[YXQADataManager sharedInstance]savePaperToHistoryWithModel:self.model beginDate:self.beginDate completeBlock:nil];
+        [super backAction];
+        return;
+    }
     BOOL unAnswered = TRUE;
     for (QAQuestion *item in [self.model allQuestions]) {
         if (item.answerState != YXAnswerStateNotAnswer) {
