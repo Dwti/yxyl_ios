@@ -38,7 +38,7 @@
     self.contentView = contentView;
     
     UIImageView *topImageView = [[UIImageView alloc]init];
-    topImageView.backgroundColor = [UIColor redColor];
+    topImageView.image = [UIImage imageNamed:@"加入班级头图"];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {

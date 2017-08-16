@@ -65,7 +65,7 @@
     }
     UIButton *b = self.tabButtons[index];
     b.selected = YES;
-    [UIView animateWithDuration:0.1 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         b.transform = CGAffineTransformMakeScale(1.2, 1.2);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration: 0.7 delay:0 usingSpringWithDamping:0.2 initialSpringVelocity:0 options:0 animations:^{
