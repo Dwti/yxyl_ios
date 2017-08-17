@@ -276,6 +276,7 @@
 }
 
 - (void)showPopupViewForCategoryIndex:(NSInteger)index {
+    [self.alertView hide];
     self.alertView = [[AlertView alloc]init];
     self.alertView.maskColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
     self.alertView.hideWhenMaskClicked = NO;

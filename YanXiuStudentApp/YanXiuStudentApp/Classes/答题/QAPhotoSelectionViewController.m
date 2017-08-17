@@ -33,10 +33,11 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     self.naviTheme = NavigationBarTheme_White;
     WEAK_SELF
-    [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
+    [self nyx_setupLeftWithImageName:@"返回上一页icon绿色正常态" highlightImageName:@"返回上一页icon绿色点击态" action:^{
         STRONG_SELF
-        BLOCK_EXEC(self.exitBlock);
+        [self backAction];
     }];
+    
     self.titleView = [[QAPhotoSelectionTitleView alloc]initWithFrame:CGRectMake(0, 0, 120, 40)];
     self.titleView.title = self.currentCollection.localizedTitle;
     [self.titleView setStatusChangedBlock:^{
@@ -50,6 +51,10 @@
     }];
     self.navigationItem.titleView = self.titleView;
     [self setupUI];
+}
+
+- (void)backAction {
+    BLOCK_EXEC(self.exitBlock);
 }
 
 - (void)showCollectionsView {

@@ -91,7 +91,7 @@
     options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
     PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsInAssetCollection:collection options:options];
     if (assetsFetchResults.count==0) {
-        self.collectionImageView.image = [UIImage imageWithColor:[UIColor redColor]];
+        self.collectionImageView.image = [UIImage imageNamed:@"默认相册胶卷"];
     }else {
         PHAsset *asset = assetsFetchResults[0];
         CGSize size = CGSizeMake(120, 120);
