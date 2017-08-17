@@ -57,7 +57,7 @@ static const CGFloat kOffect = 16.f;
         index++;
     }
     
-    for (QANumberGroupAnswer *groupAnswer in data.myAnswers) {
+    for (QANumberGroupAnswer *groupAnswer in self.data.myAnswers) {
         [groupAnswer.answers enumerateObjectsUsingBlock:^(NSNumber *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.boolValue) {
                 self.allOptionInfoArray[idx].selected = YES;

@@ -74,7 +74,7 @@
     [self.deleteAllButton addTarget:self action:@selector(deleteAllAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.emptyLabel = [[UILabel alloc]init];
-    self.emptyLabel.text = @"未作答";
+    self.emptyLabel.text = @"尚未开始连线";
     self.emptyLabel.font = [UIFont boldSystemFontOfSize:27];
     self.emptyLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
     self.emptyLabel.textAlignment = NSTextAlignmentCenter;

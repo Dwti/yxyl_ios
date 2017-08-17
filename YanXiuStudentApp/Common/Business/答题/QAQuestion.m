@@ -70,7 +70,16 @@ static NSString * const kAnswerMarkedFlag = @"5";
     if (isEmpty(adjustedStem)) {
         return adjustedStem;
     }
-    adjustedStem = [adjustedStem stringByReplacingOccurrencesOfString:@"(_)" withString:@" (_) "];
+    adjustedStem = [adjustedStem stringByReplacingOccurrencesOfString:@"(_)" withString:@"(_)&nbsp;"];
+    NSString *pattern = @"\\S{2,}\\(_\\)";
+    NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+    NSTextCheckingResult *result = [reg firstMatchInString:adjustedStem options:NSMatchingReportCompletion range:NSMakeRange(0, adjustedStem.length)];
+    while (result) {
+        NSRange range = result.range;
+        adjustedStem = [adjustedStem stringByReplacingCharactersInRange:NSMakeRange(range.location+range.length-3, 3) withString:@"&nbsp; (_)"];
+        result = [reg firstMatchInString:adjustedStem options:NSMatchingReportCompletion range:NSMakeRange(0, adjustedStem.length)];
+    }
+    adjustedStem = [adjustedStem stringByReplacingOccurrencesOfString:@"&nbsp; (_)" withString:@"&nbsp;(_)"];
     return adjustedStem;
 }
 
