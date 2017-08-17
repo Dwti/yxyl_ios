@@ -9,125 +9,128 @@
 #import "YXChooseVolumnView.h"
 #import "YXExerciseChooseChapterKnp_ChooseVolumeCell.h"
 
-@interface YXChooseVolumnView () <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) NSArray *dataArray;
+static const CGFloat kPickerViewHeight = 250.0f;
+static const CGFloat kPickerViewRowHeight = 50.0f;
 
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
+@interface YXChooseVolumnView () <UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate>
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIPickerView *pickerView;
+
+@property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) NSInteger lastSelectedIndex;
+
 @end
 
 @implementation YXChooseVolumnView
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self _setupUI];
+        [self setupUI];
     }
     return self;
 }
 
 - (void)updateWithDatas:(NSArray *)dataArray selectedIndex:(NSInteger)index {
     self.dataArray = dataArray;
-    [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:self.lastSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self.pickerView reloadAllComponents];
+    [self.pickerView selectRow:self.lastSelectedIndex inComponent:0 animated:NO];
 }
 
-- (void)_setupUI {
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
-    self.clipsToBounds = YES;
-    
-    self.chooseVolumnButton = [[YXChooseVolumnButton alloc] init];
-    self.chooseVolumnButton.bExpand = YES;
-    [self addSubview:self.chooseVolumnButton];
-    [self.chooseVolumnButton addTarget:self action:@selector(chooseVolumnAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.layer.cornerRadius = 6;
-    [self addSubview:self.tableView];
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-15);
-        make.top.mas_equalTo(120);
-        make.size.mas_equalTo(CGSizeMake(135, 305));
+- (void)setupUI {
+    self.maskView = [[UIView alloc]init];
+    self.maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
+    self.maskView.clipsToBounds = YES;
+    [self addSubview:self.maskView];
+    [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
     }];
     
-    UIImageView *triangleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"弹窗三角"]];
-    [self addSubview:triangleImageView];
-    [triangleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.tableView.mas_top);
-        make.centerX.mas_equalTo(self.mas_right).offset(-37);
-        make.size.mas_equalTo(CGSizeMake(19, 8));
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    tap.delegate = self;
+    [self.maskView addGestureRecognizer:tap];
+    
+    self.pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kPickerViewHeight)];
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
+    self.pickerView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+    [self addSubview:self.pickerView];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickerView.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(6, 6)];    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.pickerView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.pickerView.layer.mask = maskLayer;
+
+    UIView *rectView = [[UIView alloc]init];
+    rectView.layer.cornerRadius = 6.f;
+    rectView.layer.borderColor = [UIColor whiteColor].CGColor;
+    rectView.layer.borderWidth = 2.f;
+    rectView.clipsToBounds = YES;
+    [self.pickerView addSubview:rectView];
+    [rectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(0);
+        make.width.mas_equalTo(250.f);
+        make.height.mas_equalTo(kPickerViewRowHeight);
     }];
-    
-    [self.tableView registerClass:[YXExerciseChooseChapterKnp_ChooseVolumeCell class] forCellReuseIdentifier:@"data"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.lastSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    self.lastSelectedIndex = 0;
 }
 
-- (void)chooseVolumnAction:(YXChooseVolumnButton *)sender {
-    [self removeFromSuperview];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row % 2) {
-        return 1;
-    } else {
-        return 50;
-    }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataArray count] * 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row % 2) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, 105, 1)];
-        lineView.backgroundColor = [UIColor colorWithHexString:@"81d40d"];
-        [cell.contentView addSubview:lineView];
-        return cell;
-    } else {
-        GetEditionRequestItem_edition_volume *volume = self.dataArray[indexPath.row/2];
-        YXExerciseChooseChapterKnp_ChooseVolumeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"data"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = volume.name;
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selected = self.lastSelectedIndexPath.row == 0;
-        return cell;
-    }
-    
-    return nil;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if ([self.lastSelectedIndexPath isEqual:indexPath]) {
-         [self removeFromSuperview];
-        return;
-    }
-    [[tableView cellForRowAtIndexPath:self.lastSelectedIndexPath] setSelected:NO];
-    [[tableView cellForRowAtIndexPath:indexPath] setSelected:YES];
-    self.lastSelectedIndexPath = indexPath;
-    if (self.chooseBlock) {
-        self.chooseBlock(indexPath.row/2);
-    }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [UIView performWithoutAnimation:^{
-        [cell layoutIfNeeded];
+- (void)tapAction:(UITapGestureRecognizer *)gesture {
+    BOOL isChanged = self.lastSelectedIndex == self.currentIndex ? NO : YES;
+    [self removeAnminationWithCompleteBlock:^{
+        BLOCK_EXEC(self.chooseBlock,self.currentIndex,isChanged);
+        self.lastSelectedIndex = self.currentIndex;
     }];
 }
 
+- (void)removeAnminationWithCompleteBlock:(void(^)())completeBlock {
+    [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.pickerView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kPickerViewHeight);
+        self.maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.f];
+    } completion:^(BOOL finished) {
+        BLOCK_EXEC(completeBlock);
+    }];
+}
+
+- (void)showWithAnmination {
+    [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.pickerView.frame = CGRectMake(0, SCREEN_HEIGHT - kPickerViewHeight, SCREEN_WIDTH, kPickerViewHeight);
+        self.maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
+    } completion:nil];
+}
+
+#pragma mark - UIPickerViewDataSource
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [self.dataArray count];
+}
+
+#pragma mark - UIPickerViewDelegate
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return kPickerViewRowHeight ;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view {
+    for(UIView *singleLine in pickerView.subviews) {
+        if (singleLine.frame.size.height < 1) {
+            singleLine.backgroundColor = [UIColor clearColor];
+        }
+    }
+    UILabel *label = (UILabel *)view;
+    if (!label) {
+        label = [[UILabel alloc]initWithFrame:CGRectMake(0, row * kPickerViewRowHeight, SCREEN_WIDTH, kPickerViewRowHeight)];
+        label.font = [UIFont boldSystemFontOfSize:23.f];
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+    }
+    GetEditionRequestItem_edition_volume *volume = self.dataArray[row];
+    label.text = volume.name;
+    return label;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.currentIndex = row;
+}
 @end

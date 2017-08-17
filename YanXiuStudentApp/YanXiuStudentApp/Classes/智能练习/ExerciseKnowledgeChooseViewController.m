@@ -18,6 +18,7 @@
 @interface ExerciseKnowledgeChooseViewController ()
 @property (nonatomic, strong) UIView *topContainerView;
 @property (nonatomic, strong) YXChooseVolumnView *chooseVolumeView;
+@property (nonatomic, strong) YXChapterPointSegmentControl *chooseChapterPointControl;
 @property (nonatomic, strong) YXChooseVolumnButton *chooseVolumeButton;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
 @property (nonatomic, strong) NSArray *volumeArray;
@@ -109,23 +110,35 @@
         make.size.mas_equalTo(chooseChapterPointControl.frame.size);
     }];
     [chooseChapterPointControl addTarget:self action:@selector(chapterPointValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.chooseChapterPointControl = chooseChapterPointControl;
     
     // 册button
     if (self.volumeArray.count == 0) {
         return;
     }
     YXChooseVolumnButton *chooseVolumnButton = [[YXChooseVolumnButton alloc] init];
+    self.chooseVolumeButton = chooseVolumnButton;
     chooseVolumnButton.bExpand = NO;
     [topContainerView addSubview:chooseVolumnButton];
     [chooseVolumnButton addTarget:self action:@selector(chooseVolumnAction:) forControlEvents:UIControlEventTouchUpInside];
     GetEditionRequestItem_edition_volume *volume = self.volumeArray[0];
     CGSize size = [chooseVolumnButton updateWithTitle:volume.name];
-    [chooseVolumnButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.right.mas_equalTo(-15);
-        make.size.mas_equalTo(size);
-    }];
-    self.chooseVolumeButton = chooseVolumnButton;
+    [self setupChooseVolumeButtonLayoutWithSize:size];
+}
+
+- (void)setupChooseVolumeButtonLayoutWithSize:(CGSize)size {
+    if (self.chooseChapterPointControl.hidden == YES) {
+        [self.chooseVolumeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0);
+            make.size.mas_equalTo(size);
+        }];
+    }else {
+        [self.chooseVolumeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.right.mas_equalTo(-15);
+            make.size.mas_equalTo(size);
+        }];
+    }
 }
 
 - (void)setupBottomView {
@@ -155,30 +168,20 @@
 
 - (void)setupVolumeChooseView {
     self.chooseVolumeView = [[YXChooseVolumnView alloc] init];
-    GetEditionRequestItem_edition_volume *volume = self.volumeArray[0];
-    CGSize size = [self.chooseVolumeView.chooseVolumnButton updateWithTitle:volume.name];
-    [self.chooseVolumeView.chooseVolumnButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(65);
-        make.right.mas_equalTo(-15);
-        make.size.mas_equalTo(size);
-    }];
     WEAK_SELF
-    self.chooseVolumeView.chooseBlock = ^(NSInteger index) {
+    self.chooseVolumeView.chooseBlock = ^(NSInteger index, BOOL isChanged) {
         STRONG_SELF
+         self.chooseVolumeButton.bExpand = NO;
+        if (!isChanged) {
+             [self.chooseVolumeView removeFromSuperview];
+            return;
+        }
         GetEditionRequestItem_edition_volume *volume = self.volumeArray[index];
         CGSize size = [self.chooseVolumeButton updateWithTitle:volume.name];
-        [self.chooseVolumeView.chooseVolumnButton updateWithTitle:volume.name];
+        
+        [self setupChooseVolumeButtonLayoutWithSize:size];
+       
         [self.chooseVolumeView removeFromSuperview];
-        [self.chooseVolumeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(0);
-            make.right.mas_equalTo(-15);
-            make.size.mas_equalTo(size);
-        }];
-        [self.chooseVolumeView.chooseVolumnButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(65);
-            make.right.mas_equalTo(-15);
-            make.size.mas_equalTo(size);
-        }];
         self.chapterVC.volumeID = volume.volumeID;
     };
     [self.chooseVolumeView updateWithDatas:self.volumeArray
@@ -201,10 +204,9 @@
 - (void)chooseVolumnAction:(YXChooseVolumnButton *)sender {
     [self.view.window addSubview:self.chooseVolumeView];
     [self.view.window bringSubviewToFront:self.chooseVolumeView];
-    
-    [self.chooseVolumeView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+    self.chooseVolumeView.frame = self.view.window.bounds;
+    self.chooseVolumeButton.bExpand = YES;
+    [self.chooseVolumeView showWithAnmination];
 }
 
 @end
