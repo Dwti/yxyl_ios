@@ -72,9 +72,9 @@
         }
         WEAK_SELF
         SimpleAlertView *alert = [[SimpleAlertView alloc] init];
-        alert.title = @"你确定要更改吗？";
+        alert.title = @"你确定要更改吗";
         alert.describe = @"学段更改后，练习将切换到相应学段";
-        alert.image = [UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 90, 90)];
+        alert.image = [UIImage imageNamed:@"确定修改弹窗的的图标"];
         [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
             STRONG_SELF
         }];

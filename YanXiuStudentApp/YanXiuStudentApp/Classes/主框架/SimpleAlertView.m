@@ -98,7 +98,6 @@ CGFloat const kQADefaultContentViewWith = 327;
     UIImageView *contentBGView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"作业上传保存失败断网的弹窗背景"]];
     
     UIImageView *tipIconView = [[UIImageView alloc]initWithImage:self.image];
-    tipIconView.backgroundColor = [UIColor blueColor];
     
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -126,7 +125,7 @@ CGFloat const kQADefaultContentViewWith = 327;
     }];
     [tipIconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.bottom.mas_equalTo(contentBGView.mas_top).offset(self.image.size.height * 0.5);
+        make.bottom.mas_equalTo(contentBGView.mas_top).offset(57);
         make.size.mas_equalTo(self.image.size);
     }];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

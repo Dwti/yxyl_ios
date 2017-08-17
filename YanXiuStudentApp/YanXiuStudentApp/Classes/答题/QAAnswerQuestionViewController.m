@@ -97,13 +97,14 @@
     }];
     WEAK_SELF
     SimpleAlertView *alert = [[SimpleAlertView alloc] init];
-    alert.describe = @"退出答题后，你可以在练习历史中找到作答记录并继续答题";
-    alert.image = [UIImage imageNamed:@"提交成功图标"];
+    alert.title = @"你确定要退出吗?";
+    alert.describe = @"退出后，你可以在练习历史中找到作答记录并继续答题";
+    alert.image = [UIImage imageNamed:@"异常弹窗图标"];
     [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
         STRONG_SELF
         self.slideView.isActive = YES;
     }];
-    [alert addButtonWithTitle:@"继续退出" style:SimpleAlertActionStyle_Default action:^{
+    [alert addButtonWithTitle:@"确定退出" style:SimpleAlertActionStyle_Default action:^{
         STRONG_SELF
         [self saveAndQuit];
     }];
@@ -114,8 +115,9 @@
     if (![self isNetworkReachable]) {
         WEAK_SELF
         SimpleAlertView *alert = [[SimpleAlertView alloc] init];
-        alert.describe = @"当前网络异常，退出答题进度将无法保存";
-        alert.image = [UIImage imageNamed:@"提交成功图标"];
+        alert.title = @"当前网络异常";
+        alert.describe = @"退出答题进度将无法保存";
+        alert.image = [UIImage imageNamed:@"网络异常弹窗图标"];
         [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
             STRONG_SELF
             self.slideView.isActive = YES;
@@ -147,7 +149,8 @@
     }
     WEAK_SELF
     SimpleAlertView *alert = [[SimpleAlertView alloc] init];
-    alert.title = @"保存失败，请检查网络后重试";
+    alert.title = @"作业保存失败";
+    alert.describe = @"请检查网络后重试";
     alert.image = [UIImage imageNamed:@"提交成功图标"];
     [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
         STRONG_SELF

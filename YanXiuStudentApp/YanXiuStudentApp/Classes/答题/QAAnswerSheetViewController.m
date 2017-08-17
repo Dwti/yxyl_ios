@@ -57,7 +57,7 @@
         SimpleAlertView *alert = [[SimpleAlertView alloc] init];
         alert.title = @"还有未答完的题目";
         alert.describe = @"确定要提交吗";
-        alert.image = [UIImage imageNamed:@"提交成功图标"];
+        alert.image = [UIImage imageNamed:@"异常弹窗图标"];
         [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
             STRONG_SELF
         }];
@@ -186,8 +186,8 @@
     WEAK_SELF
     SimpleAlertView *alert = [[SimpleAlertView alloc] init];
     alert.title = @"作业上传失败";
-    alert.describe = @"请检查网络是否异常后重试";
-    alert.image = [UIImage imageNamed:@"提交成功图标"];
+    alert.describe = @"请检查网络后重试";
+    alert.image = [UIImage imageNamed:@"异常弹窗图标"];
     [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
         STRONG_SELF
     }];
