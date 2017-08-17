@@ -37,7 +37,7 @@ static const CGFloat kMinCategoryWidth = 90.f;
         make.right.mas_equalTo(-10);
     }];
     self.categoryLabel = [[UILabel alloc]init];
-    self.categoryLabel.numberOfLines = 2;
+    self.categoryLabel.numberOfLines = 3;
     self.categoryLabel.font = [UIFont boldSystemFontOfSize:15];
     self.categoryLabel.textColor = [UIColor colorWithHexString:@"336600"];
     self.categoryLabel.textAlignment = NSTextAlignmentCenter;
@@ -72,9 +72,20 @@ static const CGFloat kMinCategoryWidth = 90.f;
 
 - (void)setCategoryName:(NSString *)categoryName {
     _categoryName = categoryName;
+    UIFont *font = nil;
+    CGFloat lineSpacing = 0;
+    if ([QAClassifyCategoryView shouldShow3LinesForCategory:categoryName]) {
+        font = [UIFont boldSystemFontOfSize:11];
+        lineSpacing = 2;
+    }else {
+        font = [UIFont boldSystemFontOfSize:15];
+        lineSpacing = 5;
+    }
+    self.categoryLabel.font = font;
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
-    paraStyle.lineSpacing = 5; //设置行间距
+    paraStyle.lineSpacing = lineSpacing; //设置行间距
     paraStyle.alignment = NSTextAlignmentCenter;
+    paraStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle};
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:categoryName attributes:dic];
     self.categoryLabel.attributedText = attrStr;
@@ -86,23 +97,42 @@ static const CGFloat kMinCategoryWidth = 90.f;
 }
 
 + (CGFloat)widthForCategory:(NSString *)categoryName {
-    UILabel *helpLabel = [[UILabel alloc]init];
-    helpLabel.font = [UIFont boldSystemFontOfSize:15];
-    helpLabel.numberOfLines = 2;
-    helpLabel.text = @"jgiorejgojoerjgperh";
-    CGSize helpSize = [helpLabel sizeThatFits:CGSizeMake(40, 999)];
+    return 120;
     
+//    UILabel *helpLabel = [[UILabel alloc]init];
+//    helpLabel.font = [UIFont boldSystemFontOfSize:15];
+//    helpLabel.numberOfLines = 2;
+//    helpLabel.text = @"jgiorejgojoerjgperh";
+//    CGSize helpSize = [helpLabel sizeThatFits:CGSizeMake(40, 999)];
+//    
+//    UILabel *categoryLabel = [[UILabel alloc]init];
+//    categoryLabel.text = categoryName;
+//    categoryLabel.font = [UIFont boldSystemFontOfSize:15];
+//    categoryLabel.numberOfLines = 0;
+//    CGFloat width = kMinCategoryWidth;
+//    CGSize size = [categoryLabel sizeThatFits:CGSizeMake(width, 99999)];
+//    while (size.height > helpSize.height) {
+//        width += 10.f;
+//        size = [categoryLabel sizeThatFits:CGSizeMake(width, 99999)];
+//    }
+//    return width+30+10;
+}
+
++ (BOOL)shouldShow3LinesForCategory:(NSString *)categoryName {
     UILabel *categoryLabel = [[UILabel alloc]init];
     categoryLabel.text = categoryName;
     categoryLabel.font = [UIFont boldSystemFontOfSize:15];
-    categoryLabel.numberOfLines = 0;
+    categoryLabel.numberOfLines = 2;
     CGFloat width = kMinCategoryWidth;
     CGSize size = [categoryLabel sizeThatFits:CGSizeMake(width, 99999)];
-    while (size.height > helpSize.height) {
-        width += 10.f;
-        size = [categoryLabel sizeThatFits:CGSizeMake(width, 99999)];
+    
+    categoryLabel.numberOfLines = 3;
+    CGSize size2 = [categoryLabel sizeThatFits:CGSizeMake(width, 99999)];
+    
+    if (size2.height > size.height) {
+        return YES;
     }
-    return width+30+10;
+    return NO;
 }
 
 @end

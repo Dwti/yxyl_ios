@@ -313,7 +313,7 @@
             for (NSInteger index=0; index<question.childQuestions.count; index++) {
                 QAQuestion *childQuestion = question.childQuestions[index];
                 QAQuestionPosition *position = [[QAQuestionPosition alloc]init];
-                position.indexString = [self indexStringWithIndex:index total:question.childQuestions.count];
+                position.indexString = @"";
                 position.indexDetailString = @"";
                 position.firstLevelIndex = idx;
                 position.secondLevelIndex = index;

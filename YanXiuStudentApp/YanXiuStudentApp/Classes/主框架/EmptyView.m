@@ -25,7 +25,6 @@
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     UIImageView *topImageView = [[UIImageView alloc]init];
-    topImageView.backgroundColor = [UIColor redColor];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
