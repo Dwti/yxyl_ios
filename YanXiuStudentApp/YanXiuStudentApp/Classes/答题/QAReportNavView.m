@@ -7,6 +7,7 @@
 //
 
 #import "QAReportNavView.h"
+#import "UIButton+ExpandHitArea.h"
 
 @interface QAReportNavView ()
 @property (nonatomic, strong) UIButton *backbutton;
@@ -27,9 +28,9 @@
 
 - (void)setupUI {
     self.backbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.backbutton.backgroundColor = [UIColor blueColor];
-    [self.backbutton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    [self.backbutton setImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+    [self.backbutton setHitTestEdgeInsets:UIEdgeInsetsMake(50, 50, 50, 50)];
+    [self.backbutton setImage:[UIImage imageNamed:@"返回上一页icon白色正常态"] forState:UIControlStateNormal];
+    [self.backbutton setImage:[UIImage imageNamed:@"返回上一页icon白色点击态"] forState:UIControlStateHighlighted];
     [self.backbutton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.titleLabel = [[UILabel alloc]init];

@@ -133,10 +133,17 @@
         for (UIView *v in self.bgImageView.subviews) {
             [v removeFromSuperview];
         }
-        self.bgImageView.image = [UIImage imageNamed:@"等待老师批改"];
+        self.bgImageView.image = [UIImage imageNamed:@"等待老师批改插画背景部分"];
+        UIImageView *iconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"等待老师批改插画部分"]];
+        [self.bgImageView addSubview:iconView];
         [self.bgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(375 * kPhoneWidthRatio, 270 *kPhoneWidthRatio));
+        }];
+        [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(-33 * kPhoneWidthRatio);
+            make.centerX.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(300 * kPhoneWidthRatio, 180 *kPhoneWidthRatio));
         }];
     }
 }

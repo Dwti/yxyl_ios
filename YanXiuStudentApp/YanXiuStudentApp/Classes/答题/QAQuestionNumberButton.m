@@ -134,6 +134,7 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
 - (void)setClickActionBlock:(ClickActionBlock)block {
     self.buttonActionBlock = block;
 }
+
 #pragma mark - touch event
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchPoint = [touch locationInView:self];
@@ -148,9 +149,11 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchPoint = [touch locationInView:self];
     CGRect rect = self.frame;
-    rect.size.width  = rect.size.width + 70;
-    rect.size.height = rect.size.height + 70;
-
+    rect.origin.x = rect.origin.x - 70;
+    rect.origin.y = rect.origin.y - 70;
+    rect.size.width  = rect.size.width + 140;
+    rect.size.height = rect.size.height + 140;
+    
     if (CGRectContainsPoint(rect, touchPoint)) {
         [self setSubviewsTextColor:self.highlightedTextColor];
     }else {
@@ -164,4 +167,7 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
     BLOCK_EXEC(self.buttonActionBlock);
 }
 
+- (void)cancelTrackingWithEvent:(nullable UIEvent *)event {
+    [self setSubviewsTextColor:self.textColor];
+}
 @end

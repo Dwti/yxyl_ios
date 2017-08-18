@@ -77,34 +77,20 @@
         [super backAction];
         return;
     }
-    BOOL unAnswered = TRUE;
-    for (QAQuestion *item in [self.model allQuestions]) {
-        if (item.answerState != YXAnswerStateNotAnswer) {
-            unAnswered = FALSE;
-            break;
-        }
-    }
-    if (self.model.paperStatusID) {
-        unAnswered = FALSE;
-    }
-    if (unAnswered) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
     
     [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj clearAnswer];
     }];
     WEAK_SELF
     SimpleAlertView *alert = [[SimpleAlertView alloc] init];
-    alert.title = @"你确定要退出吗?";
-    alert.describe = @"退出后，你可以在练习历史中找到作答记录并继续答题";
+    alert.title = @"确定要退出答题?";
+    alert.describe = @"退出后，你可以在练习历史中继续作答";
     alert.image = [UIImage imageNamed:@"异常弹窗图标"];
     [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
         STRONG_SELF
         self.slideView.isActive = YES;
     }];
-    [alert addButtonWithTitle:@"确定退出" style:SimpleAlertActionStyle_Default action:^{
+    [alert addButtonWithTitle:@"退出" style:SimpleAlertActionStyle_Default action:^{
         STRONG_SELF
         [self saveAndQuit];
     }];

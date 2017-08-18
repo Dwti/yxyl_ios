@@ -40,9 +40,9 @@
     self.voiceView.layer.borderWidth = 2;
     self.voiceView.layer.borderColor = [UIColor colorWithHexString:@"336600"].CGColor;
     
-    UIImage *audio1 = [UIImage imageNamed:@"语音点"];
-    UIImage *audio2 = [UIImage imageNamed:@"语音短"];
-    UIImage *audio3 = [UIImage imageNamed:@"语音长"];
+    UIImage *audio1 = [UIImage imageNamed:@"语音1"];
+    UIImage *audio2 = [UIImage imageNamed:@"语音2"];
+    UIImage *audio3 = [UIImage imageNamed:@"语音3"];
     
     self.volumeImageView = [[UIImageView alloc] init];
     self.volumeImageView.contentMode = UIViewContentModeScaleAspectFit;

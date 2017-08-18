@@ -98,7 +98,7 @@
 }
 
 -(void)setupAnalysisBGViewLayout {
-    __block CGFloat startPostion;
+    __block CGFloat startPostion = 0;
     NSInteger analysisStartRowIndex = self.cellHeightArray.count - self.analysisCellCount;
     [self.cellHeightArray enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         startPostion += [obj floatValue];
