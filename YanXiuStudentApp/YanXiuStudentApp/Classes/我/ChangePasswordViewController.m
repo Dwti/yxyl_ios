@@ -88,7 +88,7 @@
     }];
 
     self.confirmView = [[MineActionView alloc]init];
-    self.confirmView.title = @"确定";
+    self.confirmView.title = @"确认修改";
     [self.confirmView setActionBlock:^{
         STRONG_SELF
         [self gotoChangePassowrd];
