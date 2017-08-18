@@ -16,6 +16,7 @@ typedef void(^DeleteOptionActionBlock)(QAConnectTwinOptionInfo *twinOption ,QACo
 
 @interface QAConnectSelectedCell : UITableViewCell
 @property (nonatomic, strong, readonly) UIView *containerView;
+@property (nonatomic, strong, readonly) UIButton *deleteButton;
 
 @property (nonatomic, weak) id<YXHtmlCellHeightDelegate> delegate;
 

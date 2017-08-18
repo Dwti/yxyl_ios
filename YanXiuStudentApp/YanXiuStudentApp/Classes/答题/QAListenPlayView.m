@@ -54,8 +54,8 @@
     self.playProgressView.userInteractionEnabled = NO;
     
     self.playButton = [[UIButton alloc] init];
-    //    self.playButton.backgroundColor = [UIColor blueColor];
-    [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"播放按钮正常态"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"播放按钮点击态"] forState:UIControlStateHighlighted];
     [self addSubview:self.playButton];
     [self addRACSignalForButtonTapped];
     UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonLongPressed:)];
@@ -122,9 +122,9 @@
         PlayerView_State sta = (PlayerView_State)[x integerValue];
         NSString *image = nil;
         if (sta == PlayerView_State_Playing) {
-            image = @"播放控件";
+            image = @"暂停按钮";
         } else if (sta == PlayerView_State_Paused) {
-            image = @"播放";
+            image = @"播放按钮";
         } else if (sta == PlayerView_State_Finished) {
             image = @"播放";
         } else if (sta == PlayerView_State_Error) {
@@ -132,7 +132,8 @@
         }
         if (image) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.playButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+                [self.playButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@正常态",image]] forState:UIControlStateNormal];
+                [self.playButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@点击态",image]] forState:UIControlStateHighlighted];
             });
         }
     }];
@@ -151,10 +152,12 @@
         self.isFirstPlay = NO;
         CGFloat progress = [x longLongValue] / self.player.duration;
         if (self.player.duration - [x floatValue] < 1) {
-            self.playProgress = 0;
-            [self.player seekTo:0];
-            [self stop];
-            return;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.playProgress = 0;
+                [self.player seekTo:0];
+                [self pause];
+                return;
+            });
         }
         self.playProgress = progress;
         [self updateUI];
@@ -172,8 +175,8 @@
         }
     }else if (sender.state == UIGestureRecognizerStateChanged) {
         CGPoint touchPoint = [sender locationInView:self];
-        CGFloat startX = self.wholeProgressView.bounds.origin.x - 6;
-        CGFloat endX = self.wholeProgressView.bounds.origin.x + self.wholeProgressView.bounds.size.width - 35;
+        CGFloat startX = self.wholeProgressView.x;
+        CGFloat endX = self.wholeProgressView.x + self.wholeProgressView.width - 39;
         touchPoint.x = MAX(startX, touchPoint.x);
         touchPoint.x = MIN(endX, touchPoint.x);
         
@@ -209,7 +212,7 @@
     
     [self.playButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(45.0f, 45.0f));
-        make.left.mas_equalTo(self.wholeProgressView.mas_left).mas_offset((self.wholeProgressView.bounds.size.width - 35) * self.playProgress - 6);
+        make.left.mas_equalTo(self.wholeProgressView.mas_left).mas_offset((self.wholeProgressView.bounds.size.width) * self.playProgress - 5);
         make.top.mas_equalTo(0);
     }];
     
@@ -253,10 +256,19 @@
     }];
 }
 
+- (void)pause {
+    [self.player pause];
+    self.playProgress = 0;
+    [self.playButton setImage:[UIImage imageNamed:@"播放按钮正常态"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"播放按钮点击态"] forState:UIControlStateHighlighted];
+    [self updateUI];
+}
+
 - (void)stop {
     self.player = nil;
     self.playProgress = 0;
-    [self.playButton setImage:[UIImage imageNamed:@"播放"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"播放按钮正常态"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"播放按钮点击态"] forState:UIControlStateHighlighted];
     [self updateUI];
 }
 

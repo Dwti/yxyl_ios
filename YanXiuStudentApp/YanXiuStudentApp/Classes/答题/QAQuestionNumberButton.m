@@ -35,8 +35,6 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
 
 - (void)setupUI {
     
-//    self.textColor = @"ffffff";
-//    self.highlightedTextColor = @"ffffff";
     self.layer.cornerRadius = kCornerRadius;
     self.clipsToBounds = YES;
     self.isWaveHighlight = YES;

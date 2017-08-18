@@ -44,7 +44,7 @@
 
 - (void)setupUI {
     self.circleImageView = [[UIImageView alloc]init];
-    self.circleImageView.image = [UIImage imageNamed:@"绿"];
+    self.circleImageView.image = [UIImage imageNamed:@"篮子绿底"];
     
     self.bgView = [[UIView alloc]init];
     self.bgView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
@@ -166,7 +166,7 @@
     _isFold = isFold;
     if (isFold) {
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"连线题篮子正常态"] forState:UIControlStateNormal];
-        [self.foldButton setBackgroundImage:[UIImage imageNamed:@"连线题篮子正常态"] forState:UIControlStateHighlighted];
+        [self.foldButton setBackgroundImage:[UIImage imageNamed:@"连线题篮子点击态"] forState:UIControlStateHighlighted];
     }else {
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"页面弹窗的收起按钮正常态"] forState:UIControlStateNormal];
         [self.foldButton setBackgroundImage:[UIImage imageNamed:@"页面弹窗的收起按钮点击态"] forState:UIControlStateHighlighted];
@@ -226,14 +226,16 @@
         [self.tableView insertSubview:rightImageView aboveSubview:selectedCell];
         
         selectedCell.containerView.hidden = YES;
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             leftImageView.transform = CGAffineTransformMakeRotation(-M_PI_2*0.7);
             rightImageView.transform = CGAffineTransformMakeRotation(M_PI_2*0.7);
             leftImageView.alpha = 0;
             rightImageView.alpha = 0;
+            selectedCell.deleteButton.alpha = 0;
         } completion:^(BOOL finished) {
             [leftImageView removeFromSuperview];
             [rightImageView removeFromSuperview];
+            [selectedCell.deleteButton removeFromSuperview];
             BLOCK_EXEC(self.deleteBlock,twinOption);
         }];
         

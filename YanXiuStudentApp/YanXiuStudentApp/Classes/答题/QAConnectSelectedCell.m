@@ -75,8 +75,7 @@ static const CGFloat kFixHeight = 45.f;
     self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:self.deleteButton];
     [self.deleteButton setHitTestEdgeInsets:UIEdgeInsetsMake(50, 50, 50, 50)];
-    [self.deleteButton setImage:[UIImage imageNamed:@"连线题连接内容删掉按钮"] forState:UIControlStateNormal];
-    [self.deleteButton setImage:[UIImage imageNamed:@"连线连接内容删掉按钮点击态"] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[UIImage imageNamed:@"连线题连接删掉按钮正常态"] forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(0);

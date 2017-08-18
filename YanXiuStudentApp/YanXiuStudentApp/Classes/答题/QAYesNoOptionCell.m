@@ -94,9 +94,9 @@
 - (void)setChoosed:(BOOL)choosed {
     _choosed = choosed;
     if (choosed) {
-        self.selectionImageView.image = [UIImage imageNamed:@"单选选择框已选择"];
+        self.selectionImageView.image = [UIImage imageNamed:@"单选框已选择"];
     }else {
-        self.selectionImageView.image = [UIImage imageNamed:@"单选选择框"];
+        self.selectionImageView.image = [UIImage imageNamed:@"选择框"];
     }
 }
 
@@ -108,14 +108,14 @@
 - (void)setMarkType:(OptionCellMarkType)markType {
     _markType = markType;
     if (markType == OptionMarkType_Correct) {
-        self.orderBgImageView.image = [UIImage imageNamed:@"题目解析-正确答案标记"];
+        self.orderBgImageView.image = [UIImage imageNamed:@"答对题目-正常态"];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.choosed = self.choosed;
     }else if (markType == OptionMarkType_Wrong) {
-        self.orderBgImageView.image = [UIImage imageNamed:@"题目解析-错误答案标记"];
+        self.orderBgImageView.image = [UIImage imageNamed:@"答错题目-正常态"];
         self.titleLabel.textColor = [UIColor whiteColor];
         if (self.choosed) {
-            self.selectionImageView.backgroundColor = [UIColor redColor];
+            self.selectionImageView.image = [UIImage imageNamed:@"单选题已选择错误"];
         }
     }else {
         self.orderBgImageView.image = nil;

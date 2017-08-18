@@ -105,7 +105,7 @@ static const CGFloat kOffect = 16.f;
     }];
     
     self.graycircleView = [[UIImageView alloc]init];
-    self.graycircleView.image = [UIImage imageNamed:@"灰底"];
+    self.graycircleView.image = [UIImage imageNamed:@"篮子灰底"];
     [self addSubview:self.graycircleView];
     [self.graycircleView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_bottom).offset(-kBottomViewHeight - 21);

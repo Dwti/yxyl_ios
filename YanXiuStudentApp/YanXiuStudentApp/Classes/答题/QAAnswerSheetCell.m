@@ -42,11 +42,11 @@ NSString * const kQASelectedQuestionKey = @"kQASelectedQuestionKey";
 - (void)setHasWrote:(BOOL)hasWrote {
     _hasWrote = hasWrote;
     if (hasWrote) {
-        self.itemButton.imageName = @"已做题号";
+        self.itemButton.imageName = @"答题卡已做题背景";
         self.itemButton.textColor = [UIColor colorWithHexString:@"89e00d"];
         self.itemButton.highlightedTextColor = [UIColor whiteColor];
     }else {
-        self.itemButton.imageName = @"未做题号";
+        self.itemButton.imageName = @"答题卡未做题背景";
         self.itemButton.textColor = [UIColor colorWithHexString:@"999999"];
         self.itemButton.highlightedTextColor = [UIColor whiteColor];
     }
