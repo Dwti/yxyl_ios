@@ -34,7 +34,7 @@
     switchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
     switchButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
     [switchButton setBackgroundImage:[UIImage imageNamed:@"镜头旋转icon正常态-"] forState:UIControlStateNormal];
-    [switchButton setBackgroundImage:[UIImage imageNamed:@"镜头转换icon点击态"] forState:UIControlStateNormal];
+    [switchButton setBackgroundImage:[UIImage imageNamed:@"镜头转换icon点击态"] forState:UIControlStateHighlighted];
     [switchButton addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
     [containerView addSubview:switchButton];
     [switchButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -67,7 +67,8 @@
         make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
     UIButton *exitButton = [[UIButton alloc]init];
-    [exitButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [exitButton setBackgroundImage:[UIImage imageNamed:@"关闭拍照页面icon正常态"] forState:UIControlStateNormal];
+    [exitButton setBackgroundImage:[UIImage imageNamed:@"关闭拍照页面icon点击态"] forState:UIControlStateHighlighted];
     [exitButton addTarget:self action:@selector(exitAction) forControlEvents:UIControlEventTouchUpInside];
     [containerView addSubview:exitButton];
     [exitButton mas_makeConstraints:^(MASConstraintMaker *make) {

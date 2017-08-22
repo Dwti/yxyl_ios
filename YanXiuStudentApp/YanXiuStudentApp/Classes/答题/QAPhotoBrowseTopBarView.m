@@ -25,7 +25,8 @@
 - (void)setupUI {
     self.backgroundColor = [[UIColor colorWithHexString:@"89e00d"]colorWithAlphaComponent:0.86];
     UIButton *backButton = [[UIButton alloc]init];
-    [backButton setImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"返回上一页icon白色正常态"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"返回上一页icon白色点击态"] forState:UIControlStateHighlighted];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:backButton];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {

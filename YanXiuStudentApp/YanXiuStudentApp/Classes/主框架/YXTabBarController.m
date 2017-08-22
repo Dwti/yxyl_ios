@@ -65,13 +65,14 @@
     }
     UIButton *b = self.tabButtons[index];
     b.selected = YES;
-    [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        b.transform = CGAffineTransformMakeScale(1.2, 1.2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration: 0.7 delay:0 usingSpringWithDamping:0.2 initialSpringVelocity:0 options:0 animations:^{
+    [UIView animateKeyframesWithDuration:0.08 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeCubicPaced animations:^{
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.04 animations:^{
+            b.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.04 relativeDuration:0.04 animations:^{
             b.transform = CGAffineTransformMakeScale(1.0, 1.0);
-        } completion:nil];
-    }];
+        }];
+    } completion:nil];
     
     //播放音效
     NSString *filePath = [[NSBundle mainBundle]pathForResource:@"tab 栏" ofType:@"wav"];
@@ -111,7 +112,7 @@
     
     [btn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateSelected];
-
+    
     UIImage *iconNormal = [UIImage imageNamed:[NSString stringWithFormat:@"%@icon正常态",title]];
     UIImage *iconSelected = [UIImage imageNamed:[NSString stringWithFormat:@"%@icon选择态",title]];
     
@@ -119,7 +120,7 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setImage:iconNormal forState:UIControlStateNormal];
     [btn setImage:iconSelected forState:UIControlStateSelected];
-
+    
     [btn sizeToFit];
     CGSize imageSize = btn.imageView.frame.size;
     CGSize titleSize = btn.titleLabel.frame.size;
@@ -129,7 +130,7 @@
     
     CGFloat width = floorf((self.tabBar.frame.size.width) / 3);
     btn.frame = CGRectMake(0, 0, width, 65);
-
+    
     return btn;
 }
 

@@ -167,7 +167,4 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
     BLOCK_EXEC(self.buttonActionBlock);
 }
 
-- (void)cancelTrackingWithEvent:(nullable UIEvent *)event {
-    [self setSubviewsTextColor:self.textColor];
-}
 @end
