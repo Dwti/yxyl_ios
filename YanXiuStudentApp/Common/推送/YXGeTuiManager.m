@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *currentUid;
 @property (nonatomic, assign) BOOL sdkResumedMessage;
 @property (nonatomic, assign) BOOL handleddByAPNS;
+@property (nonatomic, assign) CGFloat notificationViewHeight;
 
 @end
 
@@ -167,29 +168,39 @@
 - (void)showNotificationView:(YXApnsContentModel *)apns {
     UIView *rootView = [UIApplication sharedApplication].keyWindow;
     
-    UIView *notificationView = [[UIView alloc] init];
-    notificationView.frame = CGRectMake(0, -100, CGRectGetWidth(rootView.frame), 100);
-    notificationView.backgroundColor = [UIColor colorWithHexString:@"21CCCB"];
-    notificationView.layer.shadowColor = [UIColor colorWithHexString:@"000000"].CGColor;
-    notificationView.layer.shadowOffset = CGSizeMake(2, 2);
-    notificationView.layer.shadowRadius = 2;
-    notificationView.layer.shadowOpacity = 0.2;
-    [rootView addSubview:notificationView];
-
+    self.notificationViewHeight = 0;
+    CGFloat width = rootView.frame.size.width;
+    CGFloat textWidth = width - 30 - 4;
+    
     UILabel *alertTitle = [[UILabel alloc] init];
     alertTitle.text = apns.msg_title;
-    alertTitle.textColor = [UIColor colorWithHexString:@"006666"];
-    alertTitle.font = [UIFont systemFontOfSize:14];
+    alertTitle.textColor = [UIColor whiteColor];
+    alertTitle.font = [UIFont systemFontOfSize:16];
     alertTitle.numberOfLines = 0;
-    alertTitle.layer.shadowRadius = 1;
-    alertTitle.layer.shadowColor = [UIColor colorWithHexString:@"33ffff"].CGColor;
+    alertTitle.textAlignment = NSTextAlignmentCenter;
+    CGSize titleSize = [apns.msg_title boundingRectWithSize:CGSizeMake(textWidth , MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:alertTitle.font} context:nil].size;
+    self.notificationViewHeight = titleSize.height + 50;
+    
+    UIView *notificationView = [[UIView alloc] init];
+    notificationView.frame = CGRectMake(0, -self.notificationViewHeight, CGRectGetWidth(rootView.frame), self.notificationViewHeight);
+    notificationView.backgroundColor = [UIColor whiteColor];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:notificationView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(6, 6)];    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = notificationView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    notificationView.layer.mask = maskLayer;
+    [rootView addSubview:notificationView];
+    
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(2, 2, width - 4, self.notificationViewHeight - 4)];
+    bgView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
+    UIBezierPath *bgMaskPath = [UIBezierPath bezierPathWithRoundedRect:bgView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(6, 6)];    CAShapeLayer *bgMaskLayer = [CAShapeLayer layer];
+    bgMaskLayer.frame = bgView.bounds;
+    bgMaskLayer.path = bgMaskPath.CGPath;
+    bgView.layer.mask = bgMaskLayer;
+    bgView.clipsToBounds = YES;
+    [notificationView addSubview:bgView];
     
     [notificationView addSubview:alertTitle];
-    [alertTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(30);
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-    }];
+    alertTitle.frame = CGRectMake(15, 25, textWidth, titleSize.height);
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] init];
     [notificationView addGestureRecognizer:tapRecognizer];
@@ -209,7 +220,7 @@
     
     // auto hide after 2 seconds
     [UIView animateWithDuration:0.3 animations:^{
-        notificationView.frame = CGRectMake(0, 0, CGRectGetWidth(rootView.frame), 100);
+        notificationView.frame = CGRectMake(0, 0, CGRectGetWidth(rootView.frame), self.notificationViewHeight);
     } completion:^(BOOL finished) {
         STRONG_SELF;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -220,7 +231,7 @@
 
 - (void)hideNotificationView:(UIView *)view {
     [UIView animateWithDuration:0.3 animations:^{
-        view.frame = CGRectMake(0, -100, CGRectGetWidth(view.frame), 100);
+        view.frame = CGRectMake(0, -self.notificationViewHeight, CGRectGetWidth(view.frame), self.notificationViewHeight);
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
     }];
