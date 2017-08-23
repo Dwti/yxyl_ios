@@ -69,7 +69,6 @@
     [super setupUI];
     self.tableView.scrollEnabled = NO;
     [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
-    [self updateTableViewLayout];
     
     UIView *optionsBgView = [[UIView alloc]init];
     optionsBgView.backgroundColor = [UIColor whiteColor];
@@ -80,7 +79,7 @@
     [self addSubview:optionsBgView];
     [optionsBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.tableView.mas_bottom).mas_offset(-10);
+        make.top.mas_equalTo(self.titleView.mas_bottom);
         make.bottom.mas_equalTo(-155);
     }];
     
@@ -105,6 +104,7 @@
     }];
     QAClassifyOptionCell *cell = [QAClassifyOptionCell cellWithOption:self.optionInfoArray.firstObject.option];
     [self.collectionView registerClass:[cell class] forCellWithReuseIdentifier:@"OptionCell"];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView"];
     
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.height-155, self.width, 110)];
     scrollView.showsHorizontalScrollIndicator = NO;
@@ -151,18 +151,6 @@
     if (!hasHalfView && scrollView.contentSize.width>scrollView.width) {
         scrollView.contentOffset = CGPointMake(MIN(40, scrollView.contentSize.width-scrollView.width), 0);
     }
-}
-
-- (void)updateTableViewLayout {
-    CGFloat tableHeight = 0.f;
-    for (NSNumber *num in self.cellHeightArray) {
-        tableHeight += num.floatValue;
-    }
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleView.mas_bottom);
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(tableHeight);
-    }];
 }
 
 - (NSInteger)optionsCountForCategoryIndex:(NSInteger)index {
@@ -376,9 +364,29 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
+        [headerView addSubview:self.tableView];
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        return headerView;
+    }
+    return nil;
+}
+
 #pragma mark - UICollectionViewDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return self.optionInfoArray[indexPath.row].size;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    CGFloat tableHeight = 0.f;
+    for (NSNumber *num in self.cellHeightArray) {
+        tableHeight += num.floatValue;
+    }
+    return CGSizeMake(SCREEN_WIDTH, tableHeight-10);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -412,12 +420,6 @@
     cell.delegate = self;
     [cell updateWithString:self.data.stem isSubQuestion:self.isSubQuestionView];
     return cell;
-}
-
-#pragma mark - YXHtmlCellHeightDelegate
-- (void)tableViewCell:(UITableViewCell *)cell updateWithHeight:(CGFloat)height {
-    [super tableViewCell:cell updateWithHeight:height];
-    [self updateTableViewLayout];
 }
 
 @end

@@ -142,8 +142,10 @@
         STRONG_SELF
         if (image) {
             UIImage *scaledImage = [self scaledHeadImage:image];
-            [self.mineButton setImage:scaledImage forState:UIControlStateNormal];
             [self.mineButton setImage:scaledImage forState:UIControlStateSelected];
+            UIImage *grayImage = [scaledImage nyx_grayImage];
+            UIImage *scaledGrayImage = [self scaledHeadImage:grayImage];
+            [self.mineButton setImage:[scaledGrayImage nyx_imageWithAlpha:1.0] forState:UIControlStateNormal];
         }
     }];
 }
@@ -154,7 +156,7 @@
     CGFloat y = (35-scaledSize.height)/2;
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(35, 35), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextAddEllipseInRect(context, CGRectMake(0, 0, 35, 35));
+    CGContextAddEllipseInRect(context, CGRectMake(1, 1, 33, 33));
     CGContextClip(context);
     [image drawInRect:CGRectMake(x, y, scaledSize.width, scaledSize.height)];
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();

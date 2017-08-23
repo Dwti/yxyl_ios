@@ -35,6 +35,7 @@
                    limitSize:(NSInteger)limitSize;
 
 - (UIImage *)scaleToSize:(CGSize)size;
+- (UIImage *)nyx_grayImage; // 创建灰度图片
 
 - (UIImage *)nyx_imageWithAlpha:(CGFloat)alpha;
 - (CGSize)nyx_aspectFillSizeWithSize:(CGSize)size;

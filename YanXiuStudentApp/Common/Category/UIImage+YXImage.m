@@ -69,6 +69,29 @@
     return scaledImage;
 }
 
+- (UIImage *)nyx_grayImage {
+    int bitmapInfo =kCGImageAlphaNone;
+    int width = self.size.width*self.scale;
+    int height = self.size.height*self.scale;
+    CGColorSpaceRef colorSpace =CGColorSpaceCreateDeviceGray();
+    CGContextRef context =CGBitmapContextCreate (nil,
+                                                 width,
+                                                 height,
+                                                 8,     // bits per component
+                                                 0,
+                                                 colorSpace,
+                                                 bitmapInfo);
+    CGColorSpaceRelease(colorSpace);
+    if (context ==NULL) {
+        return nil;
+    }
+    CGContextDrawImage(context,
+                       CGRectMake(0,0, width, height), self.CGImage);
+    UIImage *grayImage = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
+    CGContextRelease(context);
+    return grayImage;
+}
+
 - (UIImage *)nyx_imageWithAlpha:(CGFloat)alpha {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
