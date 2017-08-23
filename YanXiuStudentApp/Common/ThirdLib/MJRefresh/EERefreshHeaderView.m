@@ -8,7 +8,7 @@
 
 #import "EERefreshHeaderView.h"
 
-#define kMaxBottomHeight (SCREEN_HEIGHT>650? 45.f:30.f)
+#define kMaxBottomHeight 45.f
 
 @interface EERefreshHeaderView()
 @property (nonatomic, strong) MJRefreshHeaderView *mjHeaderView;

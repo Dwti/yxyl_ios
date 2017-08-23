@@ -130,7 +130,7 @@
     if (offsetY <= validY) return;
     
     if (_scrollView.isDragging) {
-        CGFloat validOffsetY = validY + MJRefreshViewHeight + [self.eeHeaderView bottomHeight];
+        CGFloat validOffsetY = validY + [self.eeHeaderView bottomHeight];
 //        CGFloat r = offsetY / validOffsetY;
 //        self.imageView.transform = CGAffineTransformMakeRotation(2*M_PI*r);
 //        if (_state == MJRefreshStateNormal) {
