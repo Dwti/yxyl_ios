@@ -49,6 +49,12 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
     
     self.detailLabel = [[UILabel alloc]init];
     self.detailLabel.font = [UIFont fontWithName:YXFontMetro_Regular size:16];
+    
+    [self addTarget:self action:@selector(touchDownAction) forControlEvents:UIControlEventTouchDown];
+    [self addTarget:self action:@selector(touchUpInsideAction) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:self action:@selector(touchDragOutsideAction) forControlEvents:UIControlEventTouchDragOutside];
+    [self addTarget:self action:@selector(touchDragInsideAction) forControlEvents:UIControlEventTouchDragInside];
+    [self addTarget:self action:@selector(touchCancelAction) forControlEvents:UIControlEventTouchCancel];
 }
 
 - (void)layoutQuestionNumLabel {
@@ -135,36 +141,26 @@ typedef NS_ENUM(NSInteger, QAQuestionNumberStyle) {
     self.buttonActionBlock = block;
 }
 
-#pragma mark - touch event
-- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchPoint = [touch locationInView:self];
-    if (CGRectContainsPoint(self.bounds, touchPoint)) {
-        [self setSubviewsTextColor:self.highlightedTextColor];
-        return YES;
-    }
-    
-    return NO;
+#pragma mark - Action
+
+- (void)touchDownAction {
+    [self setSubviewsTextColor:self.highlightedTextColor];
 }
 
-- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-    CGPoint touchPoint = [touch locationInView:self];
-    CGRect rect = self.frame;
-    rect.origin.x = rect.origin.x - 70;
-    rect.origin.y = rect.origin.y - 70;
-    rect.size.width  = rect.size.width + 140;
-    rect.size.height = rect.size.height + 140;
-    
-    if (CGRectContainsPoint(rect, touchPoint)) {
-        [self setSubviewsTextColor:self.highlightedTextColor];
-    }else {
-        [self setSubviewsTextColor:self.textColor];
-    }
-    return YES;
-}
-
-- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
+- (void)touchUpInsideAction {
     [self setSubviewsTextColor:self.textColor];
     BLOCK_EXEC(self.buttonActionBlock);
 }
 
+- (void)touchDragOutsideAction {
+    [self setSubviewsTextColor:self.textColor];
+}
+
+- (void)touchDragInsideAction {
+    [self setSubviewsTextColor:self.highlightedTextColor];
+}
+
+- (void)touchCancelAction {
+    [self setSubviewsTextColor:self.textColor];
+}
 @end
