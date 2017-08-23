@@ -21,6 +21,7 @@
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 55, 0);
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     [self addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleView.mas_bottom);

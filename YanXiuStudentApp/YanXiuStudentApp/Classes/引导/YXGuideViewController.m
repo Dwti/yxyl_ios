@@ -52,7 +52,7 @@ static NSString *const YXGuideViewShowedKey = @"kYXGuideViewShowedKey";
     UILabel *subtitleLabel = [[UILabel alloc]init];
     subtitleLabel.text = @"轻松做题，让学习拥有美好的体验";
     subtitleLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
-    subtitleLabel.font = [UIFont boldSystemFontOfSize:15];
+    subtitleLabel.font = [UIFont systemFontOfSize:15];
     subtitleLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:subtitleLabel];
     [subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

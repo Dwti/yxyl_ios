@@ -90,7 +90,7 @@
         if (rect.origin.y+rect.size.height > visibleHeight) {
             CGPoint offset = self.tableView.contentOffset;
             offset.y = offset.y+rect.origin.y+rect.size.height-visibleHeight;
-            [self.tableView setContentOffset:offset animated:YES];
+            self.tableView.contentOffset = offset;
         }
     }
 }
