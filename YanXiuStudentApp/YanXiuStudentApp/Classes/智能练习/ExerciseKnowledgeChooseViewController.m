@@ -21,10 +21,12 @@
 @property (nonatomic, strong) YXChapterPointSegmentControl *chooseChapterPointControl;
 @property (nonatomic, strong) YXChooseVolumnButton *chooseVolumeButton;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
-@property (nonatomic, strong) NSArray *volumeArray;
-
 @property (nonatomic, strong) ExerciseChapterTreeViewController *chapterVC;
 @property (nonatomic, strong) ExerciseKnpTreeViewController *knpVC;
+
+@property (nonatomic, strong) NSArray *volumeArray;
+@property (nonatomic, strong) GetEditionRequestItem_edition_volume *chooseVolume;
+
 @end
 
 @implementation ExerciseKnowledgeChooseViewController
@@ -177,6 +179,7 @@
             return;
         }
         GetEditionRequestItem_edition_volume *volume = self.volumeArray[index];
+        self.chooseVolume = volume;
         CGSize size = [self.chooseVolumeButton updateWithTitle:volume.name];
         
         [self setupChooseVolumeButtonLayoutWithSize:size];
@@ -206,7 +209,11 @@
     [self.view.window bringSubviewToFront:self.chooseVolumeView];
     self.chooseVolumeView.frame = self.view.window.bounds;
     self.chooseVolumeButton.bExpand = YES;
+    NSUInteger index = [self.volumeArray containsObject:self.chooseVolume] ? [self.volumeArray indexOfObject:self.chooseVolume] : 0;
+    [self.chooseVolumeView updateWithDatas:self.volumeArray
+                             selectedIndex:index];
     [self.chooseVolumeView showWithAnmination];
+
 }
 
 @end
