@@ -28,9 +28,9 @@
 
 - (instancetype)initWithMJHeaderView:(MJRefreshHeaderView *)headerView {
     if (self = [super initWithFrame:headerView.frame]) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithHexString:@"dee0de"];
         UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, -500, self.width, 500)];
-        topView.backgroundColor = [UIColor whiteColor];
+        topView.backgroundColor = [UIColor colorWithHexString:@"dee0de"];
         [self addSubview:topView];
         self.mjHeaderView = headerView;
         self.mjHeaderView.frame = self.bounds;
