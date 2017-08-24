@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self nyx_setupLeftWithCustomView:[UIView new]];
     [self setupUI];
     [self setupObserver];
 }
