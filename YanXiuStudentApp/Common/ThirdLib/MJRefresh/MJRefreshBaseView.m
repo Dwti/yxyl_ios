@@ -68,7 +68,6 @@
 - (UIImageView *)imageView
 {
     if (!_imageView) {
-        _imageView.backgroundColor = [UIColor redColor];
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 55, 55)];
         _imageView.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
         _imageView.image = [UIImage imageNamed:@"下拉刷新白色背景"];

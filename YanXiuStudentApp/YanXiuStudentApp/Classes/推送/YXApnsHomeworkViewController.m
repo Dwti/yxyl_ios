@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     WEAK_SELF
-    [self nyx_setupLeftWithImage:[UIImage imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 26, 26)] action:^{
+    [self nyx_setupLeftWithImageName:@"返回上一页icon绿色正常态" highlightImageName:@"返回上一页icon绿色点击态" action:^{
         STRONG_SELF
         [self dismissViewControllerAnimated:YES completion:nil];
     }];

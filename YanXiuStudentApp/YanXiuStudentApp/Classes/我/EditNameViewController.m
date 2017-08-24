@@ -82,7 +82,8 @@
         make.height.mas_equalTo(75);
     }];
     UIButton *clearButton = [[UIButton alloc]init];
-    [clearButton setBackgroundImage:[UIImage imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
+    [clearButton setBackgroundImage:[UIImage imageNamed:@"绑定手机删除当前编辑文字icon正常态"] forState:UIControlStateNormal];
+    [clearButton setBackgroundImage:[UIImage imageNamed:@"绑定手机删除当前编辑文字icon点击态"] forState:UIControlStateHighlighted];
     [clearButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:clearButton];
     [clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
