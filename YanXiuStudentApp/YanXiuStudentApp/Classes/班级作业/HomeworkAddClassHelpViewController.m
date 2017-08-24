@@ -83,7 +83,7 @@
         make.top.mas_equalTo(questionLabel2.mas_bottom).mas_offset(20);
         make.right.mas_equalTo(-30);
     }];
-    UILabel *label4 = [self labelWithText:@"第二步：同学们在“易学易练学生端”作业页面，点击“加入班级”输入班级号码，即可加入班级，然后就可以通过手机来完成来自老师布置的作业了。"];
+    UILabel *label4 = [self labelWithText:@"第二步：同学们在“易学易练学生端”作业页面，输入班级号码，即可加入班级，然后就可以通过手机来完成来自老师布置的作业了。"];
     [self.contentView addSubview:label4];
     [label4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(label3.mas_left);
