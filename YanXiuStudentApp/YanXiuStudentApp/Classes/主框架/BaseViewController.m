@@ -82,7 +82,7 @@
         if (vcArray[0] != self) {
             WEAK_SELF
             if (naviTheme == NavigationBarTheme_Green) {
-                [self nyx_setupLeftWithImageName:@"返回上一页icon白色正常态" highlightImageName:@"返回上一页icon白色正常态" action:^{
+                [self nyx_setupLeftWithImageName:@"返回上一页icon白色正常态" highlightImageName:@"返回上一页icon白色点击态" action:^{
                     STRONG_SELF
                     [self backAction];
                 }];

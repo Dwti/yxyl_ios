@@ -105,19 +105,10 @@
     }];
 }
 - (void)updateUserInfoWithName:(NSString *)name updatedBlock:(void (^)(NSError *))updatedBlock {
-    self.updateUserInfoRequest = [[YXUpdateUserInfoRequest alloc]init];
-    self.updateUserInfoRequest.realname = name;
-    WEAK_SELF
-    [self.updateUserInfoRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
-        STRONG_SELF
-        if (error) {
-            BLOCK_EXEC(updatedBlock,error);
-        }else{
-            [YXUserManager sharedManager].userModel.realname = name;
-            [[YXUserManager sharedManager] saveUserData];
-            BLOCK_EXEC(updatedBlock,nil);
-        }
-    }];
+    if ([name isEqualToString:[YXUserManager sharedManager].userModel.realname]) {
+        return;
+    }
+    [[YXUpdateUserInfoHelper instance] requestWithType:YXUpdateUserInfoTypeRealname param:@{@"realname":name} completion:nil];
 }
 
 + (void)cancelJoiningClassWithClassID:(NSString *)classID completeBlock:(void(^)(HttpBaseRequestItem *item, NSError *error))completeBlock {

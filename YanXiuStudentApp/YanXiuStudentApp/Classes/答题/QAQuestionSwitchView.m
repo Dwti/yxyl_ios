@@ -33,6 +33,7 @@
     self.preButton = [[UIButton alloc]init];
     [self.preButton setTitle:@"上一题" forState:UIControlStateNormal];
     [self.preButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+    [self.preButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateHighlighted];
     [self.preButton setImage:[UIImage imageNamed:@"上一题箭头正常态"] forState:UIControlStateNormal];
     [self.preButton setImage:[UIImage imageNamed:@"上一题箭头点击态"] forState:UIControlStateHighlighted];
     self.preButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -50,6 +51,7 @@
     self.nextButton = [[UIButton alloc]init];
     [self.nextButton setTitle:@"下一题" forState:UIControlStateNormal];
     [self.nextButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+    [self.nextButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateHighlighted];
     [self.nextButton setImage:[UIImage imageNamed:@"下一题箭头正常态"] forState:UIControlStateNormal];
     [self.nextButton setImage:[UIImage imageNamed:@"下一题箭头点击态"] forState:UIControlStateHighlighted];
     self.nextButton.titleLabel.font = [UIFont systemFontOfSize:13];

@@ -69,10 +69,6 @@
         [self requestForMistakeEdition];
     }];
     [self.view addSubview:self.errorView];
-    
-    self.emptyView = [[EmptyView alloc] init];
-    self.emptyView.hidden = YES;
-    [self.view addSubview:_emptyView];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,9 +95,6 @@
             self.errorView.hidden = NO;
         }else{
             if (item.subjectMistakes.count == 0) {
-                if (item.status.desc) {
-                    self.emptyView.title = item.status.desc;
-                }
                 self.emptyView.hidden = NO;
                 self.tableView.hidden = YES;
             }else{

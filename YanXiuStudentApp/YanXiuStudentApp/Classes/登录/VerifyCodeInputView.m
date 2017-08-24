@@ -107,6 +107,7 @@ static const NSInteger kTimerDuration = 45;
         }];
         [self.timer resume];
     }
+    [self.codeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
 }
 
 - (void)countdownTimer {
@@ -125,6 +126,7 @@ static const NSInteger kTimerDuration = 45;
     self.secondsRemained = 0;
     [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [self setIsActive:self.secondsRemained <= 0];
+    [self.codeButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateDisabled];
 }
 
 #pragma mark - UITextFieldDelegate

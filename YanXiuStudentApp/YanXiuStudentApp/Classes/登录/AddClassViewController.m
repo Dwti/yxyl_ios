@@ -101,8 +101,6 @@
         make.top.mas_equalTo(self.nextStepButton.mas_bottom).mas_offset(30);
         make.bottom.mas_equalTo(-40);
     }];
-    
-    [self.numberInputView becomeFirstResponder];
 }
 
 - (void)skipAction {

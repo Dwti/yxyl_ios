@@ -52,8 +52,9 @@
     self.pickerView.delegate = self;
     [self.view addSubview:self.pickerView];
     [self.pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(125*kPhoneWidthRatio);
-        make.right.mas_equalTo(-125*kPhoneWidthRatio);
+//        make.left.mas_equalTo(125*kPhoneWidthRatio);
+//        make.right.mas_equalTo(-125*kPhoneWidthRatio);
+        make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(400);
         make.centerY.mas_equalTo(self.view.mas_centerY).mas_offset(-30);
     }];
@@ -133,6 +134,8 @@
                 CGRect rect = singleLine.frame;
                 rect.origin.y -= 1;
                 rect.size.height = 2;
+                rect.origin.x = (SCREEN_WIDTH-120)/2;
+                rect.size.width = 120;
                 singleLine.frame = rect;
             }
         }

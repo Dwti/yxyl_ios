@@ -59,6 +59,7 @@
     
     self.emptyView = [[EmptyView alloc]init];
     self.emptyView.title = @"暂无题目";
+    self.emptyView.image = [UIImage imageNamed:@"没有练习历史插图"];
 }
 
 - (void)fetchTreeData {

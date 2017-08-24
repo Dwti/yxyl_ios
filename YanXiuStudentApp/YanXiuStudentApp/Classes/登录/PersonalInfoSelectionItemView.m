@@ -48,7 +48,7 @@
     }];
     UIButton *coverButton = [[UIButton alloc]init];
     [coverButton setImage:[UIImage imageNamed:@"完善资料学校箭头icon正常态"] forState:UIControlStateNormal];
-    [coverButton setImage:[UIImage imageNamed:@"完善资料学校箭头icon点击态"] forState:UIControlStateNormal];
+    [coverButton setImage:[UIImage imageNamed:@"完善资料学校箭头icon点击态"] forState:UIControlStateHighlighted];
     [coverButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:coverButton];
     [coverButton mas_makeConstraints:^(MASConstraintMaker *make) {

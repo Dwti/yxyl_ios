@@ -80,9 +80,6 @@
             [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(0);
             }];
-            if (item.status.desc) {
-                self.emptyView.title = item.status.desc;
-            }
             return;
         }
         if (error) {
