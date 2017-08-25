@@ -38,7 +38,6 @@
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     self.collectionImageView = [[UIImageView alloc]init];
     self.collectionImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.collectionImageView.layer.cornerRadius = 30;
     self.collectionImageView.clipsToBounds = YES;
     [self.contentView addSubview:self.collectionImageView];
     [self.collectionImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,6 +45,10 @@
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"默认相册胶卷"]];
+    imageView.frame = CGRectMake(0, 0, 60, 60);
+    self.collectionImageView.layer.mask = imageView.layer;
+    
     self.tagImageView = [[UIImageView alloc]init];
     self.tagImageView.image = [UIImage imageNamed:@"相机胶卷所选胶卷状态标识"];
     self.tagImageView.layer.cornerRadius = 10;

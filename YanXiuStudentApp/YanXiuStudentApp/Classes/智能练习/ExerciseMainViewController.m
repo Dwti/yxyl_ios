@@ -152,7 +152,7 @@
         if (hasChoosedEdition) {
             [self goToExerciseListWithSubject:subject];
         }else {
-            [self goToChooseEditionWithSubject:subject];
+            [self requestEditionsWithSubject:subject];
         }
     }];
     [self.view addSubview:self.textbookVersionView];
@@ -167,16 +167,33 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)goToChooseEditionWithSubject:(GetSubjectRequestItem_subject *)subject {
-    ChooseEditionViewController *vc = [[ChooseEditionViewController alloc]init];
-    vc.subject = subject;
-    vc.type = ChooseEditionFromType_ExerciseMain;
+- (void)requestEditionsWithSubject:(GetSubjectRequestItem_subject *)subject {
     WEAK_SELF
-    [vc setChooseEditionSuccessBlock:^(GetSubjectRequestItem_subject *subject) {
+    [self.view nyx_startLoading];
+    [[ExerciseSubjectManager sharedInstance]requestEditionsWithSubjectID:subject.subjectID completeBlock:^(GetEditionRequestItem *retItem, NSError *error) {
         STRONG_SELF
-        DDLogDebug(@"选中了%@",subject.edition.editionName);
-        [self goToExerciseListWithSubject:subject];
+        [self.view nyx_stopLoading];
+        if (retItem && retItem.editions.count == 0) {
+            if (retItem.status.desc) {
+                [self.view nyx_showToast:retItem.status.desc];
+            }
+            return;
+        }
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        ChooseEditionViewController *vc = [[ChooseEditionViewController alloc]init];
+        vc.subject = subject;
+        vc.type = ChooseEditionFromType_ExerciseMain;
+        vc.item = retItem;
+        WEAK_SELF
+        [vc setChooseEditionSuccessBlock:^(GetSubjectRequestItem_subject *subject) {
+            STRONG_SELF
+            [self goToExerciseListWithSubject:subject];
+        }];
+        [self presentViewController:vc animated:YES completion:nil];
     }];
-    [self.navigationController pushViewController:vc animated:YES];
 }
+
 @end

@@ -944,6 +944,8 @@
 		E93C76161E0D037800F286CF /* ThirdRegisterByJoinClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C76151E0D037800F286CF /* ThirdRegisterByJoinClassModel.m */; };
 		E94E98D81EE8EC2200E94F5C /* QAListenPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */; };
 		E95DE7541E10E9B300B25435 /* LoginUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E95DE7531E10E9B300B25435 /* LoginUtils.m */; };
+		E9627C0B1F53F78C000CF12D /* VolumeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9627C0A1F53F78C000CF12D /* VolumeListCell.m */; };
+		E9627C0C1F53F78C000CF12D /* VolumeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9627C0A1F53F78C000CF12D /* VolumeListCell.m */; };
 		E96FE8401E09399000837DDA /* ClassHomeworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */; };
 		E98169C11F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98169C01F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m */; };
 		E98169C21F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98169C01F2F09DF00BD7575 /* ExerciseKnowledgeChooseViewController.m */; };
@@ -2241,6 +2243,8 @@
 		E94E98D71EE8EC2200E94F5C /* QAListenPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListenPlayView.m; sourceTree = "<group>"; };
 		E95DE7521E10E9B300B25435 /* LoginUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUtils.h; sourceTree = "<group>"; };
 		E95DE7531E10E9B300B25435 /* LoginUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUtils.m; sourceTree = "<group>"; };
+		E9627C091F53F78C000CF12D /* VolumeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeListCell.h; sourceTree = "<group>"; };
+		E9627C0A1F53F78C000CF12D /* VolumeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeListCell.m; sourceTree = "<group>"; };
 		E96FE83E1E09399000837DDA /* ClassHomeworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHomeworkUtils.h; sourceTree = "<group>"; };
 		E96FE83F1E09399000837DDA /* ClassHomeworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHomeworkUtils.m; sourceTree = "<group>"; };
 		E98169BF1F2F09DE00BD7575 /* ExerciseKnowledgeChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseKnowledgeChooseViewController.h; sourceTree = "<group>"; };
@@ -3231,6 +3235,8 @@
 				7C9092821E0946090048C44F /* UpdateAppPromptView.m */,
 				E9AE4A381F2B595800FED26C /* ChooseEditionTopView.h */,
 				E9AE4A391F2B595800FED26C /* ChooseEditionTopView.m */,
+				E9627C091F53F78C000CF12D /* VolumeListCell.h */,
+				E9627C0A1F53F78C000CF12D /* VolumeListCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -6095,6 +6101,7 @@
 				0FE6CA0C1C5A11C3005FBD5B /* YXDelMistakeRequest.m in Sources */,
 				3063D82D1D12A17900C574CC /* NSDictionary+Dictionarys.m in Sources */,
 				7C5565D51DCB225C00966875 /* ExerciseHistoryChapterViewController.m in Sources */,
+				E9627C0C1F53F78C000CF12D /* VolumeListCell.m in Sources */,
 				300E74891D0521FC00C504A8 /* YXRecordManager.m in Sources */,
 				0FBD5B701C4F356A003B7D6D /* YXCommonPageModel.m in Sources */,
 				7C953AD61C586F4800A9A7AF /* YXQACoreTextHelper.m in Sources */,
@@ -6754,6 +6761,7 @@
 				0FEA8F881C7AA793003077A2 /* YXGetPracticeHistoryByKnowRequest.m in Sources */,
 				7CA98EDB1EC2BB44000D49DE /* PersonalInfoSelectionItemView.m in Sources */,
 				30ADD8121D128398000A4321 /* YXErrorTableViewCell.m in Sources */,
+				E9627C0B1F53F78C000CF12D /* VolumeListCell.m in Sources */,
 				7CE892331DCDF3EC009B24F3 /* ThirdRegisterByJoinClassRequest.m in Sources */,
 				7CF6281F1C9FD95900511366 /* (null) in Sources */,
 				7C89DD141DA8927200194120 /* QAQuestionTypeMappingTable.m in Sources */,

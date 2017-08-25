@@ -10,7 +10,7 @@
 typedef void(^BackActionBlock)(void);
 
 @interface QAReportNavView : UIView
-
+@property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) NSString *title;
 
 - (void)setBackActionBlock:(BackActionBlock)block;

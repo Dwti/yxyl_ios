@@ -50,6 +50,8 @@
 + (NSDictionary *)optionsForClozeStem;
 //用于解析项
 + (NSDictionary *)defaultOptionsForAnalysisItems;
+//用于解析中 题目解析项/错题笔记项
++ (NSDictionary *)defaultOptionsForAnalysisAnalysisItems;
 //用于解析中 作答结果项
 + (NSDictionary *)defaultOptionsForAnalysisResultItem;
 //用于归类

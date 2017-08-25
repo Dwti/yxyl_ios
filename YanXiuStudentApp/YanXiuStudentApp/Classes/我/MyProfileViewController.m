@@ -89,6 +89,7 @@
     }];
     
     self.alertView = [[AlertView alloc]init];
+    self.alertView.hideWhenMaskClicked = YES;
     self.alertView.maskColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
     self.alertView.contentView = optionView;
     [self.alertView showInView:self.view.window withLayout:^(AlertView *view) {
@@ -97,6 +98,14 @@
             view.contentView.frame = CGRectMake(0, SCREEN_HEIGHT-235, SCREEN_WIDTH, 235);
         } completion:^(BOOL finished) {
             
+        }];
+    }];
+    [self.alertView setHideBlock:^(AlertView *view) {
+        STRONG_SELF
+        [UIView animateWithDuration:0.3 animations:^{
+            view.contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 235);
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
         }];
     }];
 }

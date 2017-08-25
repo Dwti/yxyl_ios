@@ -60,7 +60,7 @@
         make.size.mas_equalTo(CGSizeMake(75, 75));
     }];
     self.imageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enterAction)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(editAction)];
     [self.imageView addGestureRecognizer:tap];
     
     self.nameLabel = [[UILabel alloc]init];
@@ -92,7 +92,6 @@
     }];
     UIButton *enterButton = [[UIButton alloc]init];
     [enterButton setImage:[UIImage imageNamed:@"绿底白色展开按钮"] forState:UIControlStateNormal];
-    [enterButton addTarget:self action:@selector(enterAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:enterButton];
     [enterButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-12);
@@ -107,6 +106,13 @@
         make.right.mas_equalTo(-60);
         make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
+    
+    UITapGestureRecognizer *enterTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enterAction)];
+    [self addGestureRecognizer:enterTap];
+}
+
+- (void)editAction {
+    BLOCK_EXEC(self.editBlock);
 }
 
 - (void)enterAction {

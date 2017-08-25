@@ -78,6 +78,13 @@
             self.textView.text = [text substringWithRange:NSMakeRange(0, 200)];
         }
         self.sendView.isActive = text.length>0;
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 5;
+        NSDictionary *attributes = @{
+                                     NSFontAttributeName:[UIFont systemFontOfSize:17],
+                                     NSParagraphStyleAttributeName:paragraphStyle
+                                     };
+        self.textView.attributedText = [[NSAttributedString alloc] initWithString:self.textView.text attributes:attributes];
     }];
 }
 

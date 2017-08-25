@@ -40,6 +40,7 @@
 #import "TextBookVersionViewController.h"
 #import "UpdateAppPromptView.h"
 #import "VerifyPhoneViewController.h"
+#import "VolumeListCell.h"
 #import "YXMistakeSubjectViewController.h"
 #import "YXBottomGradientView.h"
 #import "YXEdgeLabel.h"

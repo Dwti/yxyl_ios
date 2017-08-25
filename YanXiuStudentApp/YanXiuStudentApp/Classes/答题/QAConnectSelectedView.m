@@ -75,8 +75,8 @@
     
     self.emptyLabel = [[UILabel alloc]init];
     self.emptyLabel.text = @"尚未开始连线";
-    self.emptyLabel.font = [UIFont boldSystemFontOfSize:27];
-    self.emptyLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
+    self.emptyLabel.font = [UIFont boldSystemFontOfSize:24];
+    self.emptyLabel.textColor = [[UIColor colorWithHexString:@"69ad0a"] colorWithAlphaComponent:0.46];
     self.emptyLabel.textAlignment = NSTextAlignmentCenter;
     
     self.tableView = [[UITableView alloc]init];

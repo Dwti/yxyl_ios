@@ -92,8 +92,8 @@
 
     self.emptyLabel = [[UILabel alloc]init];
     self.emptyLabel.text = @"当前类别下内容为空";
-    self.emptyLabel.font = [UIFont boldSystemFontOfSize:27];
-    self.emptyLabel.textColor = [UIColor colorWithHexString:@"69ad0a"];
+    self.emptyLabel.font = [UIFont boldSystemFontOfSize:24];
+    self.emptyLabel.textColor = [[UIColor colorWithHexString:@"69ad0a"] colorWithAlphaComponent:0.46];
     self.emptyLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.emptyLabel];
     [self.emptyLabel mas_makeConstraints:^(MASConstraintMaker *make) {

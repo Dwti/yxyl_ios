@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, ChooseEditionFromType) {
 @interface ChooseEditionViewController : BaseViewController
 @property (nonatomic, strong) GetSubjectRequestItem_subject *subject;
 @property (nonatomic, assign) ChooseEditionFromType type;
+@property (nonatomic, strong) GetEditionRequestItem *item;
 
 - (void)setChooseEditionSuccessBlock:(ChooseEditionSuccessBlock)block;
 

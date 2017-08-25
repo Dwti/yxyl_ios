@@ -14,8 +14,8 @@
 #import "YXExerciseEmptyView.h"
 
 static const CGFloat kNavViewHeight = 55.0f;
+static const CGFloat kContentViewWidth = 250.0f;
 static const CGFloat kPickerViewHeight = 250.0f;
-static const CGFloat kPickerViewWidth = 250.0f;
 static const CGFloat kPickerViewRowHeight = 50.0f;
 
 @interface ChooseEditionViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
@@ -27,7 +27,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
 @property (nonatomic, strong) LoginActionView *confirmView;
 @property (nonatomic, strong) UILabel *tipLabel;
 
-@property (nonatomic, strong) GetEditionRequestItem *item;
+
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, copy) ChooseEditionSuccessBlock successBlock;
 
@@ -38,16 +38,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"请选择教材版本";
-    
-    self.emptyView = [[YXExerciseEmptyView alloc] init];
-    
-    self.errorView = [[YXCommonErrorView alloc] init];
-    WEAK_SELF
-    [self.errorView setRetryBlock:^{
-        STRONG_SELF
-        [self requestEditionsWithSubject:self.subject];
-    }];
-    [self requestEditionsWithSubject:self.subject];
+    [self setupUI];
     // Do any additional setup after loading the view.
 }
 
@@ -65,41 +56,6 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)requestEditionsWithSubject:(GetSubjectRequestItem_subject *)subject {
-    WEAK_SELF
-    [self.view nyx_startLoading];
-    [[ExerciseSubjectManager sharedInstance]requestEditionsWithSubjectID:subject.subjectID completeBlock:^(GetEditionRequestItem *retItem, NSError *error) {
-        STRONG_SELF
-        [self.view nyx_stopLoading];
-        if (retItem && retItem.editions.count == 0) {
-            self.navigationController.navigationBarHidden = NO;
-            if (retItem.status.desc) {
-                [self.emptyView setEmptyText:retItem.status.desc];
-            }
-            [self.view addSubview:self.emptyView];
-            [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(0);
-            }];
-            return;
-        }
-        if (error) {
-            self.navigationController.navigationBarHidden = NO;
-            [self.view addSubview:self.errorView];
-            [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(0);
-            }];
-            return;
-        }
-        self.navigationController.navigationBarHidden = YES;
-        [self.emptyView removeFromSuperview];
-        [self.errorView removeFromSuperview];
-        self.item = retItem;
-        [self setupUI];
-        [self reloadSelectedEdition];
-    }];
-    
-}
-
 - (void)setupUI{
     self.topView = [[ChooseEditionTopView alloc]init];
     self.topView.subject = self.subject;
@@ -112,10 +68,22 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     
     self.navView = [[QAReportNavView alloc]init];
     self.navView.title = @"请选择教材版本";
+    if (self.type == ChooseEditionFromType_ExerciseMain) {
+        self.navView.imageName = @"关闭当前页面icon";
+    }else if (self.type == ChooseEditionFromType_PersonalCenter) {
+        self.navView.imageName = @"返回上一页icon白色";
+    }
     WEAK_SELF
     [self.navView setBackActionBlock:^{
         STRONG_SELF
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.type == ChooseEditionFromType_ExerciseMain) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            return;
+        }
+        if (self.type == ChooseEditionFromType_PersonalCenter) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
     }];
     [self.view addSubview:self.navView];
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,7 +98,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     [self.pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topView.mas_bottom);
         make.centerX.mas_equalTo(0);
-        make.width.mas_equalTo(kPickerViewWidth * kPhoneWidthRatio);
+        make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(kPickerViewHeight * kPhoneWidthRatio);
     }];
     
@@ -141,8 +109,8 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     rectView.clipsToBounds = YES;
     [self.pickerView addSubview:rectView];
     [rectView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.centerY.mas_equalTo(0);
+        make.center.mas_equalTo(0);
+        make.width.mas_equalTo(kContentViewWidth * kPhoneWidthRatio);
         make.height.mas_equalTo(kPickerViewRowHeight * kPhoneWidthRatio);
     }];
     
@@ -158,8 +126,8 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     }];
     [self.view addSubview:loginView];
     [loginView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.pickerView.mas_left);
-        make.right.mas_equalTo(self.pickerView.mas_right);
+        make.centerX.mas_equalTo(0);
+        make.width.mas_equalTo(kContentViewWidth * kPhoneWidthRatio);
         make.bottom.mas_equalTo(-45 * kPhoneWidthRatio );
         make.height.mas_equalTo(50 * kPhoneWidthRatio);
     }];
@@ -187,7 +155,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
         [self.topView removeFromSuperview];
         [self.pickerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
-            make.width.mas_equalTo(kPickerViewWidth * kPhoneWidthRatio);
+            make.left.right.mas_equalTo(0);
             make.height.mas_equalTo(kPickerViewHeight * kPhoneWidthRatio);
         }];
         UILabel *nameLabel = [[UILabel alloc]init];
@@ -228,8 +196,10 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
         } else {
             if (self.type == ChooseEditionFromType_ExerciseMain) {
                 DDLogDebug(@"跳转到练习界面");
-                BLOCK_EXEC(self.successBlock,retItem);
-                return;
+                [self dismissViewControllerAnimated:YES completion:^{
+                    BLOCK_EXEC(self.successBlock,retItem);
+                    return;
+                }];
             }
             if (self.type == ChooseEditionFromType_PersonalCenter) {
                 DDLogDebug(@"跳转到教材版本选择界面");
@@ -251,7 +221,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
 
 #pragma mark - UIPickerViewDelegate
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return kPickerViewWidth * kPhoneWidthRatio;
+    return SCREEN_WIDTH;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
@@ -266,7 +236,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     }
     UILabel *label = (UILabel *)view;
     if (!label) {
-        label = [[UILabel alloc]initWithFrame:CGRectMake(0, row * kPickerViewRowHeight * kPhoneWidthRatio, kPickerViewWidth, kPickerViewRowHeight * kPhoneWidthRatio)];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(0, row * kPickerViewRowHeight * kPhoneWidthRatio, SCREEN_WIDTH, kPickerViewRowHeight * kPhoneWidthRatio)];
         label.font = [UIFont boldSystemFontOfSize:23.f];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;

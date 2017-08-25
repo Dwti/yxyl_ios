@@ -52,7 +52,7 @@
 
 - (void)updateWithText:(NSString *)text images:(NSArray<QAImageAnswer *> *)images {
     [self.imagesView updateWithPhotos:[NSMutableArray arrayWithArray:images] editable:NO];
-    NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForAnalysisItems];
+    NSDictionary *dic = [YXQACoreTextHelper defaultOptionsForAnalysisAnalysisItems];
     self.htmlView.attributedString = [YXQACoreTextHelper attributedStringWithString:text options:dic];
     if (!isEmpty(text) && images.count == 0) {
         [self.contentView addSubview:self.htmlView];
@@ -107,7 +107,7 @@
 + (CGFloat)heightForString:(NSString *)string{
     CGFloat maxWidth = [self maxContentWidth];
     NSDictionary *dic = nil;
-    dic = [YXQACoreTextHelper defaultOptionsForAnalysisItems];
+    dic = [YXQACoreTextHelper defaultOptionsForAnalysisAnalysisItems];
     CGFloat stringHeight = [YXQACoreTextHelper heightForString:string options:dic width:maxWidth];
     return stringHeight;
 }

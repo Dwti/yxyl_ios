@@ -7,6 +7,8 @@
 //
 
 #import "QASubjectiveAddPhotoView.h"
+#import "UIImage+Color.h"
+#import "UIButton+WaveHighlight.h"
 
 @implementation QASubjectiveAddPhotoView
 
@@ -25,8 +27,10 @@
     self.clipsToBounds = YES;
     UIButton *button = [[UIButton alloc]initWithFrame:self.bounds];
     [button setImage:[UIImage imageNamed:@"添加图片上传icon"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
+    button.isWaveHighlight = YES;
 }
 
 - (void)btnAction {

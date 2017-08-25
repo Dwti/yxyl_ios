@@ -58,6 +58,12 @@
     BLOCK_EXEC(self.buttonActionBlock);
 }
 
+- (void)setImageName:(NSString *)imageName {
+    _imageName = imageName;
+    [self.backbutton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@正常态",imageName]] forState:UIControlStateNormal];
+    [self.backbutton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@点击态",imageName]] forState:UIControlStateHighlighted];
+}
+                  
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;

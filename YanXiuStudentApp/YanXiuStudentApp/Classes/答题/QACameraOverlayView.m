@@ -29,6 +29,7 @@
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(123);
     }];
+    
     UIButton *albumButton = [[UIButton alloc]init];
     albumButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     albumButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
@@ -43,6 +44,10 @@
         make.centerY.mas_equalTo(0);
     }];
     self.albumButton = albumButton;
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"拍照中进入相册icon正常态"]];
+    imageView.frame = CGRectMake(0, 0, 60, 60);
+    albumButton.layer.mask = imageView.layer;
+    albumButton.clipsToBounds = YES;
     
     UIView *cameraBottomView = [[UIView alloc]init];
     cameraBottomView.backgroundColor = [UIColor whiteColor];

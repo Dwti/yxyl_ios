@@ -18,6 +18,7 @@
 #import "QAAnalysisViewController.h"
 #import "YXGetSectionQBlockRequest.h"
 #import "YXGenKnpointQBlockRequest.h"
+#import "UIButton+WaveHighlight.h"
 
 static const CGFloat kItemWidth = 60;
 static const CGFloat kMinMargin = 15;
@@ -126,6 +127,7 @@ static const CGFloat kNavViewHeight = 55.0f;
     exerciseAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     exerciseAgainButton.layer.cornerRadius = 6.0f;
     exerciseAgainButton.clipsToBounds = YES;
+    exerciseAgainButton.isWaveHighlight = YES;
     [exerciseAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [exerciseAgainButton setTitle:@"再练一组" forState:UIControlStateNormal];
     [exerciseAgainButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
