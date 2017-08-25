@@ -12,7 +12,6 @@
 
 - (QASlideItemBaseView *)slideView:(QASlideView *)slideView itemViewAtIndex:(NSInteger)index {
     QAQuestion *data = [self.data.childQuestions objectAtIndex:index];
-    data.wrongQuestionID = self.data.wrongQuestionID;
 
     QAQuestionViewContainer *container = [QAQuestionViewContainerFactory containerWithQuestion:data];
     QAQuestionBaseView *view = [container questionAnalysisView];

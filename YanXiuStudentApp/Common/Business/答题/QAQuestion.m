@@ -147,6 +147,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     NSMutableArray *questionArray = [NSMutableArray array];
     for (YXIntelligenceQuestion_PaperTest *rawData in rawDatas) {
         QAQuestion *question = [QAQuestionFactory questionFromRawData:rawData];
+        question.wrongQuestionID = self.wrongQuestionID;
         if (question) {
             [questionArray addObject:question];
         }
