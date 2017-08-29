@@ -131,11 +131,13 @@ static const CGFloat kDefaultHeight = 80.f+10.f;
     NSRange urlRange = NSMakeRange(range.location+5, range.length-6);
     NSString *urlString = [optionString substringWithRange:urlRange];
     self.imageUrlString = urlString;
-    
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     WEAK_SELF
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:urlString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         STRONG_SELF
         if (error) {
+            self.imageView.image = [UIImage imageNamed:@"图片加载失败占位"];
+            self.imageView.contentMode = UIViewContentModeCenter;
             return;
         }
         CGSize size = [self sizeForImage:image];

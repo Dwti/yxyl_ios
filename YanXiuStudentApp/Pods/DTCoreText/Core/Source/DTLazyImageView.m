@@ -303,6 +303,13 @@ NSString * const DTLazyImageViewDidFinishDownloadNotification = @"DTLazyImageVie
 	// send completion notification, pack in error as well
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:error forKey:@"Error"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:DTLazyImageViewDidFinishDownloadNotification object:self userInfo:userInfo];
+    
+    UIImage *image = [UIImage imageNamed:@"图片加载失败占位"];
+    
+    self.image = image;
+    _fullWidth = image.size.width;
+    _fullHeight = image.size.height;
+    [self _notifyDelegate];
 }
 
 #pragma mark Properties
