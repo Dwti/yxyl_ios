@@ -39,6 +39,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     [super viewDidLoad];
     self.navigationItem.title = @"请选择教材版本";
     [self setupUI];
+    [self reloadSelectedEdition];
     // Do any additional setup after loading the view.
 }
 
@@ -113,6 +114,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
         make.width.mas_equalTo(kContentViewWidth * kPhoneWidthRatio);
         make.height.mas_equalTo(kPickerViewRowHeight * kPhoneWidthRatio);
     }];
+    [self.pickerView selectRow:0 inComponent:0 animated:NO];
     
     LoginActionView *loginView = [[LoginActionView alloc]init];
     self.confirmView = loginView;
@@ -145,10 +147,8 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     
     if (self.type == ChooseEditionFromType_PersonalCenter) {
         self.tipLabel.hidden = YES;
-        [self.pickerView selectRow:0 inComponent:0 animated:NO];
     }else {
         self.tipLabel.hidden = NO;
-        [self.pickerView selectRow:self.currentIndex inComponent:0 animated:NO];
     }
     
     if (SCREEN_HEIGHT < 568) {
