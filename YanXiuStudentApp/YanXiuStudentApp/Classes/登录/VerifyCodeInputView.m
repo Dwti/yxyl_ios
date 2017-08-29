@@ -35,7 +35,7 @@ static const NSInteger kTimerDuration = 45;
     [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [self.codeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.codeButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateDisabled];
-    self.codeButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    self.codeButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.codeButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.codeButton];
     [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,10 +85,8 @@ static const NSInteger kTimerDuration = 45;
     _isActive = isActive;
     if (isActive) {
         self.codeButton.enabled = YES;
-        self.codeButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }else {
         self.codeButton.enabled = NO;
-        self.codeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
 }
 

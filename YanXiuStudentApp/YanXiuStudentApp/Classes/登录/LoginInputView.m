@@ -37,6 +37,7 @@
     self.textField = [[LoginInputField alloc]init];
     self.textField.font = [UIFont boldSystemFontOfSize:16];
     self.textField.textColor = [UIColor whiteColor];
+    [self.textField setTintColor:[UIColor colorWithHexString:@"89e00d"]];
     self.textField.delegate = self;
     self.textField.returnKeyType = UIReturnKeyDone;
     self.textField.clipsToBounds = YES;

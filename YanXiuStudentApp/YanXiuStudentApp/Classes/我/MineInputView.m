@@ -25,6 +25,7 @@
     self.textField = [[ExtendTextField alloc]init];
     self.textField.font = [UIFont boldSystemFontOfSize:19];
     self.textField.textColor = [UIColor colorWithHexString:@"333333"];
+    [self.textField setTintColor:[UIColor colorWithHexString:@"89e00d"]];
     self.textField.delegate = self;
     self.textField.returnKeyType = UIReturnKeyDone;
     self.textField.clipsToBounds = YES;

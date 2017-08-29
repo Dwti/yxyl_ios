@@ -99,6 +99,7 @@
     self.clearButton = clearButton;
     
     self.textField = [[NameInputField alloc]init];
+    [self.textField setTintColor:[UIColor colorWithHexString:@"89e00d"]];
     self.textField.font = [UIFont boldSystemFontOfSize:19];
     self.textField.textColor = [UIColor colorWithHexString:@"333333"];
     self.textField.text = [YXUserManager sharedManager].userModel.realname;

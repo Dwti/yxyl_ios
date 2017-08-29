@@ -45,6 +45,7 @@
 #pragma mark - UI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc]init];
+    [self.textView setTintColor:[UIColor colorWithHexString:@"89e00d"]];
     self.textView.text = self.editItem.noteText;
     self.textView.font = [UIFont systemFontOfSize:17];
     self.textView.textColor = [UIColor colorWithHexString:@"333333"];

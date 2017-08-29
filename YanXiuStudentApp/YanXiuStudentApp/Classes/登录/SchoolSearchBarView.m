@@ -52,6 +52,7 @@
     self.textField = [[UITextField alloc]init];
     self.textField.textColor = [UIColor colorWithHexString:@"333333"];
     self.textField.font = [UIFont boldSystemFontOfSize:16];
+    [self.textField setTintColor:[UIColor colorWithHexString:@"89e00d"]];
     NSString *placeholder = @"请输入学校名称";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:placeholder];
     [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, placeholder.length)];

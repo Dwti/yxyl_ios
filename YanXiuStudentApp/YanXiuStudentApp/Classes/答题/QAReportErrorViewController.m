@@ -65,6 +65,7 @@ static const CGFloat ktextViewHeight = 200.f;
     }];
     
     self.textView = [[SAMTextView alloc]init];
+    [self.textView setTintColor:[UIColor colorWithHexString:@"89e00d"]];
     NSString *placeholder = @"请输入错误详情 (200字以内)";
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:placeholder];
     [attrString addAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"cccccc"],NSFontAttributeName:[UIFont systemFontOfSize:17.0f]} range:NSMakeRange(0, placeholder.length)];
@@ -81,7 +82,7 @@ static const CGFloat ktextViewHeight = 200.f;
     
     self.submitView = [[UIView alloc]init];
     self.submitView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
-
+    
     self.submitButton = [[QASubmitButton alloc]init];
     self.submitButton.title = @"提交";
     [self resetSubmitButtonEnable];
@@ -150,15 +151,15 @@ static const CGFloat ktextViewHeight = 200.f;
     self.reportErrorRequest.type = type;
     WEAK_SELF
     [self.view nyx_startLoading];
-        [self.reportErrorRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
-            STRONG_SELF
-            [self.view nyx_stopLoading];
-            if (error) {
-                [self.view nyx_showToast:error.localizedDescription];
-                return;
-            }
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+    [self.reportErrorRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 #pragma mark - textView delegate

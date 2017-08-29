@@ -50,15 +50,22 @@
     self.collectionImageView.layer.mask = imageView.layer;
     
     self.tagImageView = [[UIImageView alloc]init];
-    self.tagImageView.image = [UIImage imageNamed:@"相机胶卷所选胶卷状态标识"];
     self.tagImageView.layer.cornerRadius = 10;
     self.tagImageView.clipsToBounds = YES;
+    self.tagImageView.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     [self.contentView addSubview:self.tagImageView];
     [self.tagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.collectionImageView.mas_top);
         make.right.mas_equalTo(self.collectionImageView.mas_right).mas_offset(10);
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
+    UIImageView *markImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"相机胶卷所选胶卷状态标识"]];
+    [self.tagImageView addSubview:markImageView];
+    [markImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+    
     self.nameLabel = [[UILabel alloc]init];
     self.nameLabel.font = [UIFont systemFontOfSize:17];
     self.nameLabel.textColor = [UIColor colorWithHexString:@"333333"];
