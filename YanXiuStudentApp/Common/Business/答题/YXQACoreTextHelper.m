@@ -65,7 +65,7 @@
 
 #pragma mark - 3.0 new
 + (NSDictionary *)defaultOptionsForLevel1 {
-    UIFont *font = [UIFont boldSystemFontOfSize:17];
+    UIFont *font = [UIFont systemFontOfSize:17];
     NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:
                             font.familyName, DTDefaultFontFamily,
                             font.fontName, DTDefaultFontName,

@@ -100,6 +100,9 @@
     QAQuestion *question = self.question.childQuestions[index];
     NSArray *arr = [question.position.indexString componentsSeparatedByString:@"/"];
     NSString *indexStr = [arr.firstObject yx_stringByTrimmingCharacters];
+    if (isEmpty(indexStr)) {
+        indexStr = [NSString stringWithFormat:@"%@",@(index+1)];
+    }
     [view updateWithIndex:indexStr.integerValue answer:[self answerForIndex:index]];
     WEAK_SELF
     [view setClickAction:^{
