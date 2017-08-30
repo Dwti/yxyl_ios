@@ -128,7 +128,7 @@
     
     WEAK_SELF
     [self.view nyx_startLoading];
-    [LoginDataManager modifyPasswordWithOldPassword:self.currentPasswordView.text newPassword:self.currentPasswordView.text completeBlock:^(YXModifyPasswordItem *item, NSError *error) {
+    [LoginDataManager modifyPasswordWithOldPassword:self.oldPasswordView.text newPassword:self.currentPasswordView.text completeBlock:^(YXModifyPasswordItem *item, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
