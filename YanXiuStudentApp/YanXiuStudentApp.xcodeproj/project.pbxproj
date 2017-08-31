@@ -7179,8 +7179,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "YanXiuStudentApp-iPhone.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lei Cai (M89J3EV65R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lei Cai (M89J3EV65R)";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7269,7 +7269,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.com.YanXiuStudentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0faee1fe-f51c-4b3f-a452-b015a382c396";
+				PROVISIONING_PROFILE = "316fa6fb-4f90-4abf-a4f8-99565ca9e083";
 				PROVISIONING_PROFILE_SPECIFIER = EXueELian_Dev;
 				SDKROOT = iphoneos;
 			};
@@ -7283,7 +7283,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "YanXiuStudentApp-iPhone.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Shang Rui Tong Technology Co.,Ltd. (P8ZS8UUN27)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Shang Rui Tong Technology Co.,Ltd. (P8ZS8UUN27)";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7372,7 +7372,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.com.YanXiuStudentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b8346bea-5ed3-4ffd-8c0c-9ebf08c99e86";
+				PROVISIONING_PROFILE = "136ca834-93ed-4b0e-8cb8-d2c50a85d836";
 				PROVISIONING_PROFILE_SPECIFIER = EXueELian_Rel;
 				SDKROOT = iphoneos;
 			};
