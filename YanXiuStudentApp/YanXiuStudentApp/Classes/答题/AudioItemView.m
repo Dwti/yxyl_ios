@@ -97,7 +97,7 @@
         
         self.player = [[LePlayer alloc] init];
         self.player.videoUrl = url;
-        [self addRACObserverForTimePlayed];
+        [self addRACObserverForPlayPauseState];
         [self.player play];
         [self.volumeImageView startAnimating];
         self.isPlayed = YES;
@@ -153,13 +153,6 @@
 }
 
 #pragma mark - Helper
-//- (CGFloat)audioButtonWidth {
-//    CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width - 10 - 17 - 20 - 20 - 30 - 4;
-//    CGFloat audioWidth = (maxWidth - 75) / 180 * self.audioComment.duration.integerValue + 75;
-//    CGFloat width = MIN(maxWidth, audioWidth);
-//    return width;
-//}
-
 -(CGFloat)audioButtonWidth {
     CGFloat maxWidth = 300 * kPhoneWidthRatio;
     CGFloat minWidth = 80 * kPhoneWidthRatio;
@@ -168,22 +161,16 @@
     return buttonWidth;
 }
 
-- (void)addRACObserverForTimePlayed {
+- (void)addRACObserverForPlayPauseState {
     WEAK_SELF
-    [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
+    [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
-        if (![x longLongValue]) {
-            return ;
-        }
-        
-        if (self.player.duration - [x floatValue] < 1) {//播放完成
+        PlayerView_State sta = (PlayerView_State)[x integerValue];
+        if (sta == PlayerView_State_Playing) {
+            [self.volumeImageView startAnimating];
+        } else if (sta == PlayerView_State_Finished) {
             self.state = AudioPlayState_Finished;
             self.playFinished(self.tag);
-            return;
-        } else {
-            if (self.state == AudioPlayState_Playing) {
-                [self.volumeImageView startAnimating];
-            }
         }
     }];
 }
