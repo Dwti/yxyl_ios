@@ -36,7 +36,11 @@ static const CGFloat kMinMargin = 15.f;
     layout.minimumLineSpacing = kMinMargin;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.sectionInset = UIEdgeInsetsMake(30, 30 * kPhoneWidthRatio, 30, 30 * kPhoneWidthRatio);
+    if (SCREEN_WIDTH > 375) {
+        layout.sectionInset = UIEdgeInsetsMake(40, 45 * kPhoneWidthRatio, 40, 45 * kPhoneWidthRatio);
+    }else {
+        layout.sectionInset = UIEdgeInsetsMake(30, 30 * kPhoneWidthRatio, 30, 30 * kPhoneWidthRatio);
+    }
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.delegate = self;

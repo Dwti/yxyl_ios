@@ -25,7 +25,7 @@
 - (void)setupUI{
     self.itemButton = [[UIButton alloc]init];
     self.itemButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.itemButton.titleLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+    self.itemButton.titleLabel.font = [UIFont systemFontOfSize:17.0f];
     [self.itemButton setTitleColor:[UIColor colorWithHexString:@"336600"] forState:UIControlStateNormal];
     [self addSubview:self.itemButton];
     [self.itemButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,7 +39,7 @@
 }
 
 + (CGSize)sizeForTitle:(NSString *)title {
-    CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:17]}];
+    CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     return CGSizeMake(ceilf(size.width), 18);
 }
 
