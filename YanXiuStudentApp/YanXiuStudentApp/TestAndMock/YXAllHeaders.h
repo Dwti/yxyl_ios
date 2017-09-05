@@ -20,6 +20,7 @@
 #import "EditNameViewController.h"
 #import "FeedbackViewController.h"
 #import "HeadImageCameraOverlayView.h"
+#import "HeadImageClipView.h"
 #import "HeadImageClipViewController.h"
 #import "HeadImageHandler.h"
 #import "HeadImagePickerOptionItemView.h"

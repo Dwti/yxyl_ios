@@ -8,14 +8,16 @@
 
 #import "HeadImageClipViewController.h"
 #import "QAPhotoClipBottomView.h"
+#import "HeadImageClipView.h"
+
+static const CGFloat kBorderWidth = 22.f+23.f;
 
 @interface HeadImageClipViewController ()
-@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UIView *clipView;
+@property (nonatomic, strong) HeadImageClipView *clipView;
+@property (nonatomic, strong) CAShapeLayer *maskLayer;
 @property (nonatomic, strong) UIImage *adjustedImage;
 @end
-
 @implementation HeadImageClipViewController
 
 - (void)viewDidLoad {
@@ -31,36 +33,21 @@
 }
 
 - (void)setupUI {
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(25, 25, self.view.width-50, self.view.height-25-19-45)];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.scrollView.height);
-    CGFloat margin = (self.scrollView.height-self.scrollView.width)/2;
-    self.scrollView.contentInset = UIEdgeInsetsMake(margin, 0, margin, 0);
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.alwaysBounceVertical = YES;
-    self.scrollView.alwaysBounceHorizontal = YES;
-    [self.view addSubview:self.scrollView];
-    
-    self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.scrollView.width, self.scrollView.height)];
+    self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(25, 25, self.view.width-50, self.view.height-25-19-45)];
     self.adjustedImage = [self.oriImage nyx_aspectFillImageWithSize:self.imageView.frame.size];
     self.imageView.image = self.adjustedImage;
-    [self.scrollView addSubview:self.imageView];
+    [self.view addSubview:self.imageView];
     
-    self.clipView = [[UIView alloc]initWithFrame:CGRectMake(self.scrollView.x, margin+25, self.scrollView.width, self.scrollView.width)];
-    self.clipView.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
-    self.clipView.layer.borderWidth = 2;
-    self.clipView.userInteractionEnabled = NO;
+    self.maskLayer = [CAShapeLayer layer];
+    self.maskLayer.fillColor = [[UIColor blackColor]colorWithAlphaComponent:0.3].CGColor;
+    self.maskLayer.frame = self.imageView.bounds;
+    [self.imageView.layer addSublayer:self.maskLayer];
+    
+    self.clipView = [[HeadImageClipView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+    self.clipView.center = CGPointMake(self.view.width/2, self.imageView.x+self.imageView.height/2);
     [self.view addSubview:self.clipView];
-    
-    UIView *topMaskView = [[UIView alloc]initWithFrame:CGRectMake(self.clipView.x, 25, self.clipView.width, margin)];
-    topMaskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
-    topMaskView.userInteractionEnabled = NO;
-    [self.view addSubview:topMaskView];
-    
-    UIView *bottomMaskView = [[UIView alloc]initWithFrame:CGRectMake(self.clipView.x, CGRectGetMaxY(self.clipView.frame), self.clipView.width, margin)];
-    bottomMaskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
-    bottomMaskView.userInteractionEnabled = NO;
-    [self.view addSubview:bottomMaskView];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
+    [self.clipView addGestureRecognizer:pan];
     
     QAPhotoClipBottomView *bottomView = [[QAPhotoClipBottomView alloc]initWithFrame:CGRectMake(0, self.view.height-45, self.view.width, 45)];
     bottomView.canReset = NO;
@@ -75,11 +62,17 @@
         UIImage *image = [self imageForClippedRect:rect];
         BLOCK_EXEC(self.clippedBlock,image);
     }];
+    [bottomView setResetBlock:^{
+        self.clipView.frame = CGRectInset(self.imageView.frame, -25, -25);
+        [self.clipView setNeedsDisplay];
+        [self refreshMaskLayer];
+    }];
     [self.view addSubview:bottomView];
 }
 
 - (CGRect)clippedImageRect {
-    CGRect rect = CGRectMake(0, (self.scrollView.height-self.clipView.height)/2+self.scrollView.contentOffset.y, self.clipView.width, self.clipView.height);
+    CGRect rect = [self.clipView convertRect:self.clipView.bounds toView:self.imageView];
+    rect = CGRectInset(rect, 25, 25);
     return rect;
 }
 
@@ -89,6 +82,139 @@
     UIImage *clippedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return clippedImage;
+}
+
+- (void)refreshMaskLayer {
+    CGRect rect = [self clippedImageRect];
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(0, 0)];
+    [path addLineToPoint:CGPointMake(self.imageView.width, 0)];
+    [path addLineToPoint:CGPointMake(self.imageView.width, self.imageView.height)];
+    [path addLineToPoint:CGPointMake(0, self.imageView.height)];
+    [path addLineToPoint:CGPointMake(0, 0)];
+    [path addLineToPoint:rect.origin];
+    [path addLineToPoint:CGPointMake(rect.origin.x, rect.origin.y+rect.size.height)];
+    [path addLineToPoint:CGPointMake(rect.origin.x+rect.size.width, rect.origin.y+rect.size.height)];
+    [path addLineToPoint:CGPointMake(rect.origin.x+rect.size.width, rect.origin.y)];
+    [path addLineToPoint:rect.origin];
+    [path addLineToPoint:CGPointMake(0, 0)];
+    self.maskLayer.path = path.CGPath;
+}
+
+- (void)panAction:(UIPanGestureRecognizer *)gesture {
+    CGRect dragRect = CGRectInset(gesture.view.bounds, kBorderWidth, kBorderWidth);
+    CGPoint location = [gesture locationInView:gesture.view];
+    CGPoint translation = [gesture translationInView:gesture.view];
+    if (CGRectContainsPoint(dragRect, location)) {
+        CGFloat x = gesture.view.x+translation.x;
+        x = MAX(x, 0);
+        x = MIN(x, self.view.width-gesture.view.width);
+        CGFloat y = gesture.view.y+translation.y;
+        y = MAX(y, 0);
+        y = MIN(y, self.view.height-gesture.view.height-45+6);
+        self.clipView.frame = CGRectMake(x, y, self.clipView.width, self.clipView.height);
+    }else {
+        if (location.x<=kBorderWidth && location.y>=kBorderWidth && location.y<=gesture.view.height-kBorderWidth*2) { // left
+//            CGFloat x = gesture.view.x+translation.x;
+//            x = [self adjuestedOriginXWithX:x];
+//            gesture.view.frame = CGRectMake(x, gesture.view.y, gesture.view.width-(x-gesture.view.x), gesture.view.height);
+        }else if(location.x>=gesture.view.width-kBorderWidth && location.y>=kBorderWidth && location.y<=gesture.view.height-kBorderWidth*2) { // right
+//            CGFloat w = gesture.view.width+translation.x;
+//            w = [self adjuestedSizeWidthWithWidth:w];
+//            gesture.view.frame = CGRectMake(gesture.view.x, gesture.view.y, w, gesture.view.height);
+        }else if(location.y<=kBorderWidth && location.x>=kBorderWidth && location.x<=gesture.view.width-kBorderWidth*2) { // top
+//            CGFloat y = gesture.view.y+translation.y;
+//            y = [self adjuestedOriginYWithY:y];
+//            gesture.view.frame = CGRectMake(gesture.view.x, y, gesture.view.width, gesture.view.height-(y-gesture.view.y));
+        }else if(location.y>=gesture.view.height-kBorderWidth && location.x>=kBorderWidth && location.x<=gesture.view.width-kBorderWidth*2) { // bottom
+//            CGFloat h = gesture.view.height+translation.y;
+//            h = [self adjuestedSizeHeightWithHeight:h];
+//            gesture.view.frame = CGRectMake(gesture.view.x, gesture.view.y, gesture.view.width, h);
+        }else if(location.y<=kBorderWidth && location.x<=kBorderWidth) { // topleft
+            CGFloat x = gesture.view.x+translation.x;
+            x = [self adjuestedOriginXWithX:x];
+            CGFloat y = gesture.view.y+translation.y;
+            y = [self adjuestedOriginYWithY:y];
+            CGFloat width = gesture.view.width-(x-gesture.view.x);
+            CGFloat height = gesture.view.height-(y-gesture.view.y);
+            if (width > height) {
+                x += width-height;
+            }else {
+                y += height-width;
+            }
+            CGFloat length = MIN(width, height);
+            gesture.view.frame = CGRectMake(x, y, length, length);
+        }else if(location.y<=kBorderWidth && location.x>=gesture.view.width-kBorderWidth) { // topright
+            CGFloat w = gesture.view.width+translation.x;
+            w = [self adjuestedSizeWidthWithWidth:w];
+            CGFloat y = gesture.view.y+translation.y;
+            y = [self adjuestedOriginYWithY:y];
+            CGFloat height = gesture.view.height-(y-gesture.view.y);
+            if (w > height) {
+                w = height;
+            }else {
+                y += height-w;
+            }
+            CGFloat length = MIN(w, height);
+            gesture.view.frame = CGRectMake(gesture.view.x, y, length, length);
+        }else if(location.x<=kBorderWidth && location.y>=gesture.view.height-kBorderWidth) { // bottomleft
+            CGFloat x = gesture.view.x+translation.x;
+            x = [self adjuestedOriginXWithX:x];
+            CGFloat h = gesture.view.height+translation.y;
+            h = [self adjuestedSizeHeightWithHeight:h];
+            CGFloat width = gesture.view.width-(x-gesture.view.x);
+            if (width > h) {
+                x += width-h;
+            }else {
+                h = width;
+            }
+            CGFloat length = MIN(width, h);
+            gesture.view.frame = CGRectMake(x, gesture.view.y, length, length);
+        }else if(location.y>=gesture.view.height-kBorderWidth && location.x>=gesture.view.width-kBorderWidth) { // bottomright
+            CGFloat w = gesture.view.width+translation.x;
+            w = [self adjuestedSizeWidthWithWidth:w];
+            CGFloat h = gesture.view.height+translation.y;
+            h = [self adjuestedSizeHeightWithHeight:h];
+            if (w > h) {
+                w = h;
+            }else {
+                h = w;
+            }
+            CGFloat length = MIN(w, h);
+            gesture.view.frame = CGRectMake(gesture.view.x, gesture.view.y, length, length);
+        }
+        [gesture.view setNeedsDisplay];
+    }
+    [gesture setTranslation:CGPointZero inView:gesture.view];
+    [self refreshMaskLayer];
+}
+
+- (CGFloat)adjuestedOriginXWithX:(CGFloat)oriX {
+    CGFloat x = oriX;
+    x = MAX(x, 0);
+    x = MIN(x, self.clipView.x+self.clipView.width-kBorderWidth*2);
+    return x;
+}
+
+- (CGFloat)adjuestedOriginYWithY:(CGFloat)oriY {
+    CGFloat y = oriY;
+    y = MAX(y, 0);
+    y = MIN(y, self.clipView.y+self.clipView.height-kBorderWidth*2);
+    return y;
+}
+
+- (CGFloat)adjuestedSizeWidthWithWidth:(CGFloat)oriW {
+    CGFloat w = oriW;
+    w = MAX(w, kBorderWidth*2);
+    w = MIN(w, self.view.width-self.clipView.x);
+    return w;
+}
+
+- (CGFloat)adjuestedSizeHeightWithHeight:(CGFloat)oriH {
+    CGFloat h = oriH;
+    h = MAX(h, kBorderWidth*2);
+    h = MIN(h, self.view.height-self.clipView.y-45+6);
+    return h;
 }
 
 @end

@@ -142,7 +142,7 @@ static const NSInteger kBlankWidth = 3;
         if (!isEmpty(info.prefixLetter)) {
             UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
             prefixLabel.text = info.prefixLetter;
-            prefixLabel.font = [UIFont boldSystemFontOfSize:17];
+            prefixLabel.font = [UIFont systemFontOfSize:17];
             prefixLabel.textColor = color;
             [bgView addSubview:prefixLabel];
             [prefixLabel sizeToFit];

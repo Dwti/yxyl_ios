@@ -453,6 +453,8 @@
 		7C3ECAE01EC03C8B005C2B9C /* ThirdLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECADE1EC03C8B005C2B9C /* ThirdLoginView.m */; };
 		7C3ECAE31EC06E74005C2B9C /* VerifyCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */; };
 		7C3ECAE41EC06E74005C2B9C /* VerifyCodeInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */; };
+		7C420A5D1F5EA08E00C8AC44 /* HeadImageClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C420A5C1F5EA08E00C8AC44 /* HeadImageClipView.m */; };
+		7C420A5E1F5EA08E00C8AC44 /* HeadImageClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C420A5C1F5EA08E00C8AC44 /* HeadImageClipView.m */; };
 		7C4554341DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4554331DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m */; };
 		7C4554351DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4554331DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m */; };
 		7C4554381DCAE4D5001B0F26 /* YXIntelligenceQuestionListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4554371DCAE4D5001B0F26 /* YXIntelligenceQuestionListItem.m */; };
@@ -1699,6 +1701,8 @@
 		7C3ECADE1EC03C8B005C2B9C /* ThirdLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdLoginView.m; sourceTree = "<group>"; };
 		7C3ECAE11EC06E74005C2B9C /* VerifyCodeInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeInputView.h; sourceTree = "<group>"; };
 		7C3ECAE21EC06E74005C2B9C /* VerifyCodeInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeInputView.m; sourceTree = "<group>"; };
+		7C420A5B1F5EA08E00C8AC44 /* HeadImageClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadImageClipView.h; sourceTree = "<group>"; };
+		7C420A5C1F5EA08E00C8AC44 /* HeadImageClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadImageClipView.m; sourceTree = "<group>"; };
 		7C4554321DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGenKnpointQBlockRequest.h; sourceTree = "<group>"; };
 		7C4554331DCAE4CA001B0F26 /* YXGenKnpointQBlockRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGenKnpointQBlockRequest.m; sourceTree = "<group>"; };
 		7C4554361DCAE4D5001B0F26 /* YXIntelligenceQuestionListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXIntelligenceQuestionListItem.h; sourceTree = "<group>"; };
@@ -4132,6 +4136,8 @@
 				7CA5A9981F1EF3F9004F34D3 /* HeadImagePickerOptionView.m */,
 				7CA5A99B1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.h */,
 				7CA5A99C1F1EFB6E004F34D3 /* HeadImagePickerOptionItemView.m */,
+				7C420A5B1F5EA08E00C8AC44 /* HeadImageClipView.h */,
+				7C420A5C1F5EA08E00C8AC44 /* HeadImageClipView.m */,
 			);
 			name = "头像选取";
 			sourceTree = "<group>";
@@ -6242,6 +6248,7 @@
 				30F4561E1CBE326B00FF2CD9 /* YXRedManager.m in Sources */,
 				7C2B66EE1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */,
 				7C03CA851EC15028003CA9C7 /* ForgotPasswordViewController.m in Sources */,
+				7C420A5E1F5EA08E00C8AC44 /* HeadImageClipView.m in Sources */,
 				7C89DD1B1DA8927200194120 /* QATwoNumberAnswerQuestion.m in Sources */,
 				7C88856D1EFB665A0073EF1F /* QASubjectiveStemCell.m in Sources */,
 				7C3D0B761DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
@@ -6463,6 +6470,7 @@
 				7C2903B51EE12DB8005F7F55 /* QABlankItemInfo.m in Sources */,
 				7C3ECAD71EC02C50005C2B9C /* AccountInputView.m in Sources */,
 				E9B425A61EF226BC00F99485 /* QAAnswerSheetCell.m in Sources */,
+				7C420A5D1F5EA08E00C8AC44 /* HeadImageClipView.m in Sources */,
 				7C3D0B751DD1A53A005ED76A /* LogRecordEntity.m in Sources */,
 				E9AE4A401F2B59E200FED26C /* TextBookVersionViewController.m in Sources */,
 				0FB211BC1C5726CD00594BEA /* YXSSOAuthManager.m in Sources */,
