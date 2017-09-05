@@ -7,6 +7,7 @@
 //
 
 #import "PasswordInputView.h"
+#import "UIButton+ExpandHitArea.h"
 
 @interface PasswordInputView()
 @property (nonatomic, strong) UIButton *showHideButton;
@@ -25,6 +26,7 @@
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"69ad0a"];
     self.showHideButton = [[UIButton alloc]init];
+    [self.showHideButton setHitTestEdgeInsets:UIEdgeInsetsMake(-30, -30, -30, -30)];
     [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"隐藏数字密码icon正常态"] forState:UIControlStateNormal];
     [self.showHideButton setBackgroundImage:[UIImage imageNamed:@"隐藏数字密码icon点击态"] forState:UIControlStateHighlighted];
     [self.showHideButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];

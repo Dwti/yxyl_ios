@@ -142,7 +142,7 @@ static const CGFloat kOffect = 16.f;
     
     self.alertView = [[AlertView alloc]init];
     self.alertView.maskColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
-    self.alertView.hideWhenMaskClicked = NO;
+    self.alertView.hideWhenMaskClicked = YES;
     [self.alertView setHideBlock:^(AlertView *view){
         STRONG_SELF
         [UIView animateWithDuration:.3 animations:^{

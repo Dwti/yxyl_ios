@@ -267,7 +267,7 @@
     [self.alertView hide];
     self.alertView = [[AlertView alloc]init];
     self.alertView.maskColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
-    self.alertView.hideWhenMaskClicked = NO;
+    self.alertView.hideWhenMaskClicked = YES;
     WEAK_SELF
     [self.alertView setHideBlock:^(AlertView *view){
         STRONG_SELF

@@ -23,8 +23,6 @@
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) MineTableHeaderView *headerView;
-@property (nonatomic, strong) AlertView *alertView;
-@property (nonatomic, strong) HeadImageHandler *imageHandler;
 @end
 
 @implementation MineViewController
@@ -33,7 +31,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.naviTheme = NavigationBarTheme_White;
-    self.imageHandler = [[HeadImageHandler alloc]init];
     [self setupUI];
     [self setupObserver];
 }
@@ -72,10 +69,7 @@
         MyProfileViewController *vc = [[MyProfileViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
-    [self.headerView setEditBlock:^{
-        STRONG_SELF
-        [self showImagePickerAlert];
-    }];
+
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     self.tableView.tableHeaderView = self.headerView;
@@ -94,78 +88,6 @@
     UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, -500, SCREEN_WIDTH, 500)];
     v.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     [self.tableView addSubview:v];
-}
-
-- (void)showImagePickerAlert {
-    HeadImagePickerOptionView *optionView = [[HeadImagePickerOptionView alloc]init];
-    WEAK_SELF
-    [optionView setAlbumBlock:^{
-        STRONG_SELF
-        [self.alertView hide];
-        [self pickImageFromAlbum];
-    }];
-    [optionView setCameraBlock:^{
-        STRONG_SELF
-        [self.alertView hide];
-        [self pickImageFromCamera];
-    }];
-    [optionView setCancelBlock:^{
-        STRONG_SELF
-        [self.alertView hide];
-    }];
-    
-    self.alertView = [[AlertView alloc]init];
-    self.alertView.hideWhenMaskClicked = YES;
-    self.alertView.maskColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
-    self.alertView.contentView = optionView;
-    [self.alertView showInView:self.view.window withLayout:^(AlertView *view) {
-        view.contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 235);
-        [UIView animateWithDuration:0.3 animations:^{
-            view.contentView.frame = CGRectMake(0, SCREEN_HEIGHT-235, SCREEN_WIDTH, 235);
-        } completion:^(BOOL finished) {
-            
-        }];
-    }];
-    [self.alertView setHideBlock:^(AlertView *view) {
-        STRONG_SELF
-        [UIView animateWithDuration:0.3 animations:^{
-            view.contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 235);
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-    }];
-}
-
-- (void)pickImageFromAlbum {
-    WEAK_SELF
-    [self.imageHandler pickImageFromAlbumWithCompleteBlock:^(UIImage *image) {
-        STRONG_SELF
-        [self updateHeadImage:image];
-    }];
-}
-
-- (void)pickImageFromCamera {
-    WEAK_SELF
-    [self.imageHandler pickImageFromCameraWithCompleteBlock:^(UIImage *image) {
-        STRONG_SELF
-        [self updateHeadImage:image];
-    }];
-}
-
-- (void)updateHeadImage:(UIImage *)image {
-    if (!image) {
-        return;
-    }
-    WEAK_SELF
-    [self.view nyx_startLoading];
-    [[YXUpdateUserInfoHelper instance]updateHeadImageWithImage:image completeBlock:^(YXUploadHeadImgItem *item, NSError *error) {
-        STRONG_SELF
-        [self.view nyx_stopLoading];
-        if (error) {
-            [self.view nyx_showToast:error.localizedDescription];
-            return;
-        }
-    }];
 }
 
 - (void)setupObserver {

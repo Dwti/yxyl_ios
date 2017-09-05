@@ -57,7 +57,7 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
     }];
     
     self.expandButton = [[UIButton alloc]init];
-    [self.expandButton setHitTestEdgeInsets:UIEdgeInsetsMake(50, 50, 50, 50)];
+    [self.expandButton setHitTestEdgeInsets:UIEdgeInsetsMake(-50, -50, -50, -50)];
     [self.expandButton addTarget:self action:@selector(expandButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.expandButton];
     

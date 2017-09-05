@@ -49,8 +49,8 @@
     }];
     [self nyx_setupRightWithCustomView:naviRightButton];
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
-    [self parseProvinceList];
     [self setupUI];
+    [self parseProvinceList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,9 +63,37 @@
         self.provinceList = [[YXProvinceList alloc] init];
         [self.provinceList startParse];
     }
-    self.currentProvince = self.provinceList.provinces.firstObject;
-    self.currentCity = self.currentProvince.citys.firstObject;
-    self.currentDistrict = self.currentCity.districts.firstObject;
+    
+    __block NSInteger provinceIndex = 0;
+    [self.provinceList.provinces enumerateObjectsUsingBlock:^(__kindof YXProvince * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *provinceId = obj.pid;
+        if ([provinceId isEqualToString:[YXUserManager sharedManager].userModel.provinceid]) {
+            provinceIndex = idx;
+        }
+    }];
+    self.currentProvince = self.provinceList.provinces[provinceIndex];
+    
+    __block NSInteger cityIndex = 0;
+    [self.currentProvince.citys enumerateObjectsUsingBlock:^(__kindof YXCity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *cityId = obj.cid;
+        if ([cityId isEqualToString:[YXUserManager sharedManager].userModel.cityid]) {
+            cityIndex = idx;
+        }
+    }];
+    self.currentCity = self.currentProvince.citys[cityIndex];
+    
+    __block NSInteger districtIndex = 0;
+    [self.currentCity.districts enumerateObjectsUsingBlock:^(__kindof YXDistrict * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *districtId = obj.did;
+        if ([districtId isEqualToString:[YXUserManager sharedManager].userModel.areaid]) {
+            districtIndex = idx;
+        }
+    }];
+    self.currentDistrict = self.currentCity.districts[districtIndex];
+    
+    [self.pickerView selectRow:provinceIndex inComponent:0 animated:NO];
+    [self.pickerView selectRow:cityIndex inComponent:1 animated:NO];
+    [self.pickerView selectRow:districtIndex inComponent:2 animated:NO];
 }
 
 - (void)setupUI {

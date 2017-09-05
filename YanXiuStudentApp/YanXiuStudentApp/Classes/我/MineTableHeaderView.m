@@ -60,8 +60,6 @@
         make.size.mas_equalTo(CGSizeMake(75, 75));
     }];
     self.imageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(editAction)];
-    [self.imageView addGestureRecognizer:tap];
     
     self.nameLabel = [[UILabel alloc]init];
     self.nameLabel.font = [UIFont boldSystemFontOfSize:19];
@@ -109,10 +107,6 @@
     
     UITapGestureRecognizer *enterTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enterAction)];
     [self addGestureRecognizer:enterTap];
-}
-
-- (void)editAction {
-    BLOCK_EXEC(self.editBlock);
 }
 
 - (void)enterAction {

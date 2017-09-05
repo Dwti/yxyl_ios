@@ -7,6 +7,7 @@
 //
 
 #import "MinePasswordInputView.h"
+#import "UIButton+ExpandHitArea.h"
 
 @interface MinePasswordInputView()<UITextFieldDelegate>
 @property (nonatomic, strong) UIButton *clearButton;
@@ -25,6 +26,7 @@
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     self.clearButton = [[UIButton alloc]init];
+    [self.clearButton setHitTestEdgeInsets:UIEdgeInsetsMake(-30, -30, -30, -30)];
     [self.clearButton setBackgroundImage:[UIImage imageNamed:@"绑定手机删除当前编辑文字icon正常态"] forState:UIControlStateNormal];
     [self.clearButton setBackgroundImage:[UIImage imageNamed:@"绑定手机删除当前编辑文字icon点击态"] forState:UIControlStateHighlighted];
     [self.clearButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MineTableHeaderView : UIView
+
 @property (nonatomic, strong) NSString *headUrl;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) void(^enterBlock) ();
-@property (nonatomic, strong) void(^editBlock) ();
-
 @property (nonatomic, assign) CGFloat offsetRate;
+
 @end
