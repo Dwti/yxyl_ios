@@ -159,6 +159,59 @@ static const NSInteger kBlankWidth = 3;
         [info.viewArray addObject:bgView];
         bgButton.tag = 100*index;
     }else {
+        if ([info.displayedString isEqualToString:self.placeholder]||[info.displayedString isEqualToString:self.placeholderForPrefix]) {
+            NSValue *value = frameArray.firstObject;
+            CGRect rect = value.CGRectValue;
+            UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
+            bgView.backgroundColor = [UIColor whiteColor];
+            bgView.clipsToBounds = YES;
+            UIButton *bgButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, bgView.width, bgView.height+6)];
+            bgButton.layer.cornerRadius = 6;
+            bgButton.clipsToBounds = YES;
+            [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+            [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"ebebeb"]] forState:UIControlStateHighlighted];
+            [bgButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"ebebeb"]] forState:UIControlStateSelected];
+            [bgButton setTitle:info.answer forState:UIControlStateNormal];
+            [bgButton setTitleColor:color forState:UIControlStateNormal];
+            [bgButton setTitleColor:[UIColor clearColor] forState:UIControlStateHighlighted];
+            [bgButton setTitleColor:[UIColor clearColor] forState:UIControlStateSelected];
+            bgButton.titleEdgeInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
+            bgButton.titleLabel.font = [UIFont systemFontOfSize:17];
+            [bgButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
+            [bgView addSubview:bgButton];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, bgView.frame.size.height-2, bgView.frame.size.width, 2)];
+            line.backgroundColor = color;
+            line.layer.cornerRadius = 1;
+            line.clipsToBounds = YES;
+            [bgView addSubview:line];
+            if (!isEmpty(info.prefixLetter)) {
+                UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
+                prefixLabel.text = info.prefixLetter;
+                prefixLabel.font = [UIFont systemFontOfSize:17];
+                prefixLabel.textColor = color;
+                [bgView addSubview:prefixLabel];
+                [prefixLabel sizeToFit];
+                CGRect lineFrame = line.frame;
+                lineFrame.origin.x += prefixLabel.width;
+                lineFrame.size.width -= prefixLabel.width;
+                line.frame = lineFrame;
+                CGRect buttonFrame = bgButton.frame;
+                buttonFrame.origin.x += prefixLabel.width;
+                buttonFrame.size.width -= prefixLabel.width;
+                bgButton.frame = buttonFrame;
+                
+                [bgButton.titleLabel sizeToFit];
+                UIEdgeInsets insets = bgButton.titleEdgeInsets;
+                insets.left = -(bgButton.width-bgButton.titleLabel.width)/2;
+                insets.right = (bgButton.width-bgButton.titleLabel.width)/2;
+                bgButton.titleEdgeInsets = insets;
+            }
+            
+            [self.htmlView addSubview:bgView];
+            [info.viewArray addObject:bgView];
+            bgButton.tag = 100*index;
+            return;
+        }
         [frameArray enumerateObjectsUsingBlock:^(NSValue *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGRect rect = obj.CGRectValue;
             UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height+2)];
@@ -179,7 +232,7 @@ static const NSInteger kBlankWidth = 3;
             if (idx==0 && !isEmpty(info.prefixLetter)) {
                 UILabel *prefixLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, rect.size.height)];
                 prefixLabel.text = info.prefixLetter;
-                prefixLabel.font = [UIFont boldSystemFontOfSize:17];
+                prefixLabel.font = [UIFont systemFontOfSize:17];
                 prefixLabel.textColor = color;
                 [prefixLabel sizeToFit];
                 CGRect lineFrame = line.frame;

@@ -23,6 +23,12 @@
     if (isEmpty(self.answer)) {
         return self.placeholder;
     }
-    return [NSString stringWithFormat:@"%@%@",self.prefixLetter,self.answer];
+    NSString *answer = [NSString stringWithFormat:@"%@%@",self.prefixLetter,self.answer];
+    CGSize answerSize = [answer sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    CGSize placeholderSize = [self.placeholder sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    if (answerSize.width >= placeholderSize.width) {
+        return answer;
+    }
+    return self.placeholder;
 }
 @end
