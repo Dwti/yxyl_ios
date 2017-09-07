@@ -185,7 +185,7 @@
 - (void)registerAccount {
     AccountRegisterModel *model = [[AccountRegisterModel alloc]init];
     model.mobile = self.accountView.text;
-    model.password = self.passwordView.text;
+    model.password = [self.passwordView.text md5];
     model.code = self.verifyCodeView.text;
     model.type = [NSString stringWithFormat:@"%@", @(YXLoginVerifyTypeRegister)];
     WEAK_SELF

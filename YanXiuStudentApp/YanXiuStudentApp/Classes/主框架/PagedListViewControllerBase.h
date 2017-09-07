@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;        // the model
 @property (nonatomic, assign) BOOL bNeedHeader;
 @property (nonatomic, assign) BOOL bNeedFooter;
+@property (nonatomic, assign) BOOL isShowTip;//内容穷尽处的提示是否显示 默认不显示,需要显示时设为YES即可
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
 @property (nonatomic, strong) YXCommonErrorView *errorView;
 @property (nonatomic, strong) EmptyView *emptyView;

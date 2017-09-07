@@ -65,9 +65,10 @@
     self.itemLabel.textColor = [UIColor colorWithHexString:@"333333"];
     [self.contentView addSubview:self.itemLabel];
     [self.itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.itemImageView.mas_right).mas_offset(12);
+        make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
     }];
+    
     UIImageView *enterImageView = [[UIImageView alloc]init];
     enterImageView.image = [UIImage imageNamed:@"展开内容按钮正常态"];
     [self.contentView addSubview:enterImageView];
@@ -99,9 +100,22 @@
     [self.itemDetailLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 }
 
+- (void)setShouldShowIcon:(BOOL)shouldShowIcon {
+    _shouldShowIcon = shouldShowIcon;
+    if (shouldShowIcon) {
+        [self.itemLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.itemImageView.mas_right).mas_offset(12);
+            make.centerY.mas_equalTo(0);
+        }];
+        self.itemImageView.image = self.image;
+    }
+}
+
 - (void)setImage:(UIImage *)image {
     _image = image;
-    self.itemImageView.image = image;
+    if (self.shouldShowIcon) {
+        self.itemImageView.image = image;
+    }
 }
 
 - (void)setTitle:(NSString *)title {

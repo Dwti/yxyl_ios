@@ -13,16 +13,18 @@
 #import "VerifyPhoneViewController.h"
 #import "ChangePasswordViewController.h"
 #import "AboutViewController.h"
+#import "SoundSwitchCell.h"
 
 typedef NS_ENUM(NSUInteger, SettingItemType) {
     SettingItem_BindPhone,
     SettingItem_ChangePassword,
+    SettingItem_SoundSwitch,
     SettingItem_About
 };
 
 @interface SettingsViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray<NSNumber *> *itemArray;
+@property (nonatomic, strong) NSArray<NSArray <NSNumber *>*> *itemArray;
 @end
 
 @implementation SettingsViewController
@@ -36,7 +38,10 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
     if ([YXUserManager sharedManager].isThirdLogin) {
         self.itemArray = @[@(SettingItem_About)];
     } else {
-        self.itemArray = @[@(SettingItem_BindPhone),@(SettingItem_ChangePassword),@(SettingItem_About)];
+        NSArray *array1 =  @[@(SettingItem_BindPhone),@(SettingItem_ChangePassword),@(SettingItem_SoundSwitch)];
+        NSArray *array2 = @[@(SettingItem_About)];
+        self.itemArray = @[array1,array2];
+        
     }
     [self setupUI];
     [self setupObserver];
@@ -48,15 +53,14 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
 }
 
 - (void)setupUI {
-    self.tableView = [[UITableView alloc]init];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.rowHeight = 50;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 10)];
-    self.tableView.tableHeaderView = headerView;
     [self.tableView registerClass:[MineItemCell class] forCellReuseIdentifier:@"MineItemCell"];
+    [self.tableView registerClass:[SoundSwitchCell class] forCellReuseIdentifier:@"SoundSwitchCell"];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
@@ -87,39 +91,65 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.itemArray.count;
+    return [self.itemArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MineItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineItemCell"];
-    SettingItemType type = self.itemArray[indexPath.row].integerValue;
-    if (type == SettingItem_BindPhone) {
-        cell.image = [UIImage imageNamed:@"绑定手机icon"];
-        if (isEmpty([YXUserManager sharedManager].userModel.mobile)) {
-            cell.title = @"绑定手机";
+    if (indexPath.section == 0) {
+        MineItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineItemCell"];
+        SettingItemType type = self.itemArray[indexPath.section][indexPath.row].integerValue;
+        if (type == SettingItem_BindPhone) {
+            cell.image = [UIImage imageNamed:@"绑定手机icon"];
+            if (isEmpty([YXUserManager sharedManager].userModel.mobile)) {
+                cell.title = @"绑定手机";
+                cell.subtitle = nil;
+            }else {
+                cell.title = @"修改手机";
+                cell.subtitle = [[YXUserManager sharedManager].userModel.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+            }
+        }else if (type == SettingItem_ChangePassword) {
+            cell.image = [UIImage imageNamed:@"修改密码icon"];
+            cell.title = @"修改密码";
             cell.subtitle = nil;
         }else {
-            cell.title = @"修改手机";
-            cell.subtitle = [[YXUserManager sharedManager].userModel.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+            cell.image = [UIImage imageNamed:@"关于icon"];
+            cell.title = @"关于";
+            cell.subtitle = nil;
         }
-    }else if (type == SettingItem_ChangePassword) {
-        cell.image = [UIImage imageNamed:@"修改密码icon"];
-        cell.title = @"修改密码";
-        cell.subtitle = nil;
+        cell.shouldShowShadow = indexPath.row==self.itemArray[indexPath.section].count-1;
+        return cell;
     }else {
-        cell.image = [UIImage imageNamed:@"关于icon"];
-        cell.title = @"关于";
-        cell.subtitle = nil;
+        SoundSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SoundSwitchCell"];
+        NSInteger index = [YXMineManager indexWithSoundSwitchState:[YXUserManager sharedManager].userModel.soundSwitchState];
+        cell.title = @"音效";
+        cell.isOn = index == 0 ? YES : NO;
+        WEAK_SELF
+        [cell setSwitchActionBlock:^(BOOL isOn) {
+            STRONG_SELF
+            NSInteger index = isOn == YES ? 0 : 1;
+            [[YXUpdateUserInfoHelper instance] requestWithType:YXUpdateUserInfoTypeSoundSwitch param:@{@"soundSwitchState":[YXMineManager soundSwitchStates][index]} completion:^(NSError *error) {
+                STRONG_SELF
+                if (error) {
+                    [self.view nyx_showToast:error.localizedDescription];
+                    return;
+                }
+                [self.tableView reloadData];
+            }];
+        }];
+        cell.shouldShowShadow = indexPath.row==self.itemArray[indexPath.section].count-1;
+        return cell;
     }
-    cell.shouldShowShadow = indexPath.row==self.itemArray.count-1;
-    return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    SettingItemType type = self.itemArray[indexPath.row].integerValue;
+    SettingItemType type = self.itemArray[indexPath.section][indexPath.row].integerValue;
     if (type == SettingItem_BindPhone) {
         if (isEmpty([YXUserManager sharedManager].userModel.mobile)) {
             BindPhoneViewController *vc = [[BindPhoneViewController alloc]init];
@@ -127,7 +157,7 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
         }else {
             VerifyPhoneViewController *vc = [[VerifyPhoneViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
-        }        
+        }
     }else if (type == SettingItem_ChangePassword) {
         ChangePasswordViewController *vc = [[ChangePasswordViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -137,4 +167,16 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc]init];
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
 @end

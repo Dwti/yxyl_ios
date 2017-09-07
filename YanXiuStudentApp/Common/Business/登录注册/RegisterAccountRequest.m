@@ -12,7 +12,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"app/user/firstStepCommitV2.do"];
+        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"app/user/firstStepCommitNew.do"];
     }
     return self;
 }

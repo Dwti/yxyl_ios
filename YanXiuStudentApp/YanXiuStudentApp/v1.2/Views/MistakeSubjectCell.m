@@ -10,7 +10,6 @@
 
 @interface MistakeSubjectCell()
 @property (nonatomic, strong) UILabel *subjectLabel;
-@property (nonatomic, strong) UIImageView *subjectImageView;
 @property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, strong) UIView *bottomLineView;
 @property (nonatomic, strong) UIImageView *enterImageView;
@@ -55,19 +54,12 @@
     self.layer.shadowRadius = 1;
     self.layer.shadowOpacity = 0.02;
     
-    self.subjectImageView = [[UIImageView alloc]init];
-    [self.contentView addSubview:self.subjectImageView];
-    [self.subjectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(11);
-        make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(28, 28));
-    }];
     self.subjectLabel = [[UILabel alloc]init];
     self.subjectLabel.textColor = [UIColor colorWithHexString:@"333333"];
     self.subjectLabel.font = [UIFont boldSystemFontOfSize:16];
     [self.contentView addSubview:self.subjectLabel];
     [self.subjectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.subjectImageView.mas_right).mas_offset(8);
+        make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
     }];
     UIImageView *enterImageView = [[UIImageView alloc]init];
@@ -109,7 +101,6 @@
 - (void)setData:(GetSubjectMistakeRequestItem_subjectMistake *)data {
     _data = data;
     self.subjectLabel.text = data.name;
-    self.subjectImageView.image = [UIImage imageNamed:data.name];
     NSString *countStr = [NSString stringWithFormat:@"%@题",data.data.wrongQuestionsCount];
     self.countLabel.text = countStr;
 }

@@ -209,7 +209,7 @@
     }
     [self.view nyx_startLoading];
     WEAK_SELF
-    [LoginDataManager loginWithMobileNumber:self.accountView.text password:self.passwordView.text isThirdLogin:NO completeBlock:^(YXLoginRequestItem *item, NSError *error, BOOL isBind) {
+    [LoginDataManager loginWithMobileNumber:self.accountView.text password:[self.passwordView.text md5] isThirdLogin:NO completeBlock:^(YXLoginRequestItem *item, NSError *error, BOOL isBind) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {

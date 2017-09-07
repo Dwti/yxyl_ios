@@ -33,6 +33,11 @@ NSString *const YXUpdateHeadImgSuccessNotification = @"kYXUpdateHeadImgSuccessNo
                   param:(NSDictionary *)param
              completion:(void (^)(NSError *))completion
 {
+    if (type == YXUpdateUserInfoTypeSoundSwitch) {
+        [self saveDataWithParam:param type:type];
+        BLOCK_EXEC(completion,nil);
+        return;
+    }
     if (self.request) {
         [self.request stopRequest];
     }
@@ -77,6 +82,9 @@ NSString *const YXUpdateHeadImgSuccessNotification = @"kYXUpdateHeadImgSuccessNo
         case YXUpdateUserInfoTypeStage:
             self.request.stageid = [param objectForKey:@"stageid"];
             break;
+        case YXUpdateUserInfoTypeSoundSwitch:
+            self.request.stageid = [param objectForKey:@"soundSwitchState"];
+            break;
         default:
             break;
     }
@@ -110,6 +118,8 @@ NSString *const YXUpdateHeadImgSuccessNotification = @"kYXUpdateHeadImgSuccessNo
             [YXUserManager sharedManager].userModel.stageid = [param objectForKey:@"stageid"];
             [YXUserManager sharedManager].userModel.stageName = [param objectForKey:@"stageName"];
             break;
+        case YXUpdateUserInfoTypeSoundSwitch:
+            [YXUserManager sharedManager].userModel.soundSwitchState = [param objectForKey:@"soundSwitchState"];
         default:
             break;
     }

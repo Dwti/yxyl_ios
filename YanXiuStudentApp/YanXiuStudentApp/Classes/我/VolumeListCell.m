@@ -1,3 +1,4 @@
+
 //
 //  VolumeListCell.m
 //  YanXiuStudentApp
@@ -9,7 +10,6 @@
 #import "VolumeListCell.h"
 
 @interface VolumeListCell()
-@property (nonatomic, strong) UIImageView *itemImageView;
 @property (nonatomic, strong) UILabel *itemLabel;
 @property (nonatomic, strong) UILabel *itemDetailLabel;
 @property (nonatomic, strong) UIView *bottomLineView;
@@ -54,21 +54,15 @@
     self.layer.shadowOpacity = 0.02;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.itemImageView = [[UIImageView alloc]init];
-    [self.contentView addSubview:self.itemImageView];
-    [self.itemImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(13);
-        make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
-    }];
     self.itemLabel = [[UILabel alloc]init];
     self.itemLabel.font = [UIFont boldSystemFontOfSize:16];
     self.itemLabel.textColor = [UIColor colorWithHexString:@"333333"];
     [self.contentView addSubview:self.itemLabel];
     [self.itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.itemImageView.mas_right).mas_offset(12);
+        make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
     }];
+    
     UIImageView *enterImageView = [[UIImageView alloc]init];
     enterImageView.image = [UIImage imageNamed:@"展开内容按钮正常态"];
     [self.contentView addSubview:enterImageView];
@@ -78,6 +72,7 @@
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(15, 15));
     }];
+    
     self.itemDetailLabel = [[UILabel alloc]init];
     self.itemDetailLabel.font = [UIFont systemFontOfSize:14];
     self.itemDetailLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
@@ -88,6 +83,7 @@
         make.left.mas_equalTo(self.itemLabel.mas_right).mas_offset(10);
         make.centerY.mas_equalTo(0);
     }];
+    
     self.bottomLineView = [[UIView alloc]init];
     self.bottomLineView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     [self.contentView addSubview:self.bottomLineView];
@@ -112,7 +108,6 @@
 - (void)setSubject:(GetSubjectRequestItem_subject *)subject {
     _subject = subject;
     NSString *subjectName = subject.name;
-    self.itemImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@icon",subjectName]];
     self.itemLabel.text = subjectName;
     if (subject.edition.editionName) {
         self.itemDetailLabel.text = subject.edition.editionName;

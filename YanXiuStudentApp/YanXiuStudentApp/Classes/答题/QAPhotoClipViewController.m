@@ -13,10 +13,13 @@
 static const CGFloat kBorderWidth = 22.f+23.f;
 
 @interface QAPhotoClipViewController ()
+@property(nonatomic, strong) UIImageView *guideImageView;
+@property (nonatomic, strong) UIImage *guideImage;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) QAPhotoClipView *clipView;
 @property (nonatomic, strong) CAShapeLayer *maskLayer;
 @property (nonatomic, strong) UIImage *adjustedImage;
+
 @end
 
 @implementation QAPhotoClipViewController
@@ -34,6 +37,42 @@ static const CGFloat kBorderWidth = 22.f+23.f;
 }
 
 - (void)setupUI {
+    [self setupContentUI];
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasClipImageOnce"]) {
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasClipImageOnce"];
+//        [self setupGuideView];
+//    }
+}
+
+- (void)setupGuideView {
+    self.guideImageView = [[UIImageView alloc]init];
+    self.guideImageView.image = nil;
+    CGFloat width = SCREEN_WIDTH;
+    if (width == 320) {
+        self.guideImage = [UIImage nyx_animatedGIFNamed:@"640x960"];//pull_normal
+    }else if (width == 375) {
+        self.guideImage = [UIImage nyx_animatedGIFNamed:@"750x1334"];
+    }else if (width == 414) {
+        self.guideImage = [UIImage nyx_animatedGIFNamed:@"1242x2208"];
+    }else {
+        self.guideImage = [UIImage nyx_animatedGIFNamed:@"750x1334"];
+    }
+    self.guideImageView.animationImages = self.guideImage.images;
+    self.guideImageView.animationRepeatCount = 1;
+    self.guideImageView.animationDuration = self.guideImage.duration;
+    [self.guideImageView startAnimating];
+    [self.view addSubview:self.guideImageView];
+    [self.guideImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.guideImage.duration * 2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.guideImageView stopAnimating];
+        self.guideImage = nil;
+        [self.guideImageView removeFromSuperview];
+    });
+}
+
+- (void)setupContentUI {
     self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(25, 25, self.view.width-50, self.view.height-25-19-45)];
     self.adjustedImage = [self.oriImage nyx_aspectFillImageWithSize:self.imageView.frame.size];
     self.imageView.image = self.adjustedImage;
@@ -68,7 +107,6 @@ static const CGFloat kBorderWidth = 22.f+23.f;
     }];
     [self.view addSubview:bottomView];
 }
-
 - (CGRect)clippedImageRect {
     CGRect rect = [self.clipView convertRect:self.clipView.bounds toView:self.imageView];
     rect = CGRectInset(rect, 25, 25);

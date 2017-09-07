@@ -109,7 +109,7 @@
     }
     [self.view nyx_startLoading];
     WEAK_SELF
-    [LoginDataManager resetPasswordWithMobileNumber:self.phoneNum password:self.passwordView.text completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
+    [LoginDataManager resetPasswordWithMobileNumber:self.phoneNum password:[self.passwordView.text md5] completeBlock:^(HttpBaseRequestItem *item, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {

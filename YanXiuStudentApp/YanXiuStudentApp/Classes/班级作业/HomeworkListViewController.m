@@ -31,6 +31,7 @@
             BLOCK_EXEC(self.emptyBlock);
         }];
         self.dataFetcher = fetcher;
+        self.isShowTip = YES;
     }
     return self;
 }

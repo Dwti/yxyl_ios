@@ -35,6 +35,7 @@ YXHtmlCellHeightDelegate
 - (instancetype)initWithFetcher:(PagedListFetcherBase *)fetcher {
     if (self = [super init]) {
         self.fetcher = fetcher;
+        self.isShowTip = YES;
     }
     return self;
 }

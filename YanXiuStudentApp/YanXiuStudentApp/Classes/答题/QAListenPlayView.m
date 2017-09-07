@@ -58,8 +58,8 @@
     [self.playButton setImage:[UIImage imageNamed:@"播放按钮点击态"] forState:UIControlStateHighlighted];
     [self addSubview:self.playButton];
     [self addRACSignalForButtonTapped];
-    UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonLongPressed:)];
-    [self.playButton addGestureRecognizer:longGesture];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(buttonPanGesture:)];
+    [self.playButton addGestureRecognizer:panGesture];
     
     self.timeLabel = [[UILabel alloc] init];
     self.timeLabel.font = [UIFont fontWithName:YXFontMetro_Regular size:14];
@@ -162,7 +162,7 @@
     }];
 }
 
-- (void)buttonLongPressed:(UILongPressGestureRecognizer *)sender {
+- (void)buttonPanGesture:(UIPanGestureRecognizer *)sender {
     if (self.player == nil || self.isFirstPlay) {
         return;
     }

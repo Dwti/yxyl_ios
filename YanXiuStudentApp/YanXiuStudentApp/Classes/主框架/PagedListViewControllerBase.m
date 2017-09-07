@@ -10,7 +10,11 @@
 #import "YXClassHomeworkFetcher.h"
 #import "GlobalUtils.h"
 
-@interface PagedListViewControllerBase () 
+static const CGFloat kTipViewHeight = 20.f;
+
+@interface PagedListViewControllerBase ()
+@property(nonatomic, strong) UIView *tipView;
+@property(nonatomic, assign) CGFloat lastContentOffset;
 @end
 
 @implementation PagedListViewControllerBase
@@ -21,6 +25,7 @@
         _bNeedHeader = YES;
         _bNeedFooter = YES;
         _bIsGroupedTableViewStyle = NO;
+        _isShowTip = NO;
     }
     return self;
 }
@@ -31,6 +36,9 @@
     [_header free];
     [_footer free];
     [self.dataFetcher stop];
+    if (self.isShowTip) {
+        [self.tableView removeObserver:self forKeyPath:@"contentSize"];
+    }
 }
 
 - (void)viewDidLoad {
@@ -98,6 +106,9 @@
     self.requestDelegate = self.dataFetcher;
     [self.view nyx_startLoading];
     [self firstPageFetch];
+    if (self.isShowTip) {
+        [self setupTipView];
+    }
 }
 
 - (void)firstPageFetch {
@@ -238,5 +249,59 @@
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return 100;
 //}
+
+- (void)setupTipView {
+    self.tipView = [[UIView alloc]init];
+    self.tipView.backgroundColor = [UIColor clearColor];
+    [self.tableView addSubview:self.tipView];
+    [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+    self.tipView.frame = CGRectMake(0, self.tableView.contentSize.height + self.tableView.y, self.tableView.width, kTipViewHeight);
+    UILabel *textLabel = [[UILabel alloc]initWithFrame:self.tipView.bounds];
+    textLabel.textAlignment = NSTextAlignmentCenter;
+    textLabel.text = @"这回真没了";
+    textLabel.font = [UIFont systemFontOfSize:14.f];
+    textLabel.textColor = [UIColor colorWithHexString:@"a8a7a8"];
+    
+    [self.tipView addSubview:textLabel];
+    self.tipView.hidden = YES;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (self.tableView.contentSize.height + self.tableView.y < SCREEN_HEIGHT) {
+        self.tipView.hidden = YES;
+        return;
+    }
+    self.tipView.frame = CGRectMake(0, self.tableView.contentSize.height + self.tableView.y, self.tableView.width, kTipViewHeight);
+    if (self.tableView.contentInset.bottom > 0) {
+        return;
+    }
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTipViewHeight + 10, 0);
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.lastContentOffset = scrollView.contentOffset.y;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y < self.lastContentOffset - 5*kTipViewHeight)
+    {
+        if (self.tipView.hidden == YES) {
+            return;
+        }
+        self.tipView.hidden = YES;
+        self.tableView.contentInset = UIEdgeInsetsZero;
+    }
+    
+    CGFloat height = scrollView.frame.size.height;
+    CGFloat contentYoffset = scrollView.contentOffset.y;
+    CGFloat distanceFromBottom = scrollView.contentSize.height - contentYoffset;
+    if (distanceFromBottom < height && ([self.dataArray count] >= _total)) {
+        if (self.tipView.hidden == NO) {
+            return;
+        }
+        self.tipView.hidden = NO;
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTipViewHeight + 10, 0);
+    }
+}
 
 @end

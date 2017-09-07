@@ -131,10 +131,12 @@
             }
             item.questionID = questions;
             [YXRecordManager addRecord:item];
-            
-            //播放音效
-            NSString *filePath = [[NSBundle mainBundle]pathForResource:@"答题结束上传成功" ofType:@"mp3"];
-            [[AudioManager sharedInstance]playSoundWithUrl:[NSURL fileURLWithPath:filePath]];
+           
+            if ([YXMineManager indexWithSoundSwitchState: [YXUserManager sharedManager].userModel.soundSwitchState] == 0) {
+                //播放音效
+                NSString *filePath = [[NSBundle mainBundle]pathForResource:@"答题结束上传成功" ofType:@"mp3"];
+                [[AudioManager sharedInstance]playSoundWithUrl:[NSURL fileURLWithPath:filePath]];
+            }
             
             // 提交成功后清除本地保存的答案
             [self.model.allQuestions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

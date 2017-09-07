@@ -38,6 +38,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
 - (void)updateWithDatas:(NSArray *)dataArray selectedIndex:(NSInteger)index {
     self.dataArray = dataArray;
     [self.pickerView reloadAllComponents];
+    self.lastSelectedIndex = index;
     [self.pickerView selectRow:index inComponent:0 animated:NO];
 }
 

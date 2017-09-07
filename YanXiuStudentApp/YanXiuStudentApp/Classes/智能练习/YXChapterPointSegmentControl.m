@@ -99,27 +99,33 @@
 - (void)setCurSelectedIndex:(int)curSelectedIndex {
     if (curSelectedIndex <= 0) {
         _curSelectedIndex = 0;
-
-        self.chapterLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
-        self.pointLabel.textColor = [UIColor whiteColor];
         
-        [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(2);
-            make.centerY.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(63, 31));
+        [UIView animateWithDuration:0.3 animations:^{
+            self.chapterLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+            self.pointLabel.textColor = [UIColor whiteColor];
+            
+            [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(2);
+                make.centerY.mas_equalTo(0);
+                make.size.mas_equalTo(CGSizeMake(63, 31));
+            }];
+            [self layoutIfNeeded];
         }];
     }
     
     if (curSelectedIndex >= 1) {
         _curSelectedIndex = 1;
         
-        self.chapterLabel.textColor = [UIColor whiteColor];
-        self.pointLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
-        
-        [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-2);
-            make.centerY.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(63, 31));
+        [UIView animateWithDuration:0.3 animations:^{
+            self.chapterLabel.textColor = [UIColor whiteColor];
+            self.pointLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+            
+            [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(-2);
+                make.centerY.mas_equalTo(0);
+                make.size.mas_equalTo(CGSizeMake(63, 31));
+            }];
+            [self layoutIfNeeded];
         }];
     }
 }

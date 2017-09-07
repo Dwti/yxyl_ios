@@ -10,6 +10,7 @@
 #import "YXRedManager.h"
 #import <UIButton+WebCache.h>
 #import "AudioManager.h"
+#import "YXMineManager.h"
 
 @interface YXTabBarController ()<UITabBarControllerDelegate>
 @property (nonatomic, strong) UIView *bgView;
@@ -77,9 +78,11 @@
         }];
     } completion:nil];
     
-    //播放音效
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"tab 栏" ofType:@"wav"];
-    [[AudioManager sharedInstance]playSoundWithUrl:[NSURL fileURLWithPath:filePath]];
+   if ([YXMineManager indexWithSoundSwitchState: [YXUserManager sharedManager].userModel.soundSwitchState] == 0) {
+        //播放音效
+        NSString *filePath = [[NSBundle mainBundle]pathForResource:@"tab 栏" ofType:@"wav"];
+        [[AudioManager sharedInstance]playSoundWithUrl:[NSURL fileURLWithPath:filePath]];
+    }
 }
 
 #pragma mark - Hard Code 底部三个Button

@@ -50,6 +50,7 @@
 
 @property (nonatomic, strong) NSString<Optional> *isThirdLogin; //是否为第三方登录
 @property (nonatomic, copy) NSString<Optional> *isRegisterByJoinClass;
+@property (nonatomic, copy) NSString<Optional> *soundSwitchState;//声音是否开启
 
 @end
 

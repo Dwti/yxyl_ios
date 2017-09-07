@@ -14,6 +14,7 @@
 #import "ExerciseChapterTreeViewController.h"
 #import "ExerciseKnpTreeViewController.h"
 #import "ChooseEditionViewController.h"
+#import "GetVolumesRequest.h"
 
 @interface ExerciseKnowledgeChooseViewController ()
 @property (nonatomic, strong) UIView *topContainerView;
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) ExerciseKnpTreeViewController *knpVC;
 
 @property (nonatomic, strong) NSArray *volumeArray;
-@property (nonatomic, strong) GetEditionRequestItem_edition_volume *chooseVolume;
+@property (nonatomic, strong) GetVolumesRequestItem_volume *chooseVolume;
 
 @end
 
@@ -82,6 +83,11 @@
         }
         [self.errorView removeFromSuperview];
         self.volumeArray = volumeArray;
+        [self.volumeArray enumerateObjectsUsingBlock:^(GetVolumesRequestItem_volume  *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.selected.integerValue == 1) {
+                self.chooseVolume = obj;
+            }
+        }];
         [self setupBottomView];
         [self setupTopView];
         [self setupVolumeChooseView];
@@ -123,8 +129,7 @@
     chooseVolumnButton.bExpand = NO;
     [topContainerView addSubview:chooseVolumnButton];
     [chooseVolumnButton addTarget:self action:@selector(chooseVolumnAction:) forControlEvents:UIControlEventTouchUpInside];
-    GetEditionRequestItem_edition_volume *volume = self.volumeArray[0];
-    CGSize size = [chooseVolumnButton updateWithTitle:volume.name];
+    CGSize size = [chooseVolumnButton updateWithTitle:self.chooseVolume.name];
     [self setupChooseVolumeButtonLayoutWithSize:size];
 }
 
@@ -147,8 +152,7 @@
     self.chapterVC = [[ExerciseChapterTreeViewController alloc]init];
     self.chapterVC.subjectID = self.subject.subjectID;
     self.chapterVC.editionID = self.subject.edition.editionId;
-    GetEditionRequestItem_edition_volume *volume = self.volumeArray[0];
-    self.chapterVC.volumeID = volume.volumeID;
+    self.chapterVC.volumeID = self.chooseVolume.volumeID;
     [self.view addSubview:self.chapterVC.view];
     [self.chapterVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(55);
@@ -178,17 +182,24 @@
              [self.chooseVolumeView removeFromSuperview];
             return;
         }
-        GetEditionRequestItem_edition_volume *volume = self.volumeArray[index];
-        self.chooseVolume = volume;
-        CGSize size = [self.chooseVolumeButton updateWithTitle:volume.name];
-        
-        [self setupChooseVolumeButtonLayoutWithSize:size];
-       
-        [self.chooseVolumeView removeFromSuperview];
-        self.chapterVC.volumeID = volume.volumeID;
+        GetVolumesRequestItem_volume *volume = self.volumeArray[index];
+        [[ExerciseSubjectManager sharedInstance] saveVolumeWithSubjectID:self.subject.subjectID volumeID:volume.volumeID completeBlock:^(NSError *error) {
+            if (error) {
+                [self.view nyx_showToast:error.localizedDescription];
+                return;
+            }
+            self.chooseVolume = volume;
+            CGSize size = [self.chooseVolumeButton updateWithTitle:volume.name];
+            
+            [self setupChooseVolumeButtonLayoutWithSize:size];
+            
+            [self.chooseVolumeView removeFromSuperview];
+            self.chapterVC.volumeID = volume.volumeID;
+        }];
     };
+    NSUInteger index = [self.volumeArray containsObject:self.chooseVolume] ? [self.volumeArray indexOfObject:self.chooseVolume] : 0;
     [self.chooseVolumeView updateWithDatas:self.volumeArray
-                             selectedIndex:0];
+                             selectedIndex:index];
 }
 
 #pragma mark - Actions

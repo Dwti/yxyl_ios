@@ -57,6 +57,19 @@
     return index;
 }
 
+#pragma mark - 声音开关
++ (NSArray *)soundSwitchStates {
+    return @[
+             [self stringWithType:YXSoundSwitchStateOn],
+             [self stringWithType:YXSoundSwitchStateOff]
+             ];
+}
+
++ (NSUInteger)indexWithSoundSwitchState:(NSString *)soundSwitchState {
+    NSUInteger index = [[self soundSwitchStates] containsObject:soundSwitchState] ? [[self soundSwitchStates] indexOfObject:soundSwitchState] : 0;
+    return index;
+}
+
 #pragma mark -
 
 + (NSString *)stringWithType:(NSInteger)type

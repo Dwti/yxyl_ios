@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, assign) BOOL shouldShowShadow;
+@property (nonatomic, assign) BOOL shouldShowIcon;
+
 @end

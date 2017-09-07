@@ -13,7 +13,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"app/user/resetPassword.do"];
+        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"app/user/resetPasswordNew.do"];
     }
     return self;
 }

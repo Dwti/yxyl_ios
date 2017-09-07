@@ -123,30 +123,36 @@
         if (indexPath.row == 0) {
             cell.title = @"我的错题";
             cell.subtitle = nil;
+            cell.shouldShowIcon = YES;
             cell.image = [UIImage imageNamed:@"我的错题icon"];
         }else {
             cell.title = @"练习历史";
             cell.subtitle = nil;
+            cell.shouldShowIcon = YES;
             cell.image = [UIImage imageNamed:@"练习历史icon"];
         }
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell.title = @"学段";
+            cell.shouldShowIcon = YES;
             cell.subtitle = [YXUserManager sharedManager].userModel.stageName;
             cell.image = [UIImage imageNamed:@"学段icon"];
         }else {
             cell.title = @"教材版本";
             cell.subtitle = nil;
+            cell.shouldShowIcon = YES;
             cell.image = [UIImage imageNamed:@"教材版本icon"];
         }
     }else {
         if (indexPath.row == 0) {
             cell.title = @"意见反馈";
             cell.subtitle = nil;
+            cell.shouldShowIcon = YES;
             cell.image = [UIImage imageNamed:@"意见反馈icon"];
         }else {
             cell.title = @"设置";
             cell.subtitle = nil;
+            cell.shouldShowIcon = YES;
             cell.image = [UIImage imageNamed:@"设置icon"];
         }
     }

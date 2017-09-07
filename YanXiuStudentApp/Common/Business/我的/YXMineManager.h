@@ -21,6 +21,12 @@ typedef NS_ENUM(NSInteger, YXSexType) {
     YXSexTypeMan = 2      //男
 };
 
+//声音的开关
+typedef NS_ENUM(NSInteger, YXSoundSwitchState) {
+    YXSoundSwitchStateOn = 0,   //开
+    YXSoundSwitchStateOff = 1,   //关
+};
+
 // 我的数据管理
 @interface YXMineManager : NSObject
 
@@ -34,4 +40,7 @@ typedef NS_ENUM(NSInteger, YXSexType) {
 + (NSArray *)stageNames;
 + (NSUInteger)indexWithStageId:(NSString *)stageId;
 
+//声音的开关
++ (NSArray *)soundSwitchStates;
++ (NSUInteger)indexWithSoundSwitchState:(NSString *)soundSwitchState;
 @end

@@ -15,6 +15,9 @@ NSString *const kSubjectSaveEditionInfoSuccessNotification = @"kSubjectSaveEditi
 @property (nonatomic, strong) NSMutableDictionary *subjectDictionary;
 @property (nonatomic, strong) GetSubjectRequest *subjectRequest;
 @property (nonatomic, strong) GetEditionRequest *editionRequest;
+@property (nonatomic, strong) GetVolumesRequest *getVolumeRequest;
+@property (nonatomic, strong) SaveFavVolumeRequest *saveVolumeRequest;
+
 @property (nonatomic, strong) SaveEditionRequest *saveEditionRequest;
 @end
 
@@ -57,25 +60,18 @@ NSString *const kSubjectSaveEditionInfoSuccessNotification = @"kSubjectSaveEditi
 }
 
 - (void)requestVolumesWithSubjectID:(NSString *)subjectID editionID:(NSString *)editionID completeBlock:(VolumeRequestBlock)requestBlock{
-    [self.editionRequest stopRequest];
-    self.editionRequest = [[GetEditionRequest alloc]init];
-    self.editionRequest.stageId = [YXUserManager sharedManager].userModel.stageid;;
-    self.editionRequest.subjectId = subjectID;
-    [self.editionRequest startRequestWithRetClass:[GetEditionRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+    [self.getVolumeRequest stopRequest];
+    self.getVolumeRequest = [[GetVolumesRequest alloc]init];
+    self.getVolumeRequest.stageId = [YXUserManager sharedManager].userModel.stageid;;
+    self.getVolumeRequest.subjectId = subjectID;
+    self.getVolumeRequest.editionId = editionID;
+    [self.getVolumeRequest startRequestWithRetClass:[GetVolumesRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         if (error) {
             BLOCK_EXEC(requestBlock,nil,error);
             return;
         }
-        NSMutableArray *volumeArray = [NSMutableArray array];
-        GetEditionRequestItem *item = retItem;
-        [item.editions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            GetEditionRequestItem_edition *edition = obj;
-            if ([edition.editionID isEqualToString:editionID]) {
-                [volumeArray addObjectsFromArray:edition.volumes];
-                *stop = YES;
-            }
-        }];
-        BLOCK_EXEC(requestBlock,volumeArray,nil);
+        GetVolumesRequestItem *item = retItem;
+        BLOCK_EXEC(requestBlock,item.volumes,nil);
     }];
 }
 
@@ -111,6 +107,19 @@ NSString *const kSubjectSaveEditionInfoSuccessNotification = @"kSubjectSaveEditi
         }
         BLOCK_EXEC(requestBlock,subject,nil);
         [[NSNotificationCenter defaultCenter]postNotificationName:kSubjectSaveEditionInfoSuccessNotification object:nil];
+    }];
+}
+
+- (void)saveVolumeWithSubjectID:(NSString *)subjectID volumeID:(NSString *)volumeID completeBlock:(SaveVolumeRequestBlock)requestBlock {
+    [self.saveVolumeRequest stopRequest];
+    self.saveVolumeRequest = [[SaveFavVolumeRequest alloc]init];
+    self.saveVolumeRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
+    self.saveVolumeRequest.subjectId = subjectID;
+    self.saveVolumeRequest.volumeId = volumeID;
+    WEAK_SELF
+    [self.saveVolumeRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        STRONG_SELF
+        BLOCK_EXEC(requestBlock,error);
     }];
 }
 

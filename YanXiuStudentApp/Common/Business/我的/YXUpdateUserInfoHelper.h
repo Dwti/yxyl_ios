@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, YXUpdateUserInfoType) {
     YXUpdateUserInfoTypeSex,      //性别
     YXUpdateUserInfoTypeArea,     //地区（省市区县）
     YXUpdateUserInfoTypeSchool,   //学校（Id或名称）
-    YXUpdateUserInfoTypeStage     //学段
+    YXUpdateUserInfoTypeStage,     //学段
+    YXUpdateUserInfoTypeSoundSwitch     //声音开关
 };
 
 extern NSString *const YXUpdateUserInfoSuccessNotification;

@@ -17,7 +17,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"app/user/login.do"];
+        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"app/user/loginNew.do"];
         self.deviceId = [YXConfigManager sharedInstance].deviceID;
     }
     return self;

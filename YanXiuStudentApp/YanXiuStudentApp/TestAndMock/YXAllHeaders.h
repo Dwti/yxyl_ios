@@ -38,6 +38,7 @@
 #import "PrivacyPolicyViewController.h"
 #import "SettingsViewController.h"
 #import "SexSelectionViewController.h"
+#import "SoundSwitchCell.h"
 #import "TextBookVersionViewController.h"
 #import "UpdateAppPromptView.h"
 #import "VerifyPhoneViewController.h"

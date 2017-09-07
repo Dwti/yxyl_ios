@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GetSubjectRequest.h"
 #import "GetEditionRequest.h"
+#import "GetVolumesRequest.h"
+#import "SaveFavVolumeRequest.h"
 
 extern NSString *const kSubjectSaveEditionInfoSuccessNotification;
 
@@ -16,6 +18,7 @@ typedef void(^SubjectRequestBlock)(GetSubjectRequestItem *retItem, NSError *erro
 typedef void(^EditionRequestBlock)(GetEditionRequestItem *retItem, NSError *error);
 typedef void(^SaveEditionRequestBlock)(GetSubjectRequestItem_subject *retItem, NSError *error);
 typedef void(^VolumeRequestBlock)(NSArray *volumeArray, NSError *error);// volume class is GetEditionRequestItem_edition_volume
+typedef void(^SaveVolumeRequestBlock)(NSError *error);
 
 @interface ExerciseSubjectManager : NSObject
 
@@ -27,5 +30,5 @@ typedef void(^VolumeRequestBlock)(NSArray *volumeArray, NSError *error);// volum
 - (void)requestEditionsWithSubjectID:(NSString *)subjectID completeBlock:(EditionRequestBlock)requestBlock;
 - (void)requestVolumesWithSubjectID:(NSString *)subjectID editionID:(NSString *)editionID completeBlock:(VolumeRequestBlock)requestBlock;
 - (void)saveEditionWithSubjectID:(NSString *)subjectID editionID:(NSString *)editionID completeBlock:(SaveEditionRequestBlock)requestBlock;
-
+- (void)saveVolumeWithSubjectID:(NSString *)subjectID volumeID:(NSString *)volumeID completeBlock:(SaveVolumeRequestBlock)requestBlock;
 @end

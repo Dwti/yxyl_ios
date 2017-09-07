@@ -36,7 +36,7 @@
     self.firstLabel.textAlignment = NSTextAlignmentCenter;
     [v1 addSubview:self.firstLabel];
     [self.firstLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(CGPointMake(0, 1));
+        make.center.mas_equalTo(CGPointMake(0, 3/[UIScreen mainScreen].scale));
     }];
     UIView *v2 = [v1 clone];
     [self addSubview:v2];
@@ -47,7 +47,7 @@
     self.secondLabel = [self.firstLabel clone];
     [v2 addSubview:self.secondLabel];
     [self.secondLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(CGPointMake(0, 1));
+        make.center.mas_equalTo(CGPointMake(0, 3/[UIScreen mainScreen].scale));
     }];
 }
 @end
