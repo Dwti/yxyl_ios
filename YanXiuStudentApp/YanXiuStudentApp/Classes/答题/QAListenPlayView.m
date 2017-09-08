@@ -151,7 +151,7 @@
         }
         self.isFirstPlay = NO;
         CGFloat progress = [x longLongValue] / self.player.duration;
-        if (self.player.duration - [x floatValue] < 1) {
+        if (self.player.duration - [x floatValue] < .1f) {
                 self.playProgress = 0;
                 [self.player seekTo:0];
                 [self pause];
@@ -214,7 +214,7 @@
         make.top.mas_equalTo(0);
     }];
     
-    self.timeLabel.attributedText = [self palyTime:[self timeString:self.player.duration * self.playProgress] withContent:[self timeString:self.player.duration]];
+    self.timeLabel.attributedText = [self palyTime:[self timeString:self.player.duration * self.playProgress] withContent:[self timeString:ceil(self.player.duration)]];
 }
 
 - (NSString *)timeString:(NSTimeInterval)time {
