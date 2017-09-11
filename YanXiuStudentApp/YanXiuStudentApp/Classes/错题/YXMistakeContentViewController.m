@@ -48,6 +48,9 @@
 
 #pragma mark - request
 - (void)requestForDeleteCurrentQuestion {
+    if (isEmpty(self.model.questions)) {
+        return;
+    }
     QAQuestion *item = [self.model.questions objectAtIndex:self.slideView.currentIndex];
     WEAK_SELF
     [self.view nyx_startLoading];
