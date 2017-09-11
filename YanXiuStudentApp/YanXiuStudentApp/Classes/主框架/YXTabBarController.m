@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.delegate = self;
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUpdateHeadImgSuccessNotification object:nil]subscribeNext:^(id x) {
@@ -46,6 +47,8 @@
     tabFrame.size.height = 65;
     tabFrame.origin.y = self.view.frame.size.height - 65;
     self.tabBar.frame = tabFrame;
+    self.tabBar.shadowImage = [UIImage imageWithColor:[UIColor whiteColor]];
+    self.tabBar.backgroundImage = [UIImage imageWithColor:[UIColor whiteColor]];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{
