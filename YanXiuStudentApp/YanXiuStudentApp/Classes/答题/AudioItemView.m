@@ -98,6 +98,7 @@
         self.player = [[LePlayer alloc] init];
         self.player.videoUrl = url;
         [self addRACObserverForPlayPauseState];
+        [self addRACObserverForTimePlayed];
         [self.player play];
         [self.volumeImageView startAnimating];
         self.isPlayed = YES;
@@ -171,6 +172,26 @@
         } else if (sta == PlayerView_State_Finished) {
             self.state = AudioPlayState_Finished;
             self.playFinished(self.tag);
+        }
+    }];
+}
+
+- (void)addRACObserverForTimePlayed {
+    WEAK_SELF
+    [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
+        STRONG_SELF
+        if (![x longLongValue]) {
+            return ;
+        }
+        
+        if (self.player.duration - [x floatValue] < 1) {//播放完成
+            self.state = AudioPlayState_Finished;
+            self.playFinished(self.tag);
+            return;
+        } else {
+            if (self.state == AudioPlayState_Playing) {
+                [self.volumeImageView startAnimating];
+            }
         }
     }];
 }

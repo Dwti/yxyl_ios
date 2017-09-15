@@ -33,8 +33,11 @@
     self.navigationItem.title = @"我的错题";
     self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    self.emptyView = [[EmptyView alloc]init];
     self.emptyView.title = @"真棒！还没有错题哦";
     self.emptyView.image = [UIImage imageNamed:@"无错题插图"];
+    self.emptyView.hidden = YES;
+    [self.view addSubview:self.emptyView];
     [self setupUI];
     [self setupLayout];
     [self requestForMistakeEdition];
