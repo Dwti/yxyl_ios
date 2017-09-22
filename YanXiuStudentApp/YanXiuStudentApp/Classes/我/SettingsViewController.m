@@ -36,7 +36,9 @@ typedef NS_ENUM(NSUInteger, SettingItemType) {
     self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     if ([YXUserManager sharedManager].isThirdLogin) {
-        self.itemArray = @[@(SettingItem_About)];
+        NSArray *array1 =  @[@(SettingItem_SoundSwitch)];
+        NSArray *array2 = @[@(SettingItem_About)];
+        self.itemArray = @[array1,array2];
     } else {
         NSArray *array1 =  @[@(SettingItem_BindPhone),@(SettingItem_ChangePassword),@(SettingItem_SoundSwitch)];
         NSArray *array2 = @[@(SettingItem_About)];
