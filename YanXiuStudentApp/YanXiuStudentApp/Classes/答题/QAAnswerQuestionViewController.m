@@ -84,10 +84,22 @@
         unAnswered = FALSE;
     }
     if (unAnswered) {
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.pType == YXPTypeBCResourceExercise) {
+            [[YXQADataManager sharedInstance] savePaperAnswerStateWithPaperID:self.rmsPaperId answerState:@"0"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXSavePaperSuccessNotification object:nil];
+            [super backAction];
+            return;
+        }
+        [super backAction];
         return;
     }
-    
+    if (self.pType == YXPTypeBCResourceExercise) {
+        [[YXQADataManager sharedInstance] savePaperAnswerStateWithPaperID:self.rmsPaperId answerState:@"1"];
+        [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
+        [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
+        [super backAction];
+        return;
+    }
     if (self.pType == YXPTypeExerciseHistory) {
         [[YXQADataManager sharedInstance]savePaperToHistoryWithModel:self.model beginDate:self.beginDate completeBlock:nil];
         [super backAction];
@@ -248,6 +260,7 @@
     vc.requestParams = self.requestParams;
     vc.answeredQuestionCount = self.answeredQuestionCount;
     vc.totalQuestionCount = self.totalQuestionCount;
+    vc.rmsPaperId = self.rmsPaperId;
     WEAK_SELF
     [vc setSelectedActionBlock:^(QAQuestion *item) {
         STRONG_SELF

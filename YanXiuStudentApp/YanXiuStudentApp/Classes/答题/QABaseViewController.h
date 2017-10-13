@@ -8,11 +8,14 @@
 
 #import "BaseViewController.h"
 #import "QAQuestionSwitchView.h"
+#import "VideoPromptView.h"
 
 @interface QABaseViewController : BaseViewController<QASlideViewDataSource,QASlideViewDelegate,QAQuestionViewSlideDelegate>
 @property (nonatomic, strong) QAPaperModel *model;
 @property (nonatomic, strong) QASlideView *slideView;
 @property (nonatomic, strong) QAQuestionSwitchView *switchView;
+
+@property(nonatomic, strong) UIButton *playViewButton;
 
 - (void)setupUI;
 - (void)completeButtonAction;

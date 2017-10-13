@@ -30,7 +30,7 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"dbdbdb"];
+        self.contentView.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
         self.bottomLineView.backgroundColor = [UIColor colorWithHexString:@"dbdbdb"];
         self.enterImageView.image = [UIImage imageNamed:@"展开内容按钮点击态"];
     }else {

@@ -93,6 +93,10 @@
 @property (nonatomic, copy) NSString<Optional> *wqid;//听说加上这个请求错题就不会为空了
 @property (nonatomic, strong) YXQuestion_jsonNote<Optional> *jsonNote;// 错题笔记
 
+//仅用于BC资源
+@property (nonatomic, copy) NSString<Optional> *has_video;//- 本题是否有视频 1有
+
+
 - (YXQAItemType)questionType;
 - (YXQATemplateType)templateType;
 - (NSString *)completeStem; // 仅用于出题框架

@@ -126,6 +126,10 @@
 }
 
 #pragma mark - tableView datasource delegate
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+    [self.tableView sendSubviewToBack:self.analysisBGView];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!self.analysisDataHidden) {
         return  self.cellHeightArray.count;

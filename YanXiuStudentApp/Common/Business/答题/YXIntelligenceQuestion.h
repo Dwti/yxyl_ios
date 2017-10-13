@@ -107,6 +107,13 @@
 @property (nonatomic, copy) NSString<Optional> *cellid;
 @property (nonatomic, copy) NSString<Optional> *showana;
 
+//仅用于BC资源
+@property (nonatomic, copy) NSString<Optional> *cover; //视频默认预览图
+@property (nonatomic, copy) NSString<Optional> *videoUrl; //话题视频url;
+@property (nonatomic, copy) NSString<Optional> *videoSize; //视频大小 （单位B，须按pm要求换算)
+@property (nonatomic, copy) NSString<Optional> *hasShowPrompt;//是否已经显示过视频提示页
+
+
 - (NSTimeInterval)reportDuration;
 
 @end

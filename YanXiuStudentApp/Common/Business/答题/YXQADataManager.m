@@ -11,6 +11,8 @@
 #import "YXGetQuestionReportRequest.h"
 #import "PaperAnswerDurationEntity+CoreDataProperties.h"
 #import "PaperAnsweredNumEntity+CoreDataClass.h"
+#import "PaperHasShowVideoEntity+CoreDataClass.h"
+#import "BCPaperAnswerStateEntity+CoreDataClass.h"
 
 @interface YXQADataManager()
 @property (nonatomic, strong) YXSubmitQuestionRequest *submitRequest;
@@ -318,4 +320,65 @@
     }];
 }
 
+#pragma mark - BC资源 相关
+//试卷是否显示过视频提示页
+- (void)savePaperHasShowVideoWithPaperID:(NSString *)paperID hasShowVideo:(NSString *)hasShowVideo {
+    if (isEmpty(paperID)) {
+        return ;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+        PaperHasShowVideoEntity *entity = [PaperHasShowVideoEntity MR_findFirstWithPredicate:predicate inContext:localContext];
+        if (!entity) {
+            entity = [PaperHasShowVideoEntity MR_createEntityInContext:localContext];
+            entity.uid = [YXUserManager sharedManager].userModel.passport.uid;
+            entity.paperID = paperID;
+        }
+        entity.hasShowVideo = hasShowVideo;
+    }];
+}
+
+- (NSString *)loadPaperHasShowVideoWithPaperID:(NSString *)paperID {
+    if (isEmpty(paperID)) {
+        return @"0";
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+    PaperHasShowVideoEntity *entity = [PaperHasShowVideoEntity MR_findFirstWithPredicate:predicate];
+    if (!entity) {
+        return @"0";
+    }
+    return entity.hasShowVideo;
+}
+//试卷的作答状态
+- (void)savePaperAnswerStateWithPaperID:(NSString *)paperID answerState:(NSString *)answerState{
+    if (isEmpty(paperID)) {
+        return ;
+    }
+    WEAK_SELF
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        STRONG_SELF
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+        BCPaperAnswerStateEntity *entity = [BCPaperAnswerStateEntity MR_findFirstWithPredicate:predicate inContext:localContext];
+        if (!entity) {
+            entity = [BCPaperAnswerStateEntity MR_createEntityInContext:localContext];
+            entity.uid = [YXUserManager sharedManager].userModel.passport.uid;
+            entity.paperID = paperID;
+        }
+        entity.answerState = answerState;
+    }];
+}
+
+- (NSString *)loadPaperAnswerStateWithPaperID:(NSString *)paperID {
+    if (isEmpty(paperID)) {
+        return @"0";
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid = %@ AND paperID = %@",[YXUserManager sharedManager].userModel.passport.uid,paperID];
+    BCPaperAnswerStateEntity *entity = [BCPaperAnswerStateEntity MR_findFirstWithPredicate:predicate];
+    if (!entity) {
+        return @"0";
+    }
+    return entity.answerState;
+}
 @end

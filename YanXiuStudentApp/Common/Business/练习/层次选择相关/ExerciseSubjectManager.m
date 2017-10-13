@@ -8,12 +8,15 @@
 
 #import "ExerciseSubjectManager.h"
 #import "SaveEditionRequest.h"
+#import "GetTopicRequest.h"
 
 NSString *const kSubjectSaveEditionInfoSuccessNotification = @"kSubjectSaveEditionInfoSuccessNotification";
 
 @interface ExerciseSubjectManager ()
 @property (nonatomic, strong) NSMutableDictionary *subjectDictionary;
 @property (nonatomic, strong) GetSubjectRequest *subjectRequest;
+@property (nonatomic, strong) GetTopicRequest *topicRequest;
+
 @property (nonatomic, strong) GetEditionRequest *editionRequest;
 @property (nonatomic, strong) GetVolumesRequest *getVolumeRequest;
 @property (nonatomic, strong) SaveFavVolumeRequest *saveVolumeRequest;
@@ -42,6 +45,26 @@ NSString *const kSubjectSaveEditionInfoSuccessNotification = @"kSubjectSaveEditi
         STRONG_SELF
         if (error) {
             BLOCK_EXEC(requestBlock,nil,error);
+            return;
+        }
+        if ([[YXUserManager sharedManager].userModel.stageid isEqualToString:@"1202"] ) {//若为小学学段则去请求BC资源相关
+            GetSubjectRequestItem *item = retItem;
+            NSMutableArray *subjects = [NSMutableArray arrayWithArray:item.subjects];
+            [self.topicRequest stopRequest];
+            self.topicRequest = [[GetTopicRequest alloc]init];
+            self.topicRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
+            [self.topicRequest startRequestWithRetClass:[GetSubjectRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+                STRONG_SELF
+                if (error) {
+                    BLOCK_EXEC(requestBlock,nil,error);
+                    return;
+                }
+                GetSubjectRequestItem *item0 = retItem;
+                [subjects addObject:item0.subjects.firstObject];
+                item.subjects = subjects.copy;
+                [self saveSubjectToCache:item];
+                BLOCK_EXEC(requestBlock,item,nil);
+            }];
             return;
         }
         [self saveSubjectToCache:retItem];

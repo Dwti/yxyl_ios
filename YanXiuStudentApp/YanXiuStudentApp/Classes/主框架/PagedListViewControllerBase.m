@@ -283,6 +283,13 @@ static const CGFloat kTipViewHeight = 20.f;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.isShowTip == NO) {
+        return;
+    }
+    if (self.tableView.contentSize.height + self.tableView.y < SCREEN_HEIGHT) {
+        self.tipView.hidden = YES;
+        return;
+    }
     if (scrollView.contentOffset.y < self.lastContentOffset - 5*kTipViewHeight)
     {
         if (self.tipView.hidden == YES) {

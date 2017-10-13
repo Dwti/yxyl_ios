@@ -15,7 +15,7 @@
 #import "TextbookVersionView.h"
 #import "ChooseEditionViewController.h"
 #import "ExerciseKnowledgeChooseViewController.h"
-
+#import "BCResourceViewController.h"
 
 @interface ExerciseMainViewController ()
 @property (nonatomic, strong) YXCommonErrorView *errorView;
@@ -149,6 +149,12 @@
     WEAK_SELF
     [self.textbookVersionView setChooseVersionActionBlock:^(GetSubjectRequestItem_subject *subject, BOOL hasChoosedEdition) {
         STRONG_SELF
+        if ([[YXUserManager sharedManager].userModel.stageid isEqualToString:@"1202"] && [subject.name isEqualToString:@"BC资源"]) {
+            BCResourceViewController *vc = [[BCResourceViewController alloc]init];
+            vc.subject = subject;
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
         if (hasChoosedEdition) {
             [self goToExerciseListWithSubject:subject];
         }else {

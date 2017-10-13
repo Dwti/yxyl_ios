@@ -18,6 +18,7 @@ typedef void(^BackActionBlock)(void);
 @property (nonatomic, assign) NSInteger totalQuestionCount;
 @property (nonatomic, assign) NSInteger answeredQuestionCount;
 @property (nonatomic, strong) YXQARequestParams *requestParams;
+@property(nonatomic, copy) NSString *rmsPaperId;//仅用于BC资源
 
 - (void)setSelectedActionBlock:(SelectedActionBlock)block;
 - (void)setBackActionBlock:(BackActionBlock)block;

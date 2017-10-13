@@ -19,10 +19,12 @@
 #import "YXGetSectionQBlockRequest.h"
 #import "YXGenKnpointQBlockRequest.h"
 #import "UIButton+WaveHighlight.h"
+#import "BCResourceDataManager.h"
 
 static const CGFloat kItemWidth = 60;
 static const CGFloat kMinMargin = 15;
 static const CGFloat kNavViewHeight = 55.0f;
+static const CGFloat kBottomViewHeight = 45.0f;
 
 @interface QAReportViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -103,8 +105,13 @@ static const CGFloat kNavViewHeight = 55.0f;
         make.edges.mas_equalTo(0);
     }];
     
+    if (self.pType == YXPTypeBCResourceExercise) {
+        self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, kBottomViewHeight, 0);
+        [self setupRedoButton];
+    }
+    
     if (self.canDoExerciseAgain) {
-        self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 75, 0);
+        self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, kBottomViewHeight, 0);
         [self setupDoExerciseAgainButton];
     }
     
@@ -122,7 +129,78 @@ static const CGFloat kNavViewHeight = 55.0f;
     }];
 }
 
+- (void)setupRedoButton {
+    UIView *redoView = [[UIView alloc]init];
+    redoView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.92];
+    [self.view addSubview:redoView];
+    [redoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(kBottomViewHeight);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+    UIButton *redoButton = [[UIButton alloc]init];
+    redoButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    redoButton.layer.cornerRadius = 5.0f;
+    redoButton.clipsToBounds = YES;
+    redoButton.isWaveHighlight = YES;
+    [redoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [redoButton setTitle:@"重新作答" forState:UIControlStateNormal];
+    [redoButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
+    [redoButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateHighlighted];
+    [redoButton addTarget:self action:@selector(redoAction) forControlEvents:UIControlEventTouchUpInside];
+    [redoView addSubview:redoButton];
+    [redoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(35);
+        make.width.mas_equalTo(170 *kPhoneWidthRatio);
+        make.bottom.mas_equalTo(-5);
+    }];
+}
+
+- (void)redoAction {
+    WEAK_SELF
+    SimpleAlertView *alert = [[SimpleAlertView alloc] init];
+    alert.title = @"进行重新作答，该报告将被清除";
+    alert.describe = @"您确定要重新作答吗?";
+    alert.image = [UIImage imageNamed:@"异常弹窗图标"];
+    [alert addButtonWithTitle:@"取消" style:SimpleAlertActionStyle_Cancel action:^{
+        STRONG_SELF
+    }];
+    [alert addButtonWithTitle:@"确定" style:SimpleAlertActionStyle_Default action:^{
+        STRONG_SELF
+        [self redoPaper];
+    }];
+    [alert showInView:self.navigationController.view];
+}
+
+- (void)redoPaper {
+    WEAK_SELF
+    [self.view nyx_startLoading];
+    [BCResourceDataManager resetTopicPaperHistoryWithPaperID:self.model.paperID completeBlock:^(YXIntelligenceQuestionListItem *item, NSError *error) {
+        STRONG_SELF
+        [self.view nyx_stopLoading];
+        if (error) {
+            [self.view nyx_showToast:error.localizedDescription];
+            return;
+        }
+        if (item.data.count > 0) {
+            QAAnswerQuestionViewController *vc = [[QAAnswerQuestionViewController alloc] init];
+            vc.model = [QAPaperModel modelFromRawData:item.data[0]];
+            vc.pType = YXPTypeBCResourceExercise;
+            vc.rmsPaperId = self.rmsPaperId;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+}
 - (void)setupDoExerciseAgainButton {
+    UIView *exerciseAgainView = [[UIView alloc]init];
+    exerciseAgainView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.92];
+    [self.view addSubview:exerciseAgainView];
+    [exerciseAgainView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(kBottomViewHeight);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
     UIButton *exerciseAgainButton = [[UIButton alloc]init];
     exerciseAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     exerciseAgainButton.layer.cornerRadius = 6.0f;
@@ -133,12 +211,12 @@ static const CGFloat kNavViewHeight = 55.0f;
     [exerciseAgainButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
     [exerciseAgainButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateHighlighted];
     [exerciseAgainButton addTarget:self action:@selector(goDoAgainAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:exerciseAgainButton];
+    [exerciseAgainView addSubview:exerciseAgainButton];
     [exerciseAgainButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.height.mas_equalTo(50);
-        make.width.mas_equalTo(250 *kPhoneWidthRatio);
-        make.bottom.mas_equalTo(-25);
+        make.height.mas_equalTo(35);
+        make.width.mas_equalTo(170 *kPhoneWidthRatio);
+        make.bottom.mas_equalTo(-5);
     }];
 }
 

@@ -13,6 +13,6 @@
 @property (nonatomic, assign) YXPType pType;
 @property (nonatomic, assign) BOOL canDoExerciseAgain;
 @property (nonatomic, strong) YXQARequestParams *requestParams;
-
+@property(nonatomic, copy) NSString *rmsPaperId;//仅用于BC资源
 
 @end

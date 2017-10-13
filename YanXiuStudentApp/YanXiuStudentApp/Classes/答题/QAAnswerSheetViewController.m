@@ -155,6 +155,7 @@
             vc.pType = self.pType;
             vc.canDoExerciseAgain = self.pType == YXPTypeIntelligenceExercise? YES:NO;
             vc.requestParams = self.requestParams;
+            vc.rmsPaperId = self.rmsPaperId;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];

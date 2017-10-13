@@ -63,6 +63,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     self.redoCompleted = rawData.redostatus.boolValue;
     self.noteText = question.jsonNote.text;
     self.noteImages = [self noteImagesAnswerWithRawData:question.jsonNote.images];
+    self.has_video = question.has_video;
 }
 
 - (NSString *)adjustedStemForStem:(NSString *)stem {

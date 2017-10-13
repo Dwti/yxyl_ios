@@ -36,6 +36,13 @@
 
 @property (nonatomic, strong) NSArray<QAQuestion *> *questions; // element type is QAQuestion
 
+
+//仅用于BC资源
+@property (nonatomic, copy) NSString *cover;
+@property (nonatomic, copy) NSString *videoUrl; //话题视频url;
+@property (nonatomic, copy) NSString *videoSize; //视频大小 （单位B，须按pm要求换算)
+@property (nonatomic, copy) NSString *hasShowPrompt;//是否已经显示过视频提示页
+
 + (QAPaperModel *)modelFromRawData:(YXIntelligenceQuestion *)rawData;
 + (void)resetIndexStringWithModel:(QAPaperModel *)model total:(NSInteger)total; // 用于错题
 

@@ -58,10 +58,17 @@ static NSString *const YXSavePaperSuccessNotification = @"YXSavePaperSuccessNoti
 - (void)savePaperDurationWithPaperID:(NSString *)paperID duration:(NSTimeInterval)duration;
 - (NSTimeInterval)loadPaperDurationWithPaperID:(NSString *)paperID;
 - (void)clearPaperDurationWithPaperID:(NSString *)paperID;
+
 #pragma mark - 试卷完成题目数量
 - (void)savePaperAnsweredQuestionNumWithPaperModel:(QAPaperModel *)model;
 - (NSInteger)loadPaperAnsweredQuestionNumWithPaperID:(NSString *)paperID;
 - (void)clearPaperAnsweredQuestionNumWithPaperID:(NSString *)paperID;
 
-
+#pragma mark - BC资源 相关
+//试卷是否显示过视频提示页
+- (void)savePaperHasShowVideoWithPaperID:(NSString *)paperID hasShowVideo:(NSString *)hasShowVideo;
+- (NSString *)loadPaperHasShowVideoWithPaperID:(NSString *)paperID;
+//试卷的作答状态
+- (void)savePaperAnswerStateWithPaperID:(NSString *)paperID answerState:(NSString *)answerState;
+- (NSString *)loadPaperAnswerStateWithPaperID:(NSString *)paperID;
 @end

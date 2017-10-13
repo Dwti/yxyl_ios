@@ -11,5 +11,5 @@
 @interface QAAnswerQuestionViewController : QABaseViewController
 @property (nonatomic, assign) YXPType pType;
 @property (nonatomic, strong) YXQARequestParams *requestParams;
-
+@property(nonatomic, copy) NSString *rmsPaperId;//仅用于BC资源
 @end

@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger, YXPType) {
     YXPTypeIntelligenceExercise, //智能练习
     YXPTypeGroupHomework,         //班级作业
-    YXPTypeExerciseHistory         //练习历史
+    YXPTypeExerciseHistory,         //练习历史
+    YXPTypeBCResourceExercise   //bc资源的练习
 };
 
 //extern NSString *const YXSubmitQuestionSuccessNotification;
@@ -57,7 +58,7 @@ typedef NS_ENUM(NSInteger, YXPType) {
 @property (nonatomic, strong) NSArray<YXAnswersItem_PaperDetail, Optional> *paperDetails; // 每到题目的答案
 @property (nonatomic, strong) YXAnswersItem_PaperStatus<Optional> *paperStatus; // 当前答题的属性
 //@property (nonatomic, strong) NSString<Optional> *ppstatus; // 0 表示已完成， 1表示未完成
-@property (nonatomic, strong) NSString<Optional> *ptype;    // 1 for 班级作业 0 for 智能练习 2 for 考点练习
+@property (nonatomic, strong) NSString<Optional> *ptype;    // 1 for 班级作业 0 for 智能练习 2 for 考点练习 10 for BC资源
 
 @end
 

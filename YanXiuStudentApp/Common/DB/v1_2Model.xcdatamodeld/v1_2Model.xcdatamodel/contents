@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13241" systemVersion="16G29" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="BCPaperAnswerStateEntity" representedClassName="BCPaperAnswerStateEntity" syncable="YES">
+        <attribute name="answerState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paperID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="InstantRecordEntity" representedClassName="InstantRecordEntity" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -16,6 +21,11 @@
         <attribute name="paperID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PaperHasShowVideoEntity" representedClassName="PaperHasShowVideoEntity" syncable="YES">
+        <attribute name="hasShowVideo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paperID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="QuestionAnswerEntity" representedClassName="QuestionAnswerEntity" syncable="YES">
         <attribute name="questionAnswer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionKey" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,8 +37,10 @@
         <element name="InstantRecordEntity" positionX="-630" positionY="-81" width="128" height="60"/>
         <element name="LogRecordEntity" positionX="-621" positionY="-72" width="128" height="60"/>
         <element name="PaperAnswerDurationEntity" positionX="-621" positionY="-54" width="128" height="90"/>
+        <element name="PaperAnsweredNumEntity" positionX="-612" positionY="-36" width="128" height="90"/>
         <element name="QuestionAnswerEntity" positionX="-621" positionY="-63" width="128" height="75"/>
         <element name="RegularRecordEntity" positionX="-612" positionY="-63" width="128" height="60"/>
-        <element name="PaperAnsweredNumEntity" positionX="-612" positionY="-36" width="128" height="90"/>
+        <element name="PaperHasShowVideoEntity" positionX="-612" positionY="-27" width="128" height="90"/>
+        <element name="BCPaperAnswerStateEntity" positionX="-603" positionY="-9" width="128" height="90"/>
     </elements>
 </model>

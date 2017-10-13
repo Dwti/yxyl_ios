@@ -80,6 +80,10 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 @property (nonatomic, strong) NSString *noteText;
 @property (nonatomic, strong) NSMutableArray *noteImages; // QAImageAnswer Tyep
 
+//仅用于BC资源
+@property (nonatomic, copy) NSString *has_video;//- 本题是否有视频 1有
+
+
 - (NSArray *)correctAnswersWithRawData:(YXQuestion *)rawData; // 需子类实现
 - (NSMutableArray *)myAnswersWithRawData:(YXQuestion *)rawData; // 需子类实现
 

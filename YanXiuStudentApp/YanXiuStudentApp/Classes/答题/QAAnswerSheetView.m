@@ -12,6 +12,7 @@
 
 static const CGFloat kItemWidth = 60;
 static const CGFloat kMinMargin = 15;
+static const CGFloat kBottomViewHeight = 45.0f;
 
 @interface QAAnswerSheetView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -54,6 +55,15 @@ static const CGFloat kMinMargin = 15;
         make.edges.mas_equalTo(0);
     }];
     
+    UIView *bottomView = [[UIView alloc]init];
+    bottomView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.92];
+    [self addSubview:bottomView];
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(kBottomViewHeight);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+    
     UIButton *submitButton = [[UIButton alloc]init];
     submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     submitButton.layer.cornerRadius = 6.0f;
@@ -64,12 +74,12 @@ static const CGFloat kMinMargin = 15;
     [submitButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateNormal];
     [submitButton setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor colorWithHexString:@"69ad0a"]] forState:UIControlStateHighlighted];
     [submitButton addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:submitButton];
+    [bottomView addSubview:submitButton];
     [submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.height.mas_equalTo(50);
-        make.width.mas_equalTo(250 *kPhoneWidthRatio);
-        make.bottom.mas_equalTo(-25);
+        make.height.mas_equalTo(35);
+        make.width.mas_equalTo(170 *kPhoneWidthRatio);
+        make.bottom.mas_equalTo(-5);
     }];
 }
 

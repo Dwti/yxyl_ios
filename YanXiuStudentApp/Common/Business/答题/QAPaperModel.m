@@ -36,6 +36,11 @@
     model.gradeID = rawData.gradeid;
     model.questions = [self questionsWithRawData:rawData];
     
+    model.cover = rawData.cover;
+    model.videoUrl = rawData.videoUrl;
+    model.videoSize = rawData.videoSize;
+    model.hasShowPrompt = rawData.hasShowPrompt;
+    
     [self addQuestionPositionsForModel:model];
     
     return model;

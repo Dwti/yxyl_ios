@@ -18,6 +18,7 @@
 @interface GetSubjectRequestItem_subject : JSONModel
 @property (nonatomic, copy) NSString<Optional> *subjectID;
 @property (nonatomic, copy) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *type;//仅在BC资源的时候有用
 @property (nonatomic, strong) GetSubjectRequestItem_subject_edition<Optional> *edition;
 @end
 
