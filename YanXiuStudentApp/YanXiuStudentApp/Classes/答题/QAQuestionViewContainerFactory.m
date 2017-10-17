@@ -40,6 +40,8 @@
         }
         QAQuestion *q = question.childQuestions[0];
         return [self containerWithQuestion:q];
+    }else if (templateType == YXQATemplateOral) {
+        return nil;
     }else if (templateType == YXQATemplateUnknown){
         return [[QAUnknownQuestionViewContainer alloc]init];
     }else{

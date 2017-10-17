@@ -11,15 +11,17 @@
 @implementation QAQuestionTemplateMappingTable
 + (YXQATemplateType)templateTypeForTemplate:(NSString *)templateString{
     NSDictionary *mappingDic = @{@"choice":@(YXQATemplateSingleChoose),
-                                        @"multi-choice":@(YXQATemplateMultiChoose),
-                                        @"fill":@(YXQATemplateFill),
-                                        @"alter":@(YXQATemplateYesNo),
-                                        @"connect":@(YXQATemplateConnect),
-                                        @"classify":@(YXQATemplateClassify),
-                                        @"answer":@(YXQATemplateSubjective),
-                                        @"multi":@(YXQATemplateReadComplex),
-                                        @"cloze":@(YXQATemplateClozeComplex),
-                                        @"listen":@(YXQATemplateListenComplex)};
+                                 @"multi-choice":@(YXQATemplateMultiChoose),
+                                 @"fill":@(YXQATemplateFill),
+                                 @"alter":@(YXQATemplateYesNo),
+                                 @"connect":@(YXQATemplateConnect),
+                                 @"classify":@(YXQATemplateClassify),
+                                 @"answer":@(YXQATemplateSubjective),
+                                 @"multi":@(YXQATemplateReadComplex),
+                                 @"cloze":@(YXQATemplateClozeComplex),
+                                 @"listen":@(YXQATemplateListenComplex),
+                                 @"oral":@(YXQATemplateOral)
+                                 };
     NSNumber *number = [mappingDic valueForKey:templateString];
     if (number) {
         return number.integerValue;

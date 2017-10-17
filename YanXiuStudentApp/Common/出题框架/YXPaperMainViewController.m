@@ -18,6 +18,7 @@
 #import "YXQAAnalysisDataConfig.h"
 #import "YXQuestionTemplateTypeMapper.h"
 #import "YXConnectClassifyDetailViewController.h"
+#import "YXOralDetailViewController.h"
 #import "YXImportPaperViewController.h"
 #import "YXServerEnvHelper.h"
 #import "MistakeRedoViewController.h"
@@ -183,7 +184,11 @@
         [[YXPaperManager sharedInstance].questions addObject:[YXQuestionFactory questionWithType:YXQAItemListenAudioChoose template:YXQATemplateListenComplex]];
         [self.tableView reloadData];
     }];
-    
+    UIAlertAction *oralAction = [UIAlertAction actionWithTitle:@"口语" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        STRONG_SELF
+        [[YXPaperManager sharedInstance].questions addObject:[YXQuestionFactory questionWithType:YXQAItemOralRead template:YXQATemplateOral]];
+        [self.tableView reloadData];
+    }];
     [alertVC addAction:backAction];
     [alertVC addAction:singleChooseAction];
     [alertVC addAction:multiChooseAction];
@@ -195,6 +200,7 @@
     [alertVC addAction:readComplexAction];
     [alertVC addAction:clozeComplexAction];
     [alertVC addAction:listenComplexAction];
+    [alertVC addAction:oralAction];
     [self presentViewController:alertVC animated:YES completion:nil];
 }
 
@@ -297,6 +303,10 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([q templateType] == YXQATemplateClassify){
         YXConnectClassifyDetailViewController *vc = [[YXConnectClassifyDetailViewController alloc]init];
+        vc.question = q;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([q templateType] == YXQATemplateOral) {
+        YXOralDetailViewController *vc = [[YXOralDetailViewController alloc] init];
         vc.question = q;
         [self.navigationController pushViewController:vc animated:YES];
     }

@@ -44,7 +44,9 @@
     if (qTemplate == YXQATemplateConnect) {
         return [self paperTestForQuestion:[YXQuestionFactory connectQuestion]];
     }
-    
+    if (qTemplate == YXQATemplateOral) {
+        return [self paperTestForQuestion:[YXQuestionFactory oralQuestion]];
+    }
     return nil;
 }
 
@@ -375,6 +377,30 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:answer forKey:@"answer"];
     return dic;
+}
+
+// 口语题
++ (YXQuestion *)oralQuestion {
+    YXQuestion *q = [[YXQuestion alloc]init];
+    q.type_id = @"23";
+    q.qTemplate = @"oral";
+    q.stem = @"11111<audio src=\"http://scc.jsyxw.cn/audio/2016/0801/5eed2b75d62d60d27cf8a62317e689e1.mp3\"  controls=\"controls\"></audio>2222";
+    
+    YXQuestion_Point *point = [[YXQuestion_Point alloc]init];
+    point.name = @"考点1";
+    q.point = (NSArray<YXQuestion_Point,Optional> *)@[point];
+    
+    YXQuestion_Pad *pad = [[YXQuestion_Pad alloc]init];
+    pad.jsonAnswer = @[];
+    q.pad = pad;
+    
+    YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];
+    YXQuestion_Extend_Data *extendData = [[YXQuestion_Extend_Data alloc]init];
+    extendData.answerCompare = @"这是当前状态";
+    extend.data = extendData;
+    q.extend = extend;
+    
+    return q;
 }
 
 @end
