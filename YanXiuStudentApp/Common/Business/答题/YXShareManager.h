@@ -26,7 +26,7 @@ typedef NS_ENUM (NSInteger, YXShareType) {
 
 - (void)yx_shareMessageWithImageIcon:(UIImage *)icon title:(NSString *)title message:(NSString *)message url:(NSString *)url shareType:(YXShareType)type;
 
-- (void)shareWithType:(YXShareType)shareType model:(QAPaperModel *)model networkErrorBlock:(void(^)())networkErrorBlock;
+- (void)shareWithType:(YXShareType)shareType model:(QAPaperModel *)model networkErrorBlock:(void(^)(void))networkErrorBlock;
 
 /**
  *  分享图片

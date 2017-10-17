@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface QASubjectiveSinglePhotoView : UIView
-@property (nonatomic, strong) void(^clickBlock)();
-@property (nonatomic, strong) void(^deleteBlock)();
+@property (nonatomic, strong) void(^clickBlock)(void);
+@property (nonatomic, strong) void(^deleteBlock)(void);
 
 @property (nonatomic, assign) BOOL canDelete;
 @property (nonatomic, strong) QAImageAnswer *imageAnswer;

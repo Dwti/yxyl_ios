@@ -14,7 +14,7 @@
 
 @interface QACoreTextViewHandler : NSObject
 
-@property (nonatomic, strong) void(^relayoutBlock)();
+@property (nonatomic, strong) void(^relayoutBlock)(void);
 @property (nonatomic, strong) void(^heightChangeBlock)(CGFloat height);
 
 @property (nonatomic, weak) id<QACoreTextViewHandlerDelegate> delegate;

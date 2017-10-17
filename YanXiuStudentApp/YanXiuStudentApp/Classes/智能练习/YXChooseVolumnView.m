@@ -129,7 +129,7 @@ static const CGFloat kPickerViewRowHeight = 50.0f;
     }];
 }
 
-- (void)removeAnminationWithCompleteBlock:(void(^)())completeBlock {
+- (void)removeAnminationWithCompleteBlock:(void(^)(void))completeBlock {
     [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kContentViewHeight);
         self.maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.f];

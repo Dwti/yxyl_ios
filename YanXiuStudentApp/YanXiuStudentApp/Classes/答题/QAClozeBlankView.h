@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface QAClozeBlankView : UIView
-@property (nonatomic, strong) void(^clickAction)();
+@property (nonatomic, strong) void(^clickAction)(void);
 
 - (void)updateWithIndex:(NSInteger)index answer:(NSString *)answer;
 - (void)enter;

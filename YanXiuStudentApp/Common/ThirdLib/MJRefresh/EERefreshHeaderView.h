@@ -13,7 +13,7 @@
 - (instancetype)initWithMJHeaderView:(MJRefreshHeaderView *)headerView;
 @property (nonatomic, assign) BOOL refreshing;
 @property (nonatomic, assign) BOOL animationFinished;
-@property (nonatomic, strong) void(^endBubbleBlock) ();
+@property (nonatomic, strong) void(^endBubbleBlock) (void);
 - (void)updateWithOffset:(CGFloat)offset;
 - (CGFloat)bottomHeight;
 @end

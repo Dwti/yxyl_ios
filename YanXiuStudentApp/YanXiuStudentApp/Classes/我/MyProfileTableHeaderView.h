@@ -10,5 +10,5 @@
 
 @interface MyProfileTableHeaderView : UIView
 @property (nonatomic, strong) NSString *headUrl;
-@property (nonatomic, strong) void(^editBlock) ();
+@property (nonatomic, strong) void(^editBlock) (void);
 @end

@@ -29,6 +29,6 @@ extern NSString *const YXUserInfoGetSuccessNotification;
 
 + (instancetype)sharedHelper;
 
-- (void)requestCompeletion:(void(^)())completion;
+- (void)requestCompeletion:(void(^)(void))completion;
 
 @end

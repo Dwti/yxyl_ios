@@ -11,5 +11,5 @@
 @interface PersonalInfoSelectionItemView : UIView
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) void(^actionBlock)();
+@property (nonatomic, strong) void(^actionBlock)(void);
 @end

@@ -1,9 +1,12 @@
 platform :ios, '8.0'
+
+target 'YanXiuStudentApp-iPhone' do
+
 pod 'CocoaLumberjack', '~> 2.0'
-pod 'ReactiveCocoa', '~> 2.0'
+pod 'ReactiveCocoa', :git => 'https://github.com/zhao0/ReactiveCocoa.git', :tag => '2.5.2'
 pod 'MagicalRecord', '~> 2.0'
 pod 'ASIHTTPRequest', '1.8.2'
-pod 'JSONModel', '~> 1.2.0'
+pod 'JSONModel'
 pod 'Masonry', '~> 0.0'
 #pod 'SDWebImage', '~> 3.0'
 pod 'pop', '~> 1.0'
@@ -36,5 +39,8 @@ pod 'Base64'
 pod 'CommonCrypto'
 pod 'FCUUID'
 #pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-
 inhibit_all_warnings!
+
+end
+
+

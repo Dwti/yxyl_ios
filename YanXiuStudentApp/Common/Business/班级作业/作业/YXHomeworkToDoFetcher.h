@@ -10,6 +10,6 @@
 
 @interface YXHomeworkToDoFetcher : PagedListFetcherBase
 
-@property (nonatomic, copy) void (^emptyBlock)();
+@property (nonatomic, copy) void (^emptyBlock)(void);
 
 @end

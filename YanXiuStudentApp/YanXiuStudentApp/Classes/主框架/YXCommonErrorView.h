@@ -12,5 +12,5 @@
  *  网络请求通用错误界面
  */
 @interface YXCommonErrorView : UIView
-@property (nonatomic, copy) void(^retryBlock)();
+@property (nonatomic, copy) void(^retryBlock)(void);
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface GCDTimer : NSObject
-- (instancetype)initWithInterval:(NSTimeInterval)interval repeats:(BOOL)repeats triggerBlock:(void(^)())triggerBlock;
+- (instancetype)initWithInterval:(NSTimeInterval)interval repeats:(BOOL)repeats triggerBlock:(void(^)(void))triggerBlock;
 
 - (void)resume;
 - (void)suspend;

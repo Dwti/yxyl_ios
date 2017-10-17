@@ -12,5 +12,5 @@
 @interface AccountInputView : UIView
 @property (nonatomic, strong) LoginInputView *inputView;
 @property (nonatomic, strong, readonly) NSString *text;
-@property (nonatomic, strong) void(^textChangeBlock) ();
+@property (nonatomic, strong) void(^textChangeBlock) (void);
 @end

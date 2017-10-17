@@ -45,10 +45,6 @@
 	BOOL _didCheckForHyperlinkInAttributes;
 	BOOL _didCalculateMetrics;
 	BOOL _didDetermineTrailingWhitespace;
-    
-    // add by niu fix crash bug
-    CFIndex *_allocedIndices;
-    CGPoint *_allocedPositions;
 }
 
 - (id)initWithRun:(CTRunRef)run layoutLine:(DTCoreTextLayoutLine *)layoutLine offset:(CGFloat)offset
@@ -73,13 +69,6 @@
 	{
 		CFRelease(_run);
 	}
-    // add by niu to free alloced indeices
-    if (_allocedIndices ) {
-        free(_allocedIndices);
-    }
-    if (_allocedPositions) {
-        free(_allocedPositions);
-    }
 }
 
 #ifndef COVERAGE 
@@ -324,14 +313,6 @@
 	{
 		// this is a pointer to the points inside the run, thus no retain necessary
 		_glyphPositionPoints = CTRunGetPositionsPtr(_run);
-        if (!_glyphPositionPoints)
-        {
-            size_t positionsBufferSize = sizeof(CGPoint) * [self numberOfGlyphs];
-            CGPoint *positionsBuffer = malloc(positionsBufferSize);
-            CTRunGetPositions(_run, CFRangeMake(0, 0), positionsBuffer);
-            _glyphPositionPoints = positionsBuffer;
-            _allocedPositions = positionsBuffer;
-        }
 	}
 	
 	if (!_glyphPositionPoints || index >= self.numberOfGlyphs)
@@ -356,14 +337,6 @@
 	if (!_stringIndices) 
 	{
 		const CFIndex *indices = CTRunGetStringIndicesPtr(_run);
-        if (!indices)
-        {
-            size_t indicesBufferSize = sizeof(CFIndex) * [self numberOfGlyphs];
-            CFIndex *indicesBuffer = malloc(indicesBufferSize);
-            CTRunGetStringIndices(_run, CFRangeMake(0, 0), indicesBuffer);
-            indices = indicesBuffer;
-            _allocedIndices = indicesBuffer;
-        }
 		NSInteger count = self.numberOfGlyphs;
 		NSMutableArray *array = [NSMutableArray arrayWithCapacity:count];
 		NSInteger i;

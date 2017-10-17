@@ -10,5 +10,5 @@
 
 @interface QAPhotoSelectionViewController : BaseViewController
 @property (nonatomic, strong) void(^imageSelectionBlock)(UIImage *image);
-@property (nonatomic, strong) void(^exitBlock)();
+@property (nonatomic, strong) void(^exitBlock)(void);
 @end

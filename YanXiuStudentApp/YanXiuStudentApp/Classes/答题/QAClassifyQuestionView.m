@@ -181,7 +181,7 @@
     }];
 }
 
-- (void)showClassifyAnimationWithCategoryIndex:(NSInteger)index completeBlock:(void(^)())completeBlock {
+- (void)showClassifyAnimationWithCategoryIndex:(NSInteger)index completeBlock:(void(^)(void))completeBlock {
     for (QAClassifyOptionCell *cell in self.collectionView.visibleCells) {
         if (cell.selected) {
             cell.hidden = YES;

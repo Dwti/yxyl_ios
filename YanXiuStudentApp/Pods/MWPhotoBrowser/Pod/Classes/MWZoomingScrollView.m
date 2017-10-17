@@ -41,7 +41,6 @@
 		_tapView.tapDelegate = self;
 		_tapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		_tapView.backgroundColor = [UIColor blackColor];
-        _tapView.backgroundColor = [UIColor colorWithRed:0 green:128.0/256.0 blue:128.0/256.0 alpha:1];
 		[self addSubview:_tapView];
 		
 		// Image view
@@ -49,7 +48,6 @@
 		_photoImageView.tapDelegate = self;
 		_photoImageView.contentMode = UIViewContentModeCenter;
 		_photoImageView.backgroundColor = [UIColor blackColor];
-        _photoImageView.backgroundColor = [UIColor colorWithRed:0 green:128.0/256.0 blue:128.0/256.0 alpha:1];
 		[self addSubview:_photoImageView];
 		
 		// Loading indicator
@@ -69,7 +67,6 @@
         
 		// Setup
 		self.backgroundColor = [UIColor blackColor];
-        self.backgroundColor = [UIColor colorWithRed:0 green:128.0/256.0 blue:128.0/256.0 alpha:1];
 		self.delegate = self;
 		self.showsHorizontalScrollIndicator = NO;
 		self.showsVerticalScrollIndicator = NO;
@@ -261,7 +258,7 @@
     // Calculate Min
     CGFloat xScale = boundsSize.width / imageSize.width;    // the scale needed to perfectly fit the image width-wise
     CGFloat yScale = boundsSize.height / imageSize.height;  // the scale needed to perfectly fit the image height-wise
-    CGFloat minScale = MIN(xScale, yScale)-0.0001;                 // use minimum of these to allow the image to become fully visible
+    CGFloat minScale = MIN(xScale, yScale);                 // use minimum of these to allow the image to become fully visible
     
     // Calculate Max
     CGFloat maxScale = 3;
@@ -288,10 +285,6 @@
         // Centralise
         self.contentOffset = CGPointMake((imageSize.width * self.zoomScale - boundsSize.width) / 2.0,
                                          (imageSize.height * self.zoomScale - boundsSize.height) / 2.0);
-        // fix bug, hotfix，如果图片尺寸小于self.bounds.size，那么contentoffset为负值，使图片显示位置不对
-        if ((imageSize.width * self.zoomScale - boundsSize.width < 0)&&(imageSize.height * self.zoomScale - boundsSize.height < 0)) {
-            self.contentOffset = CGPointZero;
-        }
 
     }
     

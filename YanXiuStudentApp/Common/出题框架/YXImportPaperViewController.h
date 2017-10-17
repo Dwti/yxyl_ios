@@ -10,5 +10,5 @@
 
 @interface YXImportPaperViewController : UIViewController
 @property (nonatomic, strong) NSArray *papers;
-@property (nonatomic, strong) void(^completeBlock)();
+@property (nonatomic, strong) void(^completeBlock)(NSString *paper);
 @end

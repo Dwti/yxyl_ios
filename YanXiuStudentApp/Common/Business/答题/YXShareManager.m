@@ -38,7 +38,7 @@
 }
 
 #pragma mark Public
-- (void)shareWithType:(YXShareType)shareType model:(QAPaperModel *)model networkErrorBlock:(void(^)())networkErrorBlock{
+- (void)shareWithType:(YXShareType)shareType model:(QAPaperModel *)model networkErrorBlock:(void(^)(void))networkErrorBlock{
     if (![self isNetworkReachable]) {
         networkErrorBlock();
         return;

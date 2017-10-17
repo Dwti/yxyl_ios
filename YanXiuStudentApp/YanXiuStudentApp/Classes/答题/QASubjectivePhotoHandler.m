@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) YXNavigationController *photoSelectionNavi;
 @property (nonatomic, strong) void(^addPhotoBlock)(UIImage *image);
-@property (nonatomic, strong) void(^deleteBlock)();
+@property (nonatomic, strong) void(^deleteBlock)(void);
 @end
 
 @implementation QASubjectivePhotoHandler
@@ -31,7 +31,9 @@
     UIViewController *vc = [[UIApplication sharedApplication].keyWindow.rootViewController nyx_visibleViewController];
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusNotDetermined) {
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:nil];
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            
+        }];
         return;
     } else if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
         [self showAlertWithTitle:@"相机权限被禁用，请到设置中允许易学易练使用相机" rootVC:vc];
@@ -162,7 +164,7 @@
 }
 
 #pragma mark - 照片浏览
-- (void)browsePhotos:(NSMutableArray<QAImageAnswer *> *)photos oriIndex:(NSInteger)index editable:(BOOL)editable deleteBlock:(void(^)())deleteBlock {
+- (void)browsePhotos:(NSMutableArray<QAImageAnswer *> *)photos oriIndex:(NSInteger)index editable:(BOOL)editable deleteBlock:(void(^)(void))deleteBlock {
     self.deleteBlock = deleteBlock;
     QAPhotoBrowseViewController *vc = [[QAPhotoBrowseViewController alloc]init];
     vc.itemArray = photos;

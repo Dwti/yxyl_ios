@@ -44,6 +44,17 @@
     return self.frame.size.height;
 }
 
+- (void)setWidth:(CGFloat)width {
+    CGRect rect = self.frame;
+    rect.size.width = width;
+    self.frame = rect;
+}
+
+- (void)setHeight:(CGFloat)height {
+    CGRect rect = self.frame;
+    rect.size.height = height;
+    self.frame = rect;
+}
 
 - (id)setX:(CGFloat)x
 {
@@ -63,20 +74,6 @@
     self.frame = CGRectMake(x, y, 
                             f.size.width, f.size.height);
     return self;
-}
-
-- (void)setWidth:(CGFloat)width
-{
-    CGRect frame = self.frame;
-    frame.size.width = width;
-    self.frame = frame;
-}
-
-- (void)setHeight:(CGFloat)height
-{
-    CGRect frame = self.frame;
-    frame.size.height = height;
-    self.frame = frame;
 }
 
 // The setters below exist because the setters above return a reference

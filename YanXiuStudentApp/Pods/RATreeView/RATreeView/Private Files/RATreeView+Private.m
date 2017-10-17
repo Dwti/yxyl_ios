@@ -75,26 +75,21 @@
 
 - (void)collapseCellForTreeNode:(RATreeNode *)treeNode collapseChildren:(BOOL)collapseChildren withRowAnimation:(RATreeViewRowAnimation)rowAnimation
 {
-  //[self.tableView beginUpdates];
+  [self.tableView beginUpdates];
   [self.batchChanges beginUpdates];
   
   NSInteger index = [self.treeNodeCollectionController lastVisibleDescendantIndexForItem:treeNode.item];
-  NSInteger curIndex = [self.treeNodeCollectionController indexForItem:treeNode.item];
+  
   __weak typeof(self) weakSelf = self;
   [self.batchChanges collapseItemWithBlock:^{
     UITableViewRowAnimation tableViewRowAnimation = [RATreeView tableViewRowAnimationForTreeViewRowAnimation:rowAnimation];
     [weakSelf.treeNodeCollectionController collapseRowForItem:treeNode.item collapseChildren:collapseChildren updates:^(NSIndexSet *deletions) {
-        //if ([[UIDevice currentDevice].systemVersion floatValue] >= 9) {
-            [weakSelf.tableView deleteRowsAtIndexPaths:IndexesToIndexPaths(deletions) withRowAnimation:tableViewRowAnimation];
-//        } else {
-//            [weakSelf.tableView reloadData];
-//        }
-        [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:curIndex inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+      [weakSelf.tableView deleteRowsAtIndexPaths:IndexesToIndexPaths(deletions) withRowAnimation:tableViewRowAnimation];
     }];
   } lastIndex:index];
   
   [self.batchChanges endUpdates];
-  //[self.tableView endUpdates];
+  [self.tableView endUpdates];
 }
 
 - (void)expandCellForTreeNode:(RATreeNode *)treeNode
@@ -104,7 +99,7 @@
 
 - (void)expandCellForTreeNode:(RATreeNode *)treeNode expandChildren:(BOOL)expandChildren withRowAnimation:(RATreeViewRowAnimation)rowAnimation
 {
-  //[self.tableView beginUpdates];
+  [self.tableView beginUpdates];
   [self.batchChanges beginUpdates];
   
   NSInteger index = [self.treeNodeCollectionController indexForItem:treeNode.item];
@@ -112,17 +107,13 @@
   [self.batchChanges expandItemWithBlock:^{
     UITableViewRowAnimation tableViewRowAnimation = [RATreeView tableViewRowAnimationForTreeViewRowAnimation:rowAnimation];
     [weakSelf.treeNodeCollectionController expandRowForItem:treeNode.item expandChildren:expandChildren updates:^(NSIndexSet *insertions) {
-        //if ([[UIDevice currentDevice].systemVersion floatValue] >= 9) {
-            [weakSelf.tableView insertRowsAtIndexPaths:IndexesToIndexPaths(insertions) withRowAnimation:tableViewRowAnimation];
-//        } else {
-//            [weakSelf.tableView reloadData];
-//        }
+      [weakSelf.tableView insertRowsAtIndexPaths:IndexesToIndexPaths(insertions) withRowAnimation:tableViewRowAnimation];
     }];
   } atIndex:index];
   
   
   [self.batchChanges endUpdates];
-  //[self.tableView endUpdates];
+  [self.tableView endUpdates];
 }
 
 - (void)insertItemAtIndex:(NSInteger)index inParent:(id)parent withAnimation:(RATreeViewRowAnimation)animation

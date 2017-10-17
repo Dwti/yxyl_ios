@@ -155,9 +155,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	_pagingScrollView.showsHorizontalScrollIndicator = NO;
 	_pagingScrollView.showsVerticalScrollIndicator = NO;
 	_pagingScrollView.backgroundColor = [UIColor blackColor];
-    
-    _pagingScrollView.backgroundColor = [UIColor colorWithRed:0 green:128.0/256.0 blue:128.0/256.0 alpha:1];
-    
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 	[self.view addSubview:_pagingScrollView];
 	
@@ -208,7 +205,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     [_recycledPages removeAllObjects];
     
     // Navigation buttons
-    /*
     if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
         // We're first on stack so show done button
         _doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed:)];
@@ -234,7 +230,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
         _previousViewControllerBackButton = previousViewController.navigationItem.backBarButtonItem; // remember previous
         previousViewController.navigationItem.backBarButtonItem = newBackButton;
-    }*/
+    }
 
     // Toolbar items
     BOOL hasItems = NO;
@@ -438,8 +434,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 #pragma mark - Nav Bar Appearance
 
 - (void)setNavBarAppearance:(BOOL)animated {
-    return;
-    
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     UINavigationBar *navBar = self.navigationController.navigationBar;
     navBar.tintColor = [UIColor whiteColor];
@@ -1078,7 +1072,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 #pragma mark - Navigation
 
 - (void)updateNavigation {
-    return;
     
 	// Title
     NSUInteger numberOfPhotos = [self numberOfPhotos];

@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (BackgroundTask)
-- (void)performBackgroundTaskWithBlock:(void(^)())taskBlock completeBlock:(void(^)())completeBlock;
+- (void)performBackgroundTaskWithBlock:(void(^)(void))taskBlock completeBlock:(void(^)(void))completeBlock;
 @end

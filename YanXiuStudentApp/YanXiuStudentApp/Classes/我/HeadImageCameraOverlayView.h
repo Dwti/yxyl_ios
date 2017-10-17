@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HeadImageCameraOverlayView : UIView
-@property (nonatomic, strong) void(^switchBlock)();
-@property (nonatomic, strong) void(^cameraBlock)();
-@property (nonatomic, strong) void(^exitBlock)();
+@property (nonatomic, strong) void(^switchBlock)(void);
+@property (nonatomic, strong) void(^cameraBlock)(void);
+@property (nonatomic, strong) void(^exitBlock)(void);
 @end

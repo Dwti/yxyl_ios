@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface QAPhotoBrowseTopBarView : UIView
-@property (nonatomic, strong) void(^exitBlock)();
-@property (nonatomic, strong) void(^deleteBlock)();
+@property (nonatomic, strong) void(^exitBlock)(void);
+@property (nonatomic, strong) void(^deleteBlock)(void);
 @property (nonatomic, assign) BOOL canDelete;
 
 - (void)updateWithCurrentIndex:(NSInteger)index total:(NSInteger)total;

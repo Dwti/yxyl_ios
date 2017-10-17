@@ -12,7 +12,7 @@
 @interface QAClassifyPopupView : UIView
 @property (nonatomic, strong) NSString *categoryName;
 @property (nonatomic, strong) NSMutableArray<QAClassifyOptionInfo *> *optionInfoArray;
-@property (nonatomic, strong) void(^foldBlock) ();
+@property (nonatomic, strong) void(^foldBlock) (void);
 @property (nonatomic, strong) void(^deleteBlock) (QAClassifyOptionInfo *info);
 @property (nonatomic, strong) void(^dragDownBlock) (CGFloat offset);
 @end

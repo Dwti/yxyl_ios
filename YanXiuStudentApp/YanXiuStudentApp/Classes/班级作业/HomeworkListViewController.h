@@ -11,5 +11,5 @@
 
 @interface HomeworkListViewController : PagedListViewControllerBase
 - (instancetype)initWithData:(YXHomeworkListGroupsItem_Data *)data;
-@property (nonatomic, strong) void (^emptyBlock)();
+@property (nonatomic, strong) void (^emptyBlock)(void);
 @end

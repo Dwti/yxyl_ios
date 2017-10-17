@@ -89,13 +89,13 @@
 
 
 #pragma mark - iOS10 Notification Delegate
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     UNNotification *notification = response.notification;
     UNNotificationRequest *request = notification.request;
     UNNotificationContent *content = request.content;
     NSDictionary *userInfo = content.userInfo;
     [self handleApnsContent:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
+    completionHandler();
 }
 
 

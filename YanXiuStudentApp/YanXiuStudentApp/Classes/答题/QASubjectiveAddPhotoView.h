@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface QASubjectiveAddPhotoView : UIView
-@property (nonatomic, strong) void(^addAction)();
+@property (nonatomic, strong) void(^addAction)(void);
 @end

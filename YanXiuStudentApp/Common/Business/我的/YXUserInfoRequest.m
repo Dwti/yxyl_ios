@@ -49,7 +49,7 @@ NSString *const YXUserInfoGetSuccessNotification = @"kYXUserInfoGetSuccessNotifi
     return helper;
 }
 
-- (void)requestCompeletion:(void(^)())completion
+- (void)requestCompeletion:(void(^)(void))completion
 {
     if (self.request) {
         [self.request stopRequest];

@@ -10,7 +10,7 @@
 
 @implementation NSObject (BackgroundTask)
 
-- (void)performBackgroundTaskWithBlock:(void(^)())taskBlock completeBlock:(void(^)())completeBlock {
+- (void)performBackgroundTaskWithBlock:(void(^)(void))taskBlock completeBlock:(void(^)(void))completeBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         taskBlock();
         if (completeBlock) {

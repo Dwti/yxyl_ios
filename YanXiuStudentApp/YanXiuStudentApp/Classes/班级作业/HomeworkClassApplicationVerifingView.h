@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeworkClassApplicationVerifingView : UIView
-@property (nonatomic, strong) void(^refreshBlock)();
+@property (nonatomic, strong) void(^refreshBlock)(void);
 @end

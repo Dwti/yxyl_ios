@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HeadImagePickerOptionItemView : UIView
-@property (nonatomic, strong) void(^actionBlock)();
+@property (nonatomic, strong) void(^actionBlock)(void);
 - (void)updateWithImage:(UIImage *)image highlightImage:(UIImage *)highlightImage title:(NSString *)title;
 @end

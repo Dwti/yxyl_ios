@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol QAClozeQuestionCellDelegate <NSObject>
+@optional
 - (void)didSelectItemAtIndex:(NSInteger)index;
 - (void)layoutRefreshed;
 - (void)stemClicked;

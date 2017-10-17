@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HeadImagePickerOptionView : UIView
-@property (nonatomic, strong) void (^albumBlock)();
-@property (nonatomic, strong) void (^cameraBlock)();
-@property (nonatomic, strong) void (^cancelBlock)();
+@property (nonatomic, strong) void (^albumBlock)(void);
+@property (nonatomic, strong) void (^cameraBlock)(void);
+@property (nonatomic, strong) void (^cancelBlock)(void);
 @end

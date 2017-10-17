@@ -534,8 +534,6 @@ typedef NS_ENUM(NSInteger, CropCornerType) {
         [_slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [_slider addTarget:self action:@selector(sliderTouchEnded:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_slider];
-        _slider.hidden = YES;
-        
         
         _resetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _resetBtn.frame = CGRectMake(0, 0, 60, 20);
@@ -546,7 +544,6 @@ typedef NS_ENUM(NSInteger, CropCornerType) {
         [_resetBtn setTitle:NSLocalizedStringFromTable(@"RESET", @"PhotoTweaks", nil) forState:UIControlStateNormal];
         [_resetBtn addTarget:self action:@selector(resetBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_resetBtn];
-        _resetBtn.hidden = YES;
         
         _originalPoint = [self convertPoint:self.scrollView.center toView:self];
     }

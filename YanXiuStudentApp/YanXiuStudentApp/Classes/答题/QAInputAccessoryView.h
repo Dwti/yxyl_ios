@@ -11,6 +11,6 @@
 @interface QAInputAccessoryView : UIView
 
 @property (nonatomic, strong) UITextView *inputTextView;
-@property (nonatomic, copy) void (^confirmBlock)();
+@property (nonatomic, copy) void (^confirmBlock)(void);
 
 @end

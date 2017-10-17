@@ -12,5 +12,5 @@
 @property (nonatomic, strong) NSMutableArray<QAImageAnswer *> *itemArray;
 @property (nonatomic, assign) NSInteger oriIndex;
 @property (nonatomic, assign) BOOL canDelete;
-@property (nonatomic, strong) void(^deleteBlock)();
+@property (nonatomic, strong) void(^deleteBlock)(void);
 @end

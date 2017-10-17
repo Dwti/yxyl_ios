@@ -894,6 +894,7 @@
 		7CFD1EA81D51BF35002C2624 /* YXSubjectiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD1EA71D51BF35002C2624 /* YXSubjectiveDetailViewController.m */; };
 		7CFD1EA91D51BF35002C2624 /* YXSubjectiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD1EA71D51BF35002C2624 /* YXSubjectiveDetailViewController.m */; };
 		7CFE55D51CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFE55D41CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m */; };
+		A6F12160AFAF8B67F252C96C /* libPods-YanXiuStudentApp-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A68EC2D672A1F5EE5F5B0FD0 /* libPods-YanXiuStudentApp-iPhone.a */; };
 		E9098CFB1DC893710084C7A6 /* GetSubjectMistakeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9098CFA1DC893710084C7A6 /* GetSubjectMistakeRequest.m */; };
 		E913B0F21EF9220100DA5A35 /* QAReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E913B0F11EF9220100DA5A35 /* QAReportViewController.m */; };
 		E915A2DB1DB8A1690088758A /* QAChooseQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = E915A2DA1DB8A1690088758A /* QAChooseQuestionAnalysisView.m */; };
@@ -1079,7 +1080,6 @@
 		F773CAAE1C4627F400AAE684 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743B0CB1B687F7300CE1F0F /* CoreTelephony.framework */; };
 		F773CAAF1C4627F400AAE684 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743B0C91B687F6D00CE1F0F /* AdSupport.framework */; };
 		F773CAB01C4627F400AAE684 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743B0C71B687F6700CE1F0F /* Security.framework */; };
-		F773CAB11C4627F400AAE684 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48385987A8376EDFB24EE3F5 /* libPods.a */; };
 		F773CAB51C4627F400AAE684 /* exerciseList in Resources */ = {isa = PBXBuildFile; fileRef = 0F646BAA1BE34D1200606EBA /* exerciseList */; };
 		F773CAB61C4627F400AAE684 /* 答题.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C746FF71B5F822C0044CEBC /* 答题.json */; };
 		F773CAB71C4627F400AAE684 /* 3.html in Resources */ = {isa = PBXBuildFile; fileRef = F7EB06DB1B55115A00B4AEE5 /* 3.html */; };
@@ -1133,7 +1133,6 @@
 		F77550791C4E43860002FE45 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743B0CB1B687F7300CE1F0F /* CoreTelephony.framework */; };
 		F775507A1C4E43860002FE45 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743B0C91B687F6D00CE1F0F /* AdSupport.framework */; };
 		F775507B1C4E43860002FE45 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743B0C71B687F6700CE1F0F /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F775507C1C4E43860002FE45 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48385987A8376EDFB24EE3F5 /* libPods.a */; };
 		F77550801C4E43860002FE45 /* exerciseList in Resources */ = {isa = PBXBuildFile; fileRef = 0F646BAA1BE34D1200606EBA /* exerciseList */; };
 		F77550811C4E43860002FE45 /* 答题.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C746FF71B5F822C0044CEBC /* 答题.json */; };
 		F77550821C4E43860002FE45 /* 3.html in Resources */ = {isa = PBXBuildFile; fileRef = F7EB06DB1B55115A00B4AEE5 /* 3.html */; };
@@ -1380,6 +1379,7 @@
 		0FFA77691C75B92600F9E8F9 /* YXHomeworkListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkListFetcher.m; sourceTree = "<group>"; };
 		0FFA77731C77013D00F9E8F9 /* YXExerciseHistoryListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExerciseHistoryListFetcher.h; sourceTree = "<group>"; };
 		0FFA77741C77013D00F9E8F9 /* YXExerciseHistoryListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExerciseHistoryListFetcher.m; sourceTree = "<group>"; };
+		1C28A872757374A3F84742E1 /* Pods-YanXiuStudentApp-iPhone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YanXiuStudentApp-iPhone.release.xcconfig"; path = "Pods/Target Support Files/Pods-YanXiuStudentApp-iPhone/Pods-YanXiuStudentApp-iPhone.release.xcconfig"; sourceTree = "<group>"; };
 		300E74571D051D1F00C504A8 /* YXStatisticFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXStatisticFileRequest.h; sourceTree = "<group>"; };
 		300E74581D051D1F00C504A8 /* YXStatisticFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXStatisticFileRequest.m; sourceTree = "<group>"; };
 		3011C54E1CD9DEC100B3AE21 /* YXAddClassHelpViewController_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAddClassHelpViewController_Pad.h; sourceTree = "<group>"; };
@@ -1419,15 +1419,12 @@
 		30F669CD1D2A1028002B1C1D /* NSString+YXRecordContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YXRecordContent.m"; sourceTree = "<group>"; };
 		30FAF0741D1149CB00C3821E /* NSDictionary+Dictionarys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Dictionarys.h"; sourceTree = "<group>"; };
 		30FAF0751D1149CB00C3821E /* NSDictionary+Dictionarys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Dictionarys.m"; sourceTree = "<group>"; };
-		313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		433E64651EF257A300AA447B /* QAInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAInputAccessoryView.h; sourceTree = "<group>"; };
 		433E64661EF257A300AA447B /* QAInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAInputAccessoryView.m; sourceTree = "<group>"; };
 		43B1016B1F21C6AF00A69E1A /* ExerciseHistoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistoryListCell.h; sourceTree = "<group>"; };
 		43B1016C1F21C6AF00A69E1A /* ExerciseHistoryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseHistoryListCell.m; sourceTree = "<group>"; };
 		43B1016D1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistorySubjectCell.h; sourceTree = "<group>"; };
 		43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseHistorySubjectCell.m; sourceTree = "<group>"; };
-		479A925F547662E3DE8C6CE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		48385987A8376EDFB24EE3F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		766A40C41BF072F8007DE38A /* YXFeedbackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXFeedbackRequest.h; path = ../../../YanXiuStudentApp/v1.2/YXFeedbackRequest.h; sourceTree = "<group>"; };
 		766A40C51BF072F8007DE38A /* YXFeedbackRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXFeedbackRequest.m; path = ../../../YanXiuStudentApp/v1.2/YXFeedbackRequest.m; sourceTree = "<group>"; };
 		7671C5101BFAE23400DCA4FE /* YXBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXBaseWebViewController.h; path = ../../v1.3/PushWeb/YXBaseWebViewController.h; sourceTree = "<group>"; };
@@ -2219,6 +2216,8 @@
 		7CFD1EA71D51BF35002C2624 /* YXSubjectiveDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSubjectiveDetailViewController.m; sourceTree = "<group>"; };
 		7CFE55D31CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQASubmitSuccessAndBackView_Pad.h; sourceTree = "<group>"; };
 		7CFE55D41CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQASubmitSuccessAndBackView_Pad.m; sourceTree = "<group>"; };
+		A68EC2D672A1F5EE5F5B0FD0 /* libPods-YanXiuStudentApp-iPhone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YanXiuStudentApp-iPhone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14B3DCEF19A32F821290555 /* Pods-YanXiuStudentApp-iPhone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YanXiuStudentApp-iPhone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YanXiuStudentApp-iPhone/Pods-YanXiuStudentApp-iPhone.debug.xcconfig"; sourceTree = "<group>"; };
 		E9098CF91DC893710084C7A6 /* GetSubjectMistakeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSubjectMistakeRequest.h; sourceTree = "<group>"; };
 		E9098CFA1DC893710084C7A6 /* GetSubjectMistakeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSubjectMistakeRequest.m; sourceTree = "<group>"; };
 		E913B0F01EF9220100DA5A35 /* QAReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAReportViewController.h; sourceTree = "<group>"; };
@@ -2559,7 +2558,6 @@
 				F773CAAC1C4627F400AAE684 /* libsqlite3.dylib in Frameworks */,
 				0FBD5B4E1C4F341C003B7D6D /* libWeChatSDK.a in Frameworks */,
 				F78C3E731C756F8500D81F4B /* libTalkingData.a in Frameworks */,
-				F773CAB11C4627F400AAE684 /* libPods.a in Frameworks */,
 				0FBD5B501C4F342F003B7D6D /* libmtasdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2590,8 +2588,8 @@
 				0FBD5AB91C4F31E9003B7D6D /* libWeChatSDK.a in Frameworks */,
 				F775507A1C4E43860002FE45 /* AdSupport.framework in Frameworks */,
 				F78C3E721C756F8500D81F4B /* libTalkingData.a in Frameworks */,
-				F775507C1C4E43860002FE45 /* libPods.a in Frameworks */,
 				0FBD5ABB1C4F31E9003B7D6D /* libmtasdk.a in Frameworks */,
+				A6F12160AFAF8B67F252C96C /* libPods-YanXiuStudentApp-iPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4451,11 +4449,11 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
-		CE552FC5CE825E738410955E /* Pods */ = {
+		D09BD5D55A5AED420C3A9C5D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */,
-				479A925F547662E3DE8C6CE5 /* Pods.release.xcconfig */,
+				E14B3DCEF19A32F821290555 /* Pods-YanXiuStudentApp-iPhone.debug.xcconfig */,
+				1C28A872757374A3F84742E1 /* Pods-YanXiuStudentApp-iPhone.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -4704,7 +4702,7 @@
 				F743B0CB1B687F7300CE1F0F /* CoreTelephony.framework */,
 				F743B0C91B687F6D00CE1F0F /* AdSupport.framework */,
 				F743B0C71B687F6700CE1F0F /* Security.framework */,
-				48385987A8376EDFB24EE3F5 /* libPods.a */,
+				A68EC2D672A1F5EE5F5B0FD0 /* libPods-YanXiuStudentApp-iPhone.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4763,8 +4761,8 @@
 				F74F01761B42A05800BA54A8 /* YanXiuStudentApp */,
 				30D8E2A21D12684F00DCA32F /* 易学易练UITests */,
 				F74F01751B42A05800BA54A8 /* Products */,
-				CE552FC5CE825E738410955E /* Pods */,
 				EF379A48BDE7CA004951EEF8 /* Frameworks */,
+				D09BD5D55A5AED420C3A9C5D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5510,13 +5508,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F773CACE1C4627F400AAE684 /* Build configuration list for PBXNativeTarget "YanXiuStudentApp-iPad" */;
 			buildPhases = (
-				F773C9071C4627F400AAE684 /* Check Pods Manifest.lock */,
 				F773C9081C4627F400AAE684 /* ShellScript */,
 				F773C9091C4627F400AAE684 /* Sources */,
 				F773CAA71C4627F400AAE684 /* Frameworks */,
 				F773CAB41C4627F400AAE684 /* Resources */,
-				F773CACC1C4627F400AAE684 /* Copy Pods Resources */,
-				F773CACD1C4627F400AAE684 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5531,14 +5526,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F77550981C4E43860002FE45 /* Build configuration list for PBXNativeTarget "YanXiuStudentApp-iPhone" */;
 			buildPhases = (
-				F7754EC91C4E43860002FE45 /* Check Pods Manifest.lock */,
+				4B3EDD60ACBCD6D861AB1014 /* [CP] Check Pods Manifest.lock */,
 				F7754ECA1C4E43860002FE45 /* ShellScript */,
 				F7754ECB1C4E43860002FE45 /* Sources */,
 				F77550721C4E43860002FE45 /* Frameworks */,
 				F775507F1C4E43860002FE45 /* Resources */,
-				F77550961C4E43860002FE45 /* Copy Pods Resources */,
-				F77550971C4E43860002FE45 /* Embed Pods Frameworks */,
 				7C1CBBA61E150311002A6528 /* Integrate Reveal Server */,
+				A8B161333BD0A985AE776654 /* [CP] Embed Pods Frameworks */,
+				50BE6D64BA48C440E548AFAC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5556,7 +5551,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = yanxiu.com;
 				TargetAttributes = {
 					30D8E2A01D12684F00DCA32F = {
@@ -5707,6 +5702,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4B3EDD60ACBCD6D861AB1014 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YanXiuStudentApp-iPhone-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50BE6D64BA48C440E548AFAC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YanXiuStudentApp-iPhone/Pods-YanXiuStudentApp-iPhone-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"${PODS_ROOT}/StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-normal.png",
+				"${PODS_ROOT}/StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-normal@2x.png",
+				"${PODS_ROOT}/StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-selected.png",
+				"${PODS_ROOT}/StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-selected@2x.png",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YanXiuStudentApp-iPhone/Pods-YanXiuStudentApp-iPhone-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7C1CBBA61E150311002A6528 /* Integrate Reveal Server */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5721,19 +5756,19 @@
 			shellPath = /bin/sh;
 			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi";
 		};
-		F773C9071C4627F400AAE684 /* Check Pods Manifest.lock */ = {
+		A8B161333BD0A985AE776654 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YanXiuStudentApp-iPhone/Pods-YanXiuStudentApp-iPhone-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F773C9081C4627F400AAE684 /* ShellScript */ = {
@@ -5749,51 +5784,6 @@
 			shellPath = /bin/sh;
 			shellScript = "find ./YanXiuStudentApp -name \"*.h\" -type f | xargs -I{} basename {} | while read line; do echo \"#import \\\"$line\\\"\"; done > ./YanXiuStudentApp/TestAndMock/YXAllHeaders.h";
 		};
-		F773CACC1C4627F400AAE684 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F773CACD1C4627F400AAE684 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7754EC91C4E43860002FE45 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		F7754ECA1C4E43860002FE45 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5807,36 +5797,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "find ./YanXiuStudentApp -name \"*.h\" -type f | xargs -I{} basename {} | while read line; do echo \"#import \\\"$line\\\"\"; done > ./YanXiuStudentApp/TestAndMock/YXAllHeaders.h";
-		};
-		F77550961C4E43860002FE45 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F77550971C4E43860002FE45 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -6958,14 +6918,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -6997,6 +6963,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				USE_HEADERMAP = YES;
+				WARNING_CFLAGS = "-Wstrict-prototypes";
 			};
 			name = Debug;
 		};
@@ -7009,14 +6976,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -7041,12 +7014,12 @@
 				SDKROOT = iphoneos;
 				USE_HEADERMAP = YES;
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = "-Wstrict-prototypes";
 			};
 			name = Release;
 		};
 		F773CACF1C4627F400AAE684 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -7143,7 +7116,6 @@
 		};
 		F773CAD01C4627F400AAE684 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 479A925F547662E3DE8C6CE5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -7240,10 +7212,11 @@
 		};
 		F77550991C4E43860002FE45 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E14B3DCEF19A32F821290555 /* Pods-YanXiuStudentApp-iPhone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = "YanXiuStudentApp-iPhone.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lei Cai (M89J3EV65R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lei Cai (M89J3EV65R)";
@@ -7338,15 +7311,17 @@
 				PROVISIONING_PROFILE = "316fa6fb-4f90-4abf-a4f8-99565ca9e083";
 				PROVISIONING_PROFILE_SPECIFIER = EXueELian_Dev;
 				SDKROOT = iphoneos;
+				WARNING_CFLAGS = "-Wstrict-prototypes";
 			};
 			name = Debug;
 		};
 		F775509A1C4E43860002FE45 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 479A925F547662E3DE8C6CE5 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 1C28A872757374A3F84742E1 /* Pods-YanXiuStudentApp-iPhone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = "YanXiuStudentApp-iPhone.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Shang Rui Tong Technology Co.,Ltd. (P8ZS8UUN27)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Shang Rui Tong Technology Co.,Ltd. (P8ZS8UUN27)";
@@ -7441,6 +7416,7 @@
 				PROVISIONING_PROFILE = "136ca834-93ed-4b0e-8cb8-d2c50a85d836";
 				PROVISIONING_PROFILE_SPECIFIER = EXueELian_Rel;
 				SDKROOT = iphoneos;
+				WARNING_CFLAGS = "-Wstrict-prototypes";
 			};
 			name = Release;
 		};

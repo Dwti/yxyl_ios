@@ -104,6 +104,7 @@
 #import "ThirdRegisterByJoinClassModel.h"
 #import "ThirdRegisterModel.h"
 #import "VerifyCodeInputView.h"
+#import "AudioAttachment.h"
 #import "AudioCommentManager.h"
 #import "AudioItemView.h"
 #import "QAAnalysisAnalysisCell.h"

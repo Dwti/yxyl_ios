@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *headUrl;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *account;
-@property (nonatomic, strong) void(^enterBlock) ();
+@property (nonatomic, strong) void(^enterBlock) (void);
 @property (nonatomic, assign) CGFloat offsetRate;
 
 @end

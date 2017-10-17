@@ -11,5 +11,5 @@
 @interface QAPhotoSelectionTitleView : UIView
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isFold;
-@property (nonatomic, strong) void(^statusChangedBlock)();
+@property (nonatomic, strong) void(^statusChangedBlock)(void);
 @end

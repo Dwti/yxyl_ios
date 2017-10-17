@@ -70,7 +70,7 @@ extern NSString *const YXInitSuccessNotification;
 
 + (instancetype)sharedHelper;
 
-- (void)requestCompeletion:(void(^)())completion;
+- (void)requestCompeletion:(void(^)(void))completion;
 
 - (BOOL)isAppleChecking;
 

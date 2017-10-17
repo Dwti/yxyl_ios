@@ -16,5 +16,5 @@
 
 @interface QAPhotoSelectionCell : UICollectionViewCell
 @property (nonatomic, strong) QAPhotoItem *photoItem;
-@property (nonatomic, strong) void(^clickBlock)();
+@property (nonatomic, strong) void(^clickBlock)(void);
 @end

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface QAPhotoClipBottomView : UIView
-@property (nonatomic, strong) void(^exitBlock)();
-@property (nonatomic, strong) void(^confirmBlock)();
-@property (nonatomic, strong) void(^resetBlock)();
+@property (nonatomic, strong) void(^exitBlock)(void);
+@property (nonatomic, strong) void(^confirmBlock)(void);
+@property (nonatomic, strong) void(^resetBlock)(void);
 @property (nonatomic, assign) BOOL canReset;//default is YES
 @end

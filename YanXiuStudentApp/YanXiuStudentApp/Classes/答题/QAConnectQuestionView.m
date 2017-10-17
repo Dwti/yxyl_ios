@@ -197,7 +197,7 @@ static const CGFloat kOffect = 16.f;
     }];
 }
 
-- (void)showConnectAnimationWithLeftOption:(QAConnectOptionInfo *)leftInfo rightOption:(QAConnectOptionInfo *)rightInfo completeBlock:(void(^)())completeBlock {
+- (void)showConnectAnimationWithLeftOption:(QAConnectOptionInfo *)leftInfo rightOption:(QAConnectOptionInfo *)rightInfo completeBlock:(void(^)(void))completeBlock {
     CGPoint p = [self.optionsView.rightView.tableView convertPoint:self.optionsView.rightView.tableView.contentOffset toView:self.window];
     
     UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, p.y, self.window.bounds.size.width, self.window.bounds.size.height - p.y)];

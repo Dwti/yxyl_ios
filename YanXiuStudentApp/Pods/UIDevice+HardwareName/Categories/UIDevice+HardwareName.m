@@ -203,14 +203,9 @@
     if ([platform isEqualToString:@"iPhone5,4"])    return UIDevice5CiPhone;
     if ([platform isEqualToString:@"iPhone6,1"])    return UIDevice5SiPhone;
     if ([platform isEqualToString:@"iPhone6,2"])    return UIDevice5SiPhone;
-    if ([platform isEqualToString:@"iPhone7,2"])    return UIDevice6iPhone;
-    if ([platform isEqualToString:@"iPhone7,1"])    return UIDevice6PlusiPhone;
-    if ([platform isEqualToString:@"iPhone8,1"])    return UIDevice6SiPhone;
-    if ([platform isEqualToString:@"iPhone8,2"])    return UIDevice6SPlusiPhone;
-    if ([platform isEqualToString:@"iPhone9,1"])    return UIDevice7iPhone;
-    if ([platform isEqualToString:@"iPhone9,2"])    return UIDevice7PlusiPhone;
+    if ([platform isEqualToString:@"iPhone7,1"])    return UIDevice6iPhone;
+    if ([platform isEqualToString:@"iPhone7,2"])    return UIDevice6PlusiPhone;
 
-    
     if ([platform isEqualToString:@"iPod1,1"])    return UIDevice1GiPod;
     if ([platform isEqualToString:@"iPod2,1"])    return UIDevice2GiPod;
     if ([platform isEqualToString:@"iPod2,2"])    return UIDevice2GiPod;
@@ -284,10 +279,6 @@
         case UIDevice5SiPhone: return IPHONE_5S_NAMESTRING;
         case UIDevice6iPhone: return IPHONE_6_NAMESTRING;
         case UIDevice6PlusiPhone: return IPHONE_6PLUS_NAMESTRING;
-        case UIDevice6SiPhone: return  IPHONE_6S_NAMESTRING;
-        case UIDevice6SPlusiPhone: return IPHONE_6SPLUS_NAMESTRING;
-        case UIDevice7iPhone: return IPHONE_7_NAMESTRING;
-        case UIDevice7PlusiPhone: return IPHONE_7PLUS_NAMESTRING;
         case UIDeviceUnknowniPhone: return IPHONE_UNKNOWN_NAMESTRING;
         
         case UIDevice1GiPod: return IPOD_1G_NAMESTRING;
