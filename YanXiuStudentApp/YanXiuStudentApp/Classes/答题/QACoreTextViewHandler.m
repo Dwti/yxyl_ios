@@ -7,7 +7,7 @@
 //
 
 #import "QACoreTextViewHandler.h"
-
+#import "AudioAttachment.h"
 
 @interface QACoreTextViewHandler()<DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate>
 
@@ -18,6 +18,10 @@
 
 
 @implementation QACoreTextViewHandler
+
++ (void)load {
+    [DTTextAttachment registerClass:[AudioAttachment class] forTagName:@"audio"];
+}
 
 - (instancetype)initWithCoreTextView:(DTAttributedTextContentView *)view maxWidth:(CGFloat)width {
     if (self = [super init]) {
@@ -44,9 +48,16 @@
         imageView.frame = CGRectMake(1, 1, 0, 0);
         imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         return bgView;
-//        return imageView;
+    } else {
+        UIView *v = SAFE_CALL_OneParam(self.delegate, viewForAttachment, attachment);
+        CGSize size = CGSizeMake(v.width, v.height);
+        if (!CGSizeEqualToSize(attachment.displaySize, size)) {
+            attachment.displaySize = size;
+            self.htmlView.layouter = nil;
+            [self.htmlView relayoutText];
+        }
+        return v;
     }
-    return nil;
 }
 
 - (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {

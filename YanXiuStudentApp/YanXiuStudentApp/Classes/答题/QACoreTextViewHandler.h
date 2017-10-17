@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol QACoreTextViewHandlerDelegate <NSObject>
+- (UIView *)viewForAttachment:(DTTextAttachment *)attachment;
+@end
+
 @interface QACoreTextViewHandler : NSObject
 
 @property (nonatomic, strong) void(^relayoutBlock)();
 @property (nonatomic, strong) void(^heightChangeBlock)(CGFloat height);
+
+@property (nonatomic, weak) id<QACoreTextViewHandlerDelegate> delegate;
 
 - (instancetype)initWithCoreTextView:(DTAttributedTextContentView *)view maxWidth:(CGFloat)width;
 

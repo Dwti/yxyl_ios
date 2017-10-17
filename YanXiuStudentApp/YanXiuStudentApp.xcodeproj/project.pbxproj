@@ -466,6 +466,8 @@
 		7C49B1951DC0574100E39555 /* QAAnalysisReadComplexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C49B1941DC0574100E39555 /* QAAnalysisReadComplexView.m */; };
 		7C49B1981DC057D500E39555 /* QAAnalysisListenComplexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C49B1971DC057D500E39555 /* QAAnalysisListenComplexView.m */; };
 		7C49B19B1DC058CC00E39555 /* QAAnalysisClozeComplexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C49B19A1DC058CC00E39555 /* QAAnalysisClozeComplexView.m */; };
+		7C4D53EC1F959C870053DB12 /* AudioAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D53EB1F959C870053DB12 /* AudioAttachment.m */; };
+		7C4D53ED1F959C870053DB12 /* AudioAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D53EB1F959C870053DB12 /* AudioAttachment.m */; };
 		7C553C851CBCA08E00A257F1 /* YXQASubmitSuccessView_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C553C841CBCA08E00A257F1 /* YXQASubmitSuccessView_Pad.m */; };
 		7C5565CC1DCB151300966875 /* ExerciseHistorySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5565CB1DCB151300966875 /* ExerciseHistorySubjectViewController.m */; };
 		7C5565CD1DCB151300966875 /* ExerciseHistorySubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5565CB1DCB151300966875 /* ExerciseHistorySubjectViewController.m */; };
@@ -1725,6 +1727,8 @@
 		7C49B1971DC057D500E39555 /* QAAnalysisListenComplexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisListenComplexView.m; sourceTree = "<group>"; };
 		7C49B1991DC058CC00E39555 /* QAAnalysisClozeComplexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnalysisClozeComplexView.h; sourceTree = "<group>"; };
 		7C49B19A1DC058CC00E39555 /* QAAnalysisClozeComplexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisClozeComplexView.m; sourceTree = "<group>"; };
+		7C4D53EA1F959C870053DB12 /* AudioAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioAttachment.h; sourceTree = "<group>"; };
+		7C4D53EB1F959C870053DB12 /* AudioAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioAttachment.m; sourceTree = "<group>"; };
 		7C553C831CBCA08E00A257F1 /* YXQASubmitSuccessView_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQASubmitSuccessView_Pad.h; sourceTree = "<group>"; };
 		7C553C841CBCA08E00A257F1 /* YXQASubmitSuccessView_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQASubmitSuccessView_Pad.m; sourceTree = "<group>"; };
 		7C5565CA1DCB151300966875 /* ExerciseHistorySubjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistorySubjectViewController.h; sourceTree = "<group>"; };
@@ -2684,6 +2688,7 @@
 		0F6A066A1B50C801009632D0 /* 答题 */ = {
 			isa = PBXGroup;
 			children = (
+				7C4D53E91F959B9A0053DB12 /* CustomTextAttachment */,
 				7CFAAD971DAC8A4700F13532 /* 滑动答题框架 */,
 				7CFAADBC1DACEE2000F13532 /* 题型配置 */,
 				F7EB06BA1B54AB4B00B4AEE5 /* View */,
@@ -3657,6 +3662,15 @@
 				7CA98EF61EC2F10B000D49DE /* SchoolSearchResultCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		7C4D53E91F959B9A0053DB12 /* CustomTextAttachment */ = {
+			isa = PBXGroup;
+			children = (
+				7C4D53EA1F959C870053DB12 /* AudioAttachment.h */,
+				7C4D53EB1F959C870053DB12 /* AudioAttachment.m */,
+			);
+			name = CustomTextAttachment;
 			sourceTree = "<group>";
 		};
 		7C5565C91DCB0F2800966875 /* 练习历史 */ = {
@@ -6073,6 +6087,7 @@
 				7CFD1E891D508CE6002C2624 /* YXPaperManager.m in Sources */,
 				E9F4C68E1F1C551600696FD0 /* QAConnectOptionInfo.m in Sources */,
 				7CDE19781DD0906A00469096 /* main.m in Sources */,
+				7C4D53ED1F959C870053DB12 /* AudioAttachment.m in Sources */,
 				7C38E7221C4E2C3C00EC18D0 /* YXQAAnalysisItem.m in Sources */,
 				7C953AFE1C58E1A300A9A7AF /* YXQAAnalysisLabelHtmlCell_Pad.m in Sources */,
 				0FB211AF1C57268E00594BEA /* YXSSOAuthDefine.m in Sources */,
@@ -6672,6 +6687,7 @@
 				7C3ECADB1EC03AAC005C2B9C /* PasswordInputView.m in Sources */,
 				7C027F411EB1F92E001682EA /* ScrollBaseViewController.m in Sources */,
 				7CFB73BA1F3164310004B502 /* MJRefreshFooterView.m in Sources */,
+				7C4D53EC1F959C870053DB12 /* AudioAttachment.m in Sources */,
 				7CA98EEB1EC2CB1F000D49DE /* SchoolSearchBarView.m in Sources */,
 				E9C6849F1DBDAC3F00717D82 /* QASubjectiveQuestionAnalysisView.m in Sources */,
 				7C2904381EEFC6E9005F7F55 /* QAPhotoSelectionViewController.m in Sources */,
