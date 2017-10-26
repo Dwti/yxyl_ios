@@ -35,7 +35,6 @@
     self.backgroundColor = [UIColor colorWithHexString:@"89e00d"];
     
     self.previewImageView = [[UIImageView alloc]init];
-    self.previewImageView.backgroundColor = [UIColor redColor];
     [self addSubview:self.previewImageView];
     [self.previewImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
@@ -108,8 +107,8 @@
     self.skipBlock = block;
 }
 
-- (void)setCoverImage:(UIImage *)coverImage {
+- (void)setCoverImage:(NSString *)coverImage {
     _coverImage = coverImage;
-    self.previewImageView.image = coverImage;
+    [self.previewImageView sd_setImageWithURL:[NSURL URLWithString:coverImage] placeholderImage:[UIImage imageNamed:@"半屏图片"]];
 }
 @end

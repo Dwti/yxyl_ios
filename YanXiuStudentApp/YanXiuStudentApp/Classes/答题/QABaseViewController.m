@@ -8,12 +8,12 @@
 
 #import "QABaseViewController.h"
 #import "UIViewController+VisibleViewController.h"
-#import "VideoPlayManagerView.h"
+#import "VideoPlayerManagerView.h"
+#import "QAAnalysisViewController.h"
 
 @interface QABaseViewController ()
 @property(nonatomic, strong) VideoPromptView *videoPromptView;
-@property (nonatomic, strong) VideoPlayManagerView *playMangerView;
-
+@property (nonatomic, strong) VideoPlayerManagerView *playerMangerView;
 @end
 
 @implementation QABaseViewController
@@ -44,12 +44,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.layer.shadowColor = [UIColor clearColor].CGColor;
-    [self.playMangerView viewWillAppear];
+    [self.playerMangerView viewWillAppear];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.playMangerView viewWillDisappear];
+    [self.playerMangerView viewWillDisappear];
+    [self.playerMangerView pauseVideo];
 }
 
 - (void)setupUI {
@@ -134,17 +135,16 @@
         index = complexView.slideView.currentIndex;
     }
     [self.switchView updateWithTotal:self.model.questions.count question:self.model.questions[to] childIndex:index];
-#warning 需要后续再推敲
-    [self removePlayMangerView];
-    [self setupSlideVideFullScreen];
-    //判断何时显示视频浮窗的按钮以及提示页
+    
+    [self hidePlayerMangerView];
     QAQuestion *question = self.model.questions[to];
-    if ([question.has_video isEqualToString:@"1"]) {
-        if (![self.model.hasShowPrompt isEqualToString:@"1"]) {
-            self.model.hasShowPrompt = @"1";
-            //保存是否已经显示过视频
-            [self showVideoPromptView];
-            [[YXQADataManager sharedInstance] savePaperHasShowVideoWithPaperID:self.model.paperID hasShowVideo:self.model.hasShowPrompt];
+    if ([question.has_video isEqualToString:@"1"]) {//有视频的才进行判断显示视频按钮以及显示视频提示页
+        if (![self isKindOfClass:[QAAnalysisViewController class]]) {//解析不显示视频提示页
+            if (![self.model.hasShowPrompt isEqualToString:@"1"]) {
+                self.model.hasShowPrompt = @"1";
+                [self showVideoPromptView];
+                [[YXQADataManager sharedInstance] savePaperHasShowVideoWithPaperID:self.model.paperID hasShowVideo:self.model.hasShowPrompt];
+            }
         }
         self.playViewButton.hidden = NO;
     }else {
@@ -171,7 +171,11 @@
     self.playViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.playViewButton setImage:[UIImage imageNamed:@"视频浮窗正常态"] forState:UIControlStateNormal];
     [self.playViewButton setImage:[UIImage imageNamed:@"视频浮窗点击态"] forState:UIControlStateHighlighted];
-    [self.playViewButton addTarget:self action:@selector(playViewButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    WEAK_SELF
+    [[self.playViewButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self setupPlayMangerViewWithType:VideoPlayFromType_PlayButton];
+    }];
     [self.view addSubview:self.playViewButton];
     [self.playViewButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(22);
@@ -180,15 +184,64 @@
     }];
 }
 
-- (void)playViewButtonAction:(UIButton *)sender {
-    [self setupPlayMangerViewWithType:VideoPlayFromType_PlayButton];
-    [self setupSlideVideHalfScreen];
+- (void)setupPlayMangerView {
+    self.playerMangerView = [[VideoPlayerManagerView alloc] init];
+    VideoItem *item = [[VideoItem alloc]init];
+    item.videoCover = self.model.cover;//@"http://pic49.nipic.com/file/20140927/19617624_230415502002_2.jpg";
+    item.videoName = self.model.paperTitle;
+    item.videoUrl = @"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/jxsjdysjbkjy/video/1.1_l/1.1_l.m3u8";//self.model.videoUrl;
+    item.videoSize = self.model.videoSize;
+    self.playerMangerView.item = item;
+    WEAK_SELF
+    [self.playerMangerView setPlayerManagerRotateActionBlock:^{
+        STRONG_SELF
+        [self rotateScreenAction];
+    }];
+    [self.playerMangerView setPlayerManagerBackActionBlock:^{
+        STRONG_SELF
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+        [self hidePlayerMangerView];
+    }];
+    [self.playerMangerView setPlayerManagerFinishActionBlock:^{
+        STRONG_SELF
+        [self hidePlayerMangerView];
+    }];
+    [self.playerMangerView setPlayerManagerPlayerActionBlock:^(YXPlayerManagerAbnormalStatus status) {
+        STRONG_SELF
+        if (![self isNetworkReachable]) {
+            self.playerMangerView.playerStatus = YXPlayerManagerAbnormal_NetworkError;
+        }else {
+            [self.playerMangerView playVideo];
+        }
+    }];
+    [self.playerMangerView setPlayerManagerFoldActionBlock:^{
+        STRONG_SELF
+        [self hidePlayerMangerView];
+    }];
+    [self.view addSubview:self.playerMangerView];
+    self.playerMangerView.isFullscreen = NO;
+    [self.playerMangerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(self.playerMangerView.mas_width).multipliedBy(9.0 / 15.6).priority(999);
+    }];
+}
+
+- (void)setupPlayMangerViewWithType:(VideoPlayFromType)type {
+    self.playerMangerView.type = type;
+    [self showPlayerMangerView];
+    if (type == VideoPlayFromType_PromptView) {
+        [self rotateScreenAction];
+    }else {
+        [self remakePlayerMangerViewForHalfSize];
+    }
 }
 
 - (void)showVideoPromptView {
     AlertView *alert = [[AlertView alloc]init];
     VideoPromptView *videoPromptView = self.videoPromptView;
-    videoPromptView.coverImage = [UIImage imageNamed:self.model.cover];
+    videoPromptView.coverImage = self.model.cover;
     if (!videoPromptView) {
         videoPromptView = [[VideoPromptView alloc]init];
     }
@@ -205,7 +258,6 @@
     [videoPromptView setPlayVideoBlock:^{
         STRONG_SELF
         [alert hide];
-        //全屏播放视频
         dispatch_async(dispatch_get_main_queue(), ^{
             [self setupPlayMangerViewWithType:VideoPlayFromType_PromptView];
         });
@@ -216,91 +268,33 @@
     }];
 }
 
-- (void)setupPlayMangerView {
-    self.playMangerView = [[VideoPlayManagerView alloc] init];
-    VideoItem *item = [[VideoItem alloc]init];
-    item.videoCover = @"http://pic49.nipic.com/file/20140927/19617624_230415502002_2.jpg";
-    //self.model.cover;
-    item.videoName = self.model.paperTitle;
-    item.videoUrl = @"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/jxsjdysjbkjy/video/1.1_l/1.1_l.m3u8";//self.model.videoUrl;
-    item.videoSize = self.model.videoSize;
-    self.playMangerView.item = item;
-    WEAK_SELF
-    [self.playMangerView setVideoPlayManagerViewRotateScreenBlock:^(BOOL isVertical) {
-        STRONG_SELF
-        [self rotateScreenAction];
-    }];
-    [self.playMangerView setVideoPlayManagerViewBackActionBlock:^{
-        STRONG_SELF
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
-        [self removePlayMangerView];
-    }];
-    [self.playMangerView setVideoPlayManagerViewFinishBlock:^{
-        STRONG_SELF
-        //        [self.chapterVC readyNextWillplayVideoAgain:NO];
-    }];
-    [self.playMangerView setVideoPlayManagerViewPlayVideoBlock:^(VideoPlayManagerStatus status) {
-        STRONG_SELF
-        if (![self isNetworkReachable]) {
-            self.playMangerView.playStatus = VideoPlayManagerStatus_NetworkError;
-        }else {
-            VideoItem *item = [[VideoItem alloc]init];
-            item.videoCover = @"http://pic49.nipic.com/file/20140927/19617624_230415502002_2.jpg";
-            //self.model.cover;
-            item.videoName = self.model.paperTitle;
-            item.videoUrl = @"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/jxsjdysjbkjy/video/1.1_l/1.1_l.m3u8";//self.model.videoUrl;
-            item.videoSize = self.model.videoSize;
-            self.playMangerView.item = item;
-        }
-    }];
-    [self.playMangerView setVideoPlayManagerViewFoldBlock:^{
-        STRONG_SELF
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self removePlayMangerView];
-            [self setupSlideVideFullScreen];
-        });
-    }];
-    [self.view addSubview:self.playMangerView];
-    [self remakeForHalfSize];
-}
-
-- (void)setupPlayMangerViewWithType:(VideoPlayFromType)type {
-    self.playMangerView.type = type;
-    self.playMangerView.hidden = NO;
-    if (type == VideoPlayFromType_PromptView) {
-        [self rotateScreenAction];
-    }else {
-        [self remakeForHalfSize];
-    }
-}
-
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
     if (size.width > size.height) {
-        [self remakeForFullSize];
+        [self remakePlayerMangerViewForFullSize];
     }else{
-        [self remakeForHalfSize];
+        [self remakePlayerMangerViewForHalfSize];
     }
 }
 
-- (void)remakeForFullSize {
-    self.playMangerView.isFullscreen = YES;
+- (void)remakePlayerMangerViewForFullSize {
+    self.playerMangerView.isFullscreen = YES;
     self.navigationController.navigationBar.hidden = YES;
     [UIApplication sharedApplication].statusBarHidden = YES;
-    [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.playerMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     [self.view layoutIfNeeded];
 }
 
-- (void)remakeForHalfSize {
-    self.playMangerView.isFullscreen = NO;
+- (void)remakePlayerMangerViewForHalfSize {
+    self.playerMangerView.isFullscreen = NO;
     self.navigationController.navigationBar.hidden = NO;
     [UIApplication sharedApplication].statusBarHidden = NO;
-    [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.playerMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.height.equalTo(self.playMangerView.mas_width).multipliedBy(9.0 / 15.6).priority(999);
+        make.height.equalTo(self.playerMangerView.mas_width).multipliedBy(9.0 / 15.6).priority(999);
     }];
     [self.view layoutIfNeeded];
 }
@@ -319,7 +313,7 @@
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection == UIInterfaceOrientationLandscapeRight){
         [self rotateScreenAction];
     }else{
-        [self.playMangerView playVideoClear];
+        [self.playerMangerView playVideoClear];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -332,24 +326,14 @@
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
-- (void)removePlayMangerView {
-    [self.playMangerView viewWillDisappear];
-    self.playMangerView.hidden = YES;
+- (void)hidePlayerMangerView {
+    [self.playerMangerView pauseVideo];
+    self.playerMangerView.hidden = YES;
 }
 
-- (void)setupSlideVideHalfScreen {
-    [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.playMangerView.mas_bottom);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
-    [self.view layoutIfNeeded];
+- (void)showPlayerMangerView {
+    self.playerMangerView.hidden = NO;
 }
 
-- (void)setupSlideVideFullScreen {
-    [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    [self.view layoutIfNeeded];
-}
 @end
 

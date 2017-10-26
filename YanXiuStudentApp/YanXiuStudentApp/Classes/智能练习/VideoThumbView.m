@@ -10,7 +10,6 @@
 
 @interface VideoThumbView()
 @property (nonatomic, strong) UIImageView *thumbImageView;
-@property (nonatomic, strong) UIImageView *placeholderImageView;
 @property (nonatomic, strong) UIButton *playButton;
 
 @property (nonatomic, strong) UIButton *thumbFoldButton;
@@ -34,10 +33,6 @@
     self.thumbImageView.userInteractionEnabled = YES;
     [self addSubview:self.thumbImageView];
     
-    self.placeholderImageView = [[UIImageView alloc] init];
-    self.placeholderImageView.image = [UIImage imageNamed:@"视频未读取过来的默认图片"];
-    [self.thumbImageView addSubview:self.placeholderImageView];
-    
     self.playButton = [[UIButton alloc] init];
     [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态-"]
                      forState:UIControlStateNormal];
@@ -56,10 +51,6 @@
 - (void)setupLayout {
     [self.thumbImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
-    }];
-    [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_offset(CGSizeMake(180.0f, 180.0f));
-        make.center.equalTo(self.thumbImageView);
     }];
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.thumbImageView);
@@ -90,12 +81,6 @@
 
 - (void)setImageUrl:(NSString *)imageUrl {
     _imageUrl = imageUrl;
-    WEAK_SELF
-    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        STRONG_SELF
-        if (!error) {
-            self.placeholderImageView.hidden = YES;
-        }
-    }];
+    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"半屏图片"]];
 }
 @end

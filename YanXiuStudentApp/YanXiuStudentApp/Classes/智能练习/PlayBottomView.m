@@ -73,17 +73,18 @@
 - (void)setIsFullscreen:(BOOL)isFullscreen{
     _isFullscreen = isFullscreen;
     if (isFullscreen) {
-        [self.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
-        [self.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateHighlighted];
+        [self.rotateButton setImage:[UIImage imageNamed:@"缩小按钮正常态"] forState:UIControlStateNormal];
+        [self.rotateButton setImage:[UIImage imageNamed:@"缩小按钮点击态"] forState:UIControlStateHighlighted];
 
         self.definitionButton.hidden = !self.isShowDefinition;
         self.rotateButton.hidden = self.isShowDefinition;
     }else{
-        [self.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateNormal];
-        [self.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateHighlighted];
+        [self.rotateButton setImage:[UIImage imageNamed:@"放大按钮正常态"] forState:UIControlStateNormal];
+        [self.rotateButton setImage:[UIImage imageNamed:@"放大按钮点击态"] forState:UIControlStateHighlighted];
 
         self.definitionButton.hidden = YES;
         self.rotateButton.hidden = NO;
     }
 }
+
 @end

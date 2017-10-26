@@ -12,7 +12,7 @@ typedef void(^PlayVideoBlock) (void);
 typedef void(^SkipVideoBlock) (void);
 
 @interface VideoPromptView : UIView
-@property(nonatomic, strong) UIImage *coverImage;
+@property(nonatomic, copy) NSString *coverImage;
 
 - (void)setPlayVideoBlock:(PlayVideoBlock)block;
 - (void)setSkipVideoBlock:(SkipVideoBlock)block;

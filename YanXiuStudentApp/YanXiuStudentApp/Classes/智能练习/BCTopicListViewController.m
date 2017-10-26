@@ -9,7 +9,6 @@
 #import "BCTopicListViewController.h"
 #import "BCTopicListCell.h"
 #import "BCTopicListFetcher.h"
-#import "TestViewController.h"
 #import "BCTopicFilterView.h"
 #import "GetTopicTreeRequest.h"
 #import "BCTopicPaper.h"
@@ -183,9 +182,6 @@
             }
         }];
     }
-//    TestViewController *vc = [[TestViewController alloc]init];
-//    vc.url = @"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/jxsjdysjbkjy/video/1.1_l/1.1_l.m3u8";
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)requestReportWithTopicPaper:(BCTopicPaper *)topicPaper {
@@ -206,6 +202,53 @@
             vc.rmsPaperId = topicPaper.rmsPaperId;
             [self.navigationController pushViewController:vc animated:YES];
         }
+    }];
+}
+
+- (void)firstPageFetch {
+    if (!self.dataFetcher) {
+        return;
+    }
+    [self.dataFetcher stop];
+    
+    SAFE_CALL(self.requestDelegate, requestWillRefresh);
+    @weakify(self);
+    [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
+        @strongify(self); if (!self) return;
+        [self firstPageRequestBack];
+        SAFE_CALL_OneParam(self.requestDelegate, requestEndRefreshWithError, error);
+        [self.view nyx_stopLoading];
+        [self stopAnimation];
+        if (error) {
+            if (error.code == 3) {
+                self->_total = 0;
+                self.emptyView.hidden = NO;
+                return;
+            }
+            self->_total = 0;
+            self.errorView.hidden = NO;
+            [self.view bringSubviewToFront:self.errorView];
+            [self checkHasMore];
+            return;
+        }
+        
+        // 隐藏失败界面
+        self.errorView.hidden = YES;
+        self.emptyView.hidden = YES;
+        
+        [self->_header setLastUpdateTime:[NSDate date]];
+        self.total = total;
+        [self.dataArray removeAllObjects];
+        
+        if (isEmpty(retItemArray)) {
+            self.emptyView.hidden = NO;
+        } else {
+            self.emptyView.hidden = YES;
+            [self.dataArray addObjectsFromArray:retItemArray];
+            [self checkHasMore];
+            [self.dataFetcher saveToCache];
+        }
+        [self.tableView reloadData];
     }];
 }
 
