@@ -37,6 +37,8 @@ typedef NS_ENUM(NSInteger, YXPType) {
 @property (nonatomic, strong) NSString<Optional> *qtype; // 0 标示客观题， 1标示主观题， 如果为空则表示 0 客观题
 @property (nonatomic, strong) NSArray<YXAnswersItem_PaperDetail,Optional> *children;
 
+@property (nonatomic, strong) NSString<Optional> *objectiveScore; // 口语得分 0-3
+
 @end
 
 @interface YXAnswersItem_PaperStatus : JSONModel

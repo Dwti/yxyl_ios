@@ -44,8 +44,10 @@ static NSString * const kAnswerMarkedFlag = @"5";
     self.audioUrl = question.url;
     self.stem = [self adjustedStemForStem:[question completeStem]];
     self.options = question.content.choices;
+    self.contentAnswer = question.content.answer;
     self.difficulty = question.difficulty;
     self.answerDetailID = question.pad.padid;
+    self.objectiveScore = question.pad.objectiveScore;
     self.analysis = question.analysis;
     self.correctAnswers = question.answer;
     self.globalStatis = question.extend.data.globalStatis;
@@ -216,6 +218,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
     detail.ptid = self.testID;
     detail.paperDetailId = self.answerDetailID? self.answerDetailID:@"-1";
     detail.qtype = (self.templateType == YXQATemplateSubjective)? @"1":nil;
+    detail.objectiveScore = self.objectiveScore;
     return detail;
 }
 

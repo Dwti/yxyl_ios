@@ -17,6 +17,7 @@
 #import "QAClozeQuestionViewContainer.h"
 #import "QAListenQuestionViewContainer.h"
 #import "QAReadQuestionViewContainer.h"
+#import "QAOralQuestionViewContainer.h"
 #import "QAUnknownQuestionViewContainer.h"
 
 @interface QAQuestionViewContainerFactory : NSObject

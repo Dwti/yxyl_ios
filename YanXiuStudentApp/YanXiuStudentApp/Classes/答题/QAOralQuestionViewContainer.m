@@ -7,15 +7,17 @@
 //
 
 #import "QAOralQuestionViewContainer.h"
+#import "QAOralQuestionView.h"
+#import "QAOralQuestionAnalysisView.h"
 
 @implementation QAOralQuestionViewContainer
 
 - (QAQuestionBaseView *)questionAnswerView{
-    return [[QAListenComplexView alloc]init];
+    return [[QAOralQuestionView alloc]init];
 }
 
 - (QAQuestionBaseView *)questionAnalysisView{
-    return [[QAAnalysisListenComplexView alloc]init];
+    return [[QAOralQuestionAnalysisView alloc]init];
 }
 
 @end

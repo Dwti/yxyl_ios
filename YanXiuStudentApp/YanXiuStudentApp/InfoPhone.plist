@@ -79,6 +79,8 @@
 	<string>需要访问您的相机</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要访问您的相册</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Metro Playtype.otf</string>
@@ -90,10 +92,6 @@
 		<string>METRO-BOLD PLAYTYPE.otf</string>
 		<string>METRO-MEDIUM PLAYTYPE.otf</string>
 		<string>METRO-DEMIBOLD PLAYTYPE.OTF</string>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<false/>

@@ -255,9 +255,9 @@
 }
 
 - (NSArray *)questionGroups{
-    // 听力（听音选择、听力选择、听音判断、听音连线、听音排序、听音填空、听力填空）、单选题、多选题、判断题、连线题、归类题、排序题、完型填空、阅读理解、填空题、改错、翻译、计算题、解答题、问答题、材料阅读
+    // 听力（听音选择、听力选择、听音判断、听音连线、听音排序、听音填空、听力填空）、单选题、多选题、判断题、连线题、归类题、排序题、完型填空、阅读理解、填空题、改错、翻译、计算题、解答题、问答题、材料阅读、口语题（朗读、跟读、对话、作文）
     NSMutableArray *allGroups = [NSMutableArray array];
-    for (int i=0; i<16; i++) {
+    for (int i=0; i<17; i++) {
         QAQuestionGroup *group = [[QAQuestionGroup alloc]init];
         group.questions = [NSMutableArray array];
         [allGroups addObject:group];
@@ -283,7 +283,12 @@
                                  @"19":allGroups[0],
                                  @"20":allGroups[6],
                                  @"21":allGroups[0],
-                                 @"22":allGroups[13]};
+                                 @"22":allGroups[13],
+                                 @"26":allGroups[16],
+                                 @"27":allGroups[16],
+                                 @"28":allGroups[16],
+                                 @"29":allGroups[16],
+                                 };
     for (QAQuestion *question in self.questions) {
         NSString *key = [NSString stringWithFormat:@"%@",@(question.questionType)];
         QAQuestionGroup *group = [mappingDic valueForKey:key];

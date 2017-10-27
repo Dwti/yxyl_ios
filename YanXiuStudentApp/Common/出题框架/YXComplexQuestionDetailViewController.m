@@ -16,6 +16,7 @@
 #import "YXQuestionTemplateTypeMapper.h"
 #import "YXQuestionTypeSelectionViewController.h"
 #import "YXConnectClassifyDetailViewController.h"
+#import "YXOralDetailViewController.h"
 
 @interface YXComplexQuestionDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -193,7 +194,10 @@
         STRONG_SELF
         [self addQuestion:[YXQuestionFactory questionWithType:YXQAItemConnect template:YXQATemplateConnect]];
     }];
-    
+    UIAlertAction *oralAction = [UIAlertAction actionWithTitle:@"口语" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        STRONG_SELF
+        [self addQuestion:[YXQuestionFactory questionWithType:YXQAItemOralRead template:YXQATemplateOral]];
+    }];
     [alertVC addAction:backAction];
     [alertVC addAction:singleChooseAction];
     if ([self.question templateType] != YXQATemplateClozeComplex) {
@@ -203,6 +207,7 @@
         [alertVC addAction:subjectiveAction];
         [alertVC addAction:classifyAction];
         [alertVC addAction:connectAction];
+        [alertVC addAction:oralAction];
     }
     [self presentViewController:alertVC animated:YES completion:nil];
 }
@@ -273,6 +278,10 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([q templateType] == YXQATemplateClassify){
         YXConnectClassifyDetailViewController *vc = [[YXConnectClassifyDetailViewController alloc]init];
+        vc.question = q;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([q templateType] == YXQATemplateOral) {
+        YXOralDetailViewController *vc = [[YXOralDetailViewController alloc] init];
         vc.question = q;
         [self.navigationController pushViewController:vc animated:YES];
     }

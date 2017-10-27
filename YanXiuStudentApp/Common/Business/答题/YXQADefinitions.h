@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, YXQATemplateType) {
     YXQATemplateReadComplex, // 阅读复合题
     YXQATemplateClozeComplex, // 完形填空复合题
     YXQATemplateListenComplex, // 听力复合题
+    
     YXQATemplateOral, // 口语题
     
     YXQATemplateUnknown
@@ -53,10 +54,10 @@ typedef NS_ENUM(NSUInteger, YXQAItemType) {
     YXQAItemListenAudioSort, //听音排序
     YXQAItemSolve, //解答
     
-    YXQAItemOralRead, // 朗读
+    YXQAItemOralRead = 26, // 朗读
     YXQAItemOralRepeat, // 跟读
-    YXQAItemOralDialogue, // 短对话
-    YXQAItemOralComposition, // 小作文
+    YXQAItemOralDialogue, // 情景问答
+    YXQAItemOralComposition, // 口语作文
     
 //    YXQAItemClozeComplex, // 完形填空复合题
 //    YXQAItemReadComplex, // 阅读理解复合题

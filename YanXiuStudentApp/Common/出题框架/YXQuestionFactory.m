@@ -382,9 +382,15 @@
 // 口语题
 + (YXQuestion *)oralQuestion {
     YXQuestion *q = [[YXQuestion alloc]init];
-    q.type_id = @"23";
-    q.qTemplate = @"oral";
-    q.stem = @"11111<audio src=\"http://scc.jsyxw.cn/audio/2016/0801/5eed2b75d62d60d27cf8a62317e689e1.mp3\"  controls=\"controls\"></audio>2222";
+    q.type_id = @"27";
+    q.qTemplate = @"speak";
+    q.stem = @"11111<audio src=\"http://dx.sc.chinaz.com/Files/DownLoad/sound1/201702/8378.mp3\"  controls=\"controls\"></audio>22222222222222222222这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~这是口语题的解析blablabla~~~";
+    q.analysis = @"这是口语题的解析blablabla~~~";
+    q.difficulty = @"3";
+    q.answer = @[@"hello"];
+    YXQuestion_Content *content = [YXQuestion_Content new];
+    content.choices = @[@"hello"];
+    q.content = content;
     
     YXQuestion_Point *point = [[YXQuestion_Point alloc]init];
     point.name = @"考点1";
@@ -392,6 +398,7 @@
     
     YXQuestion_Pad *pad = [[YXQuestion_Pad alloc]init];
     pad.jsonAnswer = @[];
+    pad.objectiveScore = @"2";
     q.pad = pad;
     
     YXQuestion_Extend *extend = [[YXQuestion_Extend alloc]init];

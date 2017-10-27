@@ -198,13 +198,26 @@
 		30F4561F1CBE328200FF2CD9 /* YXRedNumberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB92C81CBE182500B72D87 /* YXRedNumberRequest.m */; };
 		30F669CE1D2A1028002B1C1D /* NSString+YXRecordContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F669CD1D2A1028002B1C1D /* NSString+YXRecordContent.m */; };
 		30FAF0761D1149CB00C3821E /* NSDictionary+Dictionarys.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FAF0751D1149CB00C3821E /* NSDictionary+Dictionarys.m */; };
+		43215BC61F9C4DD000AFB0D5 /* QAOralResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43215BC51F9C4DD000AFB0D5 /* QAOralResultViewController.m */; };
 		433C83851F95B3D7002CEBA3 /* YXOralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433C83841F95B3D7002CEBA3 /* YXOralDetailViewController.m */; };
 		433C83881F95DB6B002CEBA3 /* QAOralQuestionViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 433C83871F95DB6B002CEBA3 /* QAOralQuestionViewContainer.m */; };
 		433C838B1F95DC90002CEBA3 /* QAOralQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 433C838A1F95DC90002CEBA3 /* QAOralQuestionView.m */; };
 		433C838E1F95DCE9002CEBA3 /* QAOralQuestionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 433C838D1F95DCE9002CEBA3 /* QAOralQuestionAnalysisView.m */; };
+		433C83911F95E2CE002CEBA3 /* QAOralAnswerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 433C83901F95E2CE002CEBA3 /* QAOralAnswerQuestion.m */; };
 		433E64671EF257A300AA447B /* QAInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E64661EF257A300AA447B /* QAInputAccessoryView.m */; };
+		435753511F99DCCB00DB63CF /* QAIgnorePanGestureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 435753501F99DCCB00DB63CF /* QAIgnorePanGestureButton.m */; };
+		435753541F99ECFF00DB63CF /* QAOralResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 435753531F99ECFF00DB63CF /* QAOralResultItem.m */; };
+		435AD7681F99B10200CF444E /* libusc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435AD7671F99B10200CF444E /* libusc.a */; };
+		435DAF2C1F9ED38C005B534F /* QAOralGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 435DAF2B1F9ED38C005B534F /* QAOralGradeCell.m */; };
+		435DAF2F1F9EE69C005B534F /* QAOralGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 435DAF2E1F9EE69C005B534F /* QAOralGuideView.m */; };
+		436753A41F96E88E0054945F /* QAOralQuestionStemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436753A31F96E88E0054945F /* QAOralQuestionStemCell.m */; };
+		43694D1E1FA1870F007A5F2B /* QAAnalysisOralResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43694D1D1FA1870F007A5F2B /* QAAnalysisOralResultCell.m */; };
 		43B1016F1F21C6AF00A69E1A /* ExerciseHistoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B1016C1F21C6AF00A69E1A /* ExerciseHistoryListCell.m */; };
 		43B101701F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */; };
+		43C8C9391F9D8A4D009185D3 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C8C9381F9D8A4D009185D3 /* libstdc++.6.0.9.tbd */; };
+		43C8C93C1F9DA09F009185D3 /* QAOralResultInStemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C8C93B1F9DA09F009185D3 /* QAOralResultInStemView.m */; };
+		43E0506C1F989FC2005BBDD5 /* QAOralRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E0506B1F989FC2005BBDD5 /* QAOralRecordView.m */; };
+		43E050771F98A25E005BBDD5 /* Waver.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E050751F98A25D005BBDD5 /* Waver.m */; };
 		7C01540A1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540B1D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0154091D58574A007C6AC8 /* YXQuestionTemplateTypeMapper.m */; };
 		7C01540E1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C01540D1D586D74007C6AC8 /* YXQuestionTypeSelectionViewController.m */; };
@@ -1483,7 +1496,8 @@
 		30F669CD1D2A1028002B1C1D /* NSString+YXRecordContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YXRecordContent.m"; sourceTree = "<group>"; };
 		30FAF0741D1149CB00C3821E /* NSDictionary+Dictionarys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Dictionarys.h"; sourceTree = "<group>"; };
 		30FAF0751D1149CB00C3821E /* NSDictionary+Dictionarys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Dictionarys.m"; sourceTree = "<group>"; };
-		313D68ADF3008086645B7E2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		43215BC41F9C4DD000AFB0D5 /* QAOralResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralResultViewController.h; sourceTree = "<group>"; };
+		43215BC51F9C4DD000AFB0D5 /* QAOralResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralResultViewController.m; sourceTree = "<group>"; };
 		433C83831F95B3D7002CEBA3 /* YXOralDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXOralDetailViewController.h; sourceTree = "<group>"; };
 		433C83841F95B3D7002CEBA3 /* YXOralDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXOralDetailViewController.m; sourceTree = "<group>"; };
 		433C83861F95DB6B002CEBA3 /* QAOralQuestionViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralQuestionViewContainer.h; sourceTree = "<group>"; };
@@ -1492,12 +1506,35 @@
 		433C838A1F95DC90002CEBA3 /* QAOralQuestionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralQuestionView.m; sourceTree = "<group>"; };
 		433C838C1F95DCE9002CEBA3 /* QAOralQuestionAnalysisView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralQuestionAnalysisView.h; sourceTree = "<group>"; };
 		433C838D1F95DCE9002CEBA3 /* QAOralQuestionAnalysisView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralQuestionAnalysisView.m; sourceTree = "<group>"; };
+		433C838F1F95E2CE002CEBA3 /* QAOralAnswerQuestion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralAnswerQuestion.h; sourceTree = "<group>"; };
+		433C83901F95E2CE002CEBA3 /* QAOralAnswerQuestion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralAnswerQuestion.m; sourceTree = "<group>"; };
 		433E64651EF257A300AA447B /* QAInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAInputAccessoryView.h; sourceTree = "<group>"; };
 		433E64661EF257A300AA447B /* QAInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAInputAccessoryView.m; sourceTree = "<group>"; };
+		4357534F1F99DCCB00DB63CF /* QAIgnorePanGestureButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAIgnorePanGestureButton.h; sourceTree = "<group>"; };
+		435753501F99DCCB00DB63CF /* QAIgnorePanGestureButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAIgnorePanGestureButton.m; sourceTree = "<group>"; };
+		435753521F99ECFF00DB63CF /* QAOralResultItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralResultItem.h; sourceTree = "<group>"; };
+		435753531F99ECFF00DB63CF /* QAOralResultItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralResultItem.m; sourceTree = "<group>"; };
+		435AD7661F99B10200CF444E /* USCRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USCRecognizer.h; sourceTree = "<group>"; };
+		435AD7671F99B10200CF444E /* libusc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libusc.a; sourceTree = "<group>"; };
+		435DAF2A1F9ED38C005B534F /* QAOralGradeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralGradeCell.h; sourceTree = "<group>"; };
+		435DAF2B1F9ED38C005B534F /* QAOralGradeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralGradeCell.m; sourceTree = "<group>"; };
+		435DAF2D1F9EE69C005B534F /* QAOralGuideView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralGuideView.h; sourceTree = "<group>"; };
+		435DAF2E1F9EE69C005B534F /* QAOralGuideView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralGuideView.m; sourceTree = "<group>"; };
+		436753A21F96E88E0054945F /* QAOralQuestionStemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralQuestionStemCell.h; sourceTree = "<group>"; };
+		436753A31F96E88E0054945F /* QAOralQuestionStemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralQuestionStemCell.m; sourceTree = "<group>"; };
+		43694D1C1FA1870F007A5F2B /* QAAnalysisOralResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAnalysisOralResultCell.h; sourceTree = "<group>"; };
+		43694D1D1FA1870F007A5F2B /* QAAnalysisOralResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAnalysisOralResultCell.m; sourceTree = "<group>"; };
 		43B1016B1F21C6AF00A69E1A /* ExerciseHistoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistoryListCell.h; sourceTree = "<group>"; };
 		43B1016C1F21C6AF00A69E1A /* ExerciseHistoryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseHistoryListCell.m; sourceTree = "<group>"; };
 		43B1016D1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseHistorySubjectCell.h; sourceTree = "<group>"; };
 		43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseHistorySubjectCell.m; sourceTree = "<group>"; };
+		43C8C9381F9D8A4D009185D3 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		43C8C93A1F9DA09F009185D3 /* QAOralResultInStemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralResultInStemView.h; sourceTree = "<group>"; };
+		43C8C93B1F9DA09F009185D3 /* QAOralResultInStemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralResultInStemView.m; sourceTree = "<group>"; };
+		43E0506A1F989FC2005BBDD5 /* QAOralRecordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAOralRecordView.h; sourceTree = "<group>"; };
+		43E0506B1F989FC2005BBDD5 /* QAOralRecordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAOralRecordView.m; sourceTree = "<group>"; };
+		43E050751F98A25D005BBDD5 /* Waver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waver.m; sourceTree = "<group>"; };
+		43E050761F98A25D005BBDD5 /* Waver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waver.h; sourceTree = "<group>"; };
 		766A40C41BF072F8007DE38A /* YXFeedbackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXFeedbackRequest.h; path = ../../../YanXiuStudentApp/v1.2/YXFeedbackRequest.h; sourceTree = "<group>"; };
 		766A40C51BF072F8007DE38A /* YXFeedbackRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXFeedbackRequest.m; path = ../../../YanXiuStudentApp/v1.2/YXFeedbackRequest.m; sourceTree = "<group>"; };
 		7671C5101BFAE23400DCA4FE /* YXBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXBaseWebViewController.h; path = ../../v1.3/PushWeb/YXBaseWebViewController.h; sourceTree = "<group>"; };
@@ -2702,6 +2739,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43C8C9391F9D8A4D009185D3 /* libstdc++.6.0.9.tbd in Frameworks */,
 				7CE583591E8F869E00652278 /* UserNotifications.framework in Frameworks */,
 				7C3566941D9B4EC600DFB876 /* CoreBluetooth.framework in Frameworks */,
 				7C3566921D9B4EBD00DFB876 /* CoreLocation.framework in Frameworks */,
@@ -2720,6 +2758,7 @@
 				F77550731C4E43860002FE45 /* CFNetwork.framework in Frameworks */,
 				0FBD5AB71C4F31E9003B7D6D /* TencentOpenAPI.framework in Frameworks */,
 				F77550751C4E43860002FE45 /* libz.dylib in Frameworks */,
+				435AD7681F99B10200CF444E /* libusc.a in Frameworks */,
 				F77550771C4E43860002FE45 /* libsqlite3.dylib in Frameworks */,
 				0FBD5AB91C4F31E9003B7D6D /* libWeChatSDK.a in Frameworks */,
 				F775507A1C4E43860002FE45 /* AdSupport.framework in Frameworks */,
@@ -2939,6 +2978,7 @@
 				0FBD5AA51C4F31E9003B7D6D /* TencentSDK_2.9.2 */,
 				0FBD5AA81C4F31E9003B7D6D /* WeChatSDK_1.6.1 */,
 				0FBD5AAD1C4F31E9003B7D6D /* 腾讯云分析 */,
+				43E050711F98A1FC005BBDD5 /* 云知声 */,
 			);
 			path = ThirdLib;
 			sourceTree = "<group>";
@@ -3020,6 +3060,8 @@
 		0FBD5AE11C4F3344003B7D6D /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				43E050761F98A25D005BBDD5 /* Waver.h */,
+				43E050751F98A25D005BBDD5 /* Waver.m */,
 				7C946D8F1F29D7EB001A606A /* YXStarRateView.h */,
 				7C946D901F29D7EB001A606A /* YXStarRateView.m */,
 				7C38E79B1C4F7A5100EC18D0 /* YXGradientView.h */,
@@ -3287,6 +3329,20 @@
 			children = (
 				4365D56E1F95A2FC007656F2 /* 答题 */,
 				4365D5701F95A34D007656F2 /* 解析 */,
+				436753A21F96E88E0054945F /* QAOralQuestionStemCell.h */,
+				436753A31F96E88E0054945F /* QAOralQuestionStemCell.m */,
+				43E0506A1F989FC2005BBDD5 /* QAOralRecordView.h */,
+				43E0506B1F989FC2005BBDD5 /* QAOralRecordView.m */,
+				43215BC41F9C4DD000AFB0D5 /* QAOralResultViewController.h */,
+				43215BC51F9C4DD000AFB0D5 /* QAOralResultViewController.m */,
+				43C8C93A1F9DA09F009185D3 /* QAOralResultInStemView.h */,
+				43C8C93B1F9DA09F009185D3 /* QAOralResultInStemView.m */,
+				435DAF2A1F9ED38C005B534F /* QAOralGradeCell.h */,
+				435DAF2B1F9ED38C005B534F /* QAOralGradeCell.m */,
+				435DAF2D1F9EE69C005B534F /* QAOralGuideView.h */,
+				435DAF2E1F9EE69C005B534F /* QAOralGuideView.m */,
+				4357534F1F99DCCB00DB63CF /* QAIgnorePanGestureButton.h */,
+				435753501F99DCCB00DB63CF /* QAIgnorePanGestureButton.m */,
 			);
 			name = "口语题";
 			sourceTree = "<group>";
@@ -3318,6 +3374,15 @@
 				43B1016E1F21C6AF00A69E1A /* ExerciseHistorySubjectCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		43E050711F98A1FC005BBDD5 /* 云知声 */ = {
+			isa = PBXGroup;
+			children = (
+				435AD7671F99B10200CF444E /* libusc.a */,
+				435AD7661F99B10200CF444E /* USCRecognizer.h */,
+			);
+			path = "云知声";
 			sourceTree = "<group>";
 		};
 		7671C5211BFAF6CC00DCA4FE /* WebViewProgress */ = {
@@ -3596,6 +3661,8 @@
 				7C89DD031DA8927200194120 /* QATwoNumberAnswerQuestion.m */,
 				7C89DCF21DA8927200194120 /* QANumberGroupAnswerQuestion.h */,
 				7C89DCF31DA8927200194120 /* QANumberGroupAnswerQuestion.m */,
+				433C838F1F95E2CE002CEBA3 /* QAOralAnswerQuestion.h */,
+				433C83901F95E2CE002CEBA3 /* QAOralAnswerQuestion.m */,
 				7C89DCF81DA8927200194120 /* QAQuestionFactory.h */,
 				7C89DCF91DA8927200194120 /* QAQuestionFactory.m */,
 				7C89DCFA1DA8927200194120 /* QAQuestionTemplateMappingTable.h */,
@@ -3609,6 +3676,8 @@
 				7C38E7181C4E2C3C00EC18D0 /* YXQAAnalysisItem.m */,
 				7CFBF3B71C5F3FF200E745F3 /* YXQAPaperStaticticData.h */,
 				7CFBF3B81C5F3FF200E745F3 /* YXQAPaperStaticticData.m */,
+				435753521F99ECFF00DB63CF /* QAOralResultItem.h */,
+				435753531F99ECFF00DB63CF /* QAOralResultItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3889,6 +3958,8 @@
 				E9E6C2D61EFE355100F93E98 /* QAAnalysisBackGroundView.m */,
 				E9E6C2ED1F020B8A00F93E98 /* QAAnalysisResultCell.h */,
 				E9E6C2EE1F020B8A00F93E98 /* QAAnalysisResultCell.m */,
+				43694D1C1FA1870F007A5F2B /* QAAnalysisOralResultCell.h */,
+				43694D1D1FA1870F007A5F2B /* QAAnalysisOralResultCell.m */,
 				E9F4C6701F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.h */,
 				E9F4C6711F14B45100696FD0 /* QAAnalysisSubjectiveResultCell.m */,
 				E9E6C2F01F020C8D00F93E98 /* QAAnalysisScoreCell.h */,
@@ -4963,6 +5034,7 @@
 		EF379A48BDE7CA004951EEF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43C8C9381F9D8A4D009185D3 /* libstdc++.6.0.9.tbd */,
 				7CE583581E8F869E00652278 /* UserNotifications.framework */,
 				7C3566931D9B4EC600DFB876 /* CoreBluetooth.framework */,
 				7C3566911D9B4EBD00DFB876 /* CoreLocation.framework */,
@@ -6668,6 +6740,7 @@
 				E9AE4A371F2B58AC00FED26C /* UIButton+ExpandHitArea.m in Sources */,
 				7CA98EE51EC2BB6E000D49DE /* ClassInfoItemView.m in Sources */,
 				E927988F1EE684AD00839CF3 /* QAListenStemCell.m in Sources */,
+				43694D1E1FA1870F007A5F2B /* QAAnalysisOralResultCell.m in Sources */,
 				7CDE19951DD093D700469096 /* YXApnsContentModel.m in Sources */,
 				7C7A1A321EC1B3DF00685B38 /* CompletePersonalInfoViewController.m in Sources */,
 				7C5CBEE31E6E4CD700653394 /* MistakeRedoUploadImageManager.m in Sources */,
@@ -6709,6 +6782,7 @@
 				E93C760D1E0CBE3F00F286CF /* ThirdRegisterModel.m in Sources */,
 				7C5565D81DCB227900966875 /* ExerciseHistoryKnpViewController.m in Sources */,
 				E90A02DF1F9366E40011AE72 /* YXPlayerBufferingView.m in Sources */,
+				435DAF2C1F9ED38C005B534F /* QAOralGradeCell.m in Sources */,
 				E9E6554E1EFA78EA00E56881 /* QAReportGroupHeaderView.m in Sources */,
 				7C3D0BA71DD1A8ED005ED76A /* UIButton+HighlightColor.m in Sources */,
 				E90A02971F90637F0011AE72 /* PlayBottomView.m in Sources */,
@@ -6721,6 +6795,7 @@
 				0FFA776A1C75B92600F9E8F9 /* YXHomeworkListFetcher.m in Sources */,
 				0FBD5AD81C4F3338003B7D6D /* NSString+YXString.m in Sources */,
 				7C3D0BAF1DD1A94F005ED76A /* YXAppConstants.m in Sources */,
+				435DAF2F1F9EE69C005B534F /* QAOralGuideView.m in Sources */,
 				E9973C651DB86B14004966AD /* QAFillQuestionView.m in Sources */,
 				F7754F131C4E43860002FE45 /* YXTestTableView.m in Sources */,
 				E9AE4A581F2B5D1E00FED26C /* ExerciseChapterTreeCell.m in Sources */,
@@ -6786,6 +6861,7 @@
 				7C38E7991C4F7A4400EC18D0 /* YXSmartDashLineView.m in Sources */,
 				7CA98EE71EC2BB6E000D49DE /* ClassNumberInputView.m in Sources */,
 				0F68BDFC1C73298C00AB3382 /* YXRankModel.m in Sources */,
+				43215BC61F9C4DD000AFB0D5 /* QAOralResultViewController.m in Sources */,
 				E9AE4A731F2B5EE200FED26C /* YXExerciseChooseChapterKnp_ChooseVolumeCell.m in Sources */,
 				30EBB3D51D11233900F1C9EC /* YXProblemItem.m in Sources */,
 				7C9EDC491DCD72400001C048 /* RegisterAccountRequest.m in Sources */,
@@ -6825,6 +6901,7 @@
 				E9973C7A1DB86D99004966AD /* QASingleChooseQuestionView.m in Sources */,
 				0FECC6741C5F321400E8F48E /* YXClassInfoMock.m in Sources */,
 				7C027F391EB1F76A001682EA /* GCDTimer.m in Sources */,
+				436753A41F96E88E0054945F /* QAOralQuestionStemCell.m in Sources */,
 				E9F4C68D1F1C550A00696FD0 /* QAConnectOptionInfo.m in Sources */,
 				7C3D0B5E1DD1A2A7005ED76A /* YXCrypt.m in Sources */,
 				7C027F341EB1F401001682EA /* PagedListViewControllerBase.m in Sources */,
@@ -6943,6 +7020,7 @@
 				7C2B66E51DBF3A5B007DD16B /* GetEditionRequest.m in Sources */,
 				7C5565CC1DCB151300966875 /* ExerciseHistorySubjectViewController.m in Sources */,
 				E9973C601DB86ADF004966AD /* QAYesNoQuestionView.m in Sources */,
+				43C8C93C1F9DA09F009185D3 /* QAOralResultInStemView.m in Sources */,
 				0FFA77661C75B63100F9E8F9 /* YXClassHomeworkFetcher.m in Sources */,
 				0FECC66E1C5F321400E8F48E /* YXHomeworkToDoListRequest.m in Sources */,
 				0FE6CA171C5A11DC005FBD5B /* YXGetPracticeHistoryRequest.m in Sources */,
@@ -7020,6 +7098,7 @@
 				7C1C3D081E52BAE900B156A8 /* MistakeQuestionItemCell.m in Sources */,
 				7C946D911F29D7EB001A606A /* YXStarRateView.m in Sources */,
 				F7754FF01C4E43860002FE45 /* TestUploadRequest.m in Sources */,
+				43E0506C1F989FC2005BBDD5 /* QAOralRecordView.m in Sources */,
 				0FE6C9F61C5A1029005FBD5B /* YXModifyPasswordRequest.m in Sources */,
 				7CFB73B81F3164310004B502 /* MJRefreshConst.m in Sources */,
 				7C1C3D001E51651400B156A8 /* QAUnknownQuestionViewContainer.m in Sources */,
@@ -7031,6 +7110,7 @@
 				7C3C151C1F25EBFD004DE584 /* ChangePasswordViewController.m in Sources */,
 				7CBFF5511E88FA3D00C363BD /* MistakeKnpViewController.m in Sources */,
 				7C953B2C1C5A156D00A9A7AF /* YXQAAnalysisDataConfig.m in Sources */,
+				433C83911F95E2CE002CEBA3 /* QAOralAnswerQuestion.m in Sources */,
 				7C1A62AE1E2F41D7009BA65C /* QAConnectQuestionRedoView.m in Sources */,
 				0FE6C9FB1C5A1039005FBD5B /* YXUserInfoRequest.m in Sources */,
 				7C69F2341E6D3DFA0076984F /* MistakeRedoFirstRequest.m in Sources */,
@@ -7051,6 +7131,7 @@
 				E9E6C30D1F03A2D600F93E98 /* QAReportErrorOptionView.m in Sources */,
 				7C49B1951DC0574100E39555 /* QAAnalysisReadComplexView.m in Sources */,
 				E9098CFB1DC893710084C7A6 /* GetSubjectMistakeRequest.m in Sources */,
+				43E050771F98A25E005BBDD5 /* Waver.m in Sources */,
 				7C88856C1EFB665A0073EF1F /* QASubjectiveStemCell.m in Sources */,
 				7C2729F71F1C729A00C85182 /* HeadImageCameraOverlayView.m in Sources */,
 				7CA92FE81EC983FE00527D13 /* HomeworkMainViewController.m in Sources */,
@@ -7058,6 +7139,7 @@
 				E9AE4A6D1F2B5D4600FED26C /* ExerciseKnpTreeViewController.m in Sources */,
 				E915A2DE1DB8A2FB0088758A /* QASingleChooseQuestionAnalysisView.m in Sources */,
 				7C3C15181F25E69F004DE584 /* MinePasswordInputView.m in Sources */,
+				435753541F99ECFF00DB63CF /* QAOralResultItem.m in Sources */,
 				F77550031C4E43860002FE45 /* YXGuideViewController.m in Sources */,
 				E9E6554B1EFA6EA400E56881 /* QAReportQuestionItemCell.m in Sources */,
 				E90A02C21F90936D0011AE72 /* BCResourceListHeaderView.m in Sources */,
@@ -7163,6 +7245,7 @@
 				7C2903D11EE94716005F7F55 /* QAComplexHeaderEmptyCell.m in Sources */,
 				F77550561C4E43860002FE45 /* YXFeedbackRequest.m in Sources */,
 				7C916BDD1DBEFA0800968B28 /* QAReadContainerView.m in Sources */,
+				435753511F99DCCB00DB63CF /* QAIgnorePanGestureButton.m in Sources */,
 				7CFD1E9C1D518A5E002C2624 /* YXMultiChooseDetailViewController.m in Sources */,
 				7CA92FFD1ECA8F2800527D13 /* HomeworkSubjectCell.m in Sources */,
 				7CA5A9A11F204A27004F34D3 /* MistakeSubjectCell.m in Sources */,
@@ -7588,6 +7671,8 @@
 					"$(PROJECT_DIR)/Common/ThirdLib/TalkingData",
 					"$(PROJECT_DIR)/Common/ThirdLib/个推",
 					"\"$(SRCROOT)/Common/ThirdLib/个推/GeTuiSdk.h\"",
+					"$(PROJECT_DIR)/Common/云知声",
+					"$(PROJECT_DIR)/Common/ThirdLib/云知声",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -7693,6 +7778,8 @@
 					"$(PROJECT_DIR)/Common/ThirdLib/TalkingData",
 					"$(PROJECT_DIR)/Common/ThirdLib/个推",
 					"\"$(SRCROOT)/Common/ThirdLib/个推/GeTuiSdk.h\"",
+					"$(PROJECT_DIR)/Common/云知声",
+					"$(PROJECT_DIR)/Common/ThirdLib/云知声",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

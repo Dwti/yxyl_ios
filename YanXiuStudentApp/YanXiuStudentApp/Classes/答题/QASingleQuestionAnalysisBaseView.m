@@ -11,6 +11,7 @@
 #import "EditNoteViewController.h"
 #import "QAAnaysisGapCell.h"
 #import "QAAnalysisResultCell.h"
+#import "QAAnalysisOralResultCell.h"
 #import "QAAnalysisScoreCell.h"
 #import "QAAnalysisDifficultyCell.h"
 #import "QAAnalysisAnalysisCell.h"
@@ -53,6 +54,7 @@
     [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisAudioCommentCell"];
     [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisSubjectiveResultCell"];
     [self.tableView registerClass:[QANoteCell class] forCellReuseIdentifier:@"QANoteCell"];
+    [self.tableView registerClass:[QAAnalysisOralResultCell class] forCellReuseIdentifier:@"QAAnalysisOralResultCell"];
 
     [self setupAnalysisBGViewUI];
 }
@@ -153,6 +155,12 @@
         YXQAAnalysisItem *data = self.analysisDataArray[analysisDataIndex];
         QAAnalysisBaseCell *analysisCell = nil;
         if (data.type == YXAnalysisCurrentStatus) {
+            if (self.data.templateType == YXQATemplateOral) {
+                QAAnalysisOralResultCell *cell = [[QAAnalysisOralResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+                cell.item = data;
+                cell.oralScore = self.data.objectiveScore;
+                return cell;
+            }
             QAAnalysisResultCell *cell = [[QAAnalysisResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.delegate = self;
             cell.item = data;
@@ -285,7 +293,11 @@
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
             item.type = YXAnalysisCurrentStatus;
             [self.analysisDataArray addObject:item];
-            [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:self.data.answerCompare])];
+            if (self.data.templateType == YXQATemplateOral) {
+                [self.cellHeightArray addObject:@([QAAnalysisOralResultCell height])];
+            } else {
+                [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:self.data.answerCompare])];
+            }
         }
     }
     if (!isEmpty(self.data.difficulty)) {

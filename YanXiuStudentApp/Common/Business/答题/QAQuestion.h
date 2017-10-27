@@ -51,11 +51,13 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 @property (nonatomic, copy) NSString *stem;
 @property (nonatomic, copy) NSString *audioUrl;
 @property (nonatomic, strong) NSArray *options; // element type is NSString
+@property (nonatomic, strong) NSArray *contentAnswer;
 @property (nonatomic, assign) BOOL isFavorite;
 
 @property (nonatomic, strong) NSMutableArray *myAnswers; // element type is set by subclass
 @property (nonatomic, strong) NSArray *correctAnswers; // element type is set by subclass
 
+@property (nonatomic, copy) NSString *objectiveScore; // oral score;
 @property (nonatomic, copy) NSString *analysis;
 @property (nonatomic, copy) NSString *globalStatis;
 @property (nonatomic, copy) NSString *answerCompare;

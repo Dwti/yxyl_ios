@@ -49,7 +49,17 @@
         }else{
             return NO;
         }
-    }else{
+    } else if (qaType == YXQATemplateOral) {
+        if (analysisType == YXAnalysisCurrentStatus  ||
+            analysisType == YXAnalysisDifficulty ||
+            analysisType == YXAnalysisAnalysis ||
+            analysisType == YXAnalysisKnowledgePoint ||
+            analysisType == YXAnalysisAnswer) {
+            return YES;
+        }else{
+            return NO;
+        }
+    } else{
         return NO;
     }
 }

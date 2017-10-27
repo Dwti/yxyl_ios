@@ -20,7 +20,7 @@
                                  @"multi":@(YXQATemplateReadComplex),
                                  @"cloze":@(YXQATemplateClozeComplex),
                                  @"listen":@(YXQATemplateListenComplex),
-                                 @"oral":@(YXQATemplateOral)
+                                 @"speak":@(YXQATemplateOral)
                                  };
     NSNumber *number = [mappingDic valueForKey:templateString];
     if (number) {

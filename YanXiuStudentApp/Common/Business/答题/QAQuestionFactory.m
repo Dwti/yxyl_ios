@@ -7,6 +7,7 @@
 //
 
 #import "QAQuestionFactory.h"
+#import "QAOralAnswerQuestion.h"
 
 @implementation QAQuestionFactory
 + (QAQuestion *)questionFromRawData:(YXIntelligenceQuestion_PaperTest *)rawData{
@@ -28,6 +29,8 @@
               type == YXQATemplateClozeComplex ||
               type == YXQATemplateListenComplex){
         question = [[QAComplexAnswerQuestion alloc]initWithRawData:rawData];
+    }else if (type == YXQATemplateOral) {
+        question = [[QAOralAnswerQuestion alloc]initWithRawData:rawData];
     }
     return question;
 }

@@ -11,6 +11,7 @@
 @interface YXQuestion_Content : JSONModel
 
 @property (nonatomic, copy) NSArray<Optional> *choices;
+@property (nonatomic, strong) NSArray<Optional> *answer;
 
 @end
 
@@ -64,6 +65,7 @@
 @property (nonatomic, copy) NSString<Optional> *costtime;
 @property (nonatomic, copy) NSString<Optional> *answer;
 @property (nonatomic, strong) NSArray<Optional> *jsonAnswer;
+@property (nonatomic, strong) NSString<Optional> *objectiveScore;
 @property (nonatomic, strong) YXQuestion_Pad_TeacherCheck<Optional> *teachercheck;
 @property (nonatomic, strong) NSArray<YXQuestion_Pad_AudioComment,Optional> *jsonAudioComment;
 @end
