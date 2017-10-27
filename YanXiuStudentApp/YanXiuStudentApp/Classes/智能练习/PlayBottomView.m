@@ -7,6 +7,7 @@
 //
 
 #import "PlayBottomView.h"
+#import "UIButton+ExpandHitArea.h"
 
 @interface PlayBottomView()
 @property (nonatomic, strong) UILabel *timeLabel;
@@ -29,6 +30,7 @@
     [self addSubview:self.playPauseButton];
     
     self.rotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.rotateButton setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
     [self addSubview:self.rotateButton];
     self.slideProgressControl = [[SlideProgressControl alloc] init];
     [self addSubview:self.slideProgressControl];

@@ -7737,7 +7737,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.com.YanXiuStudentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "316fa6fb-4f90-4abf-a4f8-99565ca9e083";
+				PROVISIONING_PROFILE = "f99701d5-9def-4705-ba01-36c37db2870f";
 				PROVISIONING_PROFILE_SPECIFIER = EXueELian_Dev;
 				SDKROOT = iphoneos;
 				WARNING_CFLAGS = "-Wstrict-prototypes";
