@@ -14,6 +14,7 @@
 @interface QABaseViewController ()
 @property(nonatomic, strong) VideoPromptView *videoPromptView;
 @property (nonatomic, strong) VideoPlayerManagerView *playerMangerView;
+@property (nonatomic, assign) BOOL shouldRotate;
 @end
 
 @implementation QABaseViewController
@@ -189,7 +190,7 @@
     VideoItem *item = [[VideoItem alloc]init];
     item.videoCover = self.model.cover;//@"http://pic49.nipic.com/file/20140927/19617624_230415502002_2.jpg";
     item.videoName = self.model.paperTitle;
-    item.videoUrl = @"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/jxsjdysjbkjy/video/1.1_l/1.1_l.m3u8";//self.model.videoUrl;
+    item.videoUrl = self.model.videoUrl;//@"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/jxsjdysjbkjy/video/1.1_l/1.1_l.m3u8";//self.model.videoUrl;
     item.videoSize = self.model.videoSize;
     self.playerMangerView.item = item;
     WEAK_SELF
@@ -199,8 +200,9 @@
     }];
     [self.playerMangerView setPlayerManagerBackActionBlock:^{
         STRONG_SELF
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+        [self rotateScreenAction];
         [self hidePlayerMangerView];
+        self.shouldRotate = YES;
     }];
     [self.playerMangerView setPlayerManagerFinishActionBlock:^{
         STRONG_SELF
@@ -279,27 +281,24 @@
 - (void)remakePlayerMangerViewForFullSize {
     self.playerMangerView.isFullscreen = YES;
     self.navigationController.navigationBar.hidden = YES;
-    [UIApplication sharedApplication].statusBarHidden = YES;
     [self.playerMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    [self.view layoutIfNeeded];
 }
 
 - (void)remakePlayerMangerViewForHalfSize {
     self.playerMangerView.isFullscreen = NO;
     self.navigationController.navigationBar.hidden = NO;
-    [UIApplication sharedApplication].statusBarHidden = NO;
     [self.playerMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.height.equalTo(self.playerMangerView.mas_width).multipliedBy(9.0 / 15.6).priority(999);
     }];
-    [self.view layoutIfNeeded];
 }
 
 - (void)rotateScreenAction {
+    self.shouldRotate = YES;
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection ==UIInterfaceOrientationLandscapeRight){
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
@@ -319,7 +318,7 @@
 }
 
 - (BOOL)shouldAutorotate {
-    return YES;
+    return self.shouldRotate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
@@ -333,6 +332,7 @@
 
 - (void)showPlayerMangerView {
     self.playerMangerView.hidden = NO;
+    [self.playerMangerView.superview bringSubviewToFront:self.playerMangerView];
 }
 
 @end
