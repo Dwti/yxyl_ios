@@ -22,10 +22,10 @@
 
 @implementation QAOralRecordView
 
-- (instancetype)initWithState:(QAOralRecordViewState)recordViewState {
-    if (self = [super init]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
         [self setupUI];
-        self.recordViewState = recordViewState;
+        self.recordViewState = QAOralRecordViewStateNormal;
     }
     return self;
 }
@@ -96,7 +96,6 @@
     if (_recordViewState == recordViewState) {
         return;
     }
-    NSLog(@"\n======%@  =====%ld", self, recordViewState);
     _recordViewState = recordViewState;
     self.recordBtn.enabled = recordViewState != QAOralRecordViewStateDisabled;
     self.waver.hidden = recordViewState != QAOralRecordViewStateRecording;
@@ -182,8 +181,7 @@
     if (self.player.state == PlayerView_State_Paused) {
         [self.player play];
     } else if (self.player.state == PlayerView_State_Finished) {
-        [self.player seekTo:0];
-        [self.player play];
+        self.player.videoUrl = [NSURL URLWithString:self.resultItem.url];
     }else if (self.player.state == PlayerView_State_Buffering) {
         self.player.videoUrl = [NSURL URLWithString:self.resultItem.url];
     } else {
@@ -208,6 +206,10 @@
     [self.recordBtn.imageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
+- (void)onUpdateVolume:(int)volume {
+    self.volume = (CGFloat)volume;
+}
+
 - (void)onResult:(NSString *)result isLast:(BOOL)isLast {
     self.resultItem = [[QAOralResultItem alloc] initWithString:result error:NULL];
 }
@@ -230,10 +232,6 @@
         self.recordViewState = QAOralRecordViewStateNormal;
     }
     self.recordViewState = isEmpty(self.resultItem) ? QAOralRecordViewStateNormal : QAOralRecordViewStateRecorded;
-}
-
-- (void)onUpdateVolume:(int)volume {
-    self.volume = (CGFloat)volume;
 }
 
 @end

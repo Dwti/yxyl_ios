@@ -120,6 +120,7 @@
 }
 
 - (void)leaveForeground {
+    [super leaveForeground];
     [self.player pause];
     self.player.state = PlayerView_State_Finished;
 }

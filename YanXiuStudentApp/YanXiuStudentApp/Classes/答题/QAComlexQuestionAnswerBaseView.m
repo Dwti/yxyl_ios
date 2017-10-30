@@ -11,6 +11,7 @@
 @interface QAComlexQuestionAnswerBaseView()
 
 @property (nonatomic, strong) UILabel *progressLabel;
+@property (nonatomic, assign) int guardCount;
 
 @end
 
@@ -25,6 +26,9 @@
 #pragma mark - override
 - (void)enterForeground {
     [super enterForeground];
+    if (self.data.questionType == YXQAItemOralDialogue) {
+        [self setupQAView];
+    }
     self.slideView.isActive = YES;
 }
 
@@ -141,6 +145,11 @@
 }
 
 - (void)setupQAView {
+    if (self.data.questionType == YXQAItemOralDialogue) {
+        if (self.guardCount++ != 1) {
+            return;
+        }
+    }
     self.downContainerView = [[UIView alloc] init];
     [self addSubview:self.downContainerView];
     [self.downContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {

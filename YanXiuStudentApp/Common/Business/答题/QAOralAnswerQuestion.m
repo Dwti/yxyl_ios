@@ -9,7 +9,9 @@
 #import "QAOralAnswerQuestion.h"
 
 @implementation QAOralAnswerQuestion
+
 - (NSArray *)correctAnswersWithRawData:(YXQuestion *)rawData {
+    self.oralResultItem = [[QAOralResultItem alloc] initWithString:rawData.pad.jsonAnswer.firstObject error:nil];
     return [NSArray arrayWithArray:rawData.answer];
 }
 
