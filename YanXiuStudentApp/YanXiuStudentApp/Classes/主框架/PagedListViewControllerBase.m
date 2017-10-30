@@ -13,7 +13,7 @@
 static const CGFloat kTipViewHeight = 20.f;
 
 @interface PagedListViewControllerBase ()
-@property(nonatomic, strong) UIView *tipView;
+@property(nonatomic, strong) UILabel *tipView;
 @property(nonatomic, assign) CGFloat lastContentOffset;
 @end
 
@@ -251,18 +251,20 @@ static const CGFloat kTipViewHeight = 20.f;
 //}
 
 - (void)setupTipView {
-    self.tipView = [[UIView alloc]init];
+    self.tipView = [[UILabel alloc]init];
     self.tipView.backgroundColor = [UIColor clearColor];
     [self.tableView addSubview:self.tipView];
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
-    self.tipView.frame = CGRectMake(0, self.tableView.contentSize.height + self.tableView.y, self.tableView.width, kTipViewHeight);
-    UILabel *textLabel = [[UILabel alloc]initWithFrame:self.tipView.bounds];
-    textLabel.textAlignment = NSTextAlignmentCenter;
-    textLabel.text = @"这回真没了";
-    textLabel.font = [UIFont systemFontOfSize:14.f];
-    textLabel.textColor = [UIColor colorWithHexString:@"a8a7a8"];
-    
-    [self.tipView addSubview:textLabel];
+    [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_top).offset(self.tableView.contentSize.height);
+        make.left.mas_equalTo(self.tableView);
+        make.width.mas_equalTo(self.tableView.mas_width);
+        make.height.mas_equalTo(kTipViewHeight);
+    }];
+    self.tipView.textAlignment = NSTextAlignmentCenter;
+    self.tipView.text = @"这回真没了";
+    self.tipView.font = [UIFont systemFontOfSize:14.f];
+    self.tipView.textColor = [UIColor colorWithHexString:@"a8a7a8"];
     self.tipView.hidden = YES;
 }
 
@@ -271,7 +273,12 @@ static const CGFloat kTipViewHeight = 20.f;
         self.tipView.hidden = YES;
         return;
     }
-    self.tipView.frame = CGRectMake(0, self.tableView.contentSize.height + self.tableView.y, self.tableView.width, kTipViewHeight);
+    [self.tipView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_top).offset(self.tableView.contentSize.height);
+        make.left.mas_equalTo(self.tableView);
+        make.width.mas_equalTo(self.tableView.mas_width);
+        make.height.mas_equalTo(kTipViewHeight);
+    }];
     if (self.tableView.contentInset.bottom > 0) {
         return;
     }

@@ -111,13 +111,16 @@
         if ([topicPaper.paperStatus.status isEqualToString:@"2"]) {//完成
             NSString *score = topicPaper.paperStatus.scoreRate;
             self.correctRateLabel.text = [NSString stringWithFormat:@"正确率 %.0f%@",score.floatValue*100,@"%"];
+            self.correctRateLabel.textColor = [UIColor colorWithHexString:@"666666"];
         }
     }else {
         NSString *answerState = [[YXQADataManager sharedInstance]loadPaperAnswerStateWithPaperID:topicPaper.rmsPaperId];
         if ([answerState isEqualToString:@"1"]) {
-            self.correctRateLabel.text = @"作答中";
+            self.correctRateLabel.text = @"作答中...";
+            self.correctRateLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
         }else {
             self.correctRateLabel.text = @"";
+            self.correctRateLabel.textColor = [UIColor colorWithHexString:@"666666"];
         }
     }
 }

@@ -316,7 +316,7 @@
     [[self.bottomView.rotateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
-        BLOCK_EXEC(self.playerManagerRotateActionBlock)
+        BLOCK_EXEC(self.playerManagerRotateActionBlock,self.bottomView.isFullscreen);
     }];
     [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF

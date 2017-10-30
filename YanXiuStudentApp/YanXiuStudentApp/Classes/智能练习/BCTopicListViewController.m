@@ -39,6 +39,7 @@
         dataFetcher.order = self.order;
         dataFetcher.scope = self.scope;
         self.dataFetcher = dataFetcher;
+        self.isShowTip = YES;
     }
     return self;
 }

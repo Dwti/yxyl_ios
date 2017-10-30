@@ -29,7 +29,7 @@
 - (void)setupUI {
     UIImageView *topImageView = [[UIImageView alloc]init];
     topImageView.contentMode = UIViewContentModeScaleAspectFit;
-    topImageView.image = [UIImage imageNamed:@"关于头图"];
+    topImageView.image = [UIImage imageNamed:@"版本号3.1"];
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);

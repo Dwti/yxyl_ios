@@ -194,19 +194,22 @@
     item.videoSize = self.model.videoSize;
     self.playerMangerView.item = item;
     WEAK_SELF
-    [self.playerMangerView setPlayerManagerRotateActionBlock:^{
+    [self.playerMangerView setPlayerManagerRotateActionBlock:^(BOOL isVertical) {
         STRONG_SELF
+        self.shouldRotate = isVertical;
         [self rotateScreenAction];
     }];
     [self.playerMangerView setPlayerManagerBackActionBlock:^{
         STRONG_SELF
         [self rotateScreenAction];
         [self hidePlayerMangerView];
-        self.shouldRotate = YES;
+        self.shouldRotate = NO;
     }];
     [self.playerMangerView setPlayerManagerFinishActionBlock:^{
         STRONG_SELF
         [self hidePlayerMangerView];
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+        self.shouldRotate = NO;
     }];
     [self.playerMangerView setPlayerManagerPlayerActionBlock:^(YXPlayerManagerAbnormalStatus status) {
         STRONG_SELF
