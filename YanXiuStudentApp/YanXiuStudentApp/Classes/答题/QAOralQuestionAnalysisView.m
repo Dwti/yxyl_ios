@@ -23,7 +23,7 @@
     [super setupUI];
     [self.tableView registerClass:[QAOralQuestionStemCell class] forCellReuseIdentifier:@"QAOralQuestionStemCell"];
     [self setupReachability];
-    if (self.data.questionType == YXQAItemOralRepeat || self.data.questionType == YXQAItemOralDialogue) {
+    if (self.data.questionType == YXQAItemOralRepeat) {
         [self setupPlayer];
     }
 }
@@ -35,9 +35,13 @@
         STRONG_SELF
         PlayerView_State state = (PlayerView_State)[x integerValue];
         if (state == PlayerView_State_Buffering || state == PlayerView_State_Playing) {
+            self.audioBtn.imageView.animationImages = @[[UIImage imageNamed:@"语音播放中-1"], [UIImage imageNamed:@"语音播放中-2"], [UIImage imageNamed:@"语音播放中-3"]];
+            self.audioBtn.imageView.animationDuration = 1;
+            self.audioBtn.imageView.animationRepeatCount = 0;
             [self.audioBtn.imageView startAnimating];
         } else  {
             [self.audioBtn.imageView stopAnimating];
+            self.audioBtn.imageView.animationImages = nil;
         }
     }];
 }
@@ -66,7 +70,7 @@
         [self.window nyx_showToast:@"网络未连接，请检查后重试"];
         return;
     }
-    if (self.player.state == PlayerView_State_Buffering || self.player.state == PlayerView_State_Playing) {
+    if (self.player.state == PlayerView_State_Playing) {
         return;
     }
     self.player.videoUrl = self.audioUrl;

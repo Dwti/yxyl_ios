@@ -27,4 +27,6 @@ typedef NS_ENUM(NSUInteger, QAOralRecordViewState) {
 @property (nonatomic, strong) QAOralResultItem *resultItem;
 @property (nonatomic, copy) void (^stopAudioPlayerBlock)(void);
 @property (nonatomic, copy) void (^showResultBlock)(QAOralResultItem *resultItem);
+
+- (void)cancelAllTasks;
 @end

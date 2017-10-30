@@ -112,9 +112,6 @@
     audioBtn.frame = CGRectMake(0, 0, 34, 34);
     [audioBtn setImage:[UIImage imageNamed:@"语音播放默认图标"] forState:UIControlStateNormal];
     [audioBtn setImage:[UIImage imageNamed:@"语音播放默认图标-点击态"] forState:UIControlStateHighlighted];
-    audioBtn.imageView.animationImages = @[[UIImage imageNamed:@"语音播放中-1"], [UIImage imageNamed:@"语音播放中-2"], [UIImage imageNamed:@"语音播放中-3"]];
-    audioBtn.imageView.animationDuration = 1;
-    audioBtn.imageView.animationRepeatCount = 0;
     BLOCK_EXEC(self.audioBtnBlock, audioBtn, attachment.contentURL);
     return audioBtn;
 }

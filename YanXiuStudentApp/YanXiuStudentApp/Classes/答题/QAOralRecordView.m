@@ -18,6 +18,7 @@
 
 @property (nonatomic, assign) CGFloat volume;
 @property (nonatomic, assign) BOOL needShowResult;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation QAOralRecordView
@@ -28,6 +29,14 @@
         self.recordViewState = QAOralRecordViewStateNormal;
     }
     return self;
+}
+
+- (void)cancelAllTasks {
+    self.needShowResult = NO;
+    [self.player pause];
+    self.player.state = PlayerView_State_Finished;
+    [self.recognizer cancel];
+    [self stopTimer];
 }
 
 #pragma mark - setupUI
@@ -46,7 +55,7 @@
     [self addSubview:self.recordBtn];
     [self.recordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(124, 124));
+        make.width.height.mas_equalTo(self.mas_height);
     }];
     
     self.waver = [[Waver alloc] init];
@@ -64,7 +73,7 @@
     [self sendSubviewToBack:self.waver];
     [self.waver mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.centerY.mas_equalTo(0);
-        make.height.mas_equalTo(62);
+        make.height.mas_equalTo(self.mas_height).multipliedBy(.5f);
     }];
     
     self.playBtn = [QAIgnorePanGestureButton buttonWithType:UIButtonTypeCustom];
@@ -76,7 +85,7 @@
     [self.playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.recordBtn.mas_right).offset(35);
         make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(56, 56));
+        make.width.height.mas_equalTo(self.mas_height).multipliedBy(56.0f / 124);
     }];
 }
 
@@ -89,6 +98,22 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     }];
     [alert show];
+}
+
+#pragma mark - setupTimer
+- (void)startTimer {
+    WEAK_SELF
+    self.timer = [NSTimer timerWithTimeInterval:180 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        STRONG_SELF
+        [self recordStopAction:self.recordBtn];
+        [self.window nyx_showToast:@"录音不能超过3分钟哦"];
+    }];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)stopTimer {
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 #pragma mark - setters
@@ -204,10 +229,15 @@
     rotationAnimation.duration = 1;
     rotationAnimation.repeatCount = HUGE_VALF;
     [self.recordBtn.imageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    [self startTimer];
 }
 
 - (void)onUpdateVolume:(int)volume {
     self.volume = (CGFloat)volume;
+}
+
+- (void)onStopOral {
+    [self stopTimer];
 }
 
 - (void)onResult:(NSString *)result isLast:(BOOL)isLast {

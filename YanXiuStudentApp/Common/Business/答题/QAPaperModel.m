@@ -255,39 +255,39 @@
 }
 
 - (NSArray *)questionGroups{
-    // 听力（听音选择、听力选择、听音判断、听音连线、听音排序、听音填空、听力填空）、单选题、多选题、判断题、连线题、归类题、排序题、完型填空、阅读理解、填空题、改错、翻译、计算题、解答题、问答题、材料阅读、口语题（朗读、跟读、对话、作文）
+    // 听力（听音选择、听力选择、听音判断、听音连线、听音排序、听音填空、听力填空）、口语题（朗读、跟读、对话、作文）、单选题、多选题、判断题、连线题、归类题、排序题、完型填空、阅读理解、填空题、改错、翻译、计算题、解答题、问答题、材料阅读
     NSMutableArray *allGroups = [NSMutableArray array];
     for (int i=0; i<17; i++) {
         QAQuestionGroup *group = [[QAQuestionGroup alloc]init];
         group.questions = [NSMutableArray array];
         [allGroups addObject:group];
     }
-    NSDictionary *mappingDic = @{@"1":allGroups[1],
-                                 @"2":allGroups[2],
-                                 @"3":allGroups[9],
-                                 @"4":allGroups[3],
-                                 @"5":allGroups[15],
-                                 @"6":allGroups[14],
-                                 @"7":allGroups[4],
-                                 @"8":allGroups[12],
+    NSDictionary *mappingDic = @{@"1":allGroups[2],
+                                 @"2":allGroups[3],
+                                 @"3":allGroups[10],
+                                 @"4":allGroups[4],
+                                 @"5":allGroups[16],
+                                 @"6":allGroups[15],
+                                 @"7":allGroups[5],
+                                 @"8":allGroups[13],
                                  @"9":allGroups[0],
                                  @"10":allGroups[0],
                                  @"11":allGroups[0],
                                  @"12":allGroups[0],
-                                 @"13":allGroups[5],
-                                 @"14":allGroups[8],
-                                 @"15":allGroups[7],
-                                 @"16":allGroups[11],
-                                 @"17":allGroups[10],
+                                 @"13":allGroups[6],
+                                 @"14":allGroups[9],
+                                 @"15":allGroups[8],
+                                 @"16":allGroups[12],
+                                 @"17":allGroups[11],
                                  @"18":allGroups[0],
                                  @"19":allGroups[0],
-                                 @"20":allGroups[6],
+                                 @"20":allGroups[7],
                                  @"21":allGroups[0],
-                                 @"22":allGroups[13],
-                                 @"26":allGroups[16],
-                                 @"27":allGroups[16],
-                                 @"28":allGroups[16],
-                                 @"29":allGroups[16],
+                                 @"22":allGroups[14],
+                                 @"26":allGroups[1],
+                                 @"27":allGroups[1],
+                                 @"28":allGroups[1],
+                                 @"29":allGroups[1],
                                  };
     for (QAQuestion *question in self.questions) {
         NSString *key = [NSString stringWithFormat:@"%@",@(question.questionType)];

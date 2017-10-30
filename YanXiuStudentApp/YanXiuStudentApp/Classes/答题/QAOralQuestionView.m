@@ -35,7 +35,7 @@
     [self setupOralRecordView];
     [self setupReachability];
     [self setupObserver];
-    if (self.data.questionType == YXQAItemOralRepeat || self.data.questionType == YXQAItemOralDialogue) {
+    if (self.data.questionType == YXQAItemOralRepeat) {
         [self setupPlayer];
     }
 }
@@ -48,6 +48,9 @@
         STRONG_SELF
         [self.player pause];
         self.player.state = PlayerView_State_Finished;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.audioBtn.enabled = NO;
+        });
     };
     self.oralRecordView.showResultBlock = ^(QAOralResultItem *resultItem) {
         STRONG_SELF
@@ -63,9 +66,10 @@
     };
     [self addSubview:self.oralRecordView];
     [self.oralRecordView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_greaterThanOrEqualTo(0);
         make.bottom.mas_equalTo(-78);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(124);
+        make.height.mas_lessThanOrEqualTo(124);
     }];
     if (self.data.answerState != YXAnswerStateNotAnswer) {
         self.oralRecordView.recordViewState = QAOralRecordViewStateRecorded;
@@ -113,11 +117,17 @@
         STRONG_SELF
         PlayerView_State state = (PlayerView_State)[x integerValue];
         if (state == PlayerView_State_Buffering || state == PlayerView_State_Playing) {
+            self.audioBtn.imageView.animationImages = @[[UIImage imageNamed:@"语音播放中-1"], [UIImage imageNamed:@"语音播放中-2"], [UIImage imageNamed:@"语音播放中-3"]];
+            self.audioBtn.imageView.animationDuration = 1;
+            self.audioBtn.imageView.animationRepeatCount = 0;
+            [self.audioBtn.imageView startAnimating];
             [self.audioBtn.imageView startAnimating];
         } else if (state == PlayerView_State_Paused) {
             [self.audioBtn.imageView stopAnimating];
+            self.audioBtn.imageView.animationImages = nil;
         } else if (state == PlayerView_State_Finished) {
             [self.audioBtn.imageView stopAnimating];
+            self.audioBtn.imageView.animationImages = nil;
             if (!self.hasPlayed) {
                 self.oralRecordView.recordViewState = QAOralRecordViewStateNormal;
                 self.hasPlayed = YES;
@@ -148,8 +158,10 @@
         self.oralRecordView.recordViewState = QAOralRecordViewStateRecorded;
         self.hasPlayed = YES;
     } else {
-        self.oralRecordView.recordViewState = QAOralRecordViewStateDisabled;
-        self.player.videoUrl = self.audioUrl;
+        if (self.data.questionType == YXQAItemOralRepeat) {
+            self.oralRecordView.recordViewState = QAOralRecordViewStateDisabled;
+            self.player.videoUrl = self.audioUrl;
+        }
     }
 }
 
@@ -226,14 +238,12 @@
     
     [self.player pause];
     self.player.state = PlayerView_State_Finished;
-    [self.oralRecordView.player pause];
-    self.oralRecordView.player.state = PlayerView_State_Finished;
-    [self.oralRecordView.recognizer cancel];
+    
+    [self.oralRecordView cancelAllTasks];
     
     if (self.data.answerState == YXAnswerStateNotAnswer) {
         self.hasPlayed = NO;
     }
-
 }
 
 - (void)enterForeground {

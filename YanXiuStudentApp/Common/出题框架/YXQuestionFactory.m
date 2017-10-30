@@ -389,7 +389,7 @@
     q.difficulty = @"3";
     q.answer = @[@"hello"];
     YXQuestion_Content *content = [YXQuestion_Content new];
-    content.choices = @[@"hello"];
+    content.answer = @[@"hello"];
     q.content = content;
     
     YXQuestion_Point *point = [[YXQuestion_Point alloc]init];
