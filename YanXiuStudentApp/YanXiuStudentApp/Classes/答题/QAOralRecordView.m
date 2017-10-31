@@ -18,6 +18,8 @@
 
 @property (nonatomic, assign) CGFloat volume;
 @property (nonatomic, assign) BOOL needShowResult;
+@property (nonatomic, assign) BOOL isStarting;
+@property (nonatomic, assign) BOOL isStopping;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -167,7 +169,12 @@
 #pragma mark - actions
 - (void)recordStartAction:(UIButton *)sender {
     if (!self.network) {
-        [self.window nyx_showToast:@"网络未连接，请检查后重试"];
+        SimpleAlertView *alert = [[SimpleAlertView alloc] init];
+        alert.title = @"录音失败";
+        alert.describe = @"网络未连接，请检查后重试";
+        alert.image = [UIImage imageNamed:@"异常弹窗图标"];
+        [alert addButtonWithTitle:@"确定" style:SimpleAlertActionStyle_Alone action:nil];
+        [alert show];
         return;
     }
     if (isEmpty(self.oralText)) {
@@ -182,14 +189,19 @@
     } else if (authStatus == AVAuthorizationStatusNotDetermined) {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) { }];
     } else if (authStatus == AVAuthorizationStatusAuthorized) {
-        [self.recognizer cancel];
-        [self.recognizer start];
+        if (!self.isStarting) {
+            [self.recognizer start];
+            self.isStarting = YES;
+        }
     }
 }
 
 - (void)recordStopAction:(UIButton *)sender {
     [sender.imageView.layer removeAllAnimations];
-    [self.recognizer stop];
+    if (!self.isStopping) {
+        [self.recognizer stop];
+        self.isStopping = YES;
+    }
 }
 
 - (void)recordCancelAction:(UIButton *)sender {
@@ -236,10 +248,6 @@
     self.volume = (CGFloat)volume;
 }
 
-- (void)onStopOral {
-    [self stopTimer];
-}
-
 - (void)onResult:(NSString *)result isLast:(BOOL)isLast {
     self.resultItem = [[QAOralResultItem alloc] initWithString:result error:NULL];
 }
@@ -262,6 +270,9 @@
         self.recordViewState = QAOralRecordViewStateNormal;
     }
     self.recordViewState = isEmpty(self.resultItem) ? QAOralRecordViewStateNormal : QAOralRecordViewStateRecorded;
+    [self stopTimer];
+    self.isStarting = NO;
+    self.isStopping = NO;
 }
 
 @end
