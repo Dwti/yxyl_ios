@@ -175,6 +175,7 @@
     WEAK_SELF
     [[self.playViewButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        self.shouldRotate = YES;
         [self setupPlayMangerViewWithType:VideoPlayFromType_PlayButton];
     }];
     [self.view addSubview:self.playViewButton];
@@ -194,9 +195,8 @@
     item.videoSize = self.model.videoSize;
     self.playerMangerView.item = item;
     WEAK_SELF
-    [self.playerMangerView setPlayerManagerRotateActionBlock:^(BOOL isVertical) {
+    [self.playerMangerView setPlayerManagerRotateActionBlock:^{
         STRONG_SELF
-        self.shouldRotate = isVertical;
         [self rotateScreenAction];
     }];
     [self.playerMangerView setPlayerManagerBackActionBlock:^{
@@ -221,6 +221,7 @@
     }];
     [self.playerMangerView setPlayerManagerFoldActionBlock:^{
         STRONG_SELF
+        self.shouldRotate = NO;
         [self hidePlayerMangerView];
     }];
     [self.view addSubview:self.playerMangerView];

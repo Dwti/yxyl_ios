@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, VideoPlayFromType) {
 @property (nonatomic, assign) BOOL isWifiPlayer;//WIFI先允许播放
 
 @property (nonatomic, copy) void (^playerManagerBackActionBlock)(void);
-@property (nonatomic, copy) void (^playerManagerRotateActionBlock)(BOOL isVertical);
+@property (nonatomic, copy) void (^playerManagerRotateActionBlock)(void);
 @property (nonatomic, copy) void (^playerManagerPlayerActionBlock)(YXPlayerManagerAbnormalStatus status);
 @property (nonatomic, copy) void (^playerManagerFinishActionBlock)(void);
 @property (nonatomic, copy) void (^playerManagerFoldActionBlock)(void);

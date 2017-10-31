@@ -316,7 +316,7 @@
     [[self.bottomView.rotateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
-        BLOCK_EXEC(self.playerManagerRotateActionBlock,self.bottomView.isFullscreen);
+        BLOCK_EXEC(self.playerManagerRotateActionBlock);
     }];
     [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
@@ -383,7 +383,7 @@
     
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
-        if (self.player.isBuffering) {
+        if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
             self.bufferingView.hidden = NO;
             [self.bufferingView start];
         } else {

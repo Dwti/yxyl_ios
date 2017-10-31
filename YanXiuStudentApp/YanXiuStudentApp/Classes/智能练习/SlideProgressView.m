@@ -35,7 +35,7 @@
     [self addSubview:self.bufferProgressView];
     self.bufferProgressView.userInteractionEnabled = NO;
     
-    self.playProgressView = [[YXGradientView alloc]initWithStartColor:[UIColor colorWithHexString:@"89e00d"] endColor:[UIColor colorWithHexString:@"ccffcc"] orientation:YXGradientLeftToRight];;
+    self.playProgressView = [[YXGradientView alloc]initWithStartColor:[UIColor colorWithHexString:@"89e00d"] endColor:[UIColor colorWithHexString:@"ccff00"] orientation:YXGradientLeftToRight];;
     [self addSubview:self.playProgressView];
     self.playProgressView.userInteractionEnabled = NO;
 }

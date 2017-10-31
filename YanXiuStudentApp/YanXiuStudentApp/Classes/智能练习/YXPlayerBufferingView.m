@@ -18,7 +18,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self _setupUI];
+//        [self _setupUI];
         WEAK_SELF
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
             STRONG_SELF
@@ -37,12 +37,13 @@
 }
 - (void)refresh {
     if (_bAnimating) {
-        [self.layer removeAnimationForKey:@"buffering rotation"];
-        CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-        anim.duration = 1;
-        anim.repeatCount = MAXFLOAT;
-        anim.values = @[@(0),@(M_PI_2),@(M_PI),@(M_PI*1.5),@(M_PI*2)];
-        [self.layer addAnimation:anim forKey:@"buffering rotation"];
+        [self nyx_startLoading];
+//        [self.layer removeAnimationForKey:@"buffering rotation"];
+//        CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
+//        anim.duration = 1;
+//        anim.repeatCount = MAXFLOAT;
+//        anim.values = @[@(0),@(M_PI_2),@(M_PI),@(M_PI*1.5),@(M_PI*2)];
+//        [self.layer addAnimation:anim forKey:@"buffering rotation"];
     }
 }
 
@@ -50,16 +51,18 @@
     if (_bAnimating) {
         return;
     }
-    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-    anim.duration = 1;
-    anim.repeatCount = MAXFLOAT;
-    anim.values = @[@(0),@(M_PI_2),@(M_PI),@(M_PI*1.5),@(M_PI*2)];
-    [self.layer addAnimation:anim forKey:@"buffering rotation"];
+    [self nyx_startLoading];
+//    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
+//    anim.duration = 1;
+//    anim.repeatCount = MAXFLOAT;
+//    anim.values = @[@(0),@(M_PI_2),@(M_PI),@(M_PI*1.5),@(M_PI*2)];
+//    [self.layer addAnimation:anim forKey:@"buffering rotation"];
     _bAnimating = YES;
 }
 
 - (void)stop {
-    [self.layer removeAnimationForKey:@"buffering rotation"];
+//    [self.layer removeAnimationForKey:@"buffering rotation"];
+    [self nyx_stopLoading];
     _bAnimating = NO;
 }
 

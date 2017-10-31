@@ -13,7 +13,7 @@
 static const CGFloat kTipViewHeight = 20.f;
 
 @interface PagedListViewControllerBase ()
-@property(nonatomic, strong) UILabel *tipView;
+@property(nonatomic, strong) UILabel *tipLabel;
 @property(nonatomic, assign) CGFloat lastContentOffset;
 @end
 
@@ -251,29 +251,29 @@ static const CGFloat kTipViewHeight = 20.f;
 //}
 
 - (void)setupTipView {
-    self.tipView = [[UILabel alloc]init];
-    self.tipView.backgroundColor = [UIColor clearColor];
-    [self.tableView addSubview:self.tipView];
+    self.tipLabel = [[UILabel alloc]init];
+    self.tipLabel.backgroundColor = [UIColor clearColor];
+    [self.tableView addSubview:self.tipLabel];
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.tableView.mas_top).offset(self.tableView.contentSize.height);
         make.left.mas_equalTo(self.tableView);
         make.width.mas_equalTo(self.tableView.mas_width);
         make.height.mas_equalTo(kTipViewHeight);
     }];
-    self.tipView.textAlignment = NSTextAlignmentCenter;
-    self.tipView.text = @"这回真没了";
-    self.tipView.font = [UIFont systemFontOfSize:14.f];
-    self.tipView.textColor = [UIColor colorWithHexString:@"a8a7a8"];
-    self.tipView.hidden = YES;
+    self.tipLabel.textAlignment = NSTextAlignmentCenter;
+    self.tipLabel.text = @"这回真没了";
+    self.tipLabel.font = [UIFont systemFontOfSize:14.f];
+    self.tipLabel.textColor = [UIColor colorWithHexString:@"a8a7a8"];
+    self.tipLabel.hidden = YES;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (self.tableView.contentSize.height + self.tableView.y < SCREEN_HEIGHT) {
-        self.tipView.hidden = YES;
+        self.tipLabel.hidden = YES;
         return;
     }
-    [self.tipView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.tipLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.tableView.mas_top).offset(self.tableView.contentSize.height);
         make.left.mas_equalTo(self.tableView);
         make.width.mas_equalTo(self.tableView.mas_width);
@@ -294,15 +294,15 @@ static const CGFloat kTipViewHeight = 20.f;
         return;
     }
     if (self.tableView.contentSize.height + self.tableView.y < SCREEN_HEIGHT) {
-        self.tipView.hidden = YES;
+        self.tipLabel.hidden = YES;
         return;
     }
     if (scrollView.contentOffset.y < self.lastContentOffset - 5*kTipViewHeight)
     {
-        if (self.tipView.hidden == YES) {
+        if (self.tipLabel.hidden == YES) {
             return;
         }
-        self.tipView.hidden = YES;
+        self.tipLabel.hidden = YES;
         self.tableView.contentInset = UIEdgeInsetsZero;
     }
     
@@ -310,10 +310,10 @@ static const CGFloat kTipViewHeight = 20.f;
     CGFloat contentYoffset = scrollView.contentOffset.y;
     CGFloat distanceFromBottom = scrollView.contentSize.height - contentYoffset;
     if (distanceFromBottom < height && ([self.dataArray count] >= _total)) {
-        if (self.tipView.hidden == NO) {
+        if (self.tipLabel.hidden == NO) {
             return;
         }
-        self.tipView.hidden = NO;
+        self.tipLabel.hidden = NO;
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kTipViewHeight + 10, 0);
     }
 }

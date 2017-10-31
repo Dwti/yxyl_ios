@@ -170,4 +170,11 @@
     return scaledImage;
 }
 
+- (BOOL)shouldAutorotate {
+    return ((YXNavigationController *)self.selectedViewController).topViewController.shouldAutorotate;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
+    return ((YXNavigationController *)self.selectedViewController).topViewController.supportedInterfaceOrientations;
+}
 @end
