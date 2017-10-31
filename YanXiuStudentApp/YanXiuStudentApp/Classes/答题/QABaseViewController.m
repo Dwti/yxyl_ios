@@ -221,6 +221,7 @@
     }];
     [self.playerMangerView setPlayerManagerFoldActionBlock:^{
         STRONG_SELF
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         self.shouldRotate = NO;
         [self hidePlayerMangerView];
     }];
