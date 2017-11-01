@@ -69,6 +69,7 @@
     if (self.pType == YXPTypeGroupHomework) {
         [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
         [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
+        self.slideView.isActive = NO;
         [super backAction];
         return;
     }
@@ -87,9 +88,11 @@
         if (self.pType == YXPTypeBCResourceExercise) {
             [[YXQADataManager sharedInstance] savePaperAnswerStateWithPaperID:self.rmsPaperId answerState:@"0"];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXSavePaperSuccessNotification object:nil];
+            self.slideView.isActive = NO;
             [super backAction];
             return;
         }
+        self.slideView.isActive = NO;
         [super backAction];
         return;
     }
@@ -97,11 +100,13 @@
         [[YXQADataManager sharedInstance] savePaperAnswerStateWithPaperID:self.rmsPaperId answerState:@"1"];
         [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
         [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
+        self.slideView.isActive = NO;
         [super backAction];
         return;
     }
     if (self.pType == YXPTypeExerciseHistory) {
         [[YXQADataManager sharedInstance]savePaperToHistoryWithModel:self.model beginDate:self.beginDate completeBlock:nil];
+        self.slideView.isActive = NO;
         [super backAction];
         return;
     }

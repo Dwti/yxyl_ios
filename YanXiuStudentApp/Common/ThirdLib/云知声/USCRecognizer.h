@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, AudioType) {
 @property (nonatomic, strong) NSString *oralText;
 
 
-@property (nonatomic, assign) id <USCRecognizerDelegate> delegate;
+@property (nonatomic, weak) id <USCRecognizerDelegate> delegate;
 
 /**
  * 口语评测模式
