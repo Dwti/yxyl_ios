@@ -211,6 +211,7 @@ static const CGFloat kVolumnStep = 0.0625;
     
     self.asset = [AVURLAsset assetWithURL:url];
     self.state = PlayerView_State_Buffering;
+    self.isBuffering = YES;
     _playPauseState = PlayerView_State_Playing;
     @weakify(self);
     [self.asset loadValuesAsynchronouslyForKeys:@[@"duration", @"playable"] completionHandler:^{
@@ -337,11 +338,12 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d2 = [RACObserve(self.playerItem, playbackLikelyToKeepUp) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        self.isBuffering = NO;
+        
 
         if ([x boolValue]) {
             NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
+            self.isBuffering = NO;
             // 更新bIsPlayable
             self.bIsPlayable = YES;
         }
@@ -350,11 +352,12 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d3 = [RACObserve(self.playerItem, playbackBufferFull) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        self.isBuffering = NO;
+        
 
         if ([x boolValue]) {
             NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
+            self.isBuffering = NO;
             // 更新bIsPlayable
             self.bIsPlayable = YES;
         }
