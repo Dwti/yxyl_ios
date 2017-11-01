@@ -35,6 +35,7 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     
     self.gradeView = [[QAOralResultInStemView alloc] init];

@@ -181,6 +181,7 @@
         DDLogDebug(@"当前题目答案为空");
         return;
     }
+    [self.player pause];
     BLOCK_EXEC(self.stopAudioPlayerBlock);
     self.recognizer.oralText = self.oralText;
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
@@ -192,16 +193,21 @@
         if (!self.isStarting) {
             [self.recognizer start];
             self.isStarting = YES;
+            NSLog(@"\n===== start");
+        } else {
+            [self.window nyx_showToast:@"点击太频繁"];
         }
     }
 }
 
 - (void)recordStopAction:(UIButton *)sender {
     [sender.imageView.layer removeAllAnimations];
-    if (!self.isStopping) {
-        [self.recognizer stop];
-        self.isStopping = YES;
+    if (self.isStopping || !self.isStarting) {
+        return;
     }
+    [self.recognizer stop];
+    self.isStopping = YES;
+    NSLog(@"\n===== stop");
 }
 
 - (void)recordCancelAction:(UIButton *)sender {
@@ -228,12 +234,14 @@
 
 #pragma mark - USCRecognizerDelegate
 - (void)oralEngineDidInit:(NSError *)error {
+    NSLog(@"\n===== %s, %d", __FUNCTION__, (int)self.recordViewState);
     if (error) {
         DDLogError(@"%@", error);
     }
 }
 
 - (void)onBeginOral {
+    NSLog(@"\n===== %s, %d", __FUNCTION__, (int)self.recordViewState);
     self.recordViewState = QAOralRecordViewStateRecording;
     CABasicAnimation *rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -248,17 +256,24 @@
     self.volume = (CGFloat)volume;
 }
 
+- (void)onStopOral {
+    NSLog(@"\n===== %s, %d", __FUNCTION__, (int)self.recordViewState);
+}
+
 - (void)onResult:(NSString *)result isLast:(BOOL)isLast {
+    NSLog(@"\n===== %s, %d", __FUNCTION__, (int)self.recordViewState);
     self.resultItem = [[QAOralResultItem alloc] initWithString:result error:NULL];
 }
 
 - (void)audioFileDidRecord:(NSString *)url {
+    NSLog(@"\n===== %s, %d", __FUNCTION__, (int)self.recordViewState);
     self.resultItem.url = url;
     self.needShowResult = YES;
     self.player.videoUrl = [NSURL URLWithString:url];
 }
 
 - (void)onEndOral:(NSError *)error {
+    NSLog(@"\n===== %s, %d", __FUNCTION__, (int)self.recordViewState);
     if (error) {
         DDLogError(@"%@", error);
         SimpleAlertView *alert = [[SimpleAlertView alloc] init];
