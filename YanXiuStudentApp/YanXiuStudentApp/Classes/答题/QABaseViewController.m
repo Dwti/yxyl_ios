@@ -175,6 +175,8 @@
     WEAK_SELF
     [[self.playViewButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        [self.view endEditing:YES];
+        [self.view resignFirstResponder];
         self.shouldRotate = YES;
         [self setupPlayMangerViewWithType:VideoPlayFromType_PlayButton];
     }];

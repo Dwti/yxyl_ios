@@ -44,8 +44,8 @@
     [self.backgroundView addSubview:self.exceptionButton];
     
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.backButton setImage:[UIImage imageNamed:@"返回按钮-正常态"] forState:UIControlStateNormal];
-    [self.backButton setImage:[UIImage imageNamed:@"返回按钮-点击态"] forState:UIControlStateHighlighted];
+    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮"] forState:UIControlStateNormal];
+    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮点击态"] forState:UIControlStateHighlighted];
     [self addSubview:self.backButton];
 }
 

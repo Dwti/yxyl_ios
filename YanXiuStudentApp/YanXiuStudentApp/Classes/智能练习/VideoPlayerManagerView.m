@@ -194,6 +194,8 @@
     self.slideProgressView.hidden = YES;
     [self addSubview:self.slideProgressView];
     
+    [self setupExceptionView];
+    
     self.foldButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.foldButton setImage:[UIImage imageNamed:@"视频收起按钮正常态-"] forState:UIControlStateNormal];
     [self.foldButton setImage:[UIImage imageNamed:@"视频收起按钮点击态"] forState:UIControlStateHighlighted];
@@ -204,8 +206,6 @@
         BLOCK_EXEC(self.playerManagerFoldActionBlock);
     }];
     [self addSubview:self.foldButton];
-    
-    [self setupExceptionView];
     
     self.thumbView = [[VideoThumbView alloc]init];
     [self.thumbView setVideoThumbViewPlaydBlock:^{
