@@ -90,9 +90,6 @@
         return;
     }
     self.isWifiPlayer = NO;
-    if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
-        self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
-    }
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
 }
@@ -208,6 +205,8 @@
     }];
     [self addSubview:self.foldButton];
     
+    [self setupExceptionView];
+    
     self.thumbView = [[VideoThumbView alloc]init];
     [self.thumbView setVideoThumbViewPlaydBlock:^{
         STRONG_SELF
@@ -221,8 +220,6 @@
         BLOCK_EXEC(self.playerManagerFoldActionBlock);
     }];
     [self addSubview:self.thumbView];
-    
-    [self setupExceptionView];
 }
 
 - (void)setupLayout {
