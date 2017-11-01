@@ -250,6 +250,8 @@
             [self.dataFetcher saveToCache];
         }
         [self.tableView reloadData];
+        NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     }];
 }
 

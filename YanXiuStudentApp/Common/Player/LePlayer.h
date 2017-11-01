@@ -10,9 +10,9 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, PlayerView_State) {
-    PlayerView_State_Paused,
-    PlayerView_State_Playing,
     PlayerView_State_Buffering,
+    PlayerView_State_Playing,
+    PlayerView_State_Paused,
     PlayerView_State_Finished,
     PlayerView_State_Error = 99
 };

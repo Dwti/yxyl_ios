@@ -24,13 +24,11 @@ static const int kTimeout = 600;
 @property (nonatomic, strong) AVAsset *asset;
 @property (nonatomic, strong) NSMutableArray *disposeArray;
 @property (nonatomic, strong) LePlayerView *view;
-@property (nonatomic, strong) RACDisposable *headPhoneDisposable;//监听耳机拔出
-@property (nonatomic, strong) RACDisposable *callDisposable;//监听来电话
-
 @end
 
 @implementation LePlayer {
     CMTime _tolerance;
+    PlayerView_State _playPauseState;
     // for check speed
     NSDate *_lastSpeedCheckTime;
     long long _lastBytesTransfered;
@@ -41,6 +39,7 @@ static const int kTimeout = 600;
     MPVolumeView *_volumeView;
     UISlider *_volumeSlider;
 }
+@synthesize playPauseState = _playPauseState;
 
 - (instancetype)init {
     self = [super init];
@@ -54,23 +53,7 @@ static const int kTimeout = 600;
             }
         }
         _volumeView.hidden = YES;
-        WEAK_SELF
-        self.headPhoneDisposable = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]] subscribeNext:^(NSNotification *x) {
-            STRONG_SELF
-            AVAudioSessionRouteDescription *des = [x.object currentRoute];
-            AVAudioSessionPortDescription *port = des.outputs.lastObject;
-            NSLog(@"%@", port.portType);
-            if ([port.portType isEqualToString:@"Speaker"]) {
-                [self pause];
-                self.playPauseState = PlayerView_State_Paused;
-            }
-        }];
-        
-        self.callDisposable = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillResignActiveNotification object:nil] subscribeNext:^(id x) {
-            STRONG_SELF
-            [self pause];
-            self.playPauseState = PlayerView_State_Paused;
-        }];
+        self.isBuffering = YES;
     }
     return self;
 }
@@ -82,8 +65,6 @@ static const int kTimeout = 600;
     [self.player replaceCurrentItemWithPlayerItem:nil];
     self.view.player = nil;
     DDLogDebug(@"LePlayer Dealloc");
-    [self.headPhoneDisposable dispose];
-    [self.callDisposable dispose];
 }
 
 #pragma mark - public API
@@ -122,21 +103,21 @@ static const int kTimeout = 600;
 }
 
 - (void)play {
+    //    if (!self.bIsPlayable) {
+    //        return;
+    //    }
     [self.player play];
     self.state = PlayerView_State_Playing;
-    self.playPauseState = PlayerView_State_Playing;
-    if (!self.bIsPlayable) {
-        return;
-    }
+    _playPauseState = PlayerView_State_Playing;
 }
 
 - (void)pause {
+    //    if (!self.bIsPlayable) {
+    //        return;
+    //    }
     [self.player pause];
     self.state = PlayerView_State_Paused;
-    self.playPauseState = PlayerView_State_Paused;
-    if (!self.bIsPlayable) {
-        return;
-    }
+    _playPauseState = PlayerView_State_Paused;
 }
 
 - (void)seekTo:(NSTimeInterval)second {
@@ -145,6 +126,7 @@ static const int kTimeout = 600;
     }
     self.bSpeedAbleToCalculateRightNow = NO;
     self.state = PlayerView_State_Buffering;
+    self.isBuffering = YES;
     [self endPlayerObserver];//seek过程中停止对播放进度的监控
     @weakify(self);
     [self.playerItem seekToTime:CMTimeMake(second, 1) toleranceBefore:_tolerance toleranceAfter:_tolerance completionHandler:^(BOOL finished) {
@@ -229,7 +211,7 @@ static const CGFloat kVolumnStep = 0.0625;
     
     self.asset = [AVURLAsset assetWithURL:url];
     self.state = PlayerView_State_Buffering;
-    self.playPauseState = PlayerView_State_Playing;
+    _playPauseState = PlayerView_State_Playing;
     @weakify(self);
     [self.asset loadValuesAsynchronouslyForKeys:@[@"duration", @"playable"] completionHandler:^{
         // Other Thread
@@ -267,10 +249,11 @@ static const CGFloat kVolumnStep = 0.0625;
                 AVPlayerLayer *playerLayer = (AVPlayerLayer *)self.view.layer;
                 playerLayer.player = self.player;
                 [self _setupObservers];
-                [self.player play];
-                
+                if (self.playPauseState == PlayerView_State_Playing) {
+                    [self.player play];
+                }
                 if (self.progress) {
-                    [self.playerItem seekToTime:CMTimeMake(self.duration * self.progress, 1) toleranceBefore:_tolerance toleranceAfter:_tolerance completionHandler:^(BOOL finished) {
+                    [self.playerItem seekToTime:CMTimeMake(self.duration * self.progress, 1) toleranceBefore:self->_tolerance toleranceAfter:self->_tolerance completionHandler:^(BOOL finished) {
                         @strongify(self); if (!self) return;
                         if (!finished) {
                             return;
@@ -312,7 +295,7 @@ static const CGFloat kVolumnStep = 0.0625;
         // Main Thread
         // [GlobalUtils checkMainThread];
         
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (!self.bIsPlayable) {
             return;
         }
@@ -324,7 +307,7 @@ static const CGFloat kVolumnStep = 0.0625;
         // Main Thread
         // [GlobalUtils checkMainThread];
         
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (!self.bIsPlayable) {
             return;
         }
@@ -342,10 +325,10 @@ static const CGFloat kVolumnStep = 0.0625;
     RACDisposable *d1 = [RACObserve(self.playerItem, playbackBufferEmpty) subscribeNext:^(NSNumber *x) {
         // Main Thread
         // [GlobalUtils checkMainThread];
-        
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if ([x boolValue]) {
             //NSLog(@"playbackBufferEmpty");
+            self.isBuffering = YES;
             self.state = PlayerView_State_Buffering;
             self.bSpeedAbleToCalculateRightNow = NO;
         }
@@ -353,12 +336,11 @@ static const CGFloat kVolumnStep = 0.0625;
     [self.disposeArray addObject:d1];
     
     RACDisposable *d2 = [RACObserve(self.playerItem, playbackLikelyToKeepUp) subscribeNext:^(NSNumber *x) {
-        // Main Thread
-        // [GlobalUtils checkMainThread];
-        
         @strongify(self); if (!self) return;
+        self.isBuffering = NO;
+
         if ([x boolValue]) {
-            //NSLog(@"playbackLikelyToKeepUp");
+            NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
             // 更新bIsPlayable
             self.bIsPlayable = YES;
@@ -366,7 +348,20 @@ static const CGFloat kVolumnStep = 0.0625;
     }];
     [self.disposeArray addObject:d2];
     
-    RACDisposable *d3 = [RACObserve(self.playerItem, loadedTimeRanges) subscribeNext:^(NSArray *x) {
+    RACDisposable *d3 = [RACObserve(self.playerItem, playbackBufferFull) subscribeNext:^(NSNumber *x) {
+        @strongify(self); if (!self) return;
+        self.isBuffering = NO;
+
+        if ([x boolValue]) {
+            NSLog(@"playbackLikelyToKeepUp");
+            self.state = self->_playPauseState;
+            // 更新bIsPlayable
+            self.bIsPlayable = YES;
+        }
+    }];
+    [self.disposeArray addObject:d3];
+    
+    RACDisposable *d4= [RACObserve(self.playerItem, loadedTimeRanges) subscribeNext:^(NSArray *x) {
         // Main Thread
         // [GlobalUtils checkMainThread];
         
@@ -384,9 +379,9 @@ static const CGFloat kVolumnStep = 0.0625;
         // 更新timeBuffered
         self.timeBuffered = result;
     }];
-    [self.disposeArray addObject:d3];
+    [self.disposeArray addObject:d4];
     
-    RACDisposable *gd5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"apns html done" object:nil] subscribeNext:^(id x) {
+    RACDisposable *d5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"apns html done" object:nil] subscribeNext:^(id x) {
         // Main ThreadYXSlideProgressView
         // [GlobalUtils checkMainThread];
         
@@ -406,7 +401,7 @@ static const CGFloat kVolumnStep = 0.0625;
         
         self.view.player = self.player;
     }];
-    [self.disposeArray addObject:gd5];
+    [self.disposeArray addObject:d5];
     
 }
 
@@ -480,16 +475,14 @@ static const CGFloat kVolumnStep = 0.0625;
 
 - (void)startPlayerObserver {
     @weakify(self);
-    self.playerObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
-                                                                    queue:NULL
-                                                               usingBlock:^(CMTime time) {
-                                                                   // Main Thread
-                                                                   // [GlobalUtils checkMainThread];
-                                                                   
-                                                                   @strongify(self); if (!self) return;
-                                                                   // 更新timePlayed
-                                                                   self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
-                                                               }];
+    self.playerObserver = [self.player
+                           addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
+                           queue:NULL
+                           usingBlock:^(CMTime time) {
+                               @strongify(self); if (!self) return;
+                               // 更新timePlayed
+                               self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
+                           }];
 }
 
 - (void)endPlayerObserver {

@@ -38,6 +38,9 @@
 - (void)refresh {
     if (_bAnimating) {
         [self nyx_startLoading];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self nyx_stopLoading];
+        });
 //        [self.layer removeAnimationForKey:@"buffering rotation"];
 //        CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
 //        anim.duration = 1;
@@ -52,6 +55,9 @@
         return;
     }
     [self nyx_startLoading];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self nyx_stopLoading];
+    });
 //    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
 //    anim.duration = 1;
 //    anim.repeatCount = MAXFLOAT;

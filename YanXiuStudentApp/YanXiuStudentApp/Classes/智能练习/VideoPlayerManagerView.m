@@ -154,9 +154,6 @@
 - (void)setPauseStatus:(YXPlayerManagerPauseStatus)pauseStatus {
     _pauseStatus = pauseStatus;
     if (_pauseStatus == YXPlayerManagerPause_Not) {
-        if (self.videoUrl != nil) {
-            [self setupPlayer];
-        }
         [self.player play];
         self.exceptionView.hidden = YES;
     }else {
@@ -381,7 +378,7 @@
     
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
-        if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
+        if (self.player.isBuffering) {
             self.bufferingView.hidden = NO;
             [self.bufferingView start];
         } else {

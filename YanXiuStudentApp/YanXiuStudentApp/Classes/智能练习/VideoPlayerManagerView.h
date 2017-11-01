@@ -11,7 +11,6 @@
 #import "LePlayerView.h"
 #import "PlayBottomView.h"
 #import "PlayTopView.h"
-#import "YXPlayProgressDelegate.h"
 
 @interface VideoItem : NSObject
 @property(nonatomic, copy) NSString *videoName;
