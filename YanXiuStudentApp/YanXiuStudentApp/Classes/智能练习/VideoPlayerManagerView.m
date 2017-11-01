@@ -210,6 +210,7 @@
     self.thumbView = [[VideoThumbView alloc]init];
     [self.thumbView setVideoThumbViewPlaydBlock:^{
         STRONG_SELF
+        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
         self.thumbView.hidden = YES;
         if (self.videoUrl) {
             self.player.videoUrl = self.videoUrl;

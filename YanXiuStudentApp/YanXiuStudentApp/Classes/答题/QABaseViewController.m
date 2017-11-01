@@ -325,6 +325,10 @@
 }
 
 - (BOOL)shouldAutorotate {
+    if (self.shouldRotate) {
+        [self.view endEditing:YES];
+        [self.view resignFirstResponder];
+    }
     return self.shouldRotate;
 }
 
