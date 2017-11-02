@@ -181,9 +181,10 @@
         [self setupPlayMangerViewWithType:VideoPlayFromType_PlayButton];
     }];
     [self.view addSubview:self.playViewButton];
+    
     [self.playViewButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(22);
-        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(-11);
+        make.right.mas_equalTo(-45);
         make.size.mas_equalTo(CGSizeMake(95, 95));
     }];
 }
