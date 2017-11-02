@@ -8,6 +8,7 @@
 
 #import "QASingleQuestionAnalysisBaseView.h"
 #import "QAQuestion.h"
+#import "QAOralAnswerQuestion.h"
 #import "EditNoteViewController.h"
 #import "QAAnaysisGapCell.h"
 #import "QAAnalysisResultCell.h"
@@ -159,6 +160,8 @@
                 QAAnalysisOralResultCell *cell = [[QAAnalysisOralResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
                 cell.item = data;
                 cell.oralScore = self.data.objectiveScore;
+                QAOralAnswerQuestion *question = (QAOralAnswerQuestion *)self.data;
+                cell.hasAnswer = !isEmpty(question.oralResultItem);
                 return cell;
             }
             QAAnalysisResultCell *cell = [[QAAnalysisResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

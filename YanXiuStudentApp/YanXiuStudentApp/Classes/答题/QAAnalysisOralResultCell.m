@@ -69,18 +69,17 @@
     }];
 }
 
+- (void)setHasAnswer:(BOOL)hasAnswer {
+    _hasAnswer = hasAnswer;
+    self.notAnswerLabel.hidden = hasAnswer;
+    self.backView.hidden = !hasAnswer;
+}
+
 - (void)setOralScore:(NSString *)oralScore {
     _oralScore = oralScore;
-    if (isEmpty(oralScore)) {
-        self.notAnswerLabel.hidden = NO;
-        self.backView.hidden = YES;
-    } else {
-        self.notAnswerLabel.hidden = YES;
-        self.backView.hidden = NO;
-        self.leftImageView.image = [UIImage imageNamed: [oralScore isEqualToString:@"0"] ? @"解析中页面小赞绿色" : @"解析中页面小赞红色"];
-        self.middleImageView.image = [UIImage imageNamed: [oralScore isEqualToString:@"3"] || [oralScore isEqualToString:@"2"] ? @"解析中页面小赞红色" : @"解析中页面小赞绿色"];
-        self.rightImageView.image = [UIImage imageNamed: [oralScore isEqualToString:@"3"] ? @"解析中页面小赞红色" : @"解析中页面小赞绿色"];
-    }
+    self.leftImageView.image = [UIImage imageNamed: [oralScore isEqualToString:@"0"] ? @"解析中页面小赞绿色" : @"解析中页面小赞红色"];
+    self.middleImageView.image = [UIImage imageNamed: [oralScore isEqualToString:@"3"] || [oralScore isEqualToString:@"2"] ? @"解析中页面小赞红色" : @"解析中页面小赞绿色"];
+    self.rightImageView.image = [UIImage imageNamed: [oralScore isEqualToString:@"3"] ? @"解析中页面小赞红色" : @"解析中页面小赞绿色"];
 }
 
 + (CGFloat)height{

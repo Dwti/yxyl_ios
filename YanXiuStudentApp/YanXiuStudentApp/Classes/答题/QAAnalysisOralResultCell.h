@@ -9,6 +9,7 @@
 #import "QAAnalysisBaseCell.h"
 
 @interface QAAnalysisOralResultCell : QAAnalysisBaseCell
+@property (nonatomic, assign) BOOL hasAnswer;
 @property (nonatomic, strong) NSString *oralScore;
 
 + (CGFloat)height;
