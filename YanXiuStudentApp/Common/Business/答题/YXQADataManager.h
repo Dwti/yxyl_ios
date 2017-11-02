@@ -14,6 +14,9 @@ static NSString *const YXSubmitQuestionPaperNotExistNotification = @"YXSubmitQue
 static NSString *const YXFavorChangedNotification = @"kYXFavorChangedNotification";
 static NSString *const YXSavePaperSuccessNotification = @"YXSavePaperSuccessNotification";
 
+extern NSString * const kSubmitQuestionSuccessPaperIDKey;
+extern NSString * const kSubmitQuestionSuccessPaperCorrectRateKey;
+
 @interface YXQADataManager : NSObject
 
 + (instancetype)sharedInstance;

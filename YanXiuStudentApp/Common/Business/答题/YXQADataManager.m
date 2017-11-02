@@ -14,6 +14,9 @@
 #import "PaperHasShowVideoEntity+CoreDataClass.h"
 #import "BCPaperAnswerStateEntity+CoreDataClass.h"
 
+NSString * const kSubmitQuestionSuccessPaperIDKey = @"kSubmitQuestionSuccessPaperIDKey";
+NSString * const kSubmitQuestionSuccessPaperCorrectRateKey = @"kSubmitQuestionSuccessPaperCorrectRateKey";
+
 @interface YXQADataManager()
 @property (nonatomic, strong) YXSubmitQuestionRequest *submitRequest;
 @property (nonatomic, strong) YXGetQuestionReportRequest *reportRequest;
@@ -137,7 +140,10 @@
         }else{
             [self getReport];
             //答题提交成功发送通知，刷新界面
-            [[NSNotificationCenter defaultCenter] postNotificationName:YXSubmitQuestionSuccessNotification object:nil];
+            NSDictionary *infoDic = @{kSubmitQuestionSuccessPaperCorrectRateKey:@([self.model correctRate]),
+                                      kSubmitQuestionSuccessPaperIDKey:self.model.paperID
+                                      };
+            [[NSNotificationCenter defaultCenter]postNotificationName:YXSubmitQuestionSuccessNotification object:nil userInfo:infoDic];
         }
     }];
 }

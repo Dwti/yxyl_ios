@@ -23,6 +23,9 @@
 @property(nonatomic, copy) NSString *order; //0-字母升序，1-字母降序，10-浏览数降序
 @property(nonatomic, copy) NSString *scope; //查询范围 0-全部，1-已做答，2-未作答
 
+@property(nonatomic, strong) NSIndexPath *lastSelectedIndexPath;//答题界面返回的时候定位使用
+@property(nonatomic, strong) BCTopicPaper *lastSelectedPaper;//答题界面返回的时候定位使用
+
 @end
 
 @implementation BCTopicListViewController
@@ -80,8 +83,11 @@
         }
         BCTopicListFetcher *dataFetcher = (BCTopicListFetcher *)self.dataFetcher;
         dataFetcher.order = self.order;
+        self.lastSelectedIndexPath = nil;
+        self.lastSelectedPaper = nil;
         [self.view nyx_startLoading];
         [self firstPageFetch];
+        [self scrollToTop];
     }];
     [self.filterView setPopularityRankBlock:^(BOOL isFilterByPopularityRank) {
         STRONG_SELF
@@ -91,16 +97,22 @@
         }
         BCTopicListFetcher *dataFetcher = (BCTopicListFetcher *)self.dataFetcher;
         dataFetcher.order = self.order;
+        self.lastSelectedIndexPath = nil;
+        self.lastSelectedPaper = nil;
         [self.view nyx_startLoading];
         [self firstPageFetch];
+        [self scrollToTop];
     }];
     [self.filterView setAnswerstateFilterBlock:^(NSString *answerStateFilter) {
         STRONG_SELF
         self.scope = answerStateFilter;
         BCTopicListFetcher *dataFetcher = (BCTopicListFetcher *)self.dataFetcher;
         dataFetcher.scope = self.scope;
+        self.lastSelectedIndexPath = nil;
+        self.lastSelectedPaper = nil;
         [self.view nyx_startLoading];
         [self firstPageFetch];
+        [self scrollToTop];
     }];
     [self.view addSubview:self.filterView];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,13 +138,49 @@
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSavePaperSuccessNotification object:nil]subscribeNext:^(id x) {
         STRONG_SELF
-        [self.view nyx_startLoading];
-        [self firstPageFetch];
+        if (self.lastSelectedIndexPath && (self.lastSelectedIndexPath.row < self.dataArray.count)) {
+            [self.tableView reloadRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSubmitQuestionSuccessNotification object:nil]subscribeNext:^(id x) {
         STRONG_SELF
-        [self.view nyx_startLoading];
-        [self firstPageFetch];
+        if ([self.scope isEqualToString:@"0"]) {
+            if (self.lastSelectedIndexPath && (self.lastSelectedIndexPath.row < self.dataArray.count)) {
+                NSNotification *noti = (NSNotification *)x;
+                NSDictionary *dic = noti.userInfo;
+                NSString *correctRate = dic[kSubmitQuestionSuccessPaperCorrectRateKey];
+                NSString *paperID = dic[kSubmitQuestionSuccessPaperIDKey];
+                BCTopicPaper *paper = self.dataArray[self.lastSelectedIndexPath.row];
+                paper.paperStatus = [[BCTopicPaper_paperStatus alloc]init];
+                paper.paperStatus.status = @"2";
+                paper.paperStatus.scoreRate = correctRate;
+                paper.paperStatus.ppid = paperID;
+                [self.dataArray replaceObjectAtIndex:self.lastSelectedIndexPath.row withObject:paper];
+                [self.tableView reloadRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }
+        if ([self.scope isEqualToString:@"1"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
+            NSNotification *noti = (NSNotification *)x;
+            NSDictionary *dic = noti.userInfo;
+            NSString *correctRate = dic[kSubmitQuestionSuccessPaperCorrectRateKey];
+            NSString *paperID = dic[kSubmitQuestionSuccessPaperIDKey];
+            if (self.lastSelectedPaper) {
+                self.lastSelectedPaper.paperStatus.ppid = paperID;
+                self.lastSelectedPaper.paperStatus.status = @"2";
+                self.lastSelectedPaper.paperStatus.scoreRate = correctRate;
+                [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView endUpdates];
+            }
+        }
+        if ([self.scope isEqualToString:@"2"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
+            self.lastSelectedPaper = self.dataArray[self.lastSelectedIndexPath.row];
+            [self.dataArray removeObjectAtIndex:self.lastSelectedIndexPath.row];
+            [self.tableView beginUpdates];
+            [self.tableView deleteRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
+        }
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSubmitQuestionPaperNotExistNotification object:nil]subscribeNext:^(id x) {
         STRONG_SELF
@@ -141,8 +189,30 @@
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kResetTopicPaperHistorySuccessNotification object:nil]subscribeNext:^(id x) {
         STRONG_SELF
-        [self.view nyx_startLoading];
-        [self firstPageFetch];
+        if ([self.scope isEqualToString:@"0"]) {
+            if (self.lastSelectedIndexPath && (self.lastSelectedIndexPath.row < self.dataArray.count)) {
+                BCTopicPaper *paper = self.dataArray[self.lastSelectedIndexPath.row];
+                paper.paperStatus = nil;
+                [self.dataArray replaceObjectAtIndex:self.lastSelectedIndexPath.row withObject:paper];
+                [self.tableView reloadRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }
+        if ([self.scope isEqualToString:@"1"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
+            self.lastSelectedPaper = self.dataArray[self.lastSelectedIndexPath.row];
+            [self.dataArray removeObjectAtIndex:self.lastSelectedIndexPath.row];
+            [self.tableView beginUpdates];
+            [self.tableView deleteRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
+        }
+        if ([self.scope isEqualToString:@"2"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
+            if (self.lastSelectedPaper) {
+                self.lastSelectedPaper.paperStatus = nil;
+                [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView endUpdates];
+            }
+        }
     }];
 }
 
@@ -159,6 +229,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.lastSelectedIndexPath = indexPath;
     BCTopicPaper *topicPaper = self.dataArray[indexPath.row];
     if ([topicPaper.paperStatus.status isEqualToString:@"2"]) {//已作答
         //进入报告
@@ -250,9 +321,11 @@
             [self.dataFetcher saveToCache];
         }
         [self.tableView reloadData];
-        NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     }];
 }
 
+- (void)scrollToTop {
+    NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+}
 @end
