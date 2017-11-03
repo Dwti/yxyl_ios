@@ -37,7 +37,9 @@
     self.needShowResult = NO;
     [self.player pause];
     self.player.state = PlayerView_State_Finished;
-    [self.recognizer cancel];
+    if (self.isStarting) {
+        [self.recognizer cancel];
+    }
     [self stopTimer];
 }
 
@@ -154,11 +156,13 @@
             STRONG_SELF
             PlayerView_State state = (PlayerView_State)[x integerValue];
             self.playBtn.selected = state == PlayerView_State_Playing;
-            if (state == PlayerView_State_Finished && self.needShowResult && !isEmpty(self.resultItem)) {
-                QAOralResultViewController *vc = [[QAOralResultViewController alloc] init];
-                vc.resultItem = self.resultItem;
-                [self.window addSubview:vc.view];
-                self.needShowResult = NO;
+            if (state == PlayerView_State_Finished && !isEmpty(self.resultItem)) {
+                if (self.needShowResult) {
+                    QAOralResultViewController *vc = [[QAOralResultViewController alloc] init];
+                    vc.resultItem = self.resultItem;
+                    [self.window addSubview:vc.view];
+                    self.needShowResult = NO;
+                }
                 BLOCK_EXEC(self.showResultBlock, self.resultItem);
             }
         }];

@@ -151,7 +151,7 @@
 }
 
 - (void)setupFirstInState {
-    if (self.guardCount++ != 1) {
+    if (self.guardCount++ < 1) {
         return;
     }
     if (self.data.answerState != YXAnswerStateNotAnswer) {
