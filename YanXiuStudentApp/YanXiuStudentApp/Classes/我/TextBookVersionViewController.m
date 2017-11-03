@@ -53,7 +53,7 @@
 
 - (void)saveEditionInfoSuccess
 {
-    self.item = [[ExerciseSubjectManager sharedInstance]currentSubjectItem];
+    self.item = [self filterItemWithoutBCResource:[[ExerciseSubjectManager sharedInstance]currentSubjectItem]];
     [self.tableView reloadData];
 }
 
@@ -64,7 +64,7 @@
 
 - (void)requestSubjects
 {
-    self.item = [[ExerciseSubjectManager sharedInstance] currentSubjectItem];
+    self.item = [self filterItemWithoutBCResource:[[ExerciseSubjectManager sharedInstance] currentSubjectItem]];
     if (self.item.subjects) {
         [self.tableView reloadData];
         return;
@@ -74,7 +74,7 @@
     [[ExerciseSubjectManager sharedInstance] requestSubjectsWithCompleteBlock:^(GetSubjectRequestItem *retItem, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
-        self.item = retItem;
+        self.item = [self filterItemWithoutBCResource:retItem];
         if (self.item) {
             [self.tableView reloadData];
         } else {
@@ -155,4 +155,16 @@
     }];
 }
 
+- (GetSubjectRequestItem *)filterItemWithoutBCResource:(GetSubjectRequestItem *)item {
+    if ([[YXUserManager sharedManager].userModel.stageid isEqualToString:@"1202"] ) {//小学学段
+        NSMutableArray *array = [NSMutableArray arrayWithArray:item.subjects];
+        for (GetSubjectRequestItem_subject *subject in array) {
+            if ([subject.name isEqualToString:@"BC资源"]) {
+                [array removeObject:subject];
+            }
+        }
+        item.subjects = array.copy;
+    }
+    return item;
+}
 @end
