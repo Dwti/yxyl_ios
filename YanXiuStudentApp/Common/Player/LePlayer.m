@@ -28,7 +28,6 @@ static const int kTimeout = 600;
 
 @implementation LePlayer {
     CMTime _tolerance;
-    PlayerView_State _playPauseState;
     // for check speed
     NSDate *_lastSpeedCheckTime;
     long long _lastBytesTransfered;
@@ -39,7 +38,6 @@ static const int kTimeout = 600;
     MPVolumeView *_volumeView;
     UISlider *_volumeSlider;
 }
-@synthesize playPauseState = _playPauseState;
 
 - (instancetype)init {
     self = [super init];
@@ -81,7 +79,7 @@ static const int kTimeout = 600;
         }
         
         [self.player pause];
-        self->_playPauseState = PlayerView_State_Paused;
+        self.playPauseState = PlayerView_State_Paused;
         [self _dealErrorWithMsg:@"time out"];
     });
 }
@@ -108,7 +106,7 @@ static const int kTimeout = 600;
     //    }
     [self.player play];
     self.state = PlayerView_State_Playing;
-    _playPauseState = PlayerView_State_Playing;
+    self.playPauseState = PlayerView_State_Playing;
 }
 
 - (void)pause {
@@ -117,7 +115,7 @@ static const int kTimeout = 600;
     //    }
     [self.player pause];
     self.state = PlayerView_State_Paused;
-    _playPauseState = PlayerView_State_Paused;
+    self.playPauseState = PlayerView_State_Paused;
 }
 
 - (void)seekTo:(NSTimeInterval)second {
@@ -126,7 +124,6 @@ static const int kTimeout = 600;
     }
     self.bSpeedAbleToCalculateRightNow = NO;
     self.state = PlayerView_State_Buffering;
-    self.isBuffering = YES;
     [self endPlayerObserver];//seek过程中停止对播放进度的监控
     @weakify(self);
     [self.playerItem seekToTime:CMTimeMake(second, 1) toleranceBefore:_tolerance toleranceAfter:_tolerance completionHandler:^(BOOL finished) {
@@ -212,7 +209,7 @@ static const CGFloat kVolumnStep = 0.0625;
     self.asset = [AVURLAsset assetWithURL:url];
     self.state = PlayerView_State_Buffering;
     self.isBuffering = YES;
-    _playPauseState = PlayerView_State_Playing;
+    self.playPauseState = PlayerView_State_Playing;
     @weakify(self);
     [self.asset loadValuesAsynchronouslyForKeys:@[@"duration", @"playable"] completionHandler:^{
         // Other Thread
@@ -338,11 +335,9 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d2 = [RACObserve(self.playerItem, playbackLikelyToKeepUp) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        
-
         if ([x boolValue]) {
             NSLog(@"playbackLikelyToKeepUp");
-            self.state = self->_playPauseState;
+            self.state = self.playPauseState;
             self.isBuffering = NO;
             // 更新bIsPlayable
             self.bIsPlayable = YES;
@@ -352,11 +347,9 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d3 = [RACObserve(self.playerItem, playbackBufferFull) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        
-
         if ([x boolValue]) {
             NSLog(@"playbackLikelyToKeepUp");
-            self.state = self->_playPauseState;
+            self.state = self.playPauseState;
             self.isBuffering = NO;
             // 更新bIsPlayable
             self.bIsPlayable = YES;
@@ -467,7 +460,7 @@ static const CGFloat kVolumnStep = 0.0625;
     }
     
     [self.player pause];
-    self->_playPauseState = PlayerView_State_Paused;
+    self.playPauseState = PlayerView_State_Paused;
     [self _dealErrorWithMsg:@"time out"];
 }
 
