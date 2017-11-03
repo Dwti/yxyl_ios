@@ -138,6 +138,7 @@
     [self.switchView updateWithTotal:self.model.questions.count question:self.model.questions[to] childIndex:index];
     
     [self hidePlayerMangerView];
+    self.shouldRotate = NO;
     QAQuestion *question = self.model.questions[to];
     if ([question.has_video isEqualToString:@"1"]) {//有视频的才进行判断显示视频按钮以及显示视频提示页
         if (![self isKindOfClass:[QAAnalysisViewController class]]) {//解析不显示视频提示页
@@ -279,6 +280,8 @@
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [self.view endEditing:YES];
+    [self.view resignFirstResponder];
     if (size.width > size.height) {
         [self remakePlayerMangerViewForFullSize];
     }else{
@@ -307,6 +310,8 @@
 
 - (void)rotateScreenAction {
     self.shouldRotate = YES;
+    [self.view endEditing:YES];
+    [self.view resignFirstResponder];
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection ==UIInterfaceOrientationLandscapeRight){
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
@@ -326,10 +331,6 @@
 }
 
 - (BOOL)shouldAutorotate {
-    if (self.shouldRotate) {
-        [self.view endEditing:YES];
-        [self.view resignFirstResponder];
-    }
     return self.shouldRotate;
 }
 
