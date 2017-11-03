@@ -225,14 +225,16 @@
         return;
     }
     BLOCK_EXEC(self.stopAudioPlayerBlock);
-    if (self.player.state == PlayerView_State_Paused) {
-        [self.player play];
+    if (self.player.state == PlayerView_State_Playing) {
+        [self.player pause];
+        self.player.state = PlayerView_State_Finished;
     } else if (self.player.state == PlayerView_State_Finished) {
         self.player.videoUrl = [NSURL URLWithString:self.resultItem.url];
-    }else if (self.player.state == PlayerView_State_Buffering) {
+    } else if (self.player.state == PlayerView_State_Buffering) {
         self.player.videoUrl = [NSURL URLWithString:self.resultItem.url];
     } else {
         [self.player pause];
+        self.player.state = PlayerView_State_Finished;
     }
 }
 

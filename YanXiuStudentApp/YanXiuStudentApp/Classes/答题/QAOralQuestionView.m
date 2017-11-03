@@ -177,7 +177,7 @@
         [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.bottom.mas_equalTo(-51.5f);
-            make.size.mas_equalTo(CGSizeMake(215, 241));
+            make.size.mas_equalTo(CGSizeMake(215, 276));
         }];
     }];
     [[NSUserDefaults standardUserDefaults] setValue:@YES forKey:@"kHasShowedOralGuide"];

@@ -24,7 +24,7 @@
     [self addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.centerX.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(215, 69));
+        make.size.mas_equalTo(CGSizeMake(215, 104));
     }];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
