@@ -5,7 +5,6 @@
 //  Created by ZLL on 2017/10/13.
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
-
 #import "BCTopicListViewController.h"
 #import "BCTopicListCell.h"
 #import "BCTopicListFetcher.h"
@@ -159,7 +158,7 @@
                 [self.tableView reloadRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             }
         }
-        if ([self.scope isEqualToString:@"1"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
+        if ([self.scope isEqualToString:@"1"] && self.lastSelectedIndexPath) {
             NSNotification *noti = (NSNotification *)x;
             NSDictionary *dic = noti.userInfo;
             NSString *correctRate = dic[kSubmitQuestionSuccessPaperCorrectRateKey];
@@ -168,18 +167,34 @@
                 self.lastSelectedPaper.paperStatus.ppid = paperID;
                 self.lastSelectedPaper.paperStatus.status = @"2";
                 self.lastSelectedPaper.paperStatus.scoreRate = correctRate;
-                [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
-                [self.tableView beginUpdates];
-                [self.tableView insertRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationTop];
-                [self.tableView endUpdates];
+                if (self.emptyView.hidden == NO) {
+                    self.emptyView.hidden = YES;
+                }
+                if (self.dataArray.count == 0) {
+                    [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
+                    [self.tableView reloadData];
+                }else {
+                    NSInteger index = self.lastSelectedIndexPath.row - 1;
+                    if (index <= self.dataArray.count) {
+                        [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
+                        [self.tableView beginUpdates];
+                        [self.tableView insertRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+                        [self.tableView endUpdates];
+                    }
+                }
             }
         }
         if ([self.scope isEqualToString:@"2"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
             self.lastSelectedPaper = self.dataArray[self.lastSelectedIndexPath.row];
             [self.dataArray removeObjectAtIndex:self.lastSelectedIndexPath.row];
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
+            if (self.dataArray.count <= 0) {
+                self.emptyView.hidden = NO;
+            }else {
+                self.emptyView.hidden = YES;
+                [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            }
         }
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXSubmitQuestionPaperNotExistNotification object:nil]subscribeNext:^(id x) {
@@ -200,17 +215,33 @@
         if ([self.scope isEqualToString:@"1"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
             self.lastSelectedPaper = self.dataArray[self.lastSelectedIndexPath.row];
             [self.dataArray removeObjectAtIndex:self.lastSelectedIndexPath.row];
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
+            if (self.dataArray.count <= 0) {
+                self.emptyView.hidden = NO;
+            }else {
+                self.emptyView.hidden = YES;
+                [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            }
         }
-        if ([self.scope isEqualToString:@"2"] && self.lastSelectedIndexPath && self.lastSelectedIndexPath.row < self.dataArray.count) {
+        if ([self.scope isEqualToString:@"2"] && self.lastSelectedIndexPath) {
             if (self.lastSelectedPaper) {
                 self.lastSelectedPaper.paperStatus = nil;
-                [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
-                [self.tableView beginUpdates];
-                [self.tableView insertRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationTop];
-                [self.tableView endUpdates];
+                if (self.emptyView.hidden == NO) {
+                    self.emptyView.hidden = YES;
+                }
+                if (self.dataArray.count == 0) {
+                    [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
+                    [self.tableView reloadData];
+                }else {
+                    NSInteger index = self.lastSelectedIndexPath.row - 1;
+                    if (index <= self.dataArray.count) {
+                        [self.dataArray insertObject:self.lastSelectedPaper atIndex:self.lastSelectedIndexPath.row];
+                        [self.tableView beginUpdates];
+                        [self.tableView insertRowsAtIndexPaths:@[self.lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+                        [self.tableView endUpdates];
+                    }
+                }
             }
         }
     }];
@@ -325,7 +356,9 @@
 }
 
 - (void)scrollToTop {
-    NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    if (self.dataArray.count > 0) {
+        NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    }
 }
 @end
