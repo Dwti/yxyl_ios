@@ -53,12 +53,19 @@
     [YXRecordManager addRecordWithType:YXRecordPractiseType];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    NSMutableArray *vcArray = [NSMutableArray array];
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if (![vc isKindOfClass:[QAReportViewController class]]&&![vc isKindOfClass:[QAAnalysisViewController class]]) {
-            [vcArray addObject:vc];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSMutableArray *vcArray = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    for (UIViewController *vc in vcArray) {
+        if ([vc isKindOfClass:[QAReportViewController class]]) {
+            [vcArray removeObject:vc];
+            break;
+        }
+    }
+    for (UIViewController *vc in vcArray) {
+        if ([vc isKindOfClass:[QAAnalysisViewController class]]) {
+            [vcArray removeObject:vc];
+            break;
         }
     }
     self.navigationController.viewControllers = vcArray;
