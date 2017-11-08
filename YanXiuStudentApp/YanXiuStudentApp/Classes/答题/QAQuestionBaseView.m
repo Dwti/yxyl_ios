@@ -32,7 +32,9 @@
     self.oriData = data;
     if (data.childQuestions.count == 1 && data.templateType != YXQATemplateClozeComplex) {
         QAQuestion *question = data.childQuestions.firstObject;
-        question.questionType = data.questionType;
+        if (question.templateType != YXQATemplateOral) {
+            question.questionType = data.questionType;
+        }
         _data = question;
         return;
     }

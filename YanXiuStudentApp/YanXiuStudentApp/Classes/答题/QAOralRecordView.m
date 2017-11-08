@@ -182,7 +182,7 @@
         return;
     }
     if (isEmpty(self.oralText)) {
-        DDLogDebug(@"当前题目答案为空");
+        [self.window nyx_showToast:@"题目参数缺失，无法作答！"];
         return;
     }
     [self.player pause];

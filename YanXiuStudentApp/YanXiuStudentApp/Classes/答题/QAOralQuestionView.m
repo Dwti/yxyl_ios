@@ -42,7 +42,7 @@
 
 - (void)setupOralRecordView {
     self.oralRecordView = [[QAOralRecordView alloc] init];
-    self.oralRecordView.oralText = self.data.questionType == YXQAItemOralRead ? self.data.contentAnswer.firstObject :  self.data.correctAnswers.firstObject;
+    self.oralRecordView.oralText = self.data.contentAnswer.firstObject;
     WEAK_SELF
     self.oralRecordView.stopAudioPlayerBlock = ^{
         STRONG_SELF
