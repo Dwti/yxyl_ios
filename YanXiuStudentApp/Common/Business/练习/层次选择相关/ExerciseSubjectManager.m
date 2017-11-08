@@ -53,17 +53,22 @@ NSString *const kSubjectSaveEditionInfoSuccessNotification = @"kSubjectSaveEditi
             [self.topicRequest stopRequest];
             self.topicRequest = [[GetTopicRequest alloc]init];
             self.topicRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
-            [self.topicRequest startRequestWithRetClass:[GetSubjectRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+            [self.topicRequest startRequestWithRetClass:[GetSubjectRequestItem class] andCompleteBlock:^(id retItem0, NSError *error) {
                 STRONG_SELF
                 if (error) {
                     BLOCK_EXEC(requestBlock,nil,error);
                     return;
                 }
-                GetSubjectRequestItem *item0 = retItem;
-                [subjects addObject:item0.subjects.firstObject];
-                item.subjects = subjects.copy;
-                [self saveSubjectToCache:item];
-                BLOCK_EXEC(requestBlock,item,nil);
+                GetSubjectRequestItem *item0 = retItem0;
+                if (item0.subjects.count > 0) {
+                    [subjects addObject:item0.subjects.firstObject];
+                    item.subjects = subjects.copy;
+                    [self saveSubjectToCache:item];
+                    BLOCK_EXEC(requestBlock,item,nil);
+                }else {
+                    [self saveSubjectToCache:retItem];
+                    BLOCK_EXEC(requestBlock,retItem,nil);
+                }
             }];
             return;
         }

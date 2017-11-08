@@ -74,11 +74,17 @@
     [[ExerciseSubjectManager sharedInstance] requestSubjectsWithCompleteBlock:^(GetSubjectRequestItem *retItem, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
+        if (error) {
+            [self.view addSubview:self.errorView];
+            [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
+            return;
+        }
+        [self.errorView removeFromSuperview];
         self.item = [self filterItemWithoutBCResource:retItem];
         if (self.item) {
             [self.tableView reloadData];
-        } else {
-            [self.view nyx_showToast:error.localizedDescription];
         }
     }];
 }

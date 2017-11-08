@@ -129,6 +129,10 @@
 }
 
 #pragma mark - tableView datasource delegate
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView sendSubviewToBack:self.analysisBGView];
+}
+
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
     [self.tableView sendSubviewToBack:self.analysisBGView];
 }
