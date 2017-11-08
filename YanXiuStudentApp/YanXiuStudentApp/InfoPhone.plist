@@ -56,7 +56,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqq</string>
@@ -77,10 +77,10 @@
 	<string>需要打开蓝牙，以继续操作</string>
 	<key>NSCameraUsageDescription</key>
 	<string>需要访问您的相机</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>需要访问您的相册</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要访问您的相册</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Metro Playtype.otf</string>
