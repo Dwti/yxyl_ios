@@ -106,13 +106,13 @@
 
 #pragma mark - setupTimer
 - (void)startTimer {
-    WEAK_SELF
-    self.timer = [NSTimer timerWithTimeInterval:180 repeats:NO block:^(NSTimer * _Nonnull timer) {
-        STRONG_SELF
-        [self recordStopAction:self.recordBtn];
-        [self.window nyx_showToast:@"录音不能超过3分钟哦"];
-    }];
+    self.timer = [NSTimer timerWithTimeInterval:180 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)timerAction {
+    [self recordStopAction:self.recordBtn];
+    [self.window nyx_showToast:@"录音不能超过3分钟哦"];
 }
 
 - (void)stopTimer {

@@ -128,6 +128,7 @@
         } else if (state == PlayerView_State_Finished) {
             [self.audioBtn.imageView stopAnimating];
             self.audioBtn.imageView.animationImages = nil;
+            [self.player pause];
             if (!self.hasPlayed) {
                 self.oralRecordView.recordViewState = QAOralRecordViewStateNormal;
                 self.hasPlayed = YES;
