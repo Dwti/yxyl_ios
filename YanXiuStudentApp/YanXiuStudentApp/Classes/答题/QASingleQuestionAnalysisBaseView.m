@@ -63,6 +63,7 @@
 - (void)setupAnalysisBGViewUI {
     self.analysisBGView = [[QAAnalysisBackGroundView alloc]init];
     [self.tableView insertSubview:self.analysisBGView atIndex:0];
+    self.analysisBGView.layer.zPosition = -1;
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
     
     if (self.isPaperSubmitted) {
@@ -129,14 +130,6 @@
 }
 
 #pragma mark - tableView datasource delegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView sendSubviewToBack:self.analysisBGView];
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-    [self.tableView sendSubviewToBack:self.analysisBGView];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!self.analysisDataHidden) {
         return  self.cellHeightArray.count;

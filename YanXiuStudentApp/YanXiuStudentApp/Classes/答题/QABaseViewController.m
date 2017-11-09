@@ -46,6 +46,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.layer.shadowColor = [UIColor clearColor].CGColor;
     [self.playerMangerView viewWillAppear];
+    [self.view layoutIfNeeded];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

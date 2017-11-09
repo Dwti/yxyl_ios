@@ -19,7 +19,7 @@
 #import "QABaseViewController.h"
 
 static const CGFloat kBottomViewHeight = 77.f;
-static const CGFloat kOffect = 16.f;
+static const CGFloat kOffect = 25.f;
 
 @interface QAConnectQuestionView ()
 @property (nonatomic, strong) QAConnectContentView *optionsView;
