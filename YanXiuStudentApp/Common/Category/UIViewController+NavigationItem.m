@@ -104,13 +104,13 @@
 }
 
 - (void)nyx_adjustFrameForView:(UIView *)view {
-    view.width += 20;
-    view.height += 20;
+//    view.width += 20;
+//    view.height += 20;
 }
 
 - (UIView *)nyx_viewForItemView:(UIView *)itemView {
     CGRect rect = itemView.bounds;
-    rect.size.height += 11;
+//    rect.size.height += 11;
     UIView *v = [[UIView alloc]initWithFrame:rect];
     [v addSubview:itemView];
     return v;
@@ -118,13 +118,13 @@
 
 - (UIBarButtonItem *)nyx_leftNegativeBarButtonItem{
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -14;
+    negativeSpacer.width = 0;
     return negativeSpacer;
 }
 
 - (UIBarButtonItem *)nyx_rightNegativeBarButtonItem{
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -14;
+    negativeSpacer.width = 0;
     return negativeSpacer;
 }
 

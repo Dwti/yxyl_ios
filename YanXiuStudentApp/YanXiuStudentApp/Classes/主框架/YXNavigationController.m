@@ -14,10 +14,10 @@
 
 @implementation UINavigationBar (FlexibleHeight)
 
--(CGSize)sizeThatFits:(CGSize)size{
-    CGSize newSize = CGSizeMake(self.frame.size.width, 55);
-    return newSize;
-}
+//-(CGSize)sizeThatFits:(CGSize)size{
+//    CGSize newSize = CGSizeMake(self.frame.size.width, 55);
+//    return newSize;
+//}
 
 @end
 
@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationBar setTitleVerticalPositionAdjustment:-5.5 forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationBar setTitleVerticalPositionAdjustment:-5.5 forBarMetrics:UIBarMetricsDefault];
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.delegate = self;
         self.interactivePopGestureRecognizer.enabled = NO;

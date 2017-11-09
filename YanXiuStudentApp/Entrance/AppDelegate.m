@@ -29,7 +29,7 @@ static const BOOL kTestEntrance = NO;
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[UIApplication sharedApplication]setStatusBarHidden:YES];
+    [[UIApplication sharedApplication]setStatusBarHidden:NO];
     // 基础配置
     [GlobalUtils setupCore];
     // 三方登录
