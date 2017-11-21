@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MistakeRedoCatalogRequest.h"
+#import "MistakeQuestionItemCell.h"
 
 @interface MistakeQuestionSheetView : UIView
 @property (nonatomic, strong) QAPaperModel *model;
-@property (nonatomic, strong) MistakeRedoCatalogRequestItem *item;
+//@property (nonatomic, strong) MistakeRedoCatalogRequestItem *item;
 @property (nonatomic, strong) void(^selectBlock) (QAQuestion *question);
 @property (nonatomic, strong) void(^cancelBlock) (void);
 @end

@@ -6,11 +6,12 @@
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "QABaseViewController.h"
+#import "QAAnalysisViewController.h"
 
-@interface MistakeRedoViewController : QABaseViewController
-@property (nonatomic, assign) NSInteger totalNumber;
+@interface MistakeRedoViewController : QAAnalysisViewController<QAAnalysisEditNoteDelegate>
 @property (nonatomic, strong) GetSubjectMistakeRequestItem_subjectMistake *subject;
 @property (nonatomic, strong) void(^updateNumberBlock) (NSInteger num);
 @property (nonatomic, strong) void(^updateNoteBlock) (NSArray *questions);
+@property (nonatomic, strong) NSArray *qids;
+
 @end

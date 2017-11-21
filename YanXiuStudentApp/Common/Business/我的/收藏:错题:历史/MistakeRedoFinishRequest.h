@@ -9,9 +9,11 @@
 #import "YXGetRequest.h"
 
 @interface MistakeRedoFinishRequest : YXPostRequest
-@property (nonatomic, strong) NSString *stageId;
-@property (nonatomic, strong) NSString *subjectId;
-@property (nonatomic, strong) NSString *lastWqid;
-@property (nonatomic, strong) NSString *lastWqnumber;
-@property (nonatomic, strong) NSString *deleteWqidList;
+//@property (nonatomic, strong) NSString *stageId;
+//@property (nonatomic, strong) NSString *subjectId;
+//@property (nonatomic, strong) NSString *lastWqid;
+//@property (nonatomic, strong) NSString *lastWqnumber;
+//@property (nonatomic, strong) NSString *deleteWqidList;
+@property (nonatomic, strong) NSString *qids;
+
 @end

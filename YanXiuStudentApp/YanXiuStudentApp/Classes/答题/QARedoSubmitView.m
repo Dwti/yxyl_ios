@@ -7,10 +7,13 @@
 //
 
 #import "QARedoSubmitView.h"
+#import "QARedoResultView.h"
 
 @interface QARedoSubmitView()
 @property (nonatomic, strong) UIButton *actionButton;
 @property (nonatomic, strong) RACDisposable *dispose;
+@property (nonatomic, strong) QARedoResultView *resultView;
+
 @end
 
 @implementation QARedoSubmitView
@@ -39,15 +42,32 @@
     [self.actionButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    
+    
+    self.resultView = [[QARedoResultView alloc]init];
 }
 
 - (void)btnAction {
     if (self.question.redoStatus == QARedoStatus_CanSubmit) {
         self.question.redoStatus = QARedoStatus_CanDelete;
         if ([self.question answerState] == YXAnswerStateCorrect) {
-            [self showToast:@"恭喜你，答对啦～"];
+            self.resultView.resultImage = [UIImage imageNamed:@"恭喜你答对了"];
+            [self.window addSubview:self.resultView];
+            [self.resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.resultView removeFromSuperview];
+            });
         }else {
-            [self showToast:@"很遗憾，答错啦！"];
+            self.resultView.resultImage = [UIImage imageNamed:@"很遗憾答错了"];
+            [self.window addSubview:self.resultView];
+            [self.resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.resultView removeFromSuperview];
+            });
         }
     }else if (self.question.redoStatus == QARedoStatus_CanDelete) {
         self.question.redoStatus = QARedoStatus_AlreadyDelete;

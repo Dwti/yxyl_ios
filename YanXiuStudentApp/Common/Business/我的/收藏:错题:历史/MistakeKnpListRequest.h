@@ -30,6 +30,5 @@
 @interface MistakeKnpListRequest : YXGetRequest
 @property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, copy) NSString *subjectId;
-@property (nonatomic, copy) NSString *editionId;
 @end
 

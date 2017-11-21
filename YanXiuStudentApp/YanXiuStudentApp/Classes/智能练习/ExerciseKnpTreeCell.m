@@ -353,11 +353,11 @@ typedef void(^ClickBlock) (ExerciseKnpTreeCell *cell);
         return;
     }
     if (self.level == 2) {
-        [self setupTitleLabelLineSpacingWithLevel:1 textString:knp.name textWidth:SCREEN_WIDTH - 150 - 15 -42];
+        [self setupTitleLabelLineSpacingWithLevel:2 textString:knp.name textWidth:SCREEN_WIDTH - 150 - 15 -42];
         return;
     }
     if (self.level == 3) {
-        [self setupTitleLabelLineSpacingWithLevel:1 textString:knp.name textWidth:SCREEN_WIDTH - 200 - 15 -42];
+        [self setupTitleLabelLineSpacingWithLevel:3 textString:knp.name textWidth:SCREEN_WIDTH - 200 - 15 -42];
         return;
     }
 }

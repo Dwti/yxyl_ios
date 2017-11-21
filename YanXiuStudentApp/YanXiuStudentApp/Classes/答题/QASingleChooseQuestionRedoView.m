@@ -11,8 +11,8 @@
 @implementation QASingleChooseQuestionRedoView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row >= 1 && indexPath.row < 5) {
-        NSInteger answerIndex = indexPath.row - 1;
+    if (indexPath.row >= 2 && indexPath.row < 6) {
+        NSInteger answerIndex = indexPath.row - 2;
         BOOL choose = [self.data.myAnswers[answerIndex] boolValue];
         for (int i = 0; i < [self.data.myAnswers count]; i++) {
             self.data.myAnswers[i] = @(NO);

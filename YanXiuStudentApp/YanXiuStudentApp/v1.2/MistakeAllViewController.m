@@ -152,7 +152,7 @@
             self.knpViewController = [[MistakeKnpViewController alloc] init];
             self.knpViewController.subject = self.subject;
             self.knpViewController.subjectID = self.subject.subjectID;
-            self.knpViewController.editionID = self.subject.data.editionId;
+//            self.knpViewController.editionID = self.subject.data.editionId;
             [self.view addSubview:self.knpViewController.view];
             [self.knpViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.topContainerView.mas_bottom);

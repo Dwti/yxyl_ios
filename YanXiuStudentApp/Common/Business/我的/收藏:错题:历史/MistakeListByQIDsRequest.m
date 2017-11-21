@@ -15,4 +15,13 @@
     }
     return self;
 }
+
+- (void)dealWithResponseJson:(NSString *)json {
+    NSString *decrypt = [YXCrypt decryptForString:json];
+    if (!isEmpty(decrypt)) {
+        [super dealWithResponseJson:decrypt];
+    } else {
+        [super dealWithResponseJson:json];
+    }
+}
 @end

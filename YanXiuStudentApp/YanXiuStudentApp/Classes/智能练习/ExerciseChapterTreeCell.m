@@ -352,11 +352,11 @@
         return;
     }
     if (self.level == 2) {
-        [self setupTitleLabelLineSpacingWithLevel:1 textString:chapter.name textWidth:SCREEN_WIDTH - 150 - 15 -42 - 3];
+        [self setupTitleLabelLineSpacingWithLevel:2 textString:chapter.name textWidth:SCREEN_WIDTH - 150 - 15 -42 - 3];
         return;
     }
     if (self.level == 3) {
-        [self setupTitleLabelLineSpacingWithLevel:1 textString:chapter.name textWidth:SCREEN_WIDTH - 200 - 15 -42 - 4];
+        [self setupTitleLabelLineSpacingWithLevel:3 textString:chapter.name textWidth:SCREEN_WIDTH - 200 - 15 -42 - 4];
         return;
     }
 }

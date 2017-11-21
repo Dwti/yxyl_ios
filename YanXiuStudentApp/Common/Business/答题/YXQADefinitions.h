@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, YXQAItemType) {
     YXQAItemSort, //排序
     YXQAItemListenAudioSort, //听音排序
     YXQAItemSolve, //解答
-    
+    YXQAItemWriting, //写作 23
     YXQAItemOralRead = 26, // 朗读
     YXQAItemOralRepeat, // 跟读
     YXQAItemOralDialogue, // 情景问答

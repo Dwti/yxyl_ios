@@ -18,9 +18,8 @@
 - (void)fetchTreeDataWithCompleteBlock:(TreeDataBlock)completeBlock {
     [self.request stopRequest];
     self.request = [[MistakeKnpListRequest alloc] init];
-    self.request.stageId = [YXUserManager sharedManager].userModel.stageid;
+    self.request.stageId = self.stageId;
     self.request.subjectId = self.subjectId;
-    self.request.editionId = self.editionId;
     [self.request startRequestWithRetClass:[MistakeKnpListRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
         if (error) {
             BLOCK_EXEC(completeBlock, nil, error);

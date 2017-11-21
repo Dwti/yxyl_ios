@@ -9,5 +9,8 @@
 #import "QASingleQuestionAnswerBaseView.h"
 
 @interface QASingleQuestionRedoBaseView : QASingleQuestionAnswerBaseView
+@property (nonatomic, strong) QAAnalysisBackGroundView *analysisBGView;
+
 - (void)refreshForRedoStatusChange;
+
 @end

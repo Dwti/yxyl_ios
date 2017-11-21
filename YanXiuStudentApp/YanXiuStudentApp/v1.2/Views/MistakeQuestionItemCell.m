@@ -7,12 +7,18 @@
 //
 
 #import "MistakeQuestionItemCell.h"
+#import "QAQuestionNumberButton.h"
 
-@interface MistakeQuestionItemCell()
-@property (nonatomic, strong) UIButton *itemButton;
+NSString * const kQASelectedMiatakeQuestionNotification = @"kQASelectedMiatakeQuestionNotification";
+NSString * const kQASelectedMistakeQuestionKey = @"kQASelectedMistakeQuestionKey";
+
+@interface MistakeQuestionItemCell ()
+@property (nonatomic, strong) QAQuestionNumberButton *itemButton;
 @end
 
+
 @implementation MistakeQuestionItemCell
+
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
@@ -21,31 +27,36 @@
 }
 
 - (void)setupUI{
-    self.itemButton = [[UIButton alloc]init];
-    [self.itemButton setTitleColor:[UIColor colorWithHexString:@"805500"] forState:UIControlStateNormal];
-    self.itemButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.itemButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.itemButton];
+    self.itemButton = [[QAQuestionNumberButton alloc]init];
+    WEAK_SELF
+    [self.itemButton setClickActionBlock:^{
+        STRONG_SELF
+        [[NSNotificationCenter defaultCenter]postNotificationName:kQASelectedMiatakeQuestionNotification object:nil userInfo:@{kQASelectedMistakeQuestionKey:self.item}];
+    }];
+    [self addSubview:self.itemButton];
     [self.itemButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
 }
 
-- (void)btnAction {
-    BLOCK_EXEC(self.clickBlock,self);
-}
-
-- (void)setItem:(QAQuestion *)item{
-    _item = item;
-    NSString *title = [NSString stringWithFormat:@"%@",@(item.position.firstLevelIndex+1)];
-    [self.itemButton setTitle:title forState:UIControlStateNormal];
-    YXQAAnswerState state = [item answerState];
-    if (state == YXAnswerStateCorrect ||
-        state == YXAnswerStateWrong ||
-        state == YXAnswerStateAnswered) {
-        [self.itemButton setBackgroundImage:[UIImage imageNamed:@"已答按钮"] forState:UIControlStateNormal];
+- (void)setHasWrote:(BOOL)hasWrote {
+    _hasWrote = hasWrote;
+    if (hasWrote) {
+        self.itemButton.imageName = @"答题卡已做题背景";
+        self.itemButton.textColor = [UIColor colorWithHexString:@"89e00d"];
+        self.itemButton.highlightedTextColor = [UIColor whiteColor];
     }else {
-        [self.itemButton setBackgroundImage:[UIImage imageNamed:@"未答按钮"] forState:UIControlStateNormal];
+        self.itemButton.imageName = @"答题卡未做题背景";
+        self.itemButton.textColor = [UIColor colorWithHexString:@"999999"];
+        self.itemButton.highlightedTextColor = [UIColor whiteColor];
     }
 }
+
+- (void)setItem:(QAQuestion *)item {
+    _item = item;
+    NSString *title = [NSString stringWithFormat:@"%@",@(item.position.firstLevelIndex+1)];
+    self.itemButton.title = title;
+}
+
 @end
+

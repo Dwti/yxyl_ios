@@ -11,8 +11,8 @@
 @implementation QAMultiChooseQuestionRedoView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row >= 1 && indexPath.row < 5) {
-        NSInteger answerIndex = indexPath.row - 1;
+    if (indexPath.row >= 1 && indexPath.row < 6) {
+        NSInteger answerIndex = indexPath.row - 2;
         self.data.myAnswers[answerIndex] = @(![self.data.myAnswers[answerIndex] boolValue]);
         [self.tableView reloadData];
         if ([self.data answerState] == YXAnswerStateNotAnswer) {

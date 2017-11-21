@@ -62,6 +62,7 @@
 
 - (void)setupAnalysisBGViewUI {
     self.analysisBGView = [[QAAnalysisBackGroundView alloc]init];
+    self.analysisBGView.userInteractionEnabled = NO;
     [self.tableView insertSubview:self.analysisBGView atIndex:0];
     self.analysisBGView.layer.zPosition = -1;
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];

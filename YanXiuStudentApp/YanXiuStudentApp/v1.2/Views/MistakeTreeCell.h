@@ -15,4 +15,5 @@
 @property (nonatomic, strong) MistakeKnpListRequestItem_knp *knp;
 @property (nonatomic, copy) void (^expandBlock) (MistakeTreeCell *cell);
 @property (nonatomic, copy) void (^clickBlock) (MistakeTreeCell *cell);
+@property (nonatomic, assign) BOOL isFirst;
 @end

@@ -255,9 +255,9 @@
 }
 
 - (NSArray *)questionGroups{
-    // 听力（听音选择、听力选择、听音判断、听音连线、听音排序、听音填空、听力填空）、口语题（朗读、跟读、对话、作文）、单选题、多选题、判断题、连线题、归类题、排序题、完型填空、阅读理解、填空题、改错、翻译、计算题、解答题、问答题、材料阅读
+    // 听力（听音选择、听力选择、听音判断、听音连线、听音排序、听音填空、听力填空）、口语题（朗读、跟读、对话、作文）、单选题、多选题、判断题、连线题、归类题、排序题、完型填空、阅读理解、填空题、改错、翻译、计算题、解答题、问答题、材料阅读、写作题
     NSMutableArray *allGroups = [NSMutableArray array];
-    for (int i=0; i<17; i++) {
+    for (int i=0; i<18; i++) {
         QAQuestionGroup *group = [[QAQuestionGroup alloc]init];
         group.questions = [NSMutableArray array];
         [allGroups addObject:group];
@@ -284,6 +284,7 @@
                                  @"20":allGroups[7],
                                  @"21":allGroups[0],
                                  @"22":allGroups[14],
+                                 @"23":allGroups[17],
                                  @"26":allGroups[1],
                                  @"27":allGroups[1],
                                  @"28":allGroups[1],

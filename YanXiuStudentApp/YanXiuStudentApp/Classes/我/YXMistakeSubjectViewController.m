@@ -14,6 +14,7 @@
 #import "MistakeAllViewController.h"
 #import "YXErrorsPagedListFetcher.h"
 #import "MistakeListViewController.h"
+#import "MistakeKnpViewController.h"
 
 @interface YXMistakeSubjectViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -122,13 +123,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GetSubjectMistakeRequestItem_subjectMistake *subject = self.requestItem.subjectMistakes[indexPath.row];
-    YXErrorsPagedListFetcher *dataFetcher = [[YXErrorsPagedListFetcher alloc] init];
-    dataFetcher.subjectID = subject.subjectID;
-    dataFetcher.stageID = [YXUserManager sharedManager].userModel.stageid;
-    
-    MistakeListViewController *vc = [[MistakeListViewController alloc] initWithFetcher:dataFetcher];
+
+    MistakeKnpViewController *vc = [[MistakeKnpViewController alloc] init];
     vc.subject = subject;
+    vc.subjectID = subject.subjectID;
+    
     [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 @end

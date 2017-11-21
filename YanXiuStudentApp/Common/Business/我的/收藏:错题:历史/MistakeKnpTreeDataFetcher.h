@@ -10,5 +10,5 @@
 
 @interface MistakeKnpTreeDataFetcher : TreeDataFetcher
 @property (nonatomic, copy) NSString *subjectId;
-@property (nonatomic, copy) NSString *editionId;
+@property (nonatomic, copy) NSString *stageId;
 @end

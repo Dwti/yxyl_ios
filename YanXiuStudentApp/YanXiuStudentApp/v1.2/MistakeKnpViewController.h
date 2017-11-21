@@ -11,5 +11,4 @@
 @interface MistakeKnpViewController : TreeBaseViewController
 @property (nonatomic, strong) GetSubjectMistakeRequestItem_subjectMistake *subject;
 @property (nonatomic, copy) NSString *subjectID;
-@property (nonatomic, copy) NSString *editionID;
 @end

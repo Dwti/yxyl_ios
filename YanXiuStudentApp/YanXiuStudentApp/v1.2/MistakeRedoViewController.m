@@ -17,8 +17,10 @@
 #import "QAMistakeAnalysisDataConfig.h"
 #import "SimpleAlertView.h"
 #import "QARedoSubmitView.h"
+#import "QAAnswerSheetViewController.h"
+#import "MistakeSheetViewController.h"
 
-@interface MistakeRedoViewController ()<QAAnalysisEditNoteDelegate>
+@interface MistakeRedoViewController ()
 @property (nonatomic, strong) SimpleAlertView *alertView;
 @property (nonatomic, strong) MistakeRedoCatalogRequest *catalogRequest;
 @property (nonatomic, strong) MistakeRedoCatalogRequestItem *catalogItem;
@@ -33,8 +35,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.analysisDataDelegate = [[QAMistakeAnalysisDataConfig alloc]init];
-    [self.model updateToWholeModelWithQuestionTotalCount:self.totalNumber currentOriIndex:self.model.questions.firstObject.wrongQuestionIndex-1];
+    self.title = @"重新做题";
+    WEAK_SELF
+    [self nyx_setupRightWithImageName:@"答题模块的答题卡图标正常态" highlightImageName:@"答题模块的答题卡图标点击态" action:^{
+        STRONG_SELF
+//        [self requestAndShowQuestionSheet];
+        MistakeSheetViewController *vc = [[MistakeSheetViewController alloc]init];
+        vc.model = self.model;
+        WEAK_SELF
+        [vc setSelectedActionBlock:^(QAQuestion *item) {
+            STRONG_SELF
+            [self.slideView scrollToItemIndex:item.position.firstLevelIndex animated:NO];
+        }];
+        [vc setBackActionBlock:^{
+            STRONG_SELF
+            self.slideView.isActive = YES;
+        }];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    [self.model updateToWholeModelWithQuestionTotalCount:self.qids.count currentOriIndex:self.model.questions.firstObject.wrongQuestionIndex-1];
     
     [self.model.questions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.templateType!=YXQATemplateUnknown && !obj.redoCompleted) {
@@ -66,83 +85,37 @@
     }];
 }
 
-- (void)setupTitle{
-    UIImageView *bgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"重新做题"]];
-    [self.view addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(26);
-        make.centerX.mas_equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(146, 40));
-    }];
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
-    label.text = @"重新做题";
-    label.font = [UIFont fontWithName:YXFontMetro_Bold size:17];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.layer.shadowColor = [[UIColor blackColor]colorWithAlphaComponent:0.1].CGColor;
-    label.layer.shadowRadius = 0;
-    label.layer.shadowOffset = CGSizeMake(0, 2);
-    label.layer.shadowOpacity = 1;
-    [bgView addSubview:label];
-    
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(2);
-        make.left.mas_equalTo(45);
-        make.right.mas_equalTo(-12);
-        make.height.mas_equalTo(20);
-    }];
-}
-
-- (void)setupMaskView{
-    UIImageView *maskView = [[UIImageView alloc]initWithImage:[UIImage yx_resizableImageNamed:@"错题重做遮罩"]];
-    [self.view addSubview:maskView];
-    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(66, 10, 32, 17));
-    }];
-}
-
-- (void)setupRight{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"答题卡"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"答题卡-按下"] forState:UIControlStateHighlighted];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(26);
-        make.size.mas_equalTo(CGSizeMake(56, 40));
-    }];
-    [button addTarget:self action:@selector(requestAndShowQuestionSheet) forControlEvents:UIControlEventTouchUpInside];
-}
-
 #pragma mark - Actions
 - (void)requestAndShowQuestionSheet {
     [self.view endEditing:YES];
-    if (self.catalogItem) {
-        [self showQuestionSheetWithItem:self.catalogItem];
-        return;
-    }
-    [self.catalogRequest stopRequest];
-    self.catalogRequest = [[MistakeRedoCatalogRequest alloc]init];
-    self.catalogRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
-    self.catalogRequest.subjectId = self.subject.subjectID;
-    WEAK_SELF
-    [self.view nyx_startLoading];
-    [self.catalogRequest startRequestWithRetClass:[MistakeRedoCatalogRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
-        STRONG_SELF
-        [self.view nyx_stopLoading];
-        if (error) {
-            [self.view nyx_showToast:error.localizedDescription];
-            return;
-        }
-        self.catalogItem = retItem;
-        [self showQuestionSheetWithItem:retItem];
-    }];
+//    if (self.catalogItem) {
+//        [self showQuestionSheetWithItem:self.catalogItem];
+//        return;
+//    }
+//    [self.catalogRequest stopRequest];
+//    self.catalogRequest = [[MistakeRedoCatalogRequest alloc]init];
+//    self.catalogRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
+//    self.catalogRequest.subjectId = self.subject.subjectID;
+//    NSString *qidsStr = [self.qids componentsJoinedByString:@","];
+//    self.catalogRequest.qids = qidsStr;
+//    WEAK_SELF
+//    [self.view nyx_startLoading];
+//    [self.catalogRequest startRequestWithRetClass:[MistakeRedoCatalogRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+//        STRONG_SELF
+//        [self.view nyx_stopLoading];
+//        if (error) {
+//            [self.view nyx_showToast:error.localizedDescription];
+//            return;
+//        }
+//        self.catalogItem = retItem;
+//        [self showQuestionSheetWithItem:retItem];
+//    }];
 }
 
 - (void)showQuestionSheetWithItem:(MistakeRedoCatalogRequestItem *)item {
     MistakeQuestionSheetView *sheetView = [[MistakeQuestionSheetView alloc]init];
     sheetView.model = self.model;
-    sheetView.item = item;
+//    sheetView.item = item;
     WEAK_SELF
     [sheetView setSelectBlock:^(QAQuestion *question) {
         STRONG_SELF
@@ -162,23 +135,24 @@
     }];
 }
 
-- (void)yx_leftBackButtonPressed:(id)sender {
-    MistakeRedoReportView *reportView = [[MistakeRedoReportView alloc]init];
-    reportView.reportString = [self.model redoReportString];
-    WEAK_SELF
-    [reportView setContinueAction:^{
-        STRONG_SELF
-        [self.alertView hide];
-    }];
-    [reportView setExitAction:^{
-        STRONG_SELF
-        [self.alertView hide];
+- (void)backAction {//本次需求不做练习报告的显示,点击返回直接返回错题列表-11.23
+    [super backAction];
+//    MistakeRedoReportView *reportView = [[MistakeRedoReportView alloc]init];
+//    reportView.reportString = [self.model redoReportString];
+//    WEAK_SELF
+//    [reportView setContinueAction:^{
+//        STRONG_SELF
+//        [self.alertView hide];
+//    }];
+//    [reportView setExitAction:^{
+//        STRONG_SELF
+//        [self.alertView hide];
         [self reportRedoStatus];
-        [self updateRedoNote];
-    }];
-    self.alertView = [[SimpleAlertView alloc]init];
-    self.alertView.contentView = reportView;
-    [self.alertView show];
+//        [self updateRedoNote];
+//    }];
+//    self.alertView = [[SimpleAlertView alloc]init];
+//    self.alertView.contentView = reportView;
+//    [self.alertView show];
 }
 
 - (void)reportRedoStatus {
@@ -189,7 +163,8 @@
             lastQ = q;
         }else if (q.redoStatus == QARedoStatus_AlreadyDelete) {
             lastQ = q;
-            [deletedIDs addObject:q.wrongQuestionID];
+//            [deletedIDs addObject:q.wrongQuestionID];
+            [deletedIDs addObject:q.questionID];
         }
     }
     if (!lastQ) {
@@ -198,13 +173,14 @@
     }
     
     WEAK_SELF
-    [[MistakeQuestionManager sharedInstance] deleteMistakeRedoQuestion:lastQ subjectId:self.subject.subjectID deletedIDs:deletedIDs completeBlock:^(NSError *error) {
+    [self.view nyx_startLoading];
+    [[MistakeQuestionManager sharedInstance] deleteMistakeRedoQuestionWithDeletedIDs:deletedIDs completeBlock:^(NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
             [self.view nyx_showToast:error.localizedDescription];
         }
-        BLOCK_EXEC(self.updateNumberBlock,self.totalNumber-deletedIDs.count);
+        BLOCK_EXEC(self.updateNumberBlock,self.qids.count-deletedIDs.count);
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -261,11 +237,16 @@
         return;
     }
     self.isRequesting = YES;
-    self.requestingPage = index/kRedoPageSize+1;
-    NSString *page = [NSString stringWithFormat:@"%@",@(self.requestingPage)];
+    self.requestingPage = index/kRedoPageSize;
+    NSUInteger length = MIN(10, (self.qids.count - self.requestingPage * 10));
+    NSUInteger loc = self.requestingPage * 10;
+    NSArray *qids = [self.qids subarrayWithRange:NSMakeRange(loc, length)];
+    NSString *qidsStr = [qids componentsJoinedByString:@","];
+    [self.view nyx_startLoading];
     WEAK_SELF
-    [[MistakeQuestionManager sharedInstance]requestMistakeRedoPageWithSubjectID:self.subject.subjectID page:page completeBlock:^(QAPaperModel *model, NSError *error) {
+    [[MistakeQuestionManager sharedInstance] requestMistakeRedoPageWithSubjectID:self.subject.subjectID qid:qidsStr completeBlock:^(QAPaperModel *model, NSError *error) {
         STRONG_SELF
+        [self.view nyx_stopLoading];
         self.isRequesting = NO;
         QAQuestion *currentQuestion = self.model.questions[self.slideView.currentIndex];
         if (error) {
@@ -274,7 +255,7 @@
             }
             return;
         }
-        NSInteger position = (self.requestingPage-1)*kRedoPageSize;
+        NSInteger position = (self.requestingPage)*kRedoPageSize;
         [self.model replaceQuestions:model.questions fromIndex:position];
         if (currentQuestion.templateType == YXQATemplateUnknown) {
             [self.slideView reloadData];
@@ -296,6 +277,13 @@
     EditNoteViewController *vc = [[EditNoteViewController alloc] init];
     vc.item = item;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (QAMistakeAnalysisDataConfig *)analysisDataDelegate {
+    if (!_analysisDataDelegate) {
+        _analysisDataDelegate = [[QAMistakeAnalysisDataConfig alloc]init];
+    }
+    return _analysisDataDelegate;
 }
 
 @end

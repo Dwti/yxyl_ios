@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const kQASelectedMiatakeQuestionNotification; // 选中某个问题通知
+extern NSString * const kQASelectedMistakeQuestionKey;// 选中某个问题通知的key
+
 @interface MistakeQuestionItemCell : UICollectionViewCell
+@property (nonatomic, assign) BOOL hasWrote;
 @property (nonatomic, strong) QAQuestion *item;
-@property (nonatomic, strong) void(^clickBlock)(MistakeQuestionItemCell *cell);
 @end

@@ -35,4 +35,7 @@ typedef void(^MistakeRedoNoteBlock) (MistakeRedoNoteItem *item, NSError *error);
 - (void)requestMistakeRedoFirstWithSubjectID:(NSString *)subjectID completeBlock:(void(^)(QAPaperModel *model, NSError *error))completeBlock;
 - (void)requestMistakeRedoPageWithSubjectID:(NSString *)subjectID page:(NSString *)page completeBlock:(void(^)(QAPaperModel *model, NSError *error))completeBlock;
 - (void)deleteMistakeRedoQuestion:(QAQuestion *)question subjectId:(NSString *)subjectId deletedIDs:(NSArray*)deletedIDs completeBlock:(DeleteMistakeBlock)completeBlock;
+//V3.1.2
+- (void)requestMistakeRedoPageWithSubjectID:(NSString *)subjectID qid:(NSString *)qid completeBlock:(void(^)(QAPaperModel *model, NSError *error))completeBlock;
+- (void)deleteMistakeRedoQuestionWithDeletedIDs:(NSArray *)deletedIDs completeBlock:(DeleteMistakeBlock)completeBlock;
 @end

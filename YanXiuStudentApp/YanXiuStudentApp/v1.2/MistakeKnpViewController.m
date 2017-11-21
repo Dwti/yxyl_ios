@@ -19,7 +19,6 @@
 #import "YXMistakeListWithoutRedoViewController.h"
 
 @interface MistakeKnpViewController ()
-@property (nonatomic, strong) YXGenKnpointQBlockRequest *knpQuestionRequest;
 @end
 
 @implementation MistakeKnpViewController
@@ -27,7 +26,7 @@
 - (void)viewDidLoad {
     MistakeKnpTreeDataFetcher *fetcher = [[MistakeKnpTreeDataFetcher alloc] init];
     fetcher.subjectId = self.subjectID;
-    fetcher.editionId = self.editionID;
+    fetcher.stageId = [YXUserManager sharedManager].userModel.stageid;
     self.dataFetcher = fetcher;
     [super viewDidLoad];
     
@@ -35,6 +34,8 @@
     
     [self addNotification];
     
+    self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
+    self.title = self.subject.name;
 //    self.emptyView.text = @"暂无题目";
 }
 
@@ -82,10 +83,13 @@
     MistakePageListFetcher *fetcher = [[MistakePageListFetcher alloc] init];
     fetcher.subjectID = subjectID;
     fetcher.qids = qids;
-    YXMistakeListWithoutRedoViewController *vc = [[YXMistakeListWithoutRedoViewController alloc] initWithFetcher:fetcher];
+    
+    MistakeListViewController *vc = [[MistakeListViewController alloc] initWithFetcher:fetcher];
     vc.subject = self.subject;
+    vc.qids = qids;
     vc.chapter_point_title = title;
     [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 @end

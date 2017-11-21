@@ -13,6 +13,7 @@
 #import "MistakeRedoPageRequest.h"
 #import "MistakeRedoFinishRequest.h"
 #import "GlobalUtils.h"
+#import "MistakeListByQIDsRequest.h"
 
 NSString *const kDeleteMistakeSuccessNotification = @"kSubjectSaveEditionInfoSuccessNotification";
 NSString *const MistakeNoteSaveNotification = @"MistakeNoteSaveSuccess";
@@ -27,6 +28,9 @@ const NSInteger kRedoPageSize = 10;
 @property (nonatomic, strong) MistakeRedoFirstRequest *redoFirstRequest;
 @property (nonatomic, strong) MistakeRedoPageRequest *redoPageRequest;
 @property (nonatomic, strong) MistakeRedoFinishRequest *finishRequest;
+
+@property (nonatomic, strong) MistakeListByQIDsRequest *mistakeRedoPageRequest;
+
 @end
 
 @implementation MistakeQuestionManager
@@ -62,27 +66,28 @@ const NSInteger kRedoPageSize = 10;
             return;
         }
         BLOCK_EXEC(completeBlock,nil);
-        [[NSNotificationCenter defaultCenter]postNotificationName:kDeleteMistakeSuccessNotification object:@[question.wrongQuestionID]];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:kDeleteMistakeSuccessNotification object:@[question.wrongQuestionID]];
+        [[NSNotificationCenter defaultCenter]postNotificationName:kDeleteMistakeSuccessNotification object:@[question.questionID]];
     }];
 }
 
 - (void)deleteMistakeRedoQuestion:(QAQuestion *)question subjectId:(NSString *)subjectId deletedIDs:(NSArray*)deletedIDs completeBlock:(DeleteMistakeBlock)completeBlock {
-    [self.finishRequest stopRequest];
-    self.finishRequest = [[MistakeRedoFinishRequest alloc]init];
-    self.finishRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
-    self.finishRequest.subjectId = subjectId;
-    self.finishRequest.lastWqid = question.wrongQuestionID;
-    self.finishRequest.lastWqnumber = [NSString stringWithFormat:@"%@",@(question.wrongQuestionIndex)];
-    self.finishRequest.deleteWqidList = [deletedIDs componentsJoinedByString:@","];
-   
-    [self.finishRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
-        if (error) {
-            BLOCK_EXEC(completeBlock,error);
-            return;
-        }
-        BLOCK_EXEC(completeBlock,nil);
-        [[NSNotificationCenter defaultCenter]postNotificationName:kDeleteMistakeSuccessNotification object:deletedIDs];
-    }];
+//    [self.finishRequest stopRequest];
+//    self.finishRequest = [[MistakeRedoFinishRequest alloc]init];
+//    self.finishRequest.stageId = [YXUserManager sharedManager].userModel.stageid;
+//    self.finishRequest.subjectId = subjectId;
+//    self.finishRequest.lastWqid = question.wrongQuestionID;
+//    self.finishRequest.lastWqnumber = [NSString stringWithFormat:@"%@",@(question.wrongQuestionIndex)];
+//    self.finishRequest.deleteWqidList = [deletedIDs componentsJoinedByString:@","];
+//
+//    [self.finishRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+//        if (error) {
+//            BLOCK_EXEC(completeBlock,error);
+//            return;
+//        }
+//        BLOCK_EXEC(completeBlock,nil);
+//        [[NSNotificationCenter defaultCenter]postNotificationName:kDeleteMistakeSuccessNotification object:deletedIDs];
+//    }];
 
 }
 
@@ -186,4 +191,40 @@ const NSInteger kRedoPageSize = 10;
     }];
 }
 
+- (void)requestMistakeRedoPageWithSubjectID:(NSString *)subjectID qid:(NSString *)qid completeBlock:(void(^)(QAPaperModel *model, NSError *error))completeBlock {
+    [self.mistakeRedoPageRequest stopRequest];
+    self.mistakeRedoPageRequest = [[MistakeListByQIDsRequest alloc] init];
+    self.mistakeRedoPageRequest.qids = qid;
+    self.mistakeRedoPageRequest.subjectId = subjectID;
+    WEAK_SELF
+    [self.mistakeRedoPageRequest startRequestWithRetClass:[YXIntelligenceQuestionListItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        STRONG_SELF
+        if (error) {
+            BLOCK_EXEC(completeBlock,nil,error);
+            return;
+        }
+        YXIntelligenceQuestionListItem *item = (YXIntelligenceQuestionListItem *)retItem;
+        YXIntelligenceQuestion *intelQuestion = item.data[0];
+        for (YXIntelligenceQuestion_PaperTest *pt in intelQuestion.paperTest) {
+            [pt clearMyAnswers];
+        }
+        QAPaperModel *model = [QAPaperModel modelFromRawData:intelQuestion];
+        BLOCK_EXEC(completeBlock,model,nil);
+    }];
+}
+
+- (void)deleteMistakeRedoQuestionWithDeletedIDs:(NSArray *)deletedIDs completeBlock:(DeleteMistakeBlock)completeBlock {
+    [self.finishRequest stopRequest];
+    self.finishRequest = [[MistakeRedoFinishRequest alloc]init];
+    self.finishRequest.qids = [deletedIDs componentsJoinedByString:@","];
+    [self.finishRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error) {
+        if (error) {
+            BLOCK_EXEC(completeBlock,error);
+            return;
+        }
+        BLOCK_EXEC(completeBlock,nil);
+        [[NSNotificationCenter defaultCenter]postNotificationName:kDeleteMistakeSuccessNotification object:deletedIDs];
+    }];
+
+}
 @end

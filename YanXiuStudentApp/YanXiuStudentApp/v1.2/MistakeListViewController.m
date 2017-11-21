@@ -24,9 +24,6 @@ YXErrorTableViewCellDelegate,
 YXHtmlCellHeightDelegate
 >
 @property (nonatomic, strong) NSMutableArray *heightMutableArray;
-@property (nonatomic, strong) MistakeRedoNumItem *numItem;
-@property (nonatomic, assign) BOOL isUpdatingRedoNumber;
-@property (nonatomic, strong) UILabel *totalLabel;
 @property (nonatomic, strong) PagedListFetcherBase *fetcher;
 @end
 
@@ -44,7 +41,7 @@ YXHtmlCellHeightDelegate
     self.dataFetcher = self.fetcher;
     self.heightMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [super viewDidLoad];
-    self.title = self.subject.name;
+    self.title = self.chapter_point_title;
     self.naviTheme = NavigationBarTheme_White;
     self.view.backgroundColor = [UIColor colorWithHexString:@"edf0ee"];
     self.emptyView.title = @"真棒！还没有错题哦";
@@ -59,6 +56,25 @@ YXHtmlCellHeightDelegate
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 10)];
     self.tableView.tableHeaderView = headerView;
     [self.tableView registerClass:[YXErrorTableViewCell class] forCellReuseIdentifier:errorTableViewCell];
+    
+    UIButton *redoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 72, 34)];
+    [redoButton setTitle:@"错题重做" forState:UIControlStateNormal];
+    [redoButton setTitleColor:[UIColor colorWithHexString:@"89e00d"] forState:UIControlStateNormal];
+    [redoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [redoButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"89e00d"]] forState:UIControlStateHighlighted];
+    redoButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    redoButton.layer.cornerRadius = 6;
+    redoButton.layer.borderWidth = 2;
+    redoButton.layer.borderColor = [UIColor colorWithHexString:@"89e00d"].CGColor;
+    redoButton.clipsToBounds = YES;
+    WEAK_SELF
+    [[redoButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+        [self redoButtonTapped];
+    }];
+    self.redoButton = redoButton;
+    [self nyx_setupRightWithCustomView:redoButton];
+    
 }
 
 #pragma mark - notification
@@ -80,7 +96,6 @@ YXHtmlCellHeightDelegate
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kDeleteMistakeSuccessNotification object:nil] subscribeNext:^(NSNotification *notification) {
         STRONG_SELF
-        [self getMistakeRedoQuestionNumber];
         NSArray *deletedIDs = notification.object;
         [self deleteQuestionsByID:deletedIDs];
     }];
@@ -93,7 +108,8 @@ YXHtmlCellHeightDelegate
     [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         QAQuestion *question = obj;
         for (NSString *qID in idArray) {
-            if ([question.wrongQuestionID isEqualToString:qID]) {
+//            if ([question.wrongQuestionID isEqualToString:qID]) {
+            if ([question.questionID isEqualToString:qID]) {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
                 [removedIndexPaths addObject:indexPath];
             }
@@ -114,64 +130,26 @@ YXHtmlCellHeightDelegate
     if (self.dataArray.count == 0) {
         [self firstPageFetch];
     }
-}
-
-#pragma mark - Redo Number
-- (void)getMistakeRedoQuestionNumber {
-//    self.isUpdatingRedoNumber = YES;
-//    WEAK_SELF
-//    [[MistakeQuestionManager sharedInstance] requestMistakeRedoNumWithSubjectId:self.subject.subjectID completeBlock:^(MistakeRedoNumItem *item, NSError *error) {
-//        STRONG_SELF
-//        [self yx_stopLoading];
-//        self.isUpdatingRedoNumber = NO;
-//        if (error) {
-//            [self yx_showToast:error.localizedDescription];
-//            [self updateRedoButtonForError];
-//            return;
-//        }
-//        self.numItem = item;
-//        [self updateRedoNum:item];
-//    }];
-}
-
-- (void)updateRedoButtonForError {
-    [self.redoButton setTitle:@"错题重做" forState:UIControlStateNormal];
-    self.redoButton.alpha = 1.0;
-    self.redoButton.userInteractionEnabled = YES;
-    [self.redoButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"黄按钮"] forState:UIControlStateNormal];
-    [self.redoButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"黄按钮-按下"] forState:UIControlStateHighlighted];
-}
-
-- (void)updateRedoNum:(MistakeRedoNumItem *)item{
-    NSString *redoNum = item.property.questionNum;
-    if (isEmpty(redoNum)) {
-        redoNum = @"0";
-    }
-    NSString *title = [NSString stringWithFormat:@"错题重做 (%@)", redoNum];
-    [self.redoButton setTitle:title forState:UIControlStateNormal];
     
-    if (item.property.questionNum.integerValue == 0) {
-        self.redoButton.alpha = 0.4;
-        self.redoButton.userInteractionEnabled = NO;
-        [self.redoButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"按钮不可点击"] forState:UIControlStateNormal];
-    } else {
-        self.redoButton.alpha = 1.0;
-        self.redoButton.userInteractionEnabled = YES;
-        [self.redoButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"黄按钮"] forState:UIControlStateNormal];
-        [self.redoButton setBackgroundImage:[UIImage yx_resizableImageNamed:@"黄按钮-按下"] forState:UIControlStateHighlighted];
+    NSMutableArray *qidMutableArray = [NSMutableArray arrayWithArray:self.qids];
+    [self.qids enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSNumber *qid = obj;
+        NSString *qidStr = [NSString stringWithFormat:@"%@",qid];
+        for (NSString *qID in idArray) {
+            if ([qidStr isEqualToString:qID]) {
+                [qidMutableArray removeObject:qid];
+            }
+        }
+    }];
+    self.qids = qidMutableArray.copy;
+    if (self.qids.count == 0) {
+        self.redoButton.hidden = YES;
+    }else {
+        self.redoButton.hidden = NO;
     }
-}
-
-#pragma mark - Set
-- (void)setTotal:(long)total {
-    _total = total;
-    self.totalLabel.text = [NSString stringWithFormat:@"全部%ld题", _total];
-    
-    [self getMistakeRedoQuestionNumber];
 }
 
 #pragma mark - UITableViewDelegate
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.heightMutableArray[indexPath.row] floatValue];
 }
@@ -184,28 +162,8 @@ YXHtmlCellHeightDelegate
     return self.dataArray.count;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.chapter_point_title) {
-        YXMistakeContentChapterKnpViewController *vc = [[YXMistakeContentChapterKnpViewController alloc] init];
-        vc.total = self.total;
-        vc.index = indexPath.row;
-        vc.subject = self.subject;
-        vc.pageSize = self.dataFetcher.pagesize;
-        vc.curPage = (int)indexPath.row / self.dataFetcher.pagesize;
-        QAPaperModel *model = [[QAPaperModel alloc] init];
-        model.questions = self.dataArray;
-        vc.model = model;
-        vc.fetcher = (MistakePageListFetcher *)self.fetcher;
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
     
-    YXErrorsPagedListFetcher *currentFetcher = (YXErrorsPagedListFetcher *)self.fetcher;
-    YXErrorsPagedListFetcher *fetcher = [[YXErrorsPagedListFetcher alloc]init];
-    fetcher.subjectID = currentFetcher.subjectID;
-    fetcher.stageID = currentFetcher.stageID;
-    fetcher.lastID = currentFetcher.lastID;
-    fetcher.pageindex = currentFetcher.pageindex;
-    YXMistakeContentViewController *vc = [[YXMistakeContentViewController alloc] initWithFetcher:fetcher];
+    YXMistakeContentViewController *vc = [[YXMistakeContentViewController alloc] initWithFetcher:self.fetcher];
     vc.total = self.total;
     vc.index = indexPath.row;
     vc.subject = self.subject;
@@ -250,36 +208,19 @@ YXHtmlCellHeightDelegate
         if (error) {
             [self.view nyx_showToast:error.localizedDescription];
         }
-        [self getMistakeRedoQuestionNumber];
     }];
 }
 
 
 #pragma mark - Actions
 - (void)redoButtonTapped {
-    if (self.isUpdatingRedoNumber || !self.numItem) {
-        WEAK_SELF
-        [self.view nyx_startLoading];
-        [[MistakeQuestionManager sharedInstance] requestMistakeRedoNumWithSubjectId:self.subject.subjectID completeBlock:^(MistakeRedoNumItem *item, NSError *error) {
-            STRONG_SELF
-            self.isUpdatingRedoNumber = NO;
-            if (error) {
-                [self.view nyx_stopLoading];
-                [self.view nyx_showToast:error.localizedDescription];
-                return;
-            }
-            self.numItem = item;
-            [self updateRedoNum:item];
-            [self fetchRedoFirstData];
-        }];
-    }else {
-        [self fetchRedoFirstData];
-    }
-}
-
-- (void)fetchRedoFirstData {
     WEAK_SELF
-    [[MistakeQuestionManager sharedInstance] requestMistakeRedoFirstWithSubjectID:self.subject.subjectID completeBlock:^(QAPaperModel *model, NSError *error) {
+    NSUInteger length = MIN(10, (self.qids.count - 0 * 10));
+    NSUInteger loc = 0 * 10;
+    NSArray *qids = [self.qids subarrayWithRange:NSMakeRange(loc, length)];
+    NSString *qidsStr = [qids componentsJoinedByString:@","];
+    [self.view nyx_startLoading];
+    [[MistakeQuestionManager sharedInstance] requestMistakeRedoPageWithSubjectID:self.subject.subjectID qid:qidsStr completeBlock:^(QAPaperModel *model, NSError *error) {
         STRONG_SELF
         [self.view nyx_stopLoading];
         if (error) {
@@ -293,14 +234,15 @@ YXHtmlCellHeightDelegate
 - (void)gotoRedoVCWithModel:(QAPaperModel *)model {
     MistakeRedoViewController *vc = [[MistakeRedoViewController alloc]init];
     vc.model = model;
-    vc.totalNumber = self.numItem.property.questionNum.integerValue;
+    vc.qids = self.qids;
+//    vc.totalNumber = self.numItem.property.questionNum.integerValue;
     vc.subject = self.subject;
     WEAK_SELF
-    [vc setUpdateNumberBlock:^(NSInteger num) {
-        STRONG_SELF
-        self.numItem.property.questionNum = [NSString stringWithFormat:@"%@",@(num)];
-        [self updateRedoNum:self.numItem];
-    }];
+//    [vc setUpdateNumberBlock:^(NSInteger num) {
+//        STRONG_SELF
+//        self.numItem.property.questionNum = [NSString stringWithFormat:@"%@",@(num)];
+//        [self updateRedoNum:self.numItem];
+//    }];
     
     [vc setUpdateNoteBlock:^(NSArray *updatedQuestions) {
         STRONG_SELF

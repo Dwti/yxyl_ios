@@ -24,4 +24,6 @@
 @interface MistakeRedoCatalogRequest : YXGetRequest
 @property (nonatomic, strong) NSString *stageId;
 @property (nonatomic, strong) NSString *subjectId;
+@property (nonatomic, strong) NSString *qids;
+
 @end
