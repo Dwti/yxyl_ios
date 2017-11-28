@@ -16,6 +16,7 @@
 #import "QAAnalysisViewController.h"
 #import "QAReportViewController.h"
 #import "YXRecordManager.h"
+#import "BCResourceItem.h"
 
 @interface QAAnswerQuestionViewController ()<QAAnswerStateChangeDelegate>
 @property (nonatomic, strong) GCDTimer *timer;
@@ -93,6 +94,7 @@
     }
     if (unAnswered) {
         if (self.pType == YXPTypeBCResourceExercise) {
+            [self addBCStatistic];
             [[YXQADataManager sharedInstance] savePaperAnswerStateWithPaperID:self.rmsPaperId answerState:@"0"];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXSavePaperSuccessNotification object:nil];
             self.slideView.isActive = NO;
@@ -104,6 +106,7 @@
         return;
     }
     if (self.pType == YXPTypeBCResourceExercise) {
+        [self addBCStatistic];        
         [[YXQADataManager sharedInstance] savePaperAnswerStateWithPaperID:self.rmsPaperId answerState:@"1"];
         [[YXQADataManager sharedInstance]savePaperAnsweredQuestionNumWithPaperModel:self.model];
         [[YXQADataManager sharedInstance]savePaperDurationWithPaperID:self.model.paperID duration:self.model.paperAnswerDuration];
@@ -135,6 +138,15 @@
         [self saveAndQuit];
     }];
     [alert showInView:self.navigationController.view];
+}
+
+- (void)addBCStatistic {
+    BCResourceItem *bc = [[BCResourceItem alloc]init];
+    bc.resID = self.rmsPaperId;
+    NSTimeInterval interval = [[NSDate date]timeIntervalSinceDate:self.beginDate];
+    bc.duration = [NSString stringWithFormat:@"%@",@(interval)];
+    bc.type = YXRecordQuitBCType;
+    [YXRecordManager addRecord:bc];
 }
 
 - (void)saveAndQuit {
@@ -273,6 +285,7 @@
     vc.answeredQuestionCount = self.answeredQuestionCount;
     vc.totalQuestionCount = self.totalQuestionCount;
     vc.rmsPaperId = self.rmsPaperId;
+    vc.beginDate = self.beginDate;
     WEAK_SELF
     [vc setSelectedActionBlock:^(QAQuestion *item) {
         STRONG_SELF

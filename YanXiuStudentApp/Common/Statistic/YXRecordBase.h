@@ -52,6 +52,14 @@ typedef NS_ENUM(NSInteger, YXRecordType) {
      *  首次启动
      */
     YXRecordLaunchType     = 10,
+    /**
+     *  跳出BC资源
+     */
+    YXRecordQuitBCType      = 11,
+    /**
+     *  完成BC资源
+     */
+    YXRecordFinishBCType     = 12,
     
 };
 
@@ -68,6 +76,7 @@ typedef NS_ENUM(NSUInteger, YXRecordStrategy) {
 @property (nonatomic, assign) YXRecordType type;
 
 @property (nonatomic, copy) NSString *eventID;
+@property (nonatomic, copy) NSString *resID;
 
 + (NSString *)timestamp;
 

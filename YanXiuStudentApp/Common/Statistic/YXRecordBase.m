@@ -18,7 +18,6 @@
 @property (nonatomic, copy) NSString *ip;
 @property (nonatomic, copy) NSString *appkey;
 @property (nonatomic, copy) NSString *url;
-@property (nonatomic, copy) NSString *resID;
 
 @end
 

@@ -906,6 +906,8 @@
 		7CFD1EA51D51A27D002C2624 /* YXFillBlankDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD1EA31D51A27D002C2624 /* YXFillBlankDetailViewController.m */; };
 		7CFD1EA81D51BF35002C2624 /* YXSubjectiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD1EA71D51BF35002C2624 /* YXSubjectiveDetailViewController.m */; };
 		7CFD1EA91D51BF35002C2624 /* YXSubjectiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD1EA71D51BF35002C2624 /* YXSubjectiveDetailViewController.m */; };
+		7CFD3E101FCD36120043C13F /* BCResourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD3E0F1FCD36120043C13F /* BCResourceItem.m */; };
+		7CFD3E111FCD36120043C13F /* BCResourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD3E0F1FCD36120043C13F /* BCResourceItem.m */; };
 		7CFE55D51CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFE55D41CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m */; };
 		A6F12160AFAF8B67F252C96C /* libPods-YanXiuStudentApp-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A68EC2D672A1F5EE5F5B0FD0 /* libPods-YanXiuStudentApp-iPhone.a */; };
 		E9039A851F94A5DB007AB5BB /* BCTopicAnswerstateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E9039A841F94A5DB007AB5BB /* BCTopicAnswerstateButton.m */; };
@@ -2317,6 +2319,8 @@
 		7CFD1EA31D51A27D002C2624 /* YXFillBlankDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFillBlankDetailViewController.m; sourceTree = "<group>"; };
 		7CFD1EA61D51BF35002C2624 /* YXSubjectiveDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSubjectiveDetailViewController.h; sourceTree = "<group>"; };
 		7CFD1EA71D51BF35002C2624 /* YXSubjectiveDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSubjectiveDetailViewController.m; sourceTree = "<group>"; };
+		7CFD3E0E1FCD36120043C13F /* BCResourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCResourceItem.h; sourceTree = "<group>"; };
+		7CFD3E0F1FCD36120043C13F /* BCResourceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCResourceItem.m; sourceTree = "<group>"; };
 		7CFE55D31CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQASubmitSuccessAndBackView_Pad.h; sourceTree = "<group>"; };
 		7CFE55D41CD3338800A021E2 /* YXQASubmitSuccessAndBackView_Pad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQASubmitSuccessAndBackView_Pad.m; sourceTree = "<group>"; };
 		A68EC2D672A1F5EE5F5B0FD0 /* libPods-YanXiuStudentApp-iPhone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YanXiuStudentApp-iPhone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3288,6 +3292,8 @@
 				305318D41D019765004BE7E1 /* YXRecordManager.m */,
 				30EBB3D31D11233900F1C9EC /* YXProblemItem.h */,
 				30EBB3D41D11233900F1C9EC /* YXProblemItem.m */,
+				7CFD3E0E1FCD36120043C13F /* BCResourceItem.h */,
+				7CFD3E0F1FCD36120043C13F /* BCResourceItem.m */,
 				30F669CC1D2A1028002B1C1D /* NSString+YXRecordContent.h */,
 				30F669CD1D2A1028002B1C1D /* NSString+YXRecordContent.m */,
 			);
@@ -6321,6 +6327,7 @@
 				7C3BB4CD1C5766A00084AF24 /* YXSideMenuNaviDateView_Pad.m in Sources */,
 				7CF6C8461C72FF3400AE88F8 /* YXQAAnalysisSubjectiveView_Pad.m in Sources */,
 				7C3C15151F25E10A004DE584 /* VerifyPhoneViewController.m in Sources */,
+				7CFD3E111FCD36120043C13F /* BCResourceItem.m in Sources */,
 				7C953B301C5A16F700A9A7AF /* YXQAAnalysisMultiChooseView_Pad.m in Sources */,
 				E92610BC1F0A19C80084EFA5 /* QAReportGroupHeaderView.m in Sources */,
 				7CFAADD41DACF22100F13532 /* QASubjectiveQuestionViewContainer.m in Sources */,
@@ -7185,6 +7192,7 @@
 				7C7BF7CD1E0A1D5F007B017C /* ClassHomeworkDataManager.m in Sources */,
 				E93732C81F0B7C00008C1248 /* AlertView.m in Sources */,
 				7C3D0B9E1DD1A8B2005ED76A /* LogFormatter.m in Sources */,
+				7CFD3E101FCD36120043C13F /* BCResourceItem.m in Sources */,
 				7C916BE91DBF4E9B00968B28 /* QAClozeContainerView.m in Sources */,
 				7C2B66ED1DBF5DA6007DD16B /* SaveEditionRequest.m in Sources */,
 				7C2904281EEE4F86005F7F55 /* QASubjectiveAddPhotoView.m in Sources */,

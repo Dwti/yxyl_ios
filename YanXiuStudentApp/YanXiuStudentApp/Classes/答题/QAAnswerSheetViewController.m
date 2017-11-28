@@ -16,11 +16,11 @@
 #import "QAReportViewController.h"
 #import "QAAnswerQuestionViewController.h"
 #import "AudioManager.h"
+#import "BCResourceItem.h"
 
 @interface QAAnswerSheetViewController ()
 @property (nonatomic, strong) QAAnswerSheetView *sheetView;
 @property (nonatomic, strong) QAImageUploadProgressView *uploadImageView;
-@property (nonatomic, strong) NSDate *beginDate;
 @property (nonatomic, copy) SelectedActionBlock buttonActionBlock;
 @property (nonatomic, copy) BackActionBlock backBlock;
 
@@ -117,7 +117,6 @@
         if (error) {
             [self handleSubmitFailure:error];
         }else{
-            
             YXProblemItem *item = [YXProblemItem new];
             item.paperType      = @(self.pType == YXPTypeGroupHomework? 1: 0);
             item.editionID      = self.requestParams.editionId;
@@ -131,6 +130,16 @@
             }
             item.questionID = questions;
             [YXRecordManager addRecord:item];
+            
+            if (self.pType == YXPTypeBCResourceExercise) {
+                BCResourceItem *bc = [[BCResourceItem alloc]init];
+                bc.resID = self.rmsPaperId;
+                NSTimeInterval interval = [[NSDate date]timeIntervalSinceDate:self.beginDate];
+                bc.duration = [NSString stringWithFormat:@"%@",@(interval)];
+                bc.accuracy = [NSString stringWithFormat:@"%@",@(reportModel.correctRate)];
+                bc.type = YXRecordFinishBCType;
+                [YXRecordManager addRecord:bc];
+            }
            
             if ([YXMineManager indexWithSoundSwitchState: [YXUserManager sharedManager].userModel.soundSwitchState] == 0) {
                 //播放音效

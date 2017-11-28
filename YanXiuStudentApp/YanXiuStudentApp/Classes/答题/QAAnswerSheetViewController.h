@@ -19,6 +19,7 @@ typedef void(^BackActionBlock)(void);
 @property (nonatomic, assign) NSInteger answeredQuestionCount;
 @property (nonatomic, strong) YXQARequestParams *requestParams;
 @property(nonatomic, copy) NSString *rmsPaperId;//仅用于BC资源
+@property (nonatomic, strong) NSDate *beginDate;
 
 - (void)setSelectedActionBlock:(SelectedActionBlock)block;
 - (void)setBackActionBlock:(BackActionBlock)block;
