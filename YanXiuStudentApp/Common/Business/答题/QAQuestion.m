@@ -170,6 +170,16 @@ static NSString * const kAnswerMarkedFlag = @"5";
     return YXAnswerStateUnKnown;
 }
 
+- (BOOL)isAnswered {
+    YXQAAnswerState state = [self answerState];
+    if (state == YXAnswerStateCorrect
+        ||state == YXAnswerStateWrong
+        ||state == YXAnswerStateAnswered) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - 答题状态文字描述
 - (NSString *)answerStateDescription {
     NSString *des = [NSString stringWithFormat:@"正确答案是：%@",[self answerPresentation]];

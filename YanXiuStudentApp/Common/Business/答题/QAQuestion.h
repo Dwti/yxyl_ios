@@ -90,6 +90,7 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
 - (NSMutableArray *)myAnswersWithRawData:(YXQuestion *)rawData; // 需子类实现
 
 - (YXQAAnswerState)answerState; // 需子类实现
+- (BOOL)isAnswered;
 - (NSString *)answerStateDescription; // 作答状态文字描述
 - (NSString *)answerPresentation; // 需子类实现
 - (NSString *)typeString;

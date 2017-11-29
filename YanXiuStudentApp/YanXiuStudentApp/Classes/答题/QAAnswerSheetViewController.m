@@ -126,7 +126,9 @@
             item.type           = YXRecordSubmitWorkType;
             NSMutableArray *questions = [NSMutableArray new];
             for (QAQuestion *question in self.model.questions) {
-                [questions addObject:question.questionID];
+                if ([question isAnswered]) {
+                    [questions addObject:question.questionID];
+                }
             }
             item.questionID = questions;
             [YXRecordManager addRecord:item];
