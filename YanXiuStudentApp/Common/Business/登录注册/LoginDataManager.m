@@ -126,7 +126,6 @@ NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification"
         }
         YXRegisterRequestItem *item = retItem;
         [manger saveUserDataWithUserModel:item.data[0] isThirdLogin:NO isJoinByClass:NO];
-        [YXRecordManager addRecordWithType:YXRecordResigerType];
         BLOCK_EXEC(completeBlock,retItem,nil);
     }];
 }
@@ -265,6 +264,7 @@ NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification"
             return;
         }
         BLOCK_EXEC(completeBlock,retItem,nil);
+        [YXRecordManager addRecordWithType:YXRecordResigerType];
     }];
 }
 
@@ -291,7 +291,6 @@ NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification"
         }
         RegisterRequestItem *item = retItem;
         [manger saveUserDataWithUserModel:item.data[0] isThirdLogin:NO isJoinByClass:YES];
-        [YXRecordManager addRecordWithType:YXRecordResigerType];
         BLOCK_EXEC(completeBlock,retItem,nil);
     }];
 }
@@ -322,7 +321,6 @@ NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification"
         }
         RegisterRequestItem *item = retItem;
         [manger saveUserDataWithUserModel:item.data[0] isThirdLogin:YES isJoinByClass:YES];
-        [YXRecordManager addRecordWithType:YXRecordResigerType];
         BLOCK_EXEC(completeBlock,retItem,nil);
     }];
 }
