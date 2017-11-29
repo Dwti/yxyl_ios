@@ -16,6 +16,7 @@
 #import "GlobalUtils.h"
 #import "QAMistakeAnalysisDataConfig.h"
 #import "SimpleAlertView.h"
+#import "QARedoSubmitView.h"
 
 @interface MistakeRedoViewController ()<QAAnalysisEditNoteDelegate>
 @property (nonatomic, strong) SimpleAlertView *alertView;
@@ -24,6 +25,7 @@
 @property (nonatomic, assign) BOOL isRequesting;
 @property (nonatomic, assign) NSInteger requestingPage;
 @property (nonatomic, strong) QAMistakeAnalysisDataConfig *analysisDataDelegate;
+@property (nonatomic, strong) QARedoSubmitView *redoSubmitView;
 @end
 
 @implementation MistakeRedoViewController
@@ -31,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.analysisDataDelegate = [[QAMistakeAnalysisDataConfig alloc]init];
     [self.model updateToWholeModelWithQuestionTotalCount:self.totalNumber currentOriIndex:self.model.questions.firstObject.wrongQuestionIndex-1];
     
     [self.model.questions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -51,6 +54,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupUI {
+    [super setupUI];
+    self.redoSubmitView = [[QARedoSubmitView alloc]init];
+    [self.switchView addSubview:self.redoSubmitView];
+    [self.redoSubmitView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(130, 34));
+    }];
 }
 
 - (void)setupTitle{
@@ -239,6 +252,7 @@
     }else if (currentQuestion.templateType == YXQATemplateUnknown) { // 无数据时进行请求
         [self requestDataFromIndex:to];
     }
+    self.redoSubmitView.question = self.model.questions[to];
 }
 
 - (void)requestDataFromIndex:(NSInteger)index {

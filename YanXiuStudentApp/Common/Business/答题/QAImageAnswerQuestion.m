@@ -13,6 +13,13 @@
 @end
 
 @implementation QAImageAnswerQuestion
+- (instancetype)initWithRawData:(YXIntelligenceQuestion_PaperTest *)rawData{
+    if (self = [super initWithRawData:rawData]) {
+        self.redoStatus = QARedoStatus_ShowAnalysis;
+    }
+    return self;
+}
+
 - (NSArray *)correctAnswersWithRawData:(YXQuestion *)rawData{
     return rawData.answer;
 }

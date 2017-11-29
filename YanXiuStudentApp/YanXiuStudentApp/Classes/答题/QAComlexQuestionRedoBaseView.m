@@ -24,22 +24,6 @@
 - (void)setupUI {
     [super setupUI];
     [self setupObserver];
-    if (self.isSubQuestionView) {
-        return;
-    }
-    [self.downContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.middleContainerView.mas_bottom);
-    }];
-    self.submitView = [[QARedoSubmitView alloc]initWithQuestion:self.data];
-    [self addSubview:self.submitView];
-    [self.submitView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(42);
-        make.right.mas_equalTo(-33);
-        make.top.mas_equalTo(self.downContainerView.mas_bottom).mas_offset(15);
-        make.height.mas_equalTo(52);
-        make.bottom.mas_equalTo(-15);
-    }];
 }
 
 - (void)setupObserver {
@@ -65,7 +49,7 @@
             for (QAQuestion *subQ in self.data.childQuestions) {
                 if (subQ.redoStatus == QARedoStatus_Init) {
                     initCount++;
-                }else if (subQ.redoStatus == QARedoStatus_CanSubmit) {
+                }else if (subQ.redoStatus == QARedoStatus_CanSubmit||subQ.redoStatus == QARedoStatus_ShowAnalysis) {
                     canSubmitCount++;
                 }else {
                     break;

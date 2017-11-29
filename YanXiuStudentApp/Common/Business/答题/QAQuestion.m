@@ -26,6 +26,7 @@ static NSString * const kAnswerMarkedFlag = @"5";
 - (instancetype)initWithRawData:(YXIntelligenceQuestion_PaperTest *)rawData{
     if (self = [super init]) {
         [self setupWithRawData:rawData];
+        self.redoStatus = QARedoStatus_Init;
     }
     return self;
 }

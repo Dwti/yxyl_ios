@@ -16,7 +16,8 @@ typedef NS_ENUM(NSUInteger, QARedoStatus) {
     QARedoStatus_Init = 0,
     QARedoStatus_CanSubmit,
     QARedoStatus_CanDelete,
-    QARedoStatus_AlreadyDelete
+    QARedoStatus_AlreadyDelete,
+    QARedoStatus_ShowAnalysis
 };
 
 @interface QAAudioComment : NSObject

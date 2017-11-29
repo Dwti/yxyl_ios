@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface QARedoSubmitView : UIView
-- (instancetype)initWithQuestion:(QAQuestion *)question;
+@property (nonatomic, strong) QAQuestion *question;
 @end

@@ -29,34 +29,13 @@
     [self setupObserver];    
     [self setupSingleQuestionAnalysisContent];
     [self.tableView registerClass:[QANoteCell class] forCellReuseIdentifier:@"QANoteCell"];
-
-    if (self.isSubQuestionView) {
-        return;
-    }
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleView.mas_bottom);
-        make.left.right.equalTo(self);
-    }];
-    self.submitView = [[QARedoSubmitView alloc]initWithQuestion:self.data];
-    [self addSubview:self.submitView];
-    [self.submitView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(42);
-        make.right.mas_equalTo(-33);
-        make.top.mas_equalTo(self.tableView.mas_bottom).mas_offset(15);
-        make.height.mas_equalTo(52);
-        make.bottom.mas_equalTo(-15);
-    }];    
 }
 
 - (void)setupObserver {
     WEAK_SELF
     self.dispose = [RACObserve(self.data, redoStatus) subscribeNext:^(id x) {
         STRONG_SELF
-        NSNumber *num = x;
-        QARedoStatus status = num.integerValue;
-        if (status == QARedoStatus_CanDelete) {
-            [self.tableView reloadData];
-        }
+        [self refreshForRedoStatusChange];
     }];
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:MistakeNoteSaveNotification object:nil] subscribeNext:^(id x) {
@@ -69,6 +48,12 @@
         [self.cellHeightArray replaceObjectAtIndex:(self.cellHeightArray.count - 1) withObject:@(noteCellHeight)];
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:(self.cellHeightArray.count - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }];
+}
+
+- (void)refreshForRedoStatusChange {
+    if (self.data.redoStatus == QARedoStatus_CanDelete) {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)setupSingleQuestionAnalysisContent {
