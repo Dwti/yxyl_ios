@@ -41,7 +41,7 @@
 @property (nonatomic, copy) NSString<Optional> *subjectid; //学科id
 @property (nonatomic, copy) NSString<Optional> *bedition;
 @property (nonatomic, copy) NSString<Optional> *stageid;
-@property (nonatomic, copy) NSString<Optional> *gradeid;
+@property (nonatomic, copy) NSString<Optional> *classid;
 @property (nonatomic, copy) NSString<Optional> *buildtime;
 @property (nonatomic, copy) NSString<Optional> *begintime;
 @property (nonatomic, copy) NSString<Optional> *volume;    //册id

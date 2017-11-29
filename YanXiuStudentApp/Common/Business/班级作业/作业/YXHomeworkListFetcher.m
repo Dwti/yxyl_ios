@@ -44,7 +44,7 @@
                                           YXProblemItem *problem = [YXProblemItem new];
                                           problem.quesNum = homework.quesnum;
                                           problem.subjectID = homework.subjectid;
-                                          problem.gradeID = homework.gradeid;
+                                          problem.gradeID = homework.classid;
                                           problem.type = YXRecordReciveWorkType;
                                           [YXRecordManager addRecord:problem];
                                       }

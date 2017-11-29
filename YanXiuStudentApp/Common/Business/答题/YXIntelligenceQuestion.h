@@ -88,7 +88,7 @@
 @property (nonatomic, copy) NSString<Optional> *subjectid;
 @property (nonatomic, copy) NSString<Optional> *bedition;
 @property (nonatomic, copy) NSString<Optional> *stageid;
-@property (nonatomic, copy) NSString<Optional> *gradeid;
+@property (nonatomic, copy) NSString<Optional> *classid;
 @property (nonatomic, copy) NSString<Optional> *volume;
 @property (nonatomic, copy) NSString<Optional> *chapterid;
 @property (nonatomic, copy) NSString<Optional> *sectionid;

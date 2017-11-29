@@ -33,7 +33,8 @@
     model.paperAnswerDuration = rawData.paperStatus.costtime.doubleValue;
     model.canShowHomeworkAnalysis = !rawData.showana.boolValue;
     model.checked = rawData.paperStatus.checkStatus.boolValue;
-    model.gradeID = rawData.gradeid;
+    model.classID = rawData.classid;
+    model.subjectID = rawData.subjectid;
     model.questions = [self questionsWithRawData:rawData];
     
     model.cover = rawData.cover;

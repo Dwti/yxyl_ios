@@ -120,9 +120,9 @@
             YXProblemItem *item = [YXProblemItem new];
             item.paperType      = @(self.pType == YXPTypeGroupHomework? 1: 0);
             item.editionID      = self.requestParams.editionId;
-            item.subjectID      = self.requestParams.subjectId;
+            item.subjectID      = self.model.subjectID;
             item.quesNum        = [NSString stringWithFormat:@"%@",@(self.answeredQuestionCount)];
-            item.gradeID        = self.model.gradeID;
+            item.gradeID        = self.model.classID;
             item.type           = YXRecordSubmitWorkType;
             NSMutableArray *questions = [NSMutableArray new];
             for (QAQuestion *question in self.model.questions) {
@@ -134,7 +134,7 @@
             if (self.pType == YXPTypeBCResourceExercise) {
                 BCResourceItem *bc = [[BCResourceItem alloc]init];
                 bc.resID = self.rmsPaperId;
-                NSTimeInterval interval = [[NSDate date]timeIntervalSinceDate:self.beginDate];
+                NSTimeInterval interval = [[NSDate date]timeIntervalSinceDate:self.beginDate]*1000;
                 bc.duration = [NSString stringWithFormat:@"%@",@(interval)];
                 bc.accuracy = [NSString stringWithFormat:@"%@",@(reportModel.correctRate)];
                 bc.type = YXRecordFinishBCType;

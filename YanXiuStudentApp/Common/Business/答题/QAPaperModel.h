@@ -27,7 +27,8 @@
 @property (nonatomic, strong) NSDate *homeworkEndDate;
 @property (nonatomic, strong) NSDate *paperFinishDate;
 
-@property (nonatomic, copy) NSString *gradeID;
+@property (nonatomic, copy) NSString *classID;
+@property (nonatomic, copy) NSString *subjectID;
 @property (nonatomic, copy) NSString *chapterID;
 
 @property (nonatomic, assign) BOOL checked; // 是否批改，YES已批改，NO未批改

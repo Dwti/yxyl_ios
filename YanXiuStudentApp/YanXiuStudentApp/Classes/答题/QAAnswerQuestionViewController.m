@@ -143,7 +143,7 @@
 - (void)addBCStatistic {
     BCResourceItem *bc = [[BCResourceItem alloc]init];
     bc.resID = self.rmsPaperId;
-    NSTimeInterval interval = [[NSDate date]timeIntervalSinceDate:self.beginDate];
+    NSTimeInterval interval = [[NSDate date]timeIntervalSinceDate:self.beginDate]*1000;
     bc.duration = [NSString stringWithFormat:@"%@",@(interval)];
     bc.type = YXRecordQuitBCType;
     [YXRecordManager addRecord:bc];
