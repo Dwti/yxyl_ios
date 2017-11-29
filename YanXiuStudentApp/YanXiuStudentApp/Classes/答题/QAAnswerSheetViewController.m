@@ -122,7 +122,7 @@
             item.editionID      = self.requestParams.editionId;
             item.subjectID      = self.model.subjectID;
             item.quesNum        = [NSString stringWithFormat:@"%@",@(self.answeredQuestionCount)];
-            item.gradeID        = self.model.classID;
+            item.classID        = self.model.classID;
             item.type           = YXRecordSubmitWorkType;
             NSMutableArray *questions = [NSMutableArray new];
             for (QAQuestion *question in self.model.questions) {

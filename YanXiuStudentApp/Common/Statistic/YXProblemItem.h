@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *editionID;
 @property (nonatomic, copy) NSString *gradeID;
+@property (nonatomic, copy) NSString *classID;
 @property (nonatomic, copy) NSString *subjectID;
 
 /**
