@@ -292,6 +292,7 @@ NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification"
         RegisterRequestItem *item = retItem;
         [manger saveUserDataWithUserModel:item.data[0] isThirdLogin:NO isJoinByClass:YES];
         BLOCK_EXEC(completeBlock,retItem,nil);
+        [YXRecordManager addRecordWithType:YXRecordClassType];
     }];
 }
 
@@ -322,6 +323,7 @@ NSString *const kBindPhoneSuccessNotification = @"kBindPhoneSuccessNotification"
         RegisterRequestItem *item = retItem;
         [manger saveUserDataWithUserModel:item.data[0] isThirdLogin:YES isJoinByClass:YES];
         BLOCK_EXEC(completeBlock,retItem,nil);
+        [YXRecordManager addRecordWithType:YXRecordClassType];
     }];
 }
 

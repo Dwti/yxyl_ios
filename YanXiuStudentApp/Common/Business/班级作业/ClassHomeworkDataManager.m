@@ -7,6 +7,7 @@
 //
 
 #import "ClassHomeworkDataManager.h"
+#import "YXRecordManager.h"
 @interface ClassHomeworkDataManager ()
 @property (nonatomic, strong) YXSearchClassRequest *searchClassRequest;
 @property (nonatomic, strong) YXJoinClassRequest *joinClassRequest;
@@ -102,6 +103,7 @@
         [manager updateUserInfoWithName:verifyMessage updatedBlock:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:YXJoinClassSuccessNotification object:nil];
         BLOCK_EXEC(completeBlock,retItem,nil)
+        [YXRecordManager addRecordWithType:YXRecordClassType];
     }];
 }
 - (void)updateUserInfoWithName:(NSString *)name updatedBlock:(void (^)(NSError *))updatedBlock {

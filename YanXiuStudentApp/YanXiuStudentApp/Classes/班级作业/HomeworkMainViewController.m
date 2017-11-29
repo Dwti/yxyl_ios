@@ -109,7 +109,6 @@
         STRONG_SELF
         [self gotoClassDetailWithClassId:item.property.classId];
     }];
-    [YXRecordManager addRecordWithType:YXRecordClassType];
 }
 
 - (void)handleHomeworkRequestError {
