@@ -129,16 +129,16 @@
         make.right.mas_equalTo(loginView.mas_right);
         make.top.mas_equalTo(forgotPasswordButton.mas_top);
     }];
-    UIButton *touristButton = [forgotPasswordButton clone];
-    [touristButton setTitle:@"游客登录" forState:UIControlStateNormal];
-    [touristButton addTarget:self action:@selector(gotoTouristLogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:touristButton];
-    [touristButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(forgotPasswordButton.mas_top);
-        make.centerX.mas_equalTo(0);
-    }];
-    self.touristButton = touristButton;
-    self.touristButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
+//    UIButton *touristButton = [forgotPasswordButton clone];
+//    [touristButton setTitle:@"游客登录" forState:UIControlStateNormal];
+//    [touristButton addTarget:self action:@selector(gotoTouristLogin) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:touristButton];
+//    [touristButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(forgotPasswordButton.mas_top);
+//        make.centerX.mas_equalTo(0);
+//    }];
+//    self.touristButton = touristButton;
+//    self.touristButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
     
     ThirdLoginView *thirdView = [[ThirdLoginView alloc]init];
     [thirdView setLoginAction:^(ThirdLoginType type) {

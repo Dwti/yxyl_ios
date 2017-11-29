@@ -8,6 +8,7 @@
 
 #import "AboutViewController.h"
 #import "PrivacyPolicyViewController.h"
+#import "YXConfigManager.h"
 
 @interface AboutViewController ()
 
@@ -32,15 +33,30 @@
     topImageView.image = [UIImage imageNamed:@"版本号3.1"];
     [self.contentView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.mas_equalTo(0);
-        make.height.mas_equalTo(200*kPhoneWidthRatio);
+        make.top.mas_equalTo(0);
+        make.centerX.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(151, 156));
+    }];
+    UILabel *versionLabel = [[UILabel alloc]init];
+    versionLabel.textAlignment = NSTextAlignmentCenter;
+    versionLabel.backgroundColor = [UIColor whiteColor];
+    versionLabel.textColor = [UIColor colorWithHexString:@"89e00d"];
+    versionLabel.font = [UIFont boldSystemFontOfSize:12];
+    versionLabel.text = [NSString stringWithFormat:@"学生端-V%@",[YXConfigManager sharedInstance].clientVersion];
+    versionLabel.layer.cornerRadius = 12.5;
+    versionLabel.clipsToBounds = YES;
+    [self.contentView addSubview:versionLabel];
+    [versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(topImageView.mas_bottom).mas_offset(4);
+        make.centerX.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(105, 25));
     }];
     UIView *containerView = [[UIView alloc]init];
     containerView.layer.cornerRadius = 6;
     containerView.clipsToBounds = YES;
     [self.contentView addSubview:containerView];
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(topImageView.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(versionLabel.mas_bottom).mas_offset(20);
         make.left.mas_equalTo(35*kPhoneWidthRatio);
         make.right.mas_equalTo(-35*kPhoneWidthRatio);
     }];
