@@ -59,9 +59,25 @@
     }else if (indexPath.row == 1){
         QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
         cell.delegate = self;
+        if (self.data.redoStatus == QARedoStatus_CanDelete) {
+            cell.isAnalysis = YES;
+            cell.userInteractionEnabled = NO;
+        }else {
+            cell.isAnalysis = NO;
+            cell.userInteractionEnabled = YES;
+        }
         cell.question = self.data;
         cell.answerStateChangeDelegate = self.answerStateChangeDelegate;
         self.blankCell = cell;
+        WEAK_SELF
+        [cell setMistakeFillBlankQuestionAnswerStateChangeBlock:^(NSUInteger answerState) {
+            STRONG_SELF
+            if (answerState == YXAnswerStateCorrect || answerState == YXAnswerStateWrong) {
+                self.data.redoStatus = QARedoStatus_CanSubmit;
+            }else {
+                self.data.redoStatus = QARedoStatus_Init;
+            }
+        }];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

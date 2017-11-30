@@ -85,7 +85,17 @@
 }
 
 - (void)setQuestion:(QAQuestion *)question {
-    _question = question;
+   
+    if (question.childQuestions.count == 1 && question.templateType != YXQATemplateClozeComplex) {
+        QAQuestion *data = question.childQuestions.firstObject;
+        if (data.templateType != YXQATemplateOral) {
+            data.questionType = question.questionType;
+        }
+        _question = data;
+    }else {
+         _question = question;
+    }
+    
     [self.dispose dispose];
     WEAK_SELF
     self.dispose = [RACObserve(self.question, redoStatus) subscribeNext:^(id x) {

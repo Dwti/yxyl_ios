@@ -8,7 +8,7 @@
 
 #import "QASingleQuestionAnswerBaseView.h"
 
-typedef  void(^MistakeConnectQuestionAnswerStateChangeBlock) (NSUInteger answerState);
+typedef void(^MistakeConnectQuestionAnswerStateChangeBlock) (NSUInteger answerState);
 
 @interface MistakeConnectQuestionView : QASingleQuestionAnswerBaseView
 

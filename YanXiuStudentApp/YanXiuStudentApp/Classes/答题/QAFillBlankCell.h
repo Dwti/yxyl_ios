@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^MistakeFillBlankQuestionAnswerStateChangeBlock) (NSUInteger answerState);
+
 @interface QAFillBlankCell : UITableViewCell
 @property (nonatomic, strong) QAQuestion *question;
 @property (nonatomic, assign) BOOL isAnalysis;
@@ -18,5 +20,5 @@
 
 - (UIView *)currentBlankView;
 - (void)resetCurrentBlank;
-
+- (void)setMistakeFillBlankQuestionAnswerStateChangeBlock:(MistakeFillBlankQuestionAnswerStateChangeBlock)block;
 @end

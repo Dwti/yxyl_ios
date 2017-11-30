@@ -24,6 +24,9 @@ static const NSInteger kBlankWidth = 3;
 @property (nonatomic, strong) QAInputAccessoryView *costomTextView;
 @property (nonatomic, strong) UITextView *hiddenTextView;
 @property (nonatomic, assign) NSInteger currentIndex;
+
+@property (nonatomic, copy) MistakeFillBlankQuestionAnswerStateChangeBlock block;
+
 @end
 
 @implementation QAFillBlankCell
@@ -374,6 +377,7 @@ static const NSInteger kBlankWidth = 3;
         if (fromState != toState && [self.answerStateChangeDelegate respondsToSelector:@selector(question:didChangeAnswerStateFrom:to:)]) {
             [self.answerStateChangeDelegate question:self.question didChangeAnswerStateFrom:fromState to:toState];
         }
+        BLOCK_EXEC(self.block,toState);
         [self refresh];
     }else {
         [self refreshBlankWithIndex:self.currentIndex selected:NO];
@@ -397,4 +401,8 @@ static const NSInteger kBlankWidth = 3;
     }
 }
 
+
+- (void)setMistakeFillBlankQuestionAnswerStateChangeBlock:(MistakeFillBlankQuestionAnswerStateChangeBlock)block {
+    self.block = block;
+}
 @end
