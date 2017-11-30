@@ -357,6 +357,9 @@
             childQuestion.position = position;
         }
     }
+    if (question.childQuestions.count == 1) {
+        question.childQuestions.firstObject.position = question.position;
+    }
 }
 
 #pragma mark - 错题重做
