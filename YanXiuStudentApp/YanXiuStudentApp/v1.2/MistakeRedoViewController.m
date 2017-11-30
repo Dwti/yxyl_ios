@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.switchView.lastButtonHidden = YES;
+    self.switchView.hidden = NO;
     self.title = @"重新做题";
     WEAK_SELF
     [self nyx_setupRightWithImageName:@"答题模块的答题卡图标正常态" highlightImageName:@"答题模块的答题卡图标点击态" action:^{

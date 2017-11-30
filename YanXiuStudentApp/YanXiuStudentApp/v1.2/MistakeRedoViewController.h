@@ -6,9 +6,9 @@
 //  Copyright © 2017年 yanxiu.com. All rights reserved.
 //
 
-#import "QAAnalysisViewController.h"
+#import "QABaseViewController.h"
 
-@interface MistakeRedoViewController : QAAnalysisViewController<QAAnalysisEditNoteDelegate>
+@interface MistakeRedoViewController : QABaseViewController<QAAnalysisEditNoteDelegate>
 @property (nonatomic, strong) GetSubjectMistakeRequestItem_subjectMistake *subject;
 @property (nonatomic, strong) void(^updateNumberBlock) (NSInteger num);
 @property (nonatomic, strong) void(^updateNoteBlock) (NSArray *questions);
