@@ -56,13 +56,16 @@
             self.headerCell = cell;
         }
         return cell;
+    }else if (indexPath.row == 1){
+        QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
+        cell.delegate = self;
+        cell.question = self.data;
+        cell.answerStateChangeDelegate = self.answerStateChangeDelegate;
+        self.blankCell = cell;
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
-    cell.delegate = self;
-    cell.question = self.data;
-    cell.answerStateChangeDelegate = self.answerStateChangeDelegate;
-    self.blankCell = cell;
-    return cell;
 }
 
 #pragma mark - Keyboard Observer

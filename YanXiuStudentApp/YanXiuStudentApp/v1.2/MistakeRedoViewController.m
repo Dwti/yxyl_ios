@@ -223,7 +223,7 @@
     [super slideView:slideView didSlideFromIndex:from toIndex:to];
     QAQuestionBaseView *currentView = (QAQuestionBaseView *)[slideView itemViewAtIndex:slideView.currentIndex];
     QAQuestion *currentQuestion = self.model.questions[to];
-    if (currentView.data != currentQuestion) { // 数据更新时刷新界面
+    if (currentView.oriData != currentQuestion) { // 数据更新时刷新界面
         [self.slideView reloadData];
     }else if (currentQuestion.templateType == YXQATemplateUnknown) { // 无数据时进行请求
         [self requestDataFromIndex:to];
