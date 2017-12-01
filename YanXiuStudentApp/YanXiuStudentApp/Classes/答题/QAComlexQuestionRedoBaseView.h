@@ -9,5 +9,5 @@
 #import "QAComlexQuestionAnswerBaseView.h"
 
 @interface QAComlexQuestionRedoBaseView : QAComlexQuestionAnswerBaseView
-
+- (void)refreshForRedoStatusChange;
 @end

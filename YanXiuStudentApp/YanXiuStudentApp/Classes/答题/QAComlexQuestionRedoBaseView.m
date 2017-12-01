@@ -31,6 +31,7 @@
     WEAK_SELF
     RACDisposable *dispose = [RACObserve(self.data, redoStatus) subscribeNext:^(id x) {
         STRONG_SELF
+        [self refreshForRedoStatusChange];
         NSNumber *num = x;
         QARedoStatus status = num.integerValue;
         if (status == QARedoStatus_CanDelete) {
@@ -66,6 +67,10 @@
         }];
         [self.disposeArray addObject:dispose];
     }
+}
+
+- (void)refreshForRedoStatusChange {
+    
 }
 
 #pragma mark - slide tab datasource delegate

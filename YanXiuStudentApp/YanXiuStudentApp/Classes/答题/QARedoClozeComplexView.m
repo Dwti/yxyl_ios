@@ -22,6 +22,14 @@
     return self.clozeContainerView;
 }
 
+- (void)refreshForRedoStatusChange {
+    if (self.data.redoStatus == QARedoStatus_CanDelete) {
+        self.clozeContainerView.isAnalysis = YES;
+        self.clozeContainerView.currentIndex = self.clozeContainerView.clozeCell.currentIndex;
+        [self.clozeContainerView.tableView reloadData];
+    }
+}
+
 #pragma mark- QAClozeContainerViewDelegate
 - (void)didSelectItemAtIndex:(NSInteger)index {
     [self.slideView scrollToItemIndex:index animated:YES];
