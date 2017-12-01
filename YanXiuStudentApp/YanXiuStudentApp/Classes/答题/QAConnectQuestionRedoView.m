@@ -23,7 +23,8 @@
     [super setupUI];
     self.tableView.hidden = YES;
     self.questionView = [[MistakeConnectQuestionView alloc]init];
-    self.questionView.data = self.data;
+    self.questionView.data = self.oriData;
+    self.questionView.isSubQuestionView = self.isSubQuestionView;
     WEAK_SELF
     [self.questionView setMistakeConnectQuestionAnswerStateChangeBlock:^(NSUInteger answerState) {
         STRONG_SELF

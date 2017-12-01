@@ -21,9 +21,9 @@
 
 - (void)setupUI {
     [super setupUI];
-    self.tableView.hidden = YES;
     self.questionView = [[MistakeClassifyQuestionView alloc]init];
-    self.questionView.data = self.data;
+    self.questionView.data = self.oriData;
+    self.questionView.isSubQuestionView = self.isSubQuestionView;
     WEAK_SELF
     [self.questionView setMistakeClassifyQuestionAnswerStateChangeBlock:^(NSUInteger answerState) {
         STRONG_SELF

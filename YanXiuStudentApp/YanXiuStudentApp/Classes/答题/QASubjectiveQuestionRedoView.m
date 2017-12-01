@@ -21,7 +21,8 @@
 - (void)setupUI {
     [super setupUI];
     self.questionView = [[MistakeSubjectiveQuestionView alloc]init];
-    self.questionView.data = self.data;
+    self.questionView.data = self.oriData;
+    self.questionView.isSubQuestionView = self.isSubQuestionView;
     [self addSubview:self.questionView];
     [self.questionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
