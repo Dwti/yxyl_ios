@@ -10,6 +10,7 @@
 #import "QASubjectiveQuestionView.h"
 #import "QASubjectiveQuestionAnalysisView.h"
 #import "QAUnknownQuestionView.h"
+#import "QASubjectiveQuestionRedoView.h"
 
 @implementation QASubjectiveQuestionViewContainer
 
@@ -21,6 +22,6 @@
 }
 
 - (QAQuestionBaseView *)questionRedoView {
-    return [[QAUnknownQuestionView alloc] init];
+    return [[QASubjectiveQuestionRedoView alloc] init];
 }
 @end

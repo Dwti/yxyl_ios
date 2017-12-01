@@ -77,26 +77,17 @@ static const CGFloat kMinMargin = 15;
 - (void)setModel:(QAPaperModel *)model{
     _model = model;
     
-    self.questionArray = [self.model allQuestions];
+    self.questionArray = self.model.questions;
     
     self.stateArray = [NSMutableArray array];
     [self.questionArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         QAQuestion *item = (QAQuestion *)obj;
-        BOOL hasAnswer = [self hasAnswered:item];
+        BOOL hasAnswer = [item hasAnswered:item];
         [self.stateArray addObject:@(hasAnswer)];
     }];
     
     [self.collectionView reloadData];
 }
 
-- (BOOL)hasAnswered:(QAQuestion *)data {
-    YXQAAnswerState state = [data answerState];
-    if (state == YXAnswerStateCorrect ||
-        state == YXAnswerStateWrong ||
-        state == YXAnswerStateAnswered) {
-        return YES;
-    }
-    return NO;
-}
 @end
 

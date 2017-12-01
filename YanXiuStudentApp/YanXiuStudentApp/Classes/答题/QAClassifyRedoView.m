@@ -38,6 +38,14 @@
         make.edges.mas_equalTo(0);
     }];
 
+    if (self.data.redoStatus == QARedoStatus_CanDelete || self.data.redoStatus == QARedoStatus_AlreadyDelete) {
+        self.tableView.hidden = NO;
+        self.questionView.hidden = YES;
+    }else {
+        self.tableView.hidden = YES;
+        self.questionView.hidden = NO;
+    }
+    
     [self.tableView registerClass:[QAQuestionStemCell class] forCellReuseIdentifier:@"QAQuestionStemCell"];
     [self.tableView registerClass:[QAClassifyAnswerResultCell class] forCellReuseIdentifier:@"QAClassifyAnswerResultCell"];
 }

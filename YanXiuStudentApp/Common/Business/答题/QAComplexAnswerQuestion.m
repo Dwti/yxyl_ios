@@ -46,6 +46,14 @@
     return YXAnswerStateWrong;
 }
 
+- (BOOL)hasAnswered:(QAQuestion *)data {
+    for (QAQuestion *q in self.childQuestions) {
+        if (![q hasAnswered:q]) {
+            return NO;
+        }
+    }
+    return YES;
+}
 #pragma mark - 答题报告
 - (NSArray *)answerForReport{
     return nil;

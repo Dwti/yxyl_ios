@@ -55,7 +55,7 @@
         }];
         [self.navigationController pushViewController:vc animated:YES];
     }];
-    [self.model updateToWholeModelWithQuestionTotalCount:self.qids.count currentOriIndex:self.model.questions.firstObject.wrongQuestionIndex-1];
+    [self.model updateToWholeModelWithQuestionTotalCount:self.qids.count currentOriIndex:0];
     
     [self.model.questions enumerateObjectsUsingBlock:^(QAQuestion * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.templateType!=YXQATemplateUnknown && !obj.redoCompleted) {

@@ -7,7 +7,6 @@
 //
 
 #import "QASingleQuestionRedoBaseView.h"
-#import "QARedoSubmitView.h"
 #import "YXQAAnalysisItem.h"
 #import "GlobalUtils.h"
 #import "QANoteCell.h"
@@ -15,9 +14,10 @@
 #import "QAAnalysisDifficultyCell.h"
 #import "QAAnalysisAnalysisCell.h"
 #import "QAAnaysisGapCell.h"
+#import "QAAnalysisScoreCell.h"
+#import "QAAnalysisSubjectiveResultCell.h"
 
 @interface QASingleQuestionRedoBaseView()
-@property (nonatomic, strong) QARedoSubmitView *submitView;
 @property (nonatomic, strong) RACDisposable *dispose;
 @property (nonatomic, strong) RACDisposable *contentSizeDispose;
 
@@ -47,7 +47,8 @@
     [self.tableView registerClass:[QAAnalysisDifficultyCell class] forCellReuseIdentifier:@"QAAnalysisDifficultyCell"];
     [self.tableView registerClass:[QAAnalysisAnalysisCell class] forCellReuseIdentifier:@"QAAnalysisAnalysisCell"];
     [self.tableView registerClass:[QAAnaysisGapCell class] forCellReuseIdentifier:@"QAAnaysisGapCell"];
-    
+        [self.tableView registerClass:[QAAnalysisSubjectiveResultCell class] forCellReuseIdentifier:@"QAAnalysisSubjectiveResultCell"];
+        [self.tableView registerClass:[QAAnalysisScoreCell class] forCellReuseIdentifier:@"QAAnalysisScoreCell"];
     [self setupAnalysisBGViewUI];
     if (self.data.redoStatus == QARedoStatus_CanDelete || self.data.redoStatus == QARedoStatus_AlreadyDelete) {
         self.analysisBGView.hidden = NO;
@@ -92,11 +93,47 @@
     [self.cellHeightArray addObject:@([QAAnaysisGapCell height])];
     self.analysisDataArray = [NSMutableArray array];
     
-    YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
-    item.type = YXAnalysisCurrentStatus;
-    [self.analysisDataArray addObject:item];
-    [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:[self.data answerStateDescription]])];
+    if (self.isPaperSubmitted) {
+        if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisScore] ||
+            [self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisResult]
+            ) {
+            
+            YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
+            
+            if (self.data.questionType == YXQAItemFill ||
+                self.data.questionType == YXQAItemListenFill ||
+                self.data.questionType == YXQAItemListenAudioFill ||
+                self.data.questionType == YXQAItemTranslate ||
+                self.data.questionType == YXQAItemCorrect) {
+                item.type = YXAnalysisResult;
+                [self.cellHeightArray addObject:@([QAAnalysisSubjectiveResultCell height])];
+            } else {
+                item.type = YXAnalysisScore;
+                [self.cellHeightArray addObject:@([QAAnalysisScoreCell height])];
+            }
+            
+            [self.analysisDataArray addObject:item];
+        }
+    }
+    
+//    YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
+//    item.type = YXAnalysisCurrentStatus;
+//    [self.analysisDataArray addObject:item];
+//    [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:[self.data answerStateDescription]])];
 
+    if (self.isPaperSubmitted) {//提交了就显示对错
+        if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisCurrentStatus]) {
+            YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
+            item.type = YXAnalysisCurrentStatus;
+            [self.analysisDataArray addObject:item];
+//            if (self.data.templateType == YXQATemplateOral) {
+//                [self.cellHeightArray addObject:@([QAAnalysisOralResultCell height])];
+//            } else {
+                [self.cellHeightArray addObject:@([QAAnalysisResultCell heightForString:self.data.answerCompare])];
+//            }
+        }
+    }
+    
     if (!isEmpty(self.data.difficulty)) {
         if ([self.analysisDataDelegate shouldShowAnalysisDataWithQAItemType:self.data.templateType analysisType:YXAnalysisDifficulty]) {
             YXQAAnalysisItem *item = [[YXQAAnalysisItem alloc]init];
@@ -225,6 +262,20 @@
             STRONG_SELF
             SAFE_CALL_OneParam(self.editNoteDelegate, editNoteButtonTapped, self.data);
         }];
+        return cell;
+    } else if (data.type == YXAnalysisScore) {
+        QAAnalysisScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAAnalysisScoreCell" forIndexPath:indexPath];
+        cell.item = data;
+        cell.score = self.data.score;
+        cell.isMarked = self.data.isMarked;
+        [cell updateUI];
+        return cell;
+    } else if (data.type == YXAnalysisResult) {
+        QAAnalysisSubjectiveResultCell *cell = [[QAAnalysisSubjectiveResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.item = data;
+        cell.isCorrect = self.data.score == 5 ? YES : NO;
+        cell.isMarked = self.data.isMarked;
+        [cell updateUI];
         return cell;
     } else {
         return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

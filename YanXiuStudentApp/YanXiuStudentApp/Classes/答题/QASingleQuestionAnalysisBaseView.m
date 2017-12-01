@@ -53,7 +53,7 @@
     [self.tableView registerClass:[QAAnalysisAnswerCell class] forCellReuseIdentifier:@"QAAnalysisAnswerCell"];
     [self.tableView registerClass:[QAAnalysisKnowledgePointCell class] forCellReuseIdentifier:@"QAAnalysisKnowledgePointCell"];
     [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisAudioCommentCell"];
-    [self.tableView registerClass:[QAAnalysisAudioCommentCell class] forCellReuseIdentifier:@"QAAnalysisSubjectiveResultCell"];
+    [self.tableView registerClass:[QAAnalysisSubjectiveResultCell class] forCellReuseIdentifier:@"QAAnalysisSubjectiveResultCell"];
     [self.tableView registerClass:[QANoteCell class] forCellReuseIdentifier:@"QANoteCell"];
     [self.tableView registerClass:[QAAnalysisOralResultCell class] forCellReuseIdentifier:@"QAAnalysisOralResultCell"];
 

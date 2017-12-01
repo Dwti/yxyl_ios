@@ -59,7 +59,7 @@
     }else if (indexPath.row == 1){
         QAFillBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAFillBlankCell"];
         cell.delegate = self;
-        if (self.data.redoStatus == QARedoStatus_CanDelete) {
+        if (self.data.redoStatus == QARedoStatus_CanDelete || self.data.redoStatus == QARedoStatus_AlreadyDelete) {
             cell.isAnalysis = YES;
             cell.userInteractionEnabled = NO;
         }else {
